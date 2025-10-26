@@ -1,0 +1,849 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { DollarSign, Check, AlertCircle } from 'lucide-astro';
+---
+
+<BaseLayout
+  title="Implementation Costs & Budget Planning"
+  description="Realistic cost breakdown for implementing the K-12 Digital Campus Framework. Options from free open-source to full-featured implementations. Affordable digital transformation for African schools."
+  keywords="education technology costs, school technology budget, open-source education, free education software, digital transformation budget, affordable education technology, school IT costs Africa, education technology pricing"
+>
+  <div class="pricing-container">
+    <div class="pricing-header">
+      <h1>Implementation Costs & Budget Options</h1>
+      <p class="subtitle">Choose the path that fits your school's budget and needs</p>
+      <div class="pricing-note">
+        <AlertCircle size={20} />
+        <p>All costs are estimates for a school of 500-1000 students over 3 years. Your actual costs may vary based on location, existing infrastructure, and specific needs.</p>
+      </div>
+    </div>
+
+    <!-- Pricing Tiers -->
+    <div class="tiers-grid">
+      <!-- Free / Open Source Tier -->
+      <div class="tier-card tier-free">
+        <div class="tier-badge">Most Affordable</div>
+        <h2>Free & Open Source</h2>
+        <div class="tier-price">
+          <span class="price">$0-$15K</span>
+          <span class="period">3-year total</span>
+        </div>
+        <p class="tier-description">
+          Leverage completely free and open-source solutions. Perfect for schools with technical staff or community support.
+        </p>
+        <ul class="tier-features">
+          <li><Check size={20} /> Free LMS (Moodle)</li>
+          <li><Check size={20} /> Free SIS (OpenSIS)</li>
+          <li><Check size={20} /> Google Workspace for Education (Free)</li>
+          <li><Check size={20} /> Open-source analytics (Matomo)</li>
+          <li><Check size={20} /> Community support & forums</li>
+          <li><Check size={20} /> Self-hosted on basic server</li>
+        </ul>
+        <a href="#free-breakdown" class="btn btn-secondary">View Details</a>
+      </div>
+
+      <!-- Basic Tier -->
+      <div class="tier-card tier-basic">
+        <h2>Basic Implementation</h2>
+        <div class="tier-price">
+          <span class="price">$25K-$45K</span>
+          <span class="period">3-year total</span>
+        </div>
+        <p class="tier-description">
+          Mix of free tools with some paid services for better support and reliability. Good balance for most schools.
+        </p>
+        <ul class="tier-features">
+          <li><Check size={20} /> Moodle or Google Classroom</li>
+          <li><Check size={20} /> Low-cost SIS (cloud-hosted)</li>
+          <li><Check size={20} /> Basic cloud hosting</li>
+          <li><Check size={20} /> Essential training & support</li>
+          <li><Check size={20} /> Basic device lending program</li>
+          <li><Check size={20} /> Email support</li>
+        </ul>
+        <a href="#basic-breakdown" class="btn btn-secondary">View Details</a>
+      </div>
+
+      <!-- Standard Tier -->
+      <div class="tier-card tier-standard">
+        <div class="tier-badge">Recommended</div>
+        <h2>Standard Implementation</h2>
+        <div class="tier-price">
+          <span class="price">$60K-$90K</span>
+          <span class="period">3-year total</span>
+        </div>
+        <p class="tier-description">
+          Balanced approach with reliable tools, professional support, and device program. Best value for comprehensive transformation.
+        </p>
+        <ul class="tier-features">
+          <li><Check size={20} /> Full LMS with integrations</li>
+          <li><Check size={20} /> Cloud-based SIS</li>
+          <li><Check size={20} /> 1:3 device lending program</li>
+          <li><Check size={20} /> Professional development</li>
+          <li><Check size={20} /> Analytics & reporting tools</li>
+          <li><Check size={20} /> Dedicated support</li>
+        </ul>
+        <a href="#standard-breakdown" class="btn btn-primary">View Details</a>
+      </div>
+
+      <!-- Premium Tier -->
+      <div class="tier-card tier-premium">
+        <h2>Premium Implementation</h2>
+        <div class="tier-price">
+          <span class="price">$120K-$180K</span>
+          <span class="period">3-year total</span>
+        </div>
+        <p class="tier-description">
+          Full-featured implementation with 1:1 devices, advanced AI analytics, comprehensive training, and premium support.
+        </p>
+        <ul class="tier-features">
+          <li><Check size={20} /> Enterprise LMS & SIS</li>
+          <li><Check size={20} /> 1:1 device program (Chromebooks)</li>
+          <li><Check size={20} /> AI-powered analytics</li>
+          <li><Check size={20} /> Extensive PD programs</li>
+          <li><Check size={20} /> Parent engagement platforms</li>
+          <li><Check size={20} /> Priority support & training</li>
+        </ul>
+        <a href="#premium-breakdown" class="btn btn-secondary">View Details</a>
+      </div>
+    </div>
+
+    <!-- Detailed Breakdowns -->
+    <section id="free-breakdown" class="breakdown-section">
+      <h2><DollarSign class="section-icon" size={32} /> Free & Open Source Breakdown</h2>
+      <div class="breakdown-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Solution</th>
+              <th>Cost</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Learning Management</td>
+              <td>Moodle (self-hosted)</td>
+              <td>$0</td>
+              <td>Free, requires technical setup</td>
+            </tr>
+            <tr>
+              <td>Student Information System</td>
+              <td>OpenSIS</td>
+              <td>$0</td>
+              <td>Open-source, community support</td>
+            </tr>
+            <tr>
+              <td>Email & Collaboration</td>
+              <td>Google Workspace for Education</td>
+              <td>$0</td>
+              <td>Free for schools</td>
+            </tr>
+            <tr>
+              <td>Server Hosting</td>
+              <td>Basic VPS</td>
+              <td>$1,200</td>
+              <td>$400/year for 3 years</td>
+            </tr>
+            <tr>
+              <td>Domain & SSL</td>
+              <td>Annual registration</td>
+              <td>$150</td>
+              <td>$50/year for 3 years</td>
+            </tr>
+            <tr>
+              <td>Internet Connectivity</td>
+              <td>Basic broadband</td>
+              <td>$5,400</td>
+              <td>$150/month for 3 years</td>
+            </tr>
+            <tr>
+              <td>Training (Self-paced)</td>
+              <td>Online tutorials & documentation</td>
+              <td>$0</td>
+              <td>Community resources</td>
+            </tr>
+            <tr>
+              <td>Devices</td>
+              <td>BYOD (Bring Your Own Device)</td>
+              <td>$0</td>
+              <td>Students use personal phones</td>
+            </tr>
+            <tr>
+              <td>Technical Staff</td>
+              <td>Existing IT staff or volunteer</td>
+              <td>$0</td>
+              <td>20-30 hours setup + ongoing</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="2"><strong>Total 3-Year Cost</strong></td>
+              <td><strong>$6,750</strong></td>
+              <td>Requires technical expertise</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="breakdown-note">
+        <p><strong>Best for:</strong> Schools with technical staff, community IT volunteers, or partnerships with local tech organizations. Requires commitment to self-support and community resources.</p>
+      </div>
+    </section>
+
+    <section id="basic-breakdown" class="breakdown-section">
+      <h2><DollarSign class="section-icon" size={32} /> Basic Implementation Breakdown</h2>
+      <div class="breakdown-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Solution</th>
+              <th>Year 1</th>
+              <th>Year 2</th>
+              <th>Year 3</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LMS Platform</td>
+              <td>Google Classroom or Moodle Cloud</td>
+              <td>$0</td>
+              <td>$0</td>
+              <td>$0</td>
+              <td>$0</td>
+            </tr>
+            <tr>
+              <td>SIS (Cloud)</td>
+              <td>Low-cost cloud SIS</td>
+              <td>$2,000</td>
+              <td>$2,000</td>
+              <td>$2,000</td>
+              <td>$6,000</td>
+            </tr>
+            <tr>
+              <td>Cloud Hosting</td>
+              <td>Managed hosting</td>
+              <td>$1,200</td>
+              <td>$1,200</td>
+              <td>$1,200</td>
+              <td>$3,600</td>
+            </tr>
+            <tr>
+              <td>Connectivity</td>
+              <td>Broadband + backup</td>
+              <td>$2,400</td>
+              <td>$2,400</td>
+              <td>$2,400</td>
+              <td>$7,200</td>
+            </tr>
+            <tr>
+              <td>Devices</td>
+              <td>10 shared tablets</td>
+              <td>$3,000</td>
+              <td>$0</td>
+              <td>$1,500</td>
+              <td>$4,500</td>
+            </tr>
+            <tr>
+              <td>Training</td>
+              <td>Basic staff training</td>
+              <td>$3,000</td>
+              <td>$1,500</td>
+              <td>$1,500</td>
+              <td>$6,000</td>
+            </tr>
+            <tr>
+              <td>Support & Maintenance</td>
+              <td>Email support</td>
+              <td>$2,000</td>
+              <td>$2,000</td>
+              <td>$2,000</td>
+              <td>$6,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"><strong>Total 3-Year Cost</strong></td>
+              <td colspan="3"><strong>$33,300</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="breakdown-note">
+        <p><strong>Best for:</strong> Schools ready to invest modestly in digital transformation with mix of free and low-cost tools. Includes basic support and minimal device program.</p>
+      </div>
+    </section>
+
+    <section id="standard-breakdown" class="breakdown-section">
+      <h2><DollarSign class="section-icon" size={32} /> Standard Implementation Breakdown (Recommended)</h2>
+      <div class="breakdown-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Solution</th>
+              <th>Year 1</th>
+              <th>Year 2</th>
+              <th>Year 3</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LMS Platform</td>
+              <td>Moodle Cloud or Canvas</td>
+              <td>$3,000</td>
+              <td>$3,000</td>
+              <td>$3,000</td>
+              <td>$9,000</td>
+            </tr>
+            <tr>
+              <td>SIS Platform</td>
+              <td>PowerSchool or similar</td>
+              <td>$5,000</td>
+              <td>$5,000</td>
+              <td>$5,000</td>
+              <td>$15,000</td>
+            </tr>
+            <tr>
+              <td>Cloud Infrastructure</td>
+              <td>AWS Educate or Azure</td>
+              <td>$2,500</td>
+              <td>$2,500</td>
+              <td>$2,500</td>
+              <td>$7,500</td>
+            </tr>
+            <tr>
+              <td>Connectivity</td>
+              <td>High-speed broadband</td>
+              <td>$3,600</td>
+              <td>$3,600</td>
+              <td>$3,600</td>
+              <td>$10,800</td>
+            </tr>
+            <tr>
+              <td>Devices</td>
+              <td>100 Chromebooks (1:3 ratio)</td>
+              <td>$25,000</td>
+              <td>$0</td>
+              <td>$12,500</td>
+              <td>$37,500</td>
+            </tr>
+            <tr>
+              <td>Professional Development</td>
+              <td>Teacher & staff training</td>
+              <td>$5,000</td>
+              <td>$3,000</td>
+              <td>$3,000</td>
+              <td>$11,000</td>
+            </tr>
+            <tr>
+              <td>Technical Support</td>
+              <td>Dedicated support</td>
+              <td>$3,000</td>
+              <td>$3,000</td>
+              <td>$3,000</td>
+              <td>$9,000</td>
+            </tr>
+            <tr>
+              <td>Analytics & Reporting</td>
+              <td>Basic analytics tools</td>
+              <td>$1,000</td>
+              <td>$1,000</td>
+              <td>$1,000</td>
+              <td>$3,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"><strong>Total 3-Year Cost</strong></td>
+              <td colspan="3"><strong>$75,300</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="breakdown-note">
+        <p><strong>Best for:</strong> Schools committed to comprehensive digital transformation with balanced investment in technology, training, and support. Most popular option for medium-sized schools.</p>
+      </div>
+    </section>
+
+    <section id="premium-breakdown" class="breakdown-section">
+      <h2><DollarSign class="section-icon" size={32} /> Premium Implementation Breakdown</h2>
+      <div class="breakdown-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Solution</th>
+              <th>Year 1</th>
+              <th>Year 2</th>
+              <th>Year 3</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>LMS Platform</td>
+              <td>Canvas or Blackboard</td>
+              <td>$8,000</td>
+              <td>$8,000</td>
+              <td>$8,000</td>
+              <td>$24,000</td>
+            </tr>
+            <tr>
+              <td>SIS Platform</td>
+              <td>PowerSchool Premium</td>
+              <td>$10,000</td>
+              <td>$10,000</td>
+              <td>$10,000</td>
+              <td>$30,000</td>
+            </tr>
+            <tr>
+              <td>Cloud Infrastructure</td>
+              <td>AWS or Azure (scalable)</td>
+              <td>$5,000</td>
+              <td>$5,000</td>
+              <td>$5,000</td>
+              <td>$15,000</td>
+            </tr>
+            <tr>
+              <td>Connectivity</td>
+              <td>Enterprise broadband</td>
+              <td>$6,000</td>
+              <td>$6,000</td>
+              <td>$6,000</td>
+              <td>$18,000</td>
+            </tr>
+            <tr>
+              <td>Devices</td>
+              <td>300 Chromebooks (1:1 for grades 9-12)</td>
+              <td>$75,000</td>
+              <td>$0</td>
+              <td>$37,500</td>
+              <td>$112,500</td>
+            </tr>
+            <tr>
+              <td>Professional Development</td>
+              <td>Comprehensive training program</td>
+              <td>$12,000</td>
+              <td>$8,000</td>
+              <td>$8,000</td>
+              <td>$28,000</td>
+            </tr>
+            <tr>
+              <td>AI & Analytics</td>
+              <td>Advanced analytics platform</td>
+              <td>$5,000</td>
+              <td>$5,000</td>
+              <td>$5,000</td>
+              <td>$15,000</td>
+            </tr>
+            <tr>
+              <td>Technical Support</td>
+              <td>Premium support & consulting</td>
+              <td>$8,000</td>
+              <td>$8,000</td>
+              <td>$8,000</td>
+              <td>$24,000</td>
+            </tr>
+            <tr>
+              <td>Parent Engagement</td>
+              <td>Communication platforms</td>
+              <td>$2,000</td>
+              <td>$2,000</td>
+              <td>$2,000</td>
+              <td>$6,000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3"><strong>Total 3-Year Cost</strong></td>
+              <td colspan="3"><strong>$181,000</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="breakdown-note">
+        <p><strong>Best for:</strong> Well-funded schools or those with grants/donor support seeking comprehensive 1:1 device programs, advanced analytics, and premium support services.</p>
+      </div>
+    </section>
+
+    <!-- Cost Savings Tips -->
+    <section class="savings-section">
+      <h2>Cost Reduction Strategies</h2>
+      <div class="savings-grid">
+        <div class="savings-card">
+          <h3>Phased Rollout</h3>
+          <p>Start with free tools and core grades, expand gradually as budget allows. Year 1 can be under $10K.</p>
+        </div>
+        <div class="savings-card">
+          <h3>BYOD Programs</h3>
+          <p>Encourage students to bring smartphones/tablets. Reduces device costs by 60-80%.</p>
+        </div>
+        <div class="savings-card">
+          <h3>Open Source First</h3>
+          <p>Prioritize free, open-source tools. Upgrade to paid tools only when necessary.</p>
+        </div>
+        <div class="savings-card">
+          <h3>Community Partnerships</h3>
+          <p>Partner with local tech companies, NGOs, or universities for donated equipment and expertise.</p>
+        </div>
+        <div class="savings-card">
+          <h3>Bulk Purchasing</h3>
+          <p>Coordinate with other schools for group purchasing discounts on devices and software.</p>
+        </div>
+        <div class="savings-card">
+          <h3>Grant Funding</h3>
+          <p>Apply for education technology grants from government, foundations, and international organizations.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="pricing-cta">
+      <h2>Ready to Start Your Digital Transformation?</h2>
+      <p>Choose the implementation level that matches your budget and vision. Every school's journey is unique.</p>
+      <div class="cta-buttons">
+        <a href="/framework" class="btn btn-primary">View Full Framework</a>
+        <a href="/about" class="btn btn-secondary">Learn More About Nyuchi Learning</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .pricing-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .pricing-header {
+    text-align: center;
+    padding: 4rem 1rem;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80') center/cover no-repeat;
+    color: white;
+    border-radius: 1rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.7) 0%, rgba(26, 26, 26, 0.85) 100%);
+    z-index: 0;
+  }
+
+  .pricing-header > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .pricing-header h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    opacity: 0.95;
+    margin-bottom: 2rem;
+  }
+
+  .pricing-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    max-width: 800px;
+    margin: 2rem auto 0;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    text-align: left;
+  }
+
+  .pricing-note p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  /* Tiers Grid */
+  .tiers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 6rem;
+  }
+
+  .tier-card {
+    background: white;
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .tier-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+
+  .tier-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  .tier-card h2 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.75rem;
+  }
+
+  .tier-price {
+    margin-bottom: 1.5rem;
+  }
+
+  .price {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    line-height: 1.2;
+  }
+
+  .period {
+    color: var(--text-light);
+    font-size: 0.95rem;
+  }
+
+  .tier-description {
+    color: var(--text-light);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+
+  .tier-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+  }
+
+  .tier-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .tier-features li:last-child {
+    border-bottom: none;
+  }
+
+  /* Breakdown Sections */
+  .breakdown-section {
+    margin-bottom: 4rem;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .breakdown-section h2 {
+    color: var(--primary);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .section-icon {
+    color: var(--primary);
+  }
+
+  .breakdown-table {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  thead {
+    background: var(--bg-gray);
+  }
+
+  th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:hover {
+    background: var(--bg-gray);
+  }
+
+  tfoot {
+    background: var(--bg-gray);
+    font-weight: 700;
+  }
+
+  tfoot td {
+    border-bottom: none;
+    padding: 1.25rem 1rem;
+  }
+
+  .breakdown-note {
+    padding: 1.5rem;
+    background: var(--bg-gray);
+    border-left: 4px solid var(--primary);
+    border-radius: 0.5rem;
+  }
+
+  .breakdown-note p {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.8;
+  }
+
+  /* Savings Section */
+  .savings-section {
+    margin-bottom: 4rem;
+    padding: 3rem 2rem;
+    background: var(--bg-gray);
+    border-radius: 1rem;
+  }
+
+  .savings-section h2 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+  }
+
+  .savings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  .savings-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .savings-card h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+  }
+
+  .savings-card p {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* CTA Section */
+  .pricing-cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-dark);
+    color: white;
+    border-radius: 1rem;
+  }
+
+  .pricing-cta h2 {
+    color: white;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+  }
+
+  .pricing-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--primary);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--primary);
+  }
+
+  @media (max-width: 768px) {
+    .tiers-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .breakdown-table {
+      font-size: 0.85rem;
+    }
+
+    th, td {
+      padding: 0.75rem 0.5rem;
+    }
+
+    .savings-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

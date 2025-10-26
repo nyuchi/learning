@@ -1,0 +1,386 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BookOpen, Download, Users, Bot } from 'lucide-astro';
+---
+
+<BaseLayout
+  title="Educational Frameworks - Nyuchi Learning"
+  description="Browse our collection of open, shareable frameworks for digital transformation in African schools. Free to use, copy, adapt, and share."
+  keywords="educational frameworks, K-12 digital transformation, school support systems, African education, open source education"
+>
+  <div class="frameworks-page">
+    <div class="frameworks-hero">
+      <div class="hero-content">
+        <h1>Educational Frameworks</h1>
+        <p class="hero-description">
+          Open, shareable frameworks designed to empower schools across Africa.
+          Free to use, copy, adapt, and improve for your community.
+        </p>
+        <p class="open-framework-notice">
+          All frameworks are released under an open license. Download, implement, and share with other schools.
+        </p>
+      </div>
+    </div>
+
+    <div class="frameworks-container">
+      <h2 class="section-title">Available Frameworks</h2>
+
+      <div class="frameworks-grid">
+        <!-- Framework 1: K-12 Digital Campus -->
+        <div class="framework-card">
+          <div class="framework-icon">
+            <BookOpen size={48} strokeWidth={1.5} />
+          </div>
+          <div class="framework-content">
+            <h3>K-12 Digital Campus Framework</h3>
+            <p class="framework-version">Version 1.0 | October 2024</p>
+            <p class="framework-description">
+              A comprehensive blueprint for digital transformation in K-12 schools.
+              Covers infrastructure, software systems, pedagogy, professional development,
+              and implementation strategies tailored for African contexts.
+            </p>
+
+            <div class="framework-highlights">
+              <h4>Key Features</h4>
+              <ul>
+                <li>Mobile-first, low-bandwidth design principles</li>
+                <li>Free & open-source software recommendations</li>
+                <li>Flexible pricing tiers ($0 to premium)</li>
+                <li>Multilingual support (African languages + English, French, Chinese)</li>
+                <li>BYOD and phased rollout strategies</li>
+              </ul>
+            </div>
+
+            <div class="framework-stats">
+              <div class="stat">
+                <strong>4 Pricing Tiers</strong>
+                <span>From free to premium</span>
+              </div>
+              <div class="stat">
+                <strong>$0-$180K</strong>
+                <span>3-year implementation range</span>
+              </div>
+            </div>
+
+            <div class="framework-actions">
+              <a href="/framework" class="btn btn-secondary">Read Online</a>
+              <a href="/frameworks/k12-digital-campus-framework.pdf" class="btn btn-primary" download>
+                <Download size={20} /> Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Framework 2: K-12 Support Process -->
+        <div class="framework-card">
+          <div class="framework-icon">
+            <Users size={48} strokeWidth={1.5} />
+          </div>
+          <div class="framework-content">
+            <h3>K-12 Support Process Framework</h3>
+            <p class="framework-version">Version 1.0 | October 2024</p>
+            <p class="framework-description">
+              Complete documentation for a three-tier support system designed for digital campuses.
+              Balances AI-powered self-service, educational technology support, and IT operations
+              to deliver efficient, cost-effective support at scale.
+            </p>
+
+            <div class="framework-highlights">
+              <h4>Support Tiers</h4>
+              <ul>
+                <li><strong>Tier 0:</strong> AI-powered chatbot (40% resolution rate)</li>
+                <li><strong>Tier 1:</strong> EdTech team for pedagogical support (70% escalation resolution)</li>
+                <li><strong>Tier 2:</strong> IT Operations for infrastructure (95% SLA compliance)</li>
+              </ul>
+            </div>
+
+            <div class="framework-stats">
+              <div class="stat">
+                <strong>3 Support Tiers</strong>
+                <span>AI + EdTech + IT Ops</span>
+              </div>
+              <div class="stat">
+                <strong>40-95% Resolution</strong>
+                <span>Tier-based efficiency</span>
+              </div>
+            </div>
+
+            <div class="framework-actions">
+              <a href="/support-framework" class="btn btn-secondary">Read Online</a>
+              <a href="/frameworks/k12-support-process-framework.pdf" class="btn btn-primary" download>
+                <Download size={20} /> Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coming Soon Section -->
+      <div class="coming-soon-section">
+        <h2>More Frameworks Coming Soon</h2>
+        <p>
+          Nyuchi Learning is committed to developing comprehensive frameworks for digital
+          transformation in African education. Stay tuned for upcoming releases covering
+          data analytics, student information systems, and more.
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .frameworks-page {
+    min-height: 100vh;
+  }
+
+  .frameworks-hero {
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80') center/cover no-repeat;
+    background-attachment: fixed;
+    color: white;
+    padding: 6rem 2rem 5rem;
+    position: relative;
+  }
+
+  .frameworks-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.7) 0%, rgba(26, 26, 26, 0.85) 100%);
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .frameworks-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-description {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-weight: 300;
+  }
+
+  .open-framework-notice {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    padding: 0.75rem 2rem;
+    display: inline-block;
+    font-size: 0.95rem;
+    font-weight: 500;
+  }
+
+  .frameworks-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    color: var(--primary);
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+  }
+
+  .frameworks-grid {
+    display: grid;
+    gap: 3rem;
+    margin-bottom: 5rem;
+  }
+
+  .framework-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 2.5rem;
+    display: flex;
+    gap: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  .framework-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-4px);
+  }
+
+  .framework-icon {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--background-gray);
+    border-radius: 1rem;
+    color: var(--primary);
+  }
+
+  .framework-content {
+    flex: 1;
+  }
+
+  .framework-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .framework-version {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .framework-description {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .framework-highlights {
+    background: var(--background-gray);
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .framework-highlights h4 {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .framework-highlights ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .framework-highlights li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .framework-highlights li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .framework-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat strong {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    font-family: 'Playfair Display', serif;
+  }
+
+  .stat span {
+    font-size: 0.9rem;
+    color: var(--text-light);
+  }
+
+  .framework-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .coming-soon-section {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--background-gray);
+    border-radius: 1rem;
+  }
+
+  .coming-soon-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .coming-soon-section p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .frameworks-hero {
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .frameworks-container {
+      padding: 3rem 1.5rem;
+    }
+
+    .framework-card {
+      flex-direction: column;
+      padding: 2rem;
+    }
+
+    .framework-icon {
+      width: 64px;
+      height: 64px;
+    }
+
+    .framework-actions {
+      flex-direction: column;
+    }
+
+    .framework-actions .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
