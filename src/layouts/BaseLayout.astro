@@ -59,12 +59,51 @@ const { title, description = 'Open, shareable framework for digital transformati
     </main>
 
     <footer>
-      <div class="footer-content">
-        <p>&copy; 2024 African Education Framework by <strong>Nyuchi Learning</strong></p>
-        <p class="footer-division">A division of Nyuchi Africa</p>
-        <p class="footer-ubuntu">Ubuntu: I am because we are</p>
-        <p class="footer-commitment">Open framework • Shareable & adaptable • Built for African schools • Multilingual support</p>
-        <p class="footer-tagline">Digital Access • Digital Literacy • Mobile-First • AI-Driven • Community-Centered • Education First</p>
+      <div class="footer-hero">
+        <h2 class="footer-main-text">Built for Africa.<br />Built for Education.</h2>
+        <p class="footer-ubuntu-large">Ubuntu: I am because we are</p>
+      </div>
+
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3>Framework</h3>
+          <ul>
+            <li><a href="/framework">Full Framework</a></li>
+            <li><a href="/framework#principles">Foundational Principles</a></li>
+            <li><a href="/framework#roadmap">Implementation Roadmap</a></li>
+            <li><a href="/framework#budget">Budget Planning</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="/blog">Blog & Insights</a></li>
+            <li><a href="/about">About the Framework</a></li>
+            <li><a href="/about#mission">Our Mission</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
+          <h3>Mission</h3>
+          <p class="footer-mission">
+            An open, shareable framework promoting digital transformation in K-12 education across Africa.
+            Copy it. Adapt it. Improve it. Share it.
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-branding">
+          <p class="footer-brand-name">African Education Framework</p>
+          <p class="footer-brand-org">by <strong>Nyuchi Learning</strong></p>
+          <p class="footer-division">A division of Nyuchi Africa</p>
+        </div>
+        <div class="footer-principles">
+          <p>Digital Access • Digital Literacy • Mobile-First</p>
+          <p>AI-Driven • Community-Centered • Education First</p>
+        </div>
+        <p class="footer-copyright">&copy; 2024 Nyuchi Learning. Open framework, freely shareable.</p>
       </div>
     </footer>
 
@@ -217,41 +256,122 @@ const { title, description = 'Open, shareable framework for digital transformati
       footer {
         background: var(--bg-dark);
         color: white;
-        padding: 2rem 1rem;
-        margin-top: 4rem;
+        padding: 0;
+        margin-top: 6rem;
       }
 
-      .footer-content {
-        max-width: 1200px;
-        margin: 0 auto;
+      .footer-hero {
+        padding: 6rem 2rem;
         text-align: center;
+        background: var(--primary-dark);
+        border-top: 4px solid white;
       }
 
-      .footer-division {
-        margin-top: 0.25rem;
-        color: var(--gray-400);
-        font-size: 0.85rem;
+      .footer-main-text {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(3rem, 8vw, 6rem);
+        font-weight: 700;
+        line-height: 1.1;
+        margin-bottom: 2rem;
+        letter-spacing: -0.02em;
+      }
+
+      .footer-ubuntu-large {
+        font-size: clamp(1.25rem, 3vw, 2rem);
+        font-style: italic;
+        color: var(--gray-300);
         opacity: 0.9;
       }
 
-      .footer-ubuntu {
-        margin-top: 0.75rem;
+      .footer-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 4rem 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+      }
+
+      .footer-column h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        color: white;
+        font-weight: 700;
+      }
+
+      .footer-column ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-column li {
+        margin-bottom: 0.75rem;
+      }
+
+      .footer-column a {
         color: var(--gray-300);
-        font-style: italic;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: color 0.2s;
+      }
+
+      .footer-column a:hover {
+        color: white;
+      }
+
+      .footer-mission {
+        color: var(--gray-300);
+        line-height: 1.8;
         font-size: 1rem;
       }
 
-      .footer-commitment {
-        margin-top: 0.5rem;
-        color: var(--gray-400);
-        font-size: 0.9rem;
-        font-weight: 500;
+      .footer-bottom {
+        border-top: 1px solid var(--gray-700);
+        padding: 3rem 2rem 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
       }
 
-      .footer-tagline {
-        margin-top: 0.5rem;
+      .footer-branding {
+        margin-bottom: 2rem;
+      }
+
+      .footer-brand-name {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-brand-org {
+        font-size: 1rem;
+        color: var(--gray-300);
+        margin-bottom: 0.25rem;
+      }
+
+      .footer-division {
+        color: var(--gray-400);
+        font-size: 0.9rem;
         opacity: 0.8;
+      }
+
+      .footer-principles {
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--gray-700);
+      }
+
+      .footer-principles p {
+        color: var(--gray-400);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .footer-copyright {
+        color: var(--gray-500);
         font-size: 0.85rem;
+        text-align: center;
       }
 
       /* Pill-shaped buttons - CRITICAL Brand Element */
