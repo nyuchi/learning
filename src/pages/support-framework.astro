@@ -1,0 +1,1357 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Download, Users, Bot, Wrench, AlertCircle, Check, Clock, DollarSign, Target } from 'lucide-astro';
+---
+
+<BaseLayout
+  title="K-12 Support Process Framework"
+  description="Complete three-tier support system for K-12 Digital Campus: AI-powered self-service, EdTech customer success, and IT Operations. Comprehensive ticketing, routing, and SLA management for teachers, students, and parents."
+  keywords="K-12 support system, educational technology support, three-tier support, AI chatbot education, EdTech support, IT operations education, ticket management, SLA framework, customer success education"
+>
+  <div class="framework-container">
+    <div class="framework-header">
+      <h1>K-12 Digital Campus Support Process Framework</h1>
+      <p class="subtitle">Complete three-tier support system documentation</p>
+      <div class="framework-meta">
+        <span>Version 1.0</span>
+        <span>•</span>
+        <span>October 2025</span>
+        <span>•</span>
+        <span>Nyuchi Learning</span>
+      </div>
+      <div class="framework-actions">
+        <a href="#overview" class="btn btn-secondary">Read Online</a>
+        <a href="/frameworks/k12-support-process-framework.pdf" class="btn btn-primary" download>
+          <Download size={20} /> Download PDF
+        </a>
+      </div>
+      <p class="framework-notice">Free to use, copy, adapt, and share under open framework license</p>
+    </div>
+
+    <!-- Quick Navigation -->
+    <nav class="framework-nav">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a href="#overview">Executive Summary</a></li>
+        <li><a href="#tiers">Support Tier Overview</a></li>
+        <li><a href="#process-flows">Process Flow Diagrams</a></li>
+        <li><a href="#routing">Routing Criteria & Decision Trees</a></li>
+        <li><a href="#ticket-fields">Ticket Field Requirements</a></li>
+        <li><a href="#sla">SLA Recommendations</a></li>
+        <li><a href="#implementation">Implementation Checklist</a></li>
+      </ul>
+    </nav>
+
+    <!-- Executive Summary -->
+    <section id="overview" class="framework-section">
+      <h2>Executive Summary</h2>
+      <p class="lead">
+        This document defines the comprehensive support process for teachers, students, and parents in the K-12 Digital Campus ecosystem. 
+        The three-tier support model ensures efficient issue resolution while optimizing resource allocation.
+      </p>
+
+      <div class="summary-grid">
+        <div class="summary-card">
+          <Bot size={48} class="summary-icon" />
+          <h3>Tier 0: AI Self-Service</h3>
+          <p>Immediate assistance via chatbot and knowledge bank</p>
+          <div class="stat">40% resolution rate</div>
+        </div>
+        <div class="summary-card">
+          <Users size={48} class="summary-icon" />
+          <h3>Tier 1: EdTech Team</h3>
+          <p>Customer success focused, user experience support</p>
+          <div class="stat">70% of escalations resolved</div>
+        </div>
+        <div class="summary-card">
+          <Wrench size={48} class="summary-icon" />
+          <h3>Tier 2: IT Ops</h3>
+          <p>Technical infrastructure and backend systems</p>
+          <div class="stat">95% SLA compliance</div>
+        </div>
+      </div>
+
+      <div class="kpi-section">
+        <h3>Key Metrics Goals</h3>
+        <ul class="kpi-list">
+          <li><Check size={20} /> 40% of issues resolved by AI (Tier 0)</li>
+          <li><Check size={20} /> 70% of remaining issues resolved by EdTech (Tier 1)</li>
+          <li><Check size={20} /> 95% SLA compliance across all tiers</li>
+          <li><Check size={20} /> 4.5/5.0 customer satisfaction score</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Support Tier Overview -->
+    <section id="tiers" class="framework-section">
+      <h2>Support Tier Overview</h2>
+
+      <div class="tier-detail">
+        <div class="tier-header tier-0">
+          <Bot size={32} />
+          <h3>Tier 0: AI-Powered Self-Service</h3>
+        </div>
+        <div class="tier-content">
+          <div class="tier-purpose">
+            <h4>Purpose</h4>
+            <p>Provide instant, 24/7 support for common questions and issues</p>
+          </div>
+
+          <div class="tier-capabilities">
+            <h4>Capabilities</h4>
+            <ul>
+              <li>Natural language understanding</li>
+              <li>Knowledge bank search and article recommendations</li>
+              <li>Contextual follow-up questions</li>
+              <li>Ticket creation when unresolved</li>
+            </ul>
+          </div>
+
+          <div class="tier-metrics">
+            <h4>Success Criteria</h4>
+            <ul>
+              <li>40% resolution rate without human intervention</li>
+              <li>&lt;30 seconds average response time</li>
+              <li>User satisfaction &gt;4.0/5.0 for resolved issues</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-detail">
+        <div class="tier-header tier-1">
+          <Users size={32} />
+          <h3>Tier 1: EdTech Team (Customer Success)</h3>
+        </div>
+        <div class="tier-content">
+          <div class="tier-purpose">
+            <h4>Purpose</h4>
+            <p>Front-facing support focused on user experience, training, and platform usage</p>
+          </div>
+
+          <div class="scope-grid">
+            <div>
+              <h4>Scope of Responsibility ✅</h4>
+              <ul>
+                <li>Account setup and onboarding</li>
+                <li>Platform navigation and "how-to" questions</li>
+                <li>Curriculum and learning platform support</li>
+                <li>Parent/teacher communication tools</li>
+                <li>Feature requests and feedback</li>
+                <li>General troubleshooting (non-technical)</li>
+                <li>Training and professional development</li>
+                <li>Student engagement strategies</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Out of Scope ❌</h4>
+              <ul>
+                <li>Backend system access</li>
+                <li>Network infrastructure</li>
+                <li>Hardware repairs</li>
+                <li>Database/API issues</li>
+                <li>Security incidents</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="tier-team">
+            <h4>Team Composition</h4>
+            <ul>
+              <li>3-5 EdTech specialists</li>
+              <li>1 team lead</li>
+              <li>Coverage: 7:00 AM - 6:00 PM (school days)</li>
+              <li>On-call rotation for critical teacher issues</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="tier-detail">
+        <div class="tier-header tier-2">
+          <Wrench size={32} />
+          <h3>Tier 2: IT Ops (Technical Support)</h3>
+        </div>
+        <div class="tier-content">
+          <div class="tier-purpose">
+            <h4>Purpose</h4>
+            <p>Backend technical infrastructure support and complex troubleshooting</p>
+          </div>
+
+          <div class="tier-responsibilities">
+            <h4>Scope of Responsibility</h4>
+            <ul>
+              <li>Network and connectivity issues</li>
+              <li>Hardware problems and repairs</li>
+              <li>System errors and crashes</li>
+              <li>Security incidents and breaches</li>
+              <li>Database and API issues</li>
+              <li>System integration problems</li>
+              <li>Performance and scalability</li>
+              <li>Vendor escalations</li>
+              <li>Infrastructure maintenance</li>
+            </ul>
+          </div>
+
+          <div class="tier-team">
+            <h4>Team Composition</h4>
+            <ul>
+              <li>2-4 IT support specialists</li>
+              <li>1 IT manager</li>
+              <li>1 network administrator</li>
+              <li>Security team (shared/consultative)</li>
+              <li>24/7 on-call for critical issues</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Flow Diagrams -->
+    <section id="process-flows" class="framework-section">
+      <h2>Process Flow Diagrams</h2>
+
+      <div class="flow-diagram">
+        <h3>High-Level Support Flow</h3>
+        <div class="diagram-container">
+          <pre class="flow-text">
+User Access Support Portal
+          ↓
+    ┌─────────────┐
+    │ TIER 0: AI  │
+    │  Chatbot    │
+    └──────┬──────┘
+           │
+    ┌──────┴──────┐
+    │  Resolved?   │
+    └──┬────────┬──┘
+      YES      NO
+       │        │
+       │        ▼
+       │   Smart Routing
+       │        │
+       │   ┌────┴────┐
+       │   │         │
+       │   ▼         ▼
+       │ Tier 1    Tier 2
+       │ EdTech    IT Ops
+       │   │         │
+       │   └────┬────┘
+       │        │
+       └────────┘
+            │
+            ▼
+       Resolution
+          </pre>
+        </div>
+      </div>
+
+      <div class="flow-stages">
+        <h3>User Journey Stages</h3>
+        <div class="stages-grid">
+          <div class="stage">
+            <h4>1. Discover</h4>
+            <p>Portal search, browse KB articles</p>
+          </div>
+          <div class="stage">
+            <h4>2. Engage</h4>
+            <p>AI chat, read articles</p>
+          </div>
+          <div class="stage">
+            <h4>3. Resolve</h4>
+            <p>EdTech or IT Ops solution</p>
+          </div>
+          <div class="stage">
+            <h4>4. Feedback</h4>
+            <p>Survey, rating, comments</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Routing Criteria -->
+    <section id="routing" class="framework-section">
+      <h2>Routing Criteria & Decision Trees</h2>
+
+      <div class="routing-matrix">
+        <h3>Initial Classification Matrix</h3>
+        <div class="table-container">
+          <table class="routing-table">
+            <thead>
+              <tr>
+                <th>Issue Category</th>
+                <th>Keywords/Indicators</th>
+                <th>Route To</th>
+                <th>Priority</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Authentication & Access</td>
+                <td>login, password, forgot password, locked out</td>
+                <td>EdTech</td>
+                <td>Medium</td>
+              </tr>
+              <tr>
+                <td>Platform Navigation</td>
+                <td>how do I, where is, can't find, tutorial</td>
+                <td>EdTech</td>
+                <td>Low</td>
+              </tr>
+              <tr>
+                <td>Network/Connectivity</td>
+                <td>can't connect, internet down, wifi, network error</td>
+                <td>IT Ops</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>Hardware Issues</td>
+                <td>device broken, screen, keyboard, chromebook</td>
+                <td>IT Ops</td>
+                <td>High</td>
+              </tr>
+              <tr>
+                <td>System Error/Crash</td>
+                <td>error message, crashed, frozen, won't load</td>
+                <td>IT Ops</td>
+                <td>Critical</td>
+              </tr>
+              <tr>
+                <td>Security Concerns</td>
+                <td>hacked, suspicious, data breach, unauthorized</td>
+                <td>IT Ops</td>
+                <td>Critical</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="routing-rules">
+        <h3>Auto-Escalation Rules</h3>
+        <div class="rules-grid">
+          <div class="rule-card">
+            <AlertCircle size={24} class="rule-icon" />
+            <h4>System-Wide Issues</h4>
+            <p>If 5+ users report same issue in 1 hour → Escalate to High/Critical</p>
+          </div>
+          <div class="rule-card">
+            <Target size={24} class="rule-icon" />
+            <h4>Teacher During Class</h4>
+            <p>Teacher blocked during school hours → Escalate to High</p>
+          </div>
+          <div class="rule-card">
+            <Clock size={24} class="rule-icon" />
+            <h4>Testing Deadlines</h4>
+            <p>Assessment issue with &lt;2 days until test → Escalate to High</p>
+          </div>
+          <div class="rule-card">
+            <AlertCircle size={24} class="rule-icon" />
+            <h4>SLA Risk</h4>
+            <p>Ticket age &gt;150% of SLA time → Auto-escalate priority</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLA Recommendations -->
+    <section id="sla" class="framework-section">
+      <h2>SLA Recommendations</h2>
+
+      <div class="sla-section">
+        <h3>Response Time SLAs</h3>
+        <div class="table-container">
+          <table class="sla-table">
+            <thead>
+              <tr>
+                <th>Priority Level</th>
+                <th>Tier 0 (AI)</th>
+                <th>Tier 1 (EdTech)</th>
+                <th>Tier 2 (IT Ops)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Critical</strong></td>
+                <td>Instant</td>
+                <td>15 minutes</td>
+                <td>30 minutes</td>
+              </tr>
+              <tr>
+                <td><strong>High</strong></td>
+                <td>Instant</td>
+                <td>2 hours</td>
+                <td>4 hours</td>
+              </tr>
+              <tr>
+                <td><strong>Medium</strong></td>
+                <td>Instant</td>
+                <td>4 hours</td>
+                <td>8 hours</td>
+              </tr>
+              <tr>
+                <td><strong>Low</strong></td>
+                <td>Instant</td>
+                <td>1 business day</td>
+                <td>2 business days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sla-section">
+        <h3>Resolution Time SLAs</h3>
+        <div class="table-container">
+          <table class="sla-table">
+            <thead>
+              <tr>
+                <th>Priority Level</th>
+                <th>Tier 1 (EdTech)</th>
+                <th>Tier 2 (IT Ops)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Critical</strong></td>
+                <td>1 hour</td>
+                <td>4 hours</td>
+              </tr>
+              <tr>
+                <td><strong>High</strong></td>
+                <td>8 hours</td>
+                <td>1 business day</td>
+              </tr>
+              <tr>
+                <td><strong>Medium</strong></td>
+                <td>2 business days</td>
+                <td>3 business days</td>
+              </tr>
+              <tr>
+                <td><strong>Low</strong></td>
+                <td>5 business days</td>
+                <td>5 business days</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="sla-objectives">
+        <h3>Service Level Objectives (SLOs)</h3>
+        <div class="objectives-grid">
+          <div class="objective-card">
+            <div class="objective-value">≥95%</div>
+            <div class="objective-label">Response SLA Compliance</div>
+          </div>
+          <div class="objective-card">
+            <div class="objective-value">≥90%</div>
+            <div class="objective-label">Resolution SLA Compliance</div>
+          </div>
+          <div class="objective-card">
+            <div class="objective-value">≥4.5/5.0</div>
+            <div class="objective-label">Customer Satisfaction</div>
+          </div>
+          <div class="objective-card">
+            <div class="objective-value">≥40%</div>
+            <div class="objective-label">AI Resolution Rate</div>
+          </div>
+          <div class="objective-card">
+            <div class="objective-value">≥70%</div>
+            <div class="objective-label">EdTech First-Contact Resolution</div>
+          </div>
+          <div class="objective-card">
+            <div class="objective-value">≤20%</div>
+            <div class="objective-label">Escalation Rate</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ticket Field Requirements -->
+    <section id="ticket-fields" class="framework-section">
+      <h2>Ticket Field Requirements</h2>
+
+      <div class="fields-section">
+        <h3>Tier 0: AI Chat Bot - Initial Capture</h3>
+        <p>These fields are automatically collected when a user interacts with the AI chatbot:</p>
+        <div class="fields-grid">
+          <div class="field-category">
+            <h4>Required Fields</h4>
+            <ul>
+              <li>ticket_id (auto-generated UUID)</li>
+              <li>user_id, user_email, user_name</li>
+              <li>user_type (Teacher/Student/Parent)</li>
+              <li>school_site, grade_level</li>
+              <li>issue_summary, issue_description</li>
+              <li>timestamp_created</li>
+            </ul>
+          </div>
+          <div class="field-category">
+            <h4>Auto-Captured Data</h4>
+            <ul>
+              <li>chat_transcript (full AI conversation)</li>
+              <li>articles_viewed, articles_helpful</li>
+              <li>ai_suggested_category</li>
+              <li>ai_confidence_score (0-1)</li>
+              <li>sentiment_score (1-10)</li>
+              <li>browser_info, device_type</li>
+              <li>ip_address</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="fields-section">
+        <h3>Tier 1: EdTech Team - Enhanced Fields</h3>
+        <div class="fields-grid">
+          <div class="field-category">
+            <h4>EdTech-Specific Fields</h4>
+            <ul>
+              <li>assigned_agent, priority</li>
+              <li>category, subcategory</li>
+              <li>platform_area, affected_feature</li>
+              <li>screenshots, screen_recording</li>
+              <li>attempted_solutions</li>
+              <li>workaround_provided</li>
+              <li>knowledge_bank_article</li>
+              <li>resolution_notes</li>
+              <li>user_satisfaction (1-5 stars)</li>
+            </ul>
+          </div>
+          <div class="field-category">
+            <h4>Category Options</h4>
+            <ul>
+              <li><strong>Account:</strong> Password Reset, Username Issues, Access Permissions</li>
+              <li><strong>Training:</strong> Platform Navigation, Feature Tutorial, Onboarding</li>
+              <li><strong>Content:</strong> Assignments, Grades, Curriculum Materials</li>
+              <li><strong>Feature:</strong> Enhancement Request, Bug Report, Integration</li>
+              <li><strong>Communication:</strong> Messaging, Notifications, Announcements</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="fields-section">
+        <h3>Tier 2: IT Ops - Comprehensive Fields</h3>
+        <div class="fields-grid">
+          <div class="field-category">
+            <h4>Technical Fields</h4>
+            <ul>
+              <li>incident_type, affected_systems</li>
+              <li>impact_scope (Single/Multiple/School-wide)</li>
+              <li>service_outage (true/false)</li>
+              <li>root_cause, root_cause_category</li>
+              <li>technical_details, error_code</li>
+              <li>log_files, diagnostic_results</li>
+              <li>asset_tag, asset_location</li>
+              <li>vendor_ticket_id, vendor_name</li>
+            </ul>
+          </div>
+          <div class="field-category">
+            <h4>Security & Compliance</h4>
+            <ul>
+              <li>security_incident (true/false)</li>
+              <li>security_team_notified</li>
+              <li>incident_report_id</li>
+              <li>data_breach (true/false)</li>
+              <li>affected_data_types</li>
+              <li>compliance_notification_required</li>
+              <li>post_incident_review (true/false)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Implementation Checklist -->
+    <section id="implementation" class="framework-section">
+      <h2>Implementation Checklist</h2>
+
+      <div class="implementation-phases">
+        <div class="phase-card">
+          <div class="phase-header">
+            <h3>Phase 1: Foundation (Weeks 1-4)</h3>
+            <div class="phase-duration">4 weeks</div>
+          </div>
+          <div class="phase-content">
+            <h4>Week 1: Planning & Requirements</h4>
+            <ul>
+              <li>Assemble implementation team</li>
+              <li>Review framework with stakeholders</li>
+              <li>Document existing support volume</li>
+              <li>Set baseline metrics</li>
+              <li>Create project timeline</li>
+            </ul>
+
+            <h4>Week 2: Knowledge Bank Development</h4>
+            <ul>
+              <li>Audit existing documentation</li>
+              <li>Create knowledge bank structure</li>
+              <li>Write initial 50 articles</li>
+              <li>Create article authoring process</li>
+            </ul>
+
+            <h4>Week 3: AI Chatbot Setup</h4>
+            <ul>
+              <li>Select AI chatbot platform</li>
+              <li>Configure and train chatbot</li>
+              <li>Test internally (50+ scenarios)</li>
+              <li>Integrate with portal</li>
+            </ul>
+
+            <h4>Week 4: Ticketing System Configuration</h4>
+            <ul>
+              <li>Select ticketing system</li>
+              <li>Configure ticket fields</li>
+              <li>Set up automation rules</li>
+              <li>Configure SLA monitoring</li>
+              <li>Build dashboards</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <h3>Phase 2: Integration & Training (Weeks 5-8)</h3>
+            <div class="phase-duration">4 weeks</div>
+          </div>
+          <div class="phase-content">
+            <h4>Week 5: System Integration</h4>
+            <ul>
+              <li>Connect AI chatbot to ticketing</li>
+              <li>Integrate EdTech and IT Ops systems</li>
+              <li>Set up SSO authentication</li>
+              <li>Configure email and SMS</li>
+              <li>Integrate with SIS/LMS</li>
+            </ul>
+
+            <h4>Week 6-7: Team Training</h4>
+            <ul>
+              <li>Conduct EdTech team training (2-day intensive)</li>
+              <li>Create quick reference guides</li>
+              <li>Conduct IT Ops training (1-day)</li>
+              <li>Review escalation process</li>
+            </ul>
+
+            <h4>Week 8: Pilot Testing</h4>
+            <ul>
+              <li>Select pilot group (50-100 users)</li>
+              <li>Launch soft pilot</li>
+              <li>Monitor pilot metrics</li>
+              <li>Gather feedback and iterate</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <h3>Phase 3: Launch & Optimization (Weeks 9-12)</h3>
+            <div class="phase-duration">4 weeks</div>
+          </div>
+          <div class="phase-content">
+            <h4>Week 9: Launch Preparation</h4>
+            <ul>
+              <li>Create launch communication plan</li>
+              <li>Prepare team for increased volume</li>
+              <li>Final system testing</li>
+              <li>Set up monitoring and alerting</li>
+            </ul>
+
+            <h4>Week 10: Launch Week</h4>
+            <ul>
+              <li>Monday: Soft launch</li>
+              <li>Tuesday-Thursday: Monitor & adjust</li>
+              <li>Friday: Week 1 review</li>
+            </ul>
+
+            <h4>Week 11-12: Optimization & Review</h4>
+            <ul>
+              <li>Analyze data and trends</li>
+              <li>Expand knowledge bank</li>
+              <li>Refine AI training</li>
+              <li>Conduct 30-day review</li>
+              <li>Plan continuous improvement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <h3>Phase 4: Continuous Improvement (Ongoing)</h3>
+            <div class="phase-duration">Monthly/Quarterly</div>
+          </div>
+          <div class="phase-content">
+            <h4>Monthly Activities</h4>
+            <ul>
+              <li>Metrics review and analysis</li>
+              <li>Knowledge bank maintenance</li>
+              <li>AI training updates</li>
+              <li>Team development sessions</li>
+            </ul>
+
+            <h4>Quarterly Activities</h4>
+            <ul>
+              <li>Comprehensive system audit</li>
+              <li>User satisfaction survey</li>
+              <li>SLA review and adjustment</li>
+              <li>Stakeholder presentation</li>
+            </ul>
+
+            <h4>Annual Activities</h4>
+            <ul>
+              <li>Full process audit</li>
+              <li>Industry benchmarking</li>
+              <li>Technology refresh evaluation</li>
+              <li>3-year strategic planning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Cost Estimate -->
+    <section class="framework-section">
+      <h2>Implementation Budget</h2>
+      <div class="budget-overview">
+        <div class="budget-item">
+          <DollarSign size={32} class="budget-icon" />
+          <div class="budget-details">
+            <h3>Initial Setup (Year 1)</h3>
+            <div class="budget-amount">$15,000 - $35,000</div>
+            <p>Ticketing system, AI chatbot, knowledge bank, training</p>
+          </div>
+        </div>
+        <div class="budget-item">
+          <DollarSign size={32} class="budget-icon" />
+          <div class="budget-details">
+            <h3>Annual Operating Cost</h3>
+            <div class="budget-amount">$50,000 - $120,000</div>
+            <p>Staff salaries, software licenses, on-call compensation</p>
+          </div>
+        </div>
+      </div>
+      <p class="budget-note">
+        <strong>Note:</strong> Costs vary significantly based on school size, existing systems, and staffing decisions. 
+        See full breakdown in downloadable PDF.
+      </p>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="framework-cta">
+      <h2>Ready to Implement?</h2>
+      <p>Download the complete support framework with detailed decision trees, sample templates, and implementation guides.</p>
+      <div class="cta-buttons">
+        <a href="/frameworks/k12-support-process-framework.pdf" class="btn btn-primary" download>
+          <Download size={20} /> Download Complete Framework (PDF)
+        </a>
+        <a href="/pricing" class="btn btn-secondary">View Implementation Costs</a>
+      </div>
+      <p class="framework-license">
+        Free to use, copy, adapt, and share • Created by Nyuchi Learning
+      </p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Framework Container */
+  .framework-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  /* Framework Header */
+  .framework-header {
+    position: relative;
+    text-align: center;
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1600&q=80') center/cover no-repeat;
+    color: white;
+    border-radius: 1rem;
+    margin-bottom: 3rem;
+    overflow: hidden;
+  }
+
+  .framework-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.75) 0%, rgba(26, 26, 26, 0.85) 100%);
+    z-index: 0;
+  }
+
+  .framework-header > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .framework-header h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    opacity: 0.95;
+    margin-bottom: 1rem;
+  }
+
+  .framework-meta {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    font-size: 0.95rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+  }
+
+  .framework-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+
+  .framework-notice {
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    opacity: 0.9;
+  }
+
+  /* Navigation */
+  .framework-nav {
+    background: var(--bg-gray);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .framework-nav h3 {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .framework-nav ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .framework-nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    color: var(--text);
+    transition: all 0.2s;
+  }
+
+  .framework-nav a:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateX(4px);
+  }
+
+  /* Sections */
+  .framework-section {
+    margin-bottom: 4rem;
+    padding: 3rem 2rem;
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .framework-section h2 {
+    color: var(--primary);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 0.75rem;
+  }
+
+  .framework-section h3 {
+    color: var(--primary-dark);
+    font-size: 1.75rem;
+    margin: 2rem 0 1rem;
+  }
+
+  .framework-section h4 {
+    color: var(--primary);
+    font-size: 1.25rem;
+    margin: 1.5rem 0 0.75rem;
+  }
+
+  .lead {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+
+  /* Summary Grid */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .summary-card {
+    background: var(--bg-gray);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    text-align: center;
+    border-left: 4px solid var(--primary);
+  }
+
+  .summary-icon {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .summary-card h3 {
+    color: var(--primary);
+    margin: 0.5rem 0;
+    font-size: 1.25rem;
+  }
+
+  .summary-card p {
+    color: var(--text-light);
+    margin-bottom: 1rem;
+  }
+
+  .stat {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  /* KPI Section */
+  .kpi-section {
+    background: var(--bg-gray);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .kpi-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .kpi-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 1.1rem;
+  }
+
+  .kpi-list li:last-child {
+    border-bottom: none;
+  }
+
+  /* Tier Details */
+  .tier-detail {
+    margin-bottom: 3rem;
+    border: 2px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .tier-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    color: white;
+  }
+
+  .tier-header h3 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: white;
+  }
+
+  .tier-0 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  }
+
+  .tier-1 {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  }
+
+  .tier-2 {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+  }
+
+  .tier-content {
+    padding: 2rem;
+  }
+
+  .tier-purpose, .tier-capabilities, .tier-metrics, .tier-responsibilities, .tier-team {
+    margin-bottom: 1.5rem;
+  }
+
+  .scope-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+
+  /* Flow Diagram */
+  .diagram-container {
+    background: var(--bg-dark);
+    color: #d1d5db;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  .flow-text {
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+    white-space: pre;
+  }
+
+  /* Stages Grid */
+  .stages-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .stage {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+
+  .stage h4 {
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+  }
+
+  /* Tables */
+  .table-container {
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  thead {
+    background: var(--bg-gray);
+  }
+
+  th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--primary);
+    border-bottom: 2px solid var(--primary);
+  }
+
+  td {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:hover {
+    background: var(--bg-gray);
+  }
+
+  /* Routing Rules */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .rule-card {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--primary);
+  }
+
+  .rule-icon {
+    color: var(--primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .rule-card h4 {
+    margin-bottom: 0.75rem;
+  }
+
+  /* SLA Objectives */
+  .objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .objective-card {
+    background: var(--bg-gray);
+    padding: 2rem 1.5rem;
+    border-radius: 0.75rem;
+    text-align: center;
+  }
+
+  .objective-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .objective-label {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  /* Fields Grid */
+  .fields-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .field-category {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+  }
+
+  .field-category h4 {
+    color: var(--primary);
+    margin-top: 0;
+  }
+
+  .field-category ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .field-category li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+
+  .field-category li:last-child {
+    border-bottom: none;
+  }
+
+  /* Implementation Phases */
+  .implementation-phases {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .phase-card {
+    border: 2px solid var(--border);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+
+  .phase-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: var(--primary);
+    color: white;
+  }
+
+  .phase-header h3 {
+    margin: 0;
+    color: white;
+  }
+
+  .phase-duration {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 9999px;
+    font-size: 0.9rem;
+  }
+
+  .phase-content {
+    padding: 2rem;
+  }
+
+  .phase-content h4 {
+    color: var(--primary);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .phase-content ul {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .phase-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Budget Overview */
+  .budget-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .budget-item {
+    display: flex;
+    gap: 1.5rem;
+    background: var(--bg-gray);
+    padding: 2rem;
+    border-radius: 0.75rem;
+    align-items: start;
+  }
+
+  .budget-icon {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .budget-amount {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 0.5rem 0;
+  }
+
+  .budget-note {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-left: 4px solid var(--primary);
+    border-radius: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* CTA Section */
+  .framework-cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--bg-dark);
+    color: white;
+    border-radius: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  .framework-cta h2 {
+    color: white;
+    border-bottom: none;
+    margin-bottom: 1rem;
+  }
+
+  .framework-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+  }
+
+  .framework-license {
+    font-size: 0.95rem;
+    opacity: 0.8;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 2rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--primary);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--primary);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .framework-container {
+      padding: 1rem;
+    }
+
+    .framework-section {
+      padding: 2rem 1rem;
+    }
+
+    .summary-grid,
+    .scope-grid,
+    .stages-grid,
+    .rules-grid,
+    .objectives-grid,
+    .fields-grid {
+      grid-template-columns: 1fr;
+    }
+
+    table {
+      font-size: 0.85rem;
+    }
+
+    th, td {
+      padding: 0.75rem 0.5rem;
+    }
+
+    .objective-value {
+      font-size: 2rem;
+    }
+  }
+</style>
+</BaseLayout>
