@@ -1,24 +1,30 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
 ---
 
-<BaseLayout title="About - African Education Framework by Nyuchi Africa">
+<BaseLayout title="About - African Education Framework by Nyuchi Learning">
   <div class="about-container">
     <div class="about-header">
-      <p class="ubuntu-header">Ubuntu: I am because we are 🇿🇼</p>
+      <p class="ubuntu-header">Ubuntu: I am because we are</p>
       <h1>About the African Education Framework</h1>
-      <p class="tagline">Building our digital future together through community-centered innovation</p>
-      <p class="nyuchi-badge">A Nyuchi Africa Initiative</p>
+      <p class="tagline">An open, shareable framework for community-centered digital transformation</p>
+      <p class="nyuchi-badge">A Nyuchi Learning Initiative</p>
     </div>
 
     <section class="about-section">
       <h2>Our Mission</h2>
       <p>
-        The African Education Framework, a Nyuchi Africa initiative, embodies the Ubuntu philosophy—
-        "I am because we are"—in transforming education across our continent. Together, we're democratizing
-        access to world-class educational technology for K-12 schools across Africa. We believe that when
-        every student, regardless of their socioeconomic background or geographic location, has the opportunity
-        to develop digital skills, our entire community thrives. Our collective success strengthens us all.
+        The African Education Framework, a Nyuchi Learning initiative (division of Nyuchi Africa), embodies
+        the Ubuntu philosophy—"I am because we are"—in transforming education across our continent. This is
+        an <strong>open, shareable framework</strong> that schools and communities can freely copy, adapt,
+        and improve to fit their unique needs.
+      </p>
+      <p>
+        Together, we're democratizing access to world-class educational technology for K-12 schools across
+        Africa. We believe that when every student, regardless of their socioeconomic background or geographic
+        location, has the opportunity to develop digital skills, our entire community thrives. Our collective
+        success strengthens us all.
       </p>
     </section>
 
@@ -41,11 +47,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h2>Our Approach</h2>
       <p>
         The African Education Framework provides a comprehensive, practical blueprint for digital
-        transformation. Unlike one-size-fits-all solutions, our framework is designed specifically
-        for the African context, addressing unique challenges around:
+        transformation. This is an <strong>open, shareable framework</strong>—take it, copy it,
+        adapt it, and improve it for your school. Unlike one-size-fits-all solutions, our framework
+        is designed specifically for the African context, addressing unique challenges around:
       </p>
 
       <div class="approach-grid">
+        <div class="approach-card">
+          <h3>Open & Shareable</h3>
+          <p>
+            This framework is free to use, copy, and adapt. Share it with other schools, improve it
+            for your community, and contribute your innovations back. When one school succeeds, we
+            all benefit.
+          </p>
+        </div>
+
         <div class="approach-card">
           <h3>Budget Constraints</h3>
           <p>
@@ -79,10 +95,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="approach-card">
-          <h3>Cultural Context</h3>
+          <h3>Cultural Context & Languages</h3>
           <p>
-            Multilingual support, culturally responsive design, and community-centered approaches
-            ensure the framework works for diverse populations.
+            Multilingual support for African languages plus English, French, and Chinese. Culturally
+            responsive design and community-centered approaches ensure the framework works for diverse
+            populations across the continent.
           </p>
         </div>
 
@@ -101,7 +118,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="founder-content">
         <div class="journey-step">
-          <h3>🖥️ The Spark: A Childhood Fascination</h3>
+          <h3><Monitor class="journey-icon" size={24} strokeWidth={2} /> The Spark: A Childhood Fascination</h3>
           <p>
             Nyuchi's inception began with founder Bryan Fawcett's early fascination with computers—a childhood
             hobby that evolved into a lifelong pursuit of technological innovation. This wasn't just about
@@ -110,7 +127,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step">
-          <h3>👨‍🏫 The Awakening: Teaching in South Africa</h3>
+          <h3><GraduationCap class="journey-icon" size={24} strokeWidth={2} /> The Awakening: Teaching in South Africa</h3>
           <p>
             While teaching in South Africa, Bryan encountered a pressing demand among educators and local schools
             for digital solutions. Many were eager to expand their online presence but lacked the know-how and
@@ -121,7 +138,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step">
-          <h3>🛣️ The Journey: Built on Dusty Roads</h3>
+          <h3><MapPin class="journey-icon" size={24} strokeWidth={2} /> The Journey: Built on Dusty Roads</h3>
           <p>
             Soon after Nyuchi's conception, Bryan traveled along the dusty roads of Africa for several years.
             On these journeys, cloud resources and online collaboration tools became second nature—the lifeblood
@@ -139,7 +156,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step">
-          <h3>🇿🇼 The Commitment: Zimbabwe First</h3>
+          <h3>The Commitment: Zimbabwe First</h3>
           <p>
             In 2019, after much thought and research, Nyuchi Africa (PVT) Ltd. was formally registered in
             Zimbabwe. This wasn't just a business decision—it was a declaration of commitment:
@@ -155,7 +172,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step mission-today">
-          <h3>🎯 The Mission Today</h3>
+          <h3><Target class="journey-icon" size={24} strokeWidth={2} /> The Mission Today</h3>
           <p>
             The African Education Framework represents Nyuchi's commitment to education—our founder's roots
             and our forever mission. It's about:
@@ -168,7 +185,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </ul>
           <p class="emphasis">
             Founded out of hobby and passion, built on dusty African roads, committed to Zimbabwe and Africa's
-            future—this is the African Education Framework by Nyuchi Africa.
+            future—this is the African Education Framework by Nyuchi Learning, a division of Nyuchi Africa.
           </p>
         </div>
       </div>
@@ -376,7 +393,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-align: center;
     margin-bottom: 4rem;
     padding: 3rem 1rem;
-    background: linear-gradient(135deg, #00A651 0%, #008F46 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border-radius: 1rem;
   }
@@ -384,7 +401,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .ubuntu-header {
     font-size: 1.1rem;
     font-style: italic;
-    color: var(--nyuchi-yellow);
+    color: var(--gray-300);
     margin-bottom: 1rem;
   }
 
@@ -474,8 +491,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .founder-story {
-    background: linear-gradient(135deg, rgba(0, 166, 81, 0.05) 0%, rgba(0, 143, 70, 0.05) 100%);
-    border-left: 4px solid var(--nyuchi-green);
+    background: var(--bg-gray);
+    border-left: 4px solid var(--primary);
   }
 
   .founder-content {
@@ -491,9 +508,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .journey-step h3 {
-    color: var(--nyuchi-green);
+    color: var(--text);
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .journey-icon {
+    color: var(--primary);
+    flex-shrink: 0;
   }
 
   .journey-step ul {
@@ -503,7 +528,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .founder-quote {
-    border-left: 4px solid var(--nyuchi-yellow);
+    border-left: 4px solid var(--primary);
     padding-left: 1.5rem;
     margin: 1.5rem 0;
     font-style: italic;
@@ -515,13 +540,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .emphasis {
     font-weight: 500;
-    color: var(--nyuchi-green);
+    color: var(--text);
     margin-top: 1rem;
   }
 
   .mission-today {
-    background: linear-gradient(135deg, rgba(0, 166, 81, 0.1) 0%, rgba(0, 143, 70, 0.1) 100%);
-    border-left: 4px solid var(--nyuchi-green);
+    background: var(--bg-gray);
+    border-left: 4px solid var(--primary);
   }
 
   .components-list {
@@ -586,9 +611,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .cta-section {
     text-align: center;
-    background: var(--nyuchi-black);
+    background: var(--bg-dark);
     color: white;
-    border-top: 4px solid var(--nyuchi-green);
+    border-top: 4px solid var(--primary);
   }
 
   .cta-section h2 {
@@ -624,7 +649,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-primary {
     background: white;
-    color: var(--nyuchi-green);
+    color: var(--primary);
   }
 
   .btn-secondary {
@@ -635,7 +660,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-secondary:hover {
     background: white;
-    color: var(--nyuchi-green);
+    color: var(--primary);
   }
 
   @media (max-width: 768px) {
