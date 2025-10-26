@@ -1,0 +1,62 @@
+---
+interface Props {
+  variant?: 'main' | 'horizontal' | 'compact';
+  size?: 'sm' | 'md' | 'lg';
+  className?: string;
+}
+
+const { variant = 'main', size = 'md', className = '' } = Astro.props;
+
+const sizes = {
+  sm: {
+    main: { width: 120, height: 36 },
+    horizontal: { width: 180, height: 30 },
+    compact: { width: 48, height: 24 }
+  },
+  md: {
+    main: { width: 200, height: 60 },
+    horizontal: { width: 300, height: 50 },
+    compact: { width: 80, height: 40 }
+  },
+  lg: {
+    main: { width: 280, height: 84 },
+    horizontal: { width: 420, height: 70 },
+    compact: { width: 112, height: 56 }
+  }
+};
+
+const { width, height } = sizes[size][variant];
+
+// SVG file paths
+const svgPaths = {
+  main: `/nyuchi-learning-logo-main.svg`,
+  horizontal: `/nyuchi-learning-logo-horizontal.svg`,
+  compact: `/nyuchi-learning-logo-compact.svg`
+};
+---
+
+<img
+  src={svgPaths[variant]}
+  alt="Nyuchi Learning Logo"
+  width={width}
+  height={height}
+  class:list={['nyuchi-logo', `logo-${variant}`, className]}
+/>
+
+<style>
+  .nyuchi-logo {
+    display: block;
+  }
+
+  /* Theme-aware: invert colors in dark mode */
+  @media (prefers-color-scheme: dark) {
+    .nyuchi-logo {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  /* If parent has dark mode class */
+  :global(.dark) .nyuchi-logo {
+    filter: brightness(0) invert(1);
+  }
+</style>

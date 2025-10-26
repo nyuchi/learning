@@ -1,0 +1,21 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Icon: Stylized book/learning symbol -->
+  <g transform="translate(10, 10)">
+    <!-- Open book pages -->
+    <path d="M20 5 Q15 10 15 20 L15 35 Q15 38 20 40" stroke="#2C2C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M20 5 Q25 10 25 20 L25 35 Q25 38 20 40" stroke="#2C2C2C" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Center spine -->
+    <line x1="20" y1="5" x2="20" y2="40" stroke="#2C2C2C" stroke-width="2.5" stroke-linecap="round"/>
+    <!-- Africa-inspired element: small accent marks -->
+    <circle cx="11" cy="22" r="1.5" fill="#2C2C2C"/>
+    <circle cx="29" cy="22" r="1.5" fill="#2C2C2C"/>
+  </g>
+
+  <!-- Text: Nyuchi Learning -->
+  <text x="60" y="27" font-family="'Playfair Display', serif" font-size="20" font-weight="700" fill="#2C2C2C">
+    Nyuchi
+  </text>
+  <text x="60" y="45" font-family="'Roboto', sans-serif" font-size="14" font-weight="500" fill="#6B7280">
+    Learning
+  </text>
+</svg>
