@@ -1,0 +1,311 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="African Education Framework - Digital Transformation for K-12 Schools">
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero-title">K-12 Digital Experience Campus Framework</h1>
+      <p class="hero-subtitle">
+        Transforming African schools into digitally-enabled learning ecosystems
+        that prepare students for the 2050 job market
+      </p>
+      <div class="hero-cta">
+        <a href="/framework" class="btn btn-primary">Explore Framework</a>
+        <a href="/blog" class="btn btn-secondary">Read Blog</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <h2 class="section-title">Core Principles</h2>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🌍</div>
+          <h3>Universal Access</h3>
+          <p>Digital tools available to all students, regardless of socioeconomic status</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile-First</h3>
+          <p>Recognizing smartphones as primary access devices for most users</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💡</div>
+          <h3>Digital Literacy</h3>
+          <p>Technology enablement paired with critical thinking and digital citizenship</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">💰</div>
+          <h3>Cost Efficient</h3>
+          <p>Open-source and cloud solutions to maximize limited school budgets</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Data-Driven</h3>
+          <p>Analytics and insights inform instruction, support, and strategy</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>Community-Centered</h3>
+          <p>Seamless experience across students, staff, and parents/guardians</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container">
+      <h2 class="section-title">Why This Matters</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number">37.4% → 67.5%</div>
+          <div class="stat-label">Internet penetration growth (2014-2024)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">2050</div>
+          <div class="stat-label">Job market requiring digital fluency</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">60-80%</div>
+          <div class="stat-label">Cost reduction with open-source solutions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="implementation">
+    <div class="container">
+      <h2 class="section-title">3-Year Implementation Roadmap</h2>
+      <div class="roadmap">
+        <div class="roadmap-item">
+          <div class="roadmap-year">Year 1</div>
+          <h3>Foundation</h3>
+          <p>Infrastructure setup, device rollout, digital literacy curriculum launch, and early warning system pilot</p>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-year">Year 2</div>
+          <h3>Integration & Insight</h3>
+          <p>API expansion, AI/analytics deployment, platform maturity, and community integration</p>
+        </div>
+        <div class="roadmap-item">
+          <div class="roadmap-year">Year 3</div>
+          <h3>Optimization & Sustainability</h3>
+          <p>Advanced analytics, student-centered innovation, and sustainable operations model</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>Ready to Transform Your School?</h2>
+      <p>Explore the complete framework and start your digital transformation journey</p>
+      <a href="/framework" class="btn btn-primary">View Full Framework</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    padding: 5rem 1rem;
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  .hero-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.75rem 2rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-primary {
+    background: white;
+    color: var(--primary);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .features {
+    padding: 4rem 1rem;
+    background: var(--bg-gray);
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text);
+  }
+
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .feature-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .feature-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--primary);
+  }
+
+  .stats {
+    padding: 4rem 1rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: 2rem;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .stat-label {
+    color: var(--text-light);
+    font-size: 1rem;
+  }
+
+  .implementation {
+    padding: 4rem 1rem;
+    background: var(--bg-gray);
+  }
+
+  .roadmap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .roadmap-item {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--primary);
+  }
+
+  .roadmap-year {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.25rem 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .roadmap-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .cta-section {
+    padding: 4rem 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+  }
+
+  .cta-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-section p {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    opacity: 0.95;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+    }
+
+    .feature-grid,
+    .stats-grid,
+    .roadmap {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

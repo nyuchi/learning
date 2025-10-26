@@ -1,0 +1,158 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const posts = [
+  {
+    title: 'Launching the African Education Digital Framework',
+    slug: 'launching-the-framework',
+    date: '2024-10-26',
+    excerpt: 'Introducing a comprehensive blueprint for digital transformation in K-12 schools across Africa, designed to prepare students for the 2050 job market.',
+    author: 'Framework Team'
+  },
+  {
+    title: 'Why Open-Source Matters for African Schools',
+    slug: 'why-open-source',
+    date: '2024-10-25',
+    excerpt: 'Exploring how open-source solutions can save schools 60-80% on infrastructure costs while maintaining world-class educational technology.',
+    author: 'Framework Team'
+  },
+  {
+    title: 'Digital Literacy: More Than Just Using Technology',
+    slug: 'digital-literacy-importance',
+    date: '2024-10-24',
+    excerpt: 'Understanding why digital literacy paired with critical thinking is essential for preparing students for an uncertain technological future.',
+    author: 'Framework Team'
+  }
+];
+---
+
+<BaseLayout title="Blog - African Education Framework">
+  <div class="blog-container">
+    <div class="blog-header">
+      <h1>Framework Insights & Updates</h1>
+      <p>Exploring digital transformation in education, implementation strategies, and success stories</p>
+    </div>
+
+    <div class="posts-grid">
+      {posts.map((post) => (
+        <article class="post-card">
+          <div class="post-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+          <h2><a href={`/blog/${post.slug}`}>{post.title}</a></h2>
+          <p class="post-excerpt">{post.excerpt}</p>
+          <div class="post-meta">
+            <span class="author">By {post.author}</span>
+            <a href={`/blog/${post.slug}`} class="read-more">Read more →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .blog-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .blog-header {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 3rem 1rem;
+  }
+
+  .blog-header h1 {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .blog-header p {
+    font-size: 1.25rem;
+    color: var(--text-light);
+  }
+
+  .posts-grid {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .post-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .post-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .post-date {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .post-card h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .post-card h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .post-card h2 a:hover {
+    color: var(--primary);
+  }
+
+  .post-excerpt {
+    color: var(--text-light);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .post-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .author {
+    color: var(--text-light);
+    font-size: 0.9rem;
+  }
+
+  .read-more {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.2s;
+  }
+
+  .read-more:hover {
+    color: var(--primary-dark);
+  }
+
+  @media (max-width: 768px) {
+    .blog-header h1 {
+      font-size: 2rem;
+    }
+
+    .blog-header p {
+      font-size: 1rem;
+    }
+
+    .post-card h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

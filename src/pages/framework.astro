@@ -1,0 +1,825 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Framework - African Education Digital Transformation">
+  <div class="framework-container">
+    <div class="framework-header">
+      <h1>K-12 Digital Experience Campus Framework</h1>
+      <p class="subtitle">A comprehensive blueprint for digital transformation in African schools</p>
+    </div>
+
+    <div class="framework-nav">
+      <h3>Quick Navigation</h3>
+      <ul>
+        <li><a href="#overview">Executive Overview</a></li>
+        <li><a href="#principles">Foundational Principles</a></li>
+        <li><a href="#infrastructure">Technology Infrastructure</a></li>
+        <li><a href="#access">Digital Access</a></li>
+        <li><a href="#literacy">Digital Literacy</a></li>
+        <li><a href="#platforms">Core Platforms</a></li>
+        <li><a href="#ai">AI & Analytics</a></li>
+        <li><a href="#roadmap">Implementation Roadmap</a></li>
+        <li><a href="#budget">Budget Framework</a></li>
+        <li><a href="#equity">Equity & Inclusion</a></li>
+      </ul>
+    </div>
+
+    <section id="overview" class="framework-section">
+      <h2>Executive Overview</h2>
+      <p>This framework transforms a K-12 school into a digitally-enabled learning ecosystem that prepares students for a 2050 job market while serving students, staff, and parents/guardians. Built on cloud and open-source infrastructure, it prioritizes digital access, digital literacy, mobile-first experience, and AI-driven insights—all designed for cost-efficiency and scalability.</p>
+    </section>
+
+    <section id="principles" class="framework-section">
+      <h2>I. Foundational Principles</h2>
+
+      <h3>Core Values</h3>
+      <div class="value-grid">
+        <div class="value-card">
+          <h4>🌍 Universal Access</h4>
+          <p>Digital tools available to all, regardless of socioeconomic status</p>
+        </div>
+        <div class="value-card">
+          <h4>📚 Digital Literacy First</h4>
+          <p>Technology enablement paired with critical thinking and digital citizenship</p>
+        </div>
+        <div class="value-card">
+          <h4>📱 Mobile-Centric</h4>
+          <p>Recognizing that smartphones are primary access devices for most users</p>
+        </div>
+        <div class="value-card">
+          <h4>💰 Cost Efficiency</h4>
+          <p>Open-source and cloud solutions to maximize limited school budgets</p>
+        </div>
+        <div class="value-card">
+          <h4>📊 Data-Driven Decisions</h4>
+          <p>Analytics and insights inform instruction, support, and strategy</p>
+        </div>
+        <div class="value-card">
+          <h4>🤝 Community-Centered</h4>
+          <p>Seamless experience across students, staff, and parents/guardians</p>
+        </div>
+      </div>
+
+      <h3>Context: Why This Matters Now (2024-2050)</h3>
+      <p>The internet penetration statistic (37.4% in 2014 to 67.5% in 2024) demonstrates explosive digital transformation. By 2050, the job market will demand:</p>
+      <ul>
+        <li>Digital fluency as baseline competency</li>
+        <li>Ability to work across cloud platforms and distributed teams</li>
+        <li>AI collaboration and prompt engineering skills</li>
+        <li>Data literacy and interpretation</li>
+        <li>Cybersecurity awareness</li>
+        <li>Adaptive learning in rapidly evolving tech landscapes</li>
+      </ul>
+    </section>
+
+    <section id="infrastructure" class="framework-section">
+      <h2>II. Technology Infrastructure Layer</h2>
+
+      <h3>Core Architecture: The Digital Backbone</h3>
+      <p>The framework uses a cloud and open-source stack optimized for cost efficiency:</p>
+
+      <div class="tech-stack">
+        <div class="tech-category">
+          <h4>Primary Cloud Providers</h4>
+          <ul>
+            <li><strong>Google Workspace for Education</strong> (freemium tier)</li>
+            <li><strong>Microsoft Azure Education</strong> or <strong>AWS Educate</strong></li>
+            <li><strong>Open-Source Alternatives:</strong> Moodle (LMS), Nextcloud (storage)</li>
+          </ul>
+        </div>
+
+        <div class="tech-category">
+          <h4>Key Components</h4>
+          <ul>
+            <li><strong>Student Information System (SIS):</strong> Gibbon or OpenSIS</li>
+            <li><strong>Learning Management System:</strong> Moodle or Google Classroom</li>
+            <li><strong>Data Warehouse:</strong> PostgreSQL + Apache Hadoop/Spark</li>
+            <li><strong>API Connectors:</strong> Apache NiFi for data flow</li>
+            <li><strong>Analytics Engine:</strong> Python (scikit-learn, TensorFlow)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="architecture-diagram">
+        <h4>Central Data Hub Architecture</h4>
+        <pre><code>┌─────────────────────────────────────────────────────────────┐
+│                    UNIFIED DATA PLATFORM                     │
+│              (Central Data Lake / Data Warehouse)             │
+└─────────────────────────────────────────────────────────────┘
+                              ↑
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+    ┌───────────┐         ┌───────────┐       ┌───────────┐
+    │ Student   │         │ Staff     │       │ Parent    │
+    │ Systems   │         │ Systems   │       │ Systems   │
+    └───────────┘         └───────────┘       └───────────┘
+        ↓
+    ┌─────────────────────────────────────────────────────┐
+    │         API LAYER & DATA CONNECTORS (MCPs)          │
+    └─────────────────────────────────────────────────────┘
+        ↓
+    ┌─────────────────────────────────────────────────────┐
+    │    AI & ANALYTICS ENGINE (Insights & Predictions)   │
+    └─────────────────────────────────────────────────────┘</code></pre>
+      </div>
+    </section>
+
+    <section id="access" class="framework-section">
+      <h2>III. Digital Access & Connectivity</h2>
+
+      <h3>Addressing the Digital Divide</h3>
+
+      <h4>Connectivity Access</h4>
+      <ol>
+        <li><strong>On-Campus Broadband:</strong> Gigabit-capable infrastructure via grants (E-Rate, CARES Act)</li>
+        <li><strong>Off-Campus Support:</strong> Mobile hotspot lending program, library partnerships</li>
+        <li><strong>Low-Connectivity Mode:</strong> Offline-capable apps with data sync</li>
+      </ol>
+
+      <h4>Device Equity Program</h4>
+      <ul>
+        <li>1-to-1 Chromebook or tablet checkout for students without devices</li>
+        <li>Durable, low-cost devices: Google Chromebooks ($200-300)</li>
+        <li>Annual technology refresh cycle</li>
+        <li>Device repair workshops for students</li>
+      </ul>
+    </section>
+
+    <section id="literacy" class="framework-section">
+      <h2>IV. Digital Literacy & Competency</h2>
+
+      <h3>K-12 Progression</h3>
+      <div class="literacy-progression">
+        <div class="grade-level">
+          <h4>K-2: Digital Citizenship Foundations</h4>
+          <ul>
+            <li>Online safety and password hygiene</li>
+            <li>Basic typing and mouse skills</li>
+            <li>Respectful digital communication</li>
+          </ul>
+        </div>
+
+        <div class="grade-level">
+          <h4>3-5: Digital Tools Mastery</h4>
+          <ul>
+            <li>Office productivity (Google Docs, Sheets, Slides)</li>
+            <li>Research skills and source evaluation</li>
+            <li>Creative digital content creation</li>
+            <li>Introduction to computational thinking (Scratch)</li>
+          </ul>
+        </div>
+
+        <div class="grade-level">
+          <h4>6-8: Digital Competency & Coding</h4>
+          <ul>
+            <li>Advanced collaboration tools</li>
+            <li>Python or JavaScript introduction</li>
+            <li>Data literacy and visualization</li>
+            <li>Cybersecurity awareness</li>
+          </ul>
+        </div>
+
+        <div class="grade-level">
+          <h4>9-12: Advanced Digital & Career Skills</h4>
+          <ul>
+            <li>Web development (HTML/CSS/JavaScript)</li>
+            <li>Data science (Python, visualization)</li>
+            <li>Cloud platforms (AWS, Google Cloud)</li>
+            <li>AI/ML concepts and ethics</li>
+            <li>Digital portfolio building</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="platforms" class="framework-section">
+      <h2>V. Core Digital Experience Platforms</h2>
+
+      <h3>Student Digital Experience</h3>
+      <div class="platform-features">
+        <h4>Key Features:</h4>
+        <ul>
+          <li><strong>Personalized Learning Pathways:</strong> AI-recommended courses based on performance and interests</li>
+          <li><strong>Integrated Assessment:</strong> Real-time feedback and progress tracking</li>
+          <li><strong>Digital Portfolio:</strong> Curated student work for college/job applications</li>
+          <li><strong>Career Pathways:</strong> Career exploration and internship matching</li>
+          <li><strong>Wellness Integration:</strong> Mental health resources and support scheduling</li>
+        </ul>
+      </div>
+
+      <h3>Staff Digital Experience</h3>
+      <div class="platform-features">
+        <h4>Key Features:</h4>
+        <ul>
+          <li><strong>Data-Informed Instruction:</strong> Real-time class performance analytics</li>
+          <li><strong>Collaborative Platform:</strong> Shared resources and lesson planning</li>
+          <li><strong>Professional Growth:</strong> Certification tracking and peer observation</li>
+          <li><strong>Workload Management:</strong> Efficiency suggestions and wellness check-ins</li>
+        </ul>
+      </div>
+
+      <h3>Parent/Guardian Experience</h3>
+      <div class="platform-features">
+        <h4>Key Features:</h4>
+        <ul>
+          <li><strong>Transparent Progress:</strong> Standards-based grading and growth visualization</li>
+          <li><strong>Two-Way Communication:</strong> Secure messaging with translation support</li>
+          <li><strong>Engagement Tools:</strong> Homework help guides and tutoring resources</li>
+          <li><strong>Event Management:</strong> Calendar integration and volunteer signup</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="ai" class="framework-section">
+      <h2>VI. AI & Analytics Strategic Layer</h2>
+
+      <h3>AI/ML Use Cases</h3>
+      <div class="ai-use-cases">
+        <div class="use-case">
+          <h4>1. Early Warning Systems</h4>
+          <p>Identifies at-risk students before they fail using attendance, grades, and engagement data.</p>
+          <p class="impact">Impact: Prevent 15-25% of at-risk situations with early intervention</p>
+        </div>
+
+        <div class="use-case">
+          <h4>2. Personalized Learning Paths</h4>
+          <p>Suggests courses and skill development based on transcript, interests, and career goals.</p>
+          <p class="impact">Impact: Increases course relevance and completion rates</p>
+        </div>
+
+        <div class="use-case">
+          <h4>3. Predictive Resource Allocation</h4>
+          <p>Forecasts staffing and support needs based on historical demand patterns.</p>
+          <p class="impact">Impact: Proactive planning prevents mid-year crises</p>
+        </div>
+
+        <div class="use-case">
+          <h4>4. Curriculum Effectiveness</h4>
+          <p>Measures which teaching approaches work best for different student populations.</p>
+          <p class="impact">Impact: Continuous curriculum improvement based on evidence</p>
+        </div>
+      </div>
+
+      <h3>Data Governance</h3>
+      <ul>
+        <li><strong>Privacy by Design:</strong> Data minimization and anonymization</li>
+        <li><strong>Access Controls:</strong> Role-based permissions and audit logging</li>
+        <li><strong>Compliance:</strong> FERPA and COPPA data handling protocols</li>
+        <li><strong>Transparency:</strong> Clear explanation of data collection and use</li>
+      </ul>
+    </section>
+
+    <section id="roadmap" class="framework-section">
+      <h2>VII. Implementation Roadmap: 3-Year Phases</h2>
+
+      <div class="roadmap-detailed">
+        <div class="phase">
+          <h3>Phase 1: Foundation (Year 1)</h3>
+          <h4>Months 1-3: Infrastructure & Planning</h4>
+          <ul>
+            <li>Audit current systems</li>
+            <li>Deploy core stack (Google Workspace, Moodle LMS)</li>
+            <li>Establish data warehouse and SSO</li>
+            <li>Develop digital literacy curriculum</li>
+          </ul>
+
+          <h4>Months 4-6: Access & Device Rollout</h4>
+          <ul>
+            <li>1:1 device distribution</li>
+            <li>Wi-Fi expansion via E-Rate</li>
+            <li>Student digital citizenship launch</li>
+          </ul>
+
+          <h4>Months 7-12: Digital Literacy & Pilot</h4>
+          <ul>
+            <li>Middle school coding introduction</li>
+            <li>Early warning system pilot</li>
+            <li>Basic student portal launch</li>
+          </ul>
+
+          <p class="investment"><strong>Investment:</strong> $78K | <strong>Outcomes:</strong> Core infrastructure operational, device equity established</p>
+        </div>
+
+        <div class="phase">
+          <h3>Phase 2: Integration & Insight (Year 2)</h3>
+          <ul>
+            <li>API connectors between all systems</li>
+            <li>Enhanced AI models (learning pathways, attendance prediction)</li>
+            <li>Student portal v2.0 with career pathways</li>
+            <li>Parent portal launch</li>
+            <li>Community integration workshops</li>
+          </ul>
+
+          <p class="investment"><strong>Investment:</strong> $59K | <strong>Outcomes:</strong> 3-4 AI models operational, 75% staff using dashboards</p>
+        </div>
+
+        <div class="phase">
+          <h3>Phase 3: Optimization & Sustainability (Year 3)</h3>
+          <ul>
+            <li>Advanced analytics (resource allocation, curriculum effectiveness)</li>
+            <li>AI tutoring assistant launch</li>
+            <li>Full open-source transition</li>
+            <li>Internal team training for maintenance</li>
+            <li>3-year impact evaluation</li>
+          </ul>
+
+          <p class="investment"><strong>Investment:</strong> $44K | <strong>Outcomes:</strong> 6+ AI models, 80%+ student engagement, sustainable operations</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="budget" class="framework-section">
+      <h2>VIII. Cost Analysis & Budget Framework</h2>
+
+      <div class="budget-summary">
+        <h3>3-Year Total Investment: $181,000</h3>
+
+        <table class="budget-table">
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Year 1</th>
+              <th>Year 2</th>
+              <th>Year 3</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Infrastructure</td>
+              <td>$23K</td>
+              <td>$13K</td>
+              <td>$10K</td>
+              <td>$46K</td>
+            </tr>
+            <tr>
+              <td>Devices & Platforms</td>
+              <td>$24K</td>
+              <td>$12K</td>
+              <td>$9K</td>
+              <td>$45K</td>
+            </tr>
+            <tr>
+              <td>Data & AI</td>
+              <td>$12K</td>
+              <td>$17K</td>
+              <td>$12K</td>
+              <td>$41K</td>
+            </tr>
+            <tr>
+              <td>Professional Development</td>
+              <td>$10K</td>
+              <td>$9K</td>
+              <td>$6K</td>
+              <td>$25K</td>
+            </tr>
+            <tr>
+              <td>Contingency (10%)</td>
+              <td>$6K</td>
+              <td>$5K</td>
+              <td>$4K</td>
+              <td>$15K</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>TOTAL</strong></td>
+              <td><strong>$78K</strong></td>
+              <td><strong>$59K</strong></td>
+              <td><strong>$44K</strong></td>
+              <td><strong>$181K</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Funding Sources</h3>
+      <ul>
+        <li><strong>E-Rate</strong> (federal): $30-50K over 3 years</li>
+        <li><strong>State COVID Relief:</strong> $20-40K</li>
+        <li><strong>Foundation grants:</strong> $20-30K per year</li>
+        <li><strong>School budget reallocation:</strong> $25-40K</li>
+        <li><strong>In-kind donations:</strong> Devices and volunteer talent</li>
+      </ul>
+
+      <h3>Cost Reduction Strategies</h3>
+      <ul>
+        <li>Maximize open-source solutions (saves $20-30K)</li>
+        <li>Train in-house IT staff vs. vendor contracts</li>
+        <li>Gradual device refresh (33% per year)</li>
+        <li>University partnerships for data science support</li>
+      </ul>
+    </section>
+
+    <section id="equity" class="framework-section">
+      <h2>IX. Equity, Inclusion & Accessibility</h2>
+
+      <h3>Accessibility Standards (WCAG 2.1 Level AA)</h3>
+      <ul>
+        <li>Color contrast ratios ≥ 4.5:1 for text</li>
+        <li>Alt text on all images and videos</li>
+        <li>Keyboard navigation (no mouse-only)</li>
+        <li>Screen reader compatible</li>
+        <li>Captions on all video content</li>
+      </ul>
+
+      <h3>Multilingual & Cultural Responsiveness</h3>
+      <ul>
+        <li>Key interfaces in top 5 languages spoken by families</li>
+        <li>Auto-translate options for all content</li>
+        <li>Culturally diverse curriculum materials</li>
+        <li>Multilingual support materials</li>
+      </ul>
+
+      <h3>Socioeconomic Equity</h3>
+      <ul>
+        <li>Device provided (no BYOD requirement)</li>
+        <li>Free Wi-Fi access via hotspot lending</li>
+        <li>No digital literacy prerequisite</li>
+        <li>Payment plans for activity fees</li>
+      </ul>
+    </section>
+
+    <section class="framework-section">
+      <h2>X. Measuring Success: Key Performance Indicators</h2>
+
+      <div class="kpi-grid">
+        <div class="kpi-category">
+          <h3>Student Outcomes</h3>
+          <ul>
+            <li>Graduation Rate: +5% by Year 3</li>
+            <li>College/Career Placement: +8% by Year 3</li>
+            <li>At-Risk Identification: 95%+ accuracy</li>
+            <li>Achievement Gap: 25% reduction</li>
+            <li>Device Access: 99%+ by Year 3</li>
+          </ul>
+        </div>
+
+        <div class="kpi-category">
+          <h3>Engagement</h3>
+          <ul>
+            <li>Student Portal: 85%+ weekly login</li>
+            <li>Staff Dashboard: 95%+ adoption</li>
+            <li>Parent Portal: 75%+ family access</li>
+            <li>Career Pathway: 85%+ HS completion</li>
+          </ul>
+        </div>
+
+        <div class="kpi-category">
+          <h3>Operational Efficiency</h3>
+          <ul>
+            <li>Manual Data Entry: -60% by Year 3</li>
+            <li>System Uptime: 99.5%+</li>
+            <li>Help Desk Tickets: 60% reduction</li>
+            <li>IT Maintenance Hours: -50%</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="framework-section cta-framework">
+      <h2>Vision for 2050</h2>
+      <p>This framework prepares students for a 2050 job market where digital fluency is baseline competency. By emphasizing digital literacy over tools, students develop metacognitive skills to navigate unforeseen technologies. Equity-first design ensures all students benefit regardless of socioeconomic status.</p>
+      <p><strong>By 2050, students won't just adapt to digital change—they'll shape it.</strong></p>
+      <a href="/blog" class="btn btn-primary">Read Implementation Insights</a>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .framework-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .framework-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 3rem 1rem;
+    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    color: white;
+    border-radius: 1rem;
+  }
+
+  .framework-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.25rem;
+    opacity: 0.95;
+  }
+
+  .framework-nav {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin-bottom: 3rem;
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+  }
+
+  .framework-nav h3 {
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+
+  .framework-nav ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .framework-nav a {
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 0.25rem;
+    transition: background 0.2s;
+  }
+
+  .framework-nav a:hover {
+    background: var(--primary);
+    color: white;
+  }
+
+  .framework-section {
+    margin-bottom: 4rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .framework-section h2 {
+    color: var(--primary);
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 3px solid var(--primary);
+    padding-bottom: 0.5rem;
+  }
+
+  .framework-section h3 {
+    color: var(--text);
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .framework-section h4 {
+    color: var(--primary-dark);
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .framework-section p {
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .framework-section ul,
+  .framework-section ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+
+  .framework-section li {
+    margin-bottom: 0.5rem;
+  }
+
+  .value-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .value-card {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--primary);
+  }
+
+  .value-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .tech-stack {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+
+  .tech-category {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .architecture-diagram {
+    background: #1f2937;
+    color: #d1d5db;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 2rem 0;
+    overflow-x: auto;
+  }
+
+  .architecture-diagram pre {
+    margin: 0;
+    font-size: 0.85rem;
+  }
+
+  .literacy-progression {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .grade-level {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--secondary);
+  }
+
+  .platform-features {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .ai-use-cases {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .use-case {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid var(--accent);
+  }
+
+  .impact {
+    color: var(--secondary);
+    font-weight: 600;
+    margin-top: 0.75rem;
+  }
+
+  .roadmap-detailed {
+    display: grid;
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .phase {
+    background: var(--bg-gray);
+    padding: 2rem;
+    border-radius: 0.5rem;
+  }
+
+  .phase h3 {
+    color: var(--primary);
+    margin-top: 0;
+  }
+
+  .investment {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+  }
+
+  .budget-summary {
+    margin-top: 1.5rem;
+  }
+
+  .budget-summary h3 {
+    color: var(--primary);
+    text-align: center;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+
+  .budget-table th,
+  .budget-table td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .budget-table th {
+    background: var(--primary);
+    color: white;
+    font-weight: 600;
+  }
+
+  .budget-table tbody tr:hover {
+    background: var(--bg-gray);
+  }
+
+  .total-row {
+    background: var(--bg-gray);
+    font-weight: 700;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+  }
+
+  .kpi-category {
+    background: var(--bg-gray);
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+  }
+
+  .kpi-category h3 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .cta-framework {
+    text-align: center;
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+  }
+
+  .cta-framework h2 {
+    color: white;
+    border-bottom: 3px solid white;
+  }
+
+  .cta-framework p {
+    color: white;
+    font-size: 1.1rem;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: white;
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    margin-top: 1rem;
+    transition: transform 0.2s;
+  }
+
+  .btn:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .framework-header h1 {
+      font-size: 1.75rem;
+    }
+
+    .framework-nav {
+      position: relative;
+      top: 0;
+    }
+
+    .framework-nav ul {
+      flex-direction: column;
+    }
+
+    .value-grid,
+    .tech-stack,
+    .kpi-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .budget-table {
+      font-size: 0.85rem;
+    }
+
+    .budget-table th,
+    .budget-table td {
+      padding: 0.5rem;
+    }
+  }
+</style>

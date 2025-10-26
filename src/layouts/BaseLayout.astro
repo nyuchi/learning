@@ -1,0 +1,163 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Transforming K-12 Education in Africa through Digital Innovation' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <header>
+      <nav class="nav-container">
+        <div class="nav-content">
+          <a href="/" class="logo">
+            <span class="logo-icon">📚</span>
+            <span class="logo-text">African Education Framework</span>
+          </a>
+          <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/framework">Framework</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 African Education Framework. Building the future of learning.</p>
+        <p class="footer-tagline">Digital Access • Digital Literacy • Mobile-First • AI-Driven</p>
+      </div>
+    </footer>
+
+    <style is:global>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1d4ed8;
+        --secondary: #10b981;
+        --accent: #f59e0b;
+        --text: #1f2937;
+        --text-light: #6b7280;
+        --bg: #ffffff;
+        --bg-gray: #f9fafb;
+        --border: #e5e7eb;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: var(--text);
+        background: var(--bg);
+      }
+
+      header {
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+      }
+
+      .nav-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 700;
+        font-size: 1.25rem;
+      }
+
+      .logo-icon {
+        font-size: 1.75rem;
+      }
+
+      .nav-links {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary);
+      }
+
+      main {
+        min-height: calc(100vh - 200px);
+      }
+
+      footer {
+        background: var(--text);
+        color: white;
+        padding: 2rem 1rem;
+        margin-top: 4rem;
+      }
+
+      .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .footer-tagline {
+        margin-top: 0.5rem;
+        opacity: 0.8;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .nav-links {
+          gap: 1rem;
+          font-size: 0.9rem;
+        }
+
+        .logo-text {
+          font-size: 1rem;
+        }
+      }
+    </style>
+  </body>
+</html>
