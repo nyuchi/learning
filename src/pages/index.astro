@@ -2,17 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="African Education Framework - Digital Transformation for K-12 Schools">
+<BaseLayout title="African Education Framework - Practical Digital Transformation for Schools">
   <section class="hero">
     <div class="container">
-      <h1 class="hero-title">K-12 Digital Experience Campus Framework</h1>
+      <p class="ubuntu-tagline">Ubuntu: I am because we are 🇿🇼</p>
+      <h1 class="hero-title">K-12 Digital Transformation Framework for African Schools</h1>
       <p class="hero-subtitle">
-        Transforming African schools into digitally-enabled learning ecosystems
-        that prepare students for the 2050 job market
+        A comprehensive, step-by-step blueprint to transform your school into a digitally-enabled
+        learning ecosystem. Designed for African realities—limited budgets, connectivity challenges,
+        and diverse communities—this framework delivers world-class educational technology affordably and sustainably.
       </p>
+      <p class="framework-stats">Complete 3-year roadmap • $181K total investment • 60-80% cost savings • Mobile-first design</p>
       <div class="hero-cta">
-        <a href="/framework" class="btn btn-primary">Explore Framework</a>
-        <a href="/blog" class="btn btn-secondary">Read Blog</a>
+        <a href="/framework" class="btn btn-primary">View Complete Framework</a>
+        <a href="#implementation" class="btn btn-secondary">See Implementation</a>
       </div>
     </div>
   </section>
@@ -75,7 +78,67 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
-  <section class="implementation">
+  <section class="benefits-section" id="benefits">
+    <div class="container">
+      <h2 class="section-title">What Your School Gets</h2>
+      <p class="section-intro">
+        This framework provides everything your school needs for successful digital transformation—
+        from detailed technical specifications to budget templates and implementation timelines.
+      </p>
+      <div class="benefits-content">
+        <div class="benefit-card">
+          <div class="benefit-icon">📋</div>
+          <h3>Complete Implementation Guide</h3>
+          <p>
+            Detailed 3-year phased roadmap with specific milestones, resource requirements, and
+            success metrics. Know exactly what to do, when to do it, and how much it will cost.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🛠️</div>
+          <h3>Technology Stack Recommendations</h3>
+          <p>
+            Open-source and cloud solutions tested in African conditions. Moodle LMS, PostgreSQL data
+            warehouse, API connectors, and AI/analytics—all with setup instructions and best practices.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">💰</div>
+          <h3>Budget & Funding Strategy</h3>
+          <p>
+            Complete cost breakdown: $181K over 3 years including infrastructure, devices, software,
+            training, and contingency. Plus funding sources (E-Rate, grants, partnerships) and cost-reduction strategies.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">👥</div>
+          <h3>Digital Literacy Curriculum</h3>
+          <p>
+            K-12 progression from digital citizenship foundations to advanced AI collaboration skills.
+            Includes staff professional development and parent engagement programs.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">📊</div>
+          <h3>AI & Analytics Framework</h3>
+          <p>
+            Early warning systems, personalized learning pathways, predictive resource allocation,
+            and data governance protocols—all designed for ethical, effective use in education.
+          </p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">♿</div>
+          <h3>Equity & Accessibility</h3>
+          <p>
+            Device lending programs, multilingual support, WCAG compliance, and socioeconomic equity
+            measures ensuring every student has access regardless of background.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="implementation" id="implementation">
     <div class="container">
       <h2 class="section-title">3-Year Implementation Roadmap</h2>
       <div class="roadmap">
@@ -100,19 +163,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="cta-section">
     <div class="container">
-      <h2>Ready to Transform Your School?</h2>
-      <p>Explore the complete framework and start your digital transformation journey</p>
-      <a href="/framework" class="btn btn-primary">View Full Framework</a>
+      <h2>Ready to Start Your Digital Transformation?</h2>
+      <p class="ubuntu-message">Ubuntu: When we grow together, we all succeed</p>
+      <p>Access the complete framework with detailed implementation guides, budget templates, technology specifications, and proven strategies for African schools</p>
+      <div class="cta-buttons">
+        <a href="/framework" class="btn btn-primary">View Complete Framework</a>
+        <a href="/blog" class="btn btn-secondary">Read Implementation Insights</a>
+      </div>
+      <p class="cta-credit">Created by <strong>Nyuchi Africa</strong> • Built by educators, for education</p>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .hero {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #00A651 0%, #008F46 100%);
     color: white;
     padding: 5rem 1rem;
     text-align: center;
+  }
+
+  .ubuntu-tagline {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+    font-style: italic;
+    color: var(--nyuchi-yellow);
+  }
+
+  .framework-stats {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
   }
 
   .container {
@@ -146,7 +232,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn {
     padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
+    border-radius: 9999px; /* CRITICAL: Pill-shaped per Nyuchi brand guidelines */
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -159,7 +245,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-primary {
     background: white;
-    color: var(--primary);
+    color: var(--nyuchi-green);
   }
 
   .btn-secondary {
@@ -237,9 +323,59 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 1rem;
   }
 
-  .implementation {
+  .benefits-section {
     padding: 4rem 1rem;
     background: var(--bg-gray);
+  }
+
+  .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 2rem;
+    font-size: 1.1rem;
+    color: var(--text-light);
+  }
+
+  .benefits-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .benefit-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--nyuchi-green);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .benefit-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .benefit-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--nyuchi-green);
+  }
+
+  .benefit-card p {
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .implementation {
+    padding: 4rem 1rem;
+    background: white;
   }
 
   .roadmap {
@@ -257,10 +393,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .roadmap-year {
     display: inline-block;
-    background: var(--primary);
+    background: var(--nyuchi-green);
     color: white;
     padding: 0.25rem 1rem;
-    border-radius: 1rem;
+    border-radius: 9999px; /* CRITICAL: Pill-shaped */
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -274,8 +410,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .cta-section {
     padding: 4rem 1rem;
     text-align: center;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: var(--nyuchi-black);
     color: white;
+    border-top: 4px solid var(--nyuchi-green);
   }
 
   .cta-section h2 {
@@ -283,10 +420,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     margin-bottom: 1rem;
   }
 
+  .ubuntu-message {
+    color: var(--nyuchi-green);
+    font-style: italic;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
   .cta-section p {
     font-size: 1.25rem;
     margin-bottom: 2rem;
     opacity: 0.95;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+
+  .cta-credit {
+    font-size: 0.9rem;
+    opacity: 0.7;
+    margin-top: 2rem;
+  }
+
+  .cta-credit strong {
+    color: var(--nyuchi-green);
   }
 
   @media (max-width: 768px) {

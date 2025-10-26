@@ -2,20 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About - African Education Framework">
+<BaseLayout title="About - African Education Framework by Nyuchi Africa">
   <div class="about-container">
     <div class="about-header">
+      <p class="ubuntu-header">Ubuntu: I am because we are 🇿🇼</p>
       <h1>About the African Education Framework</h1>
-      <p class="tagline">Building the future of learning through digital transformation</p>
+      <p class="tagline">Building our digital future together through community-centered innovation</p>
+      <p class="nyuchi-badge">A Nyuchi Africa Initiative</p>
     </div>
 
     <section class="about-section">
       <h2>Our Mission</h2>
       <p>
-        The African Education Framework exists to democratize access to world-class educational
-        technology for K-12 schools across Africa. We believe that every student, regardless of
-        their socioeconomic background or geographic location, deserves the opportunity to develop
-        the digital skills needed to thrive in the 21st century.
+        The African Education Framework, a Nyuchi Africa initiative, embodies the Ubuntu philosophy—
+        "I am because we are"—in transforming education across our continent. Together, we're democratizing
+        access to world-class educational technology for K-12 schools across Africa. We believe that when
+        every student, regardless of their socioeconomic background or geographic location, has the opportunity
+        to develop digital skills, our entire community thrives. Our collective success strengthens us all.
       </p>
     </section>
 
@@ -88,6 +91,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <p>
             Our 3-year roadmap builds internal capacity, reducing vendor dependency and ensuring
             long-term viability.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section founder-story">
+      <h2>Our Founder's Journey: From Passion to Purpose</h2>
+
+      <div class="founder-content">
+        <div class="journey-step">
+          <h3>🖥️ The Spark: A Childhood Fascination</h3>
+          <p>
+            Nyuchi's inception began with founder Bryan Fawcett's early fascination with computers—a childhood
+            hobby that evolved into a lifelong pursuit of technological innovation. This wasn't just about
+            building things; it was about understanding how technology could transform lives and empower communities.
+          </p>
+        </div>
+
+        <div class="journey-step">
+          <h3>👨‍🏫 The Awakening: Teaching in South Africa</h3>
+          <p>
+            While teaching in South Africa, Bryan encountered a pressing demand among educators and local schools
+            for digital solutions. Many were eager to expand their online presence but lacked the know-how and
+            resources to create effective websites and digital integrations. This gap revealed a profound truth:
+            <strong>Africa didn't need more technology—it needed accessible, practical solutions designed for
+            African realities.</strong>
+          </p>
+        </div>
+
+        <div class="journey-step">
+          <h3>🛣️ The Journey: Built on Dusty Roads</h3>
+          <p>
+            Soon after Nyuchi's conception, Bryan traveled along the dusty roads of Africa for several years.
+            On these journeys, cloud resources and online collaboration tools became second nature—the lifeblood
+            of the company. This experience wasn't just about logistics; it fundamentally shaped Nyuchi's DNA:
+          </p>
+          <ul>
+            <li><strong>Remote-first by necessity:</strong> Built to work from anywhere, with anything</li>
+            <li><strong>African reality-tested:</strong> Optimized for intermittent connectivity and limited bandwidth</li>
+            <li><strong>Practical innovation:</strong> Solutions that work in real African conditions, not just theory</li>
+          </ul>
+          <p class="emphasis">
+            On these dusty roads, the Nyuchi we know now grew—fueled by passion and a love to make life as
+            simple as possible by creating solutions for Africa.
+          </p>
+        </div>
+
+        <div class="journey-step">
+          <h3>🇿🇼 The Commitment: Zimbabwe First</h3>
+          <p>
+            In 2019, after much thought and research, Nyuchi Africa (PVT) Ltd. was formally registered in
+            Zimbabwe. This wasn't just a business decision—it was a declaration of commitment:
+          </p>
+          <blockquote class="founder-quote">
+            "We want to grow it and support our local economy. Money earned internationally is funneled back
+            into Zimbabwe to build and grow and support there."
+          </blockquote>
+          <p>
+            This philosophy embodies the Ubuntu principle in action: our success strengthens the community,
+            and the community's success strengthens us.
+          </p>
+        </div>
+
+        <div class="journey-step mission-today">
+          <h3>🎯 The Mission Today</h3>
+          <p>
+            The African Education Framework represents Nyuchi's commitment to education—our founder's roots
+            and our forever mission. It's about:
+          </p>
+          <ul>
+            <li><strong>Empowering</strong> educators and students with accessible digital tools</li>
+            <li><strong>Transforming</strong> how schools operate across Africa</li>
+            <li><strong>Unlocking</strong> tremendous potential through access to technology</li>
+            <li><strong>Supporting</strong> education communities and helping them grow</li>
+          </ul>
+          <p class="emphasis">
+            Founded out of hobby and passion, built on dusty African roads, committed to Zimbabwe and Africa's
+            future—this is the African Education Framework by Nyuchi Africa.
           </p>
         </div>
       </div>
@@ -295,9 +376,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-align: center;
     margin-bottom: 4rem;
     padding: 3rem 1rem;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #00A651 0%, #008F46 100%);
     color: white;
     border-radius: 1rem;
+  }
+
+  .ubuntu-header {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--nyuchi-yellow);
+    margin-bottom: 1rem;
   }
 
   .about-header h1 {
@@ -308,6 +396,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .tagline {
     font-size: 1.5rem;
     opacity: 0.95;
+    margin-bottom: 1rem;
+  }
+
+  .nyuchi-badge {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 500;
+    border: 2px solid white;
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px; /* Pill-shaped */
+    margin-top: 1rem;
   }
 
   .about-section {
@@ -373,6 +473,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 0.95rem;
   }
 
+  .founder-story {
+    background: linear-gradient(135deg, rgba(0, 166, 81, 0.05) 0%, rgba(0, 143, 70, 0.05) 100%);
+    border-left: 4px solid var(--nyuchi-green);
+  }
+
+  .founder-content {
+    margin-top: 2rem;
+  }
+
+  .journey-step {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .journey-step h3 {
+    color: var(--nyuchi-green);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .journey-step ul {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .founder-quote {
+    border-left: 4px solid var(--nyuchi-yellow);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text);
+    background: var(--bg-gray);
+    padding: 1rem 1.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .emphasis {
+    font-weight: 500;
+    color: var(--nyuchi-green);
+    margin-top: 1rem;
+  }
+
+  .mission-today {
+    background: linear-gradient(135deg, rgba(0, 166, 81, 0.1) 0%, rgba(0, 143, 70, 0.1) 100%);
+    border-left: 4px solid var(--nyuchi-green);
+  }
+
   .components-list {
     display: grid;
     gap: 1rem;
@@ -435,8 +586,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .cta-section {
     text-align: center;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: var(--nyuchi-black);
     color: white;
+    border-top: 4px solid var(--nyuchi-green);
   }
 
   .cta-section h2 {
@@ -459,7 +611,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .btn {
     display: inline-block;
     padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
+    border-radius: 9999px; /* CRITICAL: Pill-shaped per Nyuchi brand */
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -472,13 +624,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-primary {
     background: white;
-    color: var(--primary);
+    color: var(--nyuchi-green);
   }
 
   .btn-secondary {
     background: transparent;
     color: white;
     border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--nyuchi-green);
   }
 
   @media (max-width: 768px) {
