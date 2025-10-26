@@ -236,19 +236,21 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .hero-title {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, 8vw, 5rem);
     font-weight: 800;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
+    margin-bottom: 2rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   .hero-subtitle {
-    font-size: 1.25rem;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     margin-bottom: 2rem;
     opacity: 0.95;
-    max-width: 800px;
+    max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    line-height: 1.6;
   }
 
   .hero-cta {
@@ -283,21 +285,23 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .features {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     background: var(--bg-gray);
   }
 
   .section-title {
     text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    margin-bottom: 4rem;
     color: var(--text);
+    font-weight: 700;
+    letter-spacing: -0.01em;
   }
 
   .feature-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 3rem;
   }
 
   .feature-card {
@@ -385,7 +389,7 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .benefits-section {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     background: var(--bg-gray);
   }
 
@@ -400,8 +404,8 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   .benefits-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
+    gap: 3rem;
+    margin-top: 3rem;
   }
 
   .benefit-card {
@@ -435,14 +439,14 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .implementation {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     background: white;
   }
 
   .roadmap {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    gap: 3rem;
   }
 
   .roadmap-item {
@@ -469,7 +473,7 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .cta-section {
-    padding: 4rem 1rem;
+    padding: 6rem 2rem;
     text-align: center;
     background: var(--bg-dark);
     color: white;
