@@ -1,4 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="48" fill="#2563eb"/>
-  <text x="50" y="68" font-size="60" text-anchor="middle" fill="white">📚</text>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#2C2C2C"/>
+
+  <!-- Simplified open book icon -->
+  <g transform="translate(8, 6)">
+    <!-- Left page -->
+    <path d="M8 3 Q6 5 6 9 L6 17 Q6 18 8 19" stroke="#FAFAFA" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Right page -->
+    <path d="M8 3 Q10 5 10 9 L10 17 Q10 18 8 19" stroke="#FAFAFA" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Center spine -->
+    <line x1="8" y1="3" x2="8" y2="19" stroke="#FAFAFA" stroke-width="2" stroke-linecap="round"/>
+    <!-- Small accent dots -->
+    <circle cx="4" cy="11" r="1" fill="#FAFAFA"/>
+    <circle cx="12" cy="11" r="1" fill="#FAFAFA"/>
+  </g>
 </svg>
