@@ -2,20 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="About - African Education Framework">
+<BaseLayout title="About - African Education Framework by Nyuchi Africa">
   <div class="about-container">
     <div class="about-header">
+      <p class="ubuntu-header">Ubuntu: I am because we are 🇿🇼</p>
       <h1>About the African Education Framework</h1>
-      <p class="tagline">Building the future of learning through digital transformation</p>
+      <p class="tagline">Building our digital future together through community-centered innovation</p>
+      <p class="nyuchi-badge">A Nyuchi Africa Initiative</p>
     </div>
 
     <section class="about-section">
       <h2>Our Mission</h2>
       <p>
-        The African Education Framework exists to democratize access to world-class educational
-        technology for K-12 schools across Africa. We believe that every student, regardless of
-        their socioeconomic background or geographic location, deserves the opportunity to develop
-        the digital skills needed to thrive in the 21st century.
+        The African Education Framework, a Nyuchi Africa initiative, embodies the Ubuntu philosophy—
+        "I am because we are"—in transforming education across our continent. Together, we're democratizing
+        access to world-class educational technology for K-12 schools across Africa. We believe that when
+        every student, regardless of their socioeconomic background or geographic location, has the opportunity
+        to develop digital skills, our entire community thrives. Our collective success strengthens us all.
       </p>
     </section>
 
@@ -295,9 +298,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-align: center;
     margin-bottom: 4rem;
     padding: 3rem 1rem;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #00A651 0%, #008F46 100%);
     color: white;
     border-radius: 1rem;
+  }
+
+  .ubuntu-header {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--nyuchi-yellow);
+    margin-bottom: 1rem;
   }
 
   .about-header h1 {
@@ -308,6 +318,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .tagline {
     font-size: 1.5rem;
     opacity: 0.95;
+    margin-bottom: 1rem;
+  }
+
+  .nyuchi-badge {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    font-weight: 500;
+    border: 2px solid white;
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
+    border-radius: 9999px; /* Pill-shaped */
+    margin-top: 1rem;
   }
 
   .about-section {
@@ -435,8 +457,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .cta-section {
     text-align: center;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: var(--nyuchi-black);
     color: white;
+    border-top: 4px solid var(--nyuchi-green);
   }
 
   .cta-section h2 {
@@ -459,7 +482,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .btn {
     display: inline-block;
     padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
+    border-radius: 9999px; /* CRITICAL: Pill-shaped per Nyuchi brand */
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -472,13 +495,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-primary {
     background: white;
-    color: var(--primary);
+    color: var(--nyuchi-green);
   }
 
   .btn-secondary {
     background: transparent;
     color: white;
     border: 2px solid white;
+  }
+
+  .btn-secondary:hover {
+    background: white;
+    color: var(--nyuchi-green);
   }
 
   @media (max-width: 768px) {

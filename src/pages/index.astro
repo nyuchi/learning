@@ -2,17 +2,18 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="African Education Framework - Digital Transformation for K-12 Schools">
+<BaseLayout title="African Education Framework - Ubuntu-Driven Digital Transformation">
   <section class="hero">
     <div class="container">
-      <h1 class="hero-title">K-12 Digital Experience Campus Framework</h1>
+      <p class="ubuntu-tagline">Ubuntu: I am because we are 🇿🇼</p>
+      <h1 class="hero-title">Building Our Digital Future Together</h1>
       <p class="hero-subtitle">
-        Transforming African schools into digitally-enabled learning ecosystems
-        that prepare students for the 2050 job market
+        A community-centered framework transforming African schools into digitally-enabled
+        learning ecosystems where we prepare our students for the 2050 job market—together
       </p>
       <div class="hero-cta">
-        <a href="/framework" class="btn btn-primary">Explore Framework</a>
-        <a href="/blog" class="btn btn-secondary">Read Blog</a>
+        <a href="/framework" class="btn btn-primary">Explore Our Framework</a>
+        <a href="/blog" class="btn btn-secondary">Join Our Journey</a>
       </div>
     </div>
   </section>
@@ -100,19 +101,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   <section class="cta-section">
     <div class="container">
-      <h2>Ready to Transform Your School?</h2>
-      <p>Explore the complete framework and start your digital transformation journey</p>
-      <a href="/framework" class="btn btn-primary">View Full Framework</a>
+      <h2>Let's Transform Our Schools Together</h2>
+      <p class="ubuntu-message">Ubuntu: When we grow together, we all succeed</p>
+      <p>Explore our complete framework and join our community in building the digital future of African education</p>
+      <a href="/framework" class="btn btn-primary">Explore Our Framework</a>
     </div>
   </section>
 </BaseLayout>
 
 <style>
   .hero {
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #00A651 0%, #008F46 100%);
     color: white;
     padding: 5rem 1rem;
     text-align: center;
+  }
+
+  .ubuntu-tagline {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    opacity: 0.95;
+    font-style: italic;
+    color: var(--nyuchi-yellow);
   }
 
   .container {
@@ -146,7 +156,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn {
     padding: 0.75rem 2rem;
-    border-radius: 0.5rem;
+    border-radius: 9999px; /* CRITICAL: Pill-shaped per Nyuchi brand guidelines */
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.2s, box-shadow 0.2s;
@@ -159,7 +169,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-primary {
     background: white;
-    color: var(--primary);
+    color: var(--nyuchi-green);
   }
 
   .btn-secondary {
@@ -257,10 +267,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .roadmap-year {
     display: inline-block;
-    background: var(--primary);
+    background: var(--nyuchi-green);
     color: white;
     padding: 0.25rem 1rem;
-    border-radius: 1rem;
+    border-radius: 9999px; /* CRITICAL: Pill-shaped */
     font-weight: 600;
     margin-bottom: 1rem;
   }
@@ -274,12 +284,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .cta-section {
     padding: 4rem 1rem;
     text-align: center;
-    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    background: var(--nyuchi-black);
     color: white;
+    border-top: 4px solid var(--nyuchi-green);
   }
 
   .cta-section h2 {
     font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .ubuntu-message {
+    color: var(--nyuchi-green);
+    font-style: italic;
+    font-size: 1.1rem;
     margin-bottom: 1rem;
   }
 
