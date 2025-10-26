@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Globe, BookOpen, Smartphone, DollarSign, BarChart, Users } from 'lucide-astro';
 ---
 
 <BaseLayout title="Framework - African Education Digital Transformation">
@@ -36,27 +37,33 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <h3>Core Values</h3>
       <div class="value-grid">
         <div class="value-card">
-          <h4>🌍 Universal Access</h4>
+          <Globe class="value-icon" size={32} strokeWidth={1.5} />
+          <h4>Universal Access</h4>
           <p>Digital tools available to all, regardless of socioeconomic status</p>
         </div>
         <div class="value-card">
-          <h4>📚 Digital Literacy First</h4>
+          <BookOpen class="value-icon" size={32} strokeWidth={1.5} />
+          <h4>Digital Literacy First</h4>
           <p>Technology enablement paired with critical thinking and digital citizenship</p>
         </div>
         <div class="value-card">
-          <h4>📱 Mobile-Centric</h4>
+          <Smartphone class="value-icon" size={32} strokeWidth={1.5} />
+          <h4>Mobile-Centric</h4>
           <p>Recognizing that smartphones are primary access devices for most users</p>
         </div>
         <div class="value-card">
-          <h4>💰 Cost Efficiency</h4>
+          <DollarSign class="value-icon" size={32} strokeWidth={1.5} />
+          <h4>Cost Efficiency</h4>
           <p>Open-source and cloud solutions to maximize limited school budgets</p>
         </div>
         <div class="value-card">
-          <h4>📊 Data-Driven Decisions</h4>
+          <BarChart class="value-icon" size={32} strokeWidth={1.5} />
+          <h4>Data-Driven Decisions</h4>
           <p>Analytics and insights inform instruction, support, and strategy</p>
         </div>
         <div class="value-card">
-          <h4>🤝 Community-Centered</h4>
+          <Users class="value-icon" size={32} strokeWidth={1.5} />
+          <h4>Community-Centered</h4>
           <p>Seamless experience across students, staff, and parents/guardians</p>
         </div>
       </div>
@@ -493,12 +500,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .framework-header {
+    position: relative;
     text-align: center;
     margin-bottom: 3rem;
     padding: 3rem 1rem;
-    background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
+                url('https://images.unsplash.com/photo-1509062522246-3755977927d7?w=1600&q=80') center/cover no-repeat;
     color: white;
     border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  .framework-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(44, 44, 44, 0.75) 0%, rgba(26, 26, 26, 0.85) 100%);
+    z-index: 0;
+  }
+
+  .framework-header > * {
+    position: relative;
+    z-index: 1;
   }
 
   .framework-header h1 {
@@ -605,11 +628,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     padding: 1.5rem;
     border-radius: 0.5rem;
     border-left: 4px solid var(--primary);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .value-icon {
+    color: var(--primary);
+    margin-bottom: 1rem;
   }
 
   .value-card h4 {
     margin-top: 0;
     margin-bottom: 0.75rem;
+    color: var(--primary);
   }
 
   .tech-stack {
