@@ -1,11 +1,12 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
 ---
 
 <BaseLayout title="About - African Education Framework by Nyuchi Africa">
   <div class="about-container">
     <div class="about-header">
-      <p class="ubuntu-header">Ubuntu: I am because we are 🇿🇼</p>
+      <p class="ubuntu-header">Ubuntu: I am because we are</p>
       <h1>About the African Education Framework</h1>
       <p class="tagline">Building our digital future together through community-centered innovation</p>
       <p class="nyuchi-badge">A Nyuchi Africa Initiative</p>
@@ -101,7 +102,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
       <div class="founder-content">
         <div class="journey-step">
-          <h3>🖥️ The Spark: A Childhood Fascination</h3>
+          <h3><Monitor class="journey-icon" size={24} strokeWidth={2} /> The Spark: A Childhood Fascination</h3>
           <p>
             Nyuchi's inception began with founder Bryan Fawcett's early fascination with computers—a childhood
             hobby that evolved into a lifelong pursuit of technological innovation. This wasn't just about
@@ -110,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step">
-          <h3>👨‍🏫 The Awakening: Teaching in South Africa</h3>
+          <h3><GraduationCap class="journey-icon" size={24} strokeWidth={2} /> The Awakening: Teaching in South Africa</h3>
           <p>
             While teaching in South Africa, Bryan encountered a pressing demand among educators and local schools
             for digital solutions. Many were eager to expand their online presence but lacked the know-how and
@@ -121,7 +122,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step">
-          <h3>🛣️ The Journey: Built on Dusty Roads</h3>
+          <h3><MapPin class="journey-icon" size={24} strokeWidth={2} /> The Journey: Built on Dusty Roads</h3>
           <p>
             Soon after Nyuchi's conception, Bryan traveled along the dusty roads of Africa for several years.
             On these journeys, cloud resources and online collaboration tools became second nature—the lifeblood
@@ -139,7 +140,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step">
-          <h3>🇿🇼 The Commitment: Zimbabwe First</h3>
+          <h3>The Commitment: Zimbabwe First</h3>
           <p>
             In 2019, after much thought and research, Nyuchi Africa (PVT) Ltd. was formally registered in
             Zimbabwe. This wasn't just a business decision—it was a declaration of commitment:
@@ -155,7 +156,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="journey-step mission-today">
-          <h3>🎯 The Mission Today</h3>
+          <h3><Target class="journey-icon" size={24} strokeWidth={2} /> The Mission Today</h3>
           <p>
             The African Education Framework represents Nyuchi's commitment to education—our founder's roots
             and our forever mission. It's about:
@@ -376,7 +377,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     text-align: center;
     margin-bottom: 4rem;
     padding: 3rem 1rem;
-    background: linear-gradient(135deg, #00A651 0%, #008F46 100%);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
     color: white;
     border-radius: 1rem;
   }
@@ -384,7 +385,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .ubuntu-header {
     font-size: 1.1rem;
     font-style: italic;
-    color: var(--nyuchi-yellow);
+    color: var(--gray-300);
     margin-bottom: 1rem;
   }
 
@@ -474,8 +475,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .founder-story {
-    background: linear-gradient(135deg, rgba(0, 166, 81, 0.05) 0%, rgba(0, 143, 70, 0.05) 100%);
-    border-left: 4px solid var(--nyuchi-green);
+    background: var(--bg-gray);
+    border-left: 4px solid var(--primary);
   }
 
   .founder-content {
@@ -491,9 +492,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .journey-step h3 {
-    color: var(--nyuchi-green);
+    color: var(--text);
     margin-bottom: 1rem;
     font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .journey-icon {
+    color: var(--primary);
+    flex-shrink: 0;
   }
 
   .journey-step ul {
@@ -503,7 +512,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .founder-quote {
-    border-left: 4px solid var(--nyuchi-yellow);
+    border-left: 4px solid var(--primary);
     padding-left: 1.5rem;
     margin: 1.5rem 0;
     font-style: italic;
@@ -515,13 +524,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .emphasis {
     font-weight: 500;
-    color: var(--nyuchi-green);
+    color: var(--text);
     margin-top: 1rem;
   }
 
   .mission-today {
-    background: linear-gradient(135deg, rgba(0, 166, 81, 0.1) 0%, rgba(0, 143, 70, 0.1) 100%);
-    border-left: 4px solid var(--nyuchi-green);
+    background: var(--bg-gray);
+    border-left: 4px solid var(--primary);
   }
 
   .components-list {
@@ -586,9 +595,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .cta-section {
     text-align: center;
-    background: var(--nyuchi-black);
+    background: var(--bg-dark);
     color: white;
-    border-top: 4px solid var(--nyuchi-green);
+    border-top: 4px solid var(--primary);
   }
 
   .cta-section h2 {
@@ -624,7 +633,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-primary {
     background: white;
-    color: var(--nyuchi-green);
+    color: var(--primary);
   }
 
   .btn-secondary {
@@ -635,7 +644,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
   .btn-secondary:hover {
     background: white;
-    color: var(--nyuchi-green);
+    color: var(--primary);
   }
 
   @media (max-width: 768px) {
