@@ -2,18 +2,20 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="African Education Framework - Ubuntu-Driven Digital Transformation">
+<BaseLayout title="African Education Framework - Built by an Educator, for Education">
   <section class="hero">
     <div class="container">
       <p class="ubuntu-tagline">Ubuntu: I am because we are 🇿🇼</p>
-      <h1 class="hero-title">Building Our Digital Future Together</h1>
+      <h1 class="hero-title">Empowering Our Education Communities Together</h1>
       <p class="hero-subtitle">
-        A community-centered framework transforming African schools into digitally-enabled
-        learning ecosystems where we prepare our students for the 2050 job market—together
+        Built by an educator, tested on dusty African roads, committed to Zimbabwe—this community-centered
+        framework transforms our schools into digitally-enabled learning ecosystems where we prepare
+        students for the 2050 job market, together
       </p>
+      <p class="remote-badge">Built to be remote • Built on dusty roads • Built for Africa</p>
       <div class="hero-cta">
         <a href="/framework" class="btn btn-primary">Explore Our Framework</a>
-        <a href="/blog" class="btn btn-secondary">Join Our Journey</a>
+        <a href="/about" class="btn btn-secondary">Read Our Story</a>
       </div>
     </div>
   </section>
@@ -76,6 +78,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </section>
 
+  <section class="story-section">
+    <div class="container">
+      <h2 class="section-title">Our Story: From Classroom to Continent</h2>
+      <div class="story-content">
+        <div class="story-card">
+          <div class="story-icon">👨‍🏫</div>
+          <h3>Born from Education</h3>
+          <p>
+            Founded by a passionate 21st century educator who witnessed firsthand the digital divide
+            in African classrooms. While teaching in South Africa, we saw educators and schools eager
+            to embrace technology but lacking accessible, practical solutions designed for African realities.
+          </p>
+        </div>
+        <div class="story-card">
+          <div class="story-icon">🛣️</div>
+          <h3>Tested on Dusty Roads</h3>
+          <p>
+            Built while traveling across Africa for years, where cloud resources and intermittent
+            connectivity became our reality. This journey shaped our remote-first DNA—creating
+            solutions that work anywhere, with anything, because they have to.
+          </p>
+        </div>
+        <div class="story-card">
+          <div class="story-icon">🇿🇼</div>
+          <h3>Committed to Zimbabwe</h3>
+          <p>
+            Formally registered in Zimbabwe in 2019 with a mission to reinvest in our local economy.
+            This framework represents our commitment: building from within Africa, for Africa,
+            supporting education communities and fostering growth across our continent.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="implementation">
     <div class="container">
       <h2 class="section-title">3-Year Implementation Roadmap</h2>
@@ -123,6 +160,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     opacity: 0.95;
     font-style: italic;
     color: var(--nyuchi-yellow);
+  }
+
+  .remote-badge {
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+    color: white;
+    font-weight: 500;
+    letter-spacing: 0.5px;
   }
 
   .container {
@@ -247,9 +294,51 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     font-size: 1rem;
   }
 
-  .implementation {
+  .story-section {
     padding: 4rem 1rem;
     background: var(--bg-gray);
+  }
+
+  .story-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .story-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    border-left: 4px solid var(--nyuchi-green);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .story-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .story-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .story-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--nyuchi-green);
+  }
+
+  .story-card p {
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  .implementation {
+    padding: 4rem 1rem;
+    background: white;
   }
 
   .roadmap {

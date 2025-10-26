@@ -96,6 +96,84 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
     </section>
 
+    <section class="about-section founder-story">
+      <h2>Our Founder's Journey: From Passion to Purpose</h2>
+
+      <div class="founder-content">
+        <div class="journey-step">
+          <h3>🖥️ The Spark: A Childhood Fascination</h3>
+          <p>
+            Nyuchi's inception began with founder Bryan Fawcett's early fascination with computers—a childhood
+            hobby that evolved into a lifelong pursuit of technological innovation. This wasn't just about
+            building things; it was about understanding how technology could transform lives and empower communities.
+          </p>
+        </div>
+
+        <div class="journey-step">
+          <h3>👨‍🏫 The Awakening: Teaching in South Africa</h3>
+          <p>
+            While teaching in South Africa, Bryan encountered a pressing demand among educators and local schools
+            for digital solutions. Many were eager to expand their online presence but lacked the know-how and
+            resources to create effective websites and digital integrations. This gap revealed a profound truth:
+            <strong>Africa didn't need more technology—it needed accessible, practical solutions designed for
+            African realities.</strong>
+          </p>
+        </div>
+
+        <div class="journey-step">
+          <h3>🛣️ The Journey: Built on Dusty Roads</h3>
+          <p>
+            Soon after Nyuchi's conception, Bryan traveled along the dusty roads of Africa for several years.
+            On these journeys, cloud resources and online collaboration tools became second nature—the lifeblood
+            of the company. This experience wasn't just about logistics; it fundamentally shaped Nyuchi's DNA:
+          </p>
+          <ul>
+            <li><strong>Remote-first by necessity:</strong> Built to work from anywhere, with anything</li>
+            <li><strong>African reality-tested:</strong> Optimized for intermittent connectivity and limited bandwidth</li>
+            <li><strong>Practical innovation:</strong> Solutions that work in real African conditions, not just theory</li>
+          </ul>
+          <p class="emphasis">
+            On these dusty roads, the Nyuchi we know now grew—fueled by passion and a love to make life as
+            simple as possible by creating solutions for Africa.
+          </p>
+        </div>
+
+        <div class="journey-step">
+          <h3>🇿🇼 The Commitment: Zimbabwe First</h3>
+          <p>
+            In 2019, after much thought and research, Nyuchi Africa (PVT) Ltd. was formally registered in
+            Zimbabwe. This wasn't just a business decision—it was a declaration of commitment:
+          </p>
+          <blockquote class="founder-quote">
+            "We want to grow it and support our local economy. Money earned internationally is funneled back
+            into Zimbabwe to build and grow and support there."
+          </blockquote>
+          <p>
+            This philosophy embodies the Ubuntu principle in action: our success strengthens the community,
+            and the community's success strengthens us.
+          </p>
+        </div>
+
+        <div class="journey-step mission-today">
+          <h3>🎯 The Mission Today</h3>
+          <p>
+            The African Education Framework represents Nyuchi's commitment to education—our founder's roots
+            and our forever mission. It's about:
+          </p>
+          <ul>
+            <li><strong>Empowering</strong> educators and students with accessible digital tools</li>
+            <li><strong>Transforming</strong> how schools operate across Africa</li>
+            <li><strong>Unlocking</strong> tremendous potential through access to technology</li>
+            <li><strong>Supporting</strong> education communities and helping them grow</li>
+          </ul>
+          <p class="emphasis">
+            Founded out of hobby and passion, built on dusty African roads, committed to Zimbabwe and Africa's
+            future—this is the African Education Framework by Nyuchi Africa.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="about-section">
       <h2>What Makes Us Different</h2>
 
@@ -393,6 +471,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .approach-card p {
     margin: 0;
     font-size: 0.95rem;
+  }
+
+  .founder-story {
+    background: linear-gradient(135deg, rgba(0, 166, 81, 0.05) 0%, rgba(0, 143, 70, 0.05) 100%);
+    border-left: 4px solid var(--nyuchi-green);
+  }
+
+  .founder-content {
+    margin-top: 2rem;
+  }
+
+  .journey-step {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .journey-step h3 {
+    color: var(--nyuchi-green);
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+  }
+
+  .journey-step ul {
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .founder-quote {
+    border-left: 4px solid var(--nyuchi-yellow);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--text);
+    background: var(--bg-gray);
+    padding: 1rem 1.5rem;
+    border-radius: 0.25rem;
+  }
+
+  .emphasis {
+    font-weight: 500;
+    color: var(--nyuchi-green);
+    margin-top: 1rem;
+  }
+
+  .mission-today {
+    background: linear-gradient(135deg, rgba(0, 166, 81, 0.1) 0%, rgba(0, 143, 70, 0.1) 100%);
+    border-left: 4px solid var(--nyuchi-green);
   }
 
   .components-list {
