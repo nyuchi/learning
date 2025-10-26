@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Globe, BookOpen, Smartphone, DollarSign, BarChart, Users } from 'lucide-astro';
+import { Globe, BookOpen, Smartphone, DollarSign, BarChart, Users, Download } from 'lucide-astro';
 ---
 
 <BaseLayout
@@ -10,8 +10,15 @@ import { Globe, BookOpen, Smartphone, DollarSign, BarChart, Users } from 'lucide
 >
   <div class="framework-container">
     <div class="framework-header">
-      <h1>K-12 Digital Experience Campus Framework</h1>
+      <h1>K-12 Digital Campus Framework</h1>
       <p class="subtitle">A comprehensive blueprint for digital transformation in African schools</p>
+      <div class="framework-actions">
+        <a href="#overview" class="btn btn-secondary">Read Online</a>
+        <a href="/frameworks/k12-digital-campus-framework.pdf" class="btn btn-primary" download>
+          <Download size={20} /> Download PDF
+        </a>
+      </div>
+      <p class="framework-notice">Free to use, copy, adapt, and share under open framework license</p>
     </div>
 
     <div class="framework-nav">
