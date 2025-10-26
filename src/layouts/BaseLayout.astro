@@ -6,7 +6,7 @@ interface Props {
   description?: string;
 }
 
-const { title, description = 'Ubuntu-driven digital transformation for K-12 education across Africa' } = Astro.props;
+const { title, description = 'Open, shareable framework for digital transformation in K-12 education. Adaptable to any school, community-driven, multilingual support.' } = Astro.props;
 ---
 
 <!doctype html>
@@ -41,7 +41,7 @@ const { title, description = 'Ubuntu-driven digital transformation for K-12 educ
             <BookOpen class="logo-icon" size={28} strokeWidth={2} />
             <div class="logo-text-container">
               <span class="logo-text">African Education Framework</span>
-              <span class="logo-subtext">by Nyuchi Africa</span>
+              <span class="logo-subtext">by Nyuchi Learning</span>
             </div>
           </a>
           <ul class="nav-links">
@@ -60,9 +60,10 @@ const { title, description = 'Ubuntu-driven digital transformation for K-12 educ
 
     <footer>
       <div class="footer-content">
-        <p>&copy; 2024 African Education Framework by <strong>Nyuchi Africa</strong></p>
+        <p>&copy; 2024 African Education Framework by <strong>Nyuchi Learning</strong></p>
+        <p class="footer-division">A division of Nyuchi Africa</p>
         <p class="footer-ubuntu">Ubuntu: I am because we are</p>
-        <p class="footer-commitment">Built by an educator • Tested on dusty African roads • Committed to Zimbabwe since 2019</p>
+        <p class="footer-commitment">Open framework • Shareable & adaptable • Built for African schools • Multilingual support</p>
         <p class="footer-tagline">Digital Access • Digital Literacy • Mobile-First • AI-Driven • Community-Centered • Education First</p>
       </div>
     </footer>
@@ -224,6 +225,13 @@ const { title, description = 'Ubuntu-driven digital transformation for K-12 educ
         max-width: 1200px;
         margin: 0 auto;
         text-align: center;
+      }
+
+      .footer-division {
+        margin-top: 0.25rem;
+        color: var(--gray-400);
+        font-size: 0.85rem;
+        opacity: 0.9;
       }
 
       .footer-ubuntu {
