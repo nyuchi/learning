@@ -1,10 +1,14 @@
-# African Education Framework - Design Guidelines
+# K-12 Digital Campus Framework - Design Guidelines
 
 ## Brand Identity
 
-### Nyuchi Learning - Visual Identity
+### Nyuchi Learning - Parent Brand
 
-The African Education Framework is a **Nyuchi Learning** initiative. Nyuchi Learning is a division of Nyuchi Africa focused on educational frameworks and digital transformation for schools. While Nyuchi branding provides credibility and context, the framework itself is the hero—not the company.
+**Nyuchi Learning** is a division of Nyuchi Africa focused on educational frameworks and digital transformation for schools. Nyuchi Learning will release multiple frameworks for education across Africa.
+
+### K-12 Digital Campus Framework
+
+The **K-12 Digital Campus Framework** is the first framework released by Nyuchi Learning. It provides a comprehensive blueprint for digital transformation in K-12 schools across Africa. While Nyuchi Learning provides credibility and context, the framework itself is the hero—not the company.
 
 ### Open & Shareable Framework
 
@@ -54,6 +58,46 @@ These colors are ONLY used in the Zimbabwe flag strip visual element:
 - White: `#FFFFFF`
 
 **DO NOT use these colors elsewhere in the UI.**
+
+## Logo System
+
+### Nyuchi Learning Logo
+
+The Nyuchi Learning logo features a stylized open book symbol representing education and learning, with Africa-inspired accent elements.
+
+**Logo Variants:**
+1. **Main (Vertical)**: Stacked layout with icon and "Nyuchi Learning" text
+2. **Horizontal**: Side-by-side layout for headers and wide spaces
+3. **Compact**: Icon with "N" initial for small spaces (favicons, mobile)
+
+**Usage:**
+```astro
+---
+import Logo from '../components/Logo.astro';
+---
+
+<!-- Main logo (default: medium size) -->
+<Logo />
+
+<!-- Horizontal logo, large size -->
+<Logo variant="horizontal" size="lg" />
+
+<!-- Compact logo, small size -->
+<Logo variant="compact" size="sm" />
+```
+
+**Logo Files:**
+- `/public/nyuchi-learning-logo-main.svg`
+- `/public/nyuchi-learning-logo-horizontal.svg`
+- `/public/nyuchi-learning-logo-compact.svg`
+
+**Logo Colors:**
+- Icon: `#2C2C2C` (Primary Charcoal)
+- "Nyuchi" text: `#2C2C2C` (Playfair Display, Bold)
+- "Learning" text: `#6B7280` (Roboto, Medium)
+
+**Theme Awareness:**
+The logo automatically inverts in dark mode to maintain visibility.
 
 ## Typography
 
