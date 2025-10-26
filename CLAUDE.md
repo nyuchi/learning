@@ -2,9 +2,19 @@
 
 ## Brand Identity
 
-### Nyuchi Africa - Visual Identity
+### Nyuchi Learning - Visual Identity
 
-The African Education Framework is a **Nyuchi Africa** initiative. While Nyuchi branding provides credibility and context, the framework itself is the hero—not the company.
+The African Education Framework is a **Nyuchi Learning** initiative. Nyuchi Learning is a division of Nyuchi Africa focused on educational frameworks and digital transformation for schools. While Nyuchi branding provides credibility and context, the framework itself is the hero—not the company.
+
+### Open & Shareable Framework
+
+**CRITICAL MISSION**: This framework is designed to be:
+- **Open** - Free to use and access
+- **Shareable** - Copy and distribute to other schools
+- **Adaptable** - Modify to fit your school's unique needs
+- **Community-driven** - Improve it and share your innovations back
+
+The goal is to promote digital learning so that students and communities across Africa can adapt, copy, and improve this framework to fit into their schools.
 
 ### Zimbabwe Flag Strip - CRITICAL Brand Element
 
@@ -163,27 +173,30 @@ This philosophy should be woven throughout the content:
 
 ### Framework-First Approach
 
-**CRITICAL: This is an educational resource, not a marketing site.**
+**CRITICAL: This is an open, shareable educational resource, not a marketing site.**
 
 - **Primary focus**: The framework and its practical value for schools
-- **Secondary focus**: Nyuchi branding for credibility
+- **Secondary focus**: Nyuchi Learning branding for credibility
 - **Content hierarchy**: Implementation guides > Features > Brand story
+- **Open framework messaging**: Emphasize that it's free to copy, adapt, and improve
 
 ### Zimbabwe Branding Context
 
-Nyuchi Africa is a **Zimbabwe-registered company (2019)** with:
+Nyuchi Africa is the parent company—a **Zimbabwe-registered company (2019)** with:
 - Commitment to local economy reinvestment
 - Education-first mission (founder is educator)
 - Remote-first DNA (built on dusty African roads)
 - Africa-tested solutions (not just theory)
 
+Nyuchi Learning is a division of Nyuchi Africa focused on educational frameworks and digital transformation.
+
 ### Content Placement
 
 **Homepage:**
-- Hero: Framework value proposition
+- Hero: Framework value proposition + open/shareable messaging
 - Features: Practical benefits for schools
 - Implementation: Clear roadmap
-- Credit: "Created by Nyuchi Africa • Built by educators, for education"
+- Credit: "Created by Nyuchi Learning, a division of Nyuchi Africa • Built by educators, for education"
 
 **About Page:**
 - Framework mission
@@ -240,7 +253,9 @@ src/
 ✅ Use Playfair Display for headings
 ✅ Use Roboto for body text
 ✅ Focus on framework value for schools
-✅ Include Nyuchi branding for credibility
+✅ Include Nyuchi Learning branding for credibility
+✅ Emphasize open, shareable, adaptable framework nature
+✅ Mention multilingual support (African languages + English, French, Chinese)
 ✅ Emphasize Ubuntu philosophy
 ✅ Design mobile-first
 
@@ -250,6 +265,7 @@ src/
 ❌ Use emojis anywhere
 ❌ Use harsh black (#000) or pure white (#FFF) for content
 ❌ Make Nyuchi branding the hero (framework is the hero)
+❌ Hide that the framework is open and shareable
 ❌ Use "Ubuntu" as a brand name (philosophy only)
 ❌ Ignore mobile experience
 ❌ Use fonts other than Playfair Display and Roboto
@@ -270,6 +286,22 @@ src/
 - ARIA labels where appropriate
 - Keyboard navigation support
 - Screen reader compatibility
+
+### Multilingual Support
+
+The framework is designed to support multiple languages to serve diverse African communities:
+
+**Supported Languages:**
+- African languages (based on country/region)
+- English
+- French
+- Chinese
+
+**Implementation Approach:**
+- Content adaptable to local languages
+- Culturally responsive design
+- Community-driven translation efforts
+- Language selection based on school/region needs
 
 ## Content Tone & Voice
 
@@ -296,4 +328,4 @@ This document should be updated whenever:
 - User feedback indicates needed clarifications
 
 **Last Updated**: October 2024
-**Maintained By**: Nyuchi Africa Development Team
+**Maintained By**: Nyuchi Learning Development Team
