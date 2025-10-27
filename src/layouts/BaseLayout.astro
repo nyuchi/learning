@@ -250,12 +250,22 @@ const {
       .flag-black  { flex: 1; background: #000000; }
 
       header {
-        background: var(--bg);
-        border-bottom: 1px solid var(--border);
-        position: sticky;
+        background: rgba(250, 250, 250, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+        position: fixed;
         top: 0;
+        left: 8px;
+        right: 0;
         z-index: 100;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        transition: background 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      header.scrolled {
+        background: rgba(250, 250, 250, 0.95);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
 
       .nav-container {
@@ -642,6 +652,10 @@ const {
           width: 6px;
         }
 
+        header {
+          left: 6px;
+        }
+
         /* Hide desktop nav, show mobile button */
         .nav-desktop {
           display: none !important;
@@ -780,6 +794,19 @@ const {
             });
           });
         }
+
+        // Header scroll effect
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', function() {
+          const currentScroll = window.pageYOffset;
+
+          if (currentScroll > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
       });
     </script>
   </body>
