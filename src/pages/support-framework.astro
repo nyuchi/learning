@@ -1322,16 +1322,86 @@ User Access Support Portal
     color: var(--primary);
   }
 
-  /* Responsive */
+  /* Mobile Optimization */
   @media (max-width: 768px) {
     .framework-container {
-      padding: 1rem;
+      padding: 2rem 1.25rem;
     }
 
+    .framework-header {
+      padding: 2.5rem 1.25rem;
+    }
+
+    .framework-header h1 {
+      font-size: clamp(1.75rem, 7vw, 2.5rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      padding: 0 0.5rem;
+    }
+
+    .framework-actions {
+      flex-direction: column;
+      gap: 0.75rem;
+      width: 100%;
+    }
+
+    .framework-actions .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Navigation - horizontal scroll on mobile */
+    .framework-nav {
+      position: relative;
+      top: 0;
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .framework-nav ul {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      gap: 0.5rem;
+      min-width: min-content;
+    }
+
+    .framework-nav li {
+      white-space: nowrap;
+    }
+
+    .framework-nav a {
+      font-size: 0.85rem;
+      padding: 0.5rem 1rem;
+    }
+
+    /* Section spacing */
     .framework-section {
-      padding: 2rem 1rem;
+      padding: 3rem 1.25rem;
     }
 
+    .framework-section h2 {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+      margin-bottom: 1.5rem;
+    }
+
+    .framework-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .framework-section p,
+    .framework-section li {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Grids - single column */
     .summary-grid,
     .scope-grid,
     .stages-grid,
@@ -1339,18 +1409,176 @@ User Access Support Portal
     .objectives-grid,
     .fields-grid {
       grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
 
-    table {
-      font-size: 0.85rem;
+    .summary-card,
+    .scope-card,
+    .stage-card,
+    .rule-card,
+    .objective-card,
+    .fields-card {
+      padding: 1.5rem;
+    }
+
+    .summary-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .stat {
+      font-size: 1.1rem;
+    }
+
+    /* Tables - horizontal scroll */
+    .table-container,
+    .sla-table-container,
+    .routing-table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+    }
+
+    table,
+    .sla-table,
+    .routing-table {
+      font-size: 0.8rem;
+      min-width: 600px;
     }
 
     th, td {
       padding: 0.75rem 0.5rem;
+      font-size: 0.8rem;
+    }
+
+    th {
+      font-size: 0.75rem;
+    }
+
+    .objective-value {
+      font-size: 2.25rem;
+    }
+
+    /* Phase cards */
+    .phase-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .phase-card {
+      padding: 1.5rem;
+    }
+
+    .phase-header h3 {
+      font-size: 1.25rem;
+    }
+
+    /* Process flow */
+    .process-flow {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -1.25rem;
+      padding: 0 1.25rem;
+    }
+
+    .process-steps {
+      min-width: 500px;
+    }
+
+    /* Budget section */
+    .budget-section {
+      padding: 3rem 1.25rem;
+    }
+
+    .budget-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .budget-card {
+      padding: 1.5rem;
+    }
+
+    /* CTA section */
+    .cta-section {
+      padding: 3rem 1.25rem;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(1.5rem, 6vw, 2rem);
+    }
+
+    .cta-section .btn {
+      width: 100%;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    .framework-container {
+      padding: 1.5rem 1rem;
+    }
+
+    .framework-header {
+      padding: 2rem 1rem;
+    }
+
+    .framework-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .subtitle {
+      font-size: 0.95rem;
+    }
+
+    .framework-nav {
+      margin: 0 -1rem;
+      padding: 0 1rem;
+    }
+
+    .framework-nav a {
+      font-size: 0.8rem;
+      padding: 0.5rem 0.875rem;
+    }
+
+    .framework-section {
+      padding: 2.5rem 1rem;
+    }
+
+    .framework-section h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .summary-card,
+    .scope-card,
+    .stage-card,
+    .rule-card,
+    .objective-card,
+    .fields-card,
+    .phase-card,
+    .budget-card {
+      padding: 1.25rem;
+    }
+
+    table,
+    .sla-table,
+    .routing-table {
+      font-size: 0.75rem;
+    }
+
+    th, td {
+      padding: 0.625rem 0.375rem;
+      font-size: 0.75rem;
     }
 
     .objective-value {
       font-size: 2rem;
+    }
+
+    .stat {
+      font-size: 1rem;
     }
   }
 </style>
