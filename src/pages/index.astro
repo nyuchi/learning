@@ -1,6 +1,31 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility } from 'lucide-astro';
+import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight } from 'lucide-astro';
+
+// Blog posts data (latest 3)
+const latestPosts = [
+  {
+    title: 'Launching the African Education Digital Framework',
+    slug: 'launching-the-framework',
+    date: '2025-10-26',
+    excerpt: 'Introducing a comprehensive blueprint for digital transformation in K-12 schools across Africa, designed to prepare students for the 2050 job market.',
+    author: 'Framework Team'
+  },
+  {
+    title: 'Why Open-Source Matters for African Schools',
+    slug: 'why-open-source',
+    date: '2025-10-25',
+    excerpt: 'Exploring how open-source solutions can save schools 60-80% on infrastructure costs while maintaining world-class educational technology.',
+    author: 'Framework Team'
+  },
+  {
+    title: 'Digital Literacy: More Than Just Using Technology',
+    slug: 'digital-literacy-importance',
+    date: '2025-10-24',
+    excerpt: 'Understanding why digital literacy paired with critical thinking is essential for preparing students for an uncertain technological future.',
+    author: 'Framework Team'
+  }
+];
 ---
 
 <BaseLayout
@@ -190,6 +215,34 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     </div>
   </section>
 
+  <section class="blog-insights">
+    <div class="container">
+      <h2 class="section-title">Latest Insights</h2>
+      <p class="section-intro">
+        Exploring the future of education, digital transformation strategies, and implementation insights from the field.
+      </p>
+      <div class="blog-grid">
+        {latestPosts.map((post) => (
+          <article class="blog-card">
+            <div class="blog-card-header">
+              <BookOpen class="blog-icon" size={40} strokeWidth={1.5} />
+              <div class="blog-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
+            </div>
+            <h3>{post.title}</h3>
+            <p class="blog-excerpt">{post.excerpt}</p>
+            <a href={`/blog/${post.slug}`} class="blog-link">
+              Read Article
+              <ArrowRight size={20} strokeWidth={2} />
+            </a>
+          </article>
+        ))}
+      </div>
+      <div class="blog-cta">
+        <a href="/blog" class="btn btn-secondary">View All Insights</a>
+      </div>
+    </div>
+  </section>
+
   <section class="implementation" id="implementation">
     <div class="container">
       <h2 class="section-title">3-Year Implementation Roadmap</h2>
@@ -232,12 +285,24 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   .hero {
     position: relative;
     color: white;
-    padding: 8rem 1rem 7rem;
+    padding: 10rem 1rem 9rem;
     text-align: center;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.95) 100%),
                 url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80') center/cover no-repeat;
     background-attachment: fixed;
-    border-bottom: 6px solid var(--primary);
+    border-bottom: 8px solid var(--primary);
+    overflow: hidden;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   .hero::before {
@@ -284,13 +349,18 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .hero-title {
-    font-size: clamp(3rem, 10vw, 7rem);
+    font-size: clamp(3rem, 10vw, 7.5rem);
     font-weight: 900;
-    margin-bottom: 2.5rem;
-    line-height: 0.95;
-    letter-spacing: -0.04em;
+    margin-bottom: 3rem;
+    line-height: 0.9;
+    letter-spacing: -0.05em;
     text-transform: uppercase;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    text-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.5),
+      0 8px 30px rgba(0, 0, 0, 0.3),
+      0 15px 50px rgba(0, 0, 0, 0.2);
+    position: relative;
+    z-index: 2;
   }
 
   .hero-subtitle {
@@ -351,22 +421,33 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .features {
-    padding: 7rem 1rem;
+    padding: 8rem 1rem;
     background: white;
-    border-top: 1px solid var(--border);
+    position: relative;
+  }
+
+  .features::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    background: var(--primary);
   }
 
   .section-title {
     text-align: center;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    margin-bottom: 5rem;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    margin-bottom: 6rem;
     color: var(--text);
     font-weight: 900;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.04em;
     text-transform: uppercase;
-    line-height: 1;
+    line-height: 0.9;
     position: relative;
-    padding-bottom: 2rem;
+    padding-bottom: 2.5rem;
   }
 
   .section-title::after {
@@ -375,9 +456,10 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 120px;
-    height: 6px;
+    width: 150px;
+    height: 8px;
     background: var(--primary);
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.3);
   }
 
   .feature-grid {
@@ -427,25 +509,43 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .stats-background {
-    padding: 6rem 1rem;
+    padding: 8rem 1rem;
     background: var(--primary);
     color: white;
-    border-top: 6px solid white;
-    border-bottom: 6px solid white;
+    border-top: 8px solid white;
+    border-bottom: 8px solid white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stats-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
+    pointer-events: none;
   }
 
   .stats-background .section-title {
     color: white;
+    position: relative;
+    z-index: 1;
   }
 
   .stats-background .section-title::after {
     background: white;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
   }
 
   .stats-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 3rem;
+    position: relative;
+    z-index: 1;
   }
 
   .stat-card {
@@ -506,8 +606,20 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .benefits-section {
-    padding: 7rem 1rem;
+    padding: 8rem 1rem;
     background: white;
+    position: relative;
+  }
+
+  .benefits-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    background: var(--primary);
   }
 
   .section-intro {
@@ -563,8 +675,20 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .frameworks-showcase {
-    padding: 7rem 1rem;
+    padding: 8rem 1rem;
     background: var(--bg-gray);
+    position: relative;
+  }
+
+  .frameworks-showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    background: var(--primary);
   }
 
   .frameworks-grid {
@@ -613,9 +737,124 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     margin-top: auto;
   }
 
-  .implementation {
-    padding: 7rem 1rem;
+  .blog-insights {
+    padding: 8rem 1rem;
     background: white;
+    position: relative;
+  }
+
+  .blog-insights::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    background: var(--primary);
+  }
+
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  .blog-card {
+    background: var(--bg-gray);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    border-left: 6px solid var(--primary);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .blog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    background: white;
+  }
+
+  .blog-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border);
+  }
+
+  .blog-icon {
+    color: var(--primary);
+  }
+
+  .blog-date {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .blog-card h3 {
+    font-size: 1.65rem;
+    color: var(--text);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0;
+  }
+
+  .blog-excerpt {
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1.05rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .blog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: gap 0.3s, color 0.3s;
+  }
+
+  .blog-link:hover {
+    gap: 1rem;
+    color: var(--primary-dark);
+  }
+
+  .blog-cta {
+    text-align: center;
+    margin-top: 4rem;
+  }
+
+  .implementation {
+    padding: 8rem 1rem;
+    background: var(--bg-gray);
+    position: relative;
+  }
+
+  .implementation::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    background: var(--primary);
   }
 
   .roadmap {
@@ -666,11 +905,11 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   }
 
   .cta-section {
-    padding: 8rem 2rem;
+    padding: 10rem 2rem;
     text-align: center;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, var(--primary-dark) 100%);
     color: white;
-    border-top: 8px solid white;
+    border-top: 10px solid white;
     position: relative;
     overflow: hidden;
   }
@@ -682,19 +921,24 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+    background:
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
     pointer-events: none;
   }
 
   .cta-section h2 {
-    font-size: clamp(2.5rem, 8vw, 4.5rem);
-    margin-bottom: 2rem;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    margin-bottom: 2.5rem;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
+    letter-spacing: -0.03em;
+    line-height: 0.95;
     position: relative;
     z-index: 1;
+    text-shadow:
+      0 2px 10px rgba(0, 0, 0, 0.5),
+      0 8px 30px rgba(0, 0, 0, 0.3);
   }
 
   .ubuntu-message {
@@ -759,8 +1003,9 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
   @media (max-width: 768px) {
     /* Hero Section */
     .hero {
-      padding: 4rem 1rem 3.5rem;
+      padding: 5rem 1rem 4.5rem;
       background-attachment: scroll; /* Better performance on mobile */
+      border-bottom: 6px solid var(--primary);
     }
 
     .hero-title {
@@ -810,12 +1055,24 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     .features,
     .benefits-section,
     .frameworks-showcase,
+    .blog-insights,
     .implementation {
-      padding: 4rem 1rem;
+      padding: 5rem 1rem;
+    }
+
+    .features::before,
+    .benefits-section::before,
+    .frameworks-showcase::before,
+    .blog-insights::before,
+    .implementation::before {
+      width: 120px;
+      height: 6px;
     }
 
     .stats-background {
-      padding: 4rem 1rem;
+      padding: 5rem 1rem;
+      border-top-width: 6px;
+      border-bottom-width: 6px;
     }
 
     .stats-imagery {
@@ -823,19 +1080,20 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     }
 
     .cta-section {
-      padding: 5rem 1rem;
+      padding: 6rem 1rem;
+      border-top-width: 6px;
     }
 
     /* Section titles */
     .section-title {
       font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 3rem;
-      padding-bottom: 1.5rem;
+      margin-bottom: 4rem;
+      padding-bottom: 2rem;
     }
 
     .section-title::after {
-      width: 80px;
-      height: 4px;
+      width: 100px;
+      height: 6px;
     }
 
     .section-intro {
@@ -846,7 +1104,8 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
 
     /* Grids - single column on mobile */
     .feature-grid,
-    .benefits-content {
+    .benefits-content,
+    .blog-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
@@ -863,14 +1122,29 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
 
     /* Cards */
     .feature-card,
-    .benefit-card {
+    .benefit-card,
+    .blog-card {
       padding: 2rem;
       border-left-width: 5px;
     }
 
     .feature-card h3,
-    .benefit-card h3 {
+    .benefit-card h3,
+    .blog-card h3 {
       font-size: 1.35rem;
+    }
+
+    .blog-icon {
+      width: 32px;
+      height: 32px;
+    }
+
+    .blog-date {
+      font-size: 0.75rem;
+    }
+
+    .blog-cta {
+      margin-top: 2.5rem;
     }
 
     .roadmap-item {
@@ -998,23 +1272,34 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
 
     .section-title {
       font-size: 1.75rem;
-      margin-bottom: 2rem;
-      padding-bottom: 1rem;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
     }
 
     .section-title::after {
-      width: 60px;
-      height: 4px;
+      width: 80px;
+      height: 5px;
+    }
+
+    .features::before,
+    .benefits-section::before,
+    .frameworks-showcase::before,
+    .blog-insights::before,
+    .implementation::before {
+      width: 100px;
+      height: 5px;
     }
 
     .features,
     .benefits-section,
     .frameworks-showcase,
+    .blog-insights,
     .implementation {
       padding: 3rem 1rem;
     }
 
-    .frameworks-grid {
+    .frameworks-grid,
+    .blog-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
@@ -1037,14 +1322,25 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
 
     .feature-card,
     .benefit-card,
+    .blog-card,
     .roadmap-item {
       padding: 1.75rem;
     }
 
     .feature-card h3,
     .benefit-card h3,
+    .blog-card h3,
     .roadmap-item h3 {
       font-size: 1.25rem;
+    }
+
+    .blog-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .blog-cta {
+      margin-top: 2rem;
     }
 
     .stat-number {
