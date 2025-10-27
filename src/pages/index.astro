@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageSquare, Github, Bug, Wrench } from 'lucide-astro';
+import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageSquare, Github, Bug, Wrench, MessageCircle, Code } from 'lucide-astro';
 
 // Blog posts data (latest 3)
 const latestPosts = [
@@ -287,25 +287,25 @@ const latestPosts = [
         <strong>Ubuntu: I am because we are.</strong>
       </p>
       <div class="community-grid animate-stagger">
+        <a href="https://chat.whatsapp.com/C0ixUbtKiNS4DbciDpmlO7?mode=wwt" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <MessageCircle class="community-icon" size={48} strokeWidth={1.5} />
+          <h3>WhatsApp Community</h3>
+          <p>Join our WhatsApp groups to connect with educators across Africa. Share experiences, get implementation support, and collaborate in real-time.</p>
+        </a>
         <a href="https://github.com/nyuchitech/learning/discussions" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
-          <MessageSquare class="community-icon" size={48} strokeWidth={1.5} />
-          <h3>Discussions</h3>
-          <p>Join conversations about implementation strategies, best practices, and share your experiences with educators across Africa.</p>
+          <Code class="community-icon" size={48} strokeWidth={1.5} />
+          <h3>Framework Development</h3>
+          <p>Technical discussions about improving the frameworks. Share ideas, suggest enhancements, and collaborate on framework evolution and innovation.</p>
         </a>
         <a href="https://github.com/nyuchitech/learning/issues" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
           <Bug class="community-icon" size={48} strokeWidth={1.5} />
           <h3>Report Issues</h3>
-          <p>Found a bug or have a suggestion? Help us track and prioritize improvements to make the framework better for everyone.</p>
+          <p>Found a bug or technical issue? Help us track and prioritize framework improvements to make it better for everyone in the community.</p>
         </a>
         <a href="https://github.com/nyuchitech/learning" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
           <Github class="community-icon" size={48} strokeWidth={1.5} />
-          <h3>Contribute</h3>
-          <p>Access the open-source repository, contribute code, documentation, or translations. Every contribution matters.</p>
-        </a>
-        <a href="/community" class="community-card animate-slide-up">
-          <Wrench class="community-icon" size={48} strokeWidth={1.5} />
-          <h3>Get Involved</h3>
-          <p>Learn more about how you can participate, contribute, and help shape the future of digital education in Africa.</p>
+          <h3>Contribute Code</h3>
+          <p>Access the open-source repository, contribute code, documentation, or translations. Every technical contribution matters to the community.</p>
         </a>
       </div>
     </div>
