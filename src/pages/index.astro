@@ -327,10 +327,9 @@ const latestPosts = [
 </BaseLayout>
 
 <style>
-  /* Smooth scroll and snap scrolling */
+  /* Smooth scroll only - no snap for better UX */
   html {
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
   }
 
   body {
@@ -347,8 +346,6 @@ const latestPosts = [
     color: white;
     text-align: center;
     overflow: hidden;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 
   /* Hero background image */
@@ -363,14 +360,14 @@ const latestPosts = [
     z-index: 0;
   }
 
-  /* Hero overlay - starts dark, water trail reveals image */
+  /* Hero overlay - lighter for visible background image */
   .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%);
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 26, 26, 0.5) 100%);
     z-index: 1;
     pointer-events: none;
   }
@@ -383,8 +380,8 @@ const latestPosts = [
     width: 100%;
     height: 100%;
     z-index: 2;
-    pointer-events: none;
-    mix-blend-mode: destination-out;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   /* Hero content */
@@ -447,16 +444,10 @@ const latestPosts = [
     }
   }
 
-  /* Scroll reveal animations */
+  /* Scroll reveal animations - using same system as BaseLayout */
   .scroll-reveal {
-    opacity: 0;
-    transform: translateY(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
-
-  .scroll-reveal.revealed {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
   }
 
   .ubuntu-tagline {
@@ -568,7 +559,6 @@ const latestPosts = [
     position: relative;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
   }
 
   .features .container {
@@ -655,7 +645,6 @@ const latestPosts = [
   .stats {
     padding: 0;
     background: var(--primary);
-    scroll-snap-align: start;
   }
 
   .stats-background {
@@ -765,7 +754,6 @@ const latestPosts = [
     position: relative;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
   }
 
   .benefits-section .container {
@@ -842,7 +830,6 @@ const latestPosts = [
     position: relative;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
   }
 
   .frameworks-showcase .container {
@@ -913,7 +900,6 @@ const latestPosts = [
     position: relative;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
   }
 
   .blog-insights .container {
@@ -1024,7 +1010,6 @@ const latestPosts = [
     position: relative;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
   }
 
   .implementation .container {
@@ -1101,7 +1086,6 @@ const latestPosts = [
     display: flex;
     align-items: center;
     justify-content: center;
-    scroll-snap-align: start;
   }
 
   .cta-section .container {
@@ -1195,11 +1179,6 @@ const latestPosts = [
 
   /* Mobile Responsive Styles */
   @media (max-width: 768px) {
-    /* Disable scroll snap on mobile for better UX */
-    html {
-      scroll-snap-type: none;
-    }
-
     /* Hero Section */
     .hero {
       min-height: 100vh;
@@ -1468,7 +1447,6 @@ const latestPosts = [
     position: relative;
     display: flex;
     align-items: center;
-    scroll-snap-align: start;
   }
 
   .community-section .container {
@@ -1674,7 +1652,7 @@ const latestPosts = [
 </style>
 
 <script is:inline>
-  // Water Trail Effect
+  // Water Trail Effect - Simplified
   class WaterTrail {
     constructor() {
       this.canvas = document.getElementById('waterTrailCanvas');
@@ -1683,9 +1661,8 @@ const latestPosts = [
       this.ctx = this.canvas.getContext('2d');
       if (!this.ctx) return;
 
-      this.drops = [];
-      this.maxDrops = 50;
-      this.dropRadius = 80;
+      this.ripples = [];
+      this.maxRipples = 30;
 
       this.resize();
       this.setupEventListeners();
@@ -1708,7 +1685,7 @@ const latestPosts = [
         const rect = this.canvas.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        this.addDrop(x, y);
+        this.addRipple(x, y);
       });
 
       // Touch move event for mobile
@@ -1718,50 +1695,64 @@ const latestPosts = [
         const touch = e.touches[0];
         const x = touch.clientX - rect.left;
         const y = touch.clientY - rect.top;
-        this.addDrop(x, y);
+        this.addRipple(x, y);
+      });
+
+      // Click event for single ripple
+      this.canvas.addEventListener('click', (e) => {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        this.addRipple(x, y);
       });
     }
 
-    addDrop(x, y) {
-      this.drops.push({
+    addRipple(x, y) {
+      this.ripples.push({
         x: x,
         y: y,
         radius: 0,
-        maxRadius: this.dropRadius,
-        alpha: 1
+        maxRadius: 100,
+        alpha: 0.6
       });
 
-      if (this.drops.length > this.maxDrops) {
-        this.drops.shift();
+      if (this.ripples.length > this.maxRipples) {
+        this.ripples.shift();
       }
     }
 
     animate() {
       if (!this.ctx) return;
 
-      // Clear with overlay color to restore darkness
-      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
-      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+      // Clear canvas
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-      // Draw expanding circles (water ripples)
-      this.drops = this.drops.filter(drop => {
-        drop.radius += 2;
-        drop.alpha -= 0.02;
+      // Draw expanding ripples
+      this.ripples = this.ripples.filter(ripple => {
+        ripple.radius += 2;
+        ripple.alpha -= 0.015;
 
-        if (drop.alpha > 0 && drop.radius < drop.maxRadius) {
+        if (ripple.alpha > 0 && ripple.radius < ripple.maxRadius) {
+          // Draw circle with gradient
           this.ctx.beginPath();
-          this.ctx.arc(drop.x, drop.y, drop.radius, 0, Math.PI * 2);
+          this.ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
 
-          // Create gradient for water effect
+          // Create gradient for glow effect
           const gradient = this.ctx.createRadialGradient(
-            drop.x, drop.y, 0,
-            drop.x, drop.y, drop.radius
+            ripple.x, ripple.y, ripple.radius * 0.5,
+            ripple.x, ripple.y, ripple.radius
           );
-          gradient.addColorStop(0, 'rgba(0, 0, 0, ' + drop.alpha + ')');
-          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+          gradient.addColorStop(0, 'rgba(255, 255, 255, ' + ripple.alpha * 0.3 + ')');
+          gradient.addColorStop(0.5, 'rgba(255, 255, 255, ' + ripple.alpha * 0.2 + ')');
+          gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
 
           this.ctx.fillStyle = gradient;
           this.ctx.fill();
+
+          // Add stroke for more visible ripple
+          this.ctx.strokeStyle = 'rgba(255, 255, 255, ' + ripple.alpha * 0.5 + ')';
+          this.ctx.lineWidth = 2;
+          this.ctx.stroke();
 
           return true;
         }
@@ -1772,44 +1763,10 @@ const latestPosts = [
     }
   }
 
-  // Scroll Reveal Animations
-  class ScrollReveal {
-    constructor() {
-      this.elements = document.querySelectorAll('.scroll-reveal');
-      this.observer = new IntersectionObserver(
-        (entries) => this.handleIntersection(entries),
-        {
-          threshold: 0.15,
-          rootMargin: '0px 0px -50px 0px'
-        }
-      );
-
-      this.observe();
-    }
-
-    observe() {
-      const self = this;
-      this.elements.forEach(function(element) {
-        self.observer.observe(element);
-      });
-    }
-
-    handleIntersection(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-        }
-      });
-    }
-  }
-
   // Initialize on DOM ready
   document.addEventListener('DOMContentLoaded', function() {
     // Initialize water trail effect
     new WaterTrail();
-
-    // Initialize scroll reveal
-    new ScrollReveal();
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
