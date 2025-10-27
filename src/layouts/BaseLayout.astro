@@ -264,12 +264,23 @@ const {
         right: 0;
         z-index: 100;
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-        transition: background 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+        transform: translateY(0);
       }
 
       header.scrolled {
         background: rgba(250, 250, 250, 0.95);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Header hidden state when scrolling down */
+      header.header-hidden {
+        transform: translateY(-100%);
+      }
+
+      /* Header visible state when scrolling up */
+      header.header-visible {
+        transform: translateY(0);
       }
 
       .nav-container {
@@ -658,6 +669,8 @@ const {
 
         header {
           left: 6px;
+          /* Faster transition on mobile for better responsiveness */
+          transition: transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
 
         /* Hide desktop nav, show mobile button */
@@ -890,17 +903,57 @@ const {
           });
         }
 
-        // Header scroll effect
+        // Header scroll effect with auto-hide
         const header = document.querySelector('header');
+        let lastScrollTop = 0;
+        let scrollThreshold = 5; // Minimum scroll amount to trigger hide/show
+        let hideThreshold = 100; // Scroll position before header can hide
 
         window.addEventListener('scroll', function() {
-          const currentScroll = window.pageYOffset;
+          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
+          // Add scrolled class for visual effect
           if (currentScroll > 50) {
             header.classList.add('scrolled');
           } else {
             header.classList.remove('scrolled');
           }
+
+          // Auto-hide/show logic
+          // Don't hide header at very top of page
+          if (currentScroll <= hideThreshold) {
+            header.classList.remove('header-hidden');
+            header.classList.add('header-visible');
+            lastScrollTop = currentScroll;
+            return;
+          }
+
+          // Detect scroll direction
+          if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
+            // Ignore small scrolls
+            return;
+          }
+
+          if (currentScroll > lastScrollTop) {
+            // Scrolling down - hide header
+            header.classList.add('header-hidden');
+            header.classList.remove('header-visible');
+
+            // Close mobile menu if open
+            if (mobileMenu && mobileMenu.classList.contains('active')) {
+              mobileMenu.classList.remove('active');
+              if (menuIcon && closeIcon) {
+                menuIcon.style.display = 'block';
+                closeIcon.style.display = 'none';
+              }
+            }
+          } else {
+            // Scrolling up - show header
+            header.classList.remove('header-hidden');
+            header.classList.add('header-visible');
+          }
+
+          lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
         });
 
         // Animation System - Intersection Observer
