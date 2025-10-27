@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://learning.nyuchi.africa',
+  site: 'https://learning.nyuchi.com',
   integrations: [mdx(), sitemap()],
   output: 'static',
 });
