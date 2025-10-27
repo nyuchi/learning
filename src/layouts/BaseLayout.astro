@@ -1,5 +1,5 @@
 ---
-import { BookOpen } from 'lucide-astro';
+import { BookOpen, Menu, X } from 'lucide-astro';
 import SEO from '../components/SEO.astro';
 
 interface Props {
@@ -77,7 +77,26 @@ const {
               <span class="logo-subtext">K-12 Digital Campus Framework</span>
             </div>
           </a>
-          <ul class="nav-links">
+
+          <!-- Desktop Navigation -->
+          <ul class="nav-links nav-desktop">
+            <li><a href="/">Home</a></li>
+            <li><a href="/frameworks">Frameworks</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+
+          <!-- Mobile Menu Button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <Menu id="menuIcon" size={28} strokeWidth={2} />
+            <X id="closeIcon" size={28} strokeWidth={2} style="display: none;" />
+          </button>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <div class="nav-mobile" id="mobileMenu">
+          <ul class="nav-mobile-links">
             <li><a href="/">Home</a></li>
             <li><a href="/frameworks">Frameworks</a></li>
             <li><a href="/pricing">Pricing</a></li>
@@ -444,10 +463,113 @@ const {
         color: white;
       }
 
+      /* Mobile Menu Button */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--primary);
+        cursor: pointer;
+        padding: 0.5rem;
+        min-width: 44px;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        transition: background 0.2s;
+      }
+
+      .mobile-menu-btn:hover {
+        background: var(--gray-100);
+      }
+
+      .mobile-menu-btn:active {
+        background: var(--gray-200);
+      }
+
+      /* Mobile Navigation */
+      .nav-mobile {
+        display: none;
+        overflow: hidden;
+        max-height: 0;
+        transition: max-height 0.3s ease-in-out;
+      }
+
+      .nav-mobile.active {
+        display: block;
+        max-height: 400px;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+      }
+
+      .nav-mobile-links {
+        list-style: none;
+        padding: 1rem 0;
+      }
+
+      .nav-mobile-links li {
+        margin: 0;
+      }
+
+      .nav-mobile-links a {
+        display: block;
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 500;
+        font-size: 1.1rem;
+        transition: background 0.2s, color 0.2s;
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+      }
+
+      .nav-mobile-links a:hover,
+      .nav-mobile-links a:active {
+        background: var(--gray-100);
+        color: var(--primary);
+      }
+
+      /* Mobile Responsive Styles */
       @media (max-width: 768px) {
-        .nav-links {
-          gap: 1rem;
-          font-size: 0.9rem;
+        body {
+          margin-left: 6px; /* Slightly smaller flag strip space on mobile */
+        }
+
+        .zimbabwe-flag-strip {
+          width: 6px;
+        }
+
+        /* Hide desktop nav, show mobile button */
+        .nav-desktop {
+          display: none !important;
+        }
+
+        .mobile-menu-btn {
+          display: flex;
+        }
+
+        .nav-mobile {
+          display: block;
+        }
+
+        /* Header adjustments */
+        .nav-container {
+          padding: 0 0.75rem;
+        }
+
+        .nav-content {
+          padding: 0.75rem 0;
+        }
+
+        /* Logo optimizations */
+        .logo {
+          gap: 0.5rem;
+        }
+
+        .logo-icon {
+          width: 24px;
+          height: 24px;
         }
 
         .logo-text {
@@ -456,8 +578,107 @@ const {
 
         .logo-subtext {
           font-size: 0.65rem;
+          display: none; /* Hide subtext on very small screens */
+        }
+
+        /* Footer mobile optimizations */
+        .footer-hero {
+          padding: 4rem 1.5rem 3rem;
+        }
+
+        .footer-main-text {
+          font-size: clamp(2rem, 10vw, 3.5rem);
+        }
+
+        .footer-ubuntu-large {
+          font-size: clamp(1rem, 4vw, 1.5rem);
+        }
+
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          padding: 3rem 1.5rem;
+        }
+
+        .footer-bottom {
+          padding: 2rem 1.5rem 1.5rem;
+        }
+
+        .footer-principles p {
+          font-size: 0.85rem;
+        }
+
+        /* Button mobile sizing */
+        .btn {
+          padding: 0.875rem 1.75rem;
+          font-size: 1rem;
+          min-height: 48px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+
+        /* Touch target sizing */
+        a, button {
+          min-height: 44px;
+        }
+      }
+
+      /* Extra small screens */
+      @media (max-width: 480px) {
+        .logo-text-container {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .logo-text {
+          font-size: 0.95rem;
+        }
+
+        .footer-main-text {
+          font-size: 2rem;
+          line-height: 1.2;
+        }
+
+        .footer-ubuntu-large {
+          font-size: 1rem;
         }
       }
     </style>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script is:inline>
+      document.addEventListener('DOMContentLoaded', function() {
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        const closeIcon = document.getElementById('closeIcon');
+
+        if (mobileMenuBtn && mobileMenu && menuIcon && closeIcon) {
+          mobileMenuBtn.addEventListener('click', function() {
+            const isActive = mobileMenu.classList.toggle('active');
+
+            if (isActive) {
+              menuIcon.style.display = 'none';
+              closeIcon.style.display = 'block';
+            } else {
+              menuIcon.style.display = 'block';
+              closeIcon.style.display = 'none';
+            }
+          });
+
+          // Close menu when a link is clicked
+          const mobileLinks = mobileMenu.querySelectorAll('a');
+          mobileLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+              mobileMenu.classList.remove('active');
+              menuIcon.style.display = 'block';
+              closeIcon.style.display = 'none';
+            });
+          });
+        }
+      });
+    </script>
   </body>
 </html>

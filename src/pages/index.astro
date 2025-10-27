@@ -520,23 +520,228 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     color: var(--gray-300);
   }
 
+  /* Mobile Responsive Styles */
   @media (max-width: 768px) {
+    /* Hero Section */
+    .hero {
+      padding: 3rem 1rem;
+      background-attachment: scroll; /* Better performance on mobile */
+    }
+
     .hero-title {
-      font-size: 2rem;
+      font-size: clamp(1.75rem, 8vw, 2.5rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
     }
 
     .hero-subtitle {
-      font-size: 1rem;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
     }
 
+    .ubuntu-tagline {
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .framework-stats {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      margin-top: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-cta {
+      gap: 0.75rem;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .hero-cta .btn {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* Sections padding */
+    .features,
+    .benefits-section,
+    .implementation {
+      padding: 4rem 1rem;
+    }
+
+    .stats-background {
+      padding: 3rem 1rem;
+    }
+
+    .stats-imagery {
+      padding: 2rem 1rem;
+    }
+
+    .cta-section {
+      padding: 4rem 1rem;
+    }
+
+    /* Section titles */
     .section-title {
+      font-size: clamp(1.75rem, 6vw, 2.5rem);
+      margin-bottom: 2.5rem;
+    }
+
+    .section-intro {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    /* Grids - single column on mobile */
+    .feature-grid,
+    .benefits-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .roadmap {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    /* Cards */
+    .feature-card,
+    .benefit-card {
+      padding: 1.5rem;
+    }
+
+    .feature-card h3,
+    .benefit-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .stat-card {
+      padding: 1.5rem 1rem;
+    }
+
+    .stat-number {
       font-size: 2rem;
     }
 
-    .feature-grid,
-    .stats-grid,
-    .roadmap {
+    .stat-label {
+      font-size: 0.95rem;
+    }
+
+    /* Image grid */
+    .image-grid {
       grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .stats-img {
+      height: 250px;
+    }
+
+    /* Roadmap items */
+    .roadmap-item {
+      padding: 1.5rem;
+    }
+
+    .roadmap-item h3 {
+      font-size: 1.25rem;
+    }
+
+    .roadmap-year {
+      font-size: 0.9rem;
+      padding: 0.25rem 0.75rem;
+    }
+
+    /* CTA Section */
+    .cta-section h2 {
+      font-size: clamp(1.75rem, 6vw, 2.25rem);
+      line-height: 1.2;
+    }
+
+    .ubuntu-message {
+      font-size: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1rem;
+      padding: 0 0.5rem;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+      align-items: stretch;
+    }
+
+    .cta-buttons .btn {
+      width: 100%;
+    }
+
+    .cta-credit {
+      font-size: 0.85rem;
+      padding: 0 1rem;
+    }
+
+    /* Icon sizing */
+    .feature-icon,
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    /* Container padding */
+    .container {
+      padding: 0 1rem;
+    }
+  }
+
+  /* Extra small screens (< 480px) */
+  @media (max-width: 480px) {
+    .hero {
+      padding: 2.5rem 0.75rem;
+    }
+
+    .hero-title {
+      font-size: 1.5rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.95rem;
+    }
+
+    .framework-stats {
+      font-size: 0.75rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .features,
+    .benefits-section,
+    .implementation {
+      padding: 3rem 0.75rem;
+    }
+
+    .feature-card,
+    .benefit-card,
+    .roadmap-item {
+      padding: 1.25rem;
+    }
+
+    .stats-img {
+      height: 200px;
+    }
+
+    .container {
+      padding: 0 0.75rem;
     }
   }
 </style>
