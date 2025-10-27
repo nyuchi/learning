@@ -13,6 +13,13 @@ Place PDF versions of framework documentation here.
    - Three-tier support model
    - Content from `/support-framework` page
 
+3. **digital-literacy-framework.pdf**
+   - Comprehensive mobile-first digital literacy framework
+   - Student standards (Ages 5-18+)
+   - Adult/teacher framework
+   - Digital citizenship
+   - Content from `/digital-literacy-framework` page
+
 ## How to Generate PDFs:
 
 ### Option 1: Print to PDF from Browser
