@@ -1,0 +1,689 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, BookOpen, Github, ExternalLink } from 'lucide-astro';
+
+const githubRepo = 'https://github.com/nyuchitech/learning';
+---
+
+<BaseLayout
+  title="Community - K-12 Digital Campus Framework"
+  description="Join our community to help build and improve the K-12 Digital Campus Framework. Report issues, request features, contribute ideas, and collaborate with educators across Africa."
+  keywords="K-12 framework community, educational technology collaboration, open-source education, GitHub community, digital transformation community, African education community"
+>
+  <!-- Hero Section -->
+  <section class="community-hero">
+    <div class="container">
+      <h1 class="hero-title animate-fade-in">Join Our Community</h1>
+      <p class="hero-subtitle animate-fade-in">Ubuntu: When we build together, we all succeed</p>
+      <p class="hero-description animate-fade-in">
+        This framework thrives on community collaboration. Whether you're an educator, IT professional,
+        student, or administrator, your voice matters. Help us build, improve, and adapt this framework
+        for schools across Africa and beyond.
+      </p>
+    </div>
+  </section>
+
+  <!-- Community Features Grid -->
+  <section class="community-features">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">How to Get Involved</h2>
+      <div class="features-grid animate-stagger">
+
+        <!-- Discussions -->
+        <a href={`${githubRepo}/discussions`} target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <div class="card-icon-wrapper">
+            <MessageSquare class="card-icon" size={56} strokeWidth={1.5} />
+          </div>
+          <h3>Discussions</h3>
+          <p>
+            Join conversations about implementation strategies, best practices, and share your experiences.
+            Ask questions, get advice from other schools, and discuss the future of digital education in Africa.
+          </p>
+          <div class="card-link">
+            <span>Start a Discussion</span>
+            <ExternalLink size={20} strokeWidth={2} />
+          </div>
+        </a>
+
+        <!-- Issues -->
+        <a href={`${githubRepo}/issues`} target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <div class="card-icon-wrapper">
+            <GitPullRequest class="card-icon" size={56} strokeWidth={1.5} />
+          </div>
+          <h3>Issues & Suggestions</h3>
+          <p>
+            Found something that needs improvement? Have ideas for new features?
+            Browse existing issues or create new ones to help us track and prioritize improvements.
+          </p>
+          <div class="card-link">
+            <span>Browse Issues</span>
+            <ExternalLink size={20} strokeWidth={2} />
+          </div>
+        </a>
+
+        <!-- Bug Reports -->
+        <a href={`${githubRepo}/issues/new?template=bug_report.md`} target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <div class="card-icon-wrapper">
+            <Bug class="card-icon" size={56} strokeWidth={1.5} />
+          </div>
+          <h3>Report a Bug</h3>
+          <p>
+            Encountered a technical issue or something not working as expected?
+            Report bugs so we can fix them quickly and improve the framework for everyone.
+          </p>
+          <div class="card-link">
+            <span>Report Bug</span>
+            <ExternalLink size={20} strokeWidth={2} />
+          </div>
+        </a>
+
+        <!-- Feature Requests -->
+        <a href={`${githubRepo}/issues/new?template=feature_request.md`} target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <div class="card-icon-wrapper">
+            <Lightbulb class="card-icon" size={56} strokeWidth={1.5} />
+          </div>
+          <h3>Feature Requests</h3>
+          <p>
+            Have an idea for a new capability or enhancement?
+            Submit feature requests and help shape the future direction of the framework.
+          </p>
+          <div class="card-link">
+            <span>Request Feature</span>
+            <ExternalLink size={20} strokeWidth={2} />
+          </div>
+        </a>
+
+        <!-- Wiki -->
+        <a href={`${githubRepo}/wiki`} target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <div class="card-icon-wrapper">
+            <BookOpen class="card-icon" size={56} strokeWidth={1.5} />
+          </div>
+          <h3>Community Wiki</h3>
+          <p>
+            Access community-contributed documentation, implementation guides, troubleshooting tips,
+            and real-world case studies from schools using the framework.
+          </p>
+          <div class="card-link">
+            <span>Explore Wiki</span>
+            <ExternalLink size={20} strokeWidth={2} />
+          </div>
+        </a>
+
+        <!-- Security -->
+        <a href={`${githubRepo}/security`} target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <div class="card-icon-wrapper">
+            <Shield class="card-icon" size={56} strokeWidth={1.5} />
+          </div>
+          <h3>Security</h3>
+          <p>
+            Review our security policies and report security vulnerabilities responsibly.
+            We take security seriously to protect schools and student data.
+          </p>
+          <div class="card-link">
+            <span>View Security Policy</span>
+            <ExternalLink size={20} strokeWidth={2} />
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Contribution Guidelines -->
+  <section class="contribution-section">
+    <div class="container">
+      <div class="contribution-content animate-slide-left">
+        <div class="contribution-text">
+          <h2>Why Contribute?</h2>
+          <p>
+            This framework is <strong>open, shareable, and community-driven</strong>. Every contribution—whether
+            it's a bug report, feature suggestion, discussion comment, or documentation improvement—helps
+            schools across Africa and beyond implement better digital transformation strategies.
+          </p>
+          <ul class="contribution-benefits">
+            <li>
+              <strong>Direct Impact:</strong> Your contributions directly help schools in your community and across the continent.
+            </li>
+            <li>
+              <strong>Collective Knowledge:</strong> Share lessons learned and benefit from the experiences of others.
+            </li>
+            <li>
+              <strong>Shape the Future:</strong> Influence the direction of digital education in Africa.
+            </li>
+            <li>
+              <strong>Build Together:</strong> Embody the Ubuntu philosophy: "I am because we are."
+            </li>
+          </ul>
+        </div>
+        <div class="contribution-image animate-slide-right">
+          <Github size={200} strokeWidth={1} class="github-icon" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Community Stats (Placeholder - can be updated with real stats) -->
+  <section class="community-stats">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">Growing Together</h2>
+      <div class="stats-grid animate-stagger">
+        <div class="stat-item animate-scale-in">
+          <div class="stat-icon">
+            <Users size={48} strokeWidth={1.5} />
+          </div>
+          <div class="stat-number">Open</div>
+          <div class="stat-label">Fully Open Source</div>
+        </div>
+        <div class="stat-item animate-scale-in">
+          <div class="stat-icon">
+            <MessageSquare size={48} strokeWidth={1.5} />
+          </div>
+          <div class="stat-number">Community</div>
+          <div class="stat-label">Driven by Educators</div>
+        </div>
+        <div class="stat-item animate-scale-in">
+          <div class="stat-icon">
+            <Github size={48} strokeWidth={1.5} />
+          </div>
+          <div class="stat-number">Collaborative</div>
+          <div class="stat-label">Built Together</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="community-cta">
+    <div class="container">
+      <h2 class="animate-fade-in">Ready to Contribute?</h2>
+      <p class="animate-fade-in">
+        Visit our GitHub repository to get started. Every voice matters in building the future of education.
+      </p>
+      <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="btn btn-primary animate-fade-in">
+        <Github size={24} strokeWidth={2} />
+        Visit GitHub Repository
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .community-hero {
+    padding: 10rem 1rem 6rem;
+    text-align: center;
+    background: linear-gradient(135deg, var(--gray-50) 0%, var(--gray-100) 100%);
+    border-bottom: 6px solid var(--primary);
+  }
+
+  .hero-title {
+    font-size: clamp(3rem, 10vw, 6rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-style: italic;
+    color: var(--text-light);
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .hero-description {
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    max-width: 900px;
+    margin: 0 auto;
+    line-height: 1.8;
+    color: var(--text);
+  }
+
+  /* Community Features Section */
+  .community-features {
+    padding: 6rem 1rem;
+    background: white;
+  }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    margin-bottom: 5rem;
+    color: var(--text);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1;
+    position: relative;
+    padding-bottom: 2rem;
+  }
+
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 8px;
+    background: var(--primary);
+    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.3);
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+  }
+
+  .community-card {
+    background: var(--bg-gray);
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border-left: 8px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .community-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    background: white;
+  }
+
+  .card-icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    background: white;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-icon {
+    color: var(--primary);
+  }
+
+  .community-card h3 {
+    font-size: 1.75rem;
+    color: var(--text);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin: 0;
+  }
+
+  .community-card p {
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1.05rem;
+    flex: 1;
+    text-align: center;
+  }
+
+  .card-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: var(--primary);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 1.05rem;
+    transition: gap 0.3s;
+  }
+
+  .community-card:hover .card-link {
+    gap: 1rem;
+  }
+
+  /* Contribution Section */
+  .contribution-section {
+    padding: 6rem 1rem;
+    background: var(--bg-gray);
+  }
+
+  .contribution-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .contribution-text h2 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .contribution-text p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    color: var(--text);
+  }
+
+  .contribution-benefits {
+    list-style: none;
+    padding: 0;
+  }
+
+  .contribution-benefits li {
+    padding: 1rem 0;
+    padding-left: 2rem;
+    position: relative;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contribution-benefits li:last-child {
+    border-bottom: none;
+  }
+
+  .contribution-benefits li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+    font-weight: 900;
+    font-size: 1.5rem;
+  }
+
+  .contribution-benefits strong {
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .contribution-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .github-icon {
+    color: var(--primary);
+    opacity: 0.3;
+  }
+
+  /* Community Stats */
+  .community-stats {
+    padding: 6rem 1rem;
+    background: var(--primary);
+    color: white;
+    border-top: 8px solid white;
+    border-bottom: 8px solid white;
+  }
+
+  .community-stats .section-title {
+    color: white;
+  }
+
+  .community-stats .section-title::after {
+    background: white;
+    box-shadow: 0 4px 20px rgba(255, 255, 255, 0.4);
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 2.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .stat-item:hover {
+    transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .stat-icon {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+    color: white;
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 900;
+    color: white;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+  }
+
+  /* Community CTA */
+  .community-cta {
+    padding: 8rem 1rem;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, var(--primary-dark) 100%);
+    color: white;
+    border-top: 10px solid white;
+  }
+
+  .community-cta h2 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 900;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .community-cta p {
+    font-size: 1.4rem;
+    margin-bottom: 3rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.7;
+  }
+
+  .community-cta .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 3rem;
+    font-size: 1.1rem;
+  }
+
+  .community-cta .btn-primary {
+    background: white;
+    color: var(--primary);
+    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
+  }
+
+  .community-cta .btn-primary:hover {
+    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
+  }
+
+  /* Mobile Responsive */
+  @media (max-width: 768px) {
+    .community-hero {
+      padding: 8rem 1rem 4rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 10vw, 3rem);
+      margin-bottom: 1rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(0.9rem, 3vw, 1.2rem);
+      letter-spacing: 1.5px;
+    }
+
+    .hero-description {
+      font-size: 1rem;
+      padding: 0 0.5rem;
+    }
+
+    .community-features,
+    .contribution-section,
+    .community-stats,
+    .community-cta {
+      padding: 4rem 1rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 8vw, 3rem);
+      margin-bottom: 3rem;
+    }
+
+    .section-title::after {
+      width: 100px;
+      height: 6px;
+    }
+
+    .features-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .community-card {
+      padding: 2rem;
+      border-left-width: 5px;
+    }
+
+    .community-card h3 {
+      font-size: 1.35rem;
+    }
+
+    .card-icon-wrapper {
+      width: 80px;
+      height: 80px;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+    }
+
+    .contribution-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .contribution-text h2 {
+      font-size: 2rem;
+    }
+
+    .contribution-text p {
+      font-size: 1rem;
+    }
+
+    .contribution-image {
+      display: none;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .stat-item {
+      padding: 2rem;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+    }
+
+    .community-cta h2 {
+      font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .community-cta p {
+      font-size: 1.1rem;
+      padding: 0 0.5rem;
+    }
+
+    .community-cta .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 1rem 2rem;
+    }
+  }
+
+  /* Extra small screens */
+  @media (max-width: 480px) {
+    .community-hero {
+      padding: 6rem 1rem 3rem;
+    }
+
+    .hero-title {
+      font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 0.85rem;
+    }
+
+    .community-features,
+    .contribution-section,
+    .community-stats {
+      padding: 3rem 1rem;
+    }
+
+    .community-cta {
+      padding: 4rem 1rem;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-title::after {
+      width: 80px;
+      height: 5px;
+    }
+
+    .community-card {
+      padding: 1.75rem;
+    }
+
+    .community-card h3 {
+      font-size: 1.25rem;
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+    }
+  }
+</style>
