@@ -154,6 +154,42 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     </div>
   </section>
 
+  <section class="frameworks-showcase">
+    <div class="container">
+      <h2 class="section-title">Available Frameworks</h2>
+      <p class="section-intro">
+        Nyuchi Learning provides multiple open, shareable frameworks for K-12 education transformation.
+        Each framework addresses specific challenges and opportunities in African schools.
+      </p>
+      <div class="frameworks-grid">
+        <div class="framework-showcase-card">
+          <h3>K-12 Digital Campus Framework</h3>
+          <p>
+            Comprehensive blueprint for digital transformation: infrastructure, platforms, digital literacy,
+            AI analytics, and 3-year implementation roadmap. Complete cost breakdown and technology stack recommendations.
+          </p>
+          <a href="/framework" class="btn btn-primary">Explore Framework</a>
+        </div>
+        <div class="framework-showcase-card">
+          <h3>Digital Literacy Framework</h3>
+          <p>
+            Progressive K-12 digital literacy curriculum addressing Africa's unique context. From digital citizenship
+            foundations to advanced AI collaboration skills for students, staff, and parents.
+          </p>
+          <a href="/digital-literacy-framework" class="btn btn-primary">Explore Framework</a>
+        </div>
+        <div class="framework-showcase-card">
+          <h3>K-12 Support Process Framework</h3>
+          <p>
+            Three-tier support system: AI chatbot for instant help, EdTech team for educational technology,
+            and IT Operations for infrastructure. Efficient, scalable support for the entire school community.
+          </p>
+          <a href="/support-framework" class="btn btn-primary">Explore Framework</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="implementation" id="implementation">
     <div class="container">
       <h2 class="section-title">3-Year Implementation Roadmap</h2>
@@ -181,11 +217,12 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     <div class="container">
       <h2>Ready to Start Your Digital Transformation?</h2>
       <p class="ubuntu-message">Ubuntu: When we grow together, we all succeed</p>
-      <p>Access our open, shareable framework with detailed implementation guides, budget templates, technology specifications, and proven strategies. Copy it, adapt it, improve it for your school and community.</p>
+      <p>Access our open, shareable frameworks with detailed implementation guides, budget templates, technology specifications, and proven strategies. Copy it, adapt it, improve it for your school and community.</p>
       <div class="cta-buttons">
-        <a href="/framework" class="btn btn-primary">View Complete Framework</a>
-        <a href="/blog" class="btn btn-secondary">Read Implementation Insights</a>
+        <a href="/frameworks" class="btn btn-primary">Explore All Frameworks</a>
+        <a href="/consultation" class="btn btn-secondary">Book a Consultation</a>
       </div>
+      <p class="cta-subtext">Need guidance? Schedule a consultation to discuss how these frameworks can be adapted to your school's unique needs.</p>
       <p class="cta-credit">Created by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa • Built by educators, for education</p>
     </div>
   </section>
@@ -525,9 +562,60 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     font-size: 1.05rem;
   }
 
-  .implementation {
+  .frameworks-showcase {
     padding: 7rem 1rem;
     background: var(--bg-gray);
+  }
+
+  .frameworks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  .framework-showcase-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border-top: 6px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .framework-showcase-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .framework-showcase-card h3 {
+    font-size: 1.75rem;
+    color: var(--primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .framework-showcase-card p {
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1.05rem;
+    margin: 0;
+    flex: 1;
+  }
+
+  .framework-showcase-card .btn {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  .implementation {
+    padding: 7rem 1rem;
+    background: white;
   }
 
   .roadmap {
@@ -643,6 +731,16 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     z-index: 1;
   }
 
+  .cta-subtext {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    opacity: 0.9;
+    font-style: italic;
+    position: relative;
+    z-index: 1;
+  }
+
   .cta-credit {
     font-size: 1rem;
     opacity: 0.9;
@@ -711,6 +809,7 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
     /* Sections padding */
     .features,
     .benefits-section,
+    .frameworks-showcase,
     .implementation {
       padding: 4rem 1rem;
     }
@@ -910,8 +1009,22 @@ import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardLis
 
     .features,
     .benefits-section,
+    .frameworks-showcase,
     .implementation {
       padding: 3rem 1rem;
+    }
+
+    .frameworks-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    .framework-showcase-card {
+      padding: 2rem;
+    }
+
+    .framework-showcase-card h3 {
+      font-size: 1.35rem;
     }
 
     .stats-background {
