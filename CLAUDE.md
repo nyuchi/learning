@@ -1,6 +1,6 @@
 # K-12 Digital Campus Framework - Design Guidelines
 
-**Last Updated**: October 2024
+**Last Updated**: October 2025
 **Version**: 2.0 (Bold & Mobile-Optimized)
 **Maintained By**: Nyuchi Learning Development Team
 
@@ -806,7 +806,7 @@ This document should be updated whenever:
 
 ### Version History
 
-**Version 2.0** (October 2024) - Current
+**Version 2.0** (October 2025) - Current
 - Bold design with dramatic typography
 - Comprehensive mobile optimization
 - Hamburger menu navigation
@@ -817,7 +817,7 @@ This document should be updated whenever:
 - Larger, more impactful buttons
 - Section title underlines
 
-**Version 1.0** (October 2024)
+**Version 1.0** (October 2025)
 - Initial design guidelines
 - Monochrome color scheme
 - Zimbabwe flag strip
