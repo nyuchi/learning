@@ -10,7 +10,7 @@
 
 **Nyuchi Learning** is a division of Nyuchi Africa focused on creating comprehensive, open-source frameworks for digital transformation in K-12 schools across Africa. Our frameworks are designed to be freely accessible, adaptable to local contexts, and community-driven.
 
-**Live Site:** [learning.nyuchi.africa](https://learning.nyuchi.africa)
+**Live Site:** [learning.nyuchi.com](https://learning.nyuchi.com)
 
 ### Our Frameworks
 
@@ -209,7 +209,7 @@ This site is optimized for Vercel deployment:
 3. **Vercel auto-detects Astro** and configures build settings
 4. **Deploy!**
 
-**Production URL:** [learning.nyuchi.africa](https://learning.nyuchi.africa)
+**Production URL:** [learning.nyuchi.com](https://learning.nyuchi.com)
 
 ### Manual Deployment
 
@@ -366,8 +366,8 @@ Focused on educational frameworks and digital transformation:
 
 ## Contact & Links
 
-- **Website:** [learning.nyuchi.africa](https://learning.nyuchi.africa)
-- **Frameworks:** [learning.nyuchi.africa/frameworks](https://learning.nyuchi.africa/frameworks)
+- **Website:** [learning.nyuchi.com](https://learning.nyuchi.com)
+- **Frameworks:** [learning.nyuchi.com/frameworks](https://learning.nyuchi.com/frameworks)
 - **GitHub:** [github.com/nyuchitech/learning](https://github.com/nyuchitech/learning)
 
 ---

@@ -32,7 +32,7 @@ Place PDF versions of framework documentation here.
 ### Option 2: Use a PDF Generation Tool
 - **wkhtmltopdf**: Command-line HTML to PDF
   ```bash
-  wkhtmltopdf https://learning.nyuchi.africa/framework k12-digital-campus-framework.pdf
+  wkhtmltopdf https://learning.nyuchi.com/framework k12-digital-campus-framework.pdf
   ```
 - **Puppeteer**: Node.js library
 - **Prince XML**: Commercial solution
@@ -72,5 +72,5 @@ This framework is open and freely shareable.
 You may use, copy, adapt, and distribute this framework.
 No attribution required, but appreciated.
 
-For updates and more frameworks: https://learning.nyuchi.africa
+For updates and more frameworks: https://learning.nyuchi.com
 ```

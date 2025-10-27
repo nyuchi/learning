@@ -789,7 +789,7 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
-Sitemap: https://learning.nyuchi.africa/sitemap.xml
+Sitemap: https://learning.nyuchi.com/sitemap.xml
 ```
 
 ---
