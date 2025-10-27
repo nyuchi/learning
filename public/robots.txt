@@ -50,7 +50,7 @@ Allow: /
 # Disallow: /private/
 
 # Sitemap location
-Sitemap: https://learning.nyuchi.africa/sitemap.xml
+Sitemap: https://learning.nyuchi.com/sitemap.xml
 
 # Crawl delay (optional, helps prevent overloading server)
 Crawl-delay: 1

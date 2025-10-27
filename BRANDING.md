@@ -307,7 +307,7 @@ A fixed 8px vertical strip on the left edge of all digital properties:
 
 ### Website
 
-**Primary Domain:** learning.nyuchi.africa
+**Primary Domain:** learning.nyuchi.com
 **Purpose:** Framework documentation and resources
 
 **Key Pages:**
@@ -350,7 +350,7 @@ A fixed 8px vertical strip on the left edge of all digital properties:
 Nyuchi Learning
 A division of Nyuchi Africa
 Built by educators, for education
-learning.nyuchi.africa
+learning.nyuchi.com
 ```
 
 ---
