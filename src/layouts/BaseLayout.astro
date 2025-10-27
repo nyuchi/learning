@@ -84,6 +84,7 @@ const {
             <li><a href="/frameworks">Frameworks</a></li>
             <li><a href="/pricing">Pricing</a></li>
             <li><a href="/blog">Blog</a></li>
+            <li><a href="/community">Community</a></li>
             <li class="nav-dropdown">
               <a href="/about" class="dropdown-trigger">About</a>
               <ul class="dropdown-menu">
@@ -108,6 +109,7 @@ const {
             <li><a href="/frameworks">Frameworks</a></li>
             <li><a href="/pricing">Pricing</a></li>
             <li><a href="/blog">Blog</a></li>
+            <li><a href="/community">Community</a></li>
             <li><a href="/about">About the Framework</a></li>
             <li><a href="/team">Our Team</a></li>
             <li><a href="/consultation" class="mobile-cta">Book a Consultation</a></li>
@@ -147,20 +149,22 @@ const {
         </div>
 
         <div class="footer-column">
+          <h3>Community</h3>
+          <ul>
+            <li><a href="/community">Join Our Community</a></li>
+            <li><a href="https://github.com/nyuchitech/learning" target="_blank" rel="noopener noreferrer">GitHub Repository</a></li>
+            <li><a href="https://github.com/nyuchitech/learning/discussions" target="_blank" rel="noopener noreferrer">Discussions</a></li>
+            <li><a href="https://github.com/nyuchitech/learning/issues" target="_blank" rel="noopener noreferrer">Issues & Feedback</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-column">
           <h3>About</h3>
           <ul>
             <li><a href="/about">About the Framework</a></li>
             <li><a href="/team">Our Team</a></li>
             <li><a href="/about#mission">Our Mission</a></li>
           </ul>
-        </div>
-
-        <div class="footer-column">
-          <h3>Mission</h3>
-          <p class="footer-mission">
-            An open, shareable framework promoting digital transformation in K-12 education across Africa.
-            Copy it. Adapt it. Improve it. Share it.
-          </p>
         </div>
       </div>
 
@@ -761,6 +765,97 @@ const {
           font-size: 1rem;
         }
       }
+
+      /* ========================================
+         ANIMATION SYSTEM - Slide & Fade Effects
+         ======================================== */
+
+      /* Base animation classes - hidden by default */
+      .animate-fade-in,
+      .animate-slide-up,
+      .animate-slide-left,
+      .animate-slide-right,
+      .animate-scale-in {
+        opacity: 0;
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      /* Fade In Animation */
+      .animate-fade-in {
+        opacity: 0;
+      }
+
+      .animate-fade-in.animated {
+        opacity: 1;
+      }
+
+      /* Slide Up Animation */
+      .animate-slide-up {
+        transform: translateY(50px);
+      }
+
+      .animate-slide-up.animated {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Slide From Left Animation */
+      .animate-slide-left {
+        transform: translateX(-50px);
+      }
+
+      .animate-slide-left.animated {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Slide From Right Animation */
+      .animate-slide-right {
+        transform: translateX(50px);
+      }
+
+      .animate-slide-right.animated {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Scale In Animation */
+      .animate-scale-in {
+        transform: scale(0.9);
+      }
+
+      .animate-scale-in.animated {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Stagger Animation Delays for Grid Items */
+      .animate-stagger > *:nth-child(1) { transition-delay: 0.1s; }
+      .animate-stagger > *:nth-child(2) { transition-delay: 0.2s; }
+      .animate-stagger > *:nth-child(3) { transition-delay: 0.3s; }
+      .animate-stagger > *:nth-child(4) { transition-delay: 0.4s; }
+      .animate-stagger > *:nth-child(5) { transition-delay: 0.5s; }
+      .animate-stagger > *:nth-child(6) { transition-delay: 0.6s; }
+      .animate-stagger > *:nth-child(7) { transition-delay: 0.7s; }
+      .animate-stagger > *:nth-child(8) { transition-delay: 0.8s; }
+      .animate-stagger > *:nth-child(9) { transition-delay: 0.9s; }
+
+      /* Respect user's motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .animate-fade-in,
+        .animate-slide-up,
+        .animate-slide-left,
+        .animate-slide-right,
+        .animate-scale-in {
+          opacity: 1 !important;
+          transform: none !important;
+          transition: none !important;
+        }
+
+        .animate-stagger > * {
+          transition-delay: 0s !important;
+        }
+      }
     </style>
 
     <!-- Mobile Menu Toggle Script -->
@@ -806,6 +901,48 @@ const {
           } else {
             header.classList.remove('scrolled');
           }
+        });
+
+        // Animation System - Intersection Observer
+        const animationObserver = new IntersectionObserver(
+          function(entries) {
+            entries.forEach(function(entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('animated');
+                // Optionally unobserve after animation to improve performance
+                animationObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          }
+        );
+
+        // Observe all elements with animation classes
+        const animationClasses = [
+          '.animate-fade-in',
+          '.animate-slide-up',
+          '.animate-slide-left',
+          '.animate-slide-right',
+          '.animate-scale-in'
+        ];
+
+        animationClasses.forEach(function(className) {
+          const elements = document.querySelectorAll(className);
+          elements.forEach(function(element) {
+            animationObserver.observe(element);
+          });
+        });
+
+        // Handle stagger animations - observe children of stagger containers
+        const staggerContainers = document.querySelectorAll('.animate-stagger');
+        staggerContainers.forEach(function(container) {
+          const children = container.children;
+          Array.from(children).forEach(function(child) {
+            animationObserver.observe(child);
+          });
         });
       });
     </script>
