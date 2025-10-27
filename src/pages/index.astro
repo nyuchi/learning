@@ -33,24 +33,39 @@ const latestPosts = [
   description="Open, shareable framework for digital transformation in K-12 schools across Africa. Comprehensive blueprint: infrastructure, platforms, digital literacy, AI analytics, and 3-year implementation roadmap. Free to use, copy, and adapt."
   keywords="K-12 digital transformation Africa, educational technology framework, digital campus Africa, school technology infrastructure, open education framework, digital literacy curriculum, affordable education technology, Zimbabwe education, Nyuchi Learning, student information system, learning management system, educational AI, mobile-first education"
 >
-  <section class="hero">
-    <div class="container">
-      <p class="ubuntu-tagline">Ubuntu: I am because we are</p>
-      <h1 class="hero-title">K-12 Digital Transformation Framework for African Schools</h1>
-      <p class="hero-subtitle">
+  <section class="hero" id="hero">
+    <!-- Water trail canvas -->
+    <canvas id="waterTrailCanvas" class="water-trail-canvas"></canvas>
+
+    <!-- Hero background image -->
+    <div class="hero-background"></div>
+
+    <!-- Hero overlay -->
+    <div class="hero-overlay"></div>
+
+    <!-- Hero content -->
+    <div class="container hero-content">
+      <p class="ubuntu-tagline fade-in-up">Ubuntu: I am because we are</p>
+      <h1 class="hero-title fade-in-up">K-12 Digital Transformation Framework for African Schools</h1>
+      <p class="hero-subtitle fade-in-up">
         An open, shareable framework for digital transformation. Built for African schools, adaptable to any community.
         Copy it, improve it, make it yours. Designed for real African realities—limited budgets, connectivity challenges,
         and diverse communities—this framework delivers world-class educational technology affordably and sustainably.
       </p>
-      <p class="framework-stats">Open & Shareable • 3-year roadmap • $181K investment • 60-80% cost savings • Multilingual support</p>
-      <div class="hero-cta">
+      <p class="framework-stats fade-in-up">Open & Shareable • 3-year roadmap • $181K investment • 60-80% cost savings • Multilingual support</p>
+      <div class="hero-cta fade-in-up">
         <a href="/framework" class="btn btn-primary">View Complete Framework</a>
-        <a href="#implementation" class="btn btn-secondary">See Implementation</a>
+        <a href="#features" class="btn btn-secondary">See Implementation</a>
       </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator">
+      <div class="scroll-arrow"></div>
     </div>
   </section>
 
-  <section class="features">
+  <section class="features scroll-reveal" id="features">
     <div class="container">
       <h2 class="section-title">Core Principles</h2>
       <div class="feature-grid">
@@ -88,7 +103,7 @@ const latestPosts = [
     </div>
   </section>
 
-  <section class="stats">
+  <section class="stats scroll-reveal" id="stats">
     <div class="stats-background">
       <div class="container">
         <h2 class="section-title">Why This Matters</h2>
@@ -117,7 +132,7 @@ const latestPosts = [
     </div>
   </section>
 
-  <section class="benefits-section" id="benefits">
+  <section class="benefits-section scroll-reveal" id="benefits">
     <div class="container">
       <h2 class="section-title">What Your School Gets</h2>
       <p class="section-intro">
@@ -179,7 +194,7 @@ const latestPosts = [
     </div>
   </section>
 
-  <section class="frameworks-showcase">
+  <section class="frameworks-showcase scroll-reveal" id="frameworks">
     <div class="container">
       <h2 class="section-title">Available Frameworks</h2>
       <p class="section-intro">
@@ -215,7 +230,7 @@ const latestPosts = [
     </div>
   </section>
 
-  <section class="blog-insights">
+  <section class="blog-insights scroll-reveal" id="blog">
     <div class="container">
       <h2 class="section-title">Latest Insights</h2>
       <p class="section-intro">
@@ -243,7 +258,7 @@ const latestPosts = [
     </div>
   </section>
 
-  <section class="implementation" id="implementation">
+  <section class="implementation scroll-reveal" id="implementation">
     <div class="container">
       <h2 class="section-title">3-Year Implementation Roadmap</h2>
       <div class="roadmap">
@@ -266,7 +281,7 @@ const latestPosts = [
     </div>
   </section>
 
-  <section class="cta-section">
+  <section class="cta-section scroll-reveal" id="cta">
     <div class="container">
       <h2>Ready to Start Your Digital Transformation?</h2>
       <p class="ubuntu-message">Ubuntu: When we grow together, we all succeed</p>
@@ -282,40 +297,136 @@ const latestPosts = [
 </BaseLayout>
 
 <style>
-  .hero {
-    position: relative;
-    color: white;
-    padding: 10rem 1rem 9rem;
-    text-align: center;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(26, 26, 26, 0.95) 100%),
-                url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80') center/cover no-repeat;
-    background-attachment: fixed;
-    border-bottom: 8px solid var(--primary);
-    overflow: hidden;
+  /* Smooth scroll and snap scrolling */
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
   }
 
-  .hero::after {
-    content: '';
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Hero Section - Full Screen */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    overflow: hidden;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Hero background image */
+  .hero-background {
     position: absolute;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%);
+    width: 100%;
+    height: 100%;
+    background: url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80') center/cover no-repeat;
+    background-attachment: fixed;
     z-index: 0;
   }
 
-  .hero .container {
-    position: relative;
+  /* Hero overlay - starts dark, water trail reveals image */
+  .hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%);
     z-index: 1;
+    pointer-events: none;
+  }
+
+  /* Water trail canvas */
+  .water-trail-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    mix-blend-mode: destination-out;
+  }
+
+  /* Hero content */
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    padding: 2rem 1rem;
+  }
+
+  /* Scroll indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    animation: bounce 2s infinite;
+  }
+
+  .scroll-arrow {
+    width: 30px;
+    height: 30px;
+    border-left: 3px solid white;
+    border-bottom: 3px solid white;
+    transform: rotate(-45deg);
+  }
+
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+  }
+
+  /* Fade in animations for hero content */
+  .fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .fade-in-up:nth-child(1) { animation-delay: 0.2s; }
+  .fade-in-up:nth-child(2) { animation-delay: 0.4s; }
+  .fade-in-up:nth-child(3) { animation-delay: 0.6s; }
+  .fade-in-up:nth-child(4) { animation-delay: 0.8s; }
+  .fade-in-up:nth-child(5) { animation-delay: 1s; }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Scroll reveal animations */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .scroll-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .ubuntu-tagline {
@@ -421,15 +532,23 @@ const latestPosts = [
   }
 
   .features {
+    min-height: 100vh;
     padding: 8rem 1rem;
     background: white;
     position: relative;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+  }
+
+  .features .container {
+    width: 100%;
   }
 
   .features::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
@@ -506,9 +625,11 @@ const latestPosts = [
   .stats {
     padding: 0;
     background: var(--primary);
+    scroll-snap-align: start;
   }
 
   .stats-background {
+    min-height: 80vh;
     padding: 8rem 1rem;
     background: var(--primary);
     color: white;
@@ -516,6 +637,8 @@ const latestPosts = [
     border-bottom: 8px solid white;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
   }
 
   .stats-background::before {
@@ -606,15 +729,23 @@ const latestPosts = [
   }
 
   .benefits-section {
+    min-height: 100vh;
     padding: 8rem 1rem;
     background: white;
     position: relative;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+  }
+
+  .benefits-section .container {
+    width: 100%;
   }
 
   .benefits-section::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
@@ -675,15 +806,23 @@ const latestPosts = [
   }
 
   .frameworks-showcase {
+    min-height: 100vh;
     padding: 8rem 1rem;
     background: var(--bg-gray);
     position: relative;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+  }
+
+  .frameworks-showcase .container {
+    width: 100%;
   }
 
   .frameworks-showcase::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
@@ -738,15 +877,23 @@ const latestPosts = [
   }
 
   .blog-insights {
+    min-height: 100vh;
     padding: 8rem 1rem;
     background: white;
     position: relative;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+  }
+
+  .blog-insights .container {
+    width: 100%;
   }
 
   .blog-insights::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
@@ -841,15 +988,23 @@ const latestPosts = [
   }
 
   .implementation {
+    min-height: 100vh;
     padding: 8rem 1rem;
     background: var(--bg-gray);
     position: relative;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+  }
+
+  .implementation .container {
+    width: 100%;
   }
 
   .implementation::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: 2rem;
     left: 50%;
     transform: translateX(-50%);
     width: 200px;
@@ -905,6 +1060,7 @@ const latestPosts = [
   }
 
   .cta-section {
+    min-height: 100vh;
     padding: 10rem 2rem;
     text-align: center;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, var(--primary-dark) 100%);
@@ -912,6 +1068,14 @@ const latestPosts = [
     border-top: 10px solid white;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scroll-snap-align: start;
+  }
+
+  .cta-section .container {
+    width: 100%;
   }
 
   .cta-section::before {
@@ -1001,11 +1165,29 @@ const latestPosts = [
 
   /* Mobile Responsive Styles */
   @media (max-width: 768px) {
+    /* Disable scroll snap on mobile for better UX */
+    html {
+      scroll-snap-type: none;
+    }
+
     /* Hero Section */
     .hero {
-      padding: 5rem 1rem 4.5rem;
+      min-height: 100vh;
+      padding: 8rem 1rem 4rem;
+    }
+
+    .hero-background {
       background-attachment: scroll; /* Better performance on mobile */
-      border-bottom: 6px solid var(--primary);
+    }
+
+    .scroll-indicator {
+      bottom: 1rem;
+    }
+
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-width: 2px;
     }
 
     .hero-title {
@@ -1056,8 +1238,14 @@ const latestPosts = [
     .benefits-section,
     .frameworks-showcase,
     .blog-insights,
-    .implementation {
+    .implementation,
+    .cta-section {
+      min-height: auto;
       padding: 5rem 1rem;
+    }
+
+    .stats-background {
+      min-height: auto;
     }
 
     .features::before,
@@ -1368,3 +1556,158 @@ const latestPosts = [
     }
   }
 </style>
+
+<script is:inline>
+  // Water Trail Effect
+  class WaterTrail {
+    constructor() {
+      this.canvas = document.getElementById('waterTrailCanvas');
+      if (!this.canvas) return;
+
+      this.ctx = this.canvas.getContext('2d');
+      if (!this.ctx) return;
+
+      this.drops = [];
+      this.maxDrops = 50;
+      this.dropRadius = 80;
+
+      this.resize();
+      this.setupEventListeners();
+      this.animate();
+    }
+
+    resize() {
+      const hero = document.querySelector('.hero');
+      if (!hero) return;
+
+      this.canvas.width = hero.offsetWidth;
+      this.canvas.height = hero.offsetHeight;
+    }
+
+    setupEventListeners() {
+      window.addEventListener('resize', () => this.resize());
+
+      // Mouse move event
+      this.canvas.addEventListener('mousemove', (e) => {
+        const rect = this.canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        this.addDrop(x, y);
+      });
+
+      // Touch move event for mobile
+      this.canvas.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const rect = this.canvas.getBoundingClientRect();
+        const touch = e.touches[0];
+        const x = touch.clientX - rect.left;
+        const y = touch.clientY - rect.top;
+        this.addDrop(x, y);
+      });
+    }
+
+    addDrop(x, y) {
+      this.drops.push({
+        x: x,
+        y: y,
+        radius: 0,
+        maxRadius: this.dropRadius,
+        alpha: 1
+      });
+
+      if (this.drops.length > this.maxDrops) {
+        this.drops.shift();
+      }
+    }
+
+    animate() {
+      if (!this.ctx) return;
+
+      // Clear with overlay color to restore darkness
+      this.ctx.fillStyle = 'rgba(0, 0, 0, 0.85)';
+      this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
+
+      // Draw expanding circles (water ripples)
+      this.drops = this.drops.filter(drop => {
+        drop.radius += 2;
+        drop.alpha -= 0.02;
+
+        if (drop.alpha > 0 && drop.radius < drop.maxRadius) {
+          this.ctx.beginPath();
+          this.ctx.arc(drop.x, drop.y, drop.radius, 0, Math.PI * 2);
+
+          // Create gradient for water effect
+          const gradient = this.ctx.createRadialGradient(
+            drop.x, drop.y, 0,
+            drop.x, drop.y, drop.radius
+          );
+          gradient.addColorStop(0, 'rgba(0, 0, 0, ' + drop.alpha + ')');
+          gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+          this.ctx.fillStyle = gradient;
+          this.ctx.fill();
+
+          return true;
+        }
+        return false;
+      });
+
+      requestAnimationFrame(() => this.animate());
+    }
+  }
+
+  // Scroll Reveal Animations
+  class ScrollReveal {
+    constructor() {
+      this.elements = document.querySelectorAll('.scroll-reveal');
+      this.observer = new IntersectionObserver(
+        (entries) => this.handleIntersection(entries),
+        {
+          threshold: 0.15,
+          rootMargin: '0px 0px -50px 0px'
+        }
+      );
+
+      this.observe();
+    }
+
+    observe() {
+      const self = this;
+      this.elements.forEach(function(element) {
+        self.observer.observe(element);
+      });
+    }
+
+    handleIntersection(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+        }
+      });
+    }
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize water trail effect
+    new WaterTrail();
+
+    // Initialize scroll reveal
+    new ScrollReveal();
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const href = this.getAttribute('href');
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+</script>
