@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BookOpen, Download, Users, Bot } from 'lucide-astro';
+import { BookOpen, Download, Users, Bot, Smartphone, Shield } from 'lucide-astro';
 ---
 
 <BaseLayout
@@ -108,6 +108,51 @@ import { BookOpen, Download, Users, Bot } from 'lucide-astro';
             <div class="framework-actions">
               <a href="/support-framework" class="btn btn-secondary">Read Online</a>
               <a href="/frameworks/k12-support-process-framework.pdf" class="btn btn-primary" download>
+                <Download size={20} /> Download PDF
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Framework 3: Digital Literacy Framework for Africa -->
+        <div class="framework-card">
+          <div class="framework-icon">
+            <Smartphone size={48} strokeWidth={1.5} />
+          </div>
+          <div class="framework-content">
+            <h3>Digital Literacy Framework for Africa</h3>
+            <p class="framework-version">Version 1.0 | October 2024</p>
+            <p class="framework-description">
+              Comprehensive mobile-first digital literacy framework designed for K-12 students, teachers,
+              and adults. Emphasizes digital citizenship, lifelong learning, and preparing for the 2050
+              digital landscape. Designed for African contexts where mobile is the primary access point.
+            </p>
+
+            <div class="framework-highlights">
+              <h4>Key Features</h4>
+              <ul>
+                <li><strong>Mobile-First:</strong> No 1:1 device assumption—designed for shared access reality</li>
+                <li><strong>Lifelong Learning:</strong> Parallel pathways for students, teachers, staff, parents, adults</li>
+                <li><strong>Digital Citizenship Core:</strong> Safety, ethics, and responsible online behavior first</li>
+                <li><strong>2050-Ready:</strong> AI collaboration, remote work, digital entrepreneurship skills</li>
+                <li><strong>Standards & Outcomes:</strong> Age-appropriate learning progressions (Ages 5-18+)</li>
+              </ul>
+            </div>
+
+            <div class="framework-stats">
+              <div class="stat">
+                <strong>4 Age Groups</strong>
+                <span>Early Years to Secondary+</span>
+              </div>
+              <div class="stat">
+                <strong>6 Citizenship Pillars</strong>
+                <span>Safety, rights, ethics, communication, wellness, identity</span>
+              </div>
+            </div>
+
+            <div class="framework-actions">
+              <a href="/digital-literacy-framework" class="btn btn-secondary">Read Online</a>
+              <a href="/frameworks/digital-literacy-framework.pdf" class="btn btn-primary" download>
                 <Download size={20} /> Download PDF
               </a>
             </div>
