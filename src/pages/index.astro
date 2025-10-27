@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight } from 'lucide-astro';
+import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageSquare, Github, Bug, Wrench } from 'lucide-astro';
 
 // Blog posts data (latest 3)
 const latestPosts = [
@@ -67,34 +67,34 @@ const latestPosts = [
 
   <section class="features scroll-reveal" id="features">
     <div class="container">
-      <h2 class="section-title">Core Principles</h2>
-      <div class="feature-grid">
-        <div class="feature-card">
+      <h2 class="section-title animate-fade-in">Core Principles</h2>
+      <div class="feature-grid animate-stagger">
+        <div class="feature-card animate-slide-up">
           <Globe class="feature-icon" size={48} strokeWidth={1.5} />
           <h3>Universal Access</h3>
           <p>Digital tools available to all students, regardless of socioeconomic status</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate-slide-up">
           <Smartphone class="feature-icon" size={48} strokeWidth={1.5} />
           <h3>Mobile-First</h3>
           <p>Recognizing smartphones as primary access devices for most users</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate-slide-up">
           <Lightbulb class="feature-icon" size={48} strokeWidth={1.5} />
           <h3>Digital Literacy</h3>
           <p>Technology enablement paired with critical thinking and digital citizenship</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate-slide-up">
           <DollarSign class="feature-icon" size={48} strokeWidth={1.5} />
           <h3>Cost Efficient</h3>
           <p>Open-source and cloud solutions to maximize limited school budgets</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate-slide-up">
           <BarChart class="feature-icon" size={48} strokeWidth={1.5} />
           <h3>Data-Driven</h3>
           <p>Analytics and insights inform instruction, support, and strategy</p>
         </div>
-        <div class="feature-card">
+        <div class="feature-card animate-slide-up">
           <Users class="feature-icon" size={48} strokeWidth={1.5} />
           <h3>Community-Centered</h3>
           <p>Seamless experience across students, staff, and parents/guardians</p>
@@ -106,17 +106,17 @@ const latestPosts = [
   <section class="stats scroll-reveal" id="stats">
     <div class="stats-background">
       <div class="container">
-        <h2 class="section-title">Why This Matters</h2>
-        <div class="stats-grid">
-          <div class="stat-card">
+        <h2 class="section-title animate-fade-in">Why This Matters</h2>
+        <div class="stats-grid animate-stagger">
+          <div class="stat-card animate-scale-in">
             <div class="stat-number">37.4% → 67.5%</div>
             <div class="stat-label">Internet penetration growth (2014-2024)</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card animate-scale-in">
             <div class="stat-number">2050</div>
             <div class="stat-label">Job market requiring digital fluency</div>
           </div>
-          <div class="stat-card">
+          <div class="stat-card animate-scale-in">
             <div class="stat-number">60-80%</div>
             <div class="stat-label">Cost reduction with open-source solutions</div>
           </div>
@@ -134,14 +134,14 @@ const latestPosts = [
 
   <section class="benefits-section scroll-reveal" id="benefits">
     <div class="container">
-      <h2 class="section-title">What Your School Gets</h2>
-      <p class="section-intro">
+      <h2 class="section-title animate-fade-in">What Your School Gets</h2>
+      <p class="section-intro animate-fade-in">
         An <strong>open framework</strong> you can freely copy, adapt, and improve for your school.
         This complete toolkit provides everything you need for successful digital transformation—
         from technical specifications to budget templates and implementation timelines.
       </p>
-      <div class="benefits-content">
-        <div class="benefit-card">
+      <div class="benefits-content animate-stagger">
+        <div class="benefit-card animate-slide-left">
           <ClipboardList class="benefit-icon" size={48} strokeWidth={1.5} />
           <h3>Complete Implementation Guide</h3>
           <p>
@@ -149,7 +149,7 @@ const latestPosts = [
             success metrics. Know exactly what to do, when to do it, and how much it will cost.
           </p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-slide-left">
           <Settings class="benefit-icon" size={48} strokeWidth={1.5} />
           <h3>Technology Stack Recommendations</h3>
           <p>
@@ -157,7 +157,7 @@ const latestPosts = [
             warehouse, API connectors, and AI/analytics—all with setup instructions and best practices.
           </p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-slide-left">
           <DollarSign class="benefit-icon" size={48} strokeWidth={1.5} />
           <h3>Budget & Funding Strategy</h3>
           <p>
@@ -165,7 +165,7 @@ const latestPosts = [
             training, and contingency. Plus funding sources (E-Rate, grants, partnerships) and cost-reduction strategies.
           </p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-slide-left">
           <Users class="benefit-icon" size={48} strokeWidth={1.5} />
           <h3>Digital Literacy Curriculum</h3>
           <p>
@@ -173,7 +173,7 @@ const latestPosts = [
             Includes staff professional development and parent engagement programs.
           </p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-slide-left">
           <TrendingUp class="benefit-icon" size={48} strokeWidth={1.5} />
           <h3>AI & Analytics Framework</h3>
           <p>
@@ -181,7 +181,7 @@ const latestPosts = [
             and data governance protocols—all designed for ethical, effective use in education.
           </p>
         </div>
-        <div class="benefit-card">
+        <div class="benefit-card animate-slide-left">
           <Accessibility class="benefit-icon" size={48} strokeWidth={1.5} />
           <h3>Equity & Accessibility</h3>
           <p>
@@ -196,13 +196,13 @@ const latestPosts = [
 
   <section class="frameworks-showcase scroll-reveal" id="frameworks">
     <div class="container">
-      <h2 class="section-title">Available Frameworks</h2>
-      <p class="section-intro">
+      <h2 class="section-title animate-fade-in">Available Frameworks</h2>
+      <p class="section-intro animate-fade-in">
         Nyuchi Learning provides multiple open, shareable frameworks for K-12 education transformation.
         Each framework addresses specific challenges and opportunities in African schools.
       </p>
-      <div class="frameworks-grid">
-        <div class="framework-showcase-card">
+      <div class="frameworks-grid animate-stagger">
+        <div class="framework-showcase-card animate-slide-right">
           <h3>K-12 Digital Campus Framework</h3>
           <p>
             Comprehensive blueprint for digital transformation: infrastructure, platforms, digital literacy,
@@ -210,7 +210,7 @@ const latestPosts = [
           </p>
           <a href="/framework" class="btn btn-primary">Explore Framework</a>
         </div>
-        <div class="framework-showcase-card">
+        <div class="framework-showcase-card animate-slide-right">
           <h3>Digital Literacy Framework</h3>
           <p>
             Progressive K-12 digital literacy curriculum addressing Africa's unique context. From digital citizenship
@@ -218,7 +218,7 @@ const latestPosts = [
           </p>
           <a href="/digital-literacy-framework" class="btn btn-primary">Explore Framework</a>
         </div>
-        <div class="framework-showcase-card">
+        <div class="framework-showcase-card animate-slide-right">
           <h3>K-12 Support Process Framework</h3>
           <p>
             Three-tier support system: AI chatbot for instant help, EdTech team for educational technology,
@@ -232,13 +232,13 @@ const latestPosts = [
 
   <section class="blog-insights scroll-reveal" id="blog">
     <div class="container">
-      <h2 class="section-title">Latest Insights</h2>
-      <p class="section-intro">
+      <h2 class="section-title animate-fade-in">Latest Insights</h2>
+      <p class="section-intro animate-fade-in">
         Exploring the future of education, digital transformation strategies, and implementation insights from the field.
       </p>
-      <div class="blog-grid">
+      <div class="blog-grid animate-stagger">
         {latestPosts.map((post) => (
-          <article class="blog-card">
+          <article class="blog-card animate-slide-up">
             <div class="blog-card-header">
               <BookOpen class="blog-icon" size={40} strokeWidth={1.5} />
               <div class="blog-date">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
@@ -260,23 +260,55 @@ const latestPosts = [
 
   <section class="implementation scroll-reveal" id="implementation">
     <div class="container">
-      <h2 class="section-title">3-Year Implementation Roadmap</h2>
-      <div class="roadmap">
-        <div class="roadmap-item">
+      <h2 class="section-title animate-fade-in">3-Year Implementation Roadmap</h2>
+      <div class="roadmap animate-stagger">
+        <div class="roadmap-item animate-slide-up">
           <div class="roadmap-year">Year 1</div>
           <h3>Foundation</h3>
           <p>Infrastructure setup, device rollout, digital literacy curriculum launch, and early warning system pilot</p>
         </div>
-        <div class="roadmap-item">
+        <div class="roadmap-item animate-slide-up">
           <div class="roadmap-year">Year 2</div>
           <h3>Integration & Insight</h3>
           <p>API expansion, AI/analytics deployment, platform maturity, and community integration</p>
         </div>
-        <div class="roadmap-item">
+        <div class="roadmap-item animate-slide-up">
           <div class="roadmap-year">Year 3</div>
           <h3>Optimization & Sustainability</h3>
           <p>Advanced analytics, student-centered innovation, and sustainable operations model</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="community-section" id="community">
+    <div class="container">
+      <h2 class="section-title animate-fade-in">Join Our Community</h2>
+      <p class="section-intro animate-fade-in">
+        This framework thrives on community collaboration. Help us build, improve, and adapt together.
+        <strong>Ubuntu: I am because we are.</strong>
+      </p>
+      <div class="community-grid animate-stagger">
+        <a href="https://github.com/nyuchitech/learning/discussions" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <MessageSquare class="community-icon" size={48} strokeWidth={1.5} />
+          <h3>Discussions</h3>
+          <p>Join conversations about implementation strategies, best practices, and share your experiences with educators across Africa.</p>
+        </a>
+        <a href="https://github.com/nyuchitech/learning/issues" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <Bug class="community-icon" size={48} strokeWidth={1.5} />
+          <h3>Report Issues</h3>
+          <p>Found a bug or have a suggestion? Help us track and prioritize improvements to make the framework better for everyone.</p>
+        </a>
+        <a href="https://github.com/nyuchitech/learning" target="_blank" rel="noopener noreferrer" class="community-card animate-slide-up">
+          <Github class="community-icon" size={48} strokeWidth={1.5} />
+          <h3>Contribute</h3>
+          <p>Access the open-source repository, contribute code, documentation, or translations. Every contribution matters.</p>
+        </a>
+        <a href="/community" class="community-card animate-slide-up">
+          <Wrench class="community-icon" size={48} strokeWidth={1.5} />
+          <h3>Get Involved</h3>
+          <p>Learn more about how you can participate, contribute, and help shape the future of digital education in Africa.</p>
+        </a>
       </div>
     </div>
   </section>
@@ -1430,6 +1462,82 @@ const latestPosts = [
     }
   }
 
+  /* Community Section */
+  .community-section {
+    min-height: 100vh;
+    padding: 8rem 1rem;
+    background: var(--bg-gray);
+    position: relative;
+    display: flex;
+    align-items: center;
+    scroll-snap-align: start;
+  }
+
+  .community-section .container {
+    width: 100%;
+  }
+
+  .community-section::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 8px;
+    background: var(--primary);
+  }
+
+  .community-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+    margin-top: 4rem;
+  }
+
+  .community-card {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 1rem;
+    border-top: 6px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .community-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  }
+
+  .community-icon {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .community-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+
+  .community-card p {
+    line-height: 1.8;
+    color: var(--text);
+    font-size: 1rem;
+    flex: 1;
+    margin: 0;
+  }
+
   /* Extra small screens (< 480px) */
   @media (max-width: 480px) {
     .hero {
@@ -1473,7 +1581,8 @@ const latestPosts = [
     .benefits-section::before,
     .frameworks-showcase::before,
     .blog-insights::before,
-    .implementation::before {
+    .implementation::before,
+    .community-section::before {
       width: 100px;
       height: 5px;
     }
@@ -1482,21 +1591,25 @@ const latestPosts = [
     .benefits-section,
     .frameworks-showcase,
     .blog-insights,
-    .implementation {
+    .implementation,
+    .community-section {
       padding: 3rem 1rem;
     }
 
     .frameworks-grid,
-    .blog-grid {
+    .blog-grid,
+    .community-grid {
       grid-template-columns: 1fr;
       gap: 2rem;
     }
 
-    .framework-showcase-card {
+    .framework-showcase-card,
+    .community-card {
       padding: 2rem;
     }
 
-    .framework-showcase-card h3 {
+    .framework-showcase-card h3,
+    .community-card h3 {
       font-size: 1.35rem;
     }
 
@@ -1553,6 +1666,11 @@ const latestPosts = [
 
     .cta-section p {
       font-size: 1rem;
+    }
+
+    .community-icon {
+      width: 40px;
+      height: 40px;
     }
   }
 </style>
