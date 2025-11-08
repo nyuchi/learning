@@ -191,8 +191,8 @@ const {
         --nyuchi-black: #2B2B2B;    /* Warm charcoal */
         --nyuchi-white: #FFFFFF;
 
-        /* WARM PURPLE - PRIMARY UI COLOR */
-        --primary: #8B80E8;          /* Main color for headings, text, links, buttons, icons */
+        /* WARM PURPLE - Accent Color */
+        --primary: #8B80E8;          /* Accent color for highlights, buttons */
         --primary-hover: #A199EE;    /* Hover states */
         --primary-active: #7569D9;   /* Active/pressed states */
         --primary-light: #EBE8FC;    /* Light backgrounds */
@@ -204,23 +204,27 @@ const {
         --emerald-active: #139F68;
         --emerald-light: #D8F3EA;
 
-        /* Warm Brown - Accents */
+        /* Warm Brown - Background & Accents */
         --brown: #A67557;
         --brown-hover: #BA8668;
+        --brown-dark: #8B5E42;
+        --brown-light: #F5EDE8;
 
-        /* Charcoal - Backgrounds & Neutrals ONLY */
-        --charcoal-bg-dark: #2B2B2B;   /* Dark backgrounds, footer */
+        /* Charcoal - Primary Background */
+        --charcoal: #2B2B2B;          /* Primary dark background */
+        --charcoal-light: #3D3D3D;    /* Lighter charcoal for cards */
+        --charcoal-lighter: #4F4F4F;  /* Even lighter for hover states */
 
-        /* Text Colors */
-        --text: #8B80E8;              /* Primary text - WARM PURPLE */
-        --text-secondary: #6B6B6B;    /* Secondary text - Charcoal */
-        --text-light: #9B9B9B;        /* Light text - Charcoal */
+        /* Text Colors - High Contrast for Accessibility */
+        --text: #FAFAFA;              /* Primary text - OFF-WHITE on dark backgrounds */
+        --text-secondary: #D1D5DB;    /* Secondary text - Light gray */
+        --text-muted: #9CA3AF;        /* Muted text - Medium gray */
 
         /* Background Colors */
-        --bg: #FAFAFA;                /* Off-white */
-        --bg-gray: #F7F7F7;           /* Light gray */
-        --bg-dark: #2B2B2B;           /* Dark background */
-        --border: #E0E0E0;            /* Borders */
+        --bg: #2B2B2B;                /* Primary background - CHARCOAL */
+        --bg-brown: #A67557;          /* Brown background sections */
+        --bg-card: #3D3D3D;           /* Card backgrounds */
+        --border: #4F4F4F;            /* Borders on dark backgrounds */
 
         /* Grays (for backgrounds and neutrals) */
         --gray-50: #FAFAFA;
@@ -297,11 +301,11 @@ const {
 
       /* Solid header state (when scrolled) */
       header.header-solid {
-        background: rgba(255, 255, 255, 0.98);
+        background: rgba(43, 43, 43, 0.98);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(229, 231, 235, 0.5);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        border-bottom: 1px solid rgba(79, 79, 79, 0.5);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
       /* Header hidden state when scrolling down */
@@ -361,7 +365,7 @@ const {
       }
 
       .logo-icon {
-        color: var(--primary);
+        color: var(--emerald);
         flex-shrink: 0;
       }
 
@@ -380,7 +384,7 @@ const {
       .logo-subtext {
         font-family: 'Inter', sans-serif;
         font-size: 0.75rem;
-        color: var(--text-secondary);
+        color: var(--text-muted);
         font-weight: 500;
       }
 
@@ -424,9 +428,10 @@ const {
         top: 100%;
         left: 0;
         min-width: 220px;
-        background: white;
+        background: var(--charcoal-light);
+        border: 1px solid var(--border);
         border-radius: 0.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         list-style: none;
         padding: 0.5rem 0;
         margin-top: 0.5rem;
@@ -452,13 +457,13 @@ const {
         padding: 0.75rem 1.25rem;
         color: var(--text);
         text-decoration: none;
-        transition: background 0.2s;
+        transition: background 0.2s, color 0.2s;
         white-space: nowrap;
       }
 
       .dropdown-menu a:hover {
-        background: var(--bg-gray);
-        color: var(--primary);
+        background: var(--charcoal-lighter);
+        color: var(--emerald);
       }
 
       /* CTA Button in Nav */
@@ -492,8 +497,8 @@ const {
       .footer-hero {
         padding: 6rem 2rem;
         text-align: center;
-        background: var(--primary-dark);
-        border-top: 4px solid white;
+        background: var(--brown);
+        border-top: 4px solid var(--brown-light);
       }
 
       .footer-main-text {
