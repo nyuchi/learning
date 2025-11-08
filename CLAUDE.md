@@ -62,6 +62,8 @@ This version aligns our design with Claude's warm, editorial design language whi
 - ✅ New: 4px base spacing unit (from 8px)
 - ✅ New: 12px card border-radius
 - ❌ Old: Bold, dramatic feel → ✅ New: Editorial, warm, sophisticated feel
+- ❌ Old: Hero background images → ✅ New: Minimalist hero sections with solid colors
+- ✅ New: Optimized spacing for 13" laptop screens (not just large monitors)
 
 ### Why Claude-Aligned?
 
@@ -164,12 +166,14 @@ The color system uses **warm earth tones** inspired by Claude's design language,
 - Light: `#D8F3EA` - Soft background
 - Subtle: `#F0FAF6` - Very light background
 
-**Warm Purple (Platform Identity)**
-- Primary: `#8B80E8` - Platform features, secondary CTAs, badges, tags, innovation markers
+**Warm Purple (PRIMARY UI COLOR)**
+- Primary: `#8B80E8` - **Primary UI color for headings, text, links, icons** (replaces old charcoal #2C2C2C)
 - Hover: `#A199EE` - Light on hover
 - Active: `#7569D9` - Deep on press
 - Light: `#EBE8FC` - Soft background
 - Subtle: `#F6F5FE` - Very light background
+
+**CRITICAL**: Use warm purple (#8B80E8) as the primary color for all UI elements (headings, text, links, buttons, icons). Charcoal is reserved for backgrounds only.
 
 **Warm Brown (Accents)**
 - Primary: `#A67557` - Featured content, premium badges, warm highlights, special callouts
@@ -178,13 +182,15 @@ The color system uses **warm earth tones** inspired by Claude's design language,
 - Light: `#F5EDE8` - Soft background
 - Subtle: `#FAF7F5` - Very light background
 
-**Charcoal (Text & Contrast)**
-- Primary: `#2B2B2B` - Primary text, headings
+**Charcoal (Backgrounds & Neutrals)**
+- Primary: `#2B2B2B` - Dark backgrounds, footer
 - Secondary: `#6B6B6B` - Secondary text, captions
 - Tertiary: `#9B9B9B` - Disabled text
 - Border: `#E0E0E0` - Subtle borders
 - Background: `#F7F7F7` - Light backgrounds
 - White: `#FAFAFA` - Off-white backgrounds
+
+**CRITICAL**: Charcoal is used for backgrounds and neutral elements only. Use warm purple (#8B80E8) for primary UI elements.
 
 ### Semantic Colors
 
@@ -197,34 +203,44 @@ The color system uses **warm earth tones** inspired by Claude's design language,
 
 ```css
 :root {
-  /* Warm Emerald */
+  /* WARM PURPLE - PRIMARY UI COLOR */
+  --primary: #8B80E8;          /* Main color for headings, text, links, buttons, icons */
+  --primary-hover: #A199EE;    /* Hover states */
+  --primary-active: #7569D9;   /* Active/pressed states */
+  --primary-light: #EBE8FC;    /* Light backgrounds */
+  --primary-subtle: #F6F5FE;   /* Very light backgrounds */
+
+  /* Warm Emerald - Secondary Actions */
   --emerald-primary: #18A877;
   --emerald-hover: #20C088;
   --emerald-active: #139F68;
   --emerald-light: #D8F3EA;
   --emerald-subtle: #F0FAF6;
 
-  /* Warm Purple */
-  --purple-primary: #8B80E8;
-  --purple-hover: #A199EE;
-  --purple-active: #7569D9;
-  --purple-light: #EBE8FC;
-  --purple-subtle: #F6F5FE;
-
-  /* Warm Brown */
+  /* Warm Brown - Accents */
   --brown-primary: #A67557;
   --brown-hover: #BA8668;
   --brown-active: #925F47;
   --brown-light: #F5EDE8;
   --brown-subtle: #FAF7F5;
 
-  /* Charcoal */
-  --charcoal-primary: #2B2B2B;
-  --charcoal-secondary: #6B6B6B;
-  --charcoal-tertiary: #9B9B9B;
-  --charcoal-border: #E0E0E0;
-  --charcoal-bg: #F7F7F7;
-  --charcoal-white: #FAFAFA;
+  /* Charcoal - Backgrounds & Neutrals ONLY */
+  --charcoal-bg-dark: #2B2B2B;   /* Dark backgrounds, footer */
+  --charcoal-secondary: #6B6B6B;  /* Secondary text */
+  --charcoal-tertiary: #9B9B9B;   /* Disabled text */
+  --charcoal-border: #E0E0E0;     /* Borders */
+  --charcoal-bg: #F7F7F7;         /* Light backgrounds */
+  --charcoal-white: #FAFAFA;      /* Off-white */
+
+  /* Text Colors */
+  --text: #8B80E8;           /* Primary text - WARM PURPLE */
+  --text-secondary: #6B6B6B; /* Secondary text - Charcoal */
+  --text-light: #9B9B9B;     /* Light text - Charcoal */
+
+  /* Background Colors */
+  --bg: #FAFAFA;              /* Off-white */
+  --bg-gray: #F7F7F7;         /* Light gray */
+  --bg-dark: #2B2B2B;         /* Dark background */
 
   /* Semantic */
   --success: #18A877;
@@ -233,6 +249,12 @@ The color system uses **warm earth tones** inspired by Claude's design language,
   --info: #5B9FE3;
 }
 ```
+
+**Color Usage Guidelines:**
+- **Warm Purple (#8B80E8)**: Primary UI color for headings, body text, links, buttons, icons
+- **Warm Emerald (#18A877)**: Secondary CTAs, success states, highlights
+- **Warm Brown (#A67557)**: Special accents, featured content
+- **Charcoal (#2B2B2B)**: Backgrounds, footer, dark sections ONLY
 
 ---
 
@@ -274,7 +296,7 @@ h1 {
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--charcoal-primary);
+  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
 /* H2 - Section Title */
@@ -284,7 +306,7 @@ h2 {
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.015em;
-  color: var(--charcoal-primary);
+  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
 /* H3 - Subsection */
@@ -294,7 +316,7 @@ h3 {
   font-weight: 600;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: var(--charcoal-primary);
+  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
 /* H4 - Component Title */
@@ -304,7 +326,7 @@ h4 {
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: normal;
-  color: var(--charcoal-primary);
+  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
 /* Body Large */
@@ -313,7 +335,7 @@ h4 {
   font-size: 20px;
   font-weight: 400;
   line-height: 1.6;
-  color: var(--charcoal-primary);
+  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
 /* Body (Default) */
@@ -322,7 +344,7 @@ body, p {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
-  color: var(--charcoal-primary);
+  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
 /* Body Small */
@@ -331,7 +353,7 @@ body, p {
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  color: var(--charcoal-secondary);
+  color: var(--text-secondary);  /* Charcoal #6B6B6B */
 }
 ```
 
@@ -366,7 +388,7 @@ body, p {
 ```css
 .btn-primary {
   /* Colors */
-  background: var(--emerald-primary);  /* #18A877 */
+  background: var(--primary);  /* #8B80E8 warm purple */
   color: white;
 
   /* Typography */
@@ -388,18 +410,18 @@ body, p {
 }
 
 .btn-primary:hover {
-  background: var(--emerald-hover);  /* #20C088 */
+  background: var(--primary-hover);  /* #A199EE */
   transform: translateY(-1px);  /* Subtle lift */
-  box-shadow: 0 4px 12px rgba(24, 168, 119, 0.2);
+  box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3);
 }
 
 .btn-primary:active {
-  background: var(--emerald-active);  /* #139F68 */
+  background: var(--primary-active);  /* #7569D9 */
   transform: translateY(0);
 }
 
 .btn-primary:focus-visible {
-  outline: 3px solid var(--emerald-light);  /* #D8F3EA */
+  outline: 3px solid var(--primary-light);  /* #EBE8FC */
   outline-offset: 2px;
 }
 ```
@@ -408,10 +430,10 @@ body, p {
 ```css
 .btn-secondary {
   background: transparent;
-  color: var(--emerald-primary);
+  color: var(--primary);  /* #8B80E8 warm purple */
   padding: 12px 24px;
   border-radius: 10px;
-  border: 1.5px solid var(--emerald-primary);
+  border: 1.5px solid var(--primary);
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 16px;
@@ -421,13 +443,13 @@ body, p {
 }
 
 .btn-secondary:hover {
-  background: var(--emerald-subtle);  /* #F0FAF6 */
-  border-color: var(--emerald-hover);
-  color: var(--emerald-active);
+  background: var(--primary-subtle);  /* #F6F5FE */
+  border-color: var(--primary-hover);
+  color: var(--primary-active);
 }
 
 .btn-secondary:focus-visible {
-  outline: 3px solid var(--emerald-light);
+  outline: 3px solid var(--primary-light);
   outline-offset: 2px;
 }
 ```
@@ -436,7 +458,7 @@ body, p {
 ```css
 .btn-tertiary {
   background: transparent;
-  color: var(--emerald-primary);
+  color: var(--primary);  /* #8B80E8 warm purple */
   padding: 8px 12px;
   border: none;
   font-family: 'Inter', sans-serif;
@@ -448,7 +470,7 @@ body, p {
 }
 
 .btn-tertiary:hover {
-  color: var(--emerald-hover);
+  color: var(--primary-hover);  /* #A199EE */
   text-decoration: underline;
   text-underline-offset: 4px;
   text-decoration-thickness: 2px;
@@ -505,7 +527,7 @@ body, p {
 - Use **Lucide icons** from `lucide-astro` package
 - Icon size: 24-48px desktop, 40px mobile, 32-56px for feature icons
 - Stroke width: 1.5-2 for consistency
-- Color: `var(--emerald-primary)` for primary icons, `var(--charcoal-primary)` for neutral icons
+- Color: `var(--primary)` (#8B80E8 warm purple) for primary icons, `var(--text-secondary)` for neutral icons
 
 **Example Usage:**
 ```astro
@@ -700,13 +722,13 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 .card-feature:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--emerald-primary);
+  border-color: var(--primary);  /* Warm purple */
 }
 
 .card-icon {
   width: 56px;
   height: 56px;
-  background: var(--emerald-primary);
+  background: var(--primary);  /* Warm purple */
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -717,14 +739,14 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 }
 ```
 
-### Accent Card (Emerald Border)
+### Accent Card (Purple Border)
 
 ```css
 .card-accent {
   background: white;
   border-radius: 12px;
   padding: 24px;
-  border-left: 4px solid var(--emerald-primary);  /* Subtle accent */
+  border-left: 4px solid var(--primary);  /* Warm purple accent */
   box-shadow: var(--shadow-sm);
 }
 ```
@@ -1001,7 +1023,7 @@ Given Africa's mobile-first reality:
 ✅ Use Zimbabwe flag strip on every page (8px desktop, 6px mobile)
 ✅ Use rounded buttons (border-radius: 10px for medium, 12px for large)
 ✅ Use Lucide icons for all visual icons
-✅ Use warm color system (emerald, purple, brown, charcoal)
+✅ Use warm color system (purple PRIMARY, emerald, brown, charcoal for backgrounds)
 ✅ Use Newsreader for H1, H2 (editorial serif)
 ✅ Use Inter for H3-H6, body, UI (clean sans-serif)
 ✅ Use layered shadows (Claude-style soft shadows)
@@ -1019,10 +1041,12 @@ Given Africa's mobile-first reality:
 ✅ Mention multilingual support (African languages + English, French, Chinese)
 ✅ Emphasize Ubuntu philosophy
 ✅ Design mobile-first
-✅ Use warm emerald (#18A877) for primary actions
-✅ Use warm purple (#8B80E8) for platform features
+✅ **Use warm purple (#8B80E8) as PRIMARY UI color** for headings, text, links, buttons, icons
+✅ Use warm emerald (#18A877) for secondary CTAs and highlights
 ✅ Use warm brown (#A67557) for accents
+✅ Use charcoal (#2B2B2B) ONLY for backgrounds and dark sections
 ✅ Create editorial, sophisticated feel (not aggressive/bold)
+✅ Optimize spacing for 13" laptop screens
 
 ### DON'T:
 ❌ Use pill-shaped buttons (9999px border-radius)
@@ -1041,7 +1065,9 @@ Given Africa's mobile-first reality:
 ❌ Use small touch targets (<44px)
 ❌ Allow content to wrap/overflow on mobile (use horizontal scroll)
 ❌ Use aggressive, overly bold design
-❌ Use cold colors (old green #00A651, old purple #7c73e6)
+❌ Use cold colors (old green #00A651, old charcoal #2C2C2C as primary)
+❌ Use charcoal (#2B2B2B) for primary UI elements (use purple instead)
+❌ Use excessive spacing that doesn't work on 13" screens
 
 ---
 

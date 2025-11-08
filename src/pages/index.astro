@@ -34,15 +34,6 @@ const latestPosts = [
   keywords="K-12 digital transformation Africa, educational technology framework, digital campus Africa, school technology infrastructure, open education framework, digital literacy curriculum, affordable education technology, Zimbabwe education, Nyuchi Learning, student information system, learning management system, educational AI, mobile-first education"
 >
   <section class="hero" id="hero">
-    <!-- Water trail canvas -->
-    <canvas id="waterTrailCanvas" class="water-trail-canvas"></canvas>
-
-    <!-- Hero background image -->
-    <div class="hero-background"></div>
-
-    <!-- Hero overlay -->
-    <div class="hero-overlay"></div>
-
     <!-- Hero content -->
     <div class="container hero-content">
       <p class="ubuntu-tagline fade-in-up">Ubuntu: I am because we are</p>
@@ -55,11 +46,6 @@ const latestPosts = [
         <a href="/framework" class="btn btn-primary">View Framework</a>
         <a href="#features" class="btn btn-secondary">Learn More</a>
       </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="scroll-indicator">
-      <div class="scroll-arrow"></div>
     </div>
   </section>
 
@@ -119,13 +105,6 @@ const latestPosts = [
             <div class="stat-label">Cost reduction with open-source solutions</div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="stats-imagery">
-      <div class="image-grid">
-        <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80" alt="African students learning with technology" class="stats-img" />
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&q=80" alt="Students collaborating on digital projects" class="stats-img" />
-        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800&q=80" alt="Innovation in African education" class="stats-img" />
       </div>
     </div>
   </section>
@@ -336,89 +315,22 @@ const latestPosts = [
     overflow-x: hidden;
   }
 
-  /* Hero Section - Full Screen */
+  /* Hero Section - Minimalist & Clean (optimized for 13" screens) */
   .hero {
-    position: relative;
-    min-height: 100vh;
+    min-height: 80vh;  /* Shorter for smaller screens */
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    background: linear-gradient(135deg, var(--primary-subtle) 0%, #FAFAFA 100%);
+    color: var(--text);
     text-align: center;
-    overflow: hidden;
-  }
-
-  /* Hero background image */
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80') center/cover no-repeat;
-    background-attachment: fixed;
-    z-index: 0;
-  }
-
-  /* Hero overlay - lighter for visible background image */
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 26, 26, 0.5) 100%);
-    z-index: 1;
-    pointer-events: none;
-  }
-
-  /* Water trail canvas */
-  .water-trail-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: auto;
-    cursor: pointer;
+    padding: 120px 2rem 4rem;  /* Top padding to clear fixed header */
   }
 
   /* Hero content */
   .hero-content {
-    position: relative;
-    z-index: 3;
-    padding: 2rem 1rem;
-  }
-
-  /* Scroll indicator */
-  .scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 3;
-    animation: bounce 2s infinite;
-  }
-
-  .scroll-arrow {
-    width: 30px;
-    height: 30px;
-    border-left: 3px solid white;
-    border-bottom: 3px solid white;
-    transform: rotate(-45deg);
-  }
-
-  @keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-      transform: translateX(-50%) translateY(0);
-    }
-    40% {
-      transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-      transform: translateX(-50%) translateY(-5px);
-    }
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   /* Fade in animations for hero content */
@@ -451,114 +363,104 @@ const latestPosts = [
   }
 
   .ubuntu-tagline {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
     margin-bottom: 1.5rem;
-    opacity: 1;
     font-style: italic;
-    color: white;
+    color: var(--text-secondary);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 0.95rem;
   }
 
   .framework-stats {
-    font-size: 1.1rem;
-    margin-top: 1.5rem;
-    margin-bottom: 2.5rem;
-    opacity: 1;
-    color: white;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
     font-size: 0.85rem;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+    letter-spacing: 1px;
   }
 
   .container {
-    max-width: 1200px;
+    max-width: 1100px;  /* Optimized for 13" screens */
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
   }
 
   .hero-title {
-    font-size: clamp(3rem, 10vw, 7.5rem);
-    font-weight: 900;
-    margin-bottom: 3rem;
-    line-height: 0.9;
-    letter-spacing: -0.05em;
-    text-transform: uppercase;
-    text-shadow:
-      0 2px 10px rgba(0, 0, 0, 0.5),
-      0 8px 30px rgba(0, 0, 0, 0.3),
-      0 15px 50px rgba(0, 0, 0, 0.2);
-    position: relative;
-    z-index: 2;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 3.5rem);  /* Smaller for 13" screens */
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--text);
   }
 
   .hero-subtitle {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    margin-bottom: 2.5rem;
-    opacity: 1;
-    max-width: 950px;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);  /* Smaller for readability */
+    margin-bottom: 1.5rem;
+    max-width: 750px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.7;
+    line-height: 1.6;
     font-weight: 400;
+    color: var(--text-secondary);
   }
 
   .hero-cta {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 
   .btn {
-    padding: 1.25rem 3rem;
-    border-radius: 9999px; /* CRITICAL: Pill-shaped per Nyuchi brand guidelines */
+    padding: 12px 24px;
+    border-radius: 10px;  /* Claude-style rounded */
     text-decoration: none;
-    font-weight: 700;
-    transition: transform 0.2s, box-shadow 0.3s;
-    font-size: 1.1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn:hover {
-    transform: translateY(-4px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    transform: translateY(-1px);
   }
 
   .btn-primary {
-    background: white;
-    color: var(--primary);
-    box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3);
+    background: var(--primary);  /* Warm purple */
+    color: white;
+    box-shadow: 0 2px 8px rgba(139, 128, 232, 0.2);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
+    background: var(--primary-hover);
+    box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3);
   }
 
   .btn-secondary {
     background: transparent;
-    color: white;
-    border: 3px solid white;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
   }
 
   .btn-secondary:hover {
-    background: white;
-    color: var(--primary);
-    border-color: white;
+    background: var(--primary-subtle);
+    color: var(--primary-active);
+    border-color: var(--primary-hover);
   }
 
   .features {
-    min-height: 100vh;
-    padding: 8rem 1rem;
+    padding: 5rem 1.5rem;  /* Optimized for 13" screens */
     background: white;
-    position: relative;
-    display: flex;
-    align-items: center;
   }
 
   .features .container {
@@ -577,28 +479,14 @@ const latestPosts = [
   }
 
   .section-title {
+    font-family: 'Newsreader', Georgia, serif;
     text-align: center;
-    font-size: clamp(2.5rem, 8vw, 5.5rem);
-    margin-bottom: 6rem;
+    font-size: clamp(2rem, 5vw, 2.5rem);  /* Smaller for 13" screens */
+    margin-bottom: 3rem;  /* Less spacing */
     color: var(--text);
-    font-weight: 900;
-    letter-spacing: -0.04em;
-    text-transform: uppercase;
-    line-height: 0.9;
-    position: relative;
-    padding-bottom: 2.5rem;
-  }
-
-  .section-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 8px;
-    background: var(--primary);
-    box-shadow: 0 4px 15px rgba(44, 44, 44, 0.3);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
   }
 
   .feature-grid {
@@ -748,27 +636,12 @@ const latestPosts = [
   }
 
   .benefits-section {
-    min-height: 100vh;
-    padding: 8rem 1rem;
+    padding: 5rem 1.5rem;  /* Optimized for 13" screens */
     background: white;
-    position: relative;
-    display: flex;
-    align-items: center;
   }
 
   .benefits-section .container {
     width: 100%;
-  }
-
-  .benefits-section::before {
-    content: '';
-    position: absolute;
-    top: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 200px;
-    height: 8px;
-    background: var(--primary);
   }
 
   .section-intro {
@@ -1652,123 +1525,8 @@ const latestPosts = [
 </style>
 
 <script is:inline>
-  // Water Trail Effect - Simplified
-  class WaterTrail {
-    constructor() {
-      this.canvas = document.getElementById('waterTrailCanvas');
-      if (!this.canvas) return;
-
-      this.ctx = this.canvas.getContext('2d');
-      if (!this.ctx) return;
-
-      this.ripples = [];
-      this.maxRipples = 30;
-
-      this.resize();
-      this.setupEventListeners();
-      this.animate();
-    }
-
-    resize() {
-      const hero = document.querySelector('.hero');
-      if (!hero) return;
-
-      this.canvas.width = hero.offsetWidth;
-      this.canvas.height = hero.offsetHeight;
-    }
-
-    setupEventListeners() {
-      window.addEventListener('resize', () => this.resize());
-
-      // Mouse move event
-      this.canvas.addEventListener('mousemove', (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        this.addRipple(x, y);
-      });
-
-      // Touch move event for mobile
-      this.canvas.addEventListener('touchmove', (e) => {
-        e.preventDefault();
-        const rect = this.canvas.getBoundingClientRect();
-        const touch = e.touches[0];
-        const x = touch.clientX - rect.left;
-        const y = touch.clientY - rect.top;
-        this.addRipple(x, y);
-      });
-
-      // Click event for single ripple
-      this.canvas.addEventListener('click', (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        this.addRipple(x, y);
-      });
-    }
-
-    addRipple(x, y) {
-      this.ripples.push({
-        x: x,
-        y: y,
-        radius: 0,
-        maxRadius: 100,
-        alpha: 0.6
-      });
-
-      if (this.ripples.length > this.maxRipples) {
-        this.ripples.shift();
-      }
-    }
-
-    animate() {
-      if (!this.ctx) return;
-
-      // Clear canvas
-      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
-      // Draw expanding ripples
-      this.ripples = this.ripples.filter(ripple => {
-        ripple.radius += 2;
-        ripple.alpha -= 0.015;
-
-        if (ripple.alpha > 0 && ripple.radius < ripple.maxRadius) {
-          // Draw circle with gradient
-          this.ctx.beginPath();
-          this.ctx.arc(ripple.x, ripple.y, ripple.radius, 0, Math.PI * 2);
-
-          // Create gradient for glow effect
-          const gradient = this.ctx.createRadialGradient(
-            ripple.x, ripple.y, ripple.radius * 0.5,
-            ripple.x, ripple.y, ripple.radius
-          );
-          gradient.addColorStop(0, 'rgba(255, 255, 255, ' + ripple.alpha * 0.3 + ')');
-          gradient.addColorStop(0.5, 'rgba(255, 255, 255, ' + ripple.alpha * 0.2 + ')');
-          gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
-
-          this.ctx.fillStyle = gradient;
-          this.ctx.fill();
-
-          // Add stroke for more visible ripple
-          this.ctx.strokeStyle = 'rgba(255, 255, 255, ' + ripple.alpha * 0.5 + ')';
-          this.ctx.lineWidth = 2;
-          this.ctx.stroke();
-
-          return true;
-        }
-        return false;
-      });
-
-      requestAnimationFrame(() => this.animate());
-    }
-  }
-
-  // Initialize on DOM ready
+  // Smooth scroll for anchor links
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize water trail effect
-    new WaterTrail();
-
-    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
       anchor.addEventListener('click', function(e) {
         e.preventDefault();

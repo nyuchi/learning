@@ -44,10 +44,10 @@ const {
       article={article}
     />
 
-    <!-- Google Fonts: Playfair Display & Roboto -->
+    <!-- Google Fonts: Newsreader & Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNHM29F8W5"></script>
@@ -184,35 +184,54 @@ const {
 
     <style is:global>
       :root {
-        /* Nyuchi Africa - Zimbabwe Flag Colors (for flag strip only) */
-        --nyuchi-green: #00A651;
+        /* Zimbabwe Flag Colors - Warm Tones (for flag strip only) */
+        --nyuchi-green: #18A877;    /* Warm emerald */
         --nyuchi-yellow: #FDD116;
         --nyuchi-red: #EF3340;
-        --nyuchi-black: #000000;
+        --nyuchi-black: #2B2B2B;    /* Warm charcoal */
         --nyuchi-white: #FFFFFF;
 
-        /* Monochrome Semantic Colors */
-        --primary: #2C2C2C;
-        --primary-dark: #1A1A1A;
-        --secondary: #4B5563;
-        --accent: #6B7280;
-        --text: #2C2C2C;
-        --text-light: #6B7280;
-        --bg: #FAFAFA;
-        --bg-gray: #F5F5F5;
-        --bg-dark: #2C2C2C;
-        --border: #E5E7EB;
+        /* WARM PURPLE - PRIMARY UI COLOR */
+        --primary: #8B80E8;          /* Main color for headings, text, links, buttons, icons */
+        --primary-hover: #A199EE;    /* Hover states */
+        --primary-active: #7569D9;   /* Active/pressed states */
+        --primary-light: #EBE8FC;    /* Light backgrounds */
+        --primary-subtle: #F6F5FE;   /* Very light backgrounds */
 
-        /* Grays */
+        /* Warm Emerald - Secondary Actions */
+        --emerald: #18A877;
+        --emerald-hover: #20C088;
+        --emerald-active: #139F68;
+        --emerald-light: #D8F3EA;
+
+        /* Warm Brown - Accents */
+        --brown: #A67557;
+        --brown-hover: #BA8668;
+
+        /* Charcoal - Backgrounds & Neutrals ONLY */
+        --charcoal-bg-dark: #2B2B2B;   /* Dark backgrounds, footer */
+
+        /* Text Colors */
+        --text: #8B80E8;              /* Primary text - WARM PURPLE */
+        --text-secondary: #6B6B6B;    /* Secondary text - Charcoal */
+        --text-light: #9B9B9B;        /* Light text - Charcoal */
+
+        /* Background Colors */
+        --bg: #FAFAFA;                /* Off-white */
+        --bg-gray: #F7F7F7;           /* Light gray */
+        --bg-dark: #2B2B2B;           /* Dark background */
+        --border: #E0E0E0;            /* Borders */
+
+        /* Grays (for backgrounds and neutrals) */
         --gray-50: #FAFAFA;
-        --gray-100: #F5F5F5;
-        --gray-200: #E5E7EB;
+        --gray-100: #F7F7F7;
+        --gray-200: #E0E0E0;
         --gray-300: #D1D5DB;
-        --gray-400: #9CA3AF;
-        --gray-500: #6B7280;
+        --gray-400: #9B9B9B;
+        --gray-500: #6B6B6B;
         --gray-600: #4B5563;
         --gray-700: #374151;
-        --gray-800: #2C2C2C;
+        --gray-800: #2B2B2B;
         --gray-900: #1A1A1A;
       }
 
@@ -223,17 +242,23 @@ const {
       }
 
       body {
-        font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         line-height: 1.6;
         color: var(--text);
         background: var(--bg);
         margin-left: 8px; /* Space for Zimbabwe flag strip */
       }
 
-      /* Headings use Playfair Display */
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Playfair Display', serif;
+      /* H1, H2 use Newsreader (Editorial Serif) */
+      h1, h2 {
+        font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
         font-weight: 700;
+      }
+
+      /* H3-H6 use Inter (Sans-Serif) */
+      h3, h4, h5, h6 {
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
       }
 
       /* Zimbabwe Flag Strip - CRITICAL Brand Element */
@@ -248,10 +273,10 @@ const {
         flex-direction: column;
       }
 
-      .flag-green  { flex: 1; background: #00A651; }
+      .flag-green  { flex: 1; background: #18A877; } /* Warm emerald */
       .flag-yellow { flex: 1; background: #FDD116; }
       .flag-red    { flex: 1; background: #EF3340; }
-      .flag-black  { flex: 1; background: #000000; }
+      .flag-black  { flex: 1; background: #2B2B2B; } /* Warm charcoal */
 
       header {
         position: fixed;
@@ -346,16 +371,16 @@ const {
       }
 
       .logo-text {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Newsreader', serif;
         font-weight: 700;
         font-size: 1.25rem;
         color: var(--text);
       }
 
       .logo-subtext {
-        font-family: 'Roboto', sans-serif;
+        font-family: 'Inter', sans-serif;
         font-size: 0.75rem;
-        color: var(--text-light);
+        color: var(--text-secondary);
         font-weight: 500;
       }
 
@@ -441,16 +466,16 @@ const {
         background: var(--primary) !important;
         color: white !important;
         padding: 0.5rem 1.5rem !important;
-        border-radius: 9999px !important;
+        border-radius: 10px !important;  /* Claude-style rounded */
         font-weight: 600 !important;
         transition: transform 0.2s, box-shadow 0.2s !important;
         display: inline-block !important;
       }
 
       .btn-cta:hover {
-        background: var(--primary-dark) !important;
+        background: var(--primary-hover) !important;
         transform: translateY(-2px) !important;
-        box-shadow: 0 4px 12px rgba(44, 44, 44, 0.3) !important;
+        box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3) !important;
       }
 
       main {
@@ -472,7 +497,7 @@ const {
       }
 
       .footer-main-text {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Newsreader', serif;
         font-size: clamp(3rem, 8vw, 6rem);
         font-weight: 700;
         line-height: 1.1;
@@ -497,7 +522,7 @@ const {
       }
 
       .footer-column h3 {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Newsreader', serif;
         font-size: 1.5rem;
         margin-bottom: 1.5rem;
         color: white;
@@ -542,7 +567,7 @@ const {
       }
 
       .footer-brand-name {
-        font-family: 'Playfair Display', serif;
+        font-family: 'Newsreader', serif;
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 0.5rem;
@@ -578,18 +603,18 @@ const {
         text-align: center;
       }
 
-      /* Pill-shaped buttons - CRITICAL Brand Element */
+      /* Claude-style rounded buttons */
       .btn {
         display: inline-block;
         padding: 0.75rem 2rem;
-        border-radius: 9999px; /* MUST be pill-shaped */
+        border-radius: 10px;  /* Claude-style rounded */
         text-decoration: none;
-        font-family: 'Roboto', sans-serif;
-        font-weight: 500;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
         font-size: 1rem;
         border: none;
         cursor: pointer;
-        transition: all 0.3s ease;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       .btn-primary {
@@ -598,20 +623,21 @@ const {
       }
 
       .btn-primary:hover {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(44, 44, 44, 0.3);
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3);
       }
 
       .btn-secondary {
         background: transparent;
         color: var(--primary);
-        border: 2px solid var(--primary);
+        border: 1.5px solid var(--primary);
       }
 
       .btn-secondary:hover {
-        background: var(--primary);
-        color: white;
+        background: var(--primary-subtle);
+        color: var(--primary-active);
+        border-color: var(--primary-hover);
       }
 
       /* Mobile Menu Button */
@@ -698,7 +724,7 @@ const {
       .mobile-cta {
         background: var(--primary) !important;
         color: white !important;
-        border-radius: 9999px !important;
+        border-radius: 10px !important;  /* Claude-style rounded */
         font-weight: 600 !important;
         margin: 0.5rem 1rem !important;
         padding: 1rem 1.5rem !important;
@@ -706,7 +732,7 @@ const {
       }
 
       .mobile-cta:hover {
-        background: var(--primary-dark) !important;
+        background: var(--primary-hover) !important;
         color: white !important;
       }
 
