@@ -1,7 +1,7 @@
 # K-12 Digital Campus Framework - Design Guidelines
 
-**Last Updated**: October 2025
-**Version**: 2.0 (Bold & Mobile-Optimized)
+**Last Updated**: November 2025
+**Version**: 3.0 (Claude-Aligned: Warm, Editorial, Accessible)
 **Maintained By**: Nyuchi Learning Development Team
 
 ## Brand Identity
@@ -36,6 +36,45 @@ The goal is to promote digital learning so that students and communities across 
 
 ---
 
+## What's New in v3.0 (Claude-Aligned)
+
+This version aligns our design with Claude's warm, editorial design language while maintaining our unique African identity.
+
+### Key Changes from v2.0
+
+**Typography Migration:**
+- ❌ Old: Playfair Display → ✅ New: Newsreader (for H1, H2)
+- ❌ Old: Roboto → ✅ New: Inter (for H3-H6, body, UI)
+
+**Color System Migration:**
+- ❌ Old: Monochrome only (charcoal #2C2C2C) → ✅ New: Warm earth tones
+- ❌ Old: Green only in flag (#00A651) → ✅ New: Warm emerald throughout (#18A877)
+- ✅ New: Warm purple (#8B80E8) for platform features
+- ✅ New: Warm brown (#A67557) for accents
+
+**Button Style Migration:**
+- ❌ Old: Pill-shaped (border-radius: 9999px) → ✅ New: Rounded (border-radius: 10px)
+- ❌ Old: Uppercase text-transform → ✅ New: Normal case (Inter font)
+- ❌ Old: Aggressive hover effects → ✅ New: Subtle lift and shadow
+
+**Visual System Updates:**
+- ✅ New: Layered shadows (Claude-style soft shadows)
+- ✅ New: 4px base spacing unit (from 8px)
+- ✅ New: 12px card border-radius
+- ❌ Old: Bold, dramatic feel → ✅ New: Editorial, warm, sophisticated feel
+
+### Why Claude-Aligned?
+
+Claude's design language is:
+- **Editorial & Sophisticated**: Uses serif titles for trust and authority
+- **Warm & Approachable**: Earth tones create a friendly, inviting feel
+- **Modern & Accessible**: Clean sans-serif for readability
+- **Professional**: Soft shadows, generous spacing, thoughtful hierarchy
+
+This aligns perfectly with our educational mission and Ubuntu philosophy.
+
+---
+
 ## Visual Brand Elements
 
 ### Zimbabwe Flag Strip - CRITICAL Brand Element
@@ -45,10 +84,10 @@ The goal is to promote digital learning so that students and communities across 
 - 6px vertical strip on mobile (<768px)
 - Fixed position (z-index: 9999)
 - Four equal sections with Zimbabwe flag colors:
-  - Green: `#00A651`
+  - Warm Emerald: `#18A877` (adapted from traditional green)
   - Yellow: `#FDD116`
   - Red: `#EF3340`
-  - Black: `#000000`
+  - Warm Charcoal: `#2B2B2B` (adapted from black)
 
 **This element is NON-NEGOTIABLE and must appear on every page.**
 
@@ -64,10 +103,10 @@ The goal is to promote digital learning so that students and communities across 
   flex-direction: column;
 }
 
-.flag-green  { flex: 1; background: #00A651; }
+.flag-green  { flex: 1; background: #18A877; } /* Warm emerald */
 .flag-yellow { flex: 1; background: #FDD116; }
 .flag-red    { flex: 1; background: #EF3340; }
-.flag-black  { flex: 1; background: #000000; }
+.flag-black  { flex: 1; background: #2B2B2B; } /* Warm charcoal */
 ```
 
 ### Logo System
@@ -88,9 +127,9 @@ The Nyuchi Learning logo features a stylized open book symbol representing educa
 - `/public/favicon.svg` - Monochrome open book icon
 
 **Logo Colors:**
-- Icon: `#2C2C2C` (Primary Charcoal)
-- "Nyuchi" text: `#2C2C2C` (Playfair Display, Bold)
-- "Learning" text: `#6B7280` (Roboto, Medium)
+- Icon: `#2B2B2B` (Warm Charcoal)
+- "Nyuchi" text: `#2B2B2B` (Newsreader, Bold)
+- "Learning" text: `#6B7280` (Inter, Medium)
 
 **Usage:**
 ```astro
@@ -110,147 +149,258 @@ import Logo from '../components/Logo.astro';
 
 ---
 
-## Color Scheme - MONOCHROME ONLY
+## Color System - Warm Earth Tones (Claude-Aligned)
 
-### Primary Palette (For Content)
+### Design Philosophy
 
-**CRITICAL RULE: Green is ONLY for the Zimbabwe flag strip. DO NOT use green in titles, headings, content, or UI elements.**
+The color system uses **warm earth tones** inspired by Claude's design language, creating a sophisticated, approachable, and professional feel while maintaining African heritage through the Zimbabwe flag strip.
 
-- **Primary (Charcoal)**: `#2C2C2C` - Primary text, headings, buttons, icons
-- **Primary Dark**: `#1A1A1A` - Hover states, darker elements, CTA backgrounds
-- **Text**: `#2C2C2C` - Body text color
-- **Text Light**: `#6B7280` - Secondary text, captions
-- **Background**: `#FAFAFA` - Off-white page background (not harsh white)
-- **Background Gray**: `#F5F5F5` - Section backgrounds
-- **Background Dark**: `#2C2C2C` - Footer and dark sections
-- **Border**: `#E5E7EB` - Borders and dividers
+### Primary Palette
 
-### Zimbabwe Flag Colors (Flag Strip ONLY)
+**Warm Emerald (Primary Actions)**
+- Primary: `#18A877` - Main CTA buttons, primary links, active states, important highlights
+- Hover: `#20C088` - Bright on hover
+- Active: `#139F68` - Deep on press
+- Light: `#D8F3EA` - Soft background
+- Subtle: `#F0FAF6` - Very light background
 
-These colors are ONLY used in the Zimbabwe flag strip visual element:
-- Green: `#00A651`
-- Yellow: `#FDD116`
-- Red: `#EF3340`
-- Black: `#000000`
-- White: `#FFFFFF`
+**Warm Purple (Platform Identity)**
+- Primary: `#8B80E8` - Platform features, secondary CTAs, badges, tags, innovation markers
+- Hover: `#A199EE` - Light on hover
+- Active: `#7569D9` - Deep on press
+- Light: `#EBE8FC` - Soft background
+- Subtle: `#F6F5FE` - Very light background
 
-**DO NOT use these colors elsewhere in the UI.**
+**Warm Brown (Accents)**
+- Primary: `#A67557` - Featured content, premium badges, warm highlights, special callouts
+- Hover: `#BA8668` - Warm on hover
+- Active: `#925F47` - Deep on press
+- Light: `#F5EDE8` - Soft background
+- Subtle: `#FAF7F5` - Very light background
+
+**Charcoal (Text & Contrast)**
+- Primary: `#2B2B2B` - Primary text, headings
+- Secondary: `#6B6B6B` - Secondary text, captions
+- Tertiary: `#9B9B9B` - Disabled text
+- Border: `#E0E0E0` - Subtle borders
+- Background: `#F7F7F7` - Light backgrounds
+- White: `#FAFAFA` - Off-white backgrounds
+
+### Semantic Colors
+
+- **Success**: `#18A877` (Same as warm emerald)
+- **Warning**: `#E8A040` (Warm amber)
+- **Error**: `#E8574E` (Warm red)
+- **Info**: `#5B9FE3` (Warm blue)
+
+### CSS Variables
+
+```css
+:root {
+  /* Warm Emerald */
+  --emerald-primary: #18A877;
+  --emerald-hover: #20C088;
+  --emerald-active: #139F68;
+  --emerald-light: #D8F3EA;
+  --emerald-subtle: #F0FAF6;
+
+  /* Warm Purple */
+  --purple-primary: #8B80E8;
+  --purple-hover: #A199EE;
+  --purple-active: #7569D9;
+  --purple-light: #EBE8FC;
+  --purple-subtle: #F6F5FE;
+
+  /* Warm Brown */
+  --brown-primary: #A67557;
+  --brown-hover: #BA8668;
+  --brown-active: #925F47;
+  --brown-light: #F5EDE8;
+  --brown-subtle: #FAF7F5;
+
+  /* Charcoal */
+  --charcoal-primary: #2B2B2B;
+  --charcoal-secondary: #6B6B6B;
+  --charcoal-tertiary: #9B9B9B;
+  --charcoal-border: #E0E0E0;
+  --charcoal-bg: #F7F7F7;
+  --charcoal-white: #FAFAFA;
+
+  /* Semantic */
+  --success: #18A877;
+  --warning: #E8A040;
+  --error: #E8574E;
+  --info: #5B9FE3;
+}
+```
 
 ---
 
-## Typography
+## Typography - Editorial & Warm (Claude-Aligned)
 
 ### Font Families
 
-- **Headings (h1-h6)**: Playfair Display (serif)
-  - Weights: 400, 600, 700, 800, 900
-  - Google Fonts: `Playfair Display:wght@400;600;700;800;900`
-  - Professional, elegant, educational feel
-  - **Bold Design**: Use weight 800-900 for maximum impact
+**Newsreader (Editorial Serif for Titles)**
+- Usage: H1, H2, hero sections, major headlines
+- Weights: 400, 600, 700
+- Google Fonts: `Newsreader:wght@400;600;700`
+- Feel: Editorial, sophisticated, trusted (like Claude's marketing)
+- Backup: Georgia, 'Times New Roman', serif
 
-- **Body Text**: Roboto (sans-serif)
-  - Weights: 300, 400, 500, 700
-  - Google Fonts: `Roboto:wght@300;400;500;700`
-  - Clean, readable, modern
+**Inter (Sans-Serif for Body & UI)**
+- Usage: H3-H6, body text, UI elements, buttons, navigation
+- Weights: 400, 500, 600, 700
+- Google Fonts: `Inter:wght@400;500;600;700`
+- Feel: Clean, modern, accessible (like Claude's interface)
+- Backup: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
 
 ### Font Loading
 
 ```html
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 ```
 
-### Typography Scale - BOLD DESIGN
+### Typography Scale - Editorial Design
 
-**Hero Titles:**
-```css
-.hero-title {
-  font-size: clamp(3rem, 10vw, 7rem);
-  font-weight: 900;
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-}
-```
+**Desktop:**
 
-**Section Titles:**
 ```css
-.section-title {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 900;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  line-height: 1;
-  position: relative;
-  padding-bottom: 2rem;
+/* H1 - Hero Title */
+h1 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--charcoal-primary);
 }
 
-/* Underline accent */
-.section-title::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px; /* 80px mobile, 60px extra-small */
-  height: 6px; /* 4px mobile */
-  background: var(--primary);
+/* H2 - Section Title */
+h2 {
+  font-family: 'Newsreader', Georgia, serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--charcoal-primary);
 }
-```
 
-**Card/Feature Titles:**
-```css
-.feature-card h3 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  text-transform: uppercase;
+/* H3 - Subsection */
+h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.3;
   letter-spacing: -0.01em;
+  color: var(--charcoal-primary);
+}
+
+/* H4 - Component Title */
+h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--charcoal-primary);
+}
+
+/* Body Large */
+.body-large {
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--charcoal-primary);
+}
+
+/* Body (Default) */
+body, p {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--charcoal-primary);
+}
+
+/* Body Small */
+.body-small {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--charcoal-secondary);
+}
+```
+
+**Mobile:**
+
+```css
+@media (max-width: 768px) {
+  h1 { font-size: 40px; }
+  h2 { font-size: 32px; }
+  h3 { font-size: 24px; }
+  h4 { font-size: 18px; }
+  body, p { font-size: 16px; } /* Keep readable */
 }
 ```
 
 **Responsive Typography:**
-- Use `clamp()` for fluid sizing across breakpoints
-- Example: `clamp(1.5rem, 6vw, 2rem)` scales from 1.5rem to 2rem based on viewport width
+- Use `clamp()` for fluid sizing when appropriate
+- Example: `clamp(2.5rem, 5vw, 3.5rem)` for smooth scaling
+- Maintain minimum 16px for body text (readability on mobile)
 
 ---
 
-## Buttons - CRITICAL Requirements
+## Buttons - Claude-Style Rounded Buttons
 
-### Pill-Shaped Buttons (NON-NEGOTIABLE)
+### Button Style Philosophy
 
-**ALL buttons MUST be pill-shaped:**
-```css
-border-radius: 9999px; /* REQUIRED - Creates perfect pill shape */
-```
+**Rounded buttons (10px border-radius)** - Not pills, not sharp. The Claude-aligned approach uses moderately rounded corners that are modern and friendly without being overly playful.
 
-**NEVER use:**
-- Square buttons
-- Sharp corners
-- Small border-radius values (like 0.5rem, 8px, etc.)
-
-### Button Styles - BOLD DESIGN
+### Button Styles
 
 **Primary Button:**
 ```css
 .btn-primary {
-  background: var(--primary);      /* Charcoal (or white on dark backgrounds) */
-  color: white;                    /* (or charcoal on light backgrounds) */
-  border-radius: 9999px;           /* CRITICAL */
-  padding: 1.25rem 3rem;           /* Larger for bold design */
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  transition: transform 0.2s, box-shadow 0.3s;
-  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.3); /* For white buttons */
-  min-height: 48px;                /* Touch accessibility */
+  /* Colors */
+  background: var(--emerald-primary);  /* #18A877 */
+  color: white;
+
+  /* Typography */
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+
+  /* Spacing */
+  padding: 12px 24px;
+  min-height: 48px;
+
+  /* Shape - Claude style */
+  border-radius: 10px;   /* Slightly rounded, not too much */
+  border: none;
+
+  /* Interaction */
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary:hover {
-  transform: translateY(-4px) scale(1.02);
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.5);
+  background: var(--emerald-hover);  /* #20C088 */
+  transform: translateY(-1px);  /* Subtle lift */
+  box-shadow: 0 4px 12px rgba(24, 168, 119, 0.2);
+}
+
+.btn-primary:active {
+  background: var(--emerald-active);  /* #139F68 */
+  transform: translateY(0);
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--emerald-light);  /* #D8F3EA */
+  outline-offset: 2px;
 }
 ```
 
@@ -258,21 +408,78 @@ border-radius: 9999px; /* REQUIRED - Creates perfect pill shape */
 ```css
 .btn-secondary {
   background: transparent;
-  color: var(--primary);            /* Charcoal (or white on dark backgrounds) */
-  border: 3px solid var(--primary); /* Thicker border for bold design */
-  border-radius: 9999px;            /* CRITICAL */
-  padding: 1.25rem 3rem;
-  font-weight: 700;
-  font-size: 1.1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  color: var(--emerald-primary);
+  padding: 12px 24px;
+  border-radius: 10px;
+  border: 1.5px solid var(--emerald-primary);
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
   min-height: 48px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
-  background: var(--primary);       /* Fill on hover */
-  color: white;
-  border-color: var(--primary);
+  background: var(--emerald-subtle);  /* #F0FAF6 */
+  border-color: var(--emerald-hover);
+  color: var(--emerald-active);
+}
+
+.btn-secondary:focus-visible {
+  outline: 3px solid var(--emerald-light);
+  outline-offset: 2px;
+}
+```
+
+**Tertiary Button (Text Only):**
+```css
+.btn-tertiary {
+  background: transparent;
+  color: var(--emerald-primary);
+  padding: 8px 12px;
+  border: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-tertiary:hover {
+  color: var(--emerald-hover);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+```
+
+### Button Sizes
+
+```css
+/* Large */
+.btn-lg {
+  padding: 16px 32px;
+  font-size: 18px;
+  min-height: 52px;
+  border-radius: 12px;
+}
+
+/* Medium (default) */
+.btn-md {
+  padding: 12px 24px;
+  font-size: 16px;
+  min-height: 48px;
+  border-radius: 10px;
+}
+
+/* Small */
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 14px;
+  min-height: 36px;
+  border-radius: 8px;
 }
 ```
 
@@ -281,16 +488,7 @@ border-radius: 9999px; /* REQUIRED - Creates perfect pill shape */
 ```css
 @media (max-width: 768px) {
   .btn {
-    padding: 1rem 2rem;
-    font-size: 0.95rem;
     width: 100%; /* Full width on mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .btn {
-    padding: 0.875rem 1.75rem;
-    font-size: 0.9rem;
   }
 }
 ```
@@ -307,7 +505,7 @@ border-radius: 9999px; /* REQUIRED - Creates perfect pill shape */
 - Use **Lucide icons** from `lucide-astro` package
 - Icon size: 24-48px desktop, 40px mobile, 32-56px for feature icons
 - Stroke width: 1.5-2 for consistency
-- Color: `var(--primary)` (charcoal) for content icons
+- Color: `var(--emerald-primary)` for primary icons, `var(--charcoal-primary)` for neutral icons
 
 **Example Usage:**
 ```astro
@@ -341,11 +539,203 @@ import { BookOpen, Globe, Users, Menu, X } from 'lucide-astro';
 
 ---
 
+## Spacing System - Generous & Comfortable
+
+### Base Unit: 4px
+
+The Claude-aligned spacing system uses a 4px base unit (instead of 8px) for more granular control and better visual hierarchy.
+
+```css
+:root {
+  --space-1: 4px;    /* Tight */
+  --space-2: 8px;    /* Small */
+  --space-3: 12px;   /* Medium */
+  --space-4: 16px;   /* Default */
+  --space-5: 20px;   /* Comfortable */
+  --space-6: 24px;   /* Large */
+  --space-8: 32px;   /* XL */
+  --space-10: 40px;  /* 2XL */
+  --space-12: 48px;  /* 3XL */
+  --space-16: 64px;  /* 4XL */
+  --space-20: 80px;  /* 5XL */
+  --space-24: 96px;  /* Hero */
+}
+```
+
+### Component Spacing
+
+```css
+/* Cards */
+.card {
+  padding: 24px;              /* Desktop */
+  gap: 16px;                  /* Internal elements */
+  margin-bottom: 24px;        /* Between cards */
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 20px;            /* Mobile */
+  }
+}
+
+/* Sections */
+.section {
+  padding: 80px 32px;         /* Desktop */
+  margin-bottom: 80px;        /* Between sections */
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 48px 20px;       /* Mobile */
+  }
+}
+
+/* Containers */
+.container {
+  max-width: 1200px;
+  padding: 0 32px;            /* Desktop */
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;          /* Mobile */
+  }
+}
+```
+
+---
+
+## Shadow System - Soft & Layered
+
+### Claude-Style Shadows
+
+The shadow system uses **layered shadows** (two values) to create more natural depth than single shadows. All shadows are soft and subtle.
+
+```css
+:root {
+  /* Extra Small - Subtle elevation */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+
+  /* Small - Default cards */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04),
+               0 1px 2px rgba(0, 0, 0, 0.06);
+
+  /* Medium - Hover states */
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06),
+               0 2px 4px rgba(0, 0, 0, 0.08);
+
+  /* Large - Dropdowns, modals */
+  --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.08),
+               0 4px 8px rgba(0, 0, 0, 0.06);
+
+  /* Extra Large - Popovers */
+  --shadow-xl: 0 12px 24px rgba(0, 0, 0, 0.1),
+               0 8px 12px rgba(0, 0, 0, 0.08);
+}
+```
+
+### Usage
+
+```css
+/* Default card */
+.card {
+  box-shadow: var(--shadow-sm);
+}
+
+/* Card hover */
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+/* Dropdown menu */
+.dropdown {
+  box-shadow: var(--shadow-lg);
+}
+```
+
+---
+
+## Card System - Soft & Inviting
+
+### Standard Card
+
+```css
+.card {
+  /* Layout */
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+
+  /* Border - very subtle */
+  border: 1px solid #F0F0F0;
+
+  /* Shadow - soft and natural */
+  box-shadow: var(--shadow-sm);
+
+  /* Interaction */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: #E0E0E0;
+}
+```
+
+### Feature Card (with Icon)
+
+```css
+.card-feature {
+  background: white;
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  border: 1px solid #F0F0F0;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.card-feature:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--emerald-primary);
+}
+
+.card-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--emerald-primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-size: 28px;
+  color: white;
+}
+```
+
+### Accent Card (Emerald Border)
+
+```css
+.card-accent {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  border-left: 4px solid var(--emerald-primary);  /* Subtle accent */
+  box-shadow: var(--shadow-sm);
+}
+```
+
+---
+
 ## Navigation
 
 ### Desktop Navigation
 
-Standard horizontal navigation with pill-shaped hover states.
+Standard horizontal navigation with rounded hover states (10px border-radius, matching button style).
 
 ### Mobile Navigation - CRITICAL
 
@@ -456,12 +846,12 @@ This philosophy should be woven throughout the content:
 ### Content Placement
 
 **Homepage:**
-- Hero: Bold framework value proposition + open/shareable messaging
+- Hero: Editorial framework value proposition + open/shareable messaging
 - Features: Practical benefits for schools (6 core principles)
-- Stats: Impact and data (inverted charcoal background)
-- Benefits: What schools get (6 benefit cards)
+- Stats: Impact and data (warm background with subtle emerald accents)
+- Benefits: What schools get (6 benefit cards with soft shadows)
 - Implementation: 3-year roadmap
-- CTA: Dramatic finale with Ubuntu messaging
+- CTA: Warm, inviting finale with Ubuntu messaging
 - Credit: "Created by Nyuchi Learning, a division of Nyuchi Africa • Built by educators, for education"
 
 **Frameworks Overview Page:**
@@ -532,10 +922,11 @@ Given Africa's mobile-first reality:
 - 6px flag strip (from 8px desktop)
 
 **Typography:**
-- Hero titles: clamp(2rem, 10vw, 3rem) mobile
-- Section titles: clamp(2rem, 8vw, 3rem) mobile
-- Underlines: 4px mobile (from 6px desktop)
-- All uppercase preserved on mobile
+- H1 titles: 40px mobile (from 56px desktop)
+- H2 titles: 32px mobile (from 40px desktop)
+- H3 titles: 24px mobile (from 28px desktop)
+- Body text: Minimum 16px for readability
+- Use clamp() for fluid responsive scaling
 
 **Layouts:**
 - All grids: single column below 768px
@@ -580,7 +971,7 @@ Given Africa's mobile-first reality:
 │   ├── layouts/
 │   │   └── BaseLayout.astro       # Zimbabwe flag strip, navigation, footer
 │   ├── pages/
-│   │   ├── index.astro            # Homepage (bold design)
+│   │   ├── index.astro            # Homepage (Claude-aligned design)
 │   │   ├── frameworks.astro       # Frameworks overview
 │   │   ├── framework.astro        # K-12 Digital Campus Framework
 │   │   ├── support-framework.astro # K-12 Support Process Framework
@@ -608,12 +999,14 @@ Given Africa's mobile-first reality:
 
 ### DO:
 ✅ Use Zimbabwe flag strip on every page (8px desktop, 6px mobile)
-✅ Use pill-shaped buttons exclusively (border-radius: 9999px)
+✅ Use rounded buttons (border-radius: 10px for medium, 12px for large)
 ✅ Use Lucide icons for all visual icons
-✅ Use monochrome color scheme (charcoal & off-white)
-✅ Use Playfair Display for headings (weight 800-900 for bold design)
-✅ Use Roboto for body text
-✅ Use uppercase for hero titles and section headings (bold design)
+✅ Use warm color system (emerald, purple, brown, charcoal)
+✅ Use Newsreader for H1, H2 (editorial serif)
+✅ Use Inter for H3-H6, body, UI (clean sans-serif)
+✅ Use layered shadows (Claude-style soft shadows)
+✅ Use 4px base spacing unit
+✅ Use 12px border-radius for cards
 ✅ Use clamp() for responsive typography
 ✅ Use hamburger menu on mobile (<768px)
 ✅ Use horizontal scrolling for wide content on mobile
@@ -626,21 +1019,29 @@ Given Africa's mobile-first reality:
 ✅ Mention multilingual support (African languages + English, French, Chinese)
 ✅ Emphasize Ubuntu philosophy
 ✅ Design mobile-first
+✅ Use warm emerald (#18A877) for primary actions
+✅ Use warm purple (#8B80E8) for platform features
+✅ Use warm brown (#A67557) for accents
+✅ Create editorial, sophisticated feel (not aggressive/bold)
 
 ### DON'T:
-❌ Use green/yellow/red colors outside flag strip
-❌ Use square or rounded (non-pill) buttons
+❌ Use pill-shaped buttons (9999px border-radius)
+❌ Use square buttons (0px border-radius)
 ❌ Use emojis anywhere
-❌ Use harsh black (#000) or pure white (#FFF) for content
+❌ Use harsh black (#000) or pure white (#FFF) for backgrounds
+❌ Use old fonts (Playfair Display, Roboto - these are deprecated)
+❌ Use single, sharp shadows
+❌ Use 8px spacing base (use 4px instead)
+❌ Use uppercase text-transform everywhere (only when appropriate)
 ❌ Make Nyuchi branding the hero (framework is the hero)
 ❌ Hide that the framework is open and shareable
 ❌ Use "Ubuntu" as a brand name (philosophy only)
 ❌ Ignore mobile experience
-❌ Use fonts other than Playfair Display and Roboto
+❌ Use fonts other than Newsreader and Inter
 ❌ Use small touch targets (<44px)
 ❌ Allow content to wrap/overflow on mobile (use horizontal scroll)
-❌ Use font weights below 700 for bold headings
-❌ Forget uppercase styling for major headings
+❌ Use aggressive, overly bold design
+❌ Use cold colors (old green #00A651, old purple #7c73e6)
 
 ---
 
@@ -648,7 +1049,8 @@ Given Africa's mobile-first reality:
 
 - **Framework**: Astro 4.15+
 - **Icons**: lucide-astro
-- **Typography**: Google Fonts (Playfair Display, Roboto)
+- **Typography**: Google Fonts (Newsreader, Inter)
+- **Design Language**: Claude-aligned (warm, editorial, accessible)
 - **Deployment**: Vercel
 - **Analytics**: Google Analytics (G-BNHM29F8W5)
 - **Sitemap**: @astrojs/sitemap (automatic generation)
@@ -692,6 +1094,8 @@ The framework is designed to support multiple languages to serve diverse African
 
 ### Tone
 - **Professional but accessible**: Educational authority without being intimidating
+- **Editorial and sophisticated**: Like reading a well-crafted article, not a sales pitch
+- **Warm and approachable**: Friendly, inviting, human
 - **Educational, not promotional**: Focus on value and implementation
 - **Practical and actionable**: Concrete steps, not vague promises
 - **Community-centered**: Ubuntu philosophy throughout
@@ -703,7 +1107,7 @@ The framework is designed to support multiple languages to serve diverse African
 - **Evidence-based**: Data, examples, case studies
 - **Solutions-oriented**: Focus on what works
 - **Realistic about challenges, optimistic about outcomes**
-- **Bold and confident**: Matches the visual design
+- **Calm and confident**: Matches the editorial, warm visual design (not aggressive)
 
 ### Writing Guidelines
 - Use active voice
@@ -806,7 +1210,17 @@ This document should be updated whenever:
 
 ### Version History
 
-**Version 2.0** (October 2025) - Current
+**Version 3.0** (November 2025) - Current (Claude-Aligned)
+- **Typography**: Newsreader for H1/H2, Inter for H3-H6/body/UI
+- **Colors**: Warm earth tones (emerald, purple, brown, charcoal)
+- **Buttons**: Rounded (10px) instead of pill-shaped
+- **Shadows**: Layered, soft shadows (Claude-style)
+- **Spacing**: 4px base unit (more granular)
+- **Design philosophy**: Editorial, warm, accessible (like Claude)
+- **Cards**: 12px border-radius, soft shadows
+- **Overall feel**: Sophisticated, approachable, professional
+
+**Version 2.0** (October 2025)
 - Bold design with dramatic typography
 - Comprehensive mobile optimization
 - Hamburger menu navigation
@@ -814,8 +1228,10 @@ This document should be updated whenever:
 - Enhanced accessibility (WCAG 2.1 AA)
 - Horizontal scrolling for wide content
 - Uppercase styling for major headings
-- Larger, more impactful buttons
+- Pill-shaped buttons (9999px)
 - Section title underlines
+- Playfair Display + Roboto fonts
+- Monochrome color scheme
 
 **Version 1.0** (October 2025)
 - Initial design guidelines
