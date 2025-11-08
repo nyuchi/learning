@@ -1,91 +1,92 @@
 ## Summary
 
-This PR transforms the African Education Framework site with a bold, visually striking design that stands out while maintaining educational professionalism and Nyuchi brand guidelines.
+This PR migrates the design system from v2.0 (bold, dramatic) to v4.1 (Claude-aligned: warm, editorial, sophisticated).
 
-## Key Changes
+### Key Changes
 
-### Photography Integration
-- Homepage hero: Added background image featuring African students and technology with overlay for text readability
-- Stats section: Created image grid showcasing African students learning with technology (3 images)
-- About page: Added hero background featuring educational collaboration
-- Framework page: Added hero background showcasing innovation in African education
-- Founder story: Added African landscape imagery to enhance storytelling
-- All images sourced from Unsplash with proper overlays and gradients
+**Typography Migration:**
+- ❌ Old: Playfair Display + Roboto → ✅ New: Newsreader (H1/H2) + Inter (H3-H6/body/UI)
+- Editorial serif for major titles, clean sans-serif for body and UI
 
-### Branding Updates
-- Updated all references from Nyuchi Africa to Nyuchi Learning
-- Added "A division of Nyuchi Africa" context throughout
-- Emphasized open, shareable framework nature in hero, benefits, and mission sections
-- Added multilingual support information (African languages + English, French, Chinese)
-- Updated CLAUDE.md with new brand guidelines
+**Color System Migration:**
+- ❌ Old: Charcoal (#2C2C2C) as primary → ✅ New: Warm purple (#8B80E8) as primary UI color
+- ✅ New: Charcoal (#2B2B2B) ONLY for backgrounds and dark sections
+- ✅ New: Warm emerald (#18A877), warm brown (#A67557) for accents
 
-### Icon System Cleanup
-- Replaced ALL emojis in framework.astro with Lucide icons:
-  - Globe (Universal Access)
-  - BookOpen (Digital Literacy)
-  - Smartphone (Mobile-Centric)
-  - DollarSign (Cost Efficiency)
-  - BarChart (Data-Driven)
-  - Users (Community-Centered)
-- Added proper icon styling with hover effects and transitions
-- Maintained brand consistency with monochrome color scheme
+**Button Style Migration:**
+- ❌ Old: Pill-shaped (border-radius: 9999px) → ✅ New: Claude-style rounded (border-radius: 10px)
+- Subtle hover effects with soft shadows
 
-### Bold Footer Redesign
-- Implemented dramatic hero section with large-scale typography (clamp: 3rem to 6rem)
-- Created three-column grid layout with Framework links, Resources, and Mission
-- Added sophisticated multi-tier structure (hero, grid, bottom)
-- Used Playfair Display for headings to create visual impact
-- Generous 6rem padding for dramatic white space
+**Hero Section Redesign:**
+- ❌ Removed: Background images, water trail animations, scroll indicators
+- ✅ New: Minimalist design with clean gradient background
+- ✅ Optimized spacing for 13" laptop screens
 
-### Enhanced Typography
-- Hero title: Upgraded to responsive clamp(2.5rem, 8vw, 5rem)
-- Section titles: Increased to clamp(2rem, 6vw, 3.5rem)
-- Added tighter letter-spacing (-0.02em for hero, -0.01em for sections)
-- Improved line-height and readability throughout
-- Responsive font sizing for better mobile experience
+**Logo System Updates:**
+- Updated all logo files (favicon, main, horizontal, compact) to use new branding
+- Icon colors: \`#2C2C2C\` → \`#2B2B2B\` (warm charcoal)
+- "Nyuchi" text font: \`Playfair Display\` → \`Newsreader\`
+- "Learning" text font: \`Roboto\` → \`Inter\`
+- All logos now consistently use the open book icon design
 
-### Sophisticated Spacing System
-- Section padding: Increased from 4rem to 6rem throughout site
-- Grid gaps: Expanded from 2rem to 3rem for better visual breathing room
-- Added dramatic white space for cleaner, more modern aesthetic
-- Improved margin-top on footer (4rem to 6rem)
+**Spacing & Layout Optimization:**
+- Container max-width: 1200px → 1100px (optimized for 13" screens)
+- Section padding: 8rem → 5rem (better spacing for smaller screens)
+- Hero title size: reduced for better readability
+- Fixed header padding issues (added 120px top padding to hero)
 
-## Brand Guidelines Maintained
+### Files Changed
 
-- Zimbabwe flag strip on every page
-- Pill-shaped buttons exclusively
-- Lucide icons only (NO emojis)
-- Monochrome color scheme (charcoal and off-white)
-- Playfair Display for headings
-- Roboto for body text
-- Mobile-first responsive design
-- Ubuntu philosophy woven throughout
+**Design Guidelines:**
+- **CLAUDE.md**: Updated to v3.0 design guidelines with comprehensive migration guide
 
-## Files Changed
+**Layout & Components:**
+- **BaseLayout.astro**: New fonts, color variables, rounded buttons, warm flag colors
+- **index.astro**: Minimalist hero, optimized spacing, updated buttons
 
-### Modified:
-- src/layouts/BaseLayout.astro - Footer redesign, branding updates
-- src/pages/index.astro - Photography, typography, spacing enhancements
-- src/pages/about.astro - Photography, branding updates, founder imagery
-- src/pages/framework.astro - Icon system, photography, monochrome color scheme
-- CLAUDE.md - Updated brand guidelines documentation
+**Logo System:**
+- **public/favicon.svg**: Updated to warm charcoal (#2B2B2B)
+- **public/nyuchi-learning-logo-main.svg**: New fonts (Newsreader/Inter) and colors
+- **public/nyuchi-learning-logo-horizontal.svg**: New fonts and colors
+- **public/nyuchi-learning-logo-compact.svg**: New fonts and colors
 
-## Visual Impact
+### Design Philosophy
 
-The site now has:
-- Bold, dramatic typography that commands attention
-- Professional photography showcasing African education and innovation
-- Generous white space for modern, clean aesthetic
-- Enhanced visual hierarchy guiding users through content
-- Sophisticated footer serving as a signature design element
+The new design is:
+- **Editorial & Sophisticated**: Uses serif titles for trust and authority
+- **Warm & Approachable**: Earth tones create a friendly, inviting feel
+- **Modern & Accessible**: Clean sans-serif for readability
+- **Professional**: Soft shadows, generous spacing, thoughtful hierarchy
 
-## Testing Checklist
+### Commits
 
-- Desktop rendering (1920px, 1440px, 1024px)
-- Mobile rendering (768px, 375px)
-- Typography scales properly on all screen sizes
-- Images load correctly with proper overlays
-- Footer layout works on mobile (columns stack)
-- All links in footer work correctly
-- Icons render properly in framework page
-- Hover effects work on cards and images
+1. \`Update branding to v4.1 (Claude-Aligned Design)\` - Main design system migration
+2. \`Update logo system with v4.1 branding\` - Logo updates with new fonts and colors
+
+## Test Plan
+
+**Typography:**
+- [ ] Verify Newsreader font loads correctly for H1/H2 titles
+- [ ] Verify Inter font loads correctly for H3-H6/body/UI
+- [ ] Check logos display correctly with new fonts
+
+**Colors:**
+- [ ] Check warm purple (#8B80E8) is used for headings, text, links, buttons, icons
+- [ ] Check charcoal (#2B2B2B) is only used for backgrounds/footer
+- [ ] Verify Zimbabwe flag strip uses warm colors
+- [ ] Verify all logos use warm charcoal (#2B2B2B)
+
+**Layout:**
+- [ ] Verify all buttons have 10px border-radius (not pill-shaped)
+- [ ] Test hero section is minimalist without images
+- [ ] Verify spacing works well on 13" laptop screens (1280-1440px width)
+- [ ] Test responsive design on mobile (<768px)
+- [ ] Verify all touch targets are 44x44px minimum
+- [ ] Test button hover states (subtle lift + shadow)
+
+**Logo System:**
+- [ ] Verify favicon displays correctly in browser tab
+- [ ] Check main logo (vertical layout) renders properly
+- [ ] Check horizontal logo displays correctly in header
+- [ ] Check compact logo works for small spaces
+- [ ] Verify all logo variants use open book icon consistently
