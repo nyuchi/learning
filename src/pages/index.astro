@@ -321,7 +321,7 @@ const latestPosts = [
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, var(--primary-subtle) 0%, #FAFAFA 100%);
+    background: linear-gradient(135deg, var(--brown) 0%, var(--brown-dark) 100%);
     color: var(--text);
     text-align: center;
     padding: 120px 2rem 4rem;  /* Top padding to clear fixed header */
@@ -460,7 +460,7 @@ const latestPosts = [
 
   .features {
     padding: 5rem 1.5rem;  /* Optimized for 13" screens */
-    background: white;
+    background: var(--bg);
   }
 
   .features .container {
@@ -475,7 +475,7 @@ const latestPosts = [
     transform: translateX(-50%);
     width: 200px;
     height: 8px;
-    background: var(--primary);
+    background: var(--emerald);
   }
 
   .section-title {
@@ -496,22 +496,22 @@ const latestPosts = [
   }
 
   .feature-card {
-    background: var(--bg-gray);
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    border-left: 6px solid var(--primary);
+    border-left: 6px solid var(--emerald);
   }
 
   .feature-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
-    background: white;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    background: var(--charcoal-lighter);
   }
 
   .feature-icon {
-    color: var(--primary);
+    color: var(--emerald);
     margin-bottom: 1.5rem;
   }
 
@@ -528,20 +528,21 @@ const latestPosts = [
     font-size: 1.05rem;
     line-height: 1.7;
     font-weight: 400;
+    color: var(--text-secondary);
   }
 
   .stats {
     padding: 0;
-    background: var(--primary);
+    background: var(--bg-brown);
   }
 
   .stats-background {
     min-height: 80vh;
     padding: 8rem 1rem;
-    background: var(--primary);
+    background: var(--bg-brown);
     color: white;
-    border-top: 8px solid white;
-    border-bottom: 8px solid white;
+    border-top: 8px solid var(--brown-light);
+    border-bottom: 8px solid var(--brown-light);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -637,7 +638,7 @@ const latestPosts = [
 
   .benefits-section {
     padding: 5rem 1.5rem;  /* Optimized for 13" screens */
-    background: white;
+    background: var(--bg);
   }
 
   .benefits-section .container {
@@ -649,7 +650,7 @@ const latestPosts = [
     max-width: 850px;
     margin: 0 auto 3rem;
     font-size: 1.3rem;
-    color: var(--text);
+    color: var(--text-secondary);
     line-height: 1.8;
     font-weight: 400;
   }
@@ -662,22 +663,22 @@ const latestPosts = [
   }
 
   .benefit-card {
-    background: var(--bg-gray);
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 1rem;
-    border-left: 8px solid var(--primary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 8px solid var(--emerald);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   }
 
   .benefit-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    background: white;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    background: var(--charcoal-lighter);
   }
 
   .benefit-icon {
-    color: var(--primary);
+    color: var(--emerald);
     margin-bottom: 1.5rem;
   }
 
@@ -692,14 +693,14 @@ const latestPosts = [
 
   .benefit-card p {
     line-height: 1.8;
-    color: var(--text);
+    color: var(--text-secondary);
     font-size: 1.05rem;
   }
 
   .frameworks-showcase {
     min-height: 100vh;
     padding: 8rem 1rem;
-    background: var(--bg-gray);
+    background: var(--bg);
     position: relative;
     display: flex;
     align-items: center;
@@ -717,7 +718,7 @@ const latestPosts = [
     transform: translateX(-50%);
     width: 200px;
     height: 8px;
-    background: var(--primary);
+    background: var(--emerald);
   }
 
   .frameworks-grid {
@@ -728,11 +729,11 @@ const latestPosts = [
   }
 
   .framework-showcase-card {
-    background: white;
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 1rem;
-    border-top: 6px solid var(--primary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-top: 6px solid var(--emerald);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s;
     display: flex;
     flex-direction: column;
@@ -741,12 +742,12 @@ const latestPosts = [
 
   .framework-showcase-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   }
 
   .framework-showcase-card h3 {
     font-size: 1.75rem;
-    color: var(--primary);
+    color: var(--emerald);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -0.01em;
@@ -755,7 +756,7 @@ const latestPosts = [
 
   .framework-showcase-card p {
     line-height: 1.8;
-    color: var(--text);
+    color: var(--text-secondary);
     font-size: 1.05rem;
     margin: 0;
     flex: 1;
@@ -769,7 +770,7 @@ const latestPosts = [
   .blog-insights {
     min-height: 100vh;
     padding: 8rem 1rem;
-    background: white;
+    background: var(--bg);
     position: relative;
     display: flex;
     align-items: center;
@@ -787,7 +788,7 @@ const latestPosts = [
     transform: translateX(-50%);
     width: 200px;
     height: 8px;
-    background: var(--primary);
+    background: var(--emerald);
   }
 
   .blog-grid {
@@ -798,12 +799,12 @@ const latestPosts = [
   }
 
   .blog-card {
-    background: var(--bg-gray);
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-    border-left: 6px solid var(--primary);
+    border-left: 6px solid var(--emerald);
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -811,8 +812,8 @@ const latestPosts = [
 
   .blog-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
-    background: white;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    background: var(--charcoal-lighter);
   }
 
   .blog-card-header {
@@ -824,12 +825,12 @@ const latestPosts = [
   }
 
   .blog-icon {
-    color: var(--primary);
+    color: var(--emerald);
   }
 
   .blog-date {
     font-size: 0.9rem;
-    color: var(--text-light);
+    color: var(--text-muted);
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.5px;
@@ -847,7 +848,7 @@ const latestPosts = [
 
   .blog-excerpt {
     line-height: 1.8;
-    color: var(--text);
+    color: var(--text-secondary);
     font-size: 1.05rem;
     margin: 0;
     flex: 1;
@@ -857,7 +858,7 @@ const latestPosts = [
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--primary);
+    color: var(--emerald);
     text-decoration: none;
     font-weight: 700;
     font-size: 1.05rem;
@@ -868,7 +869,7 @@ const latestPosts = [
 
   .blog-link:hover {
     gap: 1rem;
-    color: var(--primary-dark);
+    color: var(--emerald-hover);
   }
 
   .blog-cta {
@@ -879,7 +880,7 @@ const latestPosts = [
   .implementation {
     min-height: 100vh;
     padding: 8rem 1rem;
-    background: var(--bg-gray);
+    background: var(--bg);
     position: relative;
     display: flex;
     align-items: center;
@@ -897,7 +898,7 @@ const latestPosts = [
     transform: translateX(-50%);
     width: 200px;
     height: 8px;
-    background: var(--primary);
+    background: var(--emerald);
   }
 
   .roadmap {
@@ -907,22 +908,22 @@ const latestPosts = [
   }
 
   .roadmap-item {
-    background: white;
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 1rem;
-    border-left: 8px solid var(--primary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-left: 8px solid var(--emerald);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s;
   }
 
   .roadmap-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   }
 
   .roadmap-year {
     display: inline-block;
-    background: var(--primary);
+    background: var(--emerald);
     color: white;
     padding: 0.75rem 2rem;
     border-radius: 9999px; /* CRITICAL: Pill-shaped */
@@ -945,15 +946,16 @@ const latestPosts = [
   .roadmap-item p {
     font-size: 1.05rem;
     line-height: 1.7;
+    color: var(--text-secondary);
   }
 
   .cta-section {
     min-height: 100vh;
     padding: 10rem 2rem;
     text-align: center;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, var(--primary-dark) 100%);
+    background: linear-gradient(135deg, var(--charcoal) 0%, var(--brown-dark) 100%);
     color: white;
-    border-top: 10px solid white;
+    border-top: 10px solid var(--brown-light);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -1316,7 +1318,7 @@ const latestPosts = [
   .community-section {
     min-height: 100vh;
     padding: 8rem 1rem;
-    background: var(--bg-gray);
+    background: var(--bg);
     position: relative;
     display: flex;
     align-items: center;
@@ -1334,7 +1336,7 @@ const latestPosts = [
     transform: translateX(-50%);
     width: 200px;
     height: 8px;
-    background: var(--primary);
+    background: var(--emerald);
   }
 
   .community-grid {
@@ -1345,11 +1347,11 @@ const latestPosts = [
   }
 
   .community-card {
-    background: white;
+    background: var(--bg-card);
     padding: 2.5rem;
     border-radius: 1rem;
-    border-top: 6px solid var(--primary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border-top: 6px solid var(--emerald);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s, box-shadow 0.3s;
     text-decoration: none;
     color: inherit;
@@ -1362,17 +1364,17 @@ const latestPosts = [
 
   .community-card:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
   }
 
   .community-icon {
-    color: var(--primary);
+    color: var(--emerald);
     margin-bottom: 0.5rem;
   }
 
   .community-card h3 {
     font-size: 1.5rem;
-    color: var(--primary);
+    color: var(--emerald);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: -0.01em;
@@ -1381,7 +1383,7 @@ const latestPosts = [
 
   .community-card p {
     line-height: 1.8;
-    color: var(--text);
+    color: var(--text-secondary);
     font-size: 1rem;
     flex: 1;
     margin: 0;
