@@ -1,8 +1,1041 @@
-# K-12 Digital Campus Framework - Design Guidelines
+# K-12 Digital Campus Framework - Technical & Design Guidelines
 
 **Last Updated**: November 2025
 **Version**: 3.0 (Claude-Aligned: Warm, Editorial, Accessible)
 **Maintained By**: Nyuchi Learning Development Team
+
+---
+
+# PART 1: AI ASSISTANT DEVELOPMENT GUIDELINES
+
+This section provides comprehensive technical guidance for AI assistants working on this codebase.
+
+## Table of Contents - Part 1 (Technical)
+
+1. [Codebase Overview](#codebase-overview)
+2. [Development Workflows](#development-workflows)
+3. [Coding Conventions](#coding-conventions)
+4. [Component Patterns](#component-patterns)
+5. [Page Development](#page-development)
+6. [Common Tasks](#common-tasks)
+7. [Git Workflows](#git-workflows)
+8. [Testing & Quality](#testing--quality)
+9. [Deployment](#deployment)
+10. [Troubleshooting](#troubleshooting)
+
+---
+
+## Codebase Overview
+
+### Project Architecture
+
+**Project Type**: Static site generator using Astro 4.15+
+**Language**: TypeScript with strict type checking
+**Styling**: Scoped CSS within Astro components (no CSS preprocessors)
+**Icons**: Lucide Icons (via lucide-astro package)
+**Deployment**: Vercel (automatic deployment on push)
+
+### Technology Stack
+
+```json
+{
+  "framework": "Astro 4.15+",
+  "language": "TypeScript 5.6+",
+  "icons": "lucide-astro 0.441+",
+  "integrations": [
+    "@astrojs/mdx",
+    "@astrojs/rss",
+    "@astrojs/sitemap"
+  ],
+  "fonts": ["Newsreader", "Inter"],
+  "analytics": "Google Analytics (G-BNHM29F8W5)",
+  "deployment": "Vercel",
+  "nodeVersion": "18+"
+}
+```
+
+### Directory Structure Explained
+
+```
+/
+├── .github/                    # GitHub configuration
+│   └── ISSUE_TEMPLATE/         # Bug report & feature request templates
+├── public/                     # Static assets (served as-is)
+│   ├── *.svg                   # Logo files and favicon
+│   ├── frameworks/             # Framework documentation (MD + future PDFs)
+│   │   ├── k12-digital-campus-framework.md
+│   │   └── k12-support-process-framework.md
+│   └── robots.txt              # SEO crawler configuration
+├── src/
+│   ├── components/             # Reusable Astro components
+│   │   ├── Logo.astro          # Nyuchi Learning logo component
+│   │   └── SEO.astro           # SEO meta tags component
+│   ├── layouts/                # Layout components
+│   │   └── BaseLayout.astro    # Main layout (header, footer, flag strip)
+│   ├── pages/                  # File-based routing (each .astro = route)
+│   │   ├── index.astro         # Homepage (/)
+│   │   ├── frameworks.astro    # Frameworks overview (/frameworks)
+│   │   ├── framework.astro     # K-12 Digital Campus (/framework)
+│   │   ├── support-framework.astro  # Support Process (/support-framework)
+│   │   ├── pricing.astro       # Pricing (/pricing)
+│   │   ├── about.astro         # About page (/about)
+│   │   ├── team.astro          # Team page (/team)
+│   │   ├── community.astro     # Community page (/community)
+│   │   ├── consultation.astro  # Consultation page (/consultation)
+│   │   ├── digital-literacy-framework.astro  # Digital Literacy (/digital-literacy-framework)
+│   │   └── blog/               # Blog section
+│   │       ├── index.astro     # Blog index (/blog)
+│   │       ├── launching-the-framework.astro
+│   │       ├── why-open-source.astro
+│   │       └── digital-literacy-importance.astro
+│   └── env.d.ts                # TypeScript environment definitions
+├── astro.config.mjs            # Astro configuration
+├── package.json                # Dependencies and scripts
+├── tsconfig.json               # TypeScript configuration
+├── vercel.json                 # Vercel deployment configuration
+├── CLAUDE.md                   # This file - Comprehensive guidelines
+├── BRANDING.md                 # Brand guidelines (Nyuchi Learning)
+├── DEPLOYMENT.md               # Deployment instructions
+├── README.md                   # Project documentation
+└── SECURITY.md                 # Security policy
+```
+
+### Key Files Explained
+
+| File | Purpose |
+|------|---------|
+| **src/layouts/BaseLayout.astro** | Main layout wrapper - includes header, footer, Zimbabwe flag strip, mobile menu, SEO, Google Analytics, global styles |
+| **src/components/SEO.astro** | SEO meta tags, Open Graph, Twitter Cards, structured data (JSON-LD) |
+| **src/components/Logo.astro** | Nyuchi Learning logo with 3 variants (main, horizontal, compact) and 3 sizes (sm, md, lg) |
+| **astro.config.mjs** | Astro configuration (site URL, integrations, output mode) |
+| **package.json** | Dependencies and npm scripts (dev, build, preview) |
+| **tsconfig.json** | TypeScript strict mode configuration |
+
+---
+
+## Development Workflows
+
+### Local Development
+
+**Starting development server:**
+```bash
+npm run dev
+# or
+npm start
+```
+- Opens at `http://localhost:4321`
+- Hot module replacement (HMR) enabled
+- Changes to `.astro`, `.ts`, CSS automatically reload
+
+**Building for production:**
+```bash
+npm run build
+```
+- Runs `astro check` (TypeScript validation)
+- Builds static site to `dist/` folder
+- Optimizes assets, minifies code
+
+**Previewing production build:**
+```bash
+npm run preview
+```
+- Serves the `dist/` folder locally
+- Test production build before deployment
+
+### Development Best Practices
+
+1. **Always run `npm run build` before committing** to catch TypeScript errors
+2. **Test mobile responsiveness** - Use browser DevTools mobile view (iPhone SE, Pixel 5)
+3. **Check accessibility** - Verify WCAG 2.1 AA compliance (color contrast, keyboard nav)
+4. **Validate Zimbabwe flag strip** - Must appear on all pages (8px desktop, 6px mobile)
+5. **No emojis** - Use Lucide icons only
+6. **Use design tokens** - CSS variables defined in BaseLayout.astro
+
+---
+
+## Coding Conventions
+
+### Astro Component Structure
+
+**Standard component template:**
+
+```astro
+---
+// 1. Imports (components, icons, types)
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BookOpen, Users } from 'lucide-astro';
+
+// 2. TypeScript interface for component props
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+// 3. Extract props with defaults
+const {
+  title = 'Default Title',
+  description = 'Default description'
+} = Astro.props;
+
+// 4. Data fetching or logic (if needed)
+const data = await fetchData();
+---
+
+<!-- 5. HTML Template -->
+<BaseLayout title={title} description={description}>
+  <section class="hero">
+    <h1>{title}</h1>
+    <BookOpen size={48} strokeWidth={1.5} />
+  </section>
+</BaseLayout>
+
+<!-- 6. Scoped styles -->
+<style>
+  .hero {
+    padding: 4rem 2rem;
+    background: var(--bg);
+  }
+
+  h1 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    color: var(--text);
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>
+
+<!-- 7. Client-side scripts (if needed) -->
+<script>
+  // Client-side JavaScript (runs in browser)
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log('Page loaded');
+  });
+</script>
+```
+
+### TypeScript Conventions
+
+**Strict typing:**
+```typescript
+// ✅ GOOD - Explicit types
+interface Props {
+  title: string;
+  count?: number;  // Optional property
+  items: string[];
+}
+
+// ❌ BAD - Using 'any'
+const data: any = fetchData();
+
+// ✅ GOOD - Proper typing
+const data: FrameworkData = await fetchData();
+```
+
+**Type imports:**
+```typescript
+// Use interface for component props
+interface Props {
+  variant?: 'primary' | 'secondary';
+}
+
+// Use type for unions or complex types
+type ButtonSize = 'sm' | 'md' | 'lg';
+type Status = 'pending' | 'active' | 'completed';
+```
+
+### CSS/Styling Conventions
+
+**Use CSS variables (design tokens):**
+```css
+/* ✅ GOOD - Use design tokens */
+.button {
+  background: var(--primary);
+  color: white;
+  border-radius: 10px;
+  padding: var(--space-4);
+}
+
+/* ❌ BAD - Hard-coded values */
+.button {
+  background: #8B80E8;
+  color: #FFFFFF;
+  border-radius: 10px;
+  padding: 16px;
+}
+```
+
+**Responsive design patterns:**
+```css
+/* Mobile-first approach */
+.container {
+  padding: 1.5rem;  /* Mobile default */
+  max-width: 100%;
+}
+
+/* Desktop enhancement */
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+    max-width: 1200px;
+  }
+}
+
+/* Use clamp() for fluid typography */
+h1 {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+}
+```
+
+**Color usage rules:**
+```css
+/* PRIMARY UI COLOR: Warm Purple (#8B80E8) */
+h1, h2, h3, a, .icon {
+  color: var(--primary);  /* #8B80E8 warm purple */
+}
+
+/* Backgrounds: Charcoal only */
+body, .dark-section {
+  background: var(--bg);  /* #2B2B2B charcoal */
+}
+
+/* Secondary actions: Warm Emerald */
+.btn-secondary {
+  background: var(--emerald);  /* #18A877 */
+}
+
+/* Accents: Warm Brown */
+.featured-badge {
+  background: var(--brown);  /* #A67557 */
+}
+```
+
+### Icon Usage (Lucide)
+
+**Import and use:**
+```astro
+---
+import { BookOpen, Users, Settings, Menu, X } from 'lucide-astro';
+---
+
+<!-- Standard icon usage -->
+<BookOpen class="icon" size={48} strokeWidth={1.5} />
+
+<!-- Icon with color -->
+<Users size={40} strokeWidth={2} style="color: var(--primary);" />
+
+<!-- Touch-friendly mobile icon -->
+<Menu size={28} strokeWidth={2} />  <!-- Hamburger menu -->
+```
+
+**Icon sizing guidelines:**
+- **Desktop feature icons**: 48-56px
+- **Mobile feature icons**: 40px
+- **Navigation icons**: 24-28px
+- **Button icons**: 20-24px
+- **Stroke width**: 1.5-2 (consistent)
+
+**Common icons mapping:**
+| Icon | Use Case |
+|------|----------|
+| `BookOpen` | Education, learning, reading |
+| `Globe` | Universal access, worldwide |
+| `Smartphone` | Mobile-first |
+| `Users` | Community, collaboration |
+| `Settings` | Technology, configuration |
+| `BarChart` | Analytics, data |
+| `TrendingUp` | Growth, improvement |
+| `Lightbulb` | Ideas, innovation |
+| `DollarSign` | Cost, budget |
+| `Menu` | Mobile hamburger menu |
+| `X` | Close mobile menu |
+| `GraduationCap` | Education |
+| `Target` | Goals, mission |
+
+---
+
+## Component Patterns
+
+### BaseLayout Component
+
+**All pages MUST use BaseLayout:**
+
+```astro
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Page Title"
+  description="Page description for SEO"
+  keywords="keyword1, keyword2, keyword3"
+  image="/og-image.png"
+  type="website"
+>
+  <!-- Page content here -->
+</BaseLayout>
+```
+
+**BaseLayout provides:**
+- ✅ Zimbabwe flag strip (automatic)
+- ✅ Header with navigation (desktop + mobile)
+- ✅ Footer with links and Ubuntu tagline
+- ✅ SEO meta tags via SEO component
+- ✅ Google Analytics tracking
+- ✅ Global CSS variables and styles
+- ✅ Mobile menu toggle script
+- ✅ Header scroll effects (transparent → solid)
+- ✅ Animation system (Intersection Observer)
+
+### SEO Component
+
+**Used automatically by BaseLayout**, but can be used standalone:
+
+```astro
+---
+import SEO from '../components/SEO.astro';
+---
+
+<SEO
+  title="Page Title"
+  description="Page description"
+  keywords="keyword1, keyword2"
+  image="/custom-og-image.png"
+  url="https://learning.nyuchi.com/page"
+  type="article"
+  article={{
+    publishedTime: '2025-11-01',
+    modifiedTime: '2025-11-15',
+    section: 'Blog',
+    tags: ['education', 'technology']
+  }}
+/>
+```
+
+**SEO component includes:**
+- Primary meta tags (title, description, keywords)
+- Open Graph (Facebook, LinkedIn)
+- Twitter Cards
+- Structured data (JSON-LD): Organization, Website, LearningResource
+- Mobile app meta tags
+- Geographic meta tags (Zimbabwe)
+- Robot crawlers configuration
+
+### Logo Component
+
+**Usage:**
+
+```astro
+---
+import Logo from '../components/Logo.astro';
+---
+
+<!-- Default: main variant, medium size -->
+<Logo />
+
+<!-- Horizontal variant, large size -->
+<Logo variant="horizontal" size="lg" />
+
+<!-- Compact variant, small size (for mobile) -->
+<Logo variant="compact" size="sm" />
+
+<!-- Custom class -->
+<Logo variant="main" size="md" className="custom-logo" />
+```
+
+**Variants:**
+- `main`: Stacked layout (icon + text)
+- `horizontal`: Side-by-side layout
+- `compact`: Icon with "N" initial only
+
+**Sizes:**
+- `sm`: Small (120x36 main, 180x30 horizontal, 48x24 compact)
+- `md`: Medium (200x60 main, 300x50 horizontal, 80x40 compact)
+- `lg`: Large (280x84 main, 420x70 horizontal, 112x56 compact)
+
+---
+
+## Page Development
+
+### Creating a New Page
+
+**Step 1: Create page file**
+```bash
+# Pages go in src/pages/
+touch src/pages/my-new-page.astro
+```
+
+**Step 2: Page template**
+```astro
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { BookOpen, Users } from 'lucide-astro';
+
+// Page-specific data
+const pageTitle = 'My New Page';
+const pageDescription = 'Description for SEO';
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  keywords="relevant, keywords, here"
+>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <h1>{pageTitle}</h1>
+      <p class="subtitle">{pageDescription}</p>
+    </div>
+  </section>
+
+  <!-- Content Sections -->
+  <section class="content">
+    <div class="container">
+      <h2>Section Title</h2>
+      <p>Content here...</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    padding: 6rem 2rem 4rem;
+    background: var(--bg);
+    margin-top: 64px; /* Account for fixed header */
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  h1 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    color: var(--text-secondary);
+    max-width: 800px;
+  }
+
+  .content {
+    padding: 4rem 2rem;
+  }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .hero {
+      padding: 4rem 1.5rem 3rem;
+    }
+
+    .content {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>
+```
+
+**Step 3: Add to navigation**
+
+Edit `src/layouts/BaseLayout.astro`:
+
+```astro
+<!-- Desktop Navigation -->
+<ul class="nav-links nav-desktop">
+  <li><a href="/">Home</a></li>
+  <li><a href="/frameworks">Frameworks</a></li>
+  <li><a href="/my-new-page">My New Page</a></li>  <!-- ADD HERE -->
+  <!-- ... -->
+</ul>
+
+<!-- Mobile Navigation -->
+<div class="nav-mobile" id="mobileMenu">
+  <ul class="nav-mobile-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/frameworks">Frameworks</a></li>
+    <li><a href="/my-new-page">My New Page</a></li>  <!-- ADD HERE -->
+    <!-- ... -->
+  </ul>
+</div>
+```
+
+### Common Page Patterns
+
+**Hero section with CTA:**
+```astro
+<section class="hero">
+  <div class="container">
+    <p class="ubuntu-tagline">Ubuntu: I am because we are</p>
+    <h1>Page Title</h1>
+    <p class="subtitle">Compelling subtitle</p>
+    <div class="cta-group">
+      <a href="/action" class="btn btn-primary">Primary Action</a>
+      <a href="/learn" class="btn btn-secondary">Learn More</a>
+    </div>
+  </div>
+</section>
+```
+
+**Feature grid (3 columns, responsive):**
+```astro
+<section class="features">
+  <div class="container">
+    <h2>Features</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <BookOpen size={48} strokeWidth={1.5} />
+        <h3>Feature Title</h3>
+        <p>Feature description</p>
+      </div>
+      <!-- Repeat for more features -->
+    </div>
+  </div>
+</section>
+
+<style>
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 768px) {
+    .feature-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+```
+
+**Stats section:**
+```astro
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">60-80%</div>
+        <div class="stat-label">Cost Savings</div>
+      </div>
+      <!-- More stats -->
+    </div>
+  </div>
+</section>
+```
+
+---
+
+## Common Tasks
+
+### Task 1: Update Color Scheme
+
+**All colors defined in:** `src/layouts/BaseLayout.astro` (`:root` CSS variables)
+
+```css
+:root {
+  /* Update these values */
+  --primary: #8B80E8;          /* Warm purple */
+  --emerald: #18A877;          /* Warm emerald */
+  --brown: #A67557;            /* Warm brown */
+  --charcoal: #2B2B2B;         /* Charcoal */
+  /* ... */
+}
+```
+
+### Task 2: Add New Framework Page
+
+1. Create markdown file: `public/frameworks/new-framework.md`
+2. Create page: `src/pages/new-framework.astro`
+3. Add to frameworks index: `src/pages/frameworks.astro`
+4. Add download link in navigation
+
+### Task 3: Update Footer
+
+**Edit:** `src/layouts/BaseLayout.astro` (footer section)
+
+```astro
+<footer>
+  <div class="footer-hero">
+    <h2 class="footer-main-text">Your Message</h2>
+    <p class="footer-ubuntu-large">Ubuntu: I am because we are</p>
+  </div>
+  <!-- ... -->
+</footer>
+```
+
+### Task 4: Add Blog Post
+
+1. Create file: `src/pages/blog/my-post-slug.astro`
+2. Update blog index: `src/pages/blog/index.astro` (add to posts array)
+3. Update homepage: `src/pages/index.astro` (latest posts section)
+
+**Blog post template:**
+```astro
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'My Blog Post Title';
+const publishedDate = '2025-11-16';
+const author = 'Framework Team';
+---
+
+<BaseLayout
+  title={title}
+  description="Blog post description"
+  type="article"
+  article={{
+    publishedTime: publishedDate,
+    section: 'Blog',
+    tags: ['education', 'technology']
+  }}
+>
+  <article class="blog-post">
+    <header>
+      <h1>{title}</h1>
+      <div class="meta">
+        <time>{publishedDate}</time>
+        <span>{author}</span>
+      </div>
+    </header>
+    <div class="content">
+      <!-- Blog content -->
+    </div>
+  </article>
+</BaseLayout>
+```
+
+### Task 5: Optimize for Mobile
+
+**Checklist:**
+- [ ] Test on mobile viewport (375px width minimum)
+- [ ] Verify touch targets (44x44px minimum)
+- [ ] Check button heights (48px minimum)
+- [ ] Test horizontal scrolling (tables, long navigation)
+- [ ] Verify hamburger menu works
+- [ ] Check Zimbabwe flag strip (6px on mobile)
+- [ ] Test typography readability (16px minimum body)
+- [ ] Verify images scale properly
+
+---
+
+## Git Workflows
+
+### Branch Naming Convention
+
+```bash
+# Feature branches
+git checkout -b feature/add-new-framework-page
+git checkout -b feature/update-pricing-tiers
+
+# Bug fixes
+git checkout -b fix/mobile-menu-toggle
+git checkout -b fix/broken-link-about-page
+
+# Content updates
+git checkout -b content/update-blog-post
+git checkout -b content/add-framework-documentation
+
+# Design updates
+git checkout -b design/update-color-scheme
+git checkout -b design/improve-mobile-nav
+```
+
+### Commit Message Format
+
+**Use conventional commits:**
+
+```bash
+# Feature
+git commit -m "feat: add digital literacy framework page"
+git commit -m "feat(blog): add new blog post about open source"
+
+# Fix
+git commit -m "fix: resolve mobile menu toggle issue"
+git commit -m "fix(seo): correct Open Graph image path"
+
+# Content
+git commit -m "content: update pricing tier descriptions"
+git commit -m "content(blog): fix typos in blog post"
+
+# Style/Design
+git commit -m "style: update button border-radius to 10px"
+git commit -m "style(hero): improve mobile spacing"
+
+# Refactor
+git commit -m "refactor: extract SEO component from BaseLayout"
+
+# Docs
+git commit -m "docs: update CLAUDE.md with new conventions"
+
+# Chore
+git commit -m "chore: update dependencies"
+```
+
+### Typical Git Workflow
+
+```bash
+# 1. Create feature branch
+git checkout -b feature/my-feature
+
+# 2. Make changes
+# ... edit files ...
+
+# 3. Test locally
+npm run build  # Must pass!
+
+# 4. Stage and commit
+git add .
+git commit -m "feat: add my feature"
+
+# 5. Push to remote
+git push -u origin feature/my-feature
+
+# 6. Create Pull Request on GitHub
+# Include description, screenshots (if visual changes)
+
+# 7. After PR approval and merge
+git checkout main
+git pull origin main
+git branch -d feature/my-feature  # Delete local branch
+```
+
+### Pre-Commit Checklist
+
+- [ ] `npm run build` passes without errors
+- [ ] TypeScript errors resolved
+- [ ] No console errors in browser
+- [ ] Mobile responsive (test in DevTools)
+- [ ] Zimbabwe flag strip present on new pages
+- [ ] Accessibility: color contrast, keyboard nav
+- [ ] No emojis used (Lucide icons only)
+- [ ] Design tokens used (CSS variables, not hard-coded colors)
+
+---
+
+## Testing & Quality
+
+### Manual Testing Checklist
+
+**Visual Testing:**
+- [ ] Test in Chrome, Firefox, Safari
+- [ ] Mobile view (iPhone SE 375px, Pixel 5 393px, iPhone 12 Pro 390px)
+- [ ] Tablet view (iPad 768px, iPad Pro 1024px)
+- [ ] Desktop (1280px, 1440px, 1920px)
+
+**Accessibility Testing:**
+- [ ] Keyboard navigation (Tab, Enter, Escape)
+- [ ] Screen reader compatibility (test with VoiceOver or NVDA)
+- [ ] Color contrast (4.5:1 for normal text, 3:1 for large text)
+- [ ] Touch targets (44x44px minimum, 48px for buttons)
+- [ ] Focus indicators visible
+- [ ] Alt text on images
+- [ ] ARIA labels where needed
+
+**Performance Testing:**
+- [ ] Lighthouse score (aim for 90+ Performance, 100 Accessibility, 100 Best Practices, 100 SEO)
+- [ ] Page load time < 3 seconds
+- [ ] Images optimized (WebP when possible)
+- [ ] No render-blocking resources
+
+**SEO Testing:**
+- [ ] Meta tags present (title, description, keywords)
+- [ ] Open Graph tags (og:title, og:description, og:image)
+- [ ] Twitter Cards
+- [ ] Structured data (JSON-LD)
+- [ ] Sitemap includes new pages
+- [ ] robots.txt allows crawling
+
+### Accessibility Validation
+
+**Color contrast checker:**
+```
+WCAG 2.1 AA Requirements:
+- Normal text (< 18px): 4.5:1 contrast ratio
+- Large text (≥ 18px or ≥ 14px bold): 3:1 contrast ratio
+- UI components & graphics: 3:1 contrast ratio
+
+Test combinations:
+- var(--primary) #8B80E8 on white: ✅ Passes (4.6:1)
+- var(--text) #FAFAFA on var(--bg) #2B2B2B: ✅ Passes (14.8:1)
+```
+
+**Keyboard navigation test:**
+1. Tab through page (all interactive elements focusable)
+2. Enter/Space activates buttons and links
+3. Escape closes modals/menus
+4. Arrow keys navigate dropdown menus
+5. Focus indicators visible on all elements
+
+### Build Validation
+
+**Before every commit:**
+```bash
+# TypeScript check + build
+npm run build
+
+# Expected output:
+# - No TypeScript errors
+# - Build completes successfully
+# - dist/ folder generated
+```
+
+**If build fails:**
+1. Read error message carefully
+2. Fix TypeScript errors (type mismatches, missing imports)
+3. Check for syntax errors in `.astro` files
+4. Verify imports are correct
+5. Run `npm run build` again
+
+---
+
+## Deployment
+
+### Vercel Deployment (Automatic)
+
+**Production deployment:**
+- **Trigger**: Push to `main` branch
+- **URL**: https://learning.nyuchi.com
+- **Build command**: `npm run build`
+- **Output directory**: `dist`
+- **Node version**: 18.x
+
+**Preview deployments:**
+- **Trigger**: Push to any branch or PR
+- **URL**: Auto-generated preview URL (e.g., `learning-git-feature-xyz.vercel.app`)
+- **Purpose**: Test changes before merging
+
+### Manual Deployment
+
+**For other platforms (Netlify, Cloudflare Pages, etc.):**
+
+```bash
+# Build for production
+npm run build
+
+# Upload dist/ folder to hosting provider
+# - Netlify: Drag & drop dist/ folder
+# - Cloudflare Pages: Connect GitHub repo
+# - GitHub Pages: Deploy dist/ to gh-pages branch
+```
+
+### Environment Variables
+
+**No environment variables currently used.**
+
+If adding in future, use Vercel dashboard:
+1. Go to Project Settings
+2. Navigate to Environment Variables
+3. Add key-value pairs
+4. Redeploy
+
+---
+
+## Troubleshooting
+
+### Common Issues & Solutions
+
+**Issue: Build fails with TypeScript errors**
+```bash
+# Solution: Check error message, fix type issues
+npm run build
+
+# Common fixes:
+# - Add missing interface properties
+# - Import missing types
+# - Use correct prop types in components
+```
+
+**Issue: Mobile menu doesn't toggle**
+```bash
+# Solution: Ensure IDs match in BaseLayout.astro
+# - #mobileMenuBtn (button)
+# - #mobileMenu (menu container)
+# - #menuIcon (hamburger icon)
+# - #closeIcon (X icon)
+```
+
+**Issue: Zimbabwe flag strip not showing**
+```bash
+# Solution: Verify in BaseLayout.astro
+# 1. .zimbabwe-flag-strip element exists
+# 2. z-index: 9999
+# 3. position: fixed
+# 4. body { margin-left: 8px; } (desktop)
+# 5. @media (max-width: 768px) { margin-left: 6px; }
+```
+
+**Issue: Icons not rendering**
+```bash
+# Solution:
+# 1. Verify import: import { IconName } from 'lucide-astro';
+# 2. Check icon exists in Lucide library
+# 3. Use PascalCase for icon names
+# 4. Example: <BookOpen size={48} strokeWidth={1.5} />
+```
+
+**Issue: CSS variables not working**
+```bash
+# Solution:
+# 1. Ensure variables defined in BaseLayout.astro :root {}
+# 2. Use correct syntax: var(--variable-name)
+# 3. Check for typos in variable names
+# 4. Verify BaseLayout wraps your page
+```
+
+**Issue: Page not found (404)**
+```bash
+# Solution:
+# 1. Verify file exists in src/pages/
+# 2. Check file extension (.astro)
+# 3. Ensure file name matches route (kebab-case)
+# 4. Restart dev server: npm run dev
+```
+
+**Issue: Fonts not loading**
+```bash
+# Solution: Check BaseLayout.astro <head>
+# - Google Fonts link present
+# - Newsreader:wght@400;600;700
+# - Inter:wght@400;500;600;700
+# - Font family in CSS matches exactly
+```
+
+### Debug Checklist
+
+When something breaks:
+1. [ ] Check browser console for errors
+2. [ ] Verify `npm run build` passes
+3. [ ] Check file paths (case-sensitive)
+4. [ ] Verify imports are correct
+5. [ ] Check TypeScript types
+6. [ ] Test in different browsers
+7. [ ] Clear browser cache
+8. [ ] Restart dev server
+9. [ ] Check Vercel deployment logs
+
+### Getting Help
+
+If stuck:
+1. Read error message carefully
+2. Check this document (CLAUDE.md)
+3. Review BRANDING.md and README.md
+4. Check Astro documentation: https://docs.astro.build
+5. Search GitHub issues: https://github.com/nyuchitech/learning/issues
+
+---
+
+# PART 2: DESIGN GUIDELINES
 
 ## Brand Identity
 
