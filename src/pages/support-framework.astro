@@ -33,6 +33,7 @@ import { Download, Users, Bot, Wrench, AlertCircle, Check, Clock, DollarSign, Ta
       <h3>Quick Navigation</h3>
       <ul>
         <li><a href="#overview">Executive Summary</a></li>
+        <li><a href="#governance">Framework Governance</a></li>
         <li><a href="#tiers">Support Tier Overview</a></li>
         <li><a href="#process-flows">Process Flow Diagrams</a></li>
         <li><a href="#routing">Routing Criteria & Decision Trees</a></li>
@@ -79,6 +80,83 @@ import { Download, Users, Bot, Wrench, AlertCircle, Check, Clock, DollarSign, Ta
           <li><Check size={20} /> 95% SLA compliance across all tiers</li>
           <li><Check size={20} /> 4.5/5.0 customer satisfaction score</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Framework Governance -->
+    <section id="governance" class="framework-section governance-section">
+      <h2>How This Framework Embodies Our Principles</h2>
+      <p class="governance-intro">All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this K-12 Support Process Framework embodies each principle:</p>
+
+      <div class="governance-grid">
+        <div class="governance-card">
+          <div class="governance-number">01</div>
+          <div class="governance-content">
+            <h3>Open & Shareable</h3>
+            <p><strong>How this framework delivers:</strong> Complete support process documentation freely available. No licensing fees for ticketing workflows, routing criteria, or SLA templates. Schools can copy, adapt, and share this entire three-tier support model.</p>
+            <p class="governance-example"><em>Example:</em> Download this framework, customize tier responsibilities for your school size, and share your adaptations with other institutions.</p>
+          </div>
+        </div>
+
+        <div class="governance-card">
+          <div class="governance-number">02</div>
+          <div class="governance-content">
+            <h3>Evidence-Based</h3>
+            <p><strong>How this framework delivers:</strong> Three-tier model based on industry best practices (40% AI resolution, 70% Tier 1 resolution rates). SLA targets aligned with ITIL service management standards. Metrics proven to improve customer satisfaction (target: 4.5/5.0).</p>
+            <p class="governance-example"><em>Example:</em> Framework targets 95% SLA compliance across all tiers based on research showing this threshold maximizes user satisfaction while maintaining cost efficiency.</p>
+          </div>
+        </div>
+
+        <div class="governance-card">
+          <div class="governance-number">03</div>
+          <div class="governance-content">
+            <h3>Competency-Focused</h3>
+            <p><strong>How this framework delivers:</strong> Tier 1 emphasizes customer success competencies (empathy, communication, user experience) over pure technical skills. Training focus on problem-solving and relationship-building, not just ticket resolution.</p>
+            <p class="governance-example"><em>Example:</em> EdTech team trained as customer success agents—prioritizing user experience and teaching/learning impact, not just closing tickets quickly.</p>
+          </div>
+        </div>
+
+        <div class="governance-card">
+          <div class="governance-number">04</div>
+          <div class="governance-content">
+            <h3>Mobile-First</h3>
+            <p><strong>How this framework delivers:</strong> AI chatbot accessible via mobile devices for 24/7 support. Ticket submission and status tracking optimized for smartphone interfaces. Support knowledge base designed for mobile reading.</p>
+            <p class="governance-example"><em>Example:</em> Teachers can submit support tickets via mobile chatbot during class, receive instant AI guidance, and track resolution status—all from their smartphones.</p>
+          </div>
+        </div>
+
+        <div class="governance-card">
+          <div class="governance-number">05</div>
+          <div class="governance-content">
+            <h3>Culturally Responsive</h3>
+            <p><strong>How this framework delivers:</strong> Multilingual chatbot support for top languages in your community. Ticket fields accommodate diverse naming conventions and cultural contexts. Support hours adapted to local school schedules and time zones.</p>
+            <p class="governance-example"><em>Example:</em> AI chatbot provides support in English, French, or local languages based on user preference, ensuring language is never a barrier to getting help.</p>
+          </div>
+        </div>
+
+        <div class="governance-card">
+          <div class="governance-number">06</div>
+          <div class="governance-content">
+            <h3>Cost-Conscious</h3>
+            <p><strong>How this framework delivers:</strong> AI self-service (Tier 0) handles 40% of issues at near-zero marginal cost. Tier 1 EdTech team optimized to resolve 70% of escalations before expensive Tier 2 IT involvement. Open-source ticketing systems (Zammad, osTicket) save thousands annually.</p>
+            <p class="governance-example"><em>Example:</em> By resolving 40% of 10,000 annual tickets via AI at $0.50/ticket vs. $15 human cost, schools save $14,500/year on support operations.</p>
+          </div>
+        </div>
+
+        <div class="governance-card">
+          <div class="governance-number">07</div>
+          <div class="governance-content">
+            <h3>Implementation-Focused</h3>
+            <p><strong>How this framework delivers:</strong> Detailed process flow diagrams, routing decision trees, and ticket field requirements. Comprehensive implementation checklist with vendor selection criteria. SLA templates ready to deploy, not theoretical guidelines.</p>
+            <p class="governance-example"><em>Example:</em> Framework includes exact routing criteria ("If issue type = LMS Access AND severity = High → Route to Tier 1 within 5 minutes") ready to configure in your ticketing system.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="governance-cta">
+        <h3>Part of a Broader Mission</h3>
+        <p>This framework is one of multiple frameworks released by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa committed to empowering developing countries to leapfrog traditional educational models. Learn more about our mission, vision, and strategic goals.</p>
+        <a href="/about" class="btn btn-secondary">Read Our Mission & Impact</a>
       </div>
     </section>
 
@@ -1322,10 +1400,125 @@ User Access Support Portal
     color: var(--primary);
   }
 
+  /* Governance Section */
+  .governance-section {
+    background: linear-gradient(135deg, var(--primary-subtle) 0%, var(--emerald-subtle) 100%);
+    border-left: 4px solid var(--primary);
+  }
+
+  .governance-intro {
+    font-size: 1.15rem;
+    color: var(--text);
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+
+  .governance-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .governance-card {
+    display: flex;
+    gap: 1.5rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+  }
+
+  .governance-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
+  }
+
+  .governance-number {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    flex-shrink: 0;
+    width: 60px;
+    line-height: 1;
+  }
+
+  .governance-content h3 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.35rem;
+  }
+
+  .governance-content p {
+    margin-bottom: 0.75rem;
+    line-height: 1.7;
+  }
+
+  .governance-example {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-gray);
+    border-radius: 8px;
+    border-left: 3px solid var(--emerald-primary);
+    margin-top: 1rem;
+  }
+
+  .governance-cta {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .governance-cta h3 {
+    color: var(--primary);
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .governance-cta p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .governance-cta .btn {
+    background: var(--primary);
+    color: white;
+  }
+
+  .governance-cta .btn:hover {
+    background: var(--primary-hover);
+  }
+
   /* Mobile Optimization */
   @media (max-width: 768px) {
     .framework-container {
       padding: 2rem 1.25rem;
+    }
+
+    /* Governance section mobile */
+    .governance-card {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.5rem;
+    }
+
+    .governance-number {
+      font-size: 2rem;
+      width: auto;
+    }
+
+    .governance-content h3 {
+      font-size: 1.25rem;
+    }
+
+    .governance-cta {
+      padding: 2rem 1.5rem;
     }
 
     .framework-header {
