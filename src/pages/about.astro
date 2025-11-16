@@ -1,134 +1,329 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
+import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphone, DollarSign, MapPin, GraduationCap, Monitor } from 'lucide-astro';
 ---
 
 <BaseLayout
-  title="About the Framework"
-  description="Learn about the K-12 Digital Campus Framework by Nyuchi Learning. First of many open frameworks for digital transformation in African education. Built by educators on dusty African roads, for real African schools."
-  keywords="Nyuchi Learning, Nyuchi Africa, Bryan Fawcett, African education framework, Zimbabwe education technology, open education framework, digital transformation Africa, education technology mission, Ubuntu philosophy education"
+  title="Mission & Impact - Empowering Global Education Transformation"
+  description="Nyuchi Learning empowers developing countries to leapfrog traditional educational models. Pan-African focus with global reach across Asia, Latin America, and the Pacific. Evidence-based frameworks for competency-focused, mobile-first learning."
+  keywords="Nyuchi Learning mission, education transformation vision, developing countries education, pan-African education, global education frameworks, competency-based learning, educational leapfrog, Ubuntu education philosophy, Zimbabwe education company, evidence-based education"
 >
-  <!-- Full-height Hero Section -->
-  <section class="about-hero">
+  <!-- Hero Section -->
+  <section class="mission-hero">
     <div class="hero-background"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="ubuntu-header animate-fade-in">Ubuntu: I am because we are</p>
-      <h1 class="animate-fade-in">About the K-12 Digital Campus Framework</h1>
-      <p class="tagline animate-fade-in">An open, shareable framework for community-centered digital transformation</p>
-      <p class="nyuchi-badge animate-fade-in">A Nyuchi Learning Framework</p>
+      <h1 class="animate-fade-in">Mission & Impact</h1>
+      <p class="tagline animate-fade-in">Empowering developing countries to leapfrog traditional education and build for 2050</p>
     </div>
   </section>
 
   <div class="about-container">
 
-    <section class="about-section">
-      <h2>Our Mission</h2>
-      <p>
-        The <strong>K-12 Digital Campus Framework</strong> by Nyuchi Learning (a division of Nyuchi Africa) embodies
-        the Ubuntu philosophy—"I am because we are"—in transforming education across our continent. This is
-        an <strong>open, shareable framework</strong> that schools and communities can freely copy, adapt,
-        and improve to fit their unique needs. It is the first of many educational frameworks that Nyuchi Learning
-        will release to support digital transformation across Africa.
-      </p>
-      <p>
-        Together, we're democratizing access to world-class educational technology for K-12 schools across
-        Africa. We believe that when every student, regardless of their socioeconomic background or geographic
-        location, has the opportunity to develop digital skills, our entire community thrives. Our collective
-        success strengthens us all.
-      </p>
-    </section>
-
-    <section class="about-section">
-      <h2>The Challenge</h2>
-      <p>
-        Africa is experiencing explosive digital growth—internet penetration jumped from 37.4% in
-        2014 to 67.5% in 2024. This presents both an opportunity and a challenge for educational
-        institutions:
-      </p>
-      <ul>
-        <li>How can schools with limited budgets implement modern technology infrastructure?</li>
-        <li>How can educators prepare students for jobs that don't yet exist?</li>
-        <li>How can technology enhance learning without exacerbating existing inequalities?</li>
-        <li>How can schools build sustainable digital ecosystems that evolve with technology?</li>
-      </ul>
-    </section>
-
-    <section class="about-section">
-      <h2>Our Approach</h2>
-      <p>
-        The <strong>K-12 Digital Campus Framework</strong> provides a comprehensive, practical blueprint for digital
-        transformation. This is an <strong>open, shareable framework</strong>—take it, copy it,
-        adapt it, and improve it for your school. Unlike one-size-fits-all solutions, our framework
-        is designed specifically for the African context, addressing unique challenges around:
-      </p>
-
-      <div class="approach-grid">
-        <div class="approach-card">
-          <h3>Open & Shareable</h3>
+    <!-- Mission & Vision -->
+    <section class="core-identity">
+      <div class="identity-grid">
+        <div class="identity-card mission-card">
+          <Target class="identity-icon" size={56} strokeWidth={1.5} />
+          <h2>Our Mission</h2>
           <p>
-            This framework is free to use, copy, and adapt. Share it with other schools, improve it
-            for your community, and contribute your innovations back. When one school succeeds, we
-            all benefit.
+            To empower developing countries to <strong>leapfrog traditional educational models</strong> by providing
+            open, evidence-based frameworks for digital transformation that prioritize <strong>competencies over credentials</strong> and
+            <strong>learning outcomes over technology deployment</strong>.
+          </p>
+          <p class="mission-detail">
+            We believe that Africa and the developing world—unburdened by legacy educational infrastructure and institutional inertia—have
+            a unique opportunity to build digital-first learning environments optimized for the 2050 workplace from day one.
           </p>
         </div>
 
-        <div class="approach-card">
-          <h3>Budget Constraints</h3>
+        <div class="identity-card vision-card">
+          <Globe class="identity-icon" size={56} strokeWidth={1.5} />
+          <h2>Our Vision</h2>
           <p>
-            We prioritize open-source solutions that can save schools 60-80% on infrastructure
-            costs while delivering world-class functionality.
+            By 2035, Nyuchi Learning frameworks will be implemented in schools across <strong>Africa, Asia, Latin America, and the Pacific</strong>,
+            enabling <strong>10 million students</strong> to develop the competencies—<em>grit, adaptability, collaboration, critical thinking</em>—that
+            predict success in an uncertain future.
           </p>
-        </div>
-
-        <div class="approach-card">
-          <h3>Connectivity Challenges</h3>
-          <p>
-            Our mobile-first, offline-capable approach recognizes that reliable internet isn't
-            always available.
-          </p>
-        </div>
-
-        <div class="approach-card">
-          <h3>Device Access</h3>
-          <p>
-            We address the digital divide through device lending programs and bring-your-own-device
-            strategies that ensure every student has access.
-          </p>
-        </div>
-
-        <div class="approach-card">
-          <h3>Digital Literacy</h3>
-          <p>
-            We don't just provide technology—we build comprehensive digital literacy curricula
-            for students, teachers, and parents.
-          </p>
-        </div>
-
-        <div class="approach-card">
-          <h3>Cultural Context & Languages</h3>
-          <p>
-            Multilingual support for African languages plus English, French, and Chinese. Culturally
-            responsive design and community-centered approaches ensure the framework works for diverse
-            populations across the continent.
-          </p>
-        </div>
-
-        <div class="approach-card">
-          <h3>Sustainability</h3>
-          <p>
-            Our 3-year roadmap builds internal capacity, reducing vendor dependency and ensuring
-            long-term viability.
+          <p class="vision-detail">
+            We envision a world where developing countries lead educational innovation, creating models wealthy nations will study and replicate.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="about-section founder-story">
-      <h2>Our Founder's Journey: From Passion to Purpose</h2>
+    <!-- The Leapfrog Opportunity -->
+    <section class="leapfrog-section">
+      <h2>The Leapfrog Opportunity</h2>
+      <div class="leapfrog-content">
+        <div class="leapfrog-text">
+          <p class="lead">
+            <strong>Traditional educational models are failing spectacularly.</strong> Research shows that 87% of global executives report
+            critical skills gaps, yet schools worldwide continue optimizing for standardized tests that predict only 4% of job performance.
+            The global skills mismatch costs $8.5 trillion annually.
+          </p>
+          <p>
+            <strong>But here's the opportunity:</strong> Developing countries aren't burdened by the institutional inertia, legacy infrastructure,
+            and political paralysis plaguing educational systems in wealthy nations. You can build from first principles.
+          </p>
+          <p>
+            History shows developing regions often leapfrog developed ones when unconstrained by legacy systems—mobile payments in Kenya
+            transformed global finance by bypassing credit card infrastructure. Education offers the same opportunity.
+          </p>
+        </div>
+        <div class="leapfrog-comparison">
+          <div class="comparison-box old-model">
+            <h3>Wealthy Nations (Trapped)</h3>
+            <ul>
+              <li>Industrial-era school buildings</li>
+              <li>Age-based cohorts</li>
+              <li>Teacher-centric instruction</li>
+              <li>Standardized testing focus</li>
+              <li>Lecture-based learning</li>
+              <li>Decades to reform systems</li>
+            </ul>
+          </div>
+          <div class="comparison-box new-model">
+            <h3>Developing World (Opportunity)</h3>
+            <ul>
+              <li>Mobile-first digital platforms</li>
+              <li>Competency-based progression</li>
+              <li>Teacher-as-coach models</li>
+              <li>Portfolio-based assessment</li>
+              <li>Project-based learning</li>
+              <li>Build correctly from day one</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="values-section">
+      <h2>Our Core Values</h2>
+      <p class="section-intro">
+        These principles guide every framework we create and every decision we make.
+      </p>
+      <div class="values-grid">
+        <div class="value-card">
+          <Heart class="value-icon" size={40} strokeWidth={1.5} />
+          <h3>Ubuntu: "I am because we are"</h3>
+          <p>Community success over individual achievement. Open collaboration over proprietary solutions. Collective growth strengthens everyone.</p>
+        </div>
+        <div class="value-card">
+          <BookOpen class="value-icon" size={40} strokeWidth={1.5} />
+          <h3>Evidence-Based Innovation</h3>
+          <p>Research drives design decisions. Data informs continuous improvement. Proven pedagogies adapted to local contexts.</p>
+        </div>
+        <div class="value-card">
+          <TrendingUp class="value-icon" size={40} strokeWidth={1.5} />
+          <h3>Leapfrog Mindset</h3>
+          <p>Build from first principles, not imitation. Leverage constraints as competitive advantages. Mobile-first, offline-capable, multilingual by default.</p>
+        </div>
+        <div class="value-card">
+          <Target class="value-icon" size={40} strokeWidth={1.5} />
+          <h3>Learning Outcomes Over Technology</h3>
+          <p>Competencies matter more than credentials. Character strengths predict success, not GPA. Pedagogy before platforms.</p>
+        </div>
+        <div class="value-card">
+          <Users class="value-icon" size={40} strokeWidth={1.5} />
+          <h3>Radical Accessibility</h3>
+          <p>Open frameworks, freely shareable. Cost-efficiency through open-source solutions. Designed for schools with limited resources.</p>
+        </div>
+        <div class="value-card">
+          <Globe class="value-icon" size={40} strokeWidth={1.5} />
+          <h3>Local Ownership</h3>
+          <p>Frameworks adaptable to cultural contexts. Communities improve and share innovations. Sustainable models, not vendor dependence.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Framework Governance Principles -->
+    <section class="governance-section">
+      <h2>Framework Governance Principles</h2>
+      <p class="section-intro">
+        All Nyuchi Learning frameworks adhere to these <strong>non-negotiable principles</strong>, grounded in research on what actually predicts student success.
+      </p>
+      <div class="governance-principles">
+        <div class="principle-card">
+          <div class="principle-number">01</div>
+          <div class="principle-content">
+            <h3>Open & Shareable</h3>
+            <p>Free to access, use, and distribute. No licensing fees, no proprietary lock-in. Copy, adapt, improve, and share with other schools.</p>
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">02</div>
+          <div class="principle-content">
+            <h3>Evidence-Based</h3>
+            <p>Grounded in research on what predicts success. Incorporates proven models (Finland, High Tech High, Montessori). Continuously refined based on implementation data.</p>
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">03</div>
+          <div class="principle-content">
+            <h3>Competency-Focused</h3>
+            <p>Emphasizes grit, conscientiousness, adaptability, collaboration, and critical thinking—the competencies that actually predict workplace success.</p>
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">04</div>
+          <div class="principle-content">
+            <h3>Mobile-First</h3>
+            <p>Smartphones as primary access devices. Full learning experiences on small screens. Offline-capable with smart syncing.</p>
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">05</div>
+          <div class="principle-content">
+            <h3>Culturally Responsive</h3>
+            <p>Multilingual support (African languages, English, French, Chinese). Examples reflect students' lived experiences. Respects and preserves cultural heritage.</p>
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">06</div>
+          <div class="principle-content">
+            <h3>Cost-Conscious</h3>
+            <p>60-80% cost reduction through open-source solutions. Detailed budget frameworks for transparency. Maximum value from limited school budgets.</p>
+          </div>
+        </div>
+        <div class="principle-card">
+          <div class="principle-number">07</div>
+          <div class="principle-content">
+            <h3>Implementation-Focused</h3>
+            <p>Not just principles, but practical roadmaps. Phased approaches (Foundation → Pilot → Scale). Clear success metrics and milestones.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategic Goals -->
+    <section class="goals-section">
+      <h2>Strategic Goals (2025-2030)</h2>
+      <div class="goals-grid">
+        <div class="goal-card">
+          <div class="goal-header">
+            <TrendingUp class="goal-icon" size={40} strokeWidth={1.5} />
+            <h3>Leapfrog Traditional Models</h3>
+          </div>
+          <p class="goal-target"><strong>Target:</strong> Enable 1,000 schools across developing countries to skip outdated approaches entirely</p>
+          <p>While wealthy nations spend decades trying to reform industrial-era schools, developing countries can build 2050-ready learning environments immediately.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-header">
+            <Target class="goal-icon" size={40} strokeWidth={1.5} />
+            <h3>Close the Global Skills Gap</h3>
+          </div>
+          <p class="goal-target"><strong>Target:</strong> Address the $8.5 trillion annual cost of skills mismatches</p>
+          <p>Develop frameworks that produce competencies employers actually need, with portfolio evidence of capabilities instead of grades.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-header">
+            <BookOpen class="goal-icon" size={40} strokeWidth={1.5} />
+            <h3>Expand Framework Portfolio</h3>
+          </div>
+          <p class="goal-target"><strong>Target:</strong> Release 5+ comprehensive frameworks by 2030</p>
+          <p>K-12 Digital Campus, Support Process, Digital Literacy—plus competency assessment, project-based learning, teacher development, and more.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-header">
+            <Users class="goal-icon" size={40} strokeWidth={1.5} />
+            <h3>Build Global Community</h3>
+          </div>
+          <p class="goal-target"><strong>Target:</strong> Create vibrant ecosystem of schools sharing innovations</p>
+          <p>Active forums, peer support networks, annual conferences, shared resource libraries, and case study databases.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-header">
+            <DollarSign class="goal-icon" size={40} strokeWidth={1.5} />
+            <h3>Demonstrate Cost-Effectiveness</h3>
+          </div>
+          <p class="goal-target"><strong>Target:</strong> Document $500M+ in collective savings across implementing schools</p>
+          <p>Track total cost of ownership vs. commercial alternatives. Measure outcome improvements vs. cost increases.</p>
+        </div>
+
+        <div class="goal-card">
+          <div class="goal-header">
+            <Globe class="goal-icon" size={40} strokeWidth={1.5} />
+            <h3>Drive Policy Impact</h3>
+          </div>
+          <p class="goal-target"><strong>Target:</strong> Influence education policy in 10+ developing countries</p>
+          <p>Partner with ministries of education, support pilot programs, create policy briefs based on implementation data.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Geographic Scope -->
+    <section class="geographic-section">
+      <h2>Our Global Reach</h2>
+
+      <div class="geographic-content">
+        <div class="geographic-primary">
+          <h3><MapPin class="inline-icon" size={24} strokeWidth={2} /> Pan-African Priority</h3>
+          <p class="region-intro">
+            Africa is our home and primary focus. We're Zimbabwe-registered, Africa-committed, and deeply invested in the continent's educational future.
+          </p>
+          <div class="region-list">
+            <strong>Primary Markets:</strong>
+            <ul>
+              <li><strong>Zimbabwe</strong> – Home base, reinvestment commitment</li>
+              <li><strong>Kenya, Nigeria, Ghana, South Africa</strong> – Large education markets</li>
+              <li><strong>East African Community</strong> – Regional integration opportunities</li>
+              <li><strong>Southern African Development Community (SADC)</strong></li>
+              <li><strong>Economic Community of West African States (ECOWAS)</strong></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="geographic-secondary">
+          <h3><Globe class="inline-icon" size={24} strokeWidth={2} /> Global Developing Countries</h3>
+          <p class="region-intro">
+            Our frameworks serve schools across the developing world facing similar challenges and opportunities.
+          </p>
+          <div class="regions-grid">
+            <div class="region-card">
+              <h4>South Asia</h4>
+              <p>India, Bangladesh, Pakistan, Nepal</p>
+            </div>
+            <div class="region-card">
+              <h4>Southeast Asia</h4>
+              <p>Indonesia, Philippines, Vietnam</p>
+            </div>
+            <div class="region-card">
+              <h4>Latin America</h4>
+              <p>Brazil, Mexico, Colombia, Peru</p>
+            </div>
+            <div class="region-card">
+              <h4>Pacific & Caribbean</h4>
+              <p>Papua New Guinea, Fiji, Solomon Islands, Caribbean nations</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="selection-criteria">
+        <h4>Why These Regions?</h4>
+        <ul>
+          <li>Mobile-first populations (smartphone penetration > 50%)</li>
+          <li>Education budget constraints creating demand for cost-effective solutions</li>
+          <li>Government openness to educational innovation</li>
+          <li>Existing digital infrastructure gaps our frameworks address</li>
+          <li>Language alignment (English, French, Chinese as instructional languages)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Founder Story -->
+    <section class="founder-story">
+      <h2>Our Founder's Journey: From Passion to Global Purpose</h2>
 
       <div class="founder-image-container">
-        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=1200&q=80" alt="African landscape and dusty roads" class="founder-img" />
+        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=1200&q=80" alt="African landscape representing Nyuchi's roots and global vision" class="founder-img" />
       </div>
 
       <div class="founder-content">
@@ -136,262 +331,150 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
           <h3><Monitor class="journey-icon" size={24} strokeWidth={2} /> The Spark: A Childhood Fascination</h3>
           <p>
             Nyuchi's inception began with founder Bryan Fawcett's early fascination with computers—a childhood
-            hobby that evolved into a lifelong pursuit of technological innovation. This wasn't just about
-            building things; it was about understanding how technology could transform lives and empower communities.
+            hobby that evolved into a lifelong pursuit of technological innovation aimed at transforming lives and empowering communities.
           </p>
         </div>
 
         <div class="journey-step">
           <h3><GraduationCap class="journey-icon" size={24} strokeWidth={2} /> The Awakening: Teaching in South Africa</h3>
           <p>
-            While teaching in South Africa, Bryan encountered a pressing demand among educators and local schools
-            for digital solutions. Many were eager to expand their online presence but lacked the know-how and
-            resources to create effective websites and digital integrations. This gap revealed a profound truth:
+            While teaching in South Africa, Bryan encountered pressing demand among educators and schools
+            for digital solutions. This gap revealed a profound truth:
             <strong>Africa didn't need more technology—it needed accessible, practical solutions designed for
             African realities.</strong>
+          </p>
+          <p>
+            But more than that, Africa didn't need to copy failing Western models. It had the opportunity to
+            <strong>leapfrog them entirely</strong>—building educational systems optimized for the future from day one.
           </p>
         </div>
 
         <div class="journey-step">
-          <h3><MapPin class="journey-icon" size={24} strokeWidth={2} /> The Journey: Built on Dusty Roads</h3>
+          <h3><MapPin class="journey-icon" size={24} strokeWidth={2} /> The Journey: Built on Dusty African Roads</h3>
           <p>
             Soon after Nyuchi's conception, Bryan traveled along the dusty roads of Africa for several years.
-            On these journeys, cloud resources and online collaboration tools became second nature—the lifeblood
-            of the company. This experience wasn't just about logistics; it fundamentally shaped Nyuchi's DNA:
+            Cloud resources and online collaboration tools became second nature—the lifeblood
+            of the company. This experience fundamentally shaped Nyuchi's DNA:
           </p>
           <ul>
             <li><strong>Remote-first by necessity:</strong> Built to work from anywhere, with anything</li>
             <li><strong>African reality-tested:</strong> Optimized for intermittent connectivity and limited bandwidth</li>
-            <li><strong>Practical innovation:</strong> Solutions that work in real African conditions, not just theory</li>
+            <li><strong>Practical innovation:</strong> Solutions that work in real conditions, not just theory</li>
+            <li><strong>Mobile-first naturally:</strong> Because that's how Africa works</li>
           </ul>
           <p class="emphasis">
-            On these dusty roads, the Nyuchi we know now grew—fueled by passion and a love to make life as
-            simple as possible by creating solutions for Africa.
+            On these dusty roads, the Nyuchi we know now grew—fueled by passion and a commitment to make education
+            as accessible and effective as possible through solutions built for Africa and the developing world.
           </p>
         </div>
 
         <div class="journey-step">
-          <h3>The Commitment: Zimbabwe First</h3>
+          <h3>The Commitment: Zimbabwe First, World-Focused</h3>
           <p>
-            In 2019, after much thought and research, Nyuchi Africa (PVT) Ltd. was formally registered in
-            Zimbabwe. This wasn't just a business decision—it was a declaration of commitment:
+            In 2019, Nyuchi Africa (PVT) Ltd. was formally registered in Zimbabwe. This wasn't just a business decision—it
+            was a declaration of commitment to local economy reinvestment and African development.
           </p>
           <blockquote class="founder-quote">
             "We want to grow it and support our local economy. Money earned internationally is funneled back
             into Zimbabwe to build and grow and support there."
           </blockquote>
           <p>
-            This philosophy embodies the Ubuntu principle in action: our success strengthens the community,
-            and the community's success strengthens us.
+            But we also recognized that challenges facing Zimbabwe—limited resources, infrastructure gaps, mobile-first
+            populations—are challenges facing developing countries globally. Solutions that work in Zimbabwe work in Jakarta,
+            Lagos, Lima, and Suva.
+          </p>
+          <p>
+            <strong>Zimbabwe-registered. Pan-African priority. Globally focused.</strong> This is the Ubuntu principle in action:
+            when we help schools across the developing world succeed, we all grow stronger.
           </p>
         </div>
 
         <div class="journey-step mission-today">
           <h3><Target class="journey-icon" size={24} strokeWidth={2} /> The Mission Today</h3>
           <p>
-            The <strong>K-12 Digital Campus Framework</strong> represents Nyuchi Learning's commitment to education—our founder's roots
-            and our forever mission. It's the first of many frameworks we'll release. It's about:
+            Nyuchi Learning represents our commitment to education transformation—our founder's roots
+            and our forever mission. We're building frameworks that:
           </p>
           <ul>
-            <li><strong>Empowering</strong> educators and students with accessible digital tools</li>
-            <li><strong>Transforming</strong> how schools operate across Africa</li>
-            <li><strong>Unlocking</strong> tremendous potential through access to technology</li>
-            <li><strong>Supporting</strong> education communities and helping them grow</li>
+            <li><strong>Empower</strong> developing countries to leapfrog traditional models</li>
+            <li><strong>Enable</strong> schools to build for 2050, not replicate 1950</li>
+            <li><strong>Develop</strong> competencies that predict success, not metrics that don't</li>
+            <li><strong>Deliver</strong> superior outcomes at fraction of traditional costs</li>
+            <li><strong>Demonstrate</strong> that Africa and the developing world can lead, not follow</li>
           </ul>
           <p class="emphasis">
-            Founded out of hobby and passion, built on dusty African roads, committed to Zimbabwe and Africa's
-            future—this is the K-12 Digital Campus Framework by Nyuchi Learning, a division of Nyuchi Africa.
+            Founded out of passion, built on dusty African roads, committed to Zimbabwe and Africa's
+            future, serving schools across the developing world—this is Nyuchi Learning.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="about-section">
+    <!-- What Makes Us Different -->
+    <section class="differentiators-section">
       <h2>What Makes Us Different</h2>
-
-      <h3>Holistic & Comprehensive</h3>
-      <p>
-        We don't just focus on hardware or software—we address the entire ecosystem: infrastructure,
-        platforms, data governance, professional development, community engagement, equity, and
-        sustainability.
-      </p>
-
-      <h3>Evidence-Based</h3>
-      <p>
-        Our framework incorporates proven practices from successful digital transformation initiatives
-        worldwide, adapted for the African context.
-      </p>
-
-      <h3>Practical & Actionable</h3>
-      <p>
-        We provide detailed implementation roadmaps, budget frameworks, and specific tool
-        recommendations—not just abstract principles.
-      </p>
-
-      <h3>Cost-Conscious</h3>
-      <p>
-        A complete 3-year implementation costs approximately $181,000—a fraction of what commercial
-        alternatives would require—through strategic use of open-source solutions and efficient
-        resource allocation.
-      </p>
-
-      <h3>Future-Focused</h3>
-      <p>
-        By emphasizing digital literacy over specific tools, we prepare students not just for today's
-        technology, but for the unknown innovations of 2050 and beyond.
-      </p>
-    </section>
-
-    <section class="about-section">
-      <h2>Core Components</h2>
-      <p>The framework encompasses ten major areas:</p>
-
-      <div class="components-list">
-        <div class="component">
-          <div class="component-number">01</div>
-          <h4>Foundational Principles</h4>
-          <p>Universal access, digital literacy, mobile-first, cost efficiency, data-driven, community-centered</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">02</div>
-          <h4>Technology Infrastructure</h4>
-          <p>Cloud & open-source stack, central data hub, API connectors, security layer</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">03</div>
-          <h4>Digital Access</h4>
-          <p>Connectivity solutions, device equity programs, offline capabilities</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">04</div>
-          <h4>Digital Literacy</h4>
-          <p>K-12 progression, staff development, parent engagement</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">05</div>
-          <h4>Student Platforms</h4>
-          <p>Personalized learning, digital portfolios, career pathways, wellness integration</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">06</div>
-          <h4>Staff Platforms</h4>
-          <p>Data-informed instruction, collaboration tools, professional growth, workload management</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">07</div>
-          <h4>Parent Platforms</h4>
-          <p>Transparent progress tracking, two-way communication, engagement tools</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">08</div>
-          <h4>AI & Analytics</h4>
-          <p>Early warning systems, personalized recommendations, predictive analytics, data governance</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">09</div>
-          <h4>Implementation Roadmap</h4>
-          <p>Phased 3-year plan with clear milestones and deliverables</p>
-        </div>
-
-        <div class="component">
-          <div class="component-number">10</div>
-          <h4>Equity & Inclusion</h4>
-          <p>Accessibility standards, multilingual support, socioeconomic equity measures</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="about-section">
-      <h2>Who This Is For</h2>
-
-      <div class="audience-grid">
-        <div class="audience-card">
-          <h3>School Administrators</h3>
+      <div class="differentiators-grid">
+        <div class="differentiator">
+          <h3>Research-Driven, Not Technology-Driven</h3>
           <p>
-            Strategic framework for digital transformation with clear ROI, budget planning, and
-            implementation guidance.
+            We start with evidence on what predicts success (grit, adaptability, collaboration), then select
+            technologies that develop these competencies. Most EdTech does the opposite.
           </p>
         </div>
 
-        <div class="audience-card">
-          <h3>IT Leaders</h3>
+        <div class="differentiator">
+          <h3>Competencies Over Credentials</h3>
           <p>
-            Technical architecture, tool recommendations, security protocols, and integration
-            strategies.
+            GPA predicts only 4% of job performance. We focus on the 96% that matters—character strengths,
+            problem-solving, learning agility, collaboration.
           </p>
         </div>
 
-        <div class="audience-card">
-          <h3>Educators</h3>
+        <div class="differentiator">
+          <h3>Open & Shareable, Not Proprietary</h3>
           <p>
-            Digital literacy curriculum, pedagogical approaches, and professional development
-            resources.
+            Our frameworks are freely available. Copy them, adapt them, improve them, share them. When one school
+            succeeds, we all benefit. This is Ubuntu.
           </p>
         </div>
 
-        <div class="audience-card">
-          <h3>Policymakers</h3>
+        <div class="differentiator">
+          <h3>Implementation-Focused, Not Just Theoretical</h3>
           <p>
-            Evidence-based approach to educational technology policy and investment priorities.
+            We provide detailed roadmaps, budget templates, technology specifications, and success metrics—not
+            abstract principles. Schools know exactly what to do and how much it costs.
           </p>
         </div>
 
-        <div class="audience-card">
-          <h3>Technology Partners</h3>
+        <div class="differentiator">
+          <h3>Mobile-First, Not Desktop-Adapted</h3>
           <p>
-            Understanding school needs and how to support sustainable digital transformation.
+            We design full learning experiences for smartphones from day one. This isn't compromise—it's recognizing
+            how billions of students actually access technology.
           </p>
         </div>
 
-        <div class="audience-card">
-          <h3>Funders</h3>
+        <div class="differentiator">
+          <h3>Affordable Excellence, Not Expensive Mediocrity</h3>
           <p>
-            Comprehensive view of investment requirements and expected outcomes for grant-making
-            decisions.
+            60-80% cost reduction through open-source solutions while delivering superior outcomes. Not cheaper
+            and worse—cheaper and better.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="about-section">
-      <h2>Vision for 2050</h2>
+    <!-- CTA Section -->
+    <section class="about-cta">
+      <h2>Join the Movement</h2>
       <p>
-        By 2050, the job market will be radically different from today. Students we're educating
-        now will need:
-      </p>
-      <ul>
-        <li>Digital fluency as a baseline competency</li>
-        <li>Ability to collaborate with AI and emerging technologies</li>
-        <li>Data literacy and critical thinking skills</li>
-        <li>Adaptability to learn new tools and systems quickly</li>
-        <li>Global collaboration and communication capabilities</li>
-      </ul>
-
-      <p>
-        Our framework ensures that students across Africa won't just adapt to this future—they'll
-        help shape it. By building strong digital foundations now, we're creating a generation of
-        innovators, problem-solvers, and leaders ready for whatever challenges and opportunities
-        the future brings.
-      </p>
-    </section>
-
-    <section class="about-section cta-section">
-      <h2>Get Started</h2>
-      <p>
-        Ready to transform your school's digital experience? Explore the complete framework and
-        discover how to bring world-class educational technology to your students.
+        Ready to build the future instead of replicating the past? Explore our frameworks, join our community,
+        and help prove that developing countries can lead educational transformation.
       </p>
       <div class="cta-buttons">
-        <a href="/framework" class="btn btn-primary">View Full Framework</a>
-        <a href="/blog" class="btn btn-secondary">Read Implementation Insights</a>
+        <a href="/frameworks" class="btn btn-primary">Explore All Frameworks</a>
+        <a href="/blog/developing-world-educational-advantage" class="btn btn-secondary">Read Our Vision</a>
+        <a href="/consultation" class="btn btn-tertiary">Book a Consultation</a>
       </div>
     </section>
   </div>
@@ -399,15 +482,15 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
 
 <style>
   .about-container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 2rem 1rem;
   }
 
-  /* Full-height Hero Section */
-  .about-hero {
+  /* Hero Section */
+  .mission-hero {
     position: relative;
-    min-height: 100vh;
+    min-height: 80vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -433,7 +516,7 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 26, 26, 0.5) 100%);
+    background: linear-gradient(135deg, rgba(139, 128, 232, 0.85) 0%, rgba(24, 168, 119, 0.75) 100%);
     z-index: 1;
   }
 
@@ -441,18 +524,18 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
     position: relative;
     z-index: 2;
     padding: 2rem 1rem;
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
   }
 
   .hero-content h1 {
+    font-family: 'Newsreader', serif;
     font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 900;
+    font-weight: 700;
     margin-bottom: 2rem;
     line-height: 1.1;
-    letter-spacing: -0.03em;
-    text-transform: uppercase;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
     color: white;
   }
 
@@ -473,97 +556,512 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
     opacity: 0.95;
     margin-bottom: 2rem;
     line-height: 1.6;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
   }
 
-  .nyuchi-badge {
-    font-size: 0.95rem;
-    color: white;
-    opacity: 0.9;
-    font-weight: 600;
-    border: 2px solid white;
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    margin-top: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+  /* Fade in animations */
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
   }
 
-  .about-section {
-    margin-bottom: 4rem;
-    padding: 2rem;
+  .animate-fade-in:nth-child(1) { animation-delay: 0.2s; }
+  .animate-fade-in:nth-child(2) { animation-delay: 0.4s; }
+  .animate-fade-in:nth-child(3) { animation-delay: 0.6s; }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Core Identity Section */
+  .core-identity {
+    padding: 4rem 2rem;
+    background: var(--bg);
+  }
+
+  .identity-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 3rem;
+  }
+
+  .identity-card {
+    padding: 3rem;
+    border-radius: 12px;
     background: white;
-    border-radius: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
   }
 
-  .about-section h2 {
+  .mission-card {
+    border-left: 4px solid var(--primary);
+  }
+
+  .vision-card {
+    border-left: 4px solid var(--emerald);
+  }
+
+  .identity-icon {
     color: var(--primary);
-    font-size: 2rem;
     margin-bottom: 1.5rem;
   }
 
-  .about-section h3 {
-    color: var(--primary-dark);
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+  .identity-card h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    color: var(--text);
+    margin-bottom: 1.5rem;
   }
 
-  .about-section p {
+  .identity-card p {
+    font-size: 1.1rem;
     line-height: 1.8;
     color: var(--text);
     margin-bottom: 1rem;
   }
 
-  .about-section ul {
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
-    line-height: 1.8;
+  .mission-detail,
+  .vision-detail {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
   }
 
-  .about-section li {
-    margin-bottom: 0.75rem;
+  /* Leapfrog Section */
+  .leapfrog-section {
+    padding: 4rem 2rem;
+    background: var(--primary-subtle);
   }
 
-  .approach-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .approach-card {
-    background: var(--bg-gray);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    border-left: 4px solid var(--primary);
-  }
-
-  .approach-card h3 {
-    margin-top: 0;
-    margin-bottom: 0.75rem;
+  .leapfrog-section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .leapfrog-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .leapfrog-text .lead {
     font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    color: var(--text);
   }
 
-  .approach-card p {
-    margin: 0;
-    font-size: 0.95rem;
+  .leapfrog-text p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+    color: var(--text);
   }
 
-  .founder-story {
-    background: var(--bg-gray);
+  .leapfrog-comparison {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .comparison-box {
+    padding: 2rem;
+    border-radius: 12px;
+    background: white;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .old-model {
+    border-left: 4px solid var(--text-muted);
+  }
+
+  .new-model {
+    border-left: 4px solid var(--emerald);
+  }
+
+  .comparison-box h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    color: var(--text);
+  }
+
+  .comparison-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .comparison-box li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .comparison-box li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--emerald);
+    font-weight: bold;
+  }
+
+  .old-model li::before {
+    content: '×';
+    color: var(--text-muted);
+  }
+
+  /* Values Section */
+  .values-section {
+    padding: 4rem 2rem;
+    background: white;
+  }
+
+  .values-section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .section-intro {
+    text-align: center;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .value-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 12px;
     border-left: 4px solid var(--primary);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .value-icon {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .value-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .value-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Governance Section */
+  .governance-section {
+    padding: 4rem 2rem;
+    background: var(--bg);
+  }
+
+  .governance-section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  .governance-principles {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .principle-card {
+    display: flex;
+    gap: 2rem;
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    align-items: start;
+  }
+
+  .principle-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--primary);
+    min-width: 80px;
+    line-height: 1;
+  }
+
+  .principle-content h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .principle-content p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Goals Section */
+  .goals-section {
+    padding: 4rem 2rem;
+    background: white;
+  }
+
+  .goals-section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .goal-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border-top: 4px solid var(--emerald);
+  }
+
+  .goal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .goal-icon {
+    color: var(--emerald);
+    flex-shrink: 0;
+  }
+
+  .goal-card h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .goal-target {
+    font-weight: 600;
+    color: var(--emerald);
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+  }
+
+  .goal-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* Geographic Section */
+  .geographic-section {
+    padding: 4rem 2rem;
+    background: var(--bg);
+  }
+
+  .geographic-section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 3rem;
+    text-align: center;
+  }
+
+  .geographic-content {
+    max-width: 1000px;
+    margin: 0 auto 3rem;
+  }
+
+  .geographic-primary,
+  .geographic-secondary {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .geographic-primary {
+    border-left: 4px solid var(--emerald);
+  }
+
+  .geographic-secondary {
+    border-left: 4px solid var(--primary);
+  }
+
+  .geographic-primary h3,
+  .geographic-secondary h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.5rem;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .inline-icon {
+    color: var(--emerald);
+  }
+
+  .region-intro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .region-list {
+    margin-top: 1.5rem;
+  }
+
+  .region-list strong {
+    display: block;
+    font-size: 1.05rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .region-list ul {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .region-list li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+  }
+
+  .region-list li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--emerald);
+    font-weight: bold;
+  }
+
+  .regions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  .region-card {
+    padding: 1.5rem;
+    background: var(--bg-card);
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .region-card h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .region-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .selection-criteria {
+    background: var(--primary-subtle);
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .selection-criteria h4 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3rem;
+    color: var(--primary);
+    margin-bottom: 1.25rem;
+  }
+
+  .selection-criteria ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .selection-criteria li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 1.05rem;
+  }
+
+  .selection-criteria li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--emerald);
+    font-weight: bold;
+  }
+
+  /* Founder Story */
+  .founder-story {
+    padding: 4rem 2rem;
+    background: white;
+  }
+
+  .founder-story h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    color: var(--primary);
+    margin-bottom: 2rem;
+    text-align: center;
   }
 
   .founder-image-container {
-    margin: 2rem 0;
-    border-radius: 0.75rem;
+    margin: 2rem 0 3rem;
+    border-radius: 12px;
     overflow: hidden;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .founder-img {
@@ -574,24 +1072,26 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
   }
 
   .founder-content {
-    margin-top: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
   }
 
   .journey-step {
     margin-bottom: 2.5rem;
-    padding: 1.5rem;
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
   }
 
   .journey-step h3 {
+    font-family: 'Inter', sans-serif;
     color: var(--text);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
+    margin-bottom: 1.25rem;
+    font-size: 1.4rem;
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
   }
 
   .journey-icon {
@@ -599,108 +1099,117 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
     flex-shrink: 0;
   }
 
-  .journey-step ul {
-    margin-left: 1.5rem;
-    margin-top: 1rem;
+  .journey-step p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
     margin-bottom: 1rem;
   }
 
-  .founder-quote {
-    border-left: 4px solid var(--primary);
+  .journey-step ul {
+    margin: 1.5rem 0;
     padding-left: 1.5rem;
+  }
+
+  .journey-step li {
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .founder-quote {
+    border-left: 4px solid var(--emerald);
+    padding: 1.5rem;
     margin: 1.5rem 0;
     font-style: italic;
     color: var(--text);
-    background: var(--bg-gray);
-    padding: 1rem 1.5rem;
-    border-radius: 0.25rem;
+    background: var(--emerald-subtle);
+    border-radius: 8px;
+    font-size: 1.1rem;
   }
 
   .emphasis {
     font-weight: 500;
     color: var(--text);
-    margin-top: 1rem;
+    margin-top: 1.5rem;
+    padding: 1.25rem;
+    background: var(--primary-subtle);
+    border-radius: 8px;
   }
 
   .mission-today {
-    background: var(--bg-gray);
-    border-left: 4px solid var(--primary);
+    background: var(--primary-subtle);
+    border-left-color: var(--emerald);
   }
 
-  .components-list {
-    display: grid;
-    gap: 1rem;
-    margin-top: 2rem;
+  /* Differentiators */
+  .differentiators-section {
+    padding: 4rem 2rem;
+    background: var(--bg);
   }
 
-  .component {
-    display: flex;
-    gap: 1.5rem;
-    background: var(--bg-gray);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    align-items: start;
-  }
-
-  .component-number {
-    font-size: 2rem;
-    font-weight: 800;
+  .differentiators-section h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 4vw, 2.5rem);
     color: var(--primary);
-    min-width: 60px;
+    margin-bottom: 3rem;
+    text-align: center;
   }
 
-  .component h4 {
-    margin: 0 0 0.5rem 0;
+  .differentiators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .differentiator {
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--shadow-sm);
+    border-top: 4px solid var(--brown);
+  }
+
+  .differentiator h3 {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.25rem;
     color: var(--text);
-    font-size: 1.25rem;
-  }
-
-  .component p {
-    margin: 0;
-    font-size: 0.95rem;
-    color: var(--text-light);
-  }
-
-  .audience-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .audience-card {
-    background: var(--bg-gray);
-    padding: 1.5rem;
-    border-radius: 0.5rem;
-    text-align: center;
-  }
-
-  .audience-card h3 {
-    margin-top: 0;
     margin-bottom: 1rem;
-    color: var(--primary);
-    font-size: 1.25rem;
   }
 
-  .audience-card p {
+  .differentiator p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
     margin: 0;
-    font-size: 0.95rem;
   }
 
-  .cta-section {
+  /* CTA Section */
+  .about-cta {
+    padding: 4rem 2rem;
     text-align: center;
-    background: var(--bg-dark);
+    background: linear-gradient(135deg, var(--primary) 0%, var(--emerald) 100%);
     color: white;
-    border-top: 4px solid var(--primary);
+    border-radius: 12px;
+    margin: 2rem 0;
   }
 
-  .cta-section h2 {
+  .about-cta h2 {
+    font-family: 'Newsreader', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
     color: white;
+    margin-bottom: 1.5rem;
   }
 
-  .cta-section p {
+  .about-cta p {
+    font-size: 1.2rem;
     color: white;
-    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .cta-buttons {
@@ -708,26 +1217,34 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 2rem;
   }
 
   .btn {
     display: inline-block;
-    padding: 0.75rem 2rem;
-    border-radius: 9999px; /* CRITICAL: Pill-shaped per Nyuchi brand */
+    padding: 0.875rem 2rem;
+    border-radius: 10px;
     text-decoration: none;
+    font-family: 'Inter', sans-serif;
     font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
+    font-size: 1rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .btn-primary {
     background: white;
     color: var(--primary);
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
   }
 
   .btn-secondary {
@@ -737,192 +1254,83 @@ import { Monitor, GraduationCap, MapPin, Target } from 'lucide-astro';
   }
 
   .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .btn-tertiary {
+    background: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+
+  .btn-tertiary:hover {
     background: white;
     color: var(--primary);
   }
 
-  /* Mobile Optimization */
+  /* Mobile Responsive */
   @media (max-width: 768px) {
-    .about-hero {
-      min-height: 100vh;
+    .mission-hero {
+      min-height: 70vh;
       padding: 8rem 1rem 4rem;
     }
 
     .hero-background {
-      background-attachment: scroll; /* Better performance on mobile */
+      background-attachment: scroll;
     }
 
-    .hero-content h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 1.5rem;
-      line-height: 1.1;
-    }
-
-    .tagline {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      padding: 0 0.5rem;
-    }
-
-    .ubuntu-header {
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
-    }
-
-    .nyuchi-badge {
-      font-size: 0.85rem;
-      padding: 0.6rem 1.5rem;
-    }
-
-    .about-section {
-      padding: 4rem 1.25rem;
-    }
-
-    .about-section h2 {
-      font-size: clamp(1.5rem, 6vw, 2rem);
-      margin-bottom: 1.5rem;
-    }
-
-    .about-section h3 {
-      font-size: 1.25rem;
-      margin-bottom: 1rem;
-    }
-
-    .about-section p,
-    .about-section li {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Grids - single column */
-    .approach-grid,
-    .audience-grid {
+    .identity-grid,
+    .leapfrog-comparison {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
     }
 
-    .approach-card,
-    .audience-card {
-      padding: 1.75rem;
+    .values-grid,
+    .goals-grid,
+    .differentiators-grid {
+      grid-template-columns: 1fr;
     }
 
-    .approach-card h3,
-    .audience-card h3 {
-      font-size: 1.25rem;
-    }
-
-    /* Component layout */
-    .component {
+    .principle-card {
       flex-direction: column;
       gap: 1rem;
-      padding: 1.5rem;
     }
 
-    .component-number {
+    .principle-number {
       min-width: auto;
-      width: 48px;
-      height: 48px;
-      font-size: 1.25rem;
     }
 
-    .component-content h3 {
-      font-size: 1.25rem;
-    }
-
-    /* Mission/Vision cards */
-    .mission-grid,
-    .vision-grid {
+    .regions-grid {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
     }
 
-    /* Founder section */
-    .founder-section {
-      padding: 4rem 1.25rem;
-    }
-
-    .founder-content {
+    .cta-buttons {
       flex-direction: column;
-      gap: 2rem;
+      align-items: stretch;
     }
 
-    .founder-image {
-      max-width: 200px;
-      margin: 0 auto;
-    }
-
-    /* CTA section */
-    .about-cta {
-      padding: 4rem 1.25rem;
-    }
-
-    .about-cta h2 {
-      font-size: clamp(1.75rem, 7vw, 2.5rem);
-    }
-
-    .about-cta .btn {
+    .btn {
       width: 100%;
-      max-width: 400px;
-    }
-
-    /* Stats */
-    .stats-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .stat-card {
-      padding: 1.75rem;
-    }
-
-    .stat-value {
-      font-size: 2.5rem;
     }
   }
 
-  /* Extra small screens */
   @media (max-width: 480px) {
-    .about-header {
-      padding: 2.5rem 1rem;
+    .about-container {
+      padding: 1.5rem 1rem;
     }
 
-    .about-header h1 {
-      font-size: 1.75rem;
+    .core-identity,
+    .leapfrog-section,
+    .values-section,
+    .governance-section,
+    .goals-section,
+    .geographic-section,
+    .founder-story,
+    .differentiators-section {
+      padding: 3rem 1.5rem;
     }
 
-    .tagline {
-      font-size: 1rem;
-    }
-
-    .about-section {
-      padding: 3rem 1rem;
-    }
-
-    .about-section h2 {
-      font-size: 1.5rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .approach-card,
-    .audience-card,
-    .component,
-    .stat-card {
-      padding: 1.5rem;
-    }
-
-    .founder-section {
-      padding: 3rem 1rem;
-    }
-
-    .about-cta {
-      padding: 3rem 1rem;
-    }
-
-    .about-cta h2 {
-      font-size: 1.5rem;
-    }
-
-    .stat-value {
-      font-size: 2rem;
+    .founder-img {
+      height: 250px;
     }
   }
 </style>
