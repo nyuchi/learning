@@ -1,0 +1,950 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Globe, MapPin, Users, TrendingUp, Heart, Smartphone, Target, CheckCircle } from 'lucide-astro';
+---
+
+<BaseLayout
+  title="Global Reach - Empowering Schools Across Developing Countries"
+  description="Nyuchi Learning serves schools across Africa, Asia, Latin America, and the Pacific. Pan-African priority with global developing world focus. Shared challenges, mobile-first reality, leapfrog opportunity."
+  keywords="pan-African education, global education framework, developing countries education, Africa schools, Asia education, Latin America schools, Pacific education, mobile-first education global"
+>
+  <div class="global-reach-container">
+    <!-- Hero Section -->
+    <section class="global-hero">
+      <div class="hero-content">
+        <p class="ubuntu-tagline">Ubuntu: I am because we are</p>
+        <h1>Global Reach</h1>
+        <p class="hero-subtitle">Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050</p>
+      </div>
+    </section>
+
+    <!-- Geographic Scope Overview -->
+    <section class="scope-overview">
+      <div class="scope-intro">
+        <h2>Where We Serve</h2>
+        <p class="scope-description">
+          <strong>Nyuchi Learning is pan-African with a global developing world focus.</strong>
+          While Africa is our home and primary priority, our frameworks are designed for all developing
+          countries facing similar challenges: mobile-first populations, limited 1:1 device access,
+          budget constraints, and the opportunity to leapfrog legacy educational infrastructure.
+        </p>
+      </div>
+
+      <div class="scope-stats">
+        <div class="scope-stat">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Countries Served</div>
+        </div>
+        <div class="scope-stat">
+          <div class="stat-number">4</div>
+          <div class="stat-label">Continents</div>
+        </div>
+        <div class="scope-stat">
+          <div class="stat-number">1,000+</div>
+          <div class="stat-label">Target Schools by 2030</div>
+        </div>
+        <div class="scope-stat">
+          <div class="stat-number">10M+</div>
+          <div class="stat-label">Students Impacted (Goal)</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Regional Focus Areas -->
+    <section class="regional-focus">
+      <h2>Regional Focus Areas</h2>
+
+      <!-- Africa (Primary) -->
+      <div class="region-block primary-region">
+        <div class="region-header">
+          <MapPin class="region-icon" size={40} strokeWidth={1.5} />
+          <div>
+            <h3>Africa (Primary Focus)</h3>
+            <p class="region-tagline">Home base • Reinvestment commitment • Local ownership</p>
+          </div>
+        </div>
+
+        <div class="region-content">
+          <div class="region-intro">
+            <p><strong>Africa is our home.</strong> Nyuchi Africa is Zimbabwe-registered (2019) with a commitment to reinvesting profits into local economies and building solutions tested on African roads, not just theory.</p>
+          </div>
+
+          <div class="countries-grid">
+            <div class="country-card featured">
+              <h4>🇿🇼 Zimbabwe</h4>
+              <p><strong>Home Base</strong></p>
+              <ul>
+                <li>Company headquarters (Harare)</li>
+                <li>Primary reinvestment focus</li>
+                <li>Local team development</li>
+                <li>Pilot school partnerships</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇰🇪 Kenya</h4>
+              <p>East Africa Tech Hub</p>
+              <ul>
+                <li>Large education market (18M students)</li>
+                <li>Strong digital infrastructure</li>
+                <li>Active EdTech ecosystem</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇳🇬 Nigeria</h4>
+              <p>West Africa's Largest Market</p>
+              <ul>
+                <li>44M students (largest in Africa)</li>
+                <li>Growing digital adoption</li>
+                <li>Diverse language needs</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇬🇭 Ghana</h4>
+              <p>Progressive Education Policy</p>
+              <ul>
+                <li>Government digital education push</li>
+                <li>English-speaking market</li>
+                <li>Tech-forward approach</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇿🇦 South Africa</h4>
+              <p>Advanced Infrastructure</p>
+              <ul>
+                <li>Mature EdTech market</li>
+                <li>Broadband connectivity</li>
+                <li>Innovation partnerships</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇹🇿 Tanzania</h4>
+              <p>East African Growth Market</p>
+              <ul>
+                <li>Swahili language support</li>
+                <li>Mobile-first population</li>
+                <li>Rural school challenges</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇺🇬 Uganda</h4>
+              <p>Innovative Education Models</p>
+              <ul>
+                <li>Community school focus</li>
+                <li>Low-cost implementations</li>
+                <li>High mobile penetration</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇪🇹 Ethiopia</h4>
+              <p>Emerging Market</p>
+              <ul>
+                <li>Large student population (26M)</li>
+                <li>Government reform focus</li>
+                <li>Amharic language support</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="region-note"><strong>Also serving:</strong> Rwanda, Senegal, Côte d'Ivoire, Zambia, Malawi, Botswana, Namibia, and other African countries on request.</p>
+        </div>
+      </div>
+
+      <!-- South Asia -->
+      <div class="region-block">
+        <div class="region-header">
+          <Globe class="region-icon" size={40} strokeWidth={1.5} />
+          <div>
+            <h3>South Asia</h3>
+            <p class="region-tagline">Massive scale • Mobile-first populations • Multilingual complexity</p>
+          </div>
+        </div>
+
+        <div class="region-content">
+          <div class="countries-grid">
+            <div class="country-card">
+              <h4>🇮🇳 India</h4>
+              <p>World's Largest Education System</p>
+              <ul>
+                <li>260M students (K-12)</li>
+                <li>Mobile-first (1.2B smartphone users)</li>
+                <li>Hindi, English, regional languages</li>
+                <li>Budget-conscious schools</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇧🇩 Bangladesh</h4>
+              <p>High Mobile Penetration</p>
+              <ul>
+                <li>18M students</li>
+                <li>175M mobile subscribers</li>
+                <li>Bengali language support</li>
+                <li>Rural connectivity challenges</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇵🇰 Pakistan</h4>
+              <p>Growing Digital Infrastructure</p>
+              <ul>
+                <li>50M students</li>
+                <li>Urdu language priority</li>
+                <li>Low-cost device solutions</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇳🇵 Nepal</h4>
+              <p>Community-Focused Education</p>
+              <ul>
+                <li>8M students</li>
+                <li>Rural school challenges</li>
+                <li>Limited connectivity</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Southeast Asia -->
+      <div class="region-block">
+        <div class="region-header">
+          <Globe class="region-icon" size={40} strokeWidth={1.5} />
+          <div>
+            <h3>Southeast Asia</h3>
+            <p class="region-tagline">Tech-forward • Diverse economies • Strong mobile adoption</p>
+          </div>
+        </div>
+
+        <div class="region-content">
+          <div class="countries-grid">
+            <div class="country-card">
+              <h4>🇮🇩 Indonesia</h4>
+              <p>Archipelago Challenges</p>
+              <ul>
+                <li>45M students</li>
+                <li>17,000+ islands connectivity</li>
+                <li>Bahasa Indonesia language</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇵🇭 Philippines</h4>
+              <p>High Digital Engagement</p>
+              <ul>
+                <li>28M students</li>
+                <li>English proficiency advantage</li>
+                <li>Strong social media adoption</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇻🇳 Vietnam</h4>
+              <p>Rapid EdTech Growth</p>
+              <ul>
+                <li>15M students</li>
+                <li>Government digital push</li>
+                <li>Tech-savvy population</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇲🇲 Myanmar</h4>
+              <p>Emerging Market</p>
+              <ul>
+                <li>9M students</li>
+                <li>Growing mobile infrastructure</li>
+                <li>Burmese language support</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Latin America -->
+      <div class="region-block">
+        <div class="region-header">
+          <Globe class="region-icon" size={40} strokeWidth={1.5} />
+          <div>
+            <h3>Latin America</h3>
+            <p class="region-tagline">Spanish-speaking markets • Urban-rural divide • Growing digital access</p>
+          </div>
+        </div>
+
+        <div class="region-content">
+          <div class="countries-grid">
+            <div class="country-card">
+              <h4>🇧🇷 Brazil</h4>
+              <p>Largest Latin American Market</p>
+              <ul>
+                <li>47M students</li>
+                <li>Portuguese language support</li>
+                <li>Urban-rural technology gap</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇲🇽 Mexico</h4>
+              <p>Spanish Language Hub</p>
+              <ul>
+                <li>25M students</li>
+                <li>High mobile penetration</li>
+                <li>Government education investment</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇨🇴 Colombia</h4>
+              <p>Innovation Focus</p>
+              <ul>
+                <li>9M students</li>
+                <li>EdTech startup ecosystem</li>
+                <li>Digital transformation push</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇵🇪 Peru</h4>
+              <p>Remote Learning Needs</p>
+              <ul>
+                <li>8M students</li>
+                <li>Andes connectivity challenges</li>
+                <li>Indigenous language support</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="region-note"><strong>Also serving:</strong> Argentina, Chile, Ecuador, Bolivia, Central American countries</p>
+        </div>
+      </div>
+
+      <!-- Pacific & Caribbean -->
+      <div class="region-block">
+        <div class="region-header">
+          <Globe class="region-icon" size={40} strokeWidth={1.5} />
+          <div>
+            <h3>Pacific & Caribbean</h3>
+            <p class="region-tagline">Island nations • Small scale, high impact • Connectivity challenges</p>
+          </div>
+        </div>
+
+        <div class="region-content">
+          <div class="countries-grid">
+            <div class="country-card">
+              <h4>🇵🇬 Papua New Guinea</h4>
+              <p>Linguistic Diversity</p>
+              <ul>
+                <li>800+ languages</li>
+                <li>Remote school challenges</li>
+                <li>Low-bandwidth solutions</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇫🇯 Fiji</h4>
+              <p>Pacific Hub</p>
+              <ul>
+                <li>English + Fijian + Hindi</li>
+                <li>Island connectivity</li>
+                <li>Regional influence</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇯🇲 Jamaica</h4>
+              <p>Caribbean Education Leader</p>
+              <ul>
+                <li>English-speaking market</li>
+                <li>Strong education tradition</li>
+                <li>Hurricane resilience needs</li>
+              </ul>
+            </div>
+
+            <div class="country-card">
+              <h4>🇭🇹 Haiti</h4>
+              <p>French-Speaking Caribbean</p>
+              <ul>
+                <li>French & Creole languages</li>
+                <li>Limited infrastructure</li>
+                <li>High-impact opportunity</li>
+              </ul>
+            </div>
+          </div>
+
+          <p class="region-note"><strong>Also serving:</strong> Samoa, Tonga, Vanuatu, Solomon Islands, other Caribbean nations</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why These Regions -->
+    <section class="why-regions">
+      <h2>Why These Regions?</h2>
+      <div class="reasons-grid">
+        <div class="reason-card">
+          <Smartphone class="reason-icon" size={40} strokeWidth={1.5} />
+          <h3>Shared Mobile-First Reality</h3>
+          <p>67.5% internet penetration via smartphones in Africa. Similar patterns in Asia (72%), Latin America (69%), and Pacific (64%). Our frameworks are designed for this reality.</p>
+        </div>
+
+        <div class="reason-card">
+          <Target class="reason-icon" size={40} strokeWidth={1.5} />
+          <h3>Leapfrog Opportunity</h3>
+          <p>Unburdened by legacy infrastructure, developing countries can build digital-first education systems optimized for 2050—not retrofitting 1950s models.</p>
+        </div>
+
+        <div class="reason-card">
+          <Users class="reason-icon" size={40} strokeWidth={1.5} />
+          <h3>Similar Challenges</h3>
+          <p>Budget constraints, limited 1:1 device access, multilingual needs, urban-rural divides, connectivity issues—shared challenges require shared solutions.</p>
+        </div>
+
+        <div class="reason-card">
+          <TrendingUp class="reason-icon" size={40} strokeWidth={1.5} />
+          <h3>High-Growth Markets</h3>
+          <p>Young populations, expanding middle class, government education investment, digital infrastructure growth—conditions ripe for transformation.</p>
+        </div>
+
+        <div class="reason-card">
+          <Heart class="reason-icon" size={40} strokeWidth={1.5} />
+          <h3>Ubuntu Philosophy Alignment</h3>
+          <p>"I am because we are" resonates across cultures—community-centered values in Africa, Asia, Latin America, and Pacific align with collaborative education.</p>
+        </div>
+
+        <div class="reason-card">
+          <CheckCircle class="reason-icon" size={40} strokeWidth={1.5} />
+          <h3>Proven Adaptability</h3>
+          <p>Open frameworks designed to adapt to local contexts: languages, cultural values, curriculum standards, budget realities, infrastructure constraints.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Impact Goals by Region -->
+    <section class="impact-goals">
+      <h2>2025-2030 Impact Goals by Region</h2>
+      <div class="goals-grid">
+        <div class="goal-card goal-africa">
+          <h3>Africa</h3>
+          <ul>
+            <li><CheckCircle size={20} /> 500 schools implementing frameworks</li>
+            <li><CheckCircle size={20} /> 5M students impacted</li>
+            <li><CheckCircle size={20} /> 15+ countries with active implementations</li>
+            <li><CheckCircle size={20} /> Zimbabwe: 50+ schools (home base focus)</li>
+          </ul>
+        </div>
+
+        <div class="goal-card goal-asia">
+          <h3>South & Southeast Asia</h3>
+          <ul>
+            <li><CheckCircle size={20} /> 300 schools implementing frameworks</li>
+            <li><CheckCircle size={20} /> 3M students impacted</li>
+            <li><CheckCircle size={20} /> 8+ countries with active implementations</li>
+            <li><CheckCircle size={20} /> Hindi, Bengali, Bahasa support</li>
+          </ul>
+        </div>
+
+        <div class="goal-card goal-latam">
+          <h3>Latin America</h3>
+          <ul>
+            <li><CheckCircle size={20} /> 150 schools implementing frameworks</li>
+            <li><CheckCircle size={20} /> 1.5M students impacted</li>
+            <li><CheckCircle size={20} /> 6+ countries with active implementations</li>
+            <li><CheckCircle size={20} /> Spanish & Portuguese language support</li>
+          </ul>
+        </div>
+
+        <div class="goal-card goal-pacific">
+          <h3>Pacific & Caribbean</h3>
+          <ul>
+            <li><CheckCircle size={20} /> 50 schools implementing frameworks</li>
+            <li><CheckCircle size={20} /> 500K students impacted</li>
+            <li><CheckCircle size={20} /> 10+ island nations served</li>
+            <li><CheckCircle size={20} /> Offline-capable solutions priority</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="goals-total"><strong>Total 2030 Goal:</strong> 1,000 schools, 10 million students across 40+ developing countries</p>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="global-cta">
+      <h2>Join the Global Movement</h2>
+      <p>Whether you're in Harare, Mumbai, Jakarta, São Paulo, or Port Moresby—our frameworks are designed for your school. Download, adapt, implement, and share your learnings with the global community.</p>
+      <div class="cta-buttons">
+        <a href="/frameworks" class="btn btn-primary btn-lg">Download Frameworks</a>
+        <a href="/resources" class="btn btn-secondary btn-lg">Browse Resources</a>
+        <a href="/consultation" class="btn btn-secondary btn-lg">Schedule Consultation</a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .global-reach-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Hero Section */
+  .global-hero {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-active) 100%);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+    border-radius: 0 0 24px 24px;
+    margin-bottom: 4rem;
+  }
+
+  .ubuntu-tagline {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin-bottom: 1rem;
+    font-style: italic;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    font-family: 'Newsreader', Georgia, serif;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.35rem;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  /* Scope Overview */
+  .scope-overview {
+    padding: 4rem 2rem;
+    background: var(--bg-gray);
+  }
+
+  .scope-intro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .scope-intro h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .scope-description {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .scope-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+
+  .scope-stat {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    font-family: 'Newsreader', Georgia, serif;
+  }
+
+  .stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary);
+  }
+
+  /* Regional Focus */
+  .regional-focus {
+    padding: 4rem 2rem;
+  }
+
+  .regional-focus > h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .region-block {
+    margin-bottom: 4rem;
+    background: white;
+    padding: 3rem 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .primary-region {
+    border-left: 4px solid var(--primary);
+    background: linear-gradient(135deg, var(--primary-subtle) 0%, white 100%);
+  }
+
+  .region-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 2px solid var(--charcoal-border);
+  }
+
+  .region-icon {
+    color: var(--primary);
+    flex-shrink: 0;
+  }
+
+  .region-header h3 {
+    font-size: 2rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .region-tagline {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .region-intro {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    color: var(--text-secondary);
+  }
+
+  .countries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .country-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    border: 1px solid var(--charcoal-border);
+    transition: all 0.3s ease;
+  }
+
+  .country-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border-color: var(--primary);
+  }
+
+  .country-card.featured {
+    border: 2px solid var(--primary);
+    background: var(--primary-subtle);
+  }
+
+  .country-card h4 {
+    font-size: 1.25rem;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+  }
+
+  .country-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+  }
+
+  .country-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .country-card li {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    padding: 0.25rem 0;
+    padding-left: 1rem;
+    position: relative;
+  }
+
+  .country-card li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary);
+  }
+
+  .region-note {
+    font-size: 0.95rem;
+    color: var(--text-light);
+    font-style: italic;
+    margin-top: 1.5rem;
+  }
+
+  /* Why Regions */
+  .why-regions {
+    padding: 4rem 2rem;
+    background: var(--bg-gray);
+  }
+
+  .why-regions h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .reasons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .reason-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+    text-align: center;
+  }
+
+  .reason-icon {
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+
+  .reason-card h3 {
+    font-size: 1.25rem;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+
+  .reason-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  /* Impact Goals */
+  .impact-goals {
+    padding: 4rem 2rem;
+  }
+
+  .impact-goals h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .goals-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .goal-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+
+  .goal-card h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+  }
+
+  .goal-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .goal-card li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.5rem 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .goal-card :global(svg) {
+    color: var(--emerald-primary);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .goals-total {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--text);
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: var(--primary-subtle);
+    border-radius: 12px;
+  }
+
+  /* CTA Section */
+  .global-cta {
+    text-align: center;
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--primary-subtle) 0%, var(--emerald-subtle) 100%);
+    border-radius: 24px;
+    margin: 0 2rem 4rem;
+  }
+
+  .global-cta h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .global-cta p {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    font-size: 1rem;
+  }
+
+  .btn-primary {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3);
+  }
+
+  .btn-secondary {
+    background: white;
+    color: var(--primary);
+    border: 1.5px solid var(--primary);
+  }
+
+  .btn-secondary:hover {
+    background: var(--primary-subtle);
+    color: var(--primary-active);
+  }
+
+  .btn-lg {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  /* Mobile Optimization */
+  @media (max-width: 768px) {
+    .global-hero {
+      padding: 4rem 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-size: 2.25rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .scope-overview,
+    .regional-focus,
+    .why-regions,
+    .impact-goals {
+      padding-left: 1.25rem;
+      padding-right: 1.25rem;
+    }
+
+    .region-block {
+      padding: 2rem 1.5rem;
+    }
+
+    .region-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .countries-grid,
+    .reasons-grid,
+    .goals-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+    }
+
+    .cta-buttons .btn {
+      width: 100%;
+    }
+
+    .global-cta {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .global-hero {
+      padding: 3rem 1rem;
+    }
+
+    .hero-content h1 {
+      font-size: 1.75rem;
+    }
+
+    .scope-intro h2,
+    .regional-focus > h2,
+    .why-regions h2,
+    .impact-goals h2,
+    .global-cta h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
