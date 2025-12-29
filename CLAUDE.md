@@ -1,7 +1,7 @@
 # K-12 Digital Campus Framework - Technical & Design Guidelines
 
-**Last Updated**: November 2025
-**Version**: 3.0 (Claude-Aligned: Warm, Editorial, Accessible)
+**Last Updated**: December 2025
+**Version**: 3.1 (Dark Theme, Animation System, Global Mission)
 **Maintained By**: Nyuchi Learning Development Team
 
 ---
@@ -77,17 +77,20 @@ This section provides comprehensive technical guidance for AI assistants working
 │   │   ├── frameworks.astro    # Frameworks overview (/frameworks)
 │   │   ├── framework.astro     # K-12 Digital Campus (/framework)
 │   │   ├── support-framework.astro  # Support Process (/support-framework)
-│   │   ├── pricing.astro       # Pricing (/pricing)
-│   │   ├── about.astro         # About page (/about)
-│   │   ├── team.astro          # Team page (/team)
-│   │   ├── community.astro     # Community page (/community)
-│   │   ├── consultation.astro  # Consultation page (/consultation)
 │   │   ├── digital-literacy-framework.astro  # Digital Literacy (/digital-literacy-framework)
+│   │   ├── pricing.astro       # Pricing (/pricing)
+│   │   ├── resources.astro     # Resources Hub (/resources) - Implementation guides
+│   │   ├── about.astro         # Mission & Impact page (/about)
+│   │   ├── global-reach.astro  # Global Reach (/global-reach) - Geographic scope
+│   │   ├── team.astro          # Team page (/team)
+│   │   ├── community.astro     # Community page (/community) - GitHub integration
+│   │   ├── consultation.astro  # Consultation booking (/consultation)
 │   │   └── blog/               # Blog section
 │   │       ├── index.astro     # Blog index (/blog)
 │   │       ├── launching-the-framework.astro
 │   │       ├── why-open-source.astro
-│   │       └── digital-literacy-importance.astro
+│   │       ├── digital-literacy-importance.astro
+│   │       └── developing-world-educational-advantage.astro
 │   └── env.d.ts                # TypeScript environment definitions
 ├── astro.config.mjs            # Astro configuration
 ├── package.json                # Dependencies and scripts
@@ -104,7 +107,7 @@ This section provides comprehensive technical guidance for AI assistants working
 
 | File | Purpose |
 |------|---------|
-| **src/layouts/BaseLayout.astro** | Main layout wrapper - includes header, footer, Zimbabwe flag strip, mobile menu, SEO, Google Analytics, global styles |
+| **src/layouts/BaseLayout.astro** | Main layout wrapper - includes header (with auto-hide, transparent/solid states, dropdown menus), footer (with global mission messaging), Zimbabwe flag strip, mobile menu, SEO, Google Analytics, global styles, animation system |
 | **src/components/SEO.astro** | SEO meta tags, Open Graph, Twitter Cards, structured data (JSON-LD) |
 | **src/components/Logo.astro** | Nyuchi Learning logo with 3 variants (main, horizontal, compact) and 3 sizes (sm, md, lg) |
 | **astro.config.mjs** | Astro configuration (site URL, integrations, output mode) |
@@ -664,15 +667,52 @@ Edit `src/layouts/BaseLayout.astro`:
 
 **Edit:** `src/layouts/BaseLayout.astro` (footer section)
 
+The footer has a **hero section** with global mission messaging, followed by a **link grid** and **bottom section**.
+
 ```astro
 <footer>
+  <!-- Footer Hero - Brown Background -->
   <div class="footer-hero">
-    <h2 class="footer-main-text">Your Message</h2>
+    <h2 class="footer-main-text">Leapfrog Traditional Education.<br />Build for 2050.</h2>
     <p class="footer-ubuntu-large">Ubuntu: I am because we are</p>
+    <p class="footer-geographic">Serving schools across Africa • Asia • Latin America • Pacific</p>
   </div>
-  <!-- ... -->
+
+  <!-- Footer Grid - 4 Columns -->
+  <div class="footer-grid">
+    <div class="footer-column">
+      <h3>Frameworks</h3>
+      <ul>
+        <li><a href="/frameworks">All Frameworks</a></li>
+        <li><a href="/framework">K-12 Digital Campus</a></li>
+        <li><a href="/digital-literacy-framework">Digital Literacy Framework</a></li>
+        <li><a href="/support-framework">K-12 Support Process</a></li>
+      </ul>
+    </div>
+    <!-- Resources, Community, About columns... -->
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="footer-branding">
+      <p class="footer-brand-name">Nyuchi Learning</p>
+      <p class="footer-brand-org">K-12 Digital Campus Framework</p>
+      <p class="footer-division">A division of Nyuchi Africa</p>
+    </div>
+    <div class="footer-principles">
+      <p>Digital Access • Digital Literacy • Mobile-First</p>
+      <p>AI-Driven • Community-Centered • Education First</p>
+    </div>
+    <p class="footer-copyright">&copy; 2025 Nyuchi Learning. Open framework, freely shareable.</p>
+  </div>
 </footer>
 ```
+
+**Footer Columns (4 total):**
+1. **Frameworks** - Links to all framework pages
+2. **Resources** - Resources Hub, Pricing, Blog, Consultation
+3. **Community** - Community page, GitHub links
+4. **About** - Mission & Impact, Global Reach, Our Team
 
 ### Task 4: Add Blog Post
 
@@ -1184,46 +1224,46 @@ import Logo from '../components/Logo.astro';
 
 ---
 
-## Color System - Warm Earth Tones (Claude-Aligned)
+## Color System - Dark Theme with Warm Accents
 
 ### Design Philosophy
 
-The color system uses **warm earth tones** inspired by Claude's design language, creating a sophisticated, approachable, and professional feel while maintaining African heritage through the Zimbabwe flag strip.
+The color system uses a **dark charcoal background** with **off-white text** for readability and visual hierarchy. **Warm accent colors** (purple, emerald, brown) provide emphasis and interactivity. This creates a sophisticated, professional, and modern feel while maintaining accessibility.
+
+### Current Theme: Dark Mode (Charcoal Background)
+
+**CRITICAL**: The site now uses a **dark theme** with charcoal backgrounds. This is a significant change from v3.0.
 
 ### Primary Palette
 
-**Warm Emerald (Primary Actions)**
-- Primary: `#18A877` - Main CTA buttons, primary links, active states, important highlights
-- Hover: `#20C088` - Bright on hover
-- Active: `#139F68` - Deep on press
-- Light: `#D8F3EA` - Soft background
-- Subtle: `#F0FAF6` - Very light background
+**Charcoal (Primary Background)**
+- Primary: `#2B2B2B` - **Main page background, header, footer**
+- Light: `#3D3D3D` - Card backgrounds on dark sections
+- Lighter: `#4F4F4F` - Borders, hover states on dark backgrounds
 
-**Warm Purple (PRIMARY UI COLOR)**
-- Primary: `#8B80E8` - **Primary UI color for headings, text, links, icons** (replaces old charcoal #2C2C2C)
-- Hover: `#A199EE` - Light on hover
-- Active: `#7569D9` - Deep on press
-- Light: `#EBE8FC` - Soft background
-- Subtle: `#F6F5FE` - Very light background
+**Off-White (Primary Text)**
+- Primary: `#FAFAFA` - **Main text color on dark backgrounds**
+- Secondary: `#D1D5DB` - Secondary text, descriptions
+- Muted: `#9CA3AF` - Tertiary text, captions
 
-**CRITICAL**: Use warm purple (#8B80E8) as the primary color for all UI elements (headings, text, links, buttons, icons). Charcoal is reserved for backgrounds only.
+**Warm Purple (Accent & Interactive)**
+- Primary: `#8B80E8` - **Buttons, CTAs, links, accent highlights**
+- Hover: `#A199EE` - Hover states
+- Active: `#7569D9` - Active/pressed states
+- Light: `#EBE8FC` - Light accent backgrounds
+- Subtle: `#F6F5FE` - Very subtle accent backgrounds
 
-**Warm Brown (Accents)**
-- Primary: `#A67557` - Featured content, premium badges, warm highlights, special callouts
-- Hover: `#BA8668` - Warm on hover
-- Active: `#925F47` - Deep on press
-- Light: `#F5EDE8` - Soft background
-- Subtle: `#FAF7F5` - Very light background
+**Warm Emerald (Secondary Actions & Logo)**
+- Primary: `#18A877` - Logo icon, secondary buttons, success states
+- Hover: `#20C088` - Hover states
+- Active: `#139F68` - Active states
+- Light: `#D8F3EA` - Light emerald backgrounds
 
-**Charcoal (Backgrounds & Neutrals)**
-- Primary: `#2B2B2B` - Dark backgrounds, footer
-- Secondary: `#6B6B6B` - Secondary text, captions
-- Tertiary: `#9B9B9B` - Disabled text
-- Border: `#E0E0E0` - Subtle borders
-- Background: `#F7F7F7` - Light backgrounds
-- White: `#FAFAFA` - Off-white backgrounds
-
-**CRITICAL**: Charcoal is used for backgrounds and neutral elements only. Use warm purple (#8B80E8) for primary UI elements.
+**Warm Brown (Feature Sections)**
+- Primary: `#A67557` - **Footer hero background**, featured sections
+- Hover: `#BA8668` - Hover states
+- Dark: `#8B5E42` - Darker brown accents
+- Light: `#F5EDE8` - Light brown backgrounds
 
 ### Semantic Colors
 
@@ -1232,48 +1272,62 @@ The color system uses **warm earth tones** inspired by Claude's design language,
 - **Error**: `#E8574E` (Warm red)
 - **Info**: `#5B9FE3` (Warm blue)
 
-### CSS Variables
+### CSS Variables (Current Implementation)
 
 ```css
 :root {
-  /* WARM PURPLE - PRIMARY UI COLOR */
-  --primary: #8B80E8;          /* Main color for headings, text, links, buttons, icons */
+  /* Zimbabwe Flag Colors - for flag strip only */
+  --nyuchi-green: #18A877;    /* Warm emerald */
+  --nyuchi-yellow: #FDD116;
+  --nyuchi-red: #EF3340;
+  --nyuchi-black: #2B2B2B;    /* Warm charcoal */
+
+  /* WARM PURPLE - Accent Color for Interactive Elements */
+  --primary: #8B80E8;          /* Buttons, CTAs, links, highlights */
   --primary-hover: #A199EE;    /* Hover states */
   --primary-active: #7569D9;   /* Active/pressed states */
-  --primary-light: #EBE8FC;    /* Light backgrounds */
-  --primary-subtle: #F6F5FE;   /* Very light backgrounds */
+  --primary-light: #EBE8FC;    /* Light accent backgrounds */
+  --primary-subtle: #F6F5FE;   /* Very light accent backgrounds */
 
-  /* Warm Emerald - Secondary Actions */
-  --emerald-primary: #18A877;
+  /* Warm Emerald - Secondary Actions & Logo */
+  --emerald: #18A877;          /* Logo icon, secondary buttons */
   --emerald-hover: #20C088;
   --emerald-active: #139F68;
   --emerald-light: #D8F3EA;
-  --emerald-subtle: #F0FAF6;
 
-  /* Warm Brown - Accents */
-  --brown-primary: #A67557;
+  /* Warm Brown - Feature Sections */
+  --brown: #A67557;            /* Footer hero, featured sections */
   --brown-hover: #BA8668;
-  --brown-active: #925F47;
+  --brown-dark: #8B5E42;
   --brown-light: #F5EDE8;
-  --brown-subtle: #FAF7F5;
 
-  /* Charcoal - Backgrounds & Neutrals ONLY */
-  --charcoal-bg-dark: #2B2B2B;   /* Dark backgrounds, footer */
-  --charcoal-secondary: #6B6B6B;  /* Secondary text */
-  --charcoal-tertiary: #9B9B9B;   /* Disabled text */
-  --charcoal-border: #E0E0E0;     /* Borders */
-  --charcoal-bg: #F7F7F7;         /* Light backgrounds */
-  --charcoal-white: #FAFAFA;      /* Off-white */
+  /* Charcoal - Primary Background */
+  --charcoal: #2B2B2B;          /* Main page background */
+  --charcoal-light: #3D3D3D;    /* Card backgrounds */
+  --charcoal-lighter: #4F4F4F;  /* Borders, hover states */
 
-  /* Text Colors */
-  --text: #8B80E8;           /* Primary text - WARM PURPLE */
-  --text-secondary: #6B6B6B; /* Secondary text - Charcoal */
-  --text-light: #9B9B9B;     /* Light text - Charcoal */
+  /* Text Colors - For Dark Backgrounds */
+  --text: #FAFAFA;              /* Primary text - OFF-WHITE */
+  --text-secondary: #D1D5DB;    /* Secondary text - Light gray */
+  --text-muted: #9CA3AF;        /* Muted text - Medium gray */
 
   /* Background Colors */
-  --bg: #FAFAFA;              /* Off-white */
-  --bg-gray: #F7F7F7;         /* Light gray */
-  --bg-dark: #2B2B2B;         /* Dark background */
+  --bg: #2B2B2B;                /* Primary background - CHARCOAL */
+  --bg-brown: #A67557;          /* Brown section backgrounds */
+  --bg-card: #3D3D3D;           /* Card backgrounds on dark */
+  --border: #4F4F4F;            /* Borders on dark backgrounds */
+
+  /* Gray Scale */
+  --gray-50: #FAFAFA;
+  --gray-100: #F7F7F7;
+  --gray-200: #E0E0E0;
+  --gray-300: #D1D5DB;
+  --gray-400: #9B9B9B;
+  --gray-500: #6B6B6B;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #2B2B2B;
+  --gray-900: #1A1A1A;
 
   /* Semantic */
   --success: #18A877;
@@ -1283,11 +1337,12 @@ The color system uses **warm earth tones** inspired by Claude's design language,
 }
 ```
 
-**Color Usage Guidelines:**
-- **Warm Purple (#8B80E8)**: Primary UI color for headings, body text, links, buttons, icons
-- **Warm Emerald (#18A877)**: Secondary CTAs, success states, highlights
-- **Warm Brown (#A67557)**: Special accents, featured content
-- **Charcoal (#2B2B2B)**: Backgrounds, footer, dark sections ONLY
+**Color Usage Guidelines (Dark Theme):**
+- **Off-White (#FAFAFA)**: Primary text color on dark backgrounds
+- **Warm Purple (#8B80E8)**: Interactive elements (buttons, links, CTAs)
+- **Warm Emerald (#18A877)**: Logo icon, secondary actions, success states
+- **Warm Brown (#A67557)**: Feature section backgrounds (footer hero)
+- **Charcoal (#2B2B2B)**: Primary page background, header, footer
 
 ---
 
@@ -1786,11 +1841,118 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 
 ---
 
+## Animation System - Intersection Observer
+
+The site uses an Intersection Observer-based animation system that triggers animations when elements scroll into view. This provides smooth, performant scroll animations that respect user preferences.
+
+### Animation Classes
+
+Add these classes to elements you want to animate on scroll:
+
+```css
+/* Fade In - Simple opacity transition */
+.animate-fade-in { opacity: 0; }
+.animate-fade-in.animated { opacity: 1; }
+
+/* Slide Up - Fades in while sliding up 50px */
+.animate-slide-up { transform: translateY(50px); opacity: 0; }
+.animate-slide-up.animated { transform: translateY(0); opacity: 1; }
+
+/* Slide From Left - Fades in while sliding from left */
+.animate-slide-left { transform: translateX(-50px); opacity: 0; }
+.animate-slide-left.animated { transform: translateX(0); opacity: 1; }
+
+/* Slide From Right - Fades in while sliding from right */
+.animate-slide-right { transform: translateX(50px); opacity: 0; }
+.animate-slide-right.animated { transform: translateX(0); opacity: 1; }
+
+/* Scale In - Fades in while scaling up from 90% */
+.animate-scale-in { transform: scale(0.9); opacity: 0; }
+.animate-scale-in.animated { transform: scale(1); opacity: 1; }
+```
+
+### Staggered Animations for Grids
+
+Use `.animate-stagger` on a parent container to automatically stagger child animations:
+
+```astro
+<div class="features-grid animate-stagger">
+  <div class="feature-card animate-slide-up">Card 1</div>  <!-- 0.1s delay -->
+  <div class="feature-card animate-slide-up">Card 2</div>  <!-- 0.2s delay -->
+  <div class="feature-card animate-slide-up">Card 3</div>  <!-- 0.3s delay -->
+</div>
+```
+
+### Usage Example
+
+```astro
+<section class="hero">
+  <h1 class="animate-fade-in">Welcome</h1>
+  <p class="animate-slide-up">Description text</p>
+</section>
+
+<section class="features">
+  <div class="cards-grid animate-stagger">
+    <div class="card animate-slide-up">Feature 1</div>
+    <div class="card animate-slide-up">Feature 2</div>
+    <div class="card animate-slide-up">Feature 3</div>
+  </div>
+</section>
+```
+
+### Accessibility
+
+The animation system automatically respects `prefers-reduced-motion`:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-left,
+  .animate-slide-right,
+  .animate-scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+```
+
+---
+
 ## Navigation
 
 ### Desktop Navigation
 
-Standard horizontal navigation with rounded hover states (10px border-radius, matching button style).
+Standard horizontal navigation with rounded hover states (10px border-radius, matching button style). Includes dropdown menu for "About" section.
+
+**Navigation Structure:**
+```
+Home | Frameworks | Resources | Pricing | Blog | About (dropdown) | Book a Consultation (CTA)
+                                                    ├── Mission & Impact
+                                                    ├── Global Reach
+                                                    ├── Our Team
+                                                    └── Community
+```
+
+**Dropdown Menu Pattern:**
+```astro
+<li class="nav-dropdown">
+  <a href="/about" class="dropdown-trigger">About</a>
+  <ul class="dropdown-menu">
+    <li><a href="/about">Mission & Impact</a></li>
+    <li><a href="/global-reach">Global Reach</a></li>
+    <li><a href="/team">Our Team</a></li>
+    <li><a href="/community">Community</a></li>
+  </ul>
+</li>
+```
+
+**Header States:**
+- **Transparent**: On page load when at top of page (hero sections)
+- **Solid**: When scrolled past 50px (charcoal background with blur)
+- **Hidden**: When scrolling down (auto-hides after 100px)
+- **Visible**: When scrolling up (shows again)
 
 ### Mobile Navigation - CRITICAL
 
@@ -1808,9 +1970,14 @@ Standard horizontal navigation with rounded hover states (10px border-radius, ma
   <ul class="nav-mobile-links">
     <li><a href="/">Home</a></li>
     <li><a href="/frameworks">Frameworks</a></li>
+    <li><a href="/resources">Resources</a></li>
     <li><a href="/pricing">Pricing</a></li>
     <li><a href="/blog">Blog</a></li>
-    <li><a href="/about">About</a></li>
+    <li><a href="/about">Mission & Impact</a></li>
+    <li><a href="/global-reach">Global Reach</a></li>
+    <li><a href="/team">Our Team</a></li>
+    <li><a href="/community">Community</a></li>
+    <li><a href="/consultation" class="mobile-cta">Book a Consultation</a></li>
   </ul>
 </div>
 ```
@@ -2016,32 +2183,39 @@ Given Africa's mobile-first reality:
 │   ├── favicon.svg
 │   ├── frameworks/
 │   │   ├── README.md
-│   │   ├── k12-digital-campus-framework.pdf (to be generated)
-│   │   └── k12-support-process-framework.pdf (to be generated)
+│   │   ├── k12-digital-campus-framework.md
+│   │   └── k12-support-process-framework.md
 │   └── OG-IMAGE-README.md
 ├── src/
 │   ├── components/
 │   │   ├── Logo.astro
 │   │   └── SEO.astro
 │   ├── layouts/
-│   │   └── BaseLayout.astro       # Zimbabwe flag strip, navigation, footer
+│   │   └── BaseLayout.astro       # Header (auto-hide, dropdown menus), footer (global messaging), Zimbabwe flag strip, animation system
 │   ├── pages/
-│   │   ├── index.astro            # Homepage (Claude-aligned design)
+│   │   ├── index.astro            # Homepage
 │   │   ├── frameworks.astro       # Frameworks overview
 │   │   ├── framework.astro        # K-12 Digital Campus Framework
+│   │   ├── digital-literacy-framework.astro  # Digital Literacy Framework
 │   │   ├── support-framework.astro # K-12 Support Process Framework
 │   │   ├── pricing.astro          # Pricing tiers & breakdowns
-│   │   ├── about.astro            # Mission & founder story
+│   │   ├── resources.astro        # Resources Hub - implementation guides
+│   │   ├── about.astro            # Mission & Impact page
+│   │   ├── global-reach.astro     # Global geographic scope
+│   │   ├── team.astro             # Team page (founder profile)
+│   │   ├── community.astro        # Community page (GitHub integration)
+│   │   ├── consultation.astro     # Book a Consultation
 │   │   └── blog/
 │   │       ├── index.astro
 │   │       ├── digital-literacy-importance.astro
 │   │       ├── launching-the-framework.astro
-│   │       └── why-open-source.astro
+│   │       ├── why-open-source.astro
+│   │       └── developing-world-educational-advantage.astro
 │   └── env.d.ts
 ├── astro.config.mjs
 ├── package.json
 ├── tsconfig.json
-├── CLAUDE.md                       # This file - Design guidelines
+├── CLAUDE.md                       # This file - Comprehensive guidelines
 ├── BRANDING.md                     # Nyuchi branding guidelines
 ├── README.md                       # Project documentation
 ├── DEPLOYMENT.md                   # Deployment instructions
@@ -2056,7 +2230,10 @@ Given Africa's mobile-first reality:
 ✅ Use Zimbabwe flag strip on every page (8px desktop, 6px mobile)
 ✅ Use rounded buttons (border-radius: 10px for medium, 12px for large)
 ✅ Use Lucide icons for all visual icons
-✅ Use warm color system (purple PRIMARY, emerald, brown, charcoal for backgrounds)
+✅ **Use dark theme** - Charcoal (#2B2B2B) background with off-white (#FAFAFA) text
+✅ Use warm purple (#8B80E8) for interactive elements (buttons, links, CTAs)
+✅ Use warm emerald (#18A877) for logo icon and secondary actions
+✅ Use warm brown (#A67557) for feature section backgrounds (footer hero)
 ✅ Use Newsreader for H1, H2 (editorial serif)
 ✅ Use Inter for H3-H6, body, UI (clean sans-serif)
 ✅ Use layered shadows (Claude-style soft shadows)
@@ -2074,10 +2251,10 @@ Given Africa's mobile-first reality:
 ✅ Mention multilingual support (African languages + English, French, Chinese)
 ✅ Emphasize Ubuntu philosophy
 ✅ Design mobile-first
-✅ **Use warm purple (#8B80E8) as PRIMARY UI color** for headings, text, links, buttons, icons
-✅ Use warm emerald (#18A877) for secondary CTAs and highlights
-✅ Use warm brown (#A67557) for accents
-✅ Use charcoal (#2B2B2B) ONLY for backgrounds and dark sections
+✅ Use animation classes (animate-fade-in, animate-slide-up) for scroll animations
+✅ Use auto-hide header with transparent/solid states
+✅ Use dropdown menus for navigation sections
+✅ Include global mission messaging ("Leapfrog Traditional Education. Build for 2050.")
 ✅ Create editorial, sophisticated feel (not aggressive/bold)
 ✅ Optimize spacing for 13" laptop screens
 
@@ -2085,7 +2262,9 @@ Given Africa's mobile-first reality:
 ❌ Use pill-shaped buttons (9999px border-radius)
 ❌ Use square buttons (0px border-radius)
 ❌ Use emojis anywhere
-❌ Use harsh black (#000) or pure white (#FFF) for backgrounds
+❌ Use harsh black (#000) for backgrounds (use #2B2B2B charcoal)
+❌ Use pure white (#FFF) for text (use #FAFAFA off-white)
+❌ Use light/white backgrounds for main pages (dark theme is standard)
 ❌ Use old fonts (Playfair Display, Roboto - these are deprecated)
 ❌ Use single, sharp shadows
 ❌ Use 8px spacing base (use 4px instead)
@@ -2098,9 +2277,9 @@ Given Africa's mobile-first reality:
 ❌ Use small touch targets (<44px)
 ❌ Allow content to wrap/overflow on mobile (use horizontal scroll)
 ❌ Use aggressive, overly bold design
-❌ Use cold colors (old green #00A651, old charcoal #2C2C2C as primary)
-❌ Use charcoal (#2B2B2B) for primary UI elements (use purple instead)
+❌ Use cold colors (old green #00A651)
 ❌ Use excessive spacing that doesn't work on 13" screens
+❌ Forget animation accessibility (prefers-reduced-motion)
 
 ---
 
@@ -2269,7 +2448,24 @@ This document should be updated whenever:
 
 ### Version History
 
-**Version 3.0** (November 2025) - Current (Claude-Aligned)
+**Version 3.1** (December 2025) - Current (Dark Theme, Animation System, Global Mission)
+- **Theme**: Dark mode with charcoal (#2B2B2B) backgrounds
+- **Text**: Off-white (#FAFAFA) primary text on dark backgrounds
+- **Animation System**: Intersection Observer-based scroll animations
+  - animate-fade-in, animate-slide-up, animate-slide-left, animate-slide-right, animate-scale-in
+  - Staggered grid animations with animate-stagger
+  - Respects prefers-reduced-motion
+- **Header**: Auto-hide on scroll down, show on scroll up
+  - Transparent/solid state transitions
+  - Dropdown menus for navigation sections
+- **Navigation**: Updated structure with Resources, Global Reach, Team, Community, Consultation
+- **Footer**: Global mission messaging ("Leapfrog Traditional Education. Build for 2050.")
+  - Brown (#A67557) hero background
+  - Geographic scope messaging (Africa, Asia, Latin America, Pacific)
+  - 4-column link grid
+- **New Pages**: /resources, /global-reach, /team, /community, /consultation
+
+**Version 3.0** (November 2025) - Claude-Aligned
 - **Typography**: Newsreader for H1/H2, Inter for H3-H6/body/UI
 - **Colors**: Warm earth tones (emerald, purple, brown, charcoal)
 - **Buttons**: Rounded (10px) instead of pill-shaped
