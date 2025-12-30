@@ -269,6 +269,10 @@
     --gray-800: #1E293B;
     --gray-900: #0F172A;
 
+    /* External Brand Colors */
+    --color-linkedin: #0A66C2;
+    --color-linkedin-hover: #004182;
+
     color-scheme: dark;
   }
 
