@@ -7,3 +7,5 @@ export {
   CardDescription,
   CardContent,
 } from "./card";
+export { Input } from "./input";
+export { Badge, badgeVariants } from "./badge";
