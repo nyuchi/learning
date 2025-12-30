@@ -499,7 +499,8 @@ const latestPosts = [
   .leapfrog-message {
     background: var(--bg-surface);
     padding: 2.5rem;
-    border-radius: 12px;
+    border-radius: 16px;
+    border: 2px solid var(--primary);
   }
 
   .leapfrog-message h3 {
@@ -641,15 +642,14 @@ const latestPosts = [
   .feature-card {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
   }
 
   .feature-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    background: var(--charcoal-lighter);
+    transform: translateY(-4px);
+    border-color: var(--primary);
   }
 
   .feature-icon {
@@ -723,7 +723,7 @@ const latestPosts = [
     padding: 2.5rem;
     background: var(--bg-elevated);
     border-radius: 16px;
-    border: 1px solid rgba(0, 176, 255, 0.2);
+    border: 1px solid var(--border);
     transition: transform 0.3s, border-color 0.3s;
   }
 
@@ -820,15 +820,14 @@ const latestPosts = [
   .benefit-card {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
   }
 
   .benefit-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    background: var(--charcoal-lighter);
+    transform: translateY(-4px);
+    border-color: var(--primary);
   }
 
   .benefit-icon {
@@ -874,17 +873,17 @@ const latestPosts = [
   .framework-showcase-card {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
 
   .framework-showcase-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+    border-color: var(--primary);
   }
 
   .framework-showcase-card h3 {
@@ -932,18 +931,17 @@ const latestPosts = [
   .blog-card {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
 
   .blog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    background: var(--charcoal-lighter);
+    transform: translateY(-4px);
+    border-color: var(--primary);
   }
 
   .blog-card-header {
@@ -1027,14 +1025,14 @@ const latestPosts = [
   .roadmap-item {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
   }
 
   .roadmap-item:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+    border-color: var(--primary);
   }
 
   .roadmap-year {
@@ -1291,7 +1289,6 @@ const latestPosts = [
     .benefit-card,
     .blog-card {
       padding: 2rem;
-      border-left-width: 5px;
     }
 
     .feature-card h3,
@@ -1315,7 +1312,6 @@ const latestPosts = [
 
     .roadmap-item {
       padding: 2rem;
-      border-left-width: 5px;
     }
 
     .roadmap-item h3 {
@@ -1433,9 +1429,9 @@ const latestPosts = [
   .community-card {
     background: var(--bg-card);
     padding: 2.5rem;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, border-color 0.3s;
     text-decoration: none;
     color: inherit;
     display: flex;
@@ -1446,8 +1442,8 @@ const latestPosts = [
   }
 
   .community-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px);
+    border-color: var(--primary);
   }
 
   .community-icon {
