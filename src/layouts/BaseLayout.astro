@@ -44,10 +44,10 @@ const {
       article={article}
     />
 
-    <!-- Google Fonts: Newsreader & Inter -->
+    <!-- Google Fonts: Noto Serif & Plus Jakarta Sans (Education Theme v6) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNHM29F8W5"></script>
@@ -59,12 +59,13 @@ const {
     </script>
   </head>
   <body>
-    <!-- Zimbabwe Flag Strip - Brand Signature -->
-    <div class="zimbabwe-flag-strip" aria-hidden="true">
-      <div class="flag-green"></div>
-      <div class="flag-yellow"></div>
-      <div class="flag-red"></div>
-      <div class="flag-black"></div>
+    <!-- Minerals Strip - Five African Minerals (Brand Signature v6) -->
+    <div class="minerals-strip" aria-hidden="true">
+      <div class="mineral-cobalt"></div>
+      <div class="mineral-tanzanite"></div>
+      <div class="mineral-malachite"></div>
+      <div class="mineral-gold"></div>
+      <div class="mineral-terracotta"></div>
     </div>
 
     <header>
@@ -73,7 +74,7 @@ const {
           <a href="/" class="logo">
             <BookOpen class="logo-icon" size={28} strokeWidth={2} />
             <div class="logo-text-container">
-              <span class="logo-text">Nyuchi Learning</span>
+              <span class="logo-text">nyuchi learning</span>
               <span class="logo-subtext">K-12 Digital Campus Framework</span>
             </div>
           </a>
@@ -176,73 +177,92 @@ const {
 
       <div class="footer-bottom">
         <div class="footer-branding">
-          <p class="footer-brand-name">Nyuchi Learning</p>
+          <p class="footer-brand-name">nyuchi learning</p>
           <p class="footer-brand-org">K-12 Digital Campus Framework</p>
-          <p class="footer-division">A division of Nyuchi Africa</p>
+          <p class="footer-division">Part of the bundu ecosystem</p>
         </div>
         <div class="footer-principles">
           <p>Digital Access • Digital Literacy • Mobile-First</p>
           <p>AI-Driven • Community-Centered • Education First</p>
         </div>
-        <p class="footer-copyright">&copy; 2025 Nyuchi Learning. Open framework, freely shareable.</p>
+        <p class="footer-copyright">&copy; 2025 nyuchi learning. Open framework, freely shareable.</p>
       </div>
     </footer>
 
     <style is:global>
       :root {
-        /* Zimbabwe Flag Colors - Warm Tones (for flag strip only) */
-        --nyuchi-green: #18A877;    /* Warm emerald */
-        --nyuchi-yellow: #FDD116;
-        --nyuchi-red: #EF3340;
-        --nyuchi-black: #2B2B2B;    /* Warm charcoal */
-        --nyuchi-white: #FFFFFF;
+        /* ========================================
+           EDUCATION THEME v6 - Five African Minerals
+           ======================================== */
 
-        /* WARM PURPLE - Accent Color */
-        --primary: #8B80E8;          /* Accent color for highlights, buttons */
-        --primary-hover: #A199EE;    /* Hover states */
-        --primary-active: #7569D9;   /* Active/pressed states */
-        --primary-light: #EBE8FC;    /* Light backgrounds */
-        --primary-subtle: #F6F5FE;   /* Very light backgrounds */
+        /* Five African Minerals - Dark Mode (Primary Theme) */
+        --mineral-cobalt: #00B0FF;       /* Primary - CTAs, links, education */
+        --mineral-tanzanite: #B388FF;    /* Social, premium */
+        --mineral-malachite: #64FFDA;    /* Success, nature */
+        --mineral-gold: #FFD740;         /* Rewards, warmth */
+        --mineral-terracotta: #D4A574;   /* Community, Ubuntu */
 
-        /* Warm Emerald - Secondary Actions */
-        --emerald: #18A877;
-        --emerald-hover: #20C088;
-        --emerald-active: #139F68;
-        --emerald-light: #D8F3EA;
+        /* Primary Color - Cobalt (Education) */
+        --primary: #00B0FF;              /* CTAs, links, buttons */
+        --primary-hover: #33C0FF;        /* Hover states */
+        --primary-active: #0090D9;       /* Active/pressed states */
+        --primary-light: #E3F2FD;        /* Light backgrounds */
+        --primary-subtle: #F0F9FF;       /* Very light backgrounds */
 
-        /* Warm Brown - Background & Accents */
-        --brown: #A67557;
-        --brown-hover: #BA8668;
-        --brown-dark: #8B5E42;
-        --brown-light: #F5EDE8;
+        /* Secondary - Malachite (Success) */
+        --success: #64FFDA;
+        --success-container: #00251A;
 
-        /* Charcoal - Primary Background */
-        --charcoal: #2B2B2B;          /* Primary dark background */
-        --charcoal-light: #3D3D3D;    /* Lighter charcoal for cards */
-        --charcoal-lighter: #4F4F4F;  /* Even lighter for hover states */
+        /* Semantic Colors */
+        --error: #F2B8B5;
+        --error-container: #3B0000;
+        --warning: #FFD866;
+        --warning-container: #332200;
+        --info: #00B0FF;
+        --info-container: #001F3F;
 
-        /* Text Colors - High Contrast for Accessibility */
-        --text: #FAFAFA;              /* Primary text - OFF-WHITE on dark backgrounds */
-        --text-secondary: #D1D5DB;    /* Secondary text - Light gray */
-        --text-muted: #9CA3AF;        /* Muted text - Medium gray */
+        /* Slate Surfaces (Education Dark Theme) */
+        --bg: #0F172A;                   /* Slate 900 - Base */
+        --bg-surface: #1E293B;           /* Slate 800 - Cards */
+        --bg-elevated: #334155;          /* Slate 700 - Elevated */
+        --bg-accent: #475569;            /* Slate 600 - Accents */
 
-        /* Background Colors */
-        --bg: #2B2B2B;                /* Primary background - CHARCOAL */
-        --bg-brown: #A67557;          /* Brown background sections */
-        --bg-card: #3D3D3D;           /* Card backgrounds */
-        --border: #4F4F4F;            /* Borders on dark backgrounds */
+        /* Text Colors - High Contrast AAA (7:1+) */
+        --text: #F8FAFC;                 /* Slate 50 - Primary */
+        --text-secondary: #CBD5E1;       /* Slate 300 - Secondary */
+        --text-muted: #94A3B8;           /* Slate 400 - Muted */
 
-        /* Grays (for backgrounds and neutrals) */
-        --gray-50: #FAFAFA;
-        --gray-100: #F7F7F7;
-        --gray-200: #E0E0E0;
-        --gray-300: #D1D5DB;
-        --gray-400: #9B9B9B;
-        --gray-500: #6B6B6B;
-        --gray-600: #4B5563;
-        --gray-700: #374151;
-        --gray-800: #2B2B2B;
-        --gray-900: #1A1A1A;
+        /* Border Colors */
+        --border: #334155;               /* Slate 700 */
+        --border-light: #475569;         /* Slate 600 */
+
+        /* Legacy compatibility */
+        --charcoal: #0F172A;
+        --charcoal-light: #1E293B;
+        --charcoal-lighter: #334155;
+        --bg-card: #1E293B;
+        --brown: #D4A574;                /* Terracotta for accents */
+        --brown-hover: #E5B68A;
+        --emerald: #64FFDA;              /* Malachite */
+
+        /* Gray Scale */
+        --gray-50: #F8FAFC;
+        --gray-100: #F1F5F9;
+        --gray-200: #E2E8F0;
+        --gray-300: #CBD5E1;
+        --gray-400: #94A3B8;
+        --gray-500: #64748B;
+        --gray-600: #475569;
+        --gray-700: #334155;
+        --gray-800: #1E293B;
+        --gray-900: #0F172A;
+
+        /* Design Tokens */
+        --radius-button: 12px;           /* Buttons (NOT 8px or 10px) */
+        --radius-card: 16px;             /* Cards */
+        --radius-input: 8px;             /* Form inputs */
+        --radius-badge: 9999px;          /* Pills/badges */
+        --minerals-strip-width: 4px;     /* Minerals strip */
       }
 
       * {
@@ -252,46 +272,47 @@ const {
       }
 
       body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         line-height: 1.6;
         color: var(--text);
         background: var(--bg);
-        margin-left: 8px; /* Space for Zimbabwe flag strip */
+        margin-left: 4px; /* Space for Minerals Strip */
       }
 
-      /* H1, H2 use Newsreader (Editorial Serif) */
-      h1, h2 {
-        font-family: 'Newsreader', Georgia, 'Times New Roman', serif;
+      /* H1 uses Noto Serif (Display) */
+      h1 {
+        font-family: 'Noto Serif', Georgia, 'Times New Roman', serif;
         font-weight: 700;
       }
 
-      /* H3-H6 use Inter (Sans-Serif) */
-      h3, h4, h5, h6 {
-        font-family: 'Inter', sans-serif;
-        font-weight: 600;
+      /* H2-H6 use Plus Jakarta Sans */
+      h2, h3, h4, h5, h6 {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 700;
       }
 
-      /* Zimbabwe Flag Strip - CRITICAL Brand Element */
-      .zimbabwe-flag-strip {
+      /* Minerals Strip - Five African Minerals (v6) */
+      .minerals-strip {
         position: fixed;
         left: 0;
         top: 0;
-        width: 8px;
+        width: 4px;
         height: 100vh;
         z-index: 9999;
         display: flex;
         flex-direction: column;
       }
 
-      .flag-green  { flex: 1; background: #18A877; } /* Warm emerald */
-      .flag-yellow { flex: 1; background: #FDD116; }
-      .flag-red    { flex: 1; background: #EF3340; }
-      .flag-black  { flex: 1; background: #2B2B2B; } /* Warm charcoal */
+      .mineral-cobalt     { flex: 1; background: #00B0FF; }
+      .mineral-tanzanite  { flex: 1; background: #B388FF; }
+      .mineral-malachite  { flex: 1; background: #64FFDA; }
+      .mineral-gold       { flex: 1; background: #FFD740; }
+      .mineral-terracotta { flex: 1; background: #D4A574; }
 
       header {
         position: fixed;
         top: 0;
-        left: 8px;
+        left: 4px;
         right: 0;
         z-index: 100;
         transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-bottom 0.3s ease;
@@ -307,10 +328,10 @@ const {
 
       /* Solid header state (when scrolled) */
       header.header-solid {
-        background: rgba(43, 43, 43, 0.98);
+        background: rgba(15, 23, 42, 0.98);  /* Slate 900 */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(79, 79, 79, 0.5);
+        border-bottom: 1px solid rgba(51, 65, 85, 0.5);  /* Slate 700 */
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
@@ -371,7 +392,7 @@ const {
       }
 
       .logo-icon {
-        color: var(--emerald);
+        color: var(--primary);  /* Cobalt */
         flex-shrink: 0;
       }
 
@@ -381,14 +402,15 @@ const {
       }
 
       .logo-text {
-        font-family: 'Newsreader', serif;
-        font-weight: 700;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-weight: 600;
         font-size: 1.25rem;
         color: var(--text);
+        text-transform: lowercase;  /* Wordmarks are lowercase */
       }
 
       .logo-subtext {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 0.75rem;
         color: var(--text-muted);
         font-weight: 500;
@@ -477,7 +499,7 @@ const {
         background: var(--primary) !important;
         color: white !important;
         padding: 0.5rem 1.5rem !important;
-        border-radius: 10px !important;  /* Claude-style rounded */
+        border-radius: 12px !important;  /* v6 button radius */
         font-weight: 600 !important;
         transition: transform 0.2s, box-shadow 0.2s !important;
         display: inline-block !important;
@@ -503,12 +525,12 @@ const {
       .footer-hero {
         padding: 6rem 2rem;
         text-align: center;
-        background: var(--brown);
-        border-top: 4px solid var(--brown-light);
+        background: var(--brown);  /* Terracotta */
+        border-top: 4px solid var(--mineral-gold);  /* Gold accent */
       }
 
       .footer-main-text {
-        font-family: 'Newsreader', serif;
+        font-family: 'Noto Serif', Georgia, serif;
         font-size: clamp(3rem, 8vw, 6rem);
         font-weight: 700;
         line-height: 1.1;
@@ -541,8 +563,8 @@ const {
       }
 
       .footer-column h3 {
-        font-family: 'Newsreader', serif;
-        font-size: 1.5rem;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 1.25rem;
         margin-bottom: 1.5rem;
         color: white;
         font-weight: 700;
@@ -586,10 +608,11 @@ const {
       }
 
       .footer-brand-name {
-        font-family: 'Newsreader', serif;
+        font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 1.5rem;
-        font-weight: 700;
+        font-weight: 600;
         margin-bottom: 0.5rem;
+        text-transform: lowercase;  /* Wordmarks are lowercase */
       }
 
       .footer-brand-org {
@@ -626,7 +649,7 @@ const {
       .btn {
         display: inline-block;
         padding: 0.75rem 2rem;
-        border-radius: 10px;  /* Claude-style rounded */
+        border-radius: 12px;  /* v6 button radius */
         text-decoration: none;
         font-family: 'Inter', sans-serif;
         font-weight: 600;
@@ -743,7 +766,7 @@ const {
       .mobile-cta {
         background: var(--primary) !important;
         color: white !important;
-        border-radius: 10px !important;  /* Claude-style rounded */
+        border-radius: 12px !important;  /* v6 button radius */
         font-weight: 600 !important;
         margin: 0.5rem 1rem !important;
         padding: 1rem 1.5rem !important;
@@ -755,18 +778,29 @@ const {
         color: white !important;
       }
 
-      /* Mobile Responsive Styles */
-      @media (max-width: 768px) {
-        body {
-          margin-left: 6px; /* Slightly smaller flag strip space on mobile */
+      /* Hide Minerals Strip on mobile (< 480px) per v6 brand guidelines */
+      @media (max-width: 480px) {
+        .minerals-strip {
+          display: none;
         }
 
-        .zimbabwe-flag-strip {
-          width: 6px;
+        body {
+          margin-left: 0;
         }
 
         header {
-          left: 6px;
+          left: 0;
+        }
+      }
+
+      /* Mobile Responsive Styles */
+      @media (max-width: 768px) {
+        body {
+          margin-left: 4px; /* Minerals strip space on tablet */
+        }
+
+        header {
+          left: 4px;
           /* Faster transition on mobile for better responsiveness */
           transition: transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease;
         }

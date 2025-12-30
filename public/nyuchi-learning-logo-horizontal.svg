@@ -2,20 +2,17 @@
   <!-- Icon: Stylized book/learning symbol (centered vertically) -->
   <g transform="translate(10, 5)">
     <!-- Open book pages -->
-    <path d="M20 5 Q15 10 15 20 L15 35 Q15 38 20 40" stroke="#2B2B2B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-    <path d="M20 5 Q25 10 25 20 L25 35 Q25 38 20 40" stroke="#2B2B2B" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M20 5 Q15 10 15 20 L15 35 Q15 38 20 40" stroke="#00B0FF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M20 5 Q25 10 25 20 L25 35 Q25 38 20 40" stroke="#00B0FF" stroke-width="2.5" fill="none" stroke-linecap="round"/>
     <!-- Center spine -->
-    <line x1="20" y1="5" x2="20" y2="40" stroke="#2B2B2B" stroke-width="2.5" stroke-linecap="round"/>
+    <line x1="20" y1="5" x2="20" y2="40" stroke="#00B0FF" stroke-width="2.5" stroke-linecap="round"/>
     <!-- Africa-inspired element: small accent marks -->
-    <circle cx="11" cy="22" r="1.5" fill="#2B2B2B"/>
-    <circle cx="29" cy="22" r="1.5" fill="#2B2B2B"/>
+    <circle cx="11" cy="22" r="1.5" fill="#00B0FF"/>
+    <circle cx="29" cy="22" r="1.5" fill="#00B0FF"/>
   </g>
 
-  <!-- Text: Nyuchi Learning (horizontal) -->
-  <text x="65" y="32" font-family="'Newsreader', Georgia, serif" font-size="24" font-weight="700" fill="#2B2B2B">
-    Nyuchi
-  </text>
-  <text x="155" y="32" font-family="'Inter', sans-serif" font-size="20" font-weight="500" fill="#6B7280">
-    Learning
+  <!-- Text: nyuchi learning (lowercase wordmark) -->
+  <text x="65" y="32" font-family="'Plus Jakarta Sans', sans-serif" font-size="22" font-weight="600" fill="#F8FAFC">
+    nyuchi learning
   </text>
 </svg>
