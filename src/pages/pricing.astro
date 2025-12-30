@@ -1,73 +1,73 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { DollarSign, Check, AlertCircle } from 'lucide-astro';
+import { DollarSign, Check, AlertCircle, Info } from 'lucide-astro';
 
-// Pricing tiers data
-const tiers = [
+// Budget scenario tiers - These are cost estimates, NOT prices for Nyuchi services
+const budgetScenarios = [
   {
-    name: "Free & Open Source",
-    badge: "Most Affordable",
-    price: "$0-$15K",
-    period: "3-year total",
-    description: "Leverage completely free and open-source solutions. Perfect for schools with technical staff or community support.",
-    features: [
-      "Free LMS (Moodle)",
-      "Free SIS (OpenSIS)",
-      "Google Workspace for Education (Free)",
-      "Open-source analytics (Matomo)",
+    name: "Minimal Budget",
+    badge: "Lowest Cost",
+    estimate: "$0-$15K",
+    period: "3-year estimate",
+    description: "Leverage completely free and open-source solutions. Ideal for schools with technical staff or community volunteers.",
+    includes: [
+      "Free LMS (Moodle, self-hosted)",
+      "Free SIS (OpenSIS, Gibbon)",
+      "Google Workspace for Education",
+      "Open-source analytics",
       "Community support & forums",
-      "Self-hosted on basic server"
+      "BYOD or existing devices"
     ],
-    href: "#free-breakdown",
+    href: "#minimal-breakdown",
     variant: "secondary"
   },
   {
-    name: "Basic Implementation",
-    price: "$25K-$45K",
-    period: "3-year total",
-    description: "Mix of free tools with some paid services for better support and reliability. Good balance for most schools.",
-    features: [
+    name: "Modest Budget",
+    estimate: "$25K-$45K",
+    period: "3-year estimate",
+    description: "Mix of free tools with some paid services for reliability. Good balance for schools starting their digital journey.",
+    includes: [
       "Moodle or Google Classroom",
-      "Low-cost SIS (cloud-hosted)",
+      "Low-cost cloud SIS",
       "Basic cloud hosting",
-      "Essential training & support",
+      "Staff training costs",
       "Basic device lending program",
-      "Email support"
+      "Part-time IT support"
     ],
-    href: "#basic-breakdown",
+    href: "#modest-breakdown",
     variant: "secondary"
   },
   {
-    name: "Standard Implementation",
-    badge: "Recommended",
-    price: "$60K-$90K",
-    period: "3-year total",
-    description: "Balanced approach with reliable tools, professional support, and device program. Best value for comprehensive transformation.",
-    features: [
+    name: "Moderate Budget",
+    badge: "Common Scenario",
+    estimate: "$60K-$90K",
+    period: "3-year estimate",
+    description: "Balanced investment in technology, training, and infrastructure. Represents typical costs for comprehensive transformation.",
+    includes: [
       "Full LMS with integrations",
-      "Cloud-based SIS",
+      "Cloud-based SIS platform",
       "1:3 device lending program",
       "Professional development",
       "Analytics & reporting tools",
-      "Dedicated support"
+      "Dedicated IT support"
     ],
-    href: "#standard-breakdown",
+    href: "#moderate-breakdown",
     variant: "primary"
   },
   {
-    name: "Premium Implementation",
-    price: "$120K-$180K",
-    period: "3-year total",
-    description: "Full-featured implementation with 1:1 devices, advanced AI analytics, comprehensive training, and premium support.",
-    features: [
+    name: "Comprehensive Budget",
+    estimate: "$120K-$180K",
+    period: "3-year estimate",
+    description: "Full-featured implementation with 1:1 devices, advanced analytics, and comprehensive training programs.",
+    includes: [
       "Enterprise LMS & SIS",
-      "1:1 device program (Chromebooks)",
+      "1:1 device program",
       "AI-powered analytics",
       "Extensive PD programs",
       "Parent engagement platforms",
-      "Priority support & training"
+      "Full-time IT support"
     ],
-    href: "#premium-breakdown",
+    href: "#comprehensive-breakdown",
     variant: "secondary"
   }
 ];
@@ -102,63 +102,75 @@ const savingsStrategies = [
 ---
 
 <BaseLayout
-  title="Implementation Costs & Budget Planning"
-  description="Realistic cost breakdown for implementing the K-12 Digital Campus Framework. Options from free open-source to full-featured implementations. Affordable digital transformation for African schools."
-  keywords="education technology costs, school technology budget, open-source education, free education software, digital transformation budget, affordable education technology, school IT costs Africa, education technology pricing"
+  title="Cost Estimation & Budget Planning Guide"
+  description="Budget planning guide for implementing the K-12 Digital Campus Framework. Realistic cost estimates from free open-source to comprehensive implementations. The framework is free - these are costs you'll incur implementing it yourself."
+  keywords="education technology costs, school technology budget, open-source education, free education software, digital transformation budget, affordable education technology, school IT costs Africa, implementation cost estimation"
 >
   <div class="max-w-[1200px] mx-auto px-4 py-8">
     <!-- Header -->
     <div class="text-center py-16 px-4 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl mb-16 relative overflow-hidden">
-      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-bold font-serif mb-4 relative z-10">Implementation Costs & Budget Options</h1>
-      <p class="text-[clamp(1.1rem,2.5vw,1.5rem)] opacity-95 mb-8 relative z-10">Choose the path that fits your school's budget and needs</p>
-      <div class="flex items-start gap-4 max-w-[800px] mx-auto mt-8 p-6 bg-[var(--primary)]/10 rounded-lg text-left relative z-10">
+      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-bold font-serif mb-4 relative z-10">Cost Estimation & Budget Planning</h1>
+      <p class="text-[clamp(1.1rem,2.5vw,1.5rem)] opacity-95 mb-4 relative z-10">Plan your school's digital transformation investment</p>
+
+      <!-- Important Notice -->
+      <div class="flex items-start gap-4 max-w-[850px] mx-auto mt-8 p-6 bg-[var(--mineral-malachite)]/15 border-2 border-[var(--mineral-malachite)] rounded-lg text-left relative z-10">
+        <Info size={24} class="text-[var(--mineral-malachite)] flex-shrink-0 mt-0.5" />
+        <div>
+          <p class="m-0 text-base font-semibold text-[var(--text)] mb-2">The Nyuchi Learning Framework is completely free.</p>
+          <p class="m-0 text-[0.95rem] leading-relaxed text-[var(--text-secondary)]">We provide the guidance and framework at no cost. The estimates below represent costs <strong>your school will incur</strong> when implementing the framework - hardware, software subscriptions, training, connectivity, and staffing. We don't sell these services; we help you plan for them.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 max-w-[850px] mx-auto mt-4 p-6 bg-[var(--primary)]/10 rounded-lg text-left relative z-10">
         <AlertCircle size={20} class="text-[var(--primary)] flex-shrink-0 mt-0.5" />
-        <p class="m-0 text-[0.95rem] leading-relaxed text-[var(--text-secondary)]">All costs are estimates for a school of 500-1000 students over 3 years. Your actual costs may vary based on location, existing infrastructure, and specific needs.</p>
+        <p class="m-0 text-[0.95rem] leading-relaxed text-[var(--text-secondary)]">All costs are estimates for a school of 500-1000 students over 3 years. Your actual costs will vary based on location, existing infrastructure, vendor choices, and specific needs.</p>
       </div>
     </div>
 
-    <!-- Pricing Tiers -->
+    <!-- Budget Scenarios -->
+    <h2 class="text-center text-[var(--text)] mb-4 text-2xl font-bold">Budget Scenarios</h2>
+    <p class="text-center text-[var(--text-secondary)] mb-12 max-w-[700px] mx-auto">These scenarios show what schools typically spend to implement the framework. Choose the level that matches your resources and goals.</p>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
-      {tiers.map((tier) => (
+      {budgetScenarios.map((scenario) => (
         <div class="bg-[var(--bg-surface)] rounded-2xl p-8 shadow-md relative transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-[var(--border)]">
-          {tier.badge && (
+          {scenario.badge && (
             <span class="absolute -top-3 right-5 bg-[var(--primary)] text-white px-4 py-2 rounded-full text-sm font-semibold">
-              {tier.badge}
+              {scenario.badge}
             </span>
           )}
-          <h2 class="text-[var(--primary)] mb-4 text-2xl font-bold">{tier.name}</h2>
+          <h3 class="text-[var(--primary)] mb-4 text-2xl font-bold">{scenario.name}</h3>
           <div class="mb-6">
-            <span class="block text-4xl font-extrabold text-[var(--primary)] leading-tight">{tier.price}</span>
-            <span class="text-[var(--text-secondary)] text-sm">{tier.period}</span>
+            <span class="block text-4xl font-extrabold text-[var(--primary)] leading-tight">{scenario.estimate}</span>
+            <span class="text-[var(--text-secondary)] text-sm">{scenario.period}</span>
           </div>
-          <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">{tier.description}</p>
+          <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">{scenario.description}</p>
           <ul class="list-none p-0 mb-8 space-y-0">
-            {tier.features.map((feature) => (
+            {scenario.includes.map((item) => (
               <li class="flex items-center gap-3 py-3 border-b border-[var(--border)] last:border-b-0 text-[var(--text)]">
                 <Check size={20} class="text-[var(--mineral-malachite)] flex-shrink-0" />
-                <span>{feature}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
           <a
-            href={tier.href}
+            href={scenario.href}
             class={`inline-block w-full text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
-              tier.variant === 'primary'
+              scenario.variant === 'primary'
                 ? 'bg-[var(--primary)] text-white hover:brightness-110'
                 : 'bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--primary)]/10'
             }`}
           >
-            View Details
+            View Cost Breakdown
           </a>
         </div>
       ))}
     </div>
 
-    <!-- Free Breakdown -->
-    <section id="free-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+    <!-- Minimal Budget Breakdown -->
+    <section id="minimal-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
       <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
         <DollarSign size={32} class="text-[var(--primary)]" />
-        Free & Open Source Breakdown
+        Minimal Budget: Cost Breakdown
       </h2>
       <div class="overflow-x-auto mb-8">
         <table class="w-full border-collapse text-sm min-w-[600px]">
@@ -240,11 +252,11 @@ const savingsStrategies = [
       </div>
     </section>
 
-    <!-- Basic Breakdown -->
-    <section id="basic-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+    <!-- Modest Budget Breakdown -->
+    <section id="modest-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
       <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
         <DollarSign size={32} class="text-[var(--primary)]" />
-        Basic Implementation Breakdown
+        Modest Budget: Cost Breakdown
       </h2>
       <div class="overflow-x-auto mb-8">
         <table class="w-full border-collapse text-sm min-w-[600px]">
@@ -329,11 +341,11 @@ const savingsStrategies = [
       </div>
     </section>
 
-    <!-- Standard Breakdown -->
-    <section id="standard-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+    <!-- Moderate Budget Breakdown -->
+    <section id="moderate-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
       <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
         <DollarSign size={32} class="text-[var(--primary)]" />
-        Standard Implementation Breakdown (Recommended)
+        Moderate Budget: Cost Breakdown (Common Scenario)
       </h2>
       <div class="overflow-x-auto mb-8">
         <table class="w-full border-collapse text-sm min-w-[600px]">
@@ -426,11 +438,11 @@ const savingsStrategies = [
       </div>
     </section>
 
-    <!-- Premium Breakdown -->
-    <section id="premium-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+    <!-- Comprehensive Budget Breakdown -->
+    <section id="comprehensive-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
       <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
         <DollarSign size={32} class="text-[var(--primary)]" />
-        Premium Implementation Breakdown
+        Comprehensive Budget: Cost Breakdown
       </h2>
       <div class="overflow-x-auto mb-8">
         <table class="w-full border-collapse text-sm min-w-[600px]">
@@ -546,11 +558,12 @@ const savingsStrategies = [
 
     <!-- CTA Section -->
     <section class="text-center py-16 px-8 bg-[var(--bg-surface)] text-[var(--text)] rounded-2xl">
-      <h2 class="text-[var(--text)] mb-4 text-[clamp(1.75rem,5vw,2.5rem)] font-bold">Ready to Start Your Digital Transformation?</h2>
-      <p class="text-xl mb-8 opacity-95">Choose the implementation level that matches your budget and vision. Every school's journey is unique.</p>
+      <h2 class="text-[var(--text)] mb-4 text-[clamp(1.75rem,5vw,2.5rem)] font-bold">Ready to Plan Your Implementation?</h2>
+      <p class="text-xl mb-4 opacity-95">Use these estimates to build your budget proposal and secure funding.</p>
+      <p class="text-base mb-8 text-[var(--text-secondary)]">Remember: The framework and guidance are free. You only invest in the actual implementation.</p>
       <div class="flex gap-4 justify-center flex-wrap">
-        <a href="/framework" class="inline-block py-3 px-8 rounded-xl font-semibold transition-all duration-300 bg-[var(--primary)] text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-lg">View Full Framework</a>
-        <a href="/about" class="inline-block py-3 px-8 rounded-xl font-semibold transition-all duration-300 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Learn More About nyuchi learning</a>
+        <a href="/framework" class="inline-block py-3 px-8 rounded-xl font-semibold transition-all duration-300 bg-[var(--primary)] text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-lg">Download Free Framework</a>
+        <a href="/consultation" class="inline-block py-3 px-8 rounded-xl font-semibold transition-all duration-300 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Book Free Consultation</a>
       </div>
     </section>
   </div>
