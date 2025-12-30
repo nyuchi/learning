@@ -5,48 +5,47 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
 
 <BaseLayout
   title="Mission & Impact - Empowering Global Education Transformation"
-  description="Nyuchi Learning empowers developing countries to leapfrog traditional educational models. Pan-African focus with global reach across Asia, Latin America, and the Pacific. Evidence-based frameworks for competency-focused, mobile-first learning."
-  keywords="Nyuchi Learning mission, education transformation vision, developing countries education, pan-African education, global education frameworks, competency-based learning, educational leapfrog, Ubuntu education philosophy, Zimbabwe education company, evidence-based education"
+  description="Nyuchi Learning empowers developing countries to leapfrog traditional educational models. Pan-African focus with global reach across Asia, Latin America, and the Pacific."
+  keywords="Nyuchi Learning mission, education transformation, developing countries education, pan-African education"
 >
   <!-- Hero Section -->
-  <section class="mission-hero">
-    <div class="hero-background"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="ubuntu-header animate-fade-in">Ubuntu: I am because we are</p>
-      <h1 class="animate-fade-in">Mission & Impact</h1>
-      <p class="tagline animate-fade-in">Empowering developing countries to leapfrog traditional education and build for 2050</p>
+  <section class="min-h-[80vh] flex items-center justify-center text-[var(--text)] text-center overflow-hidden relative bg-[var(--bg)]">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1600&q=80')] bg-cover bg-center bg-fixed"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/90 to-[var(--mineral-cobalt)]/85"></div>
+    <div class="relative z-10 px-4 py-8 max-w-[900px] mx-auto">
+      <p class="text-base md:text-lg italic mb-6 tracking-widest font-medium opacity-95">Ubuntu: I am because we are</p>
+      <h1 class="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight tracking-tight drop-shadow-lg">Mission & Impact</h1>
+      <p class="text-lg md:text-xl lg:text-2xl opacity-95 leading-relaxed">Empowering developing countries to leapfrog traditional education and build for 2050</p>
     </div>
   </section>
 
-  <div class="about-container">
-
+  <div class="max-w-[1200px] mx-auto px-4 py-8">
     <!-- Mission & Vision -->
-    <section class="core-identity">
-      <div class="identity-grid">
-        <div class="identity-card mission-card">
-          <Target class="identity-icon" size={56} strokeWidth={1.5} />
-          <h2>Our Mission</h2>
-          <p>
+    <section class="py-16 bg-[var(--bg)]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div class="p-8 rounded-2xl bg-[var(--bg-surface)] border-2 border-[var(--primary)]">
+          <Target class="text-[var(--primary)] mb-6" size={56} strokeWidth={1.5} />
+          <h2 class="font-display text-2xl md:text-3xl text-[var(--text)] mb-6">Our Mission</h2>
+          <p class="text-lg leading-relaxed text-[var(--text)] mb-4">
             To empower developing countries to <strong>leapfrog traditional educational models</strong> by providing
             open, evidence-based frameworks for digital transformation that prioritize <strong>competencies over credentials</strong> and
             <strong>learning outcomes over technology deployment</strong>.
           </p>
-          <p class="mission-detail">
-            We believe that Africa and the developing world—unburdened by legacy educational infrastructure and institutional inertia—have
-            a unique opportunity to build digital-first learning environments optimized for the 2050 workplace from day one.
+          <p class="text-base text-[var(--text-secondary)]">
+            We believe that Africa and the developing world—unburdened by legacy educational infrastructure—have
+            a unique opportunity to build digital-first learning environments optimized for the 2050 workplace.
           </p>
         </div>
 
-        <div class="identity-card vision-card">
-          <Globe class="identity-icon" size={56} strokeWidth={1.5} />
-          <h2>Our Vision</h2>
-          <p>
+        <div class="p-8 rounded-2xl bg-[var(--bg-surface)] border-2 border-[var(--primary)]">
+          <Globe class="text-[var(--primary)] mb-6" size={56} strokeWidth={1.5} />
+          <h2 class="font-display text-2xl md:text-3xl text-[var(--text)] mb-6">Our Vision</h2>
+          <p class="text-lg leading-relaxed text-[var(--text)] mb-4">
             By 2035, Nyuchi Learning frameworks will be implemented in schools across <strong>Africa, Asia, Latin America, and the Pacific</strong>,
             enabling <strong>10 million students</strong> to develop the competencies—<em>grit, adaptability, collaboration, critical thinking</em>—that
             predict success in an uncertain future.
           </p>
-          <p class="vision-detail">
+          <p class="text-base text-[var(--text-secondary)]">
             We envision a world where developing countries lead educational innovation, creating models wealthy nations will study and replicate.
           </p>
         </div>
@@ -54,45 +53,43 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
     </section>
 
     <!-- The Leapfrog Opportunity -->
-    <section class="leapfrog-section">
-      <h2>The Leapfrog Opportunity</h2>
-      <div class="leapfrog-content">
-        <div class="leapfrog-text">
-          <p class="lead">
-            <strong>Traditional educational models are failing spectacularly.</strong> Research shows that 87% of global executives report
-            critical skills gaps, yet schools worldwide continue optimizing for standardized tests that predict only 4% of job performance.
-            The global skills mismatch costs $8.5 trillion annually.
-          </p>
-          <p>
-            <strong>But here's the opportunity:</strong> Developing countries aren't burdened by the institutional inertia, legacy infrastructure,
-            and political paralysis plaguing educational systems in wealthy nations. You can build from first principles.
-          </p>
-          <p>
-            History shows developing regions often leapfrog developed ones when unconstrained by legacy systems—mobile payments in Kenya
-            transformed global finance by bypassing credit card infrastructure. Education offers the same opportunity.
-          </p>
-        </div>
-        <div class="leapfrog-comparison">
-          <div class="comparison-box old-model">
-            <h3>Wealthy Nations (Trapped)</h3>
-            <ul>
-              <li>Industrial-era school buildings</li>
-              <li>Age-based cohorts</li>
-              <li>Teacher-centric instruction</li>
-              <li>Standardized testing focus</li>
-              <li>Lecture-based learning</li>
-              <li>Decades to reform systems</li>
+    <section class="py-16 bg-[var(--bg-surface)] -mx-4 px-4 md:-mx-8 md:px-8 rounded-2xl my-8">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-8 text-center">The Leapfrog Opportunity</h2>
+      <div class="max-w-[1000px] mx-auto">
+        <p class="text-xl font-medium mb-6 text-[var(--text)]">
+          <strong>Traditional educational models are failing spectacularly.</strong> Research shows that 87% of global executives report
+          critical skills gaps, yet schools worldwide continue optimizing for standardized tests that predict only 4% of job performance.
+        </p>
+        <p class="text-lg leading-relaxed text-[var(--text)] mb-6">
+          <strong>But here's the opportunity:</strong> Developing countries aren't burdened by the institutional inertia, legacy infrastructure,
+          and political paralysis plaguing educational systems in wealthy nations. You can build from first principles.
+        </p>
+        <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
+          History shows developing regions often leapfrog developed ones when unconstrained by legacy systems—mobile payments in Kenya
+          transformed global finance by bypassing credit card infrastructure. Education offers the same opportunity.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div class="p-6 rounded-2xl bg-[var(--bg-elevated)] border border-[var(--border)]">
+            <h3 class="text-xl font-bold text-[var(--text)] mb-4">Wealthy Nations (Trapped)</h3>
+            <ul class="space-y-2">
+              {['Industrial-era school buildings', 'Age-based cohorts', 'Teacher-centric instruction', 'Standardized testing focus', 'Lecture-based learning', 'Decades to reform systems'].map(item => (
+                <li class="flex items-start gap-2 text-[var(--text-secondary)]">
+                  <span class="text-[var(--text-tertiary)]">×</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
-          <div class="comparison-box new-model">
-            <h3>Developing World (Opportunity)</h3>
-            <ul>
-              <li>Mobile-first digital platforms</li>
-              <li>Competency-based progression</li>
-              <li>Teacher-as-coach models</li>
-              <li>Portfolio-based assessment</li>
-              <li>Project-based learning</li>
-              <li>Build correctly from day one</li>
+          <div class="p-6 rounded-2xl bg-[var(--bg-elevated)] border-2 border-[var(--primary)]">
+            <h3 class="text-xl font-bold text-[var(--text)] mb-4">Developing World (Opportunity)</h3>
+            <ul class="space-y-2">
+              {['Mobile-first digital platforms', 'Competency-based progression', 'Teacher-as-coach models', 'Portfolio-based assessment', 'Project-based learning', 'Build correctly from day one'].map(item => (
+                <li class="flex items-start gap-2 text-[var(--text)]">
+                  <span class="text-[var(--primary)] font-bold">→</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
@@ -100,1239 +97,204 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
     </section>
 
     <!-- Core Values -->
-    <section class="values-section">
-      <h2>Our Core Values</h2>
-      <p class="section-intro">
+    <section class="py-16">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-4 text-center">Our Core Values</h2>
+      <p class="text-center text-lg text-[var(--text-secondary)] mb-12 max-w-[700px] mx-auto">
         These principles guide every framework we create and every decision we make.
       </p>
-      <div class="values-grid">
-        <div class="value-card">
-          <Heart class="value-icon" size={40} strokeWidth={1.5} />
-          <h3>Ubuntu: "I am because we are"</h3>
-          <p>Community success over individual achievement. Open collaboration over proprietary solutions. Collective growth strengthens everyone.</p>
-        </div>
-        <div class="value-card">
-          <BookOpen class="value-icon" size={40} strokeWidth={1.5} />
-          <h3>Evidence-Based Innovation</h3>
-          <p>Research drives design decisions. Data informs continuous improvement. Proven pedagogies adapted to local contexts.</p>
-        </div>
-        <div class="value-card">
-          <TrendingUp class="value-icon" size={40} strokeWidth={1.5} />
-          <h3>Leapfrog Mindset</h3>
-          <p>Build from first principles, not imitation. Leverage constraints as competitive advantages. Mobile-first, offline-capable, multilingual by default.</p>
-        </div>
-        <div class="value-card">
-          <Target class="value-icon" size={40} strokeWidth={1.5} />
-          <h3>Learning Outcomes Over Technology</h3>
-          <p>Competencies matter more than credentials. Character strengths predict success, not GPA. Pedagogy before platforms.</p>
-        </div>
-        <div class="value-card">
-          <Users class="value-icon" size={40} strokeWidth={1.5} />
-          <h3>Radical Accessibility</h3>
-          <p>Open frameworks, freely shareable. Cost-efficiency through open-source solutions. Designed for schools with limited resources.</p>
-        </div>
-        <div class="value-card">
-          <Globe class="value-icon" size={40} strokeWidth={1.5} />
-          <h3>Local Ownership</h3>
-          <p>Frameworks adaptable to cultural contexts. Communities improve and share innovations. Sustainable models, not vendor dependence.</p>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { icon: Heart, title: 'Ubuntu: "I am because we are"', desc: 'Community success over individual achievement. Open collaboration over proprietary solutions.' },
+          { icon: BookOpen, title: 'Evidence-Based Innovation', desc: 'Research drives design decisions. Data informs continuous improvement.' },
+          { icon: TrendingUp, title: 'Leapfrog Mindset', desc: 'Build from first principles, not imitation. Leverage constraints as competitive advantages.' },
+          { icon: Target, title: 'Learning Outcomes Over Technology', desc: 'Competencies matter more than credentials. Character strengths predict success, not GPA.' },
+          { icon: Users, title: 'Radical Accessibility', desc: 'Open frameworks, freely shareable. Designed for schools with limited resources.' },
+          { icon: Globe, title: 'Local Ownership', desc: 'Frameworks adaptable to cultural contexts. Sustainable models, not vendor dependence.' }
+        ].map(value => (
+          <div class="p-6 bg-[var(--bg-surface)] rounded-2xl border-2 border-[var(--primary)] hover:-translate-y-1 transition-all duration-300">
+            <value.icon class="text-[var(--primary)] mb-4" size={40} strokeWidth={1.5} />
+            <h3 class="text-xl font-bold text-[var(--text)] mb-3">{value.title}</h3>
+            <p class="text-base text-[var(--text-secondary)] leading-relaxed">{value.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <!-- Framework Governance Principles -->
-    <section class="governance-section">
-      <h2>Framework Governance Principles</h2>
-      <p class="section-intro">
-        All Nyuchi Learning frameworks adhere to these <strong>non-negotiable principles</strong>, grounded in research on what actually predicts student success.
+    <!-- Governance Principles -->
+    <section class="py-16 bg-[var(--bg)]">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-4 text-center">Framework Governance Principles</h2>
+      <p class="text-center text-lg text-[var(--text-secondary)] mb-12 max-w-[700px] mx-auto">
+        All Nyuchi Learning frameworks adhere to these <strong class="text-[var(--text)]">non-negotiable principles</strong>.
       </p>
-      <div class="governance-principles">
-        <div class="principle-card">
-          <div class="principle-number">01</div>
-          <div class="principle-content">
-            <h3>Open & Shareable</h3>
-            <p>Free to access, use, and distribute. No licensing fees, no proprietary lock-in. Copy, adapt, improve, and share with other schools.</p>
+      <div class="max-w-[900px] mx-auto flex flex-col gap-4">
+        {[
+          { num: '01', title: 'Open & Shareable', desc: 'Free to access, use, and distribute. No licensing fees, no proprietary lock-in.' },
+          { num: '02', title: 'Evidence-Based', desc: 'Grounded in research on what predicts success. Incorporates proven models.' },
+          { num: '03', title: 'Competency-Focused', desc: 'Emphasizes grit, adaptability, collaboration, and critical thinking.' },
+          { num: '04', title: 'Mobile-First', desc: 'Smartphones as primary access devices. Offline-capable with smart syncing.' },
+          { num: '05', title: 'Culturally Responsive', desc: 'Multilingual support. Examples reflect students\' lived experiences.' },
+          { num: '06', title: 'Cost-Conscious', desc: '60-80% cost reduction through open-source solutions.' },
+          { num: '07', title: 'Implementation-Focused', desc: 'Practical roadmaps, not just principles. Clear success metrics.' }
+        ].map(principle => (
+          <div class="flex gap-6 bg-[var(--bg-surface)] p-6 rounded-2xl border border-[var(--border)] items-start">
+            <span class="text-4xl font-black text-[var(--primary)] min-w-[80px]">{principle.num}</span>
+            <div>
+              <h3 class="text-xl font-bold text-[var(--text)] mb-2">{principle.title}</h3>
+              <p class="text-base text-[var(--text-secondary)]">{principle.desc}</p>
+            </div>
           </div>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">02</div>
-          <div class="principle-content">
-            <h3>Evidence-Based</h3>
-            <p>Grounded in research on what predicts success. Incorporates proven models (Finland, High Tech High, Montessori). Continuously refined based on implementation data.</p>
-          </div>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">03</div>
-          <div class="principle-content">
-            <h3>Competency-Focused</h3>
-            <p>Emphasizes grit, conscientiousness, adaptability, collaboration, and critical thinking—the competencies that actually predict workplace success.</p>
-          </div>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">04</div>
-          <div class="principle-content">
-            <h3>Mobile-First</h3>
-            <p>Smartphones as primary access devices. Full learning experiences on small screens. Offline-capable with smart syncing.</p>
-          </div>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">05</div>
-          <div class="principle-content">
-            <h3>Culturally Responsive</h3>
-            <p>Multilingual support (African languages, English, French, Chinese). Examples reflect students' lived experiences. Respects and preserves cultural heritage.</p>
-          </div>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">06</div>
-          <div class="principle-content">
-            <h3>Cost-Conscious</h3>
-            <p>60-80% cost reduction through open-source solutions. Detailed budget frameworks for transparency. Maximum value from limited school budgets.</p>
-          </div>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">07</div>
-          <div class="principle-content">
-            <h3>Implementation-Focused</h3>
-            <p>Not just principles, but practical roadmaps. Phased approaches (Foundation → Pilot → Scale). Clear success metrics and milestones.</p>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
 
     <!-- Strategic Goals -->
-    <section class="goals-section">
-      <h2>Strategic Goals (2025-2030)</h2>
-      <div class="goals-grid">
-        <div class="goal-card">
-          <div class="goal-header">
-            <TrendingUp class="goal-icon" size={40} strokeWidth={1.5} />
-            <h3>Leapfrog Traditional Models</h3>
+    <section class="py-16 bg-[var(--bg-surface)] -mx-4 px-4 md:-mx-8 md:px-8 rounded-2xl my-8">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-12 text-center">Strategic Goals (2025-2030)</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {[
+          { icon: TrendingUp, title: 'Leapfrog Traditional Models', target: 'Enable 1,000 schools to skip outdated approaches', desc: 'Developing countries can build 2050-ready learning environments immediately.' },
+          { icon: Target, title: 'Close the Global Skills Gap', target: 'Address the $8.5 trillion annual cost', desc: 'Develop frameworks that produce competencies employers actually need.' },
+          { icon: BookOpen, title: 'Expand Framework Portfolio', target: 'Release 5+ frameworks by 2030', desc: 'K-12 Digital Campus, Support Process, Digital Literacy, and more.' },
+          { icon: Users, title: 'Build Global Community', target: 'Create vibrant ecosystem', desc: 'Active forums, peer support, shared resource libraries.' },
+          { icon: DollarSign, title: 'Demonstrate Cost-Effectiveness', target: 'Document $500M+ in savings', desc: 'Track total cost of ownership vs. commercial alternatives.' },
+          { icon: Globe, title: 'Drive Policy Impact', target: 'Influence policy in 10+ countries', desc: 'Partner with ministries of education, support pilot programs.' }
+        ].map(goal => (
+          <div class="p-6 bg-[var(--bg)] rounded-2xl border-2 border-[var(--primary)]">
+            <div class="flex items-center gap-3 mb-4">
+              <goal.icon class="text-[var(--primary)]" size={40} strokeWidth={1.5} />
+              <h3 class="text-lg font-bold text-[var(--text)]">{goal.title}</h3>
+            </div>
+            <p class="text-[var(--primary)] font-semibold mb-3"><strong>Target:</strong> {goal.target}</p>
+            <p class="text-base text-[var(--text-secondary)]">{goal.desc}</p>
           </div>
-          <p class="goal-target"><strong>Target:</strong> Enable 1,000 schools across developing countries to skip outdated approaches entirely</p>
-          <p>While wealthy nations spend decades trying to reform industrial-era schools, developing countries can build 2050-ready learning environments immediately.</p>
-        </div>
-
-        <div class="goal-card">
-          <div class="goal-header">
-            <Target class="goal-icon" size={40} strokeWidth={1.5} />
-            <h3>Close the Global Skills Gap</h3>
-          </div>
-          <p class="goal-target"><strong>Target:</strong> Address the $8.5 trillion annual cost of skills mismatches</p>
-          <p>Develop frameworks that produce competencies employers actually need, with portfolio evidence of capabilities instead of grades.</p>
-        </div>
-
-        <div class="goal-card">
-          <div class="goal-header">
-            <BookOpen class="goal-icon" size={40} strokeWidth={1.5} />
-            <h3>Expand Framework Portfolio</h3>
-          </div>
-          <p class="goal-target"><strong>Target:</strong> Release 5+ comprehensive frameworks by 2030</p>
-          <p>K-12 Digital Campus, Support Process, Digital Literacy—plus competency assessment, project-based learning, teacher development, and more.</p>
-        </div>
-
-        <div class="goal-card">
-          <div class="goal-header">
-            <Users class="goal-icon" size={40} strokeWidth={1.5} />
-            <h3>Build Global Community</h3>
-          </div>
-          <p class="goal-target"><strong>Target:</strong> Create vibrant ecosystem of schools sharing innovations</p>
-          <p>Active forums, peer support networks, annual conferences, shared resource libraries, and case study databases.</p>
-        </div>
-
-        <div class="goal-card">
-          <div class="goal-header">
-            <DollarSign class="goal-icon" size={40} strokeWidth={1.5} />
-            <h3>Demonstrate Cost-Effectiveness</h3>
-          </div>
-          <p class="goal-target"><strong>Target:</strong> Document $500M+ in collective savings across implementing schools</p>
-          <p>Track total cost of ownership vs. commercial alternatives. Measure outcome improvements vs. cost increases.</p>
-        </div>
-
-        <div class="goal-card">
-          <div class="goal-header">
-            <Globe class="goal-icon" size={40} strokeWidth={1.5} />
-            <h3>Drive Policy Impact</h3>
-          </div>
-          <p class="goal-target"><strong>Target:</strong> Influence education policy in 10+ developing countries</p>
-          <p>Partner with ministries of education, support pilot programs, create policy briefs based on implementation data.</p>
-        </div>
+        ))}
       </div>
     </section>
 
-    <!-- Geographic Scope -->
-    <section class="geographic-section">
-      <h2>Our Global Reach</h2>
-
-      <div class="geographic-content">
-        <div class="geographic-primary">
-          <h3><MapPin class="inline-icon" size={24} strokeWidth={2} /> Pan-African Priority</h3>
-          <p class="region-intro">
-            Africa is our home and primary focus. We're Zimbabwe-registered, Africa-committed, and deeply invested in the continent's educational future.
+    <!-- Geographic Section -->
+    <section class="py-16">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-12 text-center">Our Global Reach</h2>
+      <div class="max-w-[1000px] mx-auto space-y-6">
+        <div class="bg-[var(--bg-surface)] p-8 rounded-2xl border-2 border-[var(--primary)]">
+          <h3 class="text-xl font-bold text-[var(--text)] mb-4 flex items-center gap-2">
+            <MapPin class="text-[var(--primary)]" size={24} strokeWidth={2} />
+            Pan-African Priority
+          </h3>
+          <p class="text-lg text-[var(--text)] mb-4">
+            Africa is our home and primary focus. We're Zimbabwe-registered, Africa-committed.
           </p>
-          <div class="region-list">
-            <strong>Primary Markets:</strong>
-            <ul>
-              <li><strong>Zimbabwe</strong> – Home base, reinvestment commitment</li>
-              <li><strong>Kenya, Nigeria, Ghana, South Africa</strong> – Large education markets</li>
-              <li><strong>East African Community</strong> – Regional integration opportunities</li>
-              <li><strong>Southern African Development Community (SADC)</strong></li>
-              <li><strong>Economic Community of West African States (ECOWAS)</strong></li>
+          <div class="mt-4">
+            <strong class="text-[var(--text)]">Primary Markets:</strong>
+            <ul class="mt-2 space-y-1">
+              {['Zimbabwe – Home base, reinvestment commitment', 'Kenya, Nigeria, Ghana, South Africa – Large education markets', 'East African Community – Regional integration', 'SADC & ECOWAS regions'].map(item => (
+                <li class="flex items-start gap-2 text-[var(--text-secondary)]">
+                  <span class="text-[var(--primary)]">▸</span>
+                  <span>{item}</span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div class="geographic-secondary">
-          <h3><Globe class="inline-icon" size={24} strokeWidth={2} /> Global Developing Countries</h3>
-          <p class="region-intro">
-            Our frameworks serve schools across the developing world facing similar challenges and opportunities.
+        <div class="bg-[var(--bg-surface)] p-8 rounded-2xl border-2 border-[var(--primary)]">
+          <h3 class="text-xl font-bold text-[var(--text)] mb-4 flex items-center gap-2">
+            <Globe class="text-[var(--primary)]" size={24} strokeWidth={2} />
+            Global Developing Countries
+          </h3>
+          <p class="text-lg text-[var(--text)] mb-6">
+            Our frameworks serve schools across the developing world facing similar challenges.
           </p>
-          <div class="regions-grid">
-            <div class="region-card">
-              <h4>South Asia</h4>
-              <p>India, Bangladesh, Pakistan, Nepal</p>
-            </div>
-            <div class="region-card">
-              <h4>Southeast Asia</h4>
-              <p>Indonesia, Philippines, Vietnam</p>
-            </div>
-            <div class="region-card">
-              <h4>Latin America</h4>
-              <p>Brazil, Mexico, Colombia, Peru</p>
-            </div>
-            <div class="region-card">
-              <h4>Pacific & Caribbean</h4>
-              <p>Papua New Guinea, Fiji, Solomon Islands, Caribbean nations</p>
-            </div>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { region: 'South Asia', countries: 'India, Bangladesh, Pakistan, Nepal' },
+              { region: 'Southeast Asia', countries: 'Indonesia, Philippines, Vietnam' },
+              { region: 'Latin America', countries: 'Brazil, Mexico, Colombia, Peru' },
+              { region: 'Pacific & Caribbean', countries: 'Papua New Guinea, Fiji, Caribbean' }
+            ].map(r => (
+              <div class="p-4 bg-[var(--bg)] rounded-xl text-center">
+                <h4 class="font-bold text-[var(--primary)] mb-1">{r.region}</h4>
+                <p class="text-sm text-[var(--text-secondary)]">{r.countries}</p>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-
-      <div class="selection-criteria">
-        <h4>Why These Regions?</h4>
-        <ul>
-          <li>Mobile-first populations (smartphone penetration > 50%)</li>
-          <li>Education budget constraints creating demand for cost-effective solutions</li>
-          <li>Government openness to educational innovation</li>
-          <li>Existing digital infrastructure gaps our frameworks address</li>
-          <li>Language alignment (English, French, Chinese as instructional languages)</li>
-        </ul>
       </div>
     </section>
 
     <!-- Founder Story -->
-    <section class="founder-story">
-      <h2>Our Founder's Journey: From Passion to Global Purpose</h2>
-
-      <div class="founder-image-container">
-        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=1200&q=80" alt="African landscape representing Nyuchi's roots and global vision" class="founder-img" />
+    <section class="py-16 bg-[var(--bg-surface)] -mx-4 px-4 md:-mx-8 md:px-8 rounded-2xl my-8">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-8 text-center">Our Founder's Journey</h2>
+      <div class="max-w-[900px] mx-auto overflow-hidden rounded-2xl mb-8">
+        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=1200&q=80" alt="African landscape" class="w-full h-[400px] object-cover" />
       </div>
+      <div class="max-w-[900px] mx-auto space-y-6">
+        {[
+          { icon: Monitor, title: 'The Spark: A Childhood Fascination', content: 'Nyuchi\'s inception began with founder Bryan Fawcett\'s early fascination with computers—a childhood hobby that evolved into a lifelong pursuit of technological innovation.' },
+          { icon: GraduationCap, title: 'The Awakening: Teaching in South Africa', content: 'While teaching in South Africa, Bryan encountered pressing demand among educators for digital solutions. Africa didn\'t need more technology—it needed accessible, practical solutions designed for African realities. And the opportunity to leapfrog failing Western models entirely.' },
+          { icon: MapPin, title: 'The Journey: Built on Dusty African Roads', content: 'Bryan traveled along the dusty roads of Africa for several years. Cloud resources and online collaboration tools became second nature. Remote-first by necessity. African reality-tested. Practical innovation. Mobile-first naturally.' }
+        ].map(step => (
+          <div class="p-6 bg-[var(--bg)] rounded-2xl border-2 border-[var(--primary)]">
+            <h3 class="text-xl font-bold text-[var(--text)] mb-4 flex items-center gap-3">
+              <step.icon class="text-[var(--primary)]" size={24} strokeWidth={2} />
+              {step.title}
+            </h3>
+            <p class="text-base leading-relaxed text-[var(--text)]">{step.content}</p>
+          </div>
+        ))}
 
-      <div class="founder-content">
-        <div class="journey-step">
-          <h3><Monitor class="journey-icon" size={24} strokeWidth={2} /> The Spark: A Childhood Fascination</h3>
-          <p>
-            Nyuchi's inception began with founder Bryan Fawcett's early fascination with computers—a childhood
-            hobby that evolved into a lifelong pursuit of technological innovation aimed at transforming lives and empowering communities.
+        <div class="p-6 bg-[var(--bg)] rounded-2xl border-2 border-[var(--primary)]">
+          <h3 class="text-xl font-bold text-[var(--text)] mb-4">The Commitment: Zimbabwe First, World-Focused</h3>
+          <p class="text-base leading-relaxed text-[var(--text)] mb-4">
+            In 2019, Nyuchi Africa (PVT) Ltd. was formally registered in Zimbabwe—a declaration of commitment to local economy reinvestment.
           </p>
-        </div>
-
-        <div class="journey-step">
-          <h3><GraduationCap class="journey-icon" size={24} strokeWidth={2} /> The Awakening: Teaching in South Africa</h3>
-          <p>
-            While teaching in South Africa, Bryan encountered pressing demand among educators and schools
-            for digital solutions. This gap revealed a profound truth:
-            <strong>Africa didn't need more technology—it needed accessible, practical solutions designed for
-            African realities.</strong>
-          </p>
-          <p>
-            But more than that, Africa didn't need to copy failing Western models. It had the opportunity to
-            <strong>leapfrog them entirely</strong>—building educational systems optimized for the future from day one.
-          </p>
-        </div>
-
-        <div class="journey-step">
-          <h3><MapPin class="journey-icon" size={24} strokeWidth={2} /> The Journey: Built on Dusty African Roads</h3>
-          <p>
-            Soon after Nyuchi's conception, Bryan traveled along the dusty roads of Africa for several years.
-            Cloud resources and online collaboration tools became second nature—the lifeblood
-            of the company. This experience fundamentally shaped Nyuchi's DNA:
-          </p>
-          <ul>
-            <li><strong>Remote-first by necessity:</strong> Built to work from anywhere, with anything</li>
-            <li><strong>African reality-tested:</strong> Optimized for intermittent connectivity and limited bandwidth</li>
-            <li><strong>Practical innovation:</strong> Solutions that work in real conditions, not just theory</li>
-            <li><strong>Mobile-first naturally:</strong> Because that's how Africa works</li>
-          </ul>
-          <p class="emphasis">
-            On these dusty roads, the Nyuchi we know now grew—fueled by passion and a commitment to make education
-            as accessible and effective as possible through solutions built for Africa and the developing world.
-          </p>
-        </div>
-
-        <div class="journey-step">
-          <h3>The Commitment: Zimbabwe First, World-Focused</h3>
-          <p>
-            In 2019, Nyuchi Africa (PVT) Ltd. was formally registered in Zimbabwe. This wasn't just a business decision—it
-            was a declaration of commitment to local economy reinvestment and African development.
-          </p>
-          <blockquote class="founder-quote">
-            "We want to grow it and support our local economy. Money earned internationally is funneled back
-            into Zimbabwe to build and grow and support there."
+          <blockquote class="border-l-4 border-[var(--primary)] pl-4 py-2 my-4 italic text-[var(--text)] bg-[var(--primary-container)] rounded-r-xl">
+            "We want to grow it and support our local economy. Money earned internationally is funneled back into Zimbabwe."
           </blockquote>
-          <p>
-            But we also recognized that challenges facing Zimbabwe—limited resources, infrastructure gaps, mobile-first
-            populations—are challenges facing developing countries globally. Solutions that work in Zimbabwe work in Jakarta,
-            Lagos, Lima, and Suva.
-          </p>
-          <p>
-            <strong>Zimbabwe-registered. Pan-African priority. Globally focused.</strong> This is the Ubuntu principle in action:
-            when we help schools across the developing world succeed, we all grow stronger.
-          </p>
-        </div>
-
-        <div class="journey-step mission-today">
-          <h3><Target class="journey-icon" size={24} strokeWidth={2} /> The Mission Today</h3>
-          <p>
-            Nyuchi Learning represents our commitment to education transformation—our founder's roots
-            and our forever mission. We're building frameworks that:
-          </p>
-          <ul>
-            <li><strong>Empower</strong> developing countries to leapfrog traditional models</li>
-            <li><strong>Enable</strong> schools to build for 2050, not replicate 1950</li>
-            <li><strong>Develop</strong> competencies that predict success, not metrics that don't</li>
-            <li><strong>Deliver</strong> superior outcomes at fraction of traditional costs</li>
-            <li><strong>Demonstrate</strong> that Africa and the developing world can lead, not follow</li>
-          </ul>
-          <p class="emphasis">
-            Founded out of passion, built on dusty African roads, committed to Zimbabwe and Africa's
-            future, serving schools across the developing world—this is Nyuchi Learning.
+          <p class="text-base leading-relaxed text-[var(--text)] font-medium">
+            <strong>Zimbabwe-registered. Pan-African priority. Globally focused.</strong> This is Ubuntu in action.
           </p>
         </div>
       </div>
     </section>
 
     <!-- What Makes Us Different -->
-    <section class="differentiators-section">
-      <h2>What Makes Us Different</h2>
-      <div class="differentiators-grid">
-        <div class="differentiator">
-          <h3>Research-Driven, Not Technology-Driven</h3>
-          <p>
-            We start with evidence on what predicts success (grit, adaptability, collaboration), then select
-            technologies that develop these competencies. Most EdTech does the opposite.
-          </p>
-        </div>
-
-        <div class="differentiator">
-          <h3>Competencies Over Credentials</h3>
-          <p>
-            GPA predicts only 4% of job performance. We focus on the 96% that matters—character strengths,
-            problem-solving, learning agility, collaboration.
-          </p>
-        </div>
-
-        <div class="differentiator">
-          <h3>Open & Shareable, Not Proprietary</h3>
-          <p>
-            Our frameworks are freely available. Copy them, adapt them, improve them, share them. When one school
-            succeeds, we all benefit. This is Ubuntu.
-          </p>
-        </div>
-
-        <div class="differentiator">
-          <h3>Implementation-Focused, Not Just Theoretical</h3>
-          <p>
-            We provide detailed roadmaps, budget templates, technology specifications, and success metrics—not
-            abstract principles. Schools know exactly what to do and how much it costs.
-          </p>
-        </div>
-
-        <div class="differentiator">
-          <h3>Mobile-First, Not Desktop-Adapted</h3>
-          <p>
-            We design full learning experiences for smartphones from day one. This isn't compromise—it's recognizing
-            how billions of students actually access technology.
-          </p>
-        </div>
-
-        <div class="differentiator">
-          <h3>Affordable Excellence, Not Expensive Mediocrity</h3>
-          <p>
-            60-80% cost reduction through open-source solutions while delivering superior outcomes. Not cheaper
-            and worse—cheaper and better.
-          </p>
-        </div>
+    <section class="py-16">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-12 text-center">What Makes Us Different</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-[1000px] mx-auto">
+        {[
+          { title: 'Research-Driven', desc: 'We start with evidence on what predicts success, then select technologies. Most EdTech does the opposite.' },
+          { title: 'Competencies Over Credentials', desc: 'GPA predicts only 4% of job performance. We focus on the 96% that matters.' },
+          { title: 'Open & Shareable', desc: 'Our frameworks are freely available. Copy, adapt, improve, share. This is Ubuntu.' },
+          { title: 'Implementation-Focused', desc: 'Detailed roadmaps, budget templates, technology specs. Schools know exactly what to do.' },
+          { title: 'Mobile-First', desc: 'Full learning experiences for smartphones from day one. Not compromise—recognition of reality.' },
+          { title: 'Affordable Excellence', desc: '60-80% cost reduction while delivering superior outcomes. Cheaper and better.' }
+        ].map(diff => (
+          <div class="p-6 bg-[var(--bg-surface)] rounded-2xl border-2 border-[var(--primary)]">
+            <h3 class="text-lg font-bold text-[var(--text)] mb-3">{diff.title}</h3>
+            <p class="text-base text-[var(--text-secondary)]">{diff.desc}</p>
+          </div>
+        ))}
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="about-cta">
-      <h2>Join the Movement</h2>
-      <p>
+    <section class="py-16 text-center bg-[var(--bg-surface)] rounded-2xl my-8 border border-[var(--primary)]">
+      <h2 class="font-display text-3xl md:text-4xl text-[var(--text)] mb-6">Join the Movement</h2>
+      <p class="text-lg text-[var(--text-secondary)] mb-8 max-w-[800px] mx-auto">
         Ready to build the future instead of replicating the past? Explore our frameworks, join our community,
         and help prove that developing countries can lead educational transformation.
       </p>
-      <div class="cta-buttons">
-        <a href="/frameworks" class="btn btn-primary">Explore All Frameworks</a>
-        <a href="/blog/developing-world-educational-advantage" class="btn btn-secondary">Read Our Vision</a>
-        <a href="/consultation" class="btn btn-tertiary">Book a Consultation</a>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200">
+          Explore All Frameworks
+        </a>
+        <a href="/blog/developing-world-educational-advantage" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary-container)] transition-all duration-200">
+          Read Our Vision
+        </a>
+        <a href="/consultation" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--text-secondary)] text-[var(--text)] font-semibold rounded-xl hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all duration-200">
+          Book a Consultation
+        </a>
       </div>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .about-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  /* Hero Section */
-  .mission-hero {
-    position: relative;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text);
-    text-align: center;
-    overflow: hidden;
-    background: var(--bg);
-  }
-
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?w=1600&q=80') center/cover no-repeat;
-    background-attachment: fixed;
-    z-index: 0;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 71, 171, 0.9) 0%, rgba(0, 176, 255, 0.85) 100%);
-    z-index: 1;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem 1rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .hero-content h1 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 700;
-    margin-bottom: 2rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    color: var(--text);
-  }
-
-  .ubuntu-header {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    letter-spacing: 2px;
-    font-weight: 500;
-    opacity: 0.95;
-  }
-
-  .tagline {
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
-    color: var(--text);
-    opacity: 0.95;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  /* Fade in animations */
-  .animate-fade-in {
-    opacity: 0;
-    animation: fadeIn 1s ease-out forwards;
-  }
-
-  .animate-fade-in:nth-child(1) { animation-delay: 0.2s; }
-  .animate-fade-in:nth-child(2) { animation-delay: 0.4s; }
-  .animate-fade-in:nth-child(3) { animation-delay: 0.6s; }
-
-  @keyframes fadeIn {
-    to {
-      opacity: 1;
-    }
-  }
-
-  /* Core Identity Section */
-  .core-identity {
-    padding: 4rem 2rem;
-    background: var(--bg);
-  }
-
-  .identity-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
-  }
-
-  .identity-card {
-    padding: 3rem;
-    border-radius: 12px;
-    background: var(--card-bg);
-    box-shadow: var(--shadow-md);
-  }
-
-  .mission-card {
-    border: 2px solid var(--primary);
-  }
-
-  .vision-card {
-    border: 2px solid var(--primary);
-  }
-
-  .identity-icon {
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-  }
-
-  .identity-card h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(1.75rem, 3vw, 2.25rem);
-    color: var(--text);
-    margin-bottom: 1.5rem;
-  }
-
-  .identity-card p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .mission-detail,
-  .vision-detail {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    margin-top: 1.5rem;
-  }
-
-  /* Leapfrog Section */
-  .leapfrog-section {
-    padding: 4rem 2rem;
-    background: var(--bg-surface);
-  }
-
-  .leapfrog-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .leapfrog-content {
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .leapfrog-text .lead {
-    font-size: 1.25rem;
-    font-weight: 500;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-
-  .leapfrog-text p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    margin-bottom: 1.5rem;
-    color: var(--text);
-  }
-
-  .leapfrog-comparison {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-
-  .comparison-box {
-    padding: 2rem;
-    border-radius: 12px;
-    background: var(--card-bg);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .old-model {
-    border: 1px solid var(--border);
-  }
-
-  .new-model {
-    border: 2px solid var(--primary);
-  }
-
-  .comparison-box h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.25rem;
-    margin-bottom: 1.25rem;
-    color: var(--text);
-  }
-
-  .comparison-box ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .comparison-box li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-  }
-
-  .comparison-box li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--mineral-cobalt);
-    font-weight: bold;
-  }
-
-  .old-model li::before {
-    content: '×';
-    color: var(--text-muted);
-  }
-
-  /* Values Section */
-  .values-section {
-    padding: 4rem 2rem;
-    background: var(--card-bg);
-  }
-
-  .values-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .section-intro {
-    text-align: center;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-  }
-
-  .value-card {
-    padding: 2rem;
-    background: var(--bg-card);
-    border-radius: 12px;
-    border: 2px solid var(--primary);
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .value-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-  }
-
-  .value-icon {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  .value-card h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.25rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .value-card p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* Governance Section */
-  .governance-section {
-    padding: 4rem 2rem;
-    background: var(--bg);
-  }
-
-  .governance-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .governance-principles {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-
-  .principle-card {
-    display: flex;
-    gap: 2rem;
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: var(--shadow-sm);
-    align-items: start;
-  }
-
-  .principle-number {
-    font-size: 3rem;
-    font-weight: 800;
-    color: var(--primary);
-    min-width: 80px;
-    line-height: 1.3;
-  }
-
-  .principle-content h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.5rem;
-    color: var(--text);
-    margin-bottom: 0.75rem;
-  }
-
-  .principle-content p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* Goals Section */
-  .goals-section {
-    padding: 4rem 2rem;
-    background: var(--card-bg);
-  }
-
-  .goals-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-
-  .goals-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-  }
-
-  .goal-card {
-    padding: 2rem;
-    background: var(--bg-card);
-    border-radius: 12px;
-    border: 2px solid var(--primary);
-  }
-
-  .goal-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .goal-icon {
-    color: var(--mineral-cobalt);
-    flex-shrink: 0;
-  }
-
-  .goal-card h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.3rem;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .goal-target {
-    font-weight: 600;
-    color: var(--mineral-cobalt);
-    margin-bottom: 1rem;
-    font-size: 1.05rem;
-  }
-
-  .goal-card p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* Geographic Section */
-  .geographic-section {
-    padding: 4rem 2rem;
-    background: var(--bg);
-  }
-
-  .geographic-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-
-  .geographic-content {
-    max-width: 1000px;
-    margin: 0 auto 3rem;
-  }
-
-  .geographic-primary,
-  .geographic-secondary {
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 12px;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
-  }
-
-  .geographic-primary {
-    border: 2px solid var(--primary);
-  }
-
-  .geographic-secondary {
-    border: 2px solid var(--primary);
-  }
-
-  .geographic-primary h3,
-  .geographic-secondary h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.5rem;
-    color: var(--text);
-    margin-bottom: 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  .inline-icon {
-    color: var(--mineral-cobalt);
-  }
-
-  .region-intro {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-  }
-
-  .region-list {
-    margin-top: 1.5rem;
-  }
-
-  .region-list strong {
-    display: block;
-    font-size: 1.05rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .region-list ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  .region-list li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    font-size: 1.05rem;
-    color: var(--text-secondary);
-  }
-
-  .region-list li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
-    color: var(--mineral-cobalt);
-    font-weight: bold;
-  }
-
-  .regions-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .region-card {
-    padding: 1.5rem;
-    background: var(--bg-card);
-    border-radius: 16px;
-    text-align: center;
-  }
-
-  .region-card h4 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.1rem;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .region-card p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .selection-criteria {
-    background: var(--bg-surface);
-    padding: 2rem;
-    border-radius: 12px;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .selection-criteria h4 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.3rem;
-    color: var(--primary);
-    margin-bottom: 1.25rem;
-  }
-
-  .selection-criteria ul {
-    list-style: none;
-    padding: 0;
-  }
-
-  .selection-criteria li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    font-size: 1.05rem;
-  }
-
-  .selection-criteria li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--mineral-cobalt);
-    font-weight: bold;
-  }
-
-  /* Founder Story */
-  .founder-story {
-    padding: 4rem 2rem;
-    background: var(--card-bg);
-  }
-
-  .founder-story h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .founder-image-container {
-    margin: 2rem 0 3rem;
-    border-radius: 12px;
-    overflow: hidden;
-    max-width: 900px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .founder-img {
-    width: 100%;
-    height: 400px;
-    object-fit: cover;
-    display: block;
-  }
-
-  .founder-content {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .journey-step {
-    margin-bottom: 2.5rem;
-    padding: 2rem;
-    background: var(--bg-card);
-    border-radius: 12px;
-    border: 2px solid var(--primary);
-  }
-
-  .journey-step h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    color: var(--text);
-    margin-bottom: 1.25rem;
-    font-size: 1.4rem;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .journey-icon {
-    color: var(--primary);
-    flex-shrink: 0;
-  }
-
-  .journey-step p {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .journey-step ul {
-    margin: 1.5rem 0;
-    padding-left: 1.5rem;
-  }
-
-  .journey-step li {
-    margin-bottom: 0.75rem;
-    font-size: 1.05rem;
-    line-height: 1.7;
-  }
-
-  .founder-quote {
-    border: 2px solid var(--primary);
-    padding: 1.5rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: var(--text);
-    background: var(--emerald-subtle);
-    border-radius: 12px;
-    font-size: 1.1rem;
-  }
-
-  .emphasis {
-    font-weight: 500;
-    color: var(--text);
-    margin-top: 1.5rem;
-    padding: 1.25rem;
-    background: var(--bg-surface);
-    border-radius: 12px;
-  }
-
-  .mission-today {
-    background: var(--bg-surface);
-    border-left-color: var(--mineral-cobalt);
-  }
-
-  /* Differentiators */
-  .differentiators-section {
-    padding: 4rem 2rem;
-    background: var(--bg);
-  }
-
-  .differentiators-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 4vw, 2.5rem);
-    color: var(--primary);
-    margin-bottom: 3rem;
-    text-align: center;
-  }
-
-  .differentiators-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .differentiator {
-    padding: 2rem;
-    background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: var(--shadow-sm);
-    border: 2px solid var(--primary);
-  }
-
-  .differentiator h3 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1.25rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .differentiator p {
-    font-size: 1rem;
-    line-height: 1.7;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* CTA Section */
-  .about-cta {
-    padding: 4rem 2rem;
-    text-align: center;
-    background: var(--bg-surface);
-    color: var(--text);
-    border-radius: 16px;
-    margin: 2rem 0;
-    border: 1px solid var(--mineral-cobalt);
-  }
-
-  .about-cta h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    color: var(--text);
-    margin-bottom: 1.5rem;
-  }
-
-  .about-cta p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 2.5rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.875rem 2rem;
-    border-radius: 12px;
-    text-decoration: none;
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  .btn-primary {
-    background: var(--primary);
-    color: var(--bg);
-  }
-
-  .btn-primary:hover {
-    box-shadow: 0 4px 12px rgba(0, 176, 255, 0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-  }
-
-  .btn-secondary:hover {
-    background: rgba(0, 176, 255, 0.1);
-  }
-
-  .btn-tertiary {
-    background: transparent;
-    color: var(--text);
-    border: 2px solid var(--text-secondary);
-  }
-
-  .btn-tertiary:hover {
-    background: var(--bg-surface);
-    color: var(--primary);
-    border-color: var(--primary);
-  }
-
-  /* Mobile Responsive */
-  @media (max-width: 768px) {
-    .mission-hero {
-      min-height: 70vh;
-      padding: 8rem 1rem 4rem;
-    }
-
-    .hero-background {
-      background-attachment: scroll;
-    }
-
-    .identity-grid,
-    .leapfrog-comparison {
-      grid-template-columns: 1fr;
-    }
-
-    .values-grid,
-    .goals-grid,
-    .differentiators-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .principle-card {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .principle-number {
-      min-width: auto;
-    }
-
-    .regions-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .btn {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .about-container {
-      padding: 1.5rem 1rem;
-    }
-
-    .core-identity,
-    .leapfrog-section,
-    .values-section,
-    .governance-section,
-    .goals-section,
-    .geographic-section,
-    .founder-story,
-    .differentiators-section {
-      padding: 3rem 1.5rem;
-    }
-
-    .founder-img {
-      height: 250px;
-    }
-  }
-</style>
