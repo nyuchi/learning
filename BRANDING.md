@@ -95,23 +95,27 @@ The Bundu Family brand ecosystem uses **ONE unified palette of 5 African Mineral
 
 ### CSS Variables
 
+The site uses `prefers-color-scheme` media query for automatic theme switching:
+
 ```css
 :root {
-  /* Five African Minerals - Light Mode */
-  --mineral-cobalt: #0047AB;
-  --mineral-tanzanite: #4B0082;
-  --mineral-malachite: #004D40;
-  --mineral-gold: #5D4037;
-  --mineral-terracotta: #8B4513;
-}
-
-[data-theme="dark"] {
-  /* Five African Minerals - Dark Mode */
+  /* Five African Minerals - Dark Mode (default) */
   --mineral-cobalt: #00B0FF;
   --mineral-tanzanite: #B388FF;
   --mineral-malachite: #64FFDA;
   --mineral-gold: #FFD740;
   --mineral-terracotta: #D4A574;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Five African Minerals - Light Mode */
+    --mineral-cobalt: #0047AB;
+    --mineral-tanzanite: #4B0082;
+    --mineral-malachite: #004D40;
+    --mineral-gold: #5D4037;
+    --mineral-terracotta: #8B4513;
+  }
 }
 ```
 
@@ -302,12 +306,12 @@ h3, h4, h5, h6, body, p {
   flex: 1; /* 20% each */
 }
 
-/* Dark mode colors */
-.mineral-cobalt    { background: #00B0FF; }
-.mineral-tanzanite { background: #B388FF; }
-.mineral-malachite { background: #64FFDA; }
-.mineral-gold      { background: #FFD740; }
-.mineral-terracotta { background: #D4A574; }
+/* Uses CSS variables for automatic light/dark theme support */
+.mineral-cobalt    { background: var(--mineral-cobalt); }
+.mineral-tanzanite { background: var(--mineral-tanzanite); }
+.mineral-malachite { background: var(--mineral-malachite); }
+.mineral-gold      { background: var(--mineral-gold); }
+.mineral-terracotta { background: var(--mineral-terracotta); }
 
 /* Hide on mobile */
 @media (max-width: 480px) {
