@@ -1269,7 +1269,15 @@ import Logo from '../components/Logo.astro';
 
 ### Design Philosophy
 
-The Bundu Ecosystem uses **ONE unified palette of 5 African Minerals** shared across all brands. All colors achieve **WCAG AAA (7:1+)** contrast ratios. The Education Theme uses **Cobalt** as the primary mineral with **Slate dark surfaces**.
+The Bundu Ecosystem uses **ONE unified palette of 5 African Minerals** shared across all brands. All colors achieve **WCAG AAA (7:1+)** contrast ratios. The site supports both **light and dark modes** via `prefers-color-scheme`, automatically adapting to the user's system preference.
+
+### Theme Switching
+
+The site uses `prefers-color-scheme` media query to automatically switch between light and dark themes:
+- **Dark Mode** (default): Slate surfaces (#0F172A, #1E293B) with bright mineral colors
+- **Light Mode**: White/light gray surfaces with deep mineral colors
+
+No manual toggle is provided - the site respects the user's OS/browser preference.
 
 ### Five African Minerals Palette
 
@@ -1289,12 +1297,19 @@ The Bundu Ecosystem uses **ONE unified palette of 5 African Minerals** shared ac
 | Dark | `#00B0FF` | CTAs, links, buttons, interactive elements |
 | Light | `#0047AB` | CTAs, links, buttons, interactive elements |
 
-**Surface Colors (Slate Dark Theme):**
+**Surface Colors (Dark Mode):**
 | Surface | Value | Name |
 |---------|-------|------|
 | Base | `#0F172A` | Slate 900 |
 | Surface | `#1E293B` | Slate 800 |
 | Elevated | `#334155` | Slate 700 |
+
+**Surface Colors (Light Mode):**
+| Surface | Value | Name |
+|---------|-------|------|
+| Base | `#FFFFFF` | White |
+| Surface | `#F8FAFC` | Slate 50 |
+| Elevated | `#F1F5F9` | Slate 100 |
 
 **Text Colors (Dark Mode):**
 | Type | Value |
@@ -1302,6 +1317,13 @@ The Bundu Ecosystem uses **ONE unified palette of 5 African Minerals** shared ac
 | Primary | `#F8FAFC` (Slate 50) |
 | Secondary | `#CBD5E1` (Slate 300) |
 | Muted | `#94A3B8` (Slate 400) |
+
+**Text Colors (Light Mode):**
+| Type | Value |
+|------|-------|
+| Primary | `#0F172A` (Slate 900) |
+| Secondary | `#475569` (Slate 600) |
+| Muted | `#64748B` (Slate 500) |
 
 ### Semantic Colors
 

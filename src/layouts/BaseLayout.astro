@@ -193,9 +193,10 @@ const {
       :root {
         /* ========================================
            EDUCATION THEME v6 - Five African Minerals
+           Default: Dark Mode (respects prefers-color-scheme)
            ======================================== */
 
-        /* Five African Minerals - Dark Mode (Primary Theme) */
+        /* Five African Minerals - Dark Mode */
         --mineral-cobalt: #00B0FF;       /* Primary - CTAs, links, education */
         --mineral-tanzanite: #B388FF;    /* Social, premium */
         --mineral-malachite: #64FFDA;    /* Success, nature */
@@ -245,7 +246,7 @@ const {
         --brown-hover: #E5B68A;
         --emerald: #64FFDA;              /* Malachite */
 
-        /* Gray Scale */
+        /* Gray Scale (Dark Mode) */
         --gray-50: #F8FAFC;
         --gray-100: #F1F5F9;
         --gray-200: #E2E8F0;
@@ -263,6 +264,79 @@ const {
         --radius-input: 8px;             /* Form inputs */
         --radius-badge: 9999px;          /* Pills/badges */
         --minerals-strip-width: 4px;     /* Minerals strip */
+
+        /* Color scheme indicator */
+        color-scheme: dark light;
+      }
+
+      /* ========================================
+         LIGHT MODE - Five African Minerals
+         Activated when user prefers light color scheme
+         ======================================== */
+      @media (prefers-color-scheme: light) {
+        :root {
+          /* Five African Minerals - Light Mode */
+          --mineral-cobalt: #0047AB;       /* Primary - CTAs, links, education */
+          --mineral-tanzanite: #4B0082;    /* Social, premium */
+          --mineral-malachite: #004D40;    /* Success, nature */
+          --mineral-gold: #5D4037;         /* Rewards, warmth */
+          --mineral-terracotta: #8B4513;   /* Community, Ubuntu */
+
+          /* Primary Color - Cobalt (Education) Light Mode */
+          --primary: #0047AB;              /* CTAs, links, buttons */
+          --primary-hover: #0056D2;        /* Hover states */
+          --primary-active: #003580;       /* Active/pressed states */
+          --primary-light: #E3F2FD;        /* Light backgrounds */
+          --primary-subtle: #F0F9FF;       /* Very light backgrounds */
+
+          /* Secondary - Malachite (Success) */
+          --success: #004D40;
+          --success-container: #D8F3EA;
+
+          /* Semantic Colors */
+          --error: #B3261E;
+          --error-container: #FFDAD6;
+          --warning: #7C5800;
+          --warning-container: #FFEEBA;
+          --info: #0047AB;
+          --info-container: #E3F2FD;
+
+          /* Light Surfaces */
+          --bg: #FFFFFF;                   /* White - Base */
+          --bg-surface: #F8FAFC;           /* Slate 50 - Cards */
+          --bg-elevated: #F1F5F9;          /* Slate 100 - Elevated */
+          --bg-accent: #E2E8F0;            /* Slate 200 - Accents */
+
+          /* Text Colors - High Contrast AAA (7:1+) */
+          --text: #0F172A;                 /* Slate 900 - Primary */
+          --text-secondary: #475569;       /* Slate 600 - Secondary */
+          --text-muted: #64748B;           /* Slate 500 - Muted */
+
+          /* Border Colors */
+          --border: #E2E8F0;               /* Slate 200 */
+          --border-light: #CBD5E1;         /* Slate 300 */
+
+          /* Legacy compatibility */
+          --charcoal: #0F172A;
+          --charcoal-light: #F8FAFC;
+          --charcoal-lighter: #F1F5F9;
+          --bg-card: #F8FAFC;
+          --brown: #8B4513;                /* Terracotta for accents */
+          --brown-hover: #A0522D;
+          --emerald: #004D40;              /* Malachite */
+
+          /* Gray Scale (Light Mode - inverted) */
+          --gray-50: #0F172A;
+          --gray-100: #1E293B;
+          --gray-200: #334155;
+          --gray-300: #475569;
+          --gray-400: #64748B;
+          --gray-500: #94A3B8;
+          --gray-600: #CBD5E1;
+          --gray-700: #E2E8F0;
+          --gray-800: #F1F5F9;
+          --gray-900: #F8FAFC;
+        }
       }
 
       * {
@@ -303,11 +377,11 @@ const {
         flex-direction: column;
       }
 
-      .mineral-cobalt     { flex: 1; background: #00B0FF; }
-      .mineral-tanzanite  { flex: 1; background: #B388FF; }
-      .mineral-malachite  { flex: 1; background: #64FFDA; }
-      .mineral-gold       { flex: 1; background: #FFD740; }
-      .mineral-terracotta { flex: 1; background: #D4A574; }
+      .mineral-cobalt     { flex: 1; background: var(--mineral-cobalt); }
+      .mineral-tanzanite  { flex: 1; background: var(--mineral-tanzanite); }
+      .mineral-malachite  { flex: 1; background: var(--mineral-malachite); }
+      .mineral-gold       { flex: 1; background: var(--mineral-gold); }
+      .mineral-terracotta { flex: 1; background: var(--mineral-terracotta); }
 
       header {
         position: fixed;
@@ -326,13 +400,35 @@ const {
         box-shadow: none;
       }
 
-      /* Solid header state (when scrolled) */
+      /* Solid header state (when scrolled) - Dark Mode */
       header.header-solid {
         background: rgba(15, 23, 42, 0.98);  /* Slate 900 */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         border-bottom: 1px solid rgba(51, 65, 85, 0.5);  /* Slate 700 */
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Solid header state - Light Mode */
+      @media (prefers-color-scheme: light) {
+        header.header-solid {
+          background: rgba(255, 255, 255, 0.98);  /* White */
+          border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        header.header-solid .logo-text,
+        header.header-solid .nav-links a {
+          color: var(--text);
+        }
+
+        header.header-solid .logo-subtext {
+          color: var(--text-muted);
+        }
+
+        header.header-solid .mobile-menu-btn {
+          color: var(--primary);
+        }
       }
 
       /* Header hidden state when scrolling down */
@@ -494,6 +590,24 @@ const {
         color: var(--emerald);
       }
 
+      /* Dropdown menu - Light Mode */
+      @media (prefers-color-scheme: light) {
+        .dropdown-menu {
+          background: white;
+          border: 1px solid var(--border);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .dropdown-menu a {
+          color: var(--text);
+        }
+
+        .dropdown-menu a:hover {
+          background: var(--bg-surface);
+          color: var(--primary);
+        }
+      }
+
       /* CTA Button in Nav */
       .btn-cta {
         background: var(--primary) !important;
@@ -516,10 +630,68 @@ const {
       }
 
       footer {
-        background: var(--bg-dark);
-        color: white;
+        background: var(--bg);
+        color: var(--text);
         padding: 0;
         margin-top: 6rem;
+      }
+
+      /* Footer - Light Mode */
+      @media (prefers-color-scheme: light) {
+        footer {
+          background: var(--bg-surface);
+        }
+
+        .footer-hero {
+          background: #8B4513;  /* Terracotta light mode */
+          color: white;
+        }
+
+        .footer-hero .footer-main-text,
+        .footer-hero .footer-ubuntu-large,
+        .footer-hero .footer-geographic {
+          color: white;
+        }
+
+        .footer-column h3 {
+          color: var(--text);
+        }
+
+        .footer-column a {
+          color: var(--text-secondary);
+        }
+
+        .footer-column a:hover {
+          color: var(--primary);
+        }
+
+        .footer-brand-name {
+          color: var(--text);
+        }
+
+        .footer-brand-org {
+          color: var(--text-secondary);
+        }
+
+        .footer-division {
+          color: var(--text-muted);
+        }
+
+        .footer-principles p {
+          color: var(--text-muted);
+        }
+
+        .footer-copyright {
+          color: var(--text-muted);
+        }
+
+        .footer-bottom {
+          border-top-color: var(--border);
+        }
+
+        .footer-principles {
+          border-bottom-color: var(--border);
+        }
       }
 
       .footer-hero {
@@ -699,11 +871,21 @@ const {
       }
 
       .mobile-menu-btn:hover {
-        background: var(--gray-100);
+        background: rgba(0, 176, 255, 0.1);
       }
 
       .mobile-menu-btn:active {
-        background: var(--gray-200);
+        background: rgba(0, 176, 255, 0.2);
+      }
+
+      @media (prefers-color-scheme: light) {
+        .mobile-menu-btn:hover {
+          background: rgba(0, 71, 171, 0.1);
+        }
+
+        .mobile-menu-btn:active {
+          background: rgba(0, 71, 171, 0.2);
+        }
       }
 
       /* Mobile Navigation */
@@ -718,20 +900,40 @@ const {
         display: block;
         max-height: 400px;
         border-top: 1px solid var(--border);
-        background: rgba(255, 255, 255, 0.98);
+        background: rgba(15, 23, 42, 0.98);  /* Dark mode default */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
 
       /* Mobile menu always has solid background even with transparent header */
       header.header-transparent .nav-mobile.active {
-        background: rgba(255, 255, 255, 0.98);
+        background: rgba(15, 23, 42, 0.98);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
       }
 
       header.header-transparent .nav-mobile.active a {
-        color: var(--text);
+        color: var(--gray-50);
+      }
+
+      /* Mobile Navigation - Light Mode */
+      @media (prefers-color-scheme: light) {
+        .nav-mobile.active {
+          background: rgba(255, 255, 255, 0.98);
+        }
+
+        header.header-transparent .nav-mobile.active {
+          background: rgba(255, 255, 255, 0.98);
+        }
+
+        header.header-transparent .nav-mobile.active a {
+          color: var(--text);
+        }
+
+        .nav-mobile-links a:hover,
+        .nav-mobile-links a:active {
+          background: var(--bg-surface);
+        }
       }
 
       .nav-mobile-links {
