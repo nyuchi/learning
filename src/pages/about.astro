@@ -494,9 +494,10 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
+    color: var(--text);
     text-align: center;
     overflow: hidden;
+    background: var(--bg);
   }
 
   .hero-background {
@@ -516,7 +517,7 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(139, 128, 232, 0.85) 0%, rgba(24, 168, 119, 0.75) 100%);
+    background: linear-gradient(135deg, rgba(0, 71, 171, 0.9) 0%, rgba(0, 176, 255, 0.85) 100%);
     z-index: 1;
   }
 
@@ -536,13 +537,13 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
     line-height: 1.1;
     letter-spacing: -0.02em;
     text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    color: white;
+    color: var(--text);
   }
 
   .ubuntu-header {
     font-size: 1.1rem;
     font-style: italic;
-    color: white;
+    color: var(--text);
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -552,7 +553,7 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
 
   .tagline {
     font-size: clamp(1.2rem, 3vw, 1.8rem);
-    color: white;
+    color: var(--text);
     opacity: 0.95;
     margin-bottom: 2rem;
     line-height: 1.6;
@@ -1167,9 +1168,9 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
   .differentiator {
     padding: 2rem;
     background: var(--card-bg);
-    border-radius: 12px;
+    border-radius: 16px;
     box-shadow: var(--shadow-sm);
-    border-top: 4px solid var(--brown);
+    border-top: 4px solid var(--mineral-cobalt);
   }
 
   .differentiator h3 {
@@ -1190,22 +1191,23 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
   .about-cta {
     padding: 4rem 2rem;
     text-align: center;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--emerald) 100%);
-    color: white;
-    border-radius: 12px;
+    background: var(--bg-surface);
+    color: var(--text);
+    border-radius: 16px;
     margin: 2rem 0;
+    border: 1px solid var(--mineral-cobalt);
   }
 
   .about-cta h2 {
     font-family: 'Noto Serif', Georgia, serif;
     font-size: clamp(2rem, 5vw, 3rem);
-    color: white;
+    color: var(--text);
     margin-bottom: 1.5rem;
   }
 
   .about-cta p {
     font-size: 1.2rem;
-    color: white;
+    color: var(--text-secondary);
     margin-bottom: 2.5rem;
     max-width: 800px;
     margin-left: auto;
@@ -1239,33 +1241,34 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
   }
 
   .btn-primary {
-    background: var(--card-bg);
-    color: var(--primary);
+    background: var(--primary);
+    color: var(--bg);
   }
 
   .btn-primary:hover {
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 12px rgba(0, 176, 255, 0.3);
   }
 
   .btn-secondary {
     background: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--primary);
+    border: 2px solid var(--primary);
   }
 
   .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(0, 176, 255, 0.1);
   }
 
   .btn-tertiary {
     background: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--text);
+    border: 2px solid var(--text-secondary);
   }
 
   .btn-tertiary:hover {
-    background: var(--card-bg);
+    background: var(--bg-surface);
     color: var(--primary);
+    border-color: var(--primary);
   }
 
   /* Mobile Responsive */

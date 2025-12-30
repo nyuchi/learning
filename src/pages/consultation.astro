@@ -142,7 +142,7 @@ import { Calendar, CheckCircle, Users, Zap } from 'lucide-astro';
     padding: 3rem 1rem;
     background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
                 url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80') center/cover no-repeat;
-    color: white;
+    color: var(--text);
     border-radius: 1rem;
     overflow: hidden;
   }
@@ -351,21 +351,21 @@ import { Calendar, CheckCircle, Users, Zap } from 'lucide-astro';
   .consultation-cta {
     text-align: center;
     background: var(--bg-dark);
-    color: white;
+    color: var(--text);
     padding: 4rem 2rem;
     border-radius: 1rem;
     border-top: 4px solid var(--primary);
   }
 
   .consultation-cta h2 {
-    color: white;
+    color: var(--text);
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
   }
 
   .consultation-cta p {
-    color: white;
+    color: var(--text);
     font-size: 1.2rem;
     margin-bottom: 2rem;
   }
@@ -403,8 +403,8 @@ import { Calendar, CheckCircle, Users, Zap } from 'lucide-astro';
 
   .btn-secondary {
     background: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--text);
+    border: 2px solid var(--text-secondary);
   }
 
   .btn-secondary:hover {

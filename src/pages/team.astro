@@ -226,7 +226,7 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
     padding: 3rem 1rem;
     background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
                 url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80') center/cover no-repeat;
-    color: white;
+    color: var(--text);
     border-radius: 1rem;
     overflow: hidden;
   }
@@ -326,7 +326,7 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
     aspect-ratio: 1;
     object-fit: cover;
     border-radius: 50%;
-    border: 6px solid white;
+    border: 6px solid var(--text-secondary);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
@@ -432,7 +432,7 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
 
   .btn-primary {
     background: var(--primary);
-    color: white;
+    color: var(--text);
   }
 
   .btn-secondary {
@@ -443,7 +443,7 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
 
   .btn-secondary:hover {
     background: var(--primary);
-    color: white;
+    color: var(--text);
   }
 
   .linkedin-btn {
@@ -523,21 +523,21 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
   .team-cta {
     text-align: center;
     background: var(--bg-dark);
-    color: white;
+    color: var(--text);
     padding: 4rem 2rem;
     border-radius: 1rem;
     border-top: 4px solid var(--primary);
   }
 
   .team-cta h2 {
-    color: white;
+    color: var(--text);
     font-size: 2.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
   }
 
   .team-cta p {
-    color: white;
+    color: var(--text);
     font-size: 1.2rem;
     margin-bottom: 2rem;
     max-width: 800px;
@@ -559,8 +559,8 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
 
   .team-cta .btn-secondary {
     background: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--text);
+    border: 2px solid var(--text-secondary);
   }
 
   .team-cta .btn-secondary:hover {

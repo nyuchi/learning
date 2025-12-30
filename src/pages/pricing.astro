@@ -524,7 +524,7 @@ import { DollarSign, Check, AlertCircle } from 'lucide-astro';
     padding: 4rem 1rem;
     background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
                 url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80') center/cover no-repeat;
-    color: white;
+    color: var(--text);
     border-radius: 1rem;
     margin-bottom: 4rem;
     position: relative;
@@ -600,7 +600,7 @@ import { DollarSign, Check, AlertCircle } from 'lucide-astro';
     top: -12px;
     right: 20px;
     background: var(--primary);
-    color: white;
+    color: var(--text);
     padding: 0.5rem 1rem;
     border-radius: 9999px;
     font-size: 0.85rem;
@@ -776,12 +776,12 @@ import { DollarSign, Check, AlertCircle } from 'lucide-astro';
     text-align: center;
     padding: 4rem 2rem;
     background: var(--bg-dark);
-    color: white;
+    color: var(--text);
     border-radius: 1rem;
   }
 
   .pricing-cta h2 {
-    color: white;
+    color: var(--text);
     margin-bottom: 1rem;
     font-size: 2.5rem;
   }
@@ -820,8 +820,8 @@ import { DollarSign, Check, AlertCircle } from 'lucide-astro';
 
   .btn-secondary {
     background: transparent;
-    color: white;
-    border: 2px solid white;
+    color: var(--text);
+    border: 2px solid var(--text-secondary);
   }
 
   .btn-secondary:hover {
