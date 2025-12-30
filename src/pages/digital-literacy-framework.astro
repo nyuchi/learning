@@ -1,6 +1,378 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Smartphone, Globe, Shield, TrendingUp, Users, GraduationCap, BookOpen, Download, Target, Lightbulb, Award } from 'lucide-astro';
+
+// Navigation items
+const navItems = [
+  { href: "#overview", label: "Executive Overview" },
+  { href: "#governance", label: "Framework Governance" },
+  { href: "#principles", label: "Core Principles" },
+  { href: "#student-standards", label: "Student Standards" },
+  { href: "#adult-framework", label: "Adult Framework" },
+  { href: "#digital-citizenship", label: "Digital Citizenship" },
+  { href: "#mobile-first", label: "Mobile-First Approach" },
+  { href: "#2050-vision", label: "2050 Vision" },
+  { href: "#assessment", label: "Assessment & Progression" },
+  { href: "#implementation", label: "Implementation Guide" }
+];
+
+// Overview cards
+const overviewCards = [
+  { icon: Smartphone, title: "Mobile-First Reality", description: "Designed for contexts where smartphones are the primary digital access point, not computers" },
+  { icon: Shield, title: "Digital Citizenship Core", description: "Emphasizes safety, ethics, responsibility, and positive digital community participation" },
+  { icon: Users, title: "Lifelong Learning", description: "Digital literacy starts at any age—frameworks for students, teachers, staff, and adults" },
+  { icon: TrendingUp, title: "2050-Ready Skills", description: "Prepares learners for AI collaboration, remote work, digital entrepreneurship, and emerging tech" }
+];
+
+// African context points
+const africanContext = [
+  { label: "Mobile Dominance", text: "67.5% internet penetration (2024), primarily via smartphones" },
+  { label: "Limited 1:1 Access", text: "Most schools cannot provide individual devices for every student" },
+  { label: "Shared Devices", text: "Students often share family phones, library devices, or school computer labs" },
+  { label: "Data Constraints", text: "Limited bandwidth and data bundles require offline-capable learning" },
+  { label: "Multilingual Needs", text: "Content must work across English, French, and African languages" },
+  { label: "Age Diversity", text: "Adults and youth alike need digital literacy—it's never too late to start" }
+];
+
+// Governance principles
+const governancePrinciples = [
+  {
+    number: "01",
+    title: "Open & Shareable",
+    description: "Complete digital literacy standards, curricula, and assessment rubrics freely available. No licensing fees for standards progression (K-12, teachers, adults). Schools can copy, adapt, and share this entire framework.",
+    example: "Download K-12 progression standards, customize for your school's context (e.g., adding local language requirements), and share your adapted version with neighboring schools."
+  },
+  {
+    number: "02",
+    title: "Evidence-Based",
+    description: "Standards aligned with 2050 job market requirements (digital fluency, AI collaboration, remote work competencies). Progression based on cognitive development research. Citizenship-first approach proven to improve online safety outcomes.",
+    example: "Framework prioritizes digital citizenship before tool mastery because research shows ethical foundation matters more than technical skills for long-term success."
+  },
+  {
+    number: "03",
+    title: "Competency-Focused",
+    description: "Standards emphasize what learners can DO, not just what they know. Portfolio-based assessment demonstrates actual digital competencies. Badges and microcredentials document skills employers recognize.",
+    example: "Instead of \"knows how to use spreadsheets,\" standard is \"can analyze real-world data using spreadsheets and create data-driven recommendations\"—demonstrable competency, not abstract knowledge."
+  },
+  {
+    number: "04",
+    title: "Mobile-First",
+    description: "Every standard achievable on a smartphone. Offline-capable learning modules for limited connectivity. Mobile assessment tools (quizzes, portfolio submissions via phone). Designed for contexts where mobile is primary access point.",
+    example: "Digital citizenship curriculum accessible via mobile web apps, not just desktop platforms—meeting learners where they are (67.5% mobile internet penetration in Africa)."
+  },
+  {
+    number: "05",
+    title: "Culturally Responsive",
+    description: "Multilingual standards (English, French, African languages). Examples and case studies reflect African contexts, not Western assumptions. Respects diverse cultural values around privacy, community, and digital participation.",
+    example: "Digital citizenship module includes Ubuntu philosophy (\"I am because we are\") alongside Western individualistic online identity frameworks—culturally grounded digital literacy."
+  },
+  {
+    number: "06",
+    title: "Cost-Conscious",
+    description: "Open-source learning tools (Khan Academy, Scratch, GCFGlobal) instead of expensive proprietary platforms. Free assessment rubrics and badging systems. Professional development designed for in-house delivery, not expensive consultants.",
+    example: "Framework recommends free/freemium tools (Google Workspace for Education, Canva Free, Scratch) that deliver full digital literacy curriculum at zero software licensing cost."
+  },
+  {
+    number: "07",
+    title: "Implementation-Focused",
+    description: "Detailed K-12 progression roadmap (grades K-2, 3-5, 6-8, 9-12). Ready-to-use assessment rubrics and portfolio templates. Teacher professional development curriculum with 40-hour training modules. Implementation timelines and resource allocation guides.",
+    example: "Framework includes exact K-2 standards (\"Create a simple digital story using images and text\") with assessment rubrics and sample projects—not vague aspirational goals."
+  }
+];
+
+// Core principles
+const corePrinciples = [
+  { number: "01", title: "Mobile-First Design", description: "Every skill, tool, and assessment must work on a smartphone with limited data and intermittent connectivity" },
+  { number: "02", title: "No Prerequisites", description: "Digital literacy can start at any age with any background—no prior experience required" },
+  { number: "03", title: "Citizenship Before Tools", description: "Understanding digital rights, responsibilities, and safety comes before mastering apps" },
+  { number: "04", title: "Future-Focused", description: "Teach adaptability and learning skills, not just current tools—prepare for 2050, not 2025" },
+  { number: "05", title: "Contextually Relevant", description: "Use African examples, languages, and scenarios—not Western-centric content" },
+  { number: "06", title: "Lifelong & Universal", description: "Parallel pathways for students, teachers, staff, parents, and community members" }
+];
+
+// Student standards by level
+const studentLevels = [
+  {
+    icon: GraduationCap,
+    title: "Early Years (Ages 5-8)",
+    subtitle: "Foundation Stage | Grades K-3",
+    gradientClass: "bg-gradient-to-r from-[var(--mineral-tanzanite)] to-[var(--mineral-cobalt)]",
+    domains: [
+      {
+        title: "Digital Citizenship & Safety",
+        items: ["Understand what the internet is and how it connects people", "Recognize safe vs. unsafe online behaviors (stranger danger online)", "Learn to ask a trusted adult before sharing photos or information", "Practice kindness and respect in digital communication", "Understand that not everything online is true or safe"]
+      },
+      {
+        title: "Device Basics (Mobile-First)",
+        items: ["Navigate touchscreen interfaces (tap, swipe, pinch-to-zoom)", "Use on-screen keyboards for basic text input", "Open and close apps safely", "Understand battery life and charging", "Handle devices with care (drops, water, screen protection)"]
+      },
+      {
+        title: "Communication & Collaboration",
+        items: ["Send simple voice messages or texts with adult supervision", "Understand emojis and basic digital expression", "Share learning with family via photos or videos (with permission)", "Participate in group video calls (e.g., classroom or family)"]
+      },
+      {
+        title: "Content Creation",
+        items: ["Take photos and videos with guidance", "Draw or paint using creative apps", "Record voice narration for stories", "Recognize that they are creators, not just consumers"]
+      }
+    ]
+  },
+  {
+    icon: BookOpen,
+    title: "Primary (Ages 9-13)",
+    subtitle: "Foundation to Intermediate | Grades 4-8",
+    gradientClass: "bg-gradient-to-r from-[var(--mineral-terracotta)] to-[var(--mineral-gold)]",
+    domains: [
+      {
+        title: "Digital Citizenship & Safety",
+        items: ["Create and manage strong passwords and protect personal information", "Recognize phishing, scams, and suspicious links", "Understand digital footprints and reputation management", "Practice respectful online communication (no cyberbullying)", "Evaluate credibility of online information and sources", "Understand copyright, attribution, and plagiarism basics"]
+      },
+      {
+        title: "Mobile Productivity",
+        items: ["Use mobile word processing apps (Google Docs, Microsoft Word mobile)", "Create presentations on mobile devices (Slides, PowerPoint)", "Organize files and folders in cloud storage (Drive, OneDrive)", "Use mobile calendars for time management", "Take effective notes digitally", "Manage data usage and offline mode"]
+      },
+      {
+        title: "Research & Information Literacy",
+        items: ["Use search engines effectively with keywords", "Evaluate source credibility (author, date, bias)", "Distinguish fact from opinion online", "Bookmark and organize research resources", "Cite sources appropriately", "Recognize misinformation and fake news"]
+      },
+      {
+        title: "Communication & Collaboration",
+        items: ["Compose professional emails and messages", "Participate in online discussions respectfully", "Collaborate on shared documents in real-time", "Use video conferencing tools (Zoom, Google Meet)", "Give and receive constructive digital feedback"]
+      },
+      {
+        title: "Content Creation",
+        items: ["Edit photos and videos on mobile devices", "Create digital stories and multimedia presentations", "Design simple graphics and infographics", "Record and edit audio (podcasts, narration)", "Understand basics of visual design (contrast, alignment, spacing)"]
+      },
+      {
+        title: "Computational Thinking (Introduction)",
+        items: ["Understand algorithms and step-by-step problem solving", "Introduction to block-based coding (Scratch mobile, Code.org)", "Recognize patterns and create simple automations", "Debug simple code and logical errors"]
+      }
+    ]
+  },
+  {
+    icon: Target,
+    title: "Secondary (Ages 14-18)",
+    subtitle: "Advanced Skills | Grades 9-12",
+    gradientClass: "bg-gradient-to-r from-[var(--mineral-cobalt)] to-[var(--mineral-malachite)]",
+    domains: [
+      {
+        title: "Digital Citizenship & Ethics",
+        items: ["Understand digital rights (privacy, expression, access)", "Navigate complex ethical dilemmas (AI bias, data privacy, surveillance)", "Manage digital identity across platforms professionally", "Understand legal implications of online behavior", "Advocate for digital justice and equity", "Practice digital wellness and healthy tech boundaries"]
+      },
+      {
+        title: "Advanced Mobile Productivity",
+        items: ["Master mobile productivity suites (Google Workspace, Microsoft 365)", "Create data visualizations and dashboards on mobile", "Use project management tools (Trello, Asana mobile)", "Automate workflows (IFTTT, Shortcuts, Zapier)", "Manage cross-platform work (mobile, tablet, computer)"]
+      },
+      {
+        title: "Digital Research & Analysis",
+        items: ["Conduct advanced searches with Boolean operators", "Evaluate sources for bias, credibility, and accuracy", "Analyze data with spreadsheets and visualization tools", "Understand statistics, charts, and data interpretation", "Synthesize information from multiple sources", "Write research papers with proper citations (APA, MLA)"]
+      },
+      {
+        title: "Communication & Professional Presence",
+        items: ["Build professional LinkedIn profiles and digital portfolios", "Network professionally online (mentorship, career connections)", "Create resumes and cover letters digitally", "Participate in virtual internships or remote work", "Present effectively in webinars and online forums"]
+      },
+      {
+        title: "Content Creation & Media Production",
+        items: ["Produce professional-quality videos on mobile (editing, effects, sound)", "Design graphics for social media and marketing", "Create websites or blogs (mobile-optimized CMS)", "Develop digital portfolios showcasing work", "Understand content strategy and audience engagement"]
+      },
+      {
+        title: "Coding & Technology Foundations",
+        items: ["Write code in Python, JavaScript, or other languages", "Develop simple mobile apps or web applications", "Understand APIs and how software connects", "Use version control (GitHub basics)", "Explore AI/ML concepts and prompt engineering", "Troubleshoot technical problems independently"]
+      },
+      {
+        title: "Entrepreneurship & Digital Economy",
+        items: ["Understand digital business models (e-commerce, freelancing, content creation)", "Use mobile payment systems (M-Pesa, mobile banking)", "Create and market digital products or services", "Understand digital marketing and social media strategy", "Explore cryptocurrency and blockchain basics"]
+      }
+    ]
+  }
+];
+
+// Adult pathways
+const adultPathways = [
+  {
+    icon: GraduationCap,
+    title: "Teachers & Educators",
+    levels: [
+      {
+        title: "Foundation Level (0-6 months)",
+        items: ["Navigate learning management systems (LMS) confidently", "Use video conferencing for online/hybrid teaching", "Create and share digital lesson materials", "Manage student submissions and grading digitally", "Communicate with parents via digital platforms", "Practice digital safety and model citizenship for students"]
+      },
+      {
+        title: "Intermediate Level (6-12 months)",
+        items: ["Design engaging multimedia lessons (videos, interactive content)", "Use educational apps and platforms effectively", "Assess student work with digital rubrics and feedback tools", "Differentiate instruction with adaptive learning tools", "Collaborate with colleagues on shared resources", "Track student progress with data analytics"]
+      },
+      {
+        title: "Advanced Level (12+ months)",
+        items: ["Integrate AI tools to enhance teaching (ChatGPT, Gemini for lesson planning)", "Create original educational content (podcasts, courses, tutorials)", "Lead professional development on edtech tools", "Use data-driven insights to inform pedagogy", "Participate in global educator networks (Twitter, LinkedIn Learning)", "Stay current with emerging educational technologies"]
+      }
+    ]
+  },
+  {
+    icon: Users,
+    title: "School Staff & Administrators",
+    levels: [
+      {
+        title: "Foundation Level",
+        items: ["Use school information systems (SIS) for data entry and reporting", "Manage email and digital communication professionally", "Use mobile productivity tools (docs, sheets, calendars)", "Understand data privacy and FERPA/POPIA compliance", "Navigate cloud storage and file sharing"]
+      },
+      {
+        title: "Intermediate Level",
+        items: ["Analyze school data to inform decision-making", "Create reports and dashboards with visualization tools", "Manage digital workflows and approvals", "Use project management tools for initiatives", "Conduct virtual meetings and presentations effectively"]
+      },
+      {
+        title: "Advanced Level",
+        items: ["Lead digital transformation initiatives", "Evaluate and select edtech solutions", "Develop data governance policies", "Use predictive analytics for resource planning", "Build digital capacity across staff"]
+      }
+    ]
+  },
+  {
+    icon: Users,
+    title: "Parents & Guardians",
+    levels: [
+      {
+        title: "Foundation Level",
+        items: ["Access student grades and progress via parent portals", "Communicate with teachers digitally", "Monitor child's online activity and safety", "Understand age-appropriate content and screen time", "Support homework with digital resources"]
+      },
+      {
+        title: "Intermediate Level",
+        items: ["Set parental controls and safe browsing filters", "Teach children digital citizenship at home", "Collaborate with school on digital learning", "Use educational apps to support learning", "Navigate online learning platforms with children"]
+      },
+      {
+        title: "Advanced Level",
+        items: ["Advocate for digital equity in schools", "Participate in school technology committees", "Model positive digital behavior and boundaries", "Understand emerging tech trends affecting children", "Support children's digital career exploration"]
+      }
+    ]
+  },
+  {
+    icon: Globe,
+    title: "Community Members & Adult Learners",
+    levels: [
+      {
+        title: "Foundation Level",
+        items: ["Use smartphones for basic communication (calls, texts, WhatsApp)", "Navigate the internet and search for information", "Understand online safety and scams", "Use mobile banking and digital payments", "Access government services online", "Create and manage email accounts"]
+      },
+      {
+        title: "Intermediate Level",
+        items: ["Use social media professionally (networking, business)", "Access online training and education (MOOCs, YouTube)", "Create digital content (photos, videos, blogs)", "Use productivity tools for work or business", "Apply for jobs online and build digital resumes", "Participate in online communities and forums"]
+      },
+      {
+        title: "Advanced Level",
+        items: ["Start and manage online businesses or freelancing", "Use digital tools for entrepreneurship (e-commerce, marketing)", "Learn new skills through online courses continuously", "Participate in the digital economy (gig work, remote work)", "Teach digital literacy to others in the community", "Advocate for digital access and inclusion"]
+      }
+    ]
+  }
+];
+
+// Digital citizenship pillars
+const citizenshipPillars = [
+  { icon: Shield, title: "Digital Safety & Security", items: ["Password hygiene and account security", "Recognizing phishing, scams, and social engineering", "Privacy settings and data protection", "Safe browsing and app downloads", "Protecting personal and financial information", "Responding to cyberbullying and online harassment"] },
+  { icon: Globe, title: "Digital Rights & Responsibilities", items: ["Understanding freedom of expression and its limits", "Right to privacy and data ownership", "Access to information and digital inclusion", "Responsibility to respect others' rights online", "Copyright, fair use, and attribution", "Reporting harmful content and behavior"] },
+  { icon: Lightbulb, title: "Digital Ethics & Critical Thinking", items: ["Evaluating information credibility and bias", "Recognizing misinformation and fake news", "Understanding AI ethics and algorithmic bias", "Making ethical decisions in digital spaces", "Respecting intellectual property", "Considering long-term impact of digital actions"] },
+  { icon: Users, title: "Digital Communication & Collaboration", items: ["Communicating respectfully and professionally online", "Active listening and empathy in digital contexts", "Conflict resolution and digital disagreements", "Building positive digital communities", "Cross-cultural communication online", "Standing up to cyberbullying as a bystander"] },
+  { icon: TrendingUp, title: "Digital Wellness & Balance", items: ["Managing screen time and digital boundaries", "Recognizing digital addiction and seeking help", "Balancing online and offline relationships", "Protecting mental health in social media age", "Practicing digital detox and mindfulness", "Creating healthy tech habits for life"] },
+  { icon: Award, title: "Digital Identity & Reputation", items: ["Managing digital footprints and online presence", "Building positive professional identity", "Understanding permanence of digital content", "Protecting reputation and recovering from mistakes", "Authentic vs. curated online personas", "Managing multiple digital identities responsibly"] }
+];
+
+// Mobile strategies
+const mobileStrategies = [
+  { title: "Shared Device Models", items: ["Lab Rotations: Students rotate through computer/tablet labs in groups", "Mobile Cart: Shared charging cart with devices checked out as needed", "BYOD (Bring Your Own Device): Students use personal smartphones with school support", "Library Access: Devices available in libraries during school hours", "Family Device Time: Homework completed on shared family devices at home"] },
+  { title: "Low-Data Learning", items: ["Offline-First Apps: Use apps that sync when online but work offline (Google Docs, Khan Academy)", "Cached Content: Pre-download lessons and videos for offline viewing", "Progressive Web Apps: Web-based tools that work like native apps with minimal data", "SMS/USSD Learning: Text-based learning for ultra-low bandwidth", "WiFi Zones: Designated school WiFi areas for downloading materials"] },
+  { title: "Mobile-Optimized Pedagogy", items: ["Bite-Sized Lessons: Short 5-10 minute mobile-friendly modules", "Voice-First Interaction: Use voice notes, audio lessons, and speech-to-text", "Touch-Optimized Activities: Tap, swipe, and gesture-based interactions", "Vertical Video: Content designed for vertical mobile screens", "One-Handed Use: Tools and interfaces that work with one hand"] },
+  { title: "Community-Based Learning", items: ["Peer Teaching: Students with devices teach those without", "Community Labs: Public digital literacy spaces in libraries, community centers", "Mobile Training Buses: Roving digital literacy programs", "Weekend Workshops: Intensive sessions for students without weekday access", "Intergenerational Learning: Youth teaching parents/elders, creating home support"] }
+];
+
+// Digital equity considerations
+const equityConsiderations = [
+  "Provide multiple pathways to access digital learning (lab time, loaners, community partnerships)",
+  "Never require personal device ownership for grades or progression",
+  "Offer alternative assessments for students without home internet",
+  "Provide data bundles or school WiFi for students in need",
+  "Partner with telecoms for zero-rated educational content",
+  "Advocate for policy change to increase digital access nationwide"
+];
+
+// 2050 skill categories
+const futureSkills = [
+  {
+    title: "AI Collaboration & Augmentation",
+    description: "By 2050, AI will be ubiquitous. Digital literacy means knowing how to work with AI, not against it.",
+    items: ["Prompt engineering: Getting AI to do what you need", "AI-assisted creativity: Using AI as a creative partner", "Critical evaluation: Knowing when AI is wrong or biased", "Ethical AI use: Understanding limitations and responsibilities", "Human-AI workflows: Combining human judgment with AI speed"]
+  },
+  {
+    title: "Remote Work & Digital Collaboration",
+    description: "The 2050 workforce is global, distributed, and asynchronous. Success requires mastering digital collaboration.",
+    items: ["Asynchronous communication: Working across time zones effectively", "Virtual presence: Building trust and relationships remotely", "Digital project management: Coordinating complex work online", "Cross-cultural competence: Navigating global teams and norms", "Self-management: Discipline and productivity without physical offices"]
+  },
+  {
+    title: "Digital Entrepreneurship & Economic Participation",
+    description: "The 2050 economy is creator-driven, platform-based, and globally accessible. Digital literacy = economic opportunity.",
+    items: ["Platform economics: Understanding how digital marketplaces work", "Personal brand building: Marketing yourself and your skills", "Digital product creation: Building and selling online", "Monetization strategies: Turning digital skills into income", "Financial literacy: Managing digital currencies and online transactions"]
+  },
+  {
+    title: "Continuous Learning & Adaptability",
+    description: "The only constant in 2050 is change. Digital literacy means learning to learn—constantly.",
+    items: ["Self-directed learning: Finding and mastering new tools independently", "Online education: Leveraging MOOCs, YouTube, and digital resources", "Skill stacking: Combining multiple competencies for unique value", "Growth mindset: Embracing failure and iteration", "Metacognition: Understanding how you learn and improving it"]
+  },
+  {
+    title: "Digital Advocacy & Civic Participation",
+    description: "By 2050, democracy, activism, and civic life are digital. Citizens must engage critically and ethically.",
+    items: ["Online organizing: Mobilizing communities for change", "Fact-checking: Combating mis/disinformation at scale", "Digital voting and governance: Participating in online democracy", "Algorithmic accountability: Demanding transparency from tech platforms", "Digital rights advocacy: Fighting for equity, access, and justice"]
+  }
+];
+
+// Assessment methods
+const assessmentMethods = [
+  { title: "Performance-Based Assessment", intro: "Students demonstrate skills through authentic tasks:", items: ["Create a digital portfolio showcasing work", "Complete a real-world project (research, presentation, video)", "Solve a problem using digital tools", "Collaborate on a group digital project", "Demonstrate safe, ethical online behavior in scenarios"] },
+  { title: "Digital Badges & Micro-Credentials", intro: "Recognize specific competencies with stackable credentials:", items: ["Digital Safety Badge (password security, phishing recognition)", "Content Creator Badge (video editing, graphic design)", "Collaboration Badge (shared docs, project management)", "Coding Fundamentals Badge (basic programming)", "AI Literacy Badge (prompt engineering, ethical use)"] },
+  { title: "Portfolio Development", intro: "Students build cumulative digital portfolios that:", items: ["Document progression across grade levels or adult pathways", "Showcase best work and skill mastery", "Reflect on learning and growth", "Serve as evidence for college/job applications", "Are shareable publicly or privately"] },
+  { title: "Self-Assessment & Peer Review", intro: "Learners develop metacognitive skills through:", items: ["Self-rating against competency rubrics", "Reflective journals on digital learning", "Peer feedback on projects", "Goal-setting for next learning milestones", "Continuous improvement mindset"] }
+];
+
+// Progression stages
+const progressionStages = [
+  { number: "1", title: "Awareness", description: "Recognizes the skill exists and understands its importance" },
+  { number: "2", title: "Guided Practice", description: "Uses the skill with support, following instructions" },
+  { number: "3", title: "Independent Use", description: "Applies the skill independently in familiar contexts" },
+  { number: "4", title: "Transfer & Adaptation", description: "Transfers skill to new contexts, adapts to new tools" },
+  { number: "5", title: "Mastery & Teaching", description: "Masters skill and teaches others, innovates new applications" }
+];
+
+// Implementation phases
+const implementationPhases = [
+  {
+    title: "Phase 1: Foundation (Months 1-6)",
+    goal: "Build Awareness & Baseline Capacity",
+    tasks: ["Assess current digital literacy levels (students, teachers, staff)", "Audit device access and connectivity infrastructure", "Establish digital citizenship curriculum for all age groups", "Train teachers on mobile-first pedagogy", "Launch student onboarding (device use, safety, platforms)", "Set up shared device systems (labs, carts, library)"],
+    outcome: "All learners have baseline digital safety knowledge and access pathways"
+  },
+  {
+    title: "Phase 2: Skill Building (Months 6-18)",
+    goal: "Develop Core Competencies",
+    tasks: ["Integrate digital literacy into all subjects (not standalone class)", "Launch age-appropriate skill progressions (Primary, Secondary)", "Begin adult digital literacy programs (teachers, parents, community)", "Implement performance-based assessments and portfolios", "Expand device access (BYOD policies, more devices, community partnerships)", "Create peer mentorship programs (students teaching students, youth teaching elders)"],
+    outcome: "Majority of learners meet age-appropriate digital literacy standards"
+  },
+  {
+    title: "Phase 3: Advanced Skills & Specialization (Months 18-36)",
+    goal: "Prepare for 2050 & Build Expertise",
+    tasks: ["Introduce advanced pathways (coding, AI, digital entrepreneurship)", "Launch electives or clubs (robotics, app development, content creation)", "Connect students with global learning networks and mentors", "Pilot AI collaboration tools and emerging technologies", "Build digital portfolios showcasing college/career readiness", "Expand community digital literacy to all adults"],
+    outcome: "Students/adults are 2050-ready with specialized skills and digital confidence"
+  },
+  {
+    title: "Phase 4: Continuous Improvement (Ongoing)",
+    goal: "Sustain & Scale Digital Literacy Ecosystem",
+    tasks: ["Regular assessment of framework effectiveness (surveys, analytics)", "Update curriculum as technology evolves", "Share successful practices with other schools/communities", "Advocate for policy changes (digital access, data costs, infrastructure)", "Celebrate student/teacher digital achievements publicly", "Contribute improvements back to this open framework"],
+    outcome: "Digital literacy is embedded in school/community culture and continuously evolving"
+  }
+];
+
+// Implementation support resources
+const supportResources = [
+  { label: "Curriculum Templates", text: "Lesson plans for each age group (downloadable PDFs)" },
+  { label: "Assessment Rubrics", text: "Ready-to-use competency checklists" },
+  { label: "Parent Guides", text: "Helping families support digital learning at home" },
+  { label: "Teacher Professional Development", text: "Workshop materials and online courses" },
+  { label: "Community Toolkit", text: "Resources for launching community digital literacy programs" },
+  { label: "Device Management Guides", text: "Best practices for shared device models" }
+];
 ---
 
 <BaseLayout
@@ -8,831 +380,236 @@ import { Smartphone, Globe, Shield, TrendingUp, Users, GraduationCap, BookOpen, 
   description="Comprehensive mobile-first digital literacy framework for K-12 students, teachers, and adults. Emphasizes digital citizenship, lifelong learning, and preparing for the 2050 digital landscape. Designed for African contexts where mobile is the primary access point."
   keywords="digital literacy Africa, mobile-first education, digital citizenship, K-12 standards, teacher digital skills, adult digital literacy, 2050 skills, African education technology"
 >
-  <div class="framework-container">
-    <div class="framework-header">
-      <h1>Digital Literacy Framework for Africa</h1>
-      <p class="subtitle">Mobile-First | Lifelong Learning | 2050-Ready | Digital Citizenship</p>
-      <div class="framework-actions">
-        <a href="#overview" class="btn btn-secondary">Read Online</a>
-        <a href="/frameworks/digital-literacy-framework.pdf" class="btn btn-primary" download>
+  <div class="max-w-[1200px] mx-auto px-4 py-8">
+    <!-- Framework Header -->
+    <div class="relative text-center py-16 px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl mb-12 overflow-hidden">
+      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-black font-serif mb-4 relative z-10">Digital Literacy Framework for Africa</h1>
+      <p class="text-[clamp(1rem,2.5vw,1.3rem)] opacity-95 mb-8 relative z-10">Mobile-First | Lifelong Learning | 2050-Ready | Digital Citizenship</p>
+      <div class="flex gap-4 justify-center flex-wrap relative z-10">
+        <a href="#overview" class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] min-h-[48px]">Read Online</a>
+        <a href="/frameworks/digital-literacy-framework.pdf" download class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg min-h-[48px]">
           <Download size={20} /> Download PDF
         </a>
       </div>
-      <p class="framework-notice">Free to use, copy, adapt, and share under open framework license</p>
+      <p class="mt-6 text-sm opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
     </div>
 
-    <nav class="framework-nav">
-      <h3>Quick Navigation</h3>
-      <ul>
-        <li><a href="#overview">Executive Overview</a></li>
-        <li><a href="#governance">Framework Governance</a></li>
-        <li><a href="#principles">Core Principles</a></li>
-        <li><a href="#student-standards">Student Standards</a></li>
-        <li><a href="#adult-framework">Adult Framework</a></li>
-        <li><a href="#digital-citizenship">Digital Citizenship</a></li>
-        <li><a href="#mobile-first">Mobile-First Approach</a></li>
-        <li><a href="#2050-vision">2050 Vision</a></li>
-        <li><a href="#assessment">Assessment & Progression</a></li>
-        <li><a href="#implementation">Implementation Guide</a></li>
+    <!-- Quick Navigation -->
+    <nav class="bg-[var(--bg-surface)] p-8 rounded-xl mb-12 border border-[var(--border)]">
+      <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Quick Navigation</h3>
+      <ul class="list-none p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        {navItems.map((item) => (
+          <li>
+            <a href={item.href} class="block py-3 px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
+          </li>
+        ))}
       </ul>
     </nav>
 
-    <section id="overview" class="framework-section">
-      <h2>Executive Overview</h2>
-      <p class="lead">
+    <!-- Executive Overview -->
+    <section id="overview" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         This framework reimagines digital literacy for the African context, where most learners access
         the digital world primarily through mobile devices, often without 1:1 device access at school.
         It prepares students, teachers, and adults for a 2050 world where digital fluency is not optional—it's essential.
       </p>
 
-      <div class="overview-cards">
-        <div class="overview-card">
-          <Smartphone class="card-icon" size={40} strokeWidth={1.5} />
-          <h3>Mobile-First Reality</h3>
-          <p>Designed for contexts where smartphones are the primary digital access point, not computers</p>
-        </div>
-        <div class="overview-card">
-          <Shield class="card-icon" size={40} strokeWidth={1.5} />
-          <h3>Digital Citizenship Core</h3>
-          <p>Emphasizes safety, ethics, responsibility, and positive digital community participation</p>
-        </div>
-        <div class="overview-card">
-          <Users class="card-icon" size={40} strokeWidth={1.5} />
-          <h3>Lifelong Learning</h3>
-          <p>Digital literacy starts at any age—frameworks for students, teachers, staff, and adults</p>
-        </div>
-        <div class="overview-card">
-          <TrendingUp class="card-icon" size={40} strokeWidth={1.5} />
-          <h3>2050-Ready Skills</h3>
-          <p>Prepares learners for AI collaboration, remote work, digital entrepreneurship, and emerging tech</p>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        {overviewCards.map((card) => (
+          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <card.icon class="text-[var(--primary)] mb-4" size={40} strokeWidth={1.5} />
+            <h3 class="text-[var(--primary)] text-xl font-bold mb-2">{card.title}</h3>
+            <p class="text-[var(--text)] leading-relaxed">{card.description}</p>
+          </div>
+        ))}
       </div>
 
-      <div class="context-box">
-        <h3>African Context: Why This Framework Matters</h3>
-        <ul>
-          <li><strong>Mobile Dominance:</strong> 67.5% internet penetration (2024), primarily via smartphones</li>
-          <li><strong>Limited 1:1 Access:</strong> Most schools cannot provide individual devices for every student</li>
-          <li><strong>Shared Devices:</strong> Students often share family phones, library devices, or school computer labs</li>
-          <li><strong>Data Constraints:</strong> Limited bandwidth and data bundles require offline-capable learning</li>
-          <li><strong>Multilingual Needs:</strong> Content must work across English, French, and African languages</li>
-          <li><strong>Age Diversity:</strong> Adults and youth alike need digital literacy—it's never too late to start</li>
+      <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+        <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">African Context: Why This Framework Matters</h3>
+        <ul class="ml-6 leading-relaxed space-y-2">
+          {africanContext.map((item) => (
+            <li class="text-[var(--text)]"><strong class="text-[var(--primary)]">{item.label}:</strong> {item.text}</li>
+          ))}
         </ul>
       </div>
     </section>
 
-    <section id="governance" class="framework-section governance-section">
-      <h2>How This Framework Embodies Our Principles</h2>
-      <p class="governance-intro">All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this Digital Literacy Framework embodies each principle:</p>
+    <!-- Framework Governance -->
+    <section id="governance" class="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] p-8 rounded-xl mb-8 border-2 border-[var(--primary)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">How This Framework Embodies Our Principles</h2>
+      <p class="text-lg text-[var(--text)] mb-10 leading-relaxed">All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this Digital Literacy Framework embodies each principle:</p>
 
-      <div class="governance-grid">
-        <div class="governance-card">
-          <div class="governance-number">01</div>
-          <div class="governance-content">
-            <h3>Open & Shareable</h3>
-            <p><strong>How this framework delivers:</strong> Complete digital literacy standards, curricula, and assessment rubrics freely available. No licensing fees for standards progression (K-12, teachers, adults). Schools can copy, adapt, and share this entire framework.</p>
-            <p class="governance-example"><em>Example:</em> Download K-12 progression standards, customize for your school's context (e.g., adding local language requirements), and share your adapted version with neighboring schools.</p>
+      <div class="grid gap-6 mb-12">
+        {governancePrinciples.map((principle) => (
+          <div class="flex flex-col md:flex-row gap-6 bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+            <div class="font-serif text-4xl font-bold text-[var(--primary)] flex-shrink-0 w-16 leading-tight">{principle.number}</div>
+            <div>
+              <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{principle.title}</h3>
+              <p class="text-[var(--text)] leading-relaxed mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
+              <p class="text-[var(--text-secondary)] text-sm p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-4"><em>Example:</em> {principle.example}</p>
+            </div>
           </div>
-        </div>
-
-        <div class="governance-card">
-          <div class="governance-number">02</div>
-          <div class="governance-content">
-            <h3>Evidence-Based</h3>
-            <p><strong>How this framework delivers:</strong> Standards aligned with 2050 job market requirements (digital fluency, AI collaboration, remote work competencies). Progression based on cognitive development research. Citizenship-first approach proven to improve online safety outcomes.</p>
-            <p class="governance-example"><em>Example:</em> Framework prioritizes digital citizenship before tool mastery because research shows ethical foundation matters more than technical skills for long-term success.</p>
-          </div>
-        </div>
-
-        <div class="governance-card">
-          <div class="governance-number">03</div>
-          <div class="governance-content">
-            <h3>Competency-Focused</h3>
-            <p><strong>How this framework delivers:</strong> Standards emphasize what learners can DO, not just what they know. Portfolio-based assessment demonstrates actual digital competencies. Badges and microcredentials document skills employers recognize.</p>
-            <p class="governance-example"><em>Example:</em> Instead of "knows how to use spreadsheets," standard is "can analyze real-world data using spreadsheets and create data-driven recommendations"—demonstrable competency, not abstract knowledge.</p>
-          </div>
-        </div>
-
-        <div class="governance-card">
-          <div class="governance-number">04</div>
-          <div class="governance-content">
-            <h3>Mobile-First</h3>
-            <p><strong>How this framework delivers:</strong> Every standard achievable on a smartphone. Offline-capable learning modules for limited connectivity. Mobile assessment tools (quizzes, portfolio submissions via phone). Designed for contexts where mobile is primary access point.</p>
-            <p class="governance-example"><em>Example:</em> Digital citizenship curriculum accessible via mobile web apps, not just desktop platforms—meeting learners where they are (67.5% mobile internet penetration in Africa).</p>
-          </div>
-        </div>
-
-        <div class="governance-card">
-          <div class="governance-number">05</div>
-          <div class="governance-content">
-            <h3>Culturally Responsive</h3>
-            <p><strong>How this framework delivers:</strong> Multilingual standards (English, French, African languages). Examples and case studies reflect African contexts, not Western assumptions. Respects diverse cultural values around privacy, community, and digital participation.</p>
-            <p class="governance-example"><em>Example:</em> Digital citizenship module includes Ubuntu philosophy ("I am because we are") alongside Western individualistic online identity frameworks—culturally grounded digital literacy.</p>
-          </div>
-        </div>
-
-        <div class="governance-card">
-          <div class="governance-number">06</div>
-          <div class="governance-content">
-            <h3>Cost-Conscious</h3>
-            <p><strong>How this framework delivers:</strong> Open-source learning tools (Khan Academy, Scratch, GCFGlobal) instead of expensive proprietary platforms. Free assessment rubrics and badging systems. Professional development designed for in-house delivery, not expensive consultants.</p>
-            <p class="governance-example"><em>Example:</em> Framework recommends free/freemium tools (Google Workspace for Education, Canva Free, Scratch) that deliver full digital literacy curriculum at zero software licensing cost.</p>
-          </div>
-        </div>
-
-        <div class="governance-card">
-          <div class="governance-number">07</div>
-          <div class="governance-content">
-            <h3>Implementation-Focused</h3>
-            <p><strong>How this framework delivers:</strong> Detailed K-12 progression roadmap (grades K-2, 3-5, 6-8, 9-12). Ready-to-use assessment rubrics and portfolio templates. Teacher professional development curriculum with 40-hour training modules. Implementation timelines and resource allocation guides.</p>
-            <p class="governance-example"><em>Example:</em> Framework includes exact K-2 standards ("Create a simple digital story using images and text") with assessment rubrics and sample projects—not vague aspirational goals.</p>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <div class="governance-cta">
-        <h3>Part of a Broader Mission</h3>
-        <p>This framework is one of multiple frameworks released by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa committed to empowering developing countries to leapfrog traditional educational models. Learn more about our mission, vision, and strategic goals.</p>
-        <a href="/about" class="btn btn-secondary">Read Our Mission & Impact</a>
+      <div class="bg-[var(--bg-surface)] p-10 rounded-xl text-center shadow-sm">
+        <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Part of a Broader Mission</h3>
+        <p class="text-lg leading-relaxed text-[var(--text)] mb-6">This framework is one of multiple frameworks released by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa committed to empowering developing countries to leapfrog traditional educational models. Learn more about our mission, vision, and strategic goals.</p>
+        <a href="/about" class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">Read Our Mission & Impact</a>
       </div>
     </section>
 
-    <section id="principles" class="framework-section">
-      <h2>Core Principles</h2>
-
-      <div class="principles-grid">
-        <div class="principle-card">
-          <div class="principle-number">01</div>
-          <h3>Mobile-First Design</h3>
-          <p>Every skill, tool, and assessment must work on a smartphone with limited data and intermittent connectivity</p>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">02</div>
-          <h3>No Prerequisites</h3>
-          <p>Digital literacy can start at any age with any background—no prior experience required</p>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">03</div>
-          <h3>Citizenship Before Tools</h3>
-          <p>Understanding digital rights, responsibilities, and safety comes before mastering apps</p>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">04</div>
-          <h3>Future-Focused</h3>
-          <p>Teach adaptability and learning skills, not just current tools—prepare for 2050, not 2025</p>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">05</div>
-          <h3>Contextually Relevant</h3>
-          <p>Use African examples, languages, and scenarios—not Western-centric content</p>
-        </div>
-        <div class="principle-card">
-          <div class="principle-number">06</div>
-          <h3>Lifelong & Universal</h3>
-          <p>Parallel pathways for students, teachers, staff, parents, and community members</p>
-        </div>
+    <!-- Core Principles -->
+    <section id="principles" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Core Principles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {corePrinciples.map((principle) => (
+          <div class="bg-[var(--bg)] p-8 rounded-xl relative transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <span class="absolute top-4 right-4 text-5xl font-black text-[var(--primary)] opacity-15">{principle.number}</span>
+            <h3 class="text-[var(--primary)] text-xl font-bold mb-2 mt-0">{principle.title}</h3>
+            <p class="text-[var(--text)] leading-relaxed">{principle.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <section id="student-standards" class="framework-section">
-      <h2>Student Standards & Learning Outcomes</h2>
-      <p class="section-intro">
+    <!-- Student Standards -->
+    <section id="student-standards" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Student Standards & Learning Outcomes</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital literacy standards organized by age group, recognizing that progression is based on
         exposure and opportunity, not just age. Each level builds foundational skills while preparing
         for the next stage.
       </p>
 
-      <div class="standards-container">
-        <!-- Early Years (Ages 5-8) -->
-        <div class="standard-level">
-          <div class="level-header level-early">
-            <GraduationCap size={28} />
+      {studentLevels.map((level) => (
+        <div class="border-2 border-[var(--border)] rounded-xl mb-12 last:mb-0 overflow-hidden">
+          <div class={`flex items-center gap-4 p-6 text-white ${level.gradientClass}`}>
+            <level.icon size={28} strokeWidth={1.5} />
             <div>
-              <h3>Early Years (Ages 5-8)</h3>
-              <p class="level-subtitle">Foundation Stage | Grades K-3</p>
+              <h3 class="text-2xl font-bold m-0">{level.title}</h3>
+              <p class="m-0 text-sm opacity-90">{level.subtitle}</p>
             </div>
           </div>
-          <div class="level-content">
-            <div class="domain">
-              <h4>Digital Citizenship & Safety</h4>
-              <ul>
-                <li>Understand what the internet is and how it connects people</li>
-                <li>Recognize safe vs. unsafe online behaviors (stranger danger online)</li>
-                <li>Learn to ask a trusted adult before sharing photos or information</li>
-                <li>Practice kindness and respect in digital communication</li>
-                <li>Understand that not everything online is true or safe</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Device Basics (Mobile-First)</h4>
-              <ul>
-                <li>Navigate touchscreen interfaces (tap, swipe, pinch-to-zoom)</li>
-                <li>Use on-screen keyboards for basic text input</li>
-                <li>Open and close apps safely</li>
-                <li>Understand battery life and charging</li>
-                <li>Handle devices with care (drops, water, screen protection)</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Communication & Collaboration</h4>
-              <ul>
-                <li>Send simple voice messages or texts with adult supervision</li>
-                <li>Understand emojis and basic digital expression</li>
-                <li>Share learning with family via photos or videos (with permission)</li>
-                <li>Participate in group video calls (e.g., classroom or family)</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Content Creation</h4>
-              <ul>
-                <li>Take photos and videos with guidance</li>
-                <li>Draw or paint using creative apps</li>
-                <li>Record voice narration for stories</li>
-                <li>Recognize that they are creators, not just consumers</li>
-              </ul>
-            </div>
+          <div class="p-8">
+            {level.domains.map((domain) => (
+              <div class="mb-8 last:mb-0">
+                <h4 class="text-[var(--primary)] text-lg font-bold mb-3">{domain.title}</h4>
+                <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
+                  {domain.items.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
-
-        <!-- Primary (Ages 9-13) -->
-        <div class="standard-level">
-          <div class="level-header level-primary">
-            <BookOpen size={28} />
-            <div>
-              <h3>Primary (Ages 9-13)</h3>
-              <p class="level-subtitle">Foundation to Intermediate | Grades 4-8</p>
-            </div>
-          </div>
-          <div class="level-content">
-            <div class="domain">
-              <h4>Digital Citizenship & Safety</h4>
-              <ul>
-                <li>Create and manage strong passwords and protect personal information</li>
-                <li>Recognize phishing, scams, and suspicious links</li>
-                <li>Understand digital footprints and reputation management</li>
-                <li>Practice respectful online communication (no cyberbullying)</li>
-                <li>Evaluate credibility of online information and sources</li>
-                <li>Understand copyright, attribution, and plagiarism basics</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Mobile Productivity</h4>
-              <ul>
-                <li>Use mobile word processing apps (Google Docs, Microsoft Word mobile)</li>
-                <li>Create presentations on mobile devices (Slides, PowerPoint)</li>
-                <li>Organize files and folders in cloud storage (Drive, OneDrive)</li>
-                <li>Use mobile calendars for time management</li>
-                <li>Take effective notes digitally</li>
-                <li>Manage data usage and offline mode</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Research & Information Literacy</h4>
-              <ul>
-                <li>Use search engines effectively with keywords</li>
-                <li>Evaluate source credibility (author, date, bias)</li>
-                <li>Distinguish fact from opinion online</li>
-                <li>Bookmark and organize research resources</li>
-                <li>Cite sources appropriately</li>
-                <li>Recognize misinformation and fake news</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Communication & Collaboration</h4>
-              <ul>
-                <li>Compose professional emails and messages</li>
-                <li>Participate in online discussions respectfully</li>
-                <li>Collaborate on shared documents in real-time</li>
-                <li>Use video conferencing tools (Zoom, Google Meet)</li>
-                <li>Give and receive constructive digital feedback</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Content Creation</h4>
-              <ul>
-                <li>Edit photos and videos on mobile devices</li>
-                <li>Create digital stories and multimedia presentations</li>
-                <li>Design simple graphics and infographics</li>
-                <li>Record and edit audio (podcasts, narration)</li>
-                <li>Understand basics of visual design (contrast, alignment, spacing)</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Computational Thinking (Introduction)</h4>
-              <ul>
-                <li>Understand algorithms and step-by-step problem solving</li>
-                <li>Introduction to block-based coding (Scratch mobile, Code.org)</li>
-                <li>Recognize patterns and create simple automations</li>
-                <li>Debug simple code and logical errors</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Secondary (Ages 14-18) -->
-        <div class="standard-level">
-          <div class="level-header level-secondary">
-            <Target size={28} />
-            <div>
-              <h3>Secondary (Ages 14-18)</h3>
-              <p class="level-subtitle">Advanced Skills | Grades 9-12</p>
-            </div>
-          </div>
-          <div class="level-content">
-            <div class="domain">
-              <h4>Digital Citizenship & Ethics</h4>
-              <ul>
-                <li>Understand digital rights (privacy, expression, access)</li>
-                <li>Navigate complex ethical dilemmas (AI bias, data privacy, surveillance)</li>
-                <li>Manage digital identity across platforms professionally</li>
-                <li>Understand legal implications of online behavior</li>
-                <li>Advocate for digital justice and equity</li>
-                <li>Practice digital wellness and healthy tech boundaries</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Advanced Mobile Productivity</h4>
-              <ul>
-                <li>Master mobile productivity suites (Google Workspace, Microsoft 365)</li>
-                <li>Create data visualizations and dashboards on mobile</li>
-                <li>Use project management tools (Trello, Asana mobile)</li>
-                <li>Automate workflows (IFTTT, Shortcuts, Zapier)</li>
-                <li>Manage cross-platform work (mobile, tablet, computer)</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Digital Research & Analysis</h4>
-              <ul>
-                <li>Conduct advanced searches with Boolean operators</li>
-                <li>Evaluate sources for bias, credibility, and accuracy</li>
-                <li>Analyze data with spreadsheets and visualization tools</li>
-                <li>Understand statistics, charts, and data interpretation</li>
-                <li>Synthesize information from multiple sources</li>
-                <li>Write research papers with proper citations (APA, MLA)</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Communication & Professional Presence</h4>
-              <ul>
-                <li>Build professional LinkedIn profiles and digital portfolios</li>
-                <li>Network professionally online (mentorship, career connections)</li>
-                <li>Create resumes and cover letters digitally</li>
-                <li>Participate in virtual internships or remote work</li>
-                <li>Present effectively in webinars and online forums</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Content Creation & Media Production</h4>
-              <ul>
-                <li>Produce professional-quality videos on mobile (editing, effects, sound)</li>
-                <li>Design graphics for social media and marketing</li>
-                <li>Create websites or blogs (mobile-optimized CMS)</li>
-                <li>Develop digital portfolios showcasing work</li>
-                <li>Understand content strategy and audience engagement</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Coding & Technology Foundations</h4>
-              <ul>
-                <li>Write code in Python, JavaScript, or other languages</li>
-                <li>Develop simple mobile apps or web applications</li>
-                <li>Understand APIs and how software connects</li>
-                <li>Use version control (GitHub basics)</li>
-                <li>Explore AI/ML concepts and prompt engineering</li>
-                <li>Troubleshoot technical problems independently</li>
-              </ul>
-            </div>
-            <div class="domain">
-              <h4>Entrepreneurship & Digital Economy</h4>
-              <ul>
-                <li>Understand digital business models (e-commerce, freelancing, content creation)</li>
-                <li>Use mobile payment systems (M-Pesa, mobile banking)</li>
-                <li>Create and market digital products or services</li>
-                <li>Understand digital marketing and social media strategy</li>
-                <li>Explore cryptocurrency and blockchain basics</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      ))}
     </section>
 
-    <section id="adult-framework" class="framework-section">
-      <h2>Adult Digital Literacy Framework</h2>
-      <p class="section-intro">
+    <!-- Adult Framework -->
+    <section id="adult-framework" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Adult Digital Literacy Framework</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital literacy is not just for students. Teachers, staff, parents, and community members
         need digital skills to thrive in a 2050 world. This framework provides parallel pathways for adults,
         recognizing that digital literacy can begin at any age.
       </p>
 
-      <div class="adult-pathways">
-        <!-- Teachers & Educators -->
-        <div class="pathway-card">
-          <div class="pathway-header">
-            <GraduationCap size={32} class="pathway-icon" />
-            <h3>Teachers & Educators</h3>
+      <div class="grid gap-8">
+        {adultPathways.map((pathway) => (
+          <div class="border-2 border-[var(--border)] rounded-xl overflow-hidden">
+            <div class="bg-[var(--primary)] text-white p-6 flex items-center gap-4">
+              <pathway.icon size={32} strokeWidth={1.5} class="flex-shrink-0" />
+              <h3 class="text-2xl font-bold m-0">{pathway.title}</h3>
+            </div>
+            <div class="p-8">
+              {pathway.levels.map((level) => (
+                <div class="mb-6 last:mb-0">
+                  <h4 class="text-[var(--primary)] text-lg font-bold mb-3">{level.title}</h4>
+                  <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
+                    {level.items.map((item) => <li>{item}</li>)}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
-          <div class="pathway-content">
-            <h4>Foundation Level (0-6 months)</h4>
-            <ul>
-              <li>Navigate learning management systems (LMS) confidently</li>
-              <li>Use video conferencing for online/hybrid teaching</li>
-              <li>Create and share digital lesson materials</li>
-              <li>Manage student submissions and grading digitally</li>
-              <li>Communicate with parents via digital platforms</li>
-              <li>Practice digital safety and model citizenship for students</li>
-            </ul>
-
-            <h4>Intermediate Level (6-12 months)</h4>
-            <ul>
-              <li>Design engaging multimedia lessons (videos, interactive content)</li>
-              <li>Use educational apps and platforms effectively</li>
-              <li>Assess student work with digital rubrics and feedback tools</li>
-              <li>Differentiate instruction with adaptive learning tools</li>
-              <li>Collaborate with colleagues on shared resources</li>
-              <li>Track student progress with data analytics</li>
-            </ul>
-
-            <h4>Advanced Level (12+ months)</h4>
-            <ul>
-              <li>Integrate AI tools to enhance teaching (ChatGPT, Gemini for lesson planning)</li>
-              <li>Create original educational content (podcasts, courses, tutorials)</li>
-              <li>Lead professional development on edtech tools</li>
-              <li>Use data-driven insights to inform pedagogy</li>
-              <li>Participate in global educator networks (Twitter, LinkedIn Learning)</li>
-              <li>Stay current with emerging educational technologies</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- School Staff & Administrators -->
-        <div class="pathway-card">
-          <div class="pathway-header">
-            <Users size={32} class="pathway-icon" />
-            <h3>School Staff & Administrators</h3>
-          </div>
-          <div class="pathway-content">
-            <h4>Foundation Level</h4>
-            <ul>
-              <li>Use school information systems (SIS) for data entry and reporting</li>
-              <li>Manage email and digital communication professionally</li>
-              <li>Use mobile productivity tools (docs, sheets, calendars)</li>
-              <li>Understand data privacy and FERPA/POPIA compliance</li>
-              <li>Navigate cloud storage and file sharing</li>
-            </ul>
-
-            <h4>Intermediate Level</h4>
-            <ul>
-              <li>Analyze school data to inform decision-making</li>
-              <li>Create reports and dashboards with visualization tools</li>
-              <li>Manage digital workflows and approvals</li>
-              <li>Use project management tools for initiatives</li>
-              <li>Conduct virtual meetings and presentations effectively</li>
-            </ul>
-
-            <h4>Advanced Level</h4>
-            <ul>
-              <li>Lead digital transformation initiatives</li>
-              <li>Evaluate and select edtech solutions</li>
-              <li>Develop data governance policies</li>
-              <li>Use predictive analytics for resource planning</li>
-              <li>Build digital capacity across staff</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Parents & Guardians -->
-        <div class="pathway-card">
-          <div class="pathway-header">
-            <Users size={32} class="pathway-icon" />
-            <h3>Parents & Guardians</h3>
-          </div>
-          <div class="pathway-content">
-            <h4>Foundation Level</h4>
-            <ul>
-              <li>Access student grades and progress via parent portals</li>
-              <li>Communicate with teachers digitally</li>
-              <li>Monitor child's online activity and safety</li>
-              <li>Understand age-appropriate content and screen time</li>
-              <li>Support homework with digital resources</li>
-            </ul>
-
-            <h4>Intermediate Level</h4>
-            <ul>
-              <li>Set parental controls and safe browsing filters</li>
-              <li>Teach children digital citizenship at home</li>
-              <li>Collaborate with school on digital learning</li>
-              <li>Use educational apps to support learning</li>
-              <li>Navigate online learning platforms with children</li>
-            </ul>
-
-            <h4>Advanced Level</h4>
-            <ul>
-              <li>Advocate for digital equity in schools</li>
-              <li>Participate in school technology committees</li>
-              <li>Model positive digital behavior and boundaries</li>
-              <li>Understand emerging tech trends affecting children</li>
-              <li>Support children's digital career exploration</li>
-            </ul>
-          </div>
-        </div>
-
-        <!-- Community Members & Adult Learners -->
-        <div class="pathway-card">
-          <div class="pathway-header">
-            <Globe size={32} class="pathway-icon" />
-            <h3>Community Members & Adult Learners</h3>
-          </div>
-          <div class="pathway-content">
-            <h4>Foundation Level</h4>
-            <ul>
-              <li>Use smartphones for basic communication (calls, texts, WhatsApp)</li>
-              <li>Navigate the internet and search for information</li>
-              <li>Understand online safety and scams</li>
-              <li>Use mobile banking and digital payments</li>
-              <li>Access government services online</li>
-              <li>Create and manage email accounts</li>
-            </ul>
-
-            <h4>Intermediate Level</h4>
-            <ul>
-              <li>Use social media professionally (networking, business)</li>
-              <li>Access online training and education (MOOCs, YouTube)</li>
-              <li>Create digital content (photos, videos, blogs)</li>
-              <li>Use productivity tools for work or business</li>
-              <li>Apply for jobs online and build digital resumes</li>
-              <li>Participate in online communities and forums</li>
-            </ul>
-
-            <h4>Advanced Level</h4>
-            <ul>
-              <li>Start and manage online businesses or freelancing</li>
-              <li>Use digital tools for entrepreneurship (e-commerce, marketing)</li>
-              <li>Learn new skills through online courses continuously</li>
-              <li>Participate in the digital economy (gig work, remote work)</li>
-              <li>Teach digital literacy to others in the community</li>
-              <li>Advocate for digital access and inclusion</li>
-            </ul>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
 
-    <section id="digital-citizenship" class="framework-section">
-      <h2>Digital Citizenship Framework</h2>
-      <p class="section-intro">
+    <!-- Digital Citizenship -->
+    <section id="digital-citizenship" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Digital Citizenship Framework</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital citizenship is the foundation of all digital literacy. It encompasses the rights,
         responsibilities, and behaviors needed to thrive safely, ethically, and positively in digital spaces.
       </p>
 
-      <div class="citizenship-pillars">
-        <div class="pillar-card">
-          <Shield size={40} class="pillar-icon" />
-          <h3>Digital Safety & Security</h3>
-          <div class="pillar-content">
-            <h4>Key Competencies:</h4>
-            <ul>
-              <li>Password hygiene and account security</li>
-              <li>Recognizing phishing, scams, and social engineering</li>
-              <li>Privacy settings and data protection</li>
-              <li>Safe browsing and app downloads</li>
-              <li>Protecting personal and financial information</li>
-              <li>Responding to cyberbullying and online harassment</li>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {citizenshipPillars.map((pillar) => (
+          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+            <pillar.icon class="text-[var(--primary)] mb-4" size={40} strokeWidth={1.5} />
+            <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{pillar.title}</h3>
+            <h4 class="text-[var(--text)] text-sm font-semibold mb-2">Key Competencies:</h4>
+            <ul class="ml-6 leading-relaxed space-y-1 text-[var(--text)]">
+              {pillar.items.map((item) => <li>{item}</li>)}
             </ul>
           </div>
-        </div>
-
-        <div class="pillar-card">
-          <Globe size={40} class="pillar-icon" />
-          <h3>Digital Rights & Responsibilities</h3>
-          <div class="pillar-content">
-            <h4>Key Competencies:</h4>
-            <ul>
-              <li>Understanding freedom of expression and its limits</li>
-              <li>Right to privacy and data ownership</li>
-              <li>Access to information and digital inclusion</li>
-              <li>Responsibility to respect others' rights online</li>
-              <li>Copyright, fair use, and attribution</li>
-              <li>Reporting harmful content and behavior</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="pillar-card">
-          <Lightbulb size={40} class="pillar-icon" />
-          <h3>Digital Ethics & Critical Thinking</h3>
-          <div class="pillar-content">
-            <h4>Key Competencies:</h4>
-            <ul>
-              <li>Evaluating information credibility and bias</li>
-              <li>Recognizing misinformation and fake news</li>
-              <li>Understanding AI ethics and algorithmic bias</li>
-              <li>Making ethical decisions in digital spaces</li>
-              <li>Respecting intellectual property</li>
-              <li>Considering long-term impact of digital actions</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="pillar-card">
-          <Users size={40} class="pillar-icon" />
-          <h3>Digital Communication & Collaboration</h3>
-          <div class="pillar-content">
-            <h4>Key Competencies:</h4>
-            <ul>
-              <li>Communicating respectfully and professionally online</li>
-              <li>Active listening and empathy in digital contexts</li>
-              <li>Conflict resolution and digital disagreements</li>
-              <li>Building positive digital communities</li>
-              <li>Cross-cultural communication online</li>
-              <li>Standing up to cyberbullying as a bystander</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="pillar-card">
-          <TrendingUp size={40} class="pillar-icon" />
-          <h3>Digital Wellness & Balance</h3>
-          <div class="pillar-content">
-            <h4>Key Competencies:</h4>
-            <ul>
-              <li>Managing screen time and digital boundaries</li>
-              <li>Recognizing digital addiction and seeking help</li>
-              <li>Balancing online and offline relationships</li>
-              <li>Protecting mental health in social media age</li>
-              <li>Practicing digital detox and mindfulness</li>
-              <li>Creating healthy tech habits for life</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="pillar-card">
-          <Award size={40} class="pillar-icon" />
-          <h3>Digital Identity & Reputation</h3>
-          <div class="pillar-content">
-            <h4>Key Competencies:</h4>
-            <ul>
-              <li>Managing digital footprints and online presence</li>
-              <li>Building positive professional identity</li>
-              <li>Understanding permanence of digital content</li>
-              <li>Protecting reputation and recovering from mistakes</li>
-              <li>Authentic vs. curated online personas</li>
-              <li>Managing multiple digital identities responsibly</li>
-            </ul>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
 
-    <section id="mobile-first" class="framework-section">
-      <h2>Mobile-First Implementation Strategies</h2>
-      <p class="section-intro">
+    <!-- Mobile-First Implementation -->
+    <section id="mobile-first" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Mobile-First Implementation Strategies</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         In Africa, mobile devices are the gateway to the digital world. This framework recognizes that
         reality and provides concrete strategies for teaching digital literacy without relying on 1:1 device access.
       </p>
 
-      <div class="mobile-strategies">
-        <div class="strategy-card">
-          <h3>Shared Device Models</h3>
-          <ul>
-            <li><strong>Lab Rotations:</strong> Students rotate through computer/tablet labs in groups</li>
-            <li><strong>Mobile Cart:</strong> Shared charging cart with devices checked out as needed</li>
-            <li><strong>BYOD (Bring Your Own Device):</strong> Students use personal smartphones with school support</li>
-            <li><strong>Library Access:</strong> Devices available in libraries during school hours</li>
-            <li><strong>Family Device Time:</strong> Homework completed on shared family devices at home</li>
-          </ul>
-        </div>
-
-        <div class="strategy-card">
-          <h3>Low-Data Learning</h3>
-          <ul>
-            <li><strong>Offline-First Apps:</strong> Use apps that sync when online but work offline (Google Docs, Khan Academy)</li>
-            <li><strong>Cached Content:</strong> Pre-download lessons and videos for offline viewing</li>
-            <li><strong>Progressive Web Apps:</strong> Web-based tools that work like native apps with minimal data</li>
-            <li><strong>SMS/USSD Learning:</strong> Text-based learning for ultra-low bandwidth</li>
-            <li><strong>WiFi Zones:</strong> Designated school WiFi areas for downloading materials</li>
-          </ul>
-        </div>
-
-        <div class="strategy-card">
-          <h3>Mobile-Optimized Pedagogy</h3>
-          <ul>
-            <li><strong>Bite-Sized Lessons:</strong> Short 5-10 minute mobile-friendly modules</li>
-            <li><strong>Voice-First Interaction:</strong> Use voice notes, audio lessons, and speech-to-text</li>
-            <li><strong>Touch-Optimized Activities:</strong> Tap, swipe, and gesture-based interactions</li>
-            <li><strong>Vertical Video:</strong> Content designed for vertical mobile screens</li>
-            <li><strong>One-Handed Use:</strong> Tools and interfaces that work with one hand</li>
-          </ul>
-        </div>
-
-        <div class="strategy-card">
-          <h3>Community-Based Learning</h3>
-          <ul>
-            <li><strong>Peer Teaching:</strong> Students with devices teach those without</li>
-            <li><strong>Community Labs:</strong> Public digital literacy spaces in libraries, community centers</li>
-            <li><strong>Mobile Training Buses:</strong> Roving digital literacy programs</li>
-            <li><strong>Weekend Workshops:</strong> Intensive sessions for students without weekday access</li>
-            <li><strong>Intergenerational Learning:</strong> Youth teaching parents/elders, creating home support</li>
-          </ul>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        {mobileStrategies.map((strategy) => (
+          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+            <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{strategy.title}</h3>
+            <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
+              {strategy.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
       </div>
 
-      <div class="equity-box">
-        <h3>Digital Equity Considerations</h3>
-        <p>No student should be disadvantaged by lack of device access. Schools implementing this framework must:</p>
-        <ul>
-          <li>Provide multiple pathways to access digital learning (lab time, loaners, community partnerships)</li>
-          <li>Never require personal device ownership for grades or progression</li>
-          <li>Offer alternative assessments for students without home internet</li>
-          <li>Provide data bundles or school WiFi for students in need</li>
-          <li>Partner with telecoms for zero-rated educational content</li>
-          <li>Advocate for policy change to increase digital access nationwide</li>
+      <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+        <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Digital Equity Considerations</h3>
+        <p class="text-[var(--text)] mb-4">No student should be disadvantaged by lack of device access. Schools implementing this framework must:</p>
+        <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
+          {equityConsiderations.map((item) => <li>{item}</li>)}
         </ul>
       </div>
     </section>
 
-    <section id="2050-vision" class="framework-section">
-      <h2>Preparing for 2050: Future-Ready Skills</h2>
-      <p class="section-intro">
+    <!-- 2050 Vision -->
+    <section id="2050-vision" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Preparing for 2050: Future-Ready Skills</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         The job market of 2050 will look radically different from today. This framework prepares learners
         not just for current tools, but for lifelong adaptability in an AI-driven, automated, globally connected world.
       </p>
 
-      <div class="future-skills">
-        <div class="skill-category">
-          <h3>AI Collaboration & Augmentation</h3>
-          <p class="category-description">
-            By 2050, AI will be ubiquitous. Digital literacy means knowing how to work <em>with</em> AI, not against it.
-          </p>
-          <ul>
-            <li>Prompt engineering: Getting AI to do what you need</li>
-            <li>AI-assisted creativity: Using AI as a creative partner</li>
-            <li>Critical evaluation: Knowing when AI is wrong or biased</li>
-            <li>Ethical AI use: Understanding limitations and responsibilities</li>
-            <li>Human-AI workflows: Combining human judgment with AI speed</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <h3>Remote Work & Digital Collaboration</h3>
-          <p class="category-description">
-            The 2050 workforce is global, distributed, and asynchronous. Success requires mastering digital collaboration.
-          </p>
-          <ul>
-            <li>Asynchronous communication: Working across time zones effectively</li>
-            <li>Virtual presence: Building trust and relationships remotely</li>
-            <li>Digital project management: Coordinating complex work online</li>
-            <li>Cross-cultural competence: Navigating global teams and norms</li>
-            <li>Self-management: Discipline and productivity without physical offices</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <h3>Digital Entrepreneurship & Economic Participation</h3>
-          <p class="category-description">
-            The 2050 economy is creator-driven, platform-based, and globally accessible. Digital literacy = economic opportunity.
-          </p>
-          <ul>
-            <li>Platform economics: Understanding how digital marketplaces work</li>
-            <li>Personal brand building: Marketing yourself and your skills</li>
-            <li>Digital product creation: Building and selling online</li>
-            <li>Monetization strategies: Turning digital skills into income</li>
-            <li>Financial literacy: Managing digital currencies and online transactions</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <h3>Continuous Learning & Adaptability</h3>
-          <p class="category-description">
-            The only constant in 2050 is change. Digital literacy means learning to learn—constantly.
-          </p>
-          <ul>
-            <li>Self-directed learning: Finding and mastering new tools independently</li>
-            <li>Online education: Leveraging MOOCs, YouTube, and digital resources</li>
-            <li>Skill stacking: Combining multiple competencies for unique value</li>
-            <li>Growth mindset: Embracing failure and iteration</li>
-            <li>Metacognition: Understanding how you learn and improving it</li>
-          </ul>
-        </div>
-
-        <div class="skill-category">
-          <h3>Digital Advocacy & Civic Participation</h3>
-          <p class="category-description">
-            By 2050, democracy, activism, and civic life are digital. Citizens must engage critically and ethically.
-          </p>
-          <ul>
-            <li>Online organizing: Mobilizing communities for change</li>
-            <li>Fact-checking: Combating mis/disinformation at scale</li>
-            <li>Digital voting and governance: Participating in online democracy</li>
-            <li>Algorithmic accountability: Demanding transparency from tech platforms</li>
-            <li>Digital rights advocacy: Fighting for equity, access, and justice</li>
-          </ul>
-        </div>
+      <div class="grid gap-8 mb-8">
+        {futureSkills.map((skill) => (
+          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+            <h3 class="text-[var(--primary)] text-xl font-bold mb-2 mt-0">{skill.title}</h3>
+            <p class="text-[var(--text-secondary)] italic mb-4">{skill.description}</p>
+            <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
+              {skill.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
       </div>
 
-      <div class="vision-statement">
-        <h3>2050 Vision Statement</h3>
-        <p class="vision-quote">
+      <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+        <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">2050 Vision Statement</h3>
+        <p class="text-lg leading-relaxed italic text-[var(--text)]">
           "By 2050, every African—regardless of age, location, or socioeconomic status—will have the digital
           literacy to participate fully in the global digital economy, contribute to their communities,
           and shape the future with confidence, ethics, and purpose. Digital literacy will not be a privilege—it
@@ -841,1039 +618,92 @@ import { Smartphone, Globe, Shield, TrendingUp, Users, GraduationCap, BookOpen, 
       </div>
     </section>
 
-    <section id="assessment" class="framework-section">
-      <h2>Assessment & Progression</h2>
-      <p class="section-intro">
+    <!-- Assessment & Progression -->
+    <section id="assessment" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Assessment & Progression</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital literacy is best assessed through demonstration, not memorization. This framework uses
         competency-based, portfolio-driven assessment to measure real-world digital skills.
       </p>
 
-      <div class="assessment-methods">
-        <div class="method-card">
-          <h3>Performance-Based Assessment</h3>
-          <p>Students demonstrate skills through authentic tasks:</p>
-          <ul>
-            <li>Create a digital portfolio showcasing work</li>
-            <li>Complete a real-world project (research, presentation, video)</li>
-            <li>Solve a problem using digital tools</li>
-            <li>Collaborate on a group digital project</li>
-            <li>Demonstrate safe, ethical online behavior in scenarios</li>
-          </ul>
-        </div>
-
-        <div class="method-card">
-          <h3>Digital Badges & Micro-Credentials</h3>
-          <p>Recognize specific competencies with stackable credentials:</p>
-          <ul>
-            <li>Digital Safety Badge (password security, phishing recognition)</li>
-            <li>Content Creator Badge (video editing, graphic design)</li>
-            <li>Collaboration Badge (shared docs, project management)</li>
-            <li>Coding Fundamentals Badge (basic programming)</li>
-            <li>AI Literacy Badge (prompt engineering, ethical use)</li>
-          </ul>
-        </div>
-
-        <div class="method-card">
-          <h3>Portfolio Development</h3>
-          <p>Students build cumulative digital portfolios that:</p>
-          <ul>
-            <li>Document progression across grade levels or adult pathways</li>
-            <li>Showcase best work and skill mastery</li>
-            <li>Reflect on learning and growth</li>
-            <li>Serve as evidence for college/job applications</li>
-            <li>Are shareable publicly or privately</li>
-          </ul>
-        </div>
-
-        <div class="method-card">
-          <h3>Self-Assessment & Peer Review</h3>
-          <p>Learners develop metacognitive skills through:</p>
-          <ul>
-            <li>Self-rating against competency rubrics</li>
-            <li>Reflective journals on digital learning</li>
-            <li>Peer feedback on projects</li>
-            <li>Goal-setting for next learning milestones</li>
-            <li>Continuous improvement mindset</li>
-          </ul>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        {assessmentMethods.map((method) => (
+          <div class="bg-[var(--bg)] p-8 rounded-xl">
+            <h3 class="text-[var(--primary)] text-xl font-bold mb-2 mt-0">{method.title}</h3>
+            <p class="font-semibold text-[var(--text)] mb-4">{method.intro}</p>
+            <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
+              {method.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
       </div>
 
-      <div class="progression-model">
-        <h3>Progression Model: From Novice to Expert</h3>
-        <div class="progression-stages">
-          <div class="stage">
-            <div class="stage-number">1</div>
-            <h4>Awareness</h4>
-            <p>Recognizes the skill exists and understands its importance</p>
-          </div>
-          <div class="stage-arrow">→</div>
-          <div class="stage">
-            <div class="stage-number">2</div>
-            <h4>Guided Practice</h4>
-            <p>Uses the skill with support, following instructions</p>
-          </div>
-          <div class="stage-arrow">→</div>
-          <div class="stage">
-            <div class="stage-number">3</div>
-            <h4>Independent Use</h4>
-            <p>Applies the skill independently in familiar contexts</p>
-          </div>
-          <div class="stage-arrow">→</div>
-          <div class="stage">
-            <div class="stage-number">4</div>
-            <h4>Transfer & Adaptation</h4>
-            <p>Transfers skill to new contexts, adapts to new tools</p>
-          </div>
-          <div class="stage-arrow">→</div>
-          <div class="stage">
-            <div class="stage-number">5</div>
-            <h4>Mastery & Teaching</h4>
-            <p>Masters skill and teaches others, innovates new applications</p>
-          </div>
+      <div class="bg-[var(--bg)] p-8 rounded-xl">
+        <h3 class="text-[var(--primary)] text-xl font-bold mb-6 mt-0">Progression Model: From Novice to Expert</h3>
+        <div class="flex flex-col lg:flex-row items-center gap-4 overflow-x-auto pb-4">
+          {progressionStages.map((stage, i) => (
+            <>
+              <div class="flex-shrink-0 bg-[var(--bg-surface)] p-6 rounded-xl text-center min-w-[180px] border-2 border-[var(--primary)]">
+                <div class="w-10 h-10 bg-[var(--primary)] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-extrabold text-lg">{stage.number}</div>
+                <h4 class="text-[var(--primary)] font-bold mb-2">{stage.title}</h4>
+                <p class="text-sm text-[var(--text)] m-0">{stage.description}</p>
+              </div>
+              {i < progressionStages.length - 1 && <span class="text-3xl text-[var(--primary)] flex-shrink-0 lg:rotate-0 rotate-90">→</span>}
+            </>
+          ))}
         </div>
       </div>
     </section>
 
-    <section id="implementation" class="framework-section">
-      <h2>Implementation Guide</h2>
-      <p class="section-intro">
+    <!-- Implementation Guide -->
+    <section id="implementation" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Implementation Guide</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Implementing this framework requires phased, contextualized planning. Schools and communities
         should adapt these recommendations to their unique needs and constraints.
       </p>
 
-      <div class="implementation-phases">
-        <div class="phase">
-          <h3>Phase 1: Foundation (Months 1-6)</h3>
-          <div class="phase-content">
-            <h4>Goal: Build Awareness & Baseline Capacity</h4>
-            <ul>
-              <li>Assess current digital literacy levels (students, teachers, staff)</li>
-              <li>Audit device access and connectivity infrastructure</li>
-              <li>Establish digital citizenship curriculum for all age groups</li>
-              <li>Train teachers on mobile-first pedagogy</li>
-              <li>Launch student onboarding (device use, safety, platforms)</li>
-              <li>Set up shared device systems (labs, carts, library)</li>
-            </ul>
-            <p class="phase-outcome"><strong>Outcome:</strong> All learners have baseline digital safety knowledge and access pathways</p>
+      <div class="grid gap-8 mb-8">
+        {implementationPhases.map((phase) => (
+          <div class="border-2 border-[var(--border)] rounded-xl overflow-hidden">
+            <h3 class="bg-[var(--primary)] text-white p-6 m-0 text-xl font-bold">{phase.title}</h3>
+            <div class="p-8">
+              <h4 class="text-[var(--primary)] text-lg font-bold mb-4">Goal: {phase.goal}</h4>
+              <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)] mb-6">
+                {phase.tasks.map((task) => <li>{task}</li>)}
+              </ul>
+              <div class="bg-[var(--bg)] p-4 border-2 border-[var(--primary)] rounded-lg">
+                <strong class="text-[var(--text)]">Outcome:</strong> <span class="text-[var(--text-secondary)]">{phase.outcome}</span>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="phase">
-          <h3>Phase 2: Skill Building (Months 6-18)</h3>
-          <div class="phase-content">
-            <h4>Goal: Develop Core Competencies</h4>
-            <ul>
-              <li>Integrate digital literacy into all subjects (not standalone class)</li>
-              <li>Launch age-appropriate skill progressions (Primary, Secondary)</li>
-              <li>Begin adult digital literacy programs (teachers, parents, community)</li>
-              <li>Implement performance-based assessments and portfolios</li>
-              <li>Expand device access (BYOD policies, more devices, community partnerships)</li>
-              <li>Create peer mentorship programs (students teaching students, youth teaching elders)</li>
-            </ul>
-            <p class="phase-outcome"><strong>Outcome:</strong> Majority of learners meet age-appropriate digital literacy standards</p>
-          </div>
-        </div>
-
-        <div class="phase">
-          <h3>Phase 3: Advanced Skills & Specialization (Months 18-36)</h3>
-          <div class="phase-content">
-            <h4>Goal: Prepare for 2050 & Build Expertise</h4>
-            <ul>
-              <li>Introduce advanced pathways (coding, AI, digital entrepreneurship)</li>
-              <li>Launch electives or clubs (robotics, app development, content creation)</li>
-              <li>Connect students with global learning networks and mentors</li>
-              <li>Pilot AI collaboration tools and emerging technologies</li>
-              <li>Build digital portfolios showcasing college/career readiness</li>
-              <li>Expand community digital literacy to all adults</li>
-            </ul>
-            <p class="phase-outcome"><strong>Outcome:</strong> Students/adults are 2050-ready with specialized skills and digital confidence</p>
-          </div>
-        </div>
-
-        <div class="phase">
-          <h3>Phase 4: Continuous Improvement (Ongoing)</h3>
-          <div class="phase-content">
-            <h4>Goal: Sustain & Scale Digital Literacy Ecosystem</h4>
-            <ul>
-              <li>Regular assessment of framework effectiveness (surveys, analytics)</li>
-              <li>Update curriculum as technology evolves</li>
-              <li>Share successful practices with other schools/communities</li>
-              <li>Advocate for policy changes (digital access, data costs, infrastructure)</li>
-              <li>Celebrate student/teacher digital achievements publicly</li>
-              <li>Contribute improvements back to this open framework</li>
-            </ul>
-            <p class="phase-outcome"><strong>Outcome:</strong> Digital literacy is embedded in school/community culture and continuously evolving</p>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <div class="implementation-support">
-        <h3>Implementation Support Resources</h3>
-        <ul>
-          <li><strong>Curriculum Templates:</strong> Lesson plans for each age group (downloadable PDFs)</li>
-          <li><strong>Assessment Rubrics:</strong> Ready-to-use competency checklists</li>
-          <li><strong>Parent Guides:</strong> Helping families support digital learning at home</li>
-          <li><strong>Teacher Professional Development:</strong> Workshop materials and online courses</li>
-          <li><strong>Community Toolkit:</strong> Resources for launching community digital literacy programs</li>
-          <li><strong>Device Management Guides:</strong> Best practices for shared device models</li>
+      <div class="bg-[var(--bg)] p-8 rounded-xl">
+        <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Implementation Support Resources</h3>
+        <ul class="ml-6 leading-relaxed space-y-2">
+          {supportResources.map((resource) => (
+            <li class="text-[var(--text)]"><strong class="text-[var(--primary)]">{resource.label}:</strong> {resource.text}</li>
+          ))}
         </ul>
       </div>
     </section>
 
-    <section class="framework-cta">
-      <h2>Join the Digital Literacy Movement</h2>
-      <p>
+    <!-- Call to Action -->
+    <section class="text-center py-16 px-8 bg-[var(--bg)] text-[var(--text)] rounded-xl">
+      <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4">Join the Digital Literacy Movement</h2>
+      <p class="text-xl mb-8 opacity-95">
         This framework is open and evolving. Use it, adapt it, improve it, and share it with others.
         Together, we can ensure that every African—young or old—has the digital literacy to thrive in 2050 and beyond.
       </p>
-      <div class="cta-buttons">
-        <a href="/frameworks/digital-literacy-framework.pdf" class="btn btn-primary" download>
+      <div class="flex gap-4 justify-center flex-wrap mb-6">
+        <a href="/frameworks/digital-literacy-framework.pdf" download class="inline-flex items-center gap-2 py-4 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg min-h-[48px]">
           <Download size={20} /> Download Complete Framework (PDF)
         </a>
-        <a href="/frameworks" class="btn btn-secondary">Explore All Frameworks</a>
+        <a href="/frameworks" class="inline-flex items-center gap-2 py-4 px-8 rounded-full font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] min-h-[48px]">Explore All Frameworks</a>
       </div>
-      <p class="ubuntu-message">"I am because we are" — Together, we build digital futures for all.</p>
+      <p class="text-lg italic opacity-90">"I am because we are" — Together, we build digital futures for all.</p>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  /* Framework Container */
-  .framework-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  /* Framework Header */
-  .framework-header {
-    position: relative;
-    text-align: center;
-    padding: 4rem 2rem;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
-                url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=1600&q=80') center/cover no-repeat;
-    color: var(--text);
-    border-radius: 16px;
-    margin-bottom: 3rem;
-    overflow: hidden;
-  }
-
-  .framework-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.75) 0%, rgba(26, 26, 26, 0.85) 100%);
-    z-index: 0;
-  }
-
-  .framework-header > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .framework-header h1 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    margin-bottom: 1rem;
-    font-weight: 900;
-  }
-
-  .subtitle {
-    font-size: clamp(1rem, 2.5vw, 1.3rem);
-    opacity: 0.95;
-    margin-bottom: 2rem;
-  }
-
-  .framework-actions {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .framework-notice {
-    margin-top: 1.5rem;
-    font-size: 0.95rem;
-    opacity: 0.9;
-  }
-
-  /* Navigation */
-  .framework-nav {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    margin-bottom: 3rem;
-  }
-
-  .framework-nav h3 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  .framework-nav ul {
-    list-style: none;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .framework-nav a {
-    display: block;
-    padding: 0.75rem 1rem;
-    background: var(--card-bg);
-    border-radius: 0.5rem;
-    text-decoration: none;
-    color: var(--text);
-    transition: all 0.2s;
-  }
-
-  .framework-nav a:hover {
-    background: var(--primary);
-    color: var(--text);
-    transform: translateX(4px);
-  }
-
-  /* Sections */
-  .framework-section {
-    margin-bottom: 4rem;
-    padding: 3rem 2rem;
-    background: var(--card-bg);
-    border-radius: 0.75rem;
-    border: 1px solid var(--border);
-  }
-
-  .framework-section h2 {
-    color: var(--primary);
-    font-size: 2.5rem;
-    margin-bottom: 1.5rem;
-    border-bottom: 3px solid var(--primary);
-    padding-bottom: 0.75rem;
-    font-weight: 900;
-  }
-
-  .framework-section h3 {
-    color: var(--primary-dark);
-    font-size: 1.75rem;
-    margin: 2rem 0 1rem;
-  }
-
-  .framework-section h4 {
-    color: var(--primary);
-    font-size: 1.25rem;
-    margin: 1.5rem 0 0.75rem;
-  }
-
-  .lead, .section-intro {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 2rem;
-  }
-
-  /* Overview Cards */
-  .overview-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin: 2rem 0;
-  }
-
-  .overview-card {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 2px solid var(--primary);
-    transition: transform 0.2s;
-  }
-
-  .overview-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .card-icon {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  .overview-card h3 {
-    color: var(--primary);
-    font-size: 1.3rem;
-    margin: 0.5rem 0;
-  }
-
-  .overview-card p {
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  /* Context Box */
-  .context-box, .equity-box, .vision-statement {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    margin: 2rem 0;
-    border: 2px solid var(--primary);
-  }
-
-  .context-box h3, .equity-box h3, .vision-statement h3 {
-    margin-top: 0;
-    color: var(--primary);
-  }
-
-  .context-box ul, .equity-box ul {
-    margin-left: 1.5rem;
-    line-height: 1.8;
-  }
-
-  .vision-quote {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    font-style: italic;
-    color: var(--text);
-  }
-
-  /* Principles Grid */
-  .principles-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .principle-card {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    position: relative;
-    transition: transform 0.2s;
-  }
-
-  .principle-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .principle-number {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--primary);
-    opacity: 0.15;
-  }
-
-  .principle-card h3 {
-    color: var(--primary);
-    margin-top: 0;
-    font-size: 1.3rem;
-  }
-
-  /* Student Standards */
-  .standards-container {
-    margin-top: 2rem;
-  }
-
-  .standard-level {
-    border: 2px solid var(--border);
-    border-radius: 0.75rem;
-    margin-bottom: 3rem;
-    overflow: hidden;
-  }
-
-  .level-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    color: var(--text);
-  }
-
-  .level-early {
-    background: linear-gradient(135deg, var(--mineral-tanzanite) 0%, var(--mineral-cobalt) 100%);
-  }
-
-  .level-primary {
-    background: linear-gradient(135deg, var(--mineral-terracotta) 0%, var(--mineral-gold) 100%);
-  }
-
-  .level-secondary {
-    background: linear-gradient(135deg, var(--mineral-cobalt) 0%, var(--mineral-malachite) 100%);
-  }
-
-  .level-header h3 {
-    margin: 0;
-    color: var(--text);
-    font-size: 1.5rem;
-  }
-
-  .level-subtitle {
-    margin: 0;
-    font-size: 0.95rem;
-    opacity: 0.9;
-  }
-
-  .level-content {
-    padding: 2rem;
-  }
-
-  .domain {
-    margin-bottom: 2rem;
-  }
-
-  .domain h4 {
-    color: var(--primary);
-    margin-bottom: 0.75rem;
-    font-size: 1.15rem;
-  }
-
-  .domain ul {
-    margin-left: 1.5rem;
-    line-height: 1.8;
-  }
-
-  .domain li {
-    margin-bottom: 0.5rem;
-  }
-
-  /* Adult Pathways */
-  .adult-pathways {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .pathway-card {
-    border: 2px solid var(--border);
-    border-radius: 0.75rem;
-    overflow: hidden;
-  }
-
-  .pathway-header {
-    background: var(--primary);
-    color: var(--text);
-    padding: 1.5rem 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .pathway-icon {
-    flex-shrink: 0;
-  }
-
-  .pathway-header h3 {
-    margin: 0;
-    color: var(--text);
-    font-size: 1.5rem;
-  }
-
-  .pathway-content {
-    padding: 2rem;
-  }
-
-  .pathway-content h4 {
-    color: var(--primary);
-    margin-top: 1.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .pathway-content ul {
-    margin-left: 1.5rem;
-    line-height: 1.8;
-  }
-
-  /* Digital Citizenship Pillars */
-  .citizenship-pillars {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .pillar-card {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 2px solid var(--primary);
-  }
-
-  .pillar-icon {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  .pillar-card h3 {
-    color: var(--primary);
-    margin-top: 0;
-    font-size: 1.3rem;
-  }
-
-  .pillar-content h4 {
-    margin-top: 1rem;
-    color: var(--text);
-    font-size: 1rem;
-  }
-
-  .pillar-content ul {
-    margin-left: 1.5rem;
-    line-height: 1.7;
-  }
-
-  /* Mobile Strategies */
-  .mobile-strategies, .future-skills {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .strategy-card, .skill-category {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    border: 2px solid var(--primary);
-  }
-
-  .strategy-card h3, .skill-category h3 {
-    color: var(--primary);
-    margin-top: 0;
-  }
-
-  .category-description {
-    font-style: italic;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-  }
-
-  .strategy-card ul, .skill-category ul {
-    margin-left: 1.5rem;
-    line-height: 1.7;
-  }
-
-  /* Assessment Methods */
-  .assessment-methods {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .method-card {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-  }
-
-  .method-card h3 {
-    color: var(--primary);
-    margin-top: 0;
-  }
-
-  .method-card p {
-    font-weight: 600;
-    margin-bottom: 1rem;
-  }
-
-  .method-card ul {
-    margin-left: 1.5rem;
-    line-height: 1.7;
-  }
-
-  /* Progression Model */
-  .progression-model {
-    margin-top: 2rem;
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-  }
-
-  .progression-stages {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1.5rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-  }
-
-  .stage {
-    flex-shrink: 0;
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    text-align: center;
-    min-width: 180px;
-    border: 2px solid var(--primary);
-  }
-
-  .stage-number {
-    width: 40px;
-    height: 40px;
-    background: var(--primary);
-    color: var(--text);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-    font-weight: 800;
-    font-size: 1.2rem;
-  }
-
-  .stage h4 {
-    color: var(--primary);
-    margin: 0.5rem 0;
-    font-size: 1.1rem;
-  }
-
-  .stage p {
-    font-size: 0.9rem;
-    line-height: 1.4;
-    margin: 0;
-  }
-
-  .stage-arrow {
-    font-size: 2rem;
-    color: var(--primary);
-    flex-shrink: 0;
-  }
-
-  /* Implementation Phases */
-  .implementation-phases {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .phase {
-    border: 2px solid var(--border);
-    border-radius: 0.75rem;
-    overflow: hidden;
-  }
-
-  .phase h3 {
-    background: var(--primary);
-    color: var(--text);
-    padding: 1.5rem 2rem;
-    margin: 0;
-  }
-
-  .phase-content {
-    padding: 2rem;
-  }
-
-  .phase-content h4 {
-    color: var(--primary);
-    margin-bottom: 0.75rem;
-  }
-
-  .phase-content ul {
-    margin-left: 1.5rem;
-    line-height: 1.7;
-  }
-
-  .phase-outcome {
-    background: var(--bg-gray);
-    padding: 1rem;
-    border: 2px solid var(--primary);
-    margin-top: 1.5rem;
-  }
-
-  .implementation-support {
-    background: var(--bg-gray);
-    padding: 2rem;
-    border-radius: 0.75rem;
-    margin-top: 2rem;
-  }
-
-  .implementation-support h3 {
-    color: var(--primary);
-    margin-top: 0;
-  }
-
-  .implementation-support ul {
-    margin-left: 1.5rem;
-    line-height: 1.8;
-  }
-
-  /* CTA Section */
-  .framework-cta {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--bg-dark);
-    color: var(--text);
-    border-radius: 0.75rem;
-    margin-top: 3rem;
-  }
-
-  .framework-cta h2 {
-    color: var(--text);
-    border-bottom: none;
-    margin-bottom: 1rem;
-  }
-
-  .framework-cta p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 1.5rem;
-  }
-
-  .ubuntu-message {
-    font-size: 1.1rem;
-    font-style: italic;
-    opacity: 0.9;
-  }
-
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-    min-height: 48px;
-  }
-
-  .btn-primary {
-    background: var(--card-bg);
-    color: var(--primary);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 176, 255, 0.2);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--text);
-    border: 2px solid var(--text-secondary);
-  }
-
-  .btn-secondary:hover {
-    background: var(--card-bg);
-    color: var(--primary);
-  }
-
-  /* Governance Section */
-  .governance-section {
-    background: linear-gradient(135deg, var(--primary-subtle) 0%, var(--emerald-subtle) 100%);
-    border: 2px solid var(--primary);
-  }
-
-  .governance-intro {
-    font-size: 1.15rem;
-    color: var(--text);
-    margin-bottom: 2.5rem;
-    line-height: 1.7;
-  }
-
-  .governance-grid {
-    display: grid;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .governance-card {
-    display: flex;
-    gap: 1.5rem;
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-    transition: all 0.3s ease;
-  }
-
-  .governance-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
-  }
-
-  .governance-number {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    flex-shrink: 0;
-    width: 60px;
-    line-height: 1.3;
-  }
-
-  .governance-content h3 {
-    color: var(--primary);
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.35rem;
-  }
-
-  .governance-content p {
-    margin-bottom: 0.75rem;
-    line-height: 1.7;
-  }
-
-  .governance-example {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    padding: 0.75rem 1rem;
-    background: var(--bg-gray);
-    border-radius: 12px;
-    border: 2px solid var(--primary);
-    margin-top: 1rem;
-  }
-
-  .governance-cta {
-    background: var(--card-bg);
-    padding: 2.5rem;
-    border-radius: 12px;
-    text-align: center;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-  }
-
-  .governance-cta h3 {
-    color: var(--primary);
-    margin-top: 0;
-    margin-bottom: 1rem;
-  }
-
-  .governance-cta p {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    margin-bottom: 1.5rem;
-  }
-
-  .governance-cta .btn {
-    background: var(--primary);
-    color: var(--text);
-  }
-
-  .governance-cta .btn:hover {
-    background: var(--primary-hover);
-  }
-
-  /* Mobile Optimization */
-  @media (max-width: 768px) {
-    .framework-container {
-      padding: 2rem 1.25rem;
-    }
-
-    /* Governance section mobile */
-    .governance-card {
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1.5rem;
-    }
-
-    .governance-number {
-      font-size: 2rem;
-      width: auto;
-    }
-
-    .governance-content h3 {
-      font-size: 1.25rem;
-    }
-
-    .governance-cta {
-      padding: 2rem 1.5rem;
-    }
-
-    .framework-header {
-      padding: 2.5rem 1.25rem;
-    }
-
-    .framework-header h1 {
-      font-size: clamp(1.75rem, 7vw, 2.5rem);
-    }
-
-    .subtitle {
-      font-size: 1rem;
-    }
-
-    .framework-actions {
-      flex-direction: column;
-      gap: 0.75rem;
-      width: 100%;
-    }
-
-    .framework-actions .btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .framework-nav {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -1.25rem;
-      padding: 1.5rem 1.25rem;
-    }
-
-    .framework-nav ul {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 0.5rem;
-    }
-
-    .framework-nav li {
-      white-space: nowrap;
-    }
-
-    .framework-section {
-      padding: 2rem 1.25rem;
-    }
-
-    .framework-section h2 {
-      font-size: clamp(1.5rem, 6vw, 2rem);
-    }
-
-    .overview-cards,
-    .principles-grid,
-    .citizenship-pillars,
-    .assessment-methods {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .progression-stages {
-      flex-direction: column;
-      align-items: stretch;
-    }
-
-    .stage {
-      min-width: 100%;
-    }
-
-    .stage-arrow {
-      transform: rotate(90deg);
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-    }
-
-    .btn {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .framework-header {
-      padding: 2rem 1rem;
-    }
-
-    .framework-section {
-      padding: 1.5rem 1rem;
-    }
-  }
-</style>
