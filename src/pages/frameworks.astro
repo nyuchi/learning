@@ -1,6 +1,73 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BookOpen, Download, Users, Bot, Smartphone, Shield, GraduationCap, Plus } from 'lucide-astro';
+import { BookOpen, Download, Users, Smartphone, ArrowRight } from 'lucide-astro';
+
+const frameworks = [
+  {
+    icon: BookOpen,
+    title: 'K-12 Digital Campus Framework',
+    version: 'v1.0',
+    date: 'October 2024',
+    badge: 'Core',
+    badgeColor: 'cobalt',
+    description: 'A comprehensive blueprint for digital transformation in K-12 schools. Covers infrastructure, software systems, pedagogy, professional development, and implementation strategies tailored for African contexts.',
+    features: [
+      'Mobile-first, low-bandwidth design principles',
+      'Free & open-source software recommendations',
+      'Flexible pricing tiers ($0 to premium)',
+      'Multilingual support (African languages + English, French, Chinese)',
+      'BYOD and phased rollout strategies'
+    ],
+    stats: [
+      { label: '4 Pricing Tiers', value: 'From free to premium' },
+      { label: '$0-$180K', value: '3-year implementation range' }
+    ],
+    readUrl: '/framework',
+    downloadUrl: '/frameworks/k12-digital-campus-framework.pdf'
+  },
+  {
+    icon: Users,
+    title: 'K-12 Support Process Framework',
+    version: 'v1.0',
+    date: 'October 2024',
+    badge: 'Support',
+    badgeColor: 'tanzanite',
+    description: 'Complete documentation for a three-tier support system designed for digital campuses. Balances AI-powered self-service, educational technology support, and IT operations.',
+    features: [
+      { bold: 'Tier 0:', text: 'AI-powered chatbot (40% resolution rate)' },
+      { bold: 'Tier 1:', text: 'EdTech team for pedagogical support (70% resolution)' },
+      { bold: 'Tier 2:', text: 'IT Operations for infrastructure (95% SLA compliance)' }
+    ],
+    stats: [
+      { label: '3 Support Tiers', value: 'AI + EdTech + IT Ops' },
+      { label: '40-95% Resolution', value: 'Tier-based efficiency' }
+    ],
+    readUrl: '/support-framework',
+    downloadUrl: '/frameworks/k12-support-process-framework.pdf'
+  },
+  {
+    icon: Smartphone,
+    title: 'Digital Literacy Framework for Africa',
+    version: 'v1.0',
+    date: 'October 2024',
+    badge: 'Curriculum',
+    badgeColor: 'malachite',
+    description: 'Comprehensive mobile-first digital literacy framework designed for K-12 students, teachers, and adults. Emphasizes digital citizenship, lifelong learning, and preparing for the 2050 digital landscape.',
+    features: [
+      { bold: 'Mobile-First:', text: 'No 1:1 device assumption—designed for shared access' },
+      { bold: 'Lifelong Learning:', text: 'Parallel pathways for students, teachers, parents' },
+      { bold: 'Digital Citizenship:', text: 'Safety, ethics, and responsible online behavior' },
+      { bold: '2050-Ready:', text: 'AI collaboration, remote work, digital entrepreneurship' },
+      { bold: 'Standards:', text: 'Age-appropriate learning progressions (Ages 5-18+)' }
+    ],
+    stats: [
+      { label: '4 Age Groups', value: 'Early Years to Secondary+' },
+      { label: '6 Citizenship Pillars', value: 'Safety, rights, ethics, wellness' }
+    ],
+    readUrl: '/digital-literacy-framework',
+    downloadUrl: '/frameworks/digital-literacy-framework.pdf'
+  }
+];
 ---
 
 <BaseLayout
@@ -8,578 +75,111 @@ import { BookOpen, Download, Users, Bot, Smartphone, Shield, GraduationCap, Plus
   description="Browse our collection of open, shareable frameworks for digital transformation in African schools. Free to use, copy, adapt, and share."
   keywords="educational frameworks, K-12 digital transformation, school support systems, African education, open source education"
 >
-  <!-- Full-height Hero Section -->
-  <section class="frameworks-hero">
-    <div class="hero-background"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="ubuntu-tagline animate-fade-in">Ubuntu: I am because we are</p>
-      <div class="hero-title-split">
-        <h1 class="hero-title-row animate-fade-in">Frame</h1>
-        <h1 class="hero-title-row animate-fade-in">+ Works</h1>
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center text-[var(--text)] text-center overflow-hidden relative">
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80')] bg-cover bg-center bg-fixed"></div>
+    <div class="absolute inset-0 bg-gradient-to-br from-black/40 to-neutral-900/50"></div>
+    <div class="relative z-10 px-4 py-8 max-w-[1200px] mx-auto">
+      <p class="text-base md:text-lg italic mb-8 tracking-widest font-medium opacity-95">Ubuntu: I am because we are</p>
+      <div class="mb-12">
+        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tighter drop-shadow-2xl">Frame</h1>
+        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tighter drop-shadow-2xl">+ Works</h1>
       </div>
-      <p class="hero-description animate-fade-in">
+      <p class="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-[900px] mx-auto font-normal opacity-95">
         Open, shareable frameworks designed to empower schools across Africa.
         Free to use, copy, adapt, and improve for your community.
       </p>
     </div>
   </section>
 
-  <!-- Frameworks Grid -->
-  <section class="frameworks-grid-section">
-    <div class="frameworks-grid-container">
+  <!-- Frameworks List -->
+  <section class="py-16 md:py-24 px-4 bg-[var(--bg)]">
+    <div class="max-w-[1400px] mx-auto">
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-[var(--primary)] text-center mb-12">Available Frameworks</h2>
 
-    <div class="frameworks-container">
-      <h2 class="section-title">Available Frameworks</h2>
-
-      <div class="frameworks-grid">
-        <!-- Framework 1: K-12 Digital Campus -->
-        <div class="framework-card">
-          <div class="framework-icon">
-            <BookOpen size={48} strokeWidth={1.5} />
-          </div>
-          <div class="framework-content">
-            <h3>K-12 Digital Campus Framework</h3>
-            <p class="framework-version">Version 1.0 | October 2024</p>
-            <p class="framework-description">
-              A comprehensive blueprint for digital transformation in K-12 schools.
-              Covers infrastructure, software systems, pedagogy, professional development,
-              and implementation strategies tailored for African contexts.
-            </p>
-
-            <div class="framework-highlights">
-              <h4>Key Features</h4>
-              <ul>
-                <li>Mobile-first, low-bandwidth design principles</li>
-                <li>Free & open-source software recommendations</li>
-                <li>Flexible pricing tiers ($0 to premium)</li>
-                <li>Multilingual support (African languages + English, French, Chinese)</li>
-                <li>BYOD and phased rollout strategies</li>
-              </ul>
+      <div class="flex flex-col gap-8 mb-16">
+        {frameworks.map((framework) => (
+          <div class="bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)] p-6 md:p-10 flex flex-col md:flex-row gap-6 md:gap-8 hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
+            <!-- Icon -->
+            <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-[var(--bg-elevated)] rounded-2xl text-[var(--primary)]">
+              <framework.icon size={48} strokeWidth={1.5} />
             </div>
 
-            <div class="framework-stats">
-              <div class="stat">
-                <strong>4 Pricing Tiers</strong>
-                <span>From free to premium</span>
+            <!-- Content -->
+            <div class="flex-1 flex flex-col gap-4">
+              <!-- Header with title and badges -->
+              <div class="flex flex-wrap items-start gap-3">
+                <h3 class="font-display text-xl md:text-2xl font-bold text-[var(--primary)]">{framework.title}</h3>
+                <div class="flex gap-2">
+                  <span class={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-${framework.badgeColor}-container-dark)] text-[var(--color-${framework.badgeColor}-on-container-dark)]`}>
+                    {framework.badge}
+                  </span>
+                  <span class="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-[var(--bg-elevated)] text-[var(--text-secondary)]">
+                    {framework.version}
+                  </span>
+                </div>
               </div>
-              <div class="stat">
-                <strong>$0-$180K</strong>
-                <span>3-year implementation range</span>
+
+              <!-- Version date -->
+              <p class="text-sm text-[var(--text-tertiary)] font-medium">{framework.date}</p>
+
+              <!-- Description -->
+              <p class="text-base leading-relaxed text-[var(--text)]">{framework.description}</p>
+
+              <!-- Features -->
+              <div class="bg-[var(--bg-elevated)] rounded-xl p-5">
+                <h4 class="text-sm font-semibold text-[var(--primary)] mb-3 tracking-wide">Key Features</h4>
+                <ul class="space-y-2">
+                  {framework.features.map((feature) => (
+                    <li class="flex items-start gap-2 text-[var(--text)]">
+                      <span class="text-[var(--primary)] font-bold mt-0.5">→</span>
+                      {typeof feature === 'string' ? (
+                        <span>{feature}</span>
+                      ) : (
+                        <span><strong class="text-[var(--text)]">{feature.bold}</strong> {feature.text}</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
 
-            <div class="framework-actions">
-              <a href="/framework" class="btn btn-secondary">Read Online</a>
-              <a href="/frameworks/k12-digital-campus-framework.pdf" class="btn btn-primary" download>
-                <Download size={20} /> Download PDF
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Framework 2: K-12 Support Process -->
-        <div class="framework-card">
-          <div class="framework-icon">
-            <Users size={48} strokeWidth={1.5} />
-          </div>
-          <div class="framework-content">
-            <h3>K-12 Support Process Framework</h3>
-            <p class="framework-version">Version 1.0 | October 2024</p>
-            <p class="framework-description">
-              Complete documentation for a three-tier support system designed for digital campuses.
-              Balances AI-powered self-service, educational technology support, and IT operations
-              to deliver efficient, cost-effective support at scale.
-            </p>
-
-            <div class="framework-highlights">
-              <h4>Support Tiers</h4>
-              <ul>
-                <li><strong>Tier 0:</strong> AI-powered chatbot (40% resolution rate)</li>
-                <li><strong>Tier 1:</strong> EdTech team for pedagogical support (70% escalation resolution)</li>
-                <li><strong>Tier 2:</strong> IT Operations for infrastructure (95% SLA compliance)</li>
-              </ul>
-            </div>
-
-            <div class="framework-stats">
-              <div class="stat">
-                <strong>3 Support Tiers</strong>
-                <span>AI + EdTech + IT Ops</span>
+              <!-- Stats -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {framework.stats.map((stat) => (
+                  <div class="flex flex-col gap-1">
+                    <span class="font-display text-xl font-bold text-[var(--primary)]">{stat.label}</span>
+                    <span class="text-sm text-[var(--text-secondary)]">{stat.value}</span>
+                  </div>
+                ))}
               </div>
-              <div class="stat">
-                <strong>40-95% Resolution</strong>
-                <span>Tier-based efficiency</span>
+
+              <!-- Actions -->
+              <div class="flex flex-wrap gap-3 pt-2">
+                <a href={framework.readUrl} class="inline-flex items-center justify-center h-10 px-5 border-2 border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary-container)] transition-all duration-200">
+                  Read Online
+                </a>
+                <a href={framework.downloadUrl} class="inline-flex items-center justify-center gap-2 h-10 px-5 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 transition-all duration-200" download>
+                  <Download size={18} />
+                  Download PDF
+                </a>
               </div>
             </div>
-
-            <div class="framework-actions">
-              <a href="/support-framework" class="btn btn-secondary">Read Online</a>
-              <a href="/frameworks/k12-support-process-framework.pdf" class="btn btn-primary" download>
-                <Download size={20} /> Download PDF
-              </a>
-            </div>
           </div>
-        </div>
-
-        <!-- Framework 3: Digital Literacy Framework for Africa -->
-        <div class="framework-card">
-          <div class="framework-icon">
-            <Smartphone size={48} strokeWidth={1.5} />
-          </div>
-          <div class="framework-content">
-            <h3>Digital Literacy Framework for Africa</h3>
-            <p class="framework-version">Version 1.0 | October 2024</p>
-            <p class="framework-description">
-              Comprehensive mobile-first digital literacy framework designed for K-12 students, teachers,
-              and adults. Emphasizes digital citizenship, lifelong learning, and preparing for the 2050
-              digital landscape. Designed for African contexts where mobile is the primary access point.
-            </p>
-
-            <div class="framework-highlights">
-              <h4>Key Features</h4>
-              <ul>
-                <li><strong>Mobile-First:</strong> No 1:1 device assumption—designed for shared access reality</li>
-                <li><strong>Lifelong Learning:</strong> Parallel pathways for students, teachers, staff, parents, adults</li>
-                <li><strong>Digital Citizenship Core:</strong> Safety, ethics, and responsible online behavior first</li>
-                <li><strong>2050-Ready:</strong> AI collaboration, remote work, digital entrepreneurship skills</li>
-                <li><strong>Standards & Outcomes:</strong> Age-appropriate learning progressions (Ages 5-18+)</li>
-              </ul>
-            </div>
-
-            <div class="framework-stats">
-              <div class="stat">
-                <strong>4 Age Groups</strong>
-                <span>Early Years to Secondary+</span>
-              </div>
-              <div class="stat">
-                <strong>6 Citizenship Pillars</strong>
-                <span>Safety, rights, ethics, communication, wellness, identity</span>
-              </div>
-            </div>
-
-            <div class="framework-actions">
-              <a href="/digital-literacy-framework" class="btn btn-secondary">Read Online</a>
-              <a href="/frameworks/digital-literacy-framework.pdf" class="btn btn-primary" download>
-                <Download size={20} /> Download PDF
-              </a>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
 
-      <!-- Coming Soon Section -->
-      <div class="coming-soon-section">
-        <h2>More Frameworks Coming Soon</h2>
-        <p>
+      <!-- Coming Soon -->
+      <div class="text-center p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+        <span class="inline-flex items-center px-4 py-1.5 text-sm font-medium rounded-full bg-[var(--color-gold-container-dark)] text-[var(--color-gold-on-container-dark)] mb-6">
+          Coming Soon
+        </span>
+        <h2 class="font-display text-2xl md:text-3xl font-bold text-[var(--primary)] mb-4">More Frameworks Coming Soon</h2>
+        <p class="text-base md:text-lg leading-relaxed text-[var(--text-secondary)] max-w-[700px] mx-auto">
           Nyuchi Learning is committed to developing comprehensive frameworks for digital
           transformation in African education. Stay tuned for upcoming releases covering
           data analytics, student information systems, and more.
         </p>
       </div>
     </div>
-  </div>
+  </section>
 </BaseLayout>
-
-<style>
-  .frameworks-page {
-    min-height: 100vh;
-  }
-
-  /* Full-height Hero Section */
-  .frameworks-hero {
-    position: relative;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text);
-    text-align: center;
-    overflow: hidden;
-  }
-
-  .hero-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80') center/cover no-repeat;
-    background-attachment: fixed;
-    z-index: 0;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(26, 26, 26, 0.5) 100%);
-    z-index: 1;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    padding: 2rem 1rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .ubuntu-tagline {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--text);
-    margin-bottom: 2rem;
-    letter-spacing: 2px;
-    font-weight: 500;
-    opacity: 0.95;
-  }
-
-  .hero-title-split {
-    margin-bottom: 3rem;
-  }
-
-  .hero-title-row {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(4rem, 12vw, 8rem);
-    font-weight: 900;
-    line-height: 1.2;
-    letter-spacing: -0.04em;
-    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
-    color: var(--text);
-    margin: 0;
-  }
-
-  .hero-description {
-    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
-    line-height: 1.7;
-    max-width: 900px;
-    margin: 0 auto;
-    font-weight: 400;
-    color: var(--text);
-    opacity: 0.95;
-  }
-
-  .frameworks-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-  }
-
-  .section-title {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 700;
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: 3rem;
-    letter-spacing: -0.01em;
-  }
-
-  .frameworks-grid {
-    display: grid;
-    gap: 3rem;
-    margin-bottom: 5rem;
-  }
-
-  .framework-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    display: flex;
-    gap: 2rem;
-    transition: all 0.3s ease;
-    border: 1px solid var(--border);
-    color: var(--text);
-  }
-
-  .framework-card:hover {
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-    transform: translateY(-4px);
-  }
-
-  .framework-icon {
-    flex-shrink: 0;
-    width: 80px;
-    height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--background-gray);
-    border-radius: 16px;
-    color: var(--primary);
-  }
-
-  .framework-content {
-    flex: 1;
-  }
-
-  .framework-content h3 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .framework-version {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-
-  .framework-description {
-    font-size: 1.05rem;
-    line-height: 1.7;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-  }
-
-  .framework-highlights {
-    background: var(--background-gray);
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .framework-highlights h4 {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--primary);
-    margin-bottom: 0.75rem;
-    letter-spacing: 0.05em;
-  }
-
-  .framework-highlights ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .framework-highlights li {
-    padding: 0.5rem 0;
-    padding-left: 1.5rem;
-    position: relative;
-    color: var(--text);
-    line-height: 1.6;
-  }
-
-  .framework-highlights li::before {
-    content: '→';
-    position: absolute;
-    left: 0;
-    color: var(--primary);
-    font-weight: 700;
-  }
-
-  .framework-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .stat {
-    display: flex;
-    flex-direction: column;
-    gap: 0.25rem;
-  }
-
-  .stat strong {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    font-family: 'Noto Serif', Georgia, serif;
-  }
-
-  .stat span {
-    font-size: 0.9rem;
-    color: var(--text-light);
-  }
-
-  .framework-actions {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
-
-  .coming-soon-section {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--background-gray);
-    border-radius: 16px;
-  }
-
-  .coming-soon-section h2 {
-    font-family: 'Noto Serif', Georgia, serif;
-    font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  .coming-soon-section p {
-    font-size: 1.1rem;
-    line-height: 1.7;
-    color: var(--text);
-    max-width: 700px;
-    margin: 0 auto;
-  }
-
-  /* Responsive adjustments */
-  @media (max-width: 768px) {
-    .frameworks-hero {
-      min-height: 100vh;
-      padding: 8rem 1rem 4rem;
-    }
-
-    .hero-background {
-      background-attachment: scroll; /* Better mobile performance */
-    }
-
-    .ubuntu-tagline {
-      font-size: 0.85rem;
-      letter-spacing: 1.5px;
-    }
-
-    .hero-title-row {
-      font-size: clamp(2.5rem, 12vw, 4rem);
-    }
-
-    .hero-title-split {
-      margin-bottom: 2rem;
-    }
-
-    .hero-description {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      padding: 0 0.5rem;
-    }
-
-    .frameworks-container {
-      padding: 3rem 1.25rem;
-    }
-
-    .section-title {
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      margin-bottom: 2rem;
-    }
-
-    .framework-card {
-      flex-direction: column;
-      padding: 1.75rem;
-      gap: 1.5rem;
-    }
-
-    .framework-icon {
-      width: 56px;
-      height: 56px;
-    }
-
-    .framework-content h3 {
-      font-size: clamp(1.25rem, 4vw, 1.75rem);
-    }
-
-    .framework-version {
-      font-size: 0.85rem;
-    }
-
-    .framework-description {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    .framework-highlights {
-      padding: 1.25rem;
-    }
-
-    .framework-highlights h4 {
-      font-size: 0.9rem;
-    }
-
-    .framework-highlights li {
-      font-size: 0.95rem;
-      padding: 0.4rem 0;
-      padding-left: 1.25rem;
-    }
-
-    .framework-stats {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .stat strong {
-      font-size: 1.25rem;
-    }
-
-    .stat span {
-      font-size: 0.85rem;
-    }
-
-    .framework-actions {
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .framework-actions .btn {
-      width: 100%;
-      justify-content: center;
-    }
-
-    .coming-soon-section {
-      padding: 3rem 1.5rem;
-    }
-
-    .coming-soon-section h2 {
-      font-size: clamp(1.5rem, 5vw, 2rem);
-    }
-
-    .coming-soon-section p {
-      font-size: 1rem;
-      padding: 0 0.5rem;
-    }
-  }
-
-  /* Extra small screens */
-  @media (max-width: 480px) {
-    .frameworks-hero {
-      padding: 2.5rem 1rem 2rem;
-    }
-
-    .ubuntu-tagline {
-      font-size: 0.75rem;
-    }
-
-    .hero-title-row {
-      font-size: 2.5rem;
-    }
-
-    .hero-description {
-      font-size: 1rem;
-    }
-
-    .frameworks-container {
-      padding: 2.5rem 1rem;
-    }
-
-    .section-title {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .framework-card {
-      padding: 1.5rem;
-    }
-
-    .framework-highlights {
-      padding: 1rem;
-    }
-
-    .coming-soon-section {
-      padding: 2.5rem 1rem;
-    }
-  }
-</style>
