@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This guide will help you deploy the African Education Framework website to Vercel.
+This guide will help you deploy the Nyuchi Learning website to Vercel.
 
 ## Quick Deploy to Vercel
 
@@ -9,8 +9,8 @@ This guide will help you deploy the African Education Framework website to Verce
 1. **Push your code to GitHub** (if not already done):
    ```bash
    git add .
-   git commit -m "Initial African Education Framework site"
-   git push -u origin claude/african-education-framework-011CUV59PjEmQTjSHPnCfnFb
+   git commit -m "Ready for deployment"
+   git push -u origin main
    ```
 
 2. **Visit Vercel**:
@@ -18,7 +18,7 @@ This guide will help you deploy the African Education Framework website to Verce
    - Sign up or log in (you can use GitHub authentication)
 
 3. **Import Project**:
-   - Click "Add New..." → "Project"
+   - Click "Add New..." > "Project"
    - Select "Import Git Repository"
    - Authorize Vercel to access your GitHub account
    - Select the `learning` repository
@@ -56,7 +56,7 @@ This guide will help you deploy the African Education Framework website to Verce
    # - Set up and deploy? Yes
    # - Which scope? (select your account)
    # - Link to existing project? No
-   # - What's your project's name? african-education-framework
+   # - What's your project's name? nyuchi-learning
    # - In which directory is your code located? ./
    ```
 
@@ -69,17 +69,17 @@ This guide will help you deploy the African Education Framework website to Verce
 
 The site is fully static and doesn't require environment variables. However, if you need to add any in the future:
 
-1. In Vercel Dashboard → Your Project → Settings → Environment Variables
+1. In Vercel Dashboard > Your Project > Settings > Environment Variables
 2. Add variables as needed
 3. Redeploy for changes to take effect
 
-## Custom Domain (Optional)
+## Custom Domain
 
-To use a custom domain like `africaneducation.org`:
+To use a custom domain like `learning.nyuchi.com`:
 
 1. **In Vercel Dashboard**:
    - Go to your project
-   - Settings → Domains
+   - Settings > Domains
    - Click "Add Domain"
    - Enter your domain name
 
@@ -122,6 +122,8 @@ Vercel automatically provides:
 
 ## Monitoring & Analytics
 
+### Vercel Analytics
+
 Enable analytics in Vercel Dashboard:
 1. Go to your project
 2. Analytics tab
@@ -132,6 +134,13 @@ Track:
 - User sessions
 - Performance metrics
 - Geographic data
+
+### Google Analytics
+
+The site includes Google Analytics (G-BNHM29F8W5) configured in `BaseLayout.astro`. To use your own:
+
+1. Create a Google Analytics 4 property
+2. Update the measurement ID in `src/layouts/BaseLayout.astro`
 
 ## Troubleshooting
 
@@ -145,15 +154,19 @@ Track:
 - **Solution**: Check import paths are correct
 - Ensure all required files are committed to git
 
+**Error**: TypeScript errors
+- **Solution**: Run `npm run build` locally and fix any type errors
+- Check that all component props are properly typed
+
 ### Site Not Updating
 
-- **Clear cache**: Settings → Clear Build Cache
-- **Redeploy**: Deployments → Click on latest → Redeploy
+- **Clear cache**: Settings > Clear Build Cache
+- **Redeploy**: Deployments > Click on latest > Redeploy
 
 ### Styling Issues
 
-- **Check**: Ensure global styles are imported in layouts
-- **Verify**: CSS files are in correct locations
+- **Check**: Ensure Tailwind CSS is properly configured
+- **Verify**: CSS custom properties defined in `BaseLayout.astro`
 - **Test**: Run `npm run preview` locally after building
 
 ## Cost
@@ -164,7 +177,28 @@ Vercel offers a generous free tier that includes:
 - 100GB bandwidth/month
 - Unlimited team members
 
-This is more than sufficient for most educational websites.
+This is more than sufficient for educational websites.
+
+## Alternative Deployment Platforms
+
+### Netlify
+
+1. Connect GitHub repository
+2. Build command: `npm run build`
+3. Publish directory: `dist`
+
+### Cloudflare Pages
+
+1. Connect GitHub repository
+2. Framework preset: Astro
+3. Build command: `npm run build`
+4. Build output: `dist`
+
+### GitHub Pages
+
+1. Build locally: `npm run build`
+2. Deploy `dist` folder to `gh-pages` branch
+3. Or use GitHub Actions for automated deployment
 
 ## Support
 
@@ -175,11 +209,14 @@ For deployment issues:
 
 ## Next Steps After Deployment
 
-1. **Share the URL** with stakeholders
+1. **Verify the site** loads correctly at your URL
 2. **Set up custom domain** if desired
 3. **Enable analytics** to track usage
-4. **Create more blog posts** in `src/pages/blog/`
-5. **Update framework content** as needed
-6. **Monitor performance** via Vercel dashboard
+4. **Create preview branches** for testing changes
+5. **Set up notifications** for deployment status
 
-Congratulations! Your African Education Framework site is now live! 🎉
+---
+
+**Production URL**: [learning.nyuchi.com](https://learning.nyuchi.com)
+
+**Last Updated**: December 2025
