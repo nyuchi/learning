@@ -1,1038 +1,570 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { DollarSign, Check, AlertCircle } from 'lucide-astro';
+import { DollarSign, Check, AlertCircle, Info } from 'lucide-astro';
+
+// Budget scenario tiers - These are cost estimates, NOT prices for Nyuchi services
+const budgetScenarios = [
+  {
+    name: "Minimal Budget",
+    badge: "Lowest Cost",
+    estimate: "$0-$15K",
+    period: "3-year estimate",
+    description: "Leverage completely free and open-source solutions. Ideal for schools with technical staff or community volunteers.",
+    includes: [
+      "Free LMS (Moodle, self-hosted)",
+      "Free SIS (OpenSIS, Gibbon)",
+      "Google Workspace for Education",
+      "Open-source analytics",
+      "Community support & forums",
+      "BYOD or existing devices"
+    ],
+    href: "#minimal-breakdown",
+    variant: "secondary"
+  },
+  {
+    name: "Modest Budget",
+    estimate: "$25K-$45K",
+    period: "3-year estimate",
+    description: "Mix of free tools with some paid services for reliability. Good balance for schools starting their digital journey.",
+    includes: [
+      "Moodle or Google Classroom",
+      "Low-cost cloud SIS",
+      "Basic cloud hosting",
+      "Staff training costs",
+      "Basic device lending program",
+      "Part-time IT support"
+    ],
+    href: "#modest-breakdown",
+    variant: "secondary"
+  },
+  {
+    name: "Moderate Budget",
+    badge: "Common Scenario",
+    estimate: "$60K-$90K",
+    period: "3-year estimate",
+    description: "Balanced investment in technology, training, and infrastructure. Represents typical costs for comprehensive transformation.",
+    includes: [
+      "Full LMS with integrations",
+      "Cloud-based SIS platform",
+      "1:3 device lending program",
+      "Professional development",
+      "Analytics & reporting tools",
+      "Dedicated IT support"
+    ],
+    href: "#moderate-breakdown",
+    variant: "primary"
+  },
+  {
+    name: "Comprehensive Budget",
+    estimate: "$120K-$180K",
+    period: "3-year estimate",
+    description: "Full-featured implementation with 1:1 devices, advanced analytics, and comprehensive training programs.",
+    includes: [
+      "Enterprise LMS & SIS",
+      "1:1 device program",
+      "AI-powered analytics",
+      "Extensive PD programs",
+      "Parent engagement platforms",
+      "Full-time IT support"
+    ],
+    href: "#comprehensive-breakdown",
+    variant: "secondary"
+  }
+];
+
+// Savings strategies
+const savingsStrategies = [
+  {
+    title: "Phased Rollout",
+    description: "Start with free tools and core grades, expand gradually as budget allows. Year 1 can be under $10K."
+  },
+  {
+    title: "BYOD Programs",
+    description: "Encourage students to bring smartphones/tablets. Reduces device costs by 60-80%."
+  },
+  {
+    title: "Open Source First",
+    description: "Prioritize free, open-source tools. Upgrade to paid tools only when necessary."
+  },
+  {
+    title: "Community Partnerships",
+    description: "Partner with local tech companies, NGOs, or universities for donated equipment and expertise."
+  },
+  {
+    title: "Bulk Purchasing",
+    description: "Coordinate with other schools for group purchasing discounts on devices and software."
+  },
+  {
+    title: "Grant Funding",
+    description: "Apply for education technology grants from government, foundations, and international organizations."
+  }
+];
 ---
 
 <BaseLayout
-  title="Implementation Costs & Budget Planning"
-  description="Realistic cost breakdown for implementing the K-12 Digital Campus Framework. Options from free open-source to full-featured implementations. Affordable digital transformation for African schools."
-  keywords="education technology costs, school technology budget, open-source education, free education software, digital transformation budget, affordable education technology, school IT costs Africa, education technology pricing"
+  title="Cost Estimation & Budget Planning Guide"
+  description="Budget planning guide for implementing the K-12 Digital Campus Framework. Realistic cost estimates from free open-source to comprehensive implementations. The framework is free - these are costs you'll incur implementing it yourself."
+  keywords="education technology costs, school technology budget, open-source education, free education software, digital transformation budget, affordable education technology, school IT costs Africa, implementation cost estimation"
 >
-  <div class="pricing-container">
-    <div class="pricing-header">
-      <h1>Implementation Costs & Budget Options</h1>
-      <p class="subtitle">Choose the path that fits your school's budget and needs</p>
-      <div class="pricing-note">
-        <AlertCircle size={20} />
-        <p>All costs are estimates for a school of 500-1000 students over 3 years. Your actual costs may vary based on location, existing infrastructure, and specific needs.</p>
+  <div class="max-w-[1200px] mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="text-center py-16 px-4 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl mb-16 relative overflow-hidden">
+      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-bold font-serif mb-4 relative z-10">Cost Estimation & Budget Planning</h1>
+      <p class="text-[clamp(1.1rem,2.5vw,1.5rem)] opacity-95 mb-4 relative z-10">Plan your school's digital transformation investment</p>
+
+      <!-- Important Notice -->
+      <div class="flex items-start gap-4 max-w-[850px] mx-auto mt-8 p-6 bg-[var(--mineral-malachite)]/15 border-2 border-[var(--mineral-malachite)] rounded-lg text-left relative z-10">
+        <Info size={24} class="text-[var(--mineral-malachite)] flex-shrink-0 mt-0.5" />
+        <div>
+          <p class="m-0 text-base font-semibold text-[var(--text)] mb-2">The Nyuchi Learning Framework is completely free.</p>
+          <p class="m-0 text-[0.95rem] leading-relaxed text-[var(--text-secondary)]">We provide the guidance and framework at no cost. The estimates below represent costs <strong>your school will incur</strong> when implementing the framework - hardware, software subscriptions, training, connectivity, and staffing. We don't sell these services; we help you plan for them.</p>
+        </div>
+      </div>
+
+      <div class="flex items-start gap-4 max-w-[850px] mx-auto mt-4 p-6 bg-[var(--primary)]/10 rounded-lg text-left relative z-10">
+        <AlertCircle size={20} class="text-[var(--primary)] flex-shrink-0 mt-0.5" />
+        <p class="m-0 text-[0.95rem] leading-relaxed text-[var(--text-secondary)]">All costs are estimates for a school of 500-1000 students over 3 years. Your actual costs will vary based on location, existing infrastructure, vendor choices, and specific needs.</p>
       </div>
     </div>
 
-    <!-- Pricing Tiers -->
-    <div class="tiers-grid">
-      <!-- Free / Open Source Tier -->
-      <div class="tier-card tier-free">
-        <div class="tier-badge">Most Affordable</div>
-        <h2>Free & Open Source</h2>
-        <div class="tier-price">
-          <span class="price">$0-$15K</span>
-          <span class="period">3-year total</span>
+    <!-- Budget Scenarios -->
+    <h2 class="text-center text-[var(--text)] mb-4 text-2xl font-bold">Budget Scenarios</h2>
+    <p class="text-center text-[var(--text-secondary)] mb-12 max-w-[700px] mx-auto">These scenarios show what schools typically spend to implement the framework. Choose the level that matches your resources and goals.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-24">
+      {budgetScenarios.map((scenario) => (
+        <div class="bg-[var(--bg-surface)] rounded-2xl p-8 shadow-md relative transition-all duration-300 hover:-translate-y-2 hover:shadow-xl border border-[var(--border)]">
+          {scenario.badge && (
+            <span class="absolute -top-3 right-5 bg-[var(--primary)] text-white px-4 py-2 rounded-full text-sm font-semibold">
+              {scenario.badge}
+            </span>
+          )}
+          <h3 class="text-[var(--primary)] mb-4 text-2xl font-bold">{scenario.name}</h3>
+          <div class="mb-6">
+            <span class="block text-4xl font-extrabold text-[var(--primary)] leading-tight">{scenario.estimate}</span>
+            <span class="text-[var(--text-secondary)] text-sm">{scenario.period}</span>
+          </div>
+          <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">{scenario.description}</p>
+          <ul class="list-none p-0 mb-8 space-y-0">
+            {scenario.includes.map((item) => (
+              <li class="flex items-center gap-3 py-3 border-b border-[var(--border)] last:border-b-0 text-[var(--text)]">
+                <Check size={20} class="text-[var(--mineral-malachite)] flex-shrink-0" />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+          <a
+            href={scenario.href}
+            class={`inline-block w-full text-center py-3 px-6 rounded-xl font-semibold transition-all duration-300 ${
+              scenario.variant === 'primary'
+                ? 'bg-[var(--primary)] text-white hover:brightness-110'
+                : 'bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--primary)]/10'
+            }`}
+          >
+            View Cost Breakdown
+          </a>
         </div>
-        <p class="tier-description">
-          Leverage completely free and open-source solutions. Perfect for schools with technical staff or community support.
-        </p>
-        <ul class="tier-features">
-          <li><Check size={20} /> Free LMS (Moodle)</li>
-          <li><Check size={20} /> Free SIS (OpenSIS)</li>
-          <li><Check size={20} /> Google Workspace for Education (Free)</li>
-          <li><Check size={20} /> Open-source analytics (Matomo)</li>
-          <li><Check size={20} /> Community support & forums</li>
-          <li><Check size={20} /> Self-hosted on basic server</li>
-        </ul>
-        <a href="#free-breakdown" class="btn btn-secondary">View Details</a>
-      </div>
-
-      <!-- Basic Tier -->
-      <div class="tier-card tier-basic">
-        <h2>Basic Implementation</h2>
-        <div class="tier-price">
-          <span class="price">$25K-$45K</span>
-          <span class="period">3-year total</span>
-        </div>
-        <p class="tier-description">
-          Mix of free tools with some paid services for better support and reliability. Good balance for most schools.
-        </p>
-        <ul class="tier-features">
-          <li><Check size={20} /> Moodle or Google Classroom</li>
-          <li><Check size={20} /> Low-cost SIS (cloud-hosted)</li>
-          <li><Check size={20} /> Basic cloud hosting</li>
-          <li><Check size={20} /> Essential training & support</li>
-          <li><Check size={20} /> Basic device lending program</li>
-          <li><Check size={20} /> Email support</li>
-        </ul>
-        <a href="#basic-breakdown" class="btn btn-secondary">View Details</a>
-      </div>
-
-      <!-- Standard Tier -->
-      <div class="tier-card tier-standard">
-        <div class="tier-badge">Recommended</div>
-        <h2>Standard Implementation</h2>
-        <div class="tier-price">
-          <span class="price">$60K-$90K</span>
-          <span class="period">3-year total</span>
-        </div>
-        <p class="tier-description">
-          Balanced approach with reliable tools, professional support, and device program. Best value for comprehensive transformation.
-        </p>
-        <ul class="tier-features">
-          <li><Check size={20} /> Full LMS with integrations</li>
-          <li><Check size={20} /> Cloud-based SIS</li>
-          <li><Check size={20} /> 1:3 device lending program</li>
-          <li><Check size={20} /> Professional development</li>
-          <li><Check size={20} /> Analytics & reporting tools</li>
-          <li><Check size={20} /> Dedicated support</li>
-        </ul>
-        <a href="#standard-breakdown" class="btn btn-primary">View Details</a>
-      </div>
-
-      <!-- Premium Tier -->
-      <div class="tier-card tier-premium">
-        <h2>Premium Implementation</h2>
-        <div class="tier-price">
-          <span class="price">$120K-$180K</span>
-          <span class="period">3-year total</span>
-        </div>
-        <p class="tier-description">
-          Full-featured implementation with 1:1 devices, advanced AI analytics, comprehensive training, and premium support.
-        </p>
-        <ul class="tier-features">
-          <li><Check size={20} /> Enterprise LMS & SIS</li>
-          <li><Check size={20} /> 1:1 device program (Chromebooks)</li>
-          <li><Check size={20} /> AI-powered analytics</li>
-          <li><Check size={20} /> Extensive PD programs</li>
-          <li><Check size={20} /> Parent engagement platforms</li>
-          <li><Check size={20} /> Priority support & training</li>
-        </ul>
-        <a href="#premium-breakdown" class="btn btn-secondary">View Details</a>
-      </div>
+      ))}
     </div>
 
-    <!-- Detailed Breakdowns -->
-    <section id="free-breakdown" class="breakdown-section">
-      <h2><DollarSign class="section-icon" size={32} /> Free & Open Source Breakdown</h2>
-      <div class="breakdown-table">
-        <table>
-          <thead>
+    <!-- Minimal Budget Breakdown -->
+    <section id="minimal-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
+        <DollarSign size={32} class="text-[var(--primary)]" />
+        Minimal Budget: Cost Breakdown
+      </h2>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse text-sm min-w-[600px]">
+          <thead class="bg-[var(--bg)]">
             <tr>
-              <th>Category</th>
-              <th>Solution</th>
-              <th>Cost</th>
-              <th>Notes</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Category</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Solution</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Cost</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Notes</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Learning Management</td>
-              <td>Moodle (self-hosted)</td>
-              <td>$0</td>
-              <td>Free, requires technical setup</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Learning Management</td>
+              <td class="p-4 border-b border-[var(--border)]">Moodle (self-hosted)</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">Free, requires technical setup</td>
             </tr>
-            <tr>
-              <td>Student Information System</td>
-              <td>OpenSIS</td>
-              <td>$0</td>
-              <td>Open-source, community support</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Student Information System</td>
+              <td class="p-4 border-b border-[var(--border)]">OpenSIS</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">Open-source, community support</td>
             </tr>
-            <tr>
-              <td>Email & Collaboration</td>
-              <td>Google Workspace for Education</td>
-              <td>$0</td>
-              <td>Free for schools</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Email & Collaboration</td>
+              <td class="p-4 border-b border-[var(--border)]">Google Workspace for Education</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">Free for schools</td>
             </tr>
-            <tr>
-              <td>Server Hosting</td>
-              <td>Basic VPS</td>
-              <td>$1,200</td>
-              <td>$400/year for 3 years</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Server Hosting</td>
+              <td class="p-4 border-b border-[var(--border)]">Basic VPS</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,200</td>
+              <td class="p-4 border-b border-[var(--border)]">$400/year for 3 years</td>
             </tr>
-            <tr>
-              <td>Domain & SSL</td>
-              <td>Annual registration</td>
-              <td>$150</td>
-              <td>$50/year for 3 years</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Domain & SSL</td>
+              <td class="p-4 border-b border-[var(--border)]">Annual registration</td>
+              <td class="p-4 border-b border-[var(--border)]">$150</td>
+              <td class="p-4 border-b border-[var(--border)]">$50/year for 3 years</td>
             </tr>
-            <tr>
-              <td>Internet Connectivity</td>
-              <td>Basic broadband</td>
-              <td>$5,400</td>
-              <td>$150/month for 3 years</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Internet Connectivity</td>
+              <td class="p-4 border-b border-[var(--border)]">Basic broadband</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,400</td>
+              <td class="p-4 border-b border-[var(--border)]">$150/month for 3 years</td>
             </tr>
-            <tr>
-              <td>Training (Self-paced)</td>
-              <td>Online tutorials & documentation</td>
-              <td>$0</td>
-              <td>Community resources</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Training (Self-paced)</td>
+              <td class="p-4 border-b border-[var(--border)]">Online tutorials & documentation</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">Community resources</td>
             </tr>
-            <tr>
-              <td>Devices</td>
-              <td>BYOD (Bring Your Own Device)</td>
-              <td>$0</td>
-              <td>Students use personal phones</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Devices</td>
+              <td class="p-4 border-b border-[var(--border)]">BYOD (Bring Your Own Device)</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">Students use personal phones</td>
             </tr>
-            <tr>
-              <td>Technical Staff</td>
-              <td>Existing IT staff or volunteer</td>
-              <td>$0</td>
-              <td>20-30 hours setup + ongoing</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Technical Staff</td>
+              <td class="p-4 border-b border-[var(--border)]">Existing IT staff or volunteer</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">20-30 hours setup + ongoing</td>
             </tr>
           </tbody>
-          <tfoot>
+          <tfoot class="bg-[var(--bg)] font-bold">
             <tr>
-              <td colspan="2"><strong>Total 3-Year Cost</strong></td>
-              <td><strong>$6,750</strong></td>
-              <td>Requires technical expertise</td>
+              <td colspan="2" class="p-5"><strong>Total 3-Year Cost</strong></td>
+              <td class="p-5"><strong>$6,750</strong></td>
+              <td class="p-5">Requires technical expertise</td>
             </tr>
           </tfoot>
         </table>
       </div>
-      <div class="breakdown-note">
-        <p><strong>Best for:</strong> Schools with technical staff, community IT volunteers, or partnerships with local tech organizations. Requires commitment to self-support and community resources.</p>
+      <div class="p-6 bg-[var(--bg)] border-2 border-[var(--primary)] rounded-lg">
+        <p class="m-0 text-[var(--text)] leading-relaxed"><strong>Best for:</strong> Schools with technical staff, community IT volunteers, or partnerships with local tech organizations. Requires commitment to self-support and community resources.</p>
       </div>
     </section>
 
-    <section id="basic-breakdown" class="breakdown-section">
-      <h2><DollarSign class="section-icon" size={32} /> Basic Implementation Breakdown</h2>
-      <div class="breakdown-table">
-        <table>
-          <thead>
+    <!-- Modest Budget Breakdown -->
+    <section id="modest-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
+        <DollarSign size={32} class="text-[var(--primary)]" />
+        Modest Budget: Cost Breakdown
+      </h2>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse text-sm min-w-[600px]">
+          <thead class="bg-[var(--bg)]">
             <tr>
-              <th>Category</th>
-              <th>Solution</th>
-              <th>Year 1</th>
-              <th>Year 2</th>
-              <th>Year 3</th>
-              <th>Total</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Category</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Solution</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 1</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 2</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 3</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Total</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>LMS Platform</td>
-              <td>Google Classroom or Moodle Cloud</td>
-              <td>$0</td>
-              <td>$0</td>
-              <td>$0</td>
-              <td>$0</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">LMS Platform</td>
+              <td class="p-4 border-b border-[var(--border)]">Google Classroom or Moodle Cloud</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
             </tr>
-            <tr>
-              <td>SIS (Cloud)</td>
-              <td>Low-cost cloud SIS</td>
-              <td>$2,000</td>
-              <td>$2,000</td>
-              <td>$2,000</td>
-              <td>$6,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">SIS (Cloud)</td>
+              <td class="p-4 border-b border-[var(--border)]">Low-cost cloud SIS</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
             </tr>
-            <tr>
-              <td>Cloud Hosting</td>
-              <td>Managed hosting</td>
-              <td>$1,200</td>
-              <td>$1,200</td>
-              <td>$1,200</td>
-              <td>$3,600</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Cloud Hosting</td>
+              <td class="p-4 border-b border-[var(--border)]">Managed hosting</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,200</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,200</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,200</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,600</td>
             </tr>
-            <tr>
-              <td>Connectivity</td>
-              <td>Broadband + backup</td>
-              <td>$2,400</td>
-              <td>$2,400</td>
-              <td>$2,400</td>
-              <td>$7,200</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Connectivity</td>
+              <td class="p-4 border-b border-[var(--border)]">Broadband + backup</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,400</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,400</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,400</td>
+              <td class="p-4 border-b border-[var(--border)]">$7,200</td>
             </tr>
-            <tr>
-              <td>Devices</td>
-              <td>10 shared tablets</td>
-              <td>$3,000</td>
-              <td>$0</td>
-              <td>$1,500</td>
-              <td>$4,500</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Devices</td>
+              <td class="p-4 border-b border-[var(--border)]">10 shared tablets</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$4,500</td>
             </tr>
-            <tr>
-              <td>Training</td>
-              <td>Basic staff training</td>
-              <td>$3,000</td>
-              <td>$1,500</td>
-              <td>$1,500</td>
-              <td>$6,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Training</td>
+              <td class="p-4 border-b border-[var(--border)]">Basic staff training</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
             </tr>
-            <tr>
-              <td>Support & Maintenance</td>
-              <td>Email support</td>
-              <td>$2,000</td>
-              <td>$2,000</td>
-              <td>$2,000</td>
-              <td>$6,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Support & Maintenance</td>
+              <td class="p-4 border-b border-[var(--border)]">Email support</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
             </tr>
           </tbody>
-          <tfoot>
+          <tfoot class="bg-[var(--bg)] font-bold">
             <tr>
-              <td colspan="3"><strong>Total 3-Year Cost</strong></td>
-              <td colspan="3"><strong>$33,300</strong></td>
+              <td colspan="3" class="p-5"><strong>Total 3-Year Cost</strong></td>
+              <td colspan="3" class="p-5"><strong>$33,300</strong></td>
             </tr>
           </tfoot>
         </table>
       </div>
-      <div class="breakdown-note">
-        <p><strong>Best for:</strong> Schools ready to invest modestly in digital transformation with mix of free and low-cost tools. Includes basic support and minimal device program.</p>
+      <div class="p-6 bg-[var(--bg)] border-2 border-[var(--primary)] rounded-lg">
+        <p class="m-0 text-[var(--text)] leading-relaxed"><strong>Best for:</strong> Schools ready to invest modestly in digital transformation with mix of free and low-cost tools. Includes basic support and minimal device program.</p>
       </div>
     </section>
 
-    <section id="standard-breakdown" class="breakdown-section">
-      <h2><DollarSign class="section-icon" size={32} /> Standard Implementation Breakdown (Recommended)</h2>
-      <div class="breakdown-table">
-        <table>
-          <thead>
+    <!-- Moderate Budget Breakdown -->
+    <section id="moderate-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
+        <DollarSign size={32} class="text-[var(--primary)]" />
+        Moderate Budget: Cost Breakdown (Common Scenario)
+      </h2>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse text-sm min-w-[600px]">
+          <thead class="bg-[var(--bg)]">
             <tr>
-              <th>Category</th>
-              <th>Solution</th>
-              <th>Year 1</th>
-              <th>Year 2</th>
-              <th>Year 3</th>
-              <th>Total</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Category</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Solution</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 1</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 2</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 3</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Total</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>LMS Platform</td>
-              <td>Moodle Cloud or Canvas</td>
-              <td>$3,000</td>
-              <td>$3,000</td>
-              <td>$3,000</td>
-              <td>$9,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">LMS Platform</td>
+              <td class="p-4 border-b border-[var(--border)]">Moodle Cloud or Canvas</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$9,000</td>
             </tr>
-            <tr>
-              <td>SIS Platform</td>
-              <td>PowerSchool or similar</td>
-              <td>$5,000</td>
-              <td>$5,000</td>
-              <td>$5,000</td>
-              <td>$15,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">SIS Platform</td>
+              <td class="p-4 border-b border-[var(--border)]">PowerSchool or similar</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$15,000</td>
             </tr>
-            <tr>
-              <td>Cloud Infrastructure</td>
-              <td>AWS Educate or Azure</td>
-              <td>$2,500</td>
-              <td>$2,500</td>
-              <td>$2,500</td>
-              <td>$7,500</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Cloud Infrastructure</td>
+              <td class="p-4 border-b border-[var(--border)]">AWS Educate or Azure</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$7,500</td>
             </tr>
-            <tr>
-              <td>Connectivity</td>
-              <td>High-speed broadband</td>
-              <td>$3,600</td>
-              <td>$3,600</td>
-              <td>$3,600</td>
-              <td>$10,800</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Connectivity</td>
+              <td class="p-4 border-b border-[var(--border)]">High-speed broadband</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,600</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,600</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,600</td>
+              <td class="p-4 border-b border-[var(--border)]">$10,800</td>
             </tr>
-            <tr>
-              <td>Devices</td>
-              <td>100 Chromebooks (1:3 ratio)</td>
-              <td>$25,000</td>
-              <td>$0</td>
-              <td>$12,500</td>
-              <td>$37,500</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Devices</td>
+              <td class="p-4 border-b border-[var(--border)]">100 Chromebooks (1:3 ratio)</td>
+              <td class="p-4 border-b border-[var(--border)]">$25,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">$12,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$37,500</td>
             </tr>
-            <tr>
-              <td>Professional Development</td>
-              <td>Teacher & staff training</td>
-              <td>$5,000</td>
-              <td>$3,000</td>
-              <td>$3,000</td>
-              <td>$11,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Professional Development</td>
+              <td class="p-4 border-b border-[var(--border)]">Teacher & staff training</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$11,000</td>
             </tr>
-            <tr>
-              <td>Technical Support</td>
-              <td>Dedicated support</td>
-              <td>$3,000</td>
-              <td>$3,000</td>
-              <td>$3,000</td>
-              <td>$9,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Technical Support</td>
+              <td class="p-4 border-b border-[var(--border)]">Dedicated support</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$9,000</td>
             </tr>
-            <tr>
-              <td>Analytics & Reporting</td>
-              <td>Basic analytics tools</td>
-              <td>$1,000</td>
-              <td>$1,000</td>
-              <td>$1,000</td>
-              <td>$3,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Analytics & Reporting</td>
+              <td class="p-4 border-b border-[var(--border)]">Basic analytics tools</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$1,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$3,000</td>
             </tr>
           </tbody>
-          <tfoot>
+          <tfoot class="bg-[var(--bg)] font-bold">
             <tr>
-              <td colspan="3"><strong>Total 3-Year Cost</strong></td>
-              <td colspan="3"><strong>$75,300</strong></td>
+              <td colspan="3" class="p-5"><strong>Total 3-Year Cost</strong></td>
+              <td colspan="3" class="p-5"><strong>$75,300</strong></td>
             </tr>
           </tfoot>
         </table>
       </div>
-      <div class="breakdown-note">
-        <p><strong>Best for:</strong> Schools committed to comprehensive digital transformation with balanced investment in technology, training, and support. Most popular option for medium-sized schools.</p>
+      <div class="p-6 bg-[var(--bg)] border-2 border-[var(--primary)] rounded-lg">
+        <p class="m-0 text-[var(--text)] leading-relaxed"><strong>Best for:</strong> Schools committed to comprehensive digital transformation with balanced investment in technology, training, and support. Most popular option for medium-sized schools.</p>
       </div>
     </section>
 
-    <section id="premium-breakdown" class="breakdown-section">
-      <h2><DollarSign class="section-icon" size={32} /> Premium Implementation Breakdown</h2>
-      <div class="breakdown-table">
-        <table>
-          <thead>
+    <!-- Comprehensive Budget Breakdown -->
+    <section id="comprehensive-breakdown" class="mb-16 p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] mb-8 flex items-center gap-4 text-2xl font-bold">
+        <DollarSign size={32} class="text-[var(--primary)]" />
+        Comprehensive Budget: Cost Breakdown
+      </h2>
+      <div class="overflow-x-auto mb-8">
+        <table class="w-full border-collapse text-sm min-w-[600px]">
+          <thead class="bg-[var(--bg)]">
             <tr>
-              <th>Category</th>
-              <th>Solution</th>
-              <th>Year 1</th>
-              <th>Year 2</th>
-              <th>Year 3</th>
-              <th>Total</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Category</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Solution</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 1</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 2</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Year 3</th>
+              <th class="p-4 text-left font-semibold text-[var(--primary)] border-b-2 border-[var(--primary)]">Total</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>LMS Platform</td>
-              <td>Canvas or Blackboard</td>
-              <td>$8,000</td>
-              <td>$8,000</td>
-              <td>$8,000</td>
-              <td>$24,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">LMS Platform</td>
+              <td class="p-4 border-b border-[var(--border)]">Canvas or Blackboard</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$24,000</td>
             </tr>
-            <tr>
-              <td>SIS Platform</td>
-              <td>PowerSchool Premium</td>
-              <td>$10,000</td>
-              <td>$10,000</td>
-              <td>$10,000</td>
-              <td>$30,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">SIS Platform</td>
+              <td class="p-4 border-b border-[var(--border)]">PowerSchool Premium</td>
+              <td class="p-4 border-b border-[var(--border)]">$10,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$10,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$10,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$30,000</td>
             </tr>
-            <tr>
-              <td>Cloud Infrastructure</td>
-              <td>AWS or Azure (scalable)</td>
-              <td>$5,000</td>
-              <td>$5,000</td>
-              <td>$5,000</td>
-              <td>$15,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Cloud Infrastructure</td>
+              <td class="p-4 border-b border-[var(--border)]">AWS or Azure (scalable)</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$15,000</td>
             </tr>
-            <tr>
-              <td>Connectivity</td>
-              <td>Enterprise broadband</td>
-              <td>$6,000</td>
-              <td>$6,000</td>
-              <td>$6,000</td>
-              <td>$18,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Connectivity</td>
+              <td class="p-4 border-b border-[var(--border)]">Enterprise broadband</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$18,000</td>
             </tr>
-            <tr>
-              <td>Devices</td>
-              <td>300 Chromebooks (1:1 for grades 9-12)</td>
-              <td>$75,000</td>
-              <td>$0</td>
-              <td>$37,500</td>
-              <td>$112,500</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Devices</td>
+              <td class="p-4 border-b border-[var(--border)]">300 Chromebooks (1:1 for grades 9-12)</td>
+              <td class="p-4 border-b border-[var(--border)]">$75,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$0</td>
+              <td class="p-4 border-b border-[var(--border)]">$37,500</td>
+              <td class="p-4 border-b border-[var(--border)]">$112,500</td>
             </tr>
-            <tr>
-              <td>Professional Development</td>
-              <td>Comprehensive training program</td>
-              <td>$12,000</td>
-              <td>$8,000</td>
-              <td>$8,000</td>
-              <td>$28,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Professional Development</td>
+              <td class="p-4 border-b border-[var(--border)]">Comprehensive training program</td>
+              <td class="p-4 border-b border-[var(--border)]">$12,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$28,000</td>
             </tr>
-            <tr>
-              <td>AI & Analytics</td>
-              <td>Advanced analytics platform</td>
-              <td>$5,000</td>
-              <td>$5,000</td>
-              <td>$5,000</td>
-              <td>$15,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">AI & Analytics</td>
+              <td class="p-4 border-b border-[var(--border)]">Advanced analytics platform</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$5,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$15,000</td>
             </tr>
-            <tr>
-              <td>Technical Support</td>
-              <td>Premium support & consulting</td>
-              <td>$8,000</td>
-              <td>$8,000</td>
-              <td>$8,000</td>
-              <td>$24,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Technical Support</td>
+              <td class="p-4 border-b border-[var(--border)]">Premium support & consulting</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$8,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$24,000</td>
             </tr>
-            <tr>
-              <td>Parent Engagement</td>
-              <td>Communication platforms</td>
-              <td>$2,000</td>
-              <td>$2,000</td>
-              <td>$2,000</td>
-              <td>$6,000</td>
+            <tr class="hover:bg-[var(--bg)]">
+              <td class="p-4 border-b border-[var(--border)]">Parent Engagement</td>
+              <td class="p-4 border-b border-[var(--border)]">Communication platforms</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$2,000</td>
+              <td class="p-4 border-b border-[var(--border)]">$6,000</td>
             </tr>
           </tbody>
-          <tfoot>
+          <tfoot class="bg-[var(--bg)] font-bold">
             <tr>
-              <td colspan="3"><strong>Total 3-Year Cost</strong></td>
-              <td colspan="3"><strong>$181,000</strong></td>
+              <td colspan="3" class="p-5"><strong>Total 3-Year Cost</strong></td>
+              <td colspan="3" class="p-5"><strong>$181,000</strong></td>
             </tr>
           </tfoot>
         </table>
       </div>
-      <div class="breakdown-note">
-        <p><strong>Best for:</strong> Well-funded schools or those with grants/donor support seeking comprehensive 1:1 device programs, advanced analytics, and premium support services.</p>
+      <div class="p-6 bg-[var(--bg)] border-2 border-[var(--primary)] rounded-lg">
+        <p class="m-0 text-[var(--text)] leading-relaxed"><strong>Best for:</strong> Well-funded schools or those with grants/donor support seeking comprehensive 1:1 device programs, advanced analytics, and premium support services.</p>
       </div>
     </section>
 
     <!-- Cost Savings Tips -->
-    <section class="savings-section">
-      <h2>Cost Reduction Strategies</h2>
-      <div class="savings-grid">
-        <div class="savings-card">
-          <h3>Phased Rollout</h3>
-          <p>Start with free tools and core grades, expand gradually as budget allows. Year 1 can be under $10K.</p>
-        </div>
-        <div class="savings-card">
-          <h3>BYOD Programs</h3>
-          <p>Encourage students to bring smartphones/tablets. Reduces device costs by 60-80%.</p>
-        </div>
-        <div class="savings-card">
-          <h3>Open Source First</h3>
-          <p>Prioritize free, open-source tools. Upgrade to paid tools only when necessary.</p>
-        </div>
-        <div class="savings-card">
-          <h3>Community Partnerships</h3>
-          <p>Partner with local tech companies, NGOs, or universities for donated equipment and expertise.</p>
-        </div>
-        <div class="savings-card">
-          <h3>Bulk Purchasing</h3>
-          <p>Coordinate with other schools for group purchasing discounts on devices and software.</p>
-        </div>
-        <div class="savings-card">
-          <h3>Grant Funding</h3>
-          <p>Apply for education technology grants from government, foundations, and international organizations.</p>
-        </div>
+    <section class="mb-16 p-8 md:p-12 bg-[var(--bg)] rounded-2xl">
+      <h2 class="text-center text-[var(--primary)] mb-12 text-[clamp(1.75rem,5vw,2.5rem)] font-bold">Cost Reduction Strategies</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {savingsStrategies.map((strategy) => (
+          <div class="bg-[var(--bg-surface)] p-8 rounded-xl border border-[var(--border)]">
+            <h3 class="text-[var(--primary)] mb-4 text-xl font-semibold">{strategy.title}</h3>
+            <p class="text-[var(--text-secondary)] leading-relaxed m-0">{strategy.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="pricing-cta">
-      <h2>Ready to Start Your Digital Transformation?</h2>
-      <p>Choose the implementation level that matches your budget and vision. Every school's journey is unique.</p>
-      <div class="cta-buttons">
-        <a href="/framework" class="btn btn-primary">View Full Framework</a>
-        <a href="/about" class="btn btn-secondary">Learn More About Nyuchi Learning</a>
+    <section class="text-center py-16 px-8 bg-[var(--bg-surface)] text-[var(--text)] rounded-2xl">
+      <h2 class="text-[var(--text)] mb-4 text-[clamp(1.75rem,5vw,2.5rem)] font-bold">Ready to Plan Your Implementation?</h2>
+      <p class="text-xl mb-4 opacity-95">Use these estimates to build your budget proposal and secure funding.</p>
+      <p class="text-base mb-8 text-[var(--text-secondary)]">Remember: The framework and guidance are free. You only invest in the actual implementation.</p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/framework" class="inline-block py-3 px-8 rounded-xl font-semibold transition-all duration-300 bg-[var(--primary)] text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-lg">Download Free Framework</a>
+        <a href="/consultation" class="inline-block py-3 px-8 rounded-xl font-semibold transition-all duration-300 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Book Free Consultation</a>
       </div>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .pricing-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .pricing-header {
-    text-align: center;
-    padding: 4rem 1rem;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
-                url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=1600&q=80') center/cover no-repeat;
-    color: white;
-    border-radius: 1rem;
-    margin-bottom: 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .pricing-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.7) 0%, rgba(26, 26, 26, 0.85) 100%);
-    z-index: 0;
-  }
-
-  .pricing-header > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .pricing-header h1 {
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    margin-bottom: 1rem;
-  }
-
-  .subtitle {
-    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
-    opacity: 0.95;
-    margin-bottom: 2rem;
-  }
-
-  .pricing-note {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    max-width: 800px;
-    margin: 2rem auto 0;
-    padding: 1.5rem;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 0.5rem;
-    text-align: left;
-  }
-
-  .pricing-note p {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  /* Tiers Grid */
-  .tiers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 6rem;
-  }
-
-  .tier-card {
-    background: white;
-    border-radius: 1rem;
-    padding: 2rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
-
-  .tier-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-  }
-
-  .tier-badge {
-    position: absolute;
-    top: -12px;
-    right: 20px;
-    background: var(--primary);
-    color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 9999px;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  .tier-card h2 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 1.75rem;
-  }
-
-  .tier-price {
-    margin-bottom: 1.5rem;
-  }
-
-  .price {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--primary);
-    line-height: 1.2;
-  }
-
-  .period {
-    color: var(--text-light);
-    font-size: 0.95rem;
-  }
-
-  .tier-description {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  .tier-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2rem 0;
-  }
-
-  .tier-features li {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-  }
-
-  .tier-features li:last-child {
-    border-bottom: none;
-  }
-
-  /* Breakdown Sections */
-  .breakdown-section {
-    margin-bottom: 4rem;
-    padding: 3rem 2rem;
-    background: white;
-    border-radius: 1rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .breakdown-section h2 {
-    color: var(--primary);
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-
-  .section-icon {
-    color: var(--primary);
-  }
-
-  .breakdown-table {
-    overflow-x: auto;
-    margin-bottom: 2rem;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.95rem;
-  }
-
-  thead {
-    background: var(--bg-gray);
-  }
-
-  th {
-    padding: 1rem;
-    text-align: left;
-    font-weight: 600;
-    color: var(--primary);
-    border-bottom: 2px solid var(--primary);
-  }
-
-  td {
-    padding: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
-  tbody tr:hover {
-    background: var(--bg-gray);
-  }
-
-  tfoot {
-    background: var(--bg-gray);
-    font-weight: 700;
-  }
-
-  tfoot td {
-    border-bottom: none;
-    padding: 1.25rem 1rem;
-  }
-
-  .breakdown-note {
-    padding: 1.5rem;
-    background: var(--bg-gray);
-    border-left: 4px solid var(--primary);
-    border-radius: 0.5rem;
-  }
-
-  .breakdown-note p {
-    margin: 0;
-    color: var(--text);
-    line-height: 1.8;
-  }
-
-  /* Savings Section */
-  .savings-section {
-    margin-bottom: 4rem;
-    padding: 3rem 2rem;
-    background: var(--bg-gray);
-    border-radius: 1rem;
-  }
-
-  .savings-section h2 {
-    text-align: center;
-    color: var(--primary);
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-  }
-
-  .savings-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-  }
-
-  .savings-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .savings-card h3 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-  }
-
-  .savings-card p {
-    color: var(--text-light);
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* CTA Section */
-  .pricing-cta {
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--bg-dark);
-    color: white;
-    border-radius: 1rem;
-  }
-
-  .pricing-cta h2 {
-    color: white;
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-  }
-
-  .pricing-cta p {
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 0.75rem 2rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s;
-  }
-
-  .btn-primary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-secondary:hover {
-    background: white;
-    color: var(--primary);
-  }
-
-  /* Mobile Responsive Styles */
-  @media (max-width: 768px) {
-    .pricing-container {
-      padding: 3rem 1.25rem;
-    }
-
-    .pricing-header h1 {
-      font-size: clamp(1.75rem, 7vw, 2.5rem);
-      margin-bottom: 1rem;
-    }
-
-    .subtitle {
-      font-size: 1rem;
-      padding: 0 0.5rem;
-    }
-
-    .pricing-note {
-      font-size: 0.9rem;
-      padding: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    /* Tier cards - single column on mobile */
-    .tiers-grid {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .tier-card {
-      padding: 1.75rem;
-    }
-
-    .tier-card h2 {
-      font-size: 1.5rem;
-    }
-
-    .tier-badge {
-      font-size: 0.8rem;
-      padding: 0.375rem 1rem;
-    }
-
-    .tier-price .price {
-      font-size: 2rem;
-    }
-
-    .tier-price .period {
-      font-size: 0.9rem;
-    }
-
-    .tier-description {
-      font-size: 0.95rem;
-    }
-
-    .tier-features li {
-      font-size: 0.95rem;
-      padding: 0.5rem 0;
-    }
-
-    /* Breakdown sections */
-    .cost-breakdown {
-      padding: 3rem 1.25rem;
-    }
-
-    .breakdown-section h2 {
-      font-size: clamp(1.5rem, 6vw, 2rem);
-      margin-bottom: 1.25rem;
-    }
-
-    .breakdown-intro {
-      font-size: 1rem;
-      padding: 0 0.5rem;
-    }
-
-    /* Tables on mobile - make scrollable */
-    .breakdown-table-container {
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      margin: 0 -1.25rem;
-      padding: 0 1.25rem;
-    }
-
-    .breakdown-table {
-      font-size: 0.8rem;
-      min-width: 600px; /* Prevent table from getting too squished */
-    }
-
-    th, td {
-      padding: 0.75rem 0.5rem;
-      font-size: 0.8rem;
-    }
-
-    th {
-      font-size: 0.75rem;
-    }
-
-    /* Savings section */
-    .savings-section {
-      padding: 3rem 1.25rem;
-    }
-
-    .savings-section h2 {
-      font-size: clamp(1.5rem, 6vw, 2rem);
-    }
-
-    .savings-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .savings-card {
-      padding: 1.5rem;
-    }
-
-    .savings-card h3 {
-      font-size: 1.25rem;
-    }
-
-    .savings-card p {
-      font-size: 0.95rem;
-    }
-
-    /* CTA section */
-    .pricing-cta {
-      padding: 3rem 1.25rem;
-    }
-
-    .pricing-cta h2 {
-      font-size: clamp(1.5rem, 6vw, 2rem);
-    }
-
-    .pricing-cta p {
-      font-size: 1rem;
-      padding: 0 0.5rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      gap: 0.75rem;
-      align-items: stretch;
-    }
-
-    .cta-buttons .btn {
-      width: 100%;
-    }
-  }
-
-  /* Extra small screens */
-  @media (max-width: 480px) {
-    .pricing-container {
-      padding: 2.5rem 1rem;
-    }
-
-    .pricing-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .subtitle {
-      font-size: 0.95rem;
-    }
-
-    .pricing-note {
-      font-size: 0.85rem;
-      padding: 0.875rem;
-    }
-
-    .tier-card {
-      padding: 1.5rem;
-    }
-
-    .tier-card h2 {
-      font-size: 1.35rem;
-    }
-
-    .tier-price .price {
-      font-size: 1.75rem;
-    }
-
-    .cost-breakdown,
-    .savings-section,
-    .pricing-cta {
-      padding: 2.5rem 1rem;
-    }
-
-    .breakdown-section h2,
-    .savings-section h2,
-    .pricing-cta h2 {
-      font-size: 1.5rem;
-    }
-
-    .breakdown-table {
-      font-size: 0.75rem;
-    }
-
-    th, td {
-      padding: 0.625rem 0.375rem;
-      font-size: 0.75rem;
-    }
-
-    .savings-card {
-      padding: 1.25rem;
-    }
-
-    .savings-card h3 {
-      font-size: 1.15rem;
-    }
-  }
-</style>

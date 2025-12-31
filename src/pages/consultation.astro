@@ -1,113 +1,111 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Calendar, CheckCircle, Users, Zap } from 'lucide-astro';
+
+// Discussion topics
+const discussionTopics = [
+  "Your school's current technology infrastructure and digital maturity",
+  "Specific challenges around connectivity, budget, and device access",
+  "Framework customization for your community and context",
+  "Implementation roadmap and phased rollout strategy",
+  "Budget planning and cost optimization opportunities",
+  "Staff training and digital literacy program design"
+];
+
+// Attendee types
+const attendees = [
+  { icon: Users, title: "School Leadership", description: "Principals, administrators, board members" },
+  { icon: Zap, title: "IT & Technology", description: "IT directors, technology coordinators" },
+  { icon: Calendar, title: "Academic Leaders", description: "Curriculum directors, instructional coordinators" }
+];
 ---
 
 <BaseLayout
-  title="Book a Consultation | Nyuchi Learning"
-  description="Schedule a consultation with Nyuchi Learning to discuss digital transformation for your school. Get expert guidance on implementing the K-12 Digital Campus Framework."
-  keywords="education consultation, school digital transformation consultation, K-12 technology planning, education technology advisory, Nyuchi Learning consultation, school technology implementation"
+  title="Book a Consultation | nyuchi learning"
+  description="Schedule a consultation with nyuchi learning to discuss digital transformation for your school. Get expert guidance on implementing the K-12 Digital Campus Framework."
+  keywords="education consultation, school digital transformation consultation, K-12 technology planning, education technology advisory, nyuchi learning consultation, school technology implementation"
 >
-  <div class="consultation-container">
-    <div class="consultation-header">
-      <p class="ubuntu-header">Ubuntu: I am because we are</p>
-      <h1>Book a Consultation</h1>
-      <p class="tagline">
+  <div class="max-w-[1400px] mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="relative text-center mb-16 py-12 px-4 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl overflow-hidden">
+      <p class="text-lg italic text-[var(--text-secondary)] mb-4 relative z-10">Ubuntu: I am because we are</p>
+      <h1 class="text-[clamp(2rem,8vw,3.5rem)] font-extrabold font-serif mb-4 relative z-10">Book a Consultation</h1>
+      <p class="text-[clamp(1rem,3vw,1.3rem)] opacity-95 max-w-[800px] mx-auto leading-relaxed relative z-10">
         Let's discuss how the K-12 Digital Campus Framework can transform your school's digital experience
       </p>
     </div>
 
-    <div class="consultation-content">
-      <div class="consultation-info">
-        <section class="info-section">
-          <h2>What to Expect</h2>
-          <p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+      <!-- Info Section -->
+      <div class="flex flex-col gap-8">
+        <!-- What to Expect -->
+        <section class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm border border-[var(--border)]">
+          <h2 class="text-[var(--primary)] text-2xl font-bold mb-4">What to Expect</h2>
+          <p class="leading-relaxed text-[var(--text)] mb-4">
             During your consultation, we'll explore how the K-12 Digital Campus Framework can be adapted to your school's unique needs, challenges, and goals. This is a collaborative conversation focused on practical solutions.
           </p>
         </section>
 
-        <section class="info-section">
-          <h3>We'll Discuss:</h3>
-          <ul class="benefits-list">
-            <li>
-              <CheckCircle class="check-icon" size={20} strokeWidth={2} />
-              <span>Your school's current technology infrastructure and digital maturity</span>
-            </li>
-            <li>
-              <CheckCircle class="check-icon" size={20} strokeWidth={2} />
-              <span>Specific challenges around connectivity, budget, and device access</span>
-            </li>
-            <li>
-              <CheckCircle class="check-icon" size={20} strokeWidth={2} />
-              <span>Framework customization for your community and context</span>
-            </li>
-            <li>
-              <CheckCircle class="check-icon" size={20} strokeWidth={2} />
-              <span>Implementation roadmap and phased rollout strategy</span>
-            </li>
-            <li>
-              <CheckCircle class="check-icon" size={20} strokeWidth={2} />
-              <span>Budget planning and cost optimization opportunities</span>
-            </li>
-            <li>
-              <CheckCircle class="check-icon" size={20} strokeWidth={2} />
-              <span>Staff training and digital literacy program design</span>
-            </li>
+        <!-- We'll Discuss -->
+        <section class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm border border-[var(--border)]">
+          <h3 class="text-[var(--primary)] text-xl font-bold mb-4">We'll Discuss:</h3>
+          <ul class="list-none p-0 m-0 space-y-4">
+            {discussionTopics.map((topic) => (
+              <li class="flex items-start gap-3 leading-relaxed">
+                <CheckCircle class="text-[var(--primary)] flex-shrink-0 mt-0.5" size={20} strokeWidth={2} />
+                <span class="text-[var(--text)]">{topic}</span>
+              </li>
+            ))}
           </ul>
         </section>
 
-        <section class="info-section">
-          <h3>Who Should Attend</h3>
-          <div class="attendee-grid">
-            <div class="attendee-card">
-              <Users class="attendee-icon" size={32} strokeWidth={1.5} />
-              <h4>School Leadership</h4>
-              <p>Principals, administrators, board members</p>
-            </div>
-            <div class="attendee-card">
-              <Zap class="attendee-icon" size={32} strokeWidth={1.5} />
-              <h4>IT & Technology</h4>
-              <p>IT directors, technology coordinators</p>
-            </div>
-            <div class="attendee-card">
-              <Calendar class="attendee-icon" size={32} strokeWidth={1.5} />
-              <h4>Academic Leaders</h4>
-              <p>Curriculum directors, instructional coordinators</p>
-            </div>
+        <!-- Who Should Attend -->
+        <section class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm border border-[var(--border)]">
+          <h3 class="text-[var(--primary)] text-xl font-bold mb-6">Who Should Attend</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {attendees.map((attendee) => (
+              <div class="text-center p-6 bg-[var(--bg)] rounded-lg transition-all duration-200 hover:-translate-y-1">
+                <attendee.icon class="text-[var(--primary)] mx-auto mb-4" size={32} strokeWidth={1.5} />
+                <h4 class="text-lg font-semibold mb-2 text-[var(--text)]">{attendee.title}</h4>
+                <p class="text-sm text-[var(--text-secondary)] m-0">{attendee.description}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section class="info-section commitment">
-          <h3>Our Commitment</h3>
-          <p>
-            Nyuchi Learning is committed to Zimbabwe and Africa's educational future. Built by educators for educators,
+        <!-- Commitment -->
+        <section class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+          <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Our Commitment</h3>
+          <p class="leading-relaxed text-[var(--text)] mb-4">
+            nyuchi learning is committed to Zimbabwe and Africa's educational future. Built by educators for educators,
             our frameworks are <strong>open, shareable, and adaptable</strong>. We believe in community success—when
             one school thrives, we all benefit.
           </p>
-          <p class="emphasis">
+          <p class="font-medium text-[var(--primary)]">
             Money earned internationally is reinvested into Zimbabwe to build, grow, and support education across the continent.
           </p>
         </section>
       </div>
 
-      <div class="consultation-booking">
-        <div class="booking-card">
-          <h2>Schedule Your Consultation</h2>
-          <p class="booking-description">
+      <!-- Booking Section -->
+      <div class="lg:sticky lg:top-[100px] h-fit">
+        <div class="bg-[var(--bg-surface)] p-8 rounded-xl border border-[var(--border)]">
+          <h2 class="text-[var(--primary)] text-2xl font-bold mb-4">Schedule Your Consultation</h2>
+          <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">
             Choose a time that works for you. Consultations are typically 45-60 minutes.
           </p>
 
           <!-- Cal.com Button Link -->
-          <div class="cal-booking-section">
+          <div class="mt-8 text-center py-12 px-8 bg-[var(--bg)] rounded-xl">
             <a
               href="https://cal.com/bryanfawcett"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn-primary btn-large cal-booking-btn"
+              class="inline-flex items-center justify-center gap-3 text-xl py-5 px-12 min-h-[56px] rounded-full font-semibold bg-[var(--primary)] text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110"
             >
               Open Booking Calendar
             </a>
-            <p class="cal-note">
+            <p class="mt-6 text-[var(--text-secondary)] text-sm leading-relaxed max-w-[500px] mx-auto">
               You'll be redirected to our secure booking calendar where you can view available times and schedule your consultation.
             </p>
           </div>
@@ -115,412 +113,16 @@ import { Calendar, CheckCircle, Users, Zap } from 'lucide-astro';
       </div>
     </div>
 
-    <section class="consultation-cta">
-      <h2>Questions Before Booking?</h2>
-      <p>
+    <!-- CTA Section -->
+    <section class="text-center bg-[var(--bg-surface)] text-[var(--text)] py-16 px-8 rounded-2xl border-2 border-[var(--primary)]">
+      <h2 class="text-[var(--text)] text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4">Questions Before Booking?</h2>
+      <p class="text-[var(--text)] text-xl mb-8">
         Feel free to explore the framework documentation or read our blog for implementation insights.
       </p>
-      <div class="cta-buttons">
-        <a href="/framework" class="btn btn-primary">View Framework</a>
-        <a href="/blog" class="btn btn-secondary">Read Blog</a>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/framework" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">View Framework</a>
+        <a href="/blog" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Read Blog</a>
       </div>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .consultation-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .consultation-header {
-    position: relative;
-    text-align: center;
-    margin-bottom: 4rem;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
-                url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=1600&q=80') center/cover no-repeat;
-    color: white;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-
-  .consultation-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.7) 0%, rgba(26, 26, 26, 0.85) 100%);
-    z-index: 0;
-  }
-
-  .consultation-header > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .ubuntu-header {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--gray-300);
-    margin-bottom: 1rem;
-  }
-
-  .consultation-header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 800;
-  }
-
-  .tagline {
-    font-size: 1.3rem;
-    opacity: 0.95;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  .consultation-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 4rem;
-  }
-
-  .consultation-info {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-
-  .info-section {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .info-section h2 {
-    color: var(--primary);
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .info-section h3 {
-    color: var(--primary-dark);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .info-section p {
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .benefits-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .benefits-list li {
-    display: flex;
-    align-items: start;
-    gap: 0.75rem;
-    margin-bottom: 1rem;
-    line-height: 1.6;
-  }
-
-  .check-icon {
-    color: var(--primary);
-    flex-shrink: 0;
-    margin-top: 0.15rem;
-  }
-
-  .attendee-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-
-  .attendee-card {
-    text-align: center;
-    padding: 1.5rem;
-    background: var(--bg-gray);
-    border-radius: 0.5rem;
-    transition: transform 0.2s;
-  }
-
-  .attendee-card:hover {
-    transform: translateY(-4px);
-  }
-
-  .attendee-icon {
-    color: var(--primary);
-    margin: 0 auto 1rem;
-  }
-
-  .attendee-card h4 {
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-    color: var(--text);
-  }
-
-  .attendee-card p {
-    font-size: 0.9rem;
-    color: var(--text-light);
-    margin: 0;
-  }
-
-  .commitment {
-    background: var(--bg-gray);
-    border-left: 4px solid var(--primary);
-  }
-
-  .emphasis {
-    font-weight: 500;
-    color: var(--primary);
-    margin-top: 1rem;
-  }
-
-  .consultation-booking {
-    position: sticky;
-    top: 100px;
-    height: fit-content;
-  }
-
-  .booking-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .booking-card h2 {
-    color: var(--primary);
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .booking-description {
-    color: var(--text-light);
-    margin-bottom: 1.5rem;
-    line-height: 1.6;
-  }
-
-  .cal-booking-section {
-    margin-top: 2rem;
-    text-align: center;
-    padding: 3rem 2rem;
-    background: var(--bg-gray);
-    border-radius: 0.75rem;
-  }
-
-  .cal-booking-btn {
-    font-size: 1.2rem;
-    padding: 1.25rem 3rem;
-    min-height: 56px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    text-decoration: none;
-  }
-
-  .btn-large {
-    font-size: 1.2rem;
-    padding: 1.25rem 3rem;
-  }
-
-  .cal-note {
-    margin-top: 1.5rem;
-    color: var(--text-light);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    max-width: 500px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .consultation-cta {
-    text-align: center;
-    background: var(--bg-dark);
-    color: white;
-    padding: 4rem 2rem;
-    border-radius: 1rem;
-    border-top: 4px solid var(--primary);
-  }
-
-  .consultation-cta h2 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .consultation-cta p {
-    color: white;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    min-height: 48px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .btn-primary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .btn-secondary:hover {
-    background: white;
-    color: var(--primary);
-  }
-
-  /* Mobile Optimization */
-  @media (max-width: 1024px) {
-    .consultation-content {
-      grid-template-columns: 1fr;
-      gap: 2rem;
-    }
-
-    .consultation-booking {
-      position: static;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .consultation-header {
-      padding: 3rem 1.25rem;
-    }
-
-    .consultation-header h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 1.25rem;
-      line-height: 1.2;
-    }
-
-    .tagline {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      padding: 0 0.5rem;
-    }
-
-    .info-section,
-    .booking-card {
-      padding: 1.5rem;
-    }
-
-    .info-section h2,
-    .booking-card h2 {
-      font-size: 1.5rem;
-    }
-
-    .info-section h3 {
-      font-size: 1.25rem;
-    }
-
-    .attendee-grid {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-
-    .consultation-cta {
-      padding: 3rem 1.5rem;
-    }
-
-    .consultation-cta h2 {
-      font-size: 1.75rem;
-    }
-
-    .consultation-cta p {
-      font-size: 1rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .btn {
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .cal-booking-section {
-      padding: 2rem 1.5rem;
-    }
-
-    .cal-booking-btn {
-      font-size: 1rem;
-      padding: 1rem 2rem;
-      width: 100%;
-    }
-
-    .cal-note {
-      font-size: 0.9rem;
-      margin-top: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .consultation-header {
-      padding: 2.5rem 1rem;
-    }
-
-    .consultation-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .tagline {
-      font-size: 1rem;
-    }
-
-    .info-section,
-    .booking-card {
-      padding: 1.25rem;
-    }
-
-    .consultation-cta {
-      padding: 2.5rem 1rem;
-    }
-
-    .consultation-cta h2 {
-      font-size: 1.5rem;
-    }
-  }
-</style>

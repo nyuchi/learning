@@ -196,9 +196,10 @@ const breadcrumbData = {
 <meta name="geo.placename" content="Zimbabwe" />
 <meta name="language" content="English" />
 
-<!-- Theme -->
-<meta name="theme-color" content="#2C2C2C" />
-<meta name="msapplication-TileColor" content="#2C2C2C" />
+<!-- Theme - Uses brand dark mode base color -->
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)" />
+<meta name="msapplication-TileColor" content="#0A0A0A" />
 
 <!-- Structured Data - Organization -->
 <script type="application/ld+json" set:html={JSON.stringify(organizationData)} />
