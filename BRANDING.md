@@ -1,7 +1,8 @@
 # Nyuchi Learning - Brand Guidelines
 
-**Version**: 1.0
-**Last Updated**: October 2024
+**Version**: 6.0 (Education Theme)
+**Last Updated**: December 2025
+**Brand System**: Bundu Family - Five African Minerals
 **Maintained By**: Nyuchi Learning Development Team
 
 ---
@@ -9,11 +10,14 @@
 ## Table of Contents
 
 1. [Brand Identity](#brand-identity)
-2. [Company Background](#company-background)
-3. [Visual Identity](#visual-identity)
-4. [Voice & Messaging](#voice--messaging)
-5. [Digital Presence](#digital-presence)
-6. [Usage Guidelines](#usage-guidelines)
+2. [The Bundu Ecosystem](#the-bundu-ecosystem)
+3. [Five African Minerals Palette](#five-african-minerals-palette)
+4. [Education Theme](#education-theme)
+5. [Typography](#typography)
+6. [Design Tokens](#design-tokens)
+7. [Minerals Strip](#minerals-strip)
+8. [Voice & Messaging](#voice--messaging)
+9. [Usage Guidelines](#usage-guidelines)
 
 ---
 
@@ -21,16 +25,19 @@
 
 ### Who We Are
 
-**Nyuchi Learning** is a division of Nyuchi Africa dedicated to creating open, shareable frameworks for digital transformation in education across Africa.
+**Nyuchi Learning** is part of the Nyuchi brand family within the Bundu Ecosystem — technology that serves African communities with Ubuntu philosophy at its core.
 
-**Parent Organization:** Nyuchi Africa
-**Founded:** 2019
-**Registered:** Zimbabwe
-**Mission:** Built by educators, for education
+**Shona:** nyuchi /njuːtʃi/ = "bee"
+
+Nyuchi embodies the industrious spirit of the African bee — tireless workers who build together, pollinate ideas across communities, and create sweet results through collective effort.
+
+**Parent Ecosystem:** Bundu Family
+**Primary Mineral:** Cobalt (for education)
+**Mission:** To empower African communities through technology that feels like home
 
 ### Our Philosophy
 
-**Ubuntu: "I am because we are"**
+**Ubuntu: "Ndiri nekuti tiri" - I am because we are**
 
 This African philosophy is at the heart of everything we do:
 - Community success over individual achievement
@@ -38,188 +45,285 @@ This African philosophy is at the heart of everything we do:
 - Collective growth and shared knowledge
 - Open, shareable resources for all
 
-### Our Values
+### Ubuntu Five Pillars
 
-1. **Education-First**: Every decision prioritizes educational impact
-2. **Community-Driven**: Built with and for African educational communities
-3. **Open & Shareable**: Knowledge should be free and accessible
-4. **Africa-Tested**: Solutions proven on dusty roads, not just in theory
-5. **Local Investment**: Commitment to Zimbabwe and African economies
-
----
-
-## Company Background
-
-### Nyuchi Africa
-
-**Nyuchi Africa** (parent company)
-- Zimbabwe-registered company (2019)
-- Remote-first organization
-- Built on African roads, for African realities
-- Commitment to local economy reinvestment
-- Education technology and digital transformation focus
-
-### Nyuchi Learning (Division)
-
-**Nyuchi Learning** (this division)
-- Focused exclusively on educational frameworks
-- Creates open, shareable implementation guides
-- Serves K-12 schools across Africa
-- Supports multilingual communities
-- Provides free-to-premium solutions
+| Pillar | Shona | Application |
+|--------|-------|-------------|
+| Family | Mhuri | User accounts, personal data |
+| Community | Nharaunda | Social features, collaboration |
+| Society | Vanhu | Platform ecosystem, public features |
+| Environment | Zvakatipoteredza | Digital footprint, sustainability |
+| Spirituality | Mweya | Mission, values, cultural preservation |
 
 ---
 
-## Visual Identity
+## The Bundu Ecosystem
 
-### Logo System
+**Bundu** is the Shona word for wilderness — the untamed, natural space where life flourishes according to its own rhythm. The Bundu Ecosystem is our vision for technology: a digital wilderness where African innovation can grow naturally, where community comes before commerce, and where Ubuntu philosophy guides every decision.
 
-#### Logo Variants
+### Brand Family
 
-1. **Main Logo (Vertical)**
-   - Stacked layout
-   - Open book icon + "Nyuchi Learning" text
-   - Use: Website headers, print materials, presentations
+| Brand | Primary Mineral | Role | Purpose |
+|-------|----------------|------|---------|
+| **Bundu** | Terracotta | Parent Ecosystem | Technology that serves African communities |
+| **Nyuchi** | Gold/Cobalt | Action Layer | Commerce, learning, travel, community |
+| **Mukoko** | Tanzanite | Structure Layer | Identity, news, social, events |
+| **Shamwari** | Malachite | Intelligence Layer | AI companion across all platforms |
 
-2. **Horizontal Logo**
-   - Side-by-side layout
-   - Use: Wide headers, banners, social media covers
+### Nyuchi Products
 
-3. **Compact Logo**
-   - Icon with "N" initial
-   - Use: Favicons, app icons, small spaces
+| Category | Mineral | Products | Description |
+|----------|---------|----------|-------------|
+| **Education** | Cobalt | Nyuchi Learning, Nyuchi Lingo | Skills and language for modern Africa |
+| Services | Gold | Nyuchi Platform, Tukmart, Nyuchi Honey | Core commerce and rewards |
+| Travel | Malachite | Zimbabwe Travel, Iconic Expeditions | Authentic exploration guided by locals |
+| Community | Terracotta | Foundation, Technology Leaders of Africa | Ubuntu in action |
 
-#### Logo Files
+---
 
-- `nyuchi-learning-logo-main.svg`
-- `nyuchi-learning-logo-horizontal.svg`
-- `nyuchi-learning-logo-compact.svg`
-- `favicon.svg`
+## Five African Minerals Palette
 
-#### Logo Construction
+The Bundu Family brand ecosystem uses **ONE unified palette of 5 African Minerals** shared across all brands. All colors achieve **WCAG AAA (7:1+)** contrast ratios.
 
-**Icon:** Stylized open book with Africa-inspired accent dots
-- Represents: Education, learning, knowledge sharing
-- Symbolism: Open book = open knowledge, accessible to all
+| Mineral | Light Mode | Dark Mode | Origin | Use Case |
+|---------|------------|-----------|--------|----------|
+| **Cobalt** | `#0047AB` | `#00B0FF` | Katanga (DRC), Zambian Copperbelt | CTAs, links, **education** |
+| **Tanzanite** | `#4B0082` | `#B388FF` | Merelani Hills, Tanzania | Social, premium tiers |
+| **Malachite** | `#004D40` | `#64FFDA` | Congo Copper Belt | Success, travel, nature |
+| **Gold** | `#5D4037` | `#FFD740` | Ghana, South Africa, Mali | Rewards, honey, warmth |
+| **Terracotta** | `#8B4513` | `#D4A574` | Pan-African Earth | Community, Ubuntu |
 
-**Typography:**
-- "Nyuchi": Playfair Display, Bold (700)
-- "Learning": Roboto, Medium (500)
+### CSS Variables
 
-**Colors:**
-- Icon: Charcoal `#2C2C2C`
-- "Nyuchi": Charcoal `#2C2C2C`
-- "Learning": Gray `#6B7280`
+The site uses `prefers-color-scheme` media query for automatic theme switching:
 
-### Color Palette
+```css
+:root {
+  /* Five African Minerals - Dark Mode (default) */
+  --mineral-cobalt: #00B0FF;
+  --mineral-tanzanite: #B388FF;
+  --mineral-malachite: #64FFDA;
+  --mineral-gold: #FFD740;
+  --mineral-terracotta: #D4A574;
+}
 
-#### Primary Colors (For Use)
+@media (prefers-color-scheme: light) {
+  :root {
+    /* Five African Minerals - Light Mode */
+    --mineral-cobalt: #0047AB;
+    --mineral-tanzanite: #4B0082;
+    --mineral-malachite: #004D40;
+    --mineral-gold: #5D4037;
+    --mineral-terracotta: #8B4513;
+  }
+}
+```
 
-- **Charcoal**: `#2C2C2C` - Primary brand color
-- **Charcoal Dark**: `#1A1A1A` - Accents, hover states
-- **Gray**: `#6B7280` - Secondary text, subtitles
-- **Off-White**: `#FAFAFA` - Backgrounds
-- **Light Gray**: `#F5F5F5` - Section backgrounds
-- **Border Gray**: `#E5E7EB` - Dividers, borders
+---
 
-**Monochrome Approach:** The brand uses a sophisticated monochrome palette to emphasize content over decoration.
+## Education Theme
 
-#### Zimbabwe Flag Colors (Special Use Only)
+Nyuchi Learning uses the **Education Theme** variant with Cobalt as the primary mineral and Slate dark surfaces.
 
-These colors are reserved exclusively for the Zimbabwe flag strip visual element:
+### Primary Color: Cobalt
 
-- **Green**: `#00A651`
-- **Yellow**: `#FDD116`
-- **Red**: `#EF3340`
-- **Black**: `#000000`
-- **White**: `#FFFFFF`
+| Mode | Value | Usage |
+|------|-------|-------|
+| Light | `#0047AB` | CTAs, links, buttons, interactive elements |
+| Dark | `#00B0FF` | CTAs, links, buttons, interactive elements |
 
-**CRITICAL:** Do not use these colors elsewhere in branding or UI elements.
+### Surface Colors
 
-### Zimbabwe Flag Strip
+**Light Mode:**
+| Surface | Value | Name |
+|---------|-------|------|
+| Base | `#FAF9F5` | Warm Cream |
+| Surface | `#FFFFFF` | White |
+| Surface Dim | `#F3F2EE` | Subtle Gray |
 
-**Signature Brand Element**
+**Dark Mode (Education Slate Variant):**
+| Surface | Value | Name |
+|---------|-------|------|
+| Base | `#0F172A` | Slate 900 |
+| Surface | `#1E293B` | Slate 800 |
+| Elevated | `#334155` | Slate 700 |
 
-A fixed 8px vertical strip on the left edge of all digital properties:
-- Green (top)
-- Yellow
-- Red
-- Black (bottom)
+### Text Colors
 
-**Symbolism:**
-- Represents Nyuchi Africa's Zimbabwe heritage
-- Honors our roots and commitment to African solutions
-- Constant visual reminder of where we come from
+**Light Mode:**
+| Type | Value |
+|------|-------|
+| Primary | `#1A1A1A` |
+| Secondary | `#4B5563` |
+| Muted | `#6B7280` |
 
-**Implementation:**
-- Desktop: 8px wide
-- Mobile: 6px wide
-- Always fixed position, left edge
-- z-index: 9999 (always visible)
+**Dark Mode:**
+| Type | Value |
+|------|-------|
+| Primary | `#F8FAFC` |
+| Secondary | `#CBD5E1` |
+| Muted | `#94A3B8` |
 
-### Typography
+### Semantic Colors
 
-#### Font Families
+| Type | Light Mode | Dark Mode | Usage |
+|------|------------|-----------|-------|
+| Success | `#004D40` | `#64FFDA` | Confirmations, completed states |
+| Error | `#B3261E` | `#F2B8B5` | Errors, destructive actions |
+| Warning | `#7A5C00` | `#FFD866` | Alerts, caution states |
+| Info | `#0047AB` | `#00B0FF` | Information, tips (same as Cobalt) |
 
-**Headings:** Playfair Display (serif)
-- Weights: 400, 600, 700, 800, 900
-- Use: Headlines, titles, emphasis
-- Characteristics: Elegant, professional, educational
+---
 
-**Body Text:** Roboto (sans-serif)
-- Weights: 300, 400, 500, 700
-- Use: Paragraphs, captions, UI text
-- Characteristics: Clean, readable, modern
+## Typography
 
-#### Typography Scale
+### Font Families
 
-- **Hero Titles**: 3-7rem (bold design, weight 900, uppercase)
-- **Section Titles**: 2.5-5rem (bold design, weight 900, uppercase)
-- **Card Titles**: 1.5-1.75rem (weight 800, uppercase)
-- **Body Text**: 1rem (weight 400)
-- **Captions**: 0.85-0.9rem (weight 400-500)
+| Purpose | Font | Weights | Usage |
+|---------|------|---------|-------|
+| **Display/H1** | Noto Serif | 400, 700 | Hero titles, major headlines |
+| **Headings H2-H6** | Plus Jakarta Sans | 600, 700, 800 | Section titles, card titles |
+| **Body** | Plus Jakarta Sans | 300, 400, 500, 600 | Paragraphs, UI text |
+| **Code** | JetBrains Mono | 400, 500 | Code blocks, technical content |
+| **Wordmarks** | Plus Jakarta Sans | 600 | Brand names (always lowercase) |
 
-#### Type Styling
+### Font Loading
 
-- Use **uppercase** for major headings (bold design)
-- Use **sentence case** for body text and descriptions
-- Use **bold (700-900)** for emphasis
-- Never use all-caps for long-form content
+```html
+<!-- From assets.nyuchi.com CDN -->
+<link rel="stylesheet" href="https://assets.nyuchi.com/fonts/all-fonts.css">
 
-### Visual Elements
+<!-- Or Google Fonts fallback -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+```
 
-#### Buttons
+### Typography Scale
 
-**Style:** Pill-shaped (border-radius: 9999px)
-- Primary: Charcoal background, white text
-- Secondary: Transparent background, charcoal border
-- Hover: Lift effect (translateY -4px), enhanced shadow
+```css
+/* H1 - Hero Title (Noto Serif) */
+h1 {
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
 
-**Sizing:**
-- Desktop: 1.25rem × 3rem padding
-- Mobile: 1rem × 2rem padding
-- Minimum height: 48px (touch accessibility)
+/* H2 - Section Title (Plus Jakarta Sans) */
+h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
 
-#### Icons
+/* H3-H6, Body (Plus Jakarta Sans) */
+h3, h4, h5, h6, body, p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
+```
 
-**Source:** Lucide Icons only (no emojis)
-- Style: Outlined, consistent stroke width (1.5-2)
-- Color: Charcoal `#2C2C2C`
-- Size: 24-48px desktop, 40px mobile
+---
 
-**Common Icons:**
-- BookOpen (education)
-- Globe (universal access)
-- Users (community)
-- Smartphone (mobile-first)
-- Download (framework access)
+## Design Tokens
 
-#### Cards & Containers
+### Border Radii
 
-- Border radius: 0.75-1rem (rounded, not pill)
-- Left border accent: 6-8px charcoal (desktop), 5px (mobile)
-- Shadow: Subtle (0 2px 8px rgba(0,0,0,0.08))
-- Hover: Lift effect, enhanced shadow
+| Token | Value | Usage |
+|-------|-------|-------|
+| **Button** | 12px | All buttons (NOT 8px or 10px) |
+| **Card** | 16px | Cards, containers |
+| **Input** | 8px | Form fields |
+| **Badge** | 9999px | Pill-shaped badges |
+| **App Icon** | 24px | Application icons |
+
+### Button Sizes
+
+| Size | Height | Padding | Font Size |
+|------|--------|---------|-----------|
+| sm | 32px | 6px 12px | 12px |
+| default | 40px | 10px 20px | 14px |
+| lg | 48px | 14px 28px | 16px |
+| icon | 40px × 40px | - | 20px |
+
+### Spacing
+
+| Token | Value |
+|-------|-------|
+| --space-1 | 4px |
+| --space-2 | 8px |
+| --space-3 | 12px |
+| --space-4 | 16px |
+| --space-6 | 24px |
+| --space-8 | 32px |
+| --space-12 | 48px |
+| --space-16 | 64px |
+
+---
+
+## Minerals Strip
+
+**The signature visual element replacing the Zimbabwe flag strip.**
+
+### Specification
+
+| Property | Value |
+|----------|-------|
+| Width | 4px |
+| Position | Fixed, left edge |
+| Direction | Vertical |
+| Colors | 5 African Minerals (20% each) |
+| z-index | 9999 |
+| Mobile | Hidden (< 480px) |
+
+### Color Order (Top to Bottom)
+
+| Mineral | Light Mode | Dark Mode |
+|---------|------------|-----------|
+| 1. Cobalt | `#0047AB` | `#00B0FF` |
+| 2. Tanzanite | `#4B0082` | `#B388FF` |
+| 3. Malachite | `#004D40` | `#64FFDA` |
+| 4. Gold | `#5D4037` | `#FFD740` |
+| 5. Terracotta | `#8B4513` | `#D4A574` |
+
+### CSS Implementation
+
+```css
+.minerals-strip {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 4px;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+}
+
+.minerals-strip > div {
+  flex: 1; /* 20% each */
+}
+
+/* Uses CSS variables for automatic light/dark theme support */
+.mineral-cobalt    { background: var(--mineral-cobalt); }
+.mineral-tanzanite { background: var(--mineral-tanzanite); }
+.mineral-malachite { background: var(--mineral-malachite); }
+.mineral-gold      { background: var(--mineral-gold); }
+.mineral-terracotta { background: var(--mineral-terracotta); }
+
+/* Hide on mobile */
+@media (max-width: 480px) {
+  .minerals-strip {
+    display: none;
+  }
+
+  body {
+    margin-left: 0;
+  }
+}
+```
 
 ---
 
@@ -231,282 +335,106 @@ A fixed 8px vertical strip on the left edge of all digital properties:
 - Professional but accessible
 - Educational, not promotional
 - Practical and actionable
-- Community-centered
+- Community-centered (Ubuntu)
 - Encouraging and empowering
-
-**Tone Attributes:**
-- Knowledgeable yet humble
-- Confident yet collaborative
-- Optimistic yet realistic
-- Passionate yet practical
-
-### Writing Style
-
-#### Do's:
-- Use first-person plural ("we", "our") - Ubuntu philosophy
-- Write in active voice
-- Keep sentences clear and concise
-- Use concrete examples
-- Cite sources and data
-- Emphasize community and collaboration
-- Focus on solutions, not problems
-- Be realistic about challenges
-
-#### Don'ts:
-- Don't use marketing jargon
-- Don't make empty promises
-- Don't use first-person singular ("I", "my")
-- Don't be overly technical without explanation
-- Don't hide limitations or challenges
-- Don't use corporate speak
 
 ### Key Messages
 
-1. **Open & Shareable**
-   - "Copy it. Adapt it. Improve it. Share it."
-   - Frameworks are free to use and distribute
-   - Community-driven improvement
-
-2. **Built for Africa, by Africans**
-   - Africa-tested solutions
-   - Understanding of local realities
-   - Zimbabwe heritage and commitment
-
-3. **Mobile-First Reality**
-   - Designed for smartphones as primary devices
-   - Low-bandwidth considerations
-   - Touch-friendly interfaces
-
-4. **Education-First Mission**
-   - Built by educators, for educators
-   - Focus on student success
-   - Practical implementation over theory
-
-5. **Ubuntu Philosophy**
+1. **Ubuntu Philosophy**
    - "I am because we are"
    - Community success over individual achievement
-   - Collaborative, not competitive
 
-### Taglines & Phrases
+2. **Open & Shareable**
+   - "Copy it. Adapt it. Improve it. Share it."
+   - Free to use and distribute
 
-**Primary Tagline:**
-> Built for Africa. Built for Education.
+3. **Built for Africa**
+   - Africa-tested solutions
+   - Understanding of local realities
 
-**Secondary Phrases:**
-> Ubuntu: I am because we are
+4. **Education-First**
+   - Built by educators, for educators
+   - Focus on student success
 
-> Open frameworks for digital transformation
+### Wordmark Rules
 
-> Built by educators, for education
-
-> Copy it. Adapt it. Improve it. Share it.
-
----
-
-## Digital Presence
-
-### Website
-
-**Primary Domain:** learning.nyuchi.com
-**Purpose:** Framework documentation and resources
-
-**Key Pages:**
-- Homepage: Framework value proposition
-- Frameworks: Overview of all frameworks
-- Framework Details: Comprehensive documentation
-- Pricing: Cost breakdowns (free to premium)
-- About: Mission, story, team
-- Blog: Insights and implementation stories
-
-### Social Media
-
-**Voice:** Educational, community-focused, practical
-**Content Types:**
-- Implementation tips
-- Success stories
-- Framework updates
-- Community highlights
-- African education news
-- Open education resources
-
-**Hashtags:**
-- #NyuchiLearning
-- #DigitalEducationAfrica
-- #OpenEducation
-- #EdTechAfrica
-- #Ubuntu
-
-### Email Communications
-
-**Tone:** Professional yet friendly, helpful
-**Structure:**
-- Clear subject lines
-- Concise content
-- Action-oriented
-- Community-focused
-
-**Signature:**
-```
-Nyuchi Learning
-A division of Nyuchi Africa
-Built by educators, for education
-learning.nyuchi.com
-```
+**CRITICAL:** All brand wordmarks are **lowercase**:
+- ✅ `nyuchi` (not "Nyuchi")
+- ✅ `bundu` (not "Bundu")
+- ✅ `mukoko` (not "Mukoko")
+- ✅ `shamwari` (not "Shamwari")
 
 ---
 
 ## Usage Guidelines
 
-### Logo Usage
+### Critical Rules
 
-#### Do:
-✅ Use official logo files
-✅ Maintain aspect ratio
-✅ Provide clear space (minimum padding equal to height of "N")
-✅ Use on light or dark backgrounds appropriately
-✅ Use compact variant for small spaces
+1. **One Palette**: Use only the 5 African Minerals — never mix in other colors
 
-#### Don't:
-❌ Distort or stretch the logo
-❌ Change logo colors
-❌ Add effects (shadows, gradients, outlines)
-❌ Rotate the logo
-❌ Recreate or modify the logo
-❌ Use low-resolution versions
+2. **All AAA**: Every mineral achieves WCAG AAA (7:1+) in both modes
 
-### Color Usage
+3. **Minerals Strip**: 4px VERTICAL stripe on LEFT edge (not horizontal, not top)
 
-#### Do:
-✅ Use charcoal as primary brand color
-✅ Use monochrome palette for UI and content
-✅ Reserve Zimbabwe flag colors for flag strip only
-✅ Ensure adequate contrast (4.5:1 minimum)
+4. **Button Radius = 12px**: Always. Not 8px or 10px.
 
-#### Don't:
-❌ Use Zimbabwe flag colors in UI elements
-❌ Use harsh black (#000) or pure white (#FFF)
-❌ Create new color combinations
-❌ Use gradients or color overlays on brand colors
+5. **Card Radius = 16px**: Generous, modern.
 
-### Typography Usage
+6. **Education Theme**: Use Cobalt primary + Slate dark surfaces
 
-#### Do:
-✅ Use Playfair Display for headings
-✅ Use Roboto for body text
-✅ Use bold weights (800-900) for major headings
-✅ Use uppercase for hero and section titles
-✅ Ensure readability (minimum 16px/1rem)
+7. **Wordmarks**: Always lowercase
 
-#### Don't:
-❌ Use alternative fonts
-❌ Use all-caps for long-form content
-❌ Use font weights below 700 for bold headings
-❌ Mix serif and sans-serif in body text
+8. **Accessibility**: 7:1+ contrast minimum, 44x44px touch targets
 
-### Framework Branding
+### Do's
 
-**Important:** Frameworks are the hero, not the company.
+✅ Use Cobalt (`#0047AB` / `#00B0FF`) as primary color for education
+✅ Use Slate dark theme (`#0F172A` base, `#1E293B` surface)
+✅ Use Noto Serif for H1, Plus Jakarta Sans for H2-H6 and body
+✅ Use 12px button radius, 16px card radius
+✅ Use Minerals Strip (4px, 5 colors, left edge)
+✅ Use lowercase wordmarks
+✅ Ensure AAA contrast (7:1+)
+✅ Hide Minerals Strip on mobile (< 480px)
 
-#### Framework Names:
-- K-12 Digital Campus Framework
-- K-12 Support Process Framework
-- [Future frameworks]
+### Don'ts
 
-#### Attribution:
-> Created by Nyuchi Learning, a division of Nyuchi Africa
-
-> Built by educators, for education
-
-**Placement:** Footer, about pages, not prominent on framework pages
-
-### Photography & Imagery
-
-#### Preferred:
-- African students and educators
-- Technology in African classrooms
-- Community collaboration
-- Mobile devices in use
-- Authentic classroom settings
-
-#### Avoid:
-- Stock photos that don't reflect African contexts
-- Staged or inauthentic imagery
-- Western-centric education imagery
-- Low-quality or pixelated images
-
-**Sources:** Unsplash (with African education keywords)
+❌ Use colors outside the 5 African Minerals palette
+❌ Use old fonts (Newsreader, Inter, Playfair Display, Roboto)
+❌ Use old button radius (10px or pill-shaped)
+❌ Use Zimbabwe flag colors (legacy v1-v5)
+❌ Use capitalized brand names ("Nyuchi" instead of "nyuchi")
+❌ Use charcoal backgrounds (use Slate instead for education)
 
 ---
 
-## Brand Applications
+## Resources
 
-### Print Materials
+### CDN Assets
 
-- Use high-resolution logo files
-- Maintain monochrome color scheme
-- Include Zimbabwe flag strip as sidebar or accent
-- Use Playfair Display for headlines
-- Ensure adequate white space
+| Type | URL |
+|------|-----|
+| All CSS | `https://assets.nyuchi.com/css/v6/all.css` |
+| All Fonts | `https://assets.nyuchi.com/fonts/all-fonts.css` |
+| Education CSS | `https://assets.nyuchi.com/css/v6/nyuchi-lingo.css` |
+| Logos | `https://assets.nyuchi.com/logos/nyuchi/` |
 
-### Digital Assets
+### API Endpoints
 
-- Responsive logo sizing
-- Touch-friendly buttons (48px minimum)
-- Mobile-optimized layouts
-- Fast loading times
-- Accessible color contrast
+| Endpoint | Description |
+|----------|-------------|
+| `/api/v6/brand-system` | Complete brand system |
+| `/api/v6/minerals` | Five African Minerals palette |
+| `/api/v6/colors` | Full color system |
+| `/api/v6/typography` | Typography configuration |
+| `/api/v6/ubuntu` | Ubuntu philosophy |
 
-### Presentations
+### Brand Documentation
 
-- Monochrome color scheme
-- Clean, minimal design
-- Playfair Display for titles
-- Roboto for body text
-- Zimbabwe flag strip as left sidebar
-
-### Documents
-
-**Headers:**
-- Nyuchi Learning logo
-- Document title
-- Version and date
-
-**Footers:**
-- Page numbers
-- "Nyuchi Learning - Built for Africa. Built for Education."
-- Website URL
+- **Brand Site:** https://assets.nyuchi.com
+- **API Status:** https://assets.nyuchi.com/status
+- **Guidelines:** https://assets.nyuchi.com/guidelines
 
 ---
 
-## Quick Reference
-
-### Brand Essence
-
-| Element | Description |
-|---------|-------------|
-| **Mission** | Open frameworks for digital transformation in African education |
-| **Vision** | Every African school empowered with accessible, practical digital transformation frameworks |
-| **Values** | Ubuntu, Education-First, Open & Shareable, Community-Driven |
-| **Personality** | Professional, Practical, Community-Centered, Empowering |
-
-### Visual Quick Reference
-
-| Element | Specification |
-|---------|--------------|
-| **Primary Color** | Charcoal `#2C2C2C` |
-| **Heading Font** | Playfair Display (700-900) |
-| **Body Font** | Roboto (400-500) |
-| **Button Style** | Pill-shaped (9999px radius) |
-| **Icons** | Lucide, 24-48px, charcoal |
-| **Flag Strip** | 8px vertical, left edge |
-
-### Contact
-
-**For brand questions:**
-- Review this document
-- Refer to [CLAUDE.md](CLAUDE.md) for technical design guidelines
-- Consult Nyuchi Learning Development Team
-
----
-
-**Remember:** Our brand is built on Ubuntu - "I am because we are." Everything we create is designed to be shared, adapted, and improved by the community.
+**Remember:** Our brand is built on Ubuntu — "I am because we are." Technology that serves African communities, with community before commerce.

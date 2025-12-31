@@ -1,8 +1,8 @@
 # K-12 Digital Campus Framework - Technical & Design Guidelines
 
-**Last Updated**: November 2025
-**Version**: 3.0 (Claude-Aligned: Warm, Editorial, Accessible)
-**Maintained By**: Nyuchi Learning Development Team
+**Last Updated**: December 2025
+**Version**: 4.0 (Education Theme, Five African Minerals, Bundu Family)
+**Maintained By**: nyuchi learning Development Team
 
 ---
 
@@ -47,7 +47,9 @@ This section provides comprehensive technical guidance for AI assistants working
     "@astrojs/rss",
     "@astrojs/sitemap"
   ],
-  "fonts": ["Newsreader", "Inter"],
+  "fonts": ["Noto Serif", "Plus Jakarta Sans"],
+  "brandSystem": "Bundu Family - Five African Minerals",
+  "primaryMineral": "Cobalt (Education)",
   "analytics": "Google Analytics (G-BNHM29F8W5)",
   "deployment": "Vercel",
   "nodeVersion": "18+"
@@ -77,17 +79,20 @@ This section provides comprehensive technical guidance for AI assistants working
 │   │   ├── frameworks.astro    # Frameworks overview (/frameworks)
 │   │   ├── framework.astro     # K-12 Digital Campus (/framework)
 │   │   ├── support-framework.astro  # Support Process (/support-framework)
-│   │   ├── pricing.astro       # Pricing (/pricing)
-│   │   ├── about.astro         # About page (/about)
-│   │   ├── team.astro          # Team page (/team)
-│   │   ├── community.astro     # Community page (/community)
-│   │   ├── consultation.astro  # Consultation page (/consultation)
 │   │   ├── digital-literacy-framework.astro  # Digital Literacy (/digital-literacy-framework)
+│   │   ├── pricing.astro       # Pricing (/pricing)
+│   │   ├── resources.astro     # Resources Hub (/resources) - Implementation guides
+│   │   ├── about.astro         # Mission & Impact page (/about)
+│   │   ├── global-reach.astro  # Global Reach (/global-reach) - Geographic scope
+│   │   ├── team.astro          # Team page (/team)
+│   │   ├── community.astro     # Community page (/community) - GitHub integration
+│   │   ├── consultation.astro  # Consultation booking (/consultation)
 │   │   └── blog/               # Blog section
 │   │       ├── index.astro     # Blog index (/blog)
 │   │       ├── launching-the-framework.astro
 │   │       ├── why-open-source.astro
-│   │       └── digital-literacy-importance.astro
+│   │       ├── digital-literacy-importance.astro
+│   │       └── developing-world-educational-advantage.astro
 │   └── env.d.ts                # TypeScript environment definitions
 ├── astro.config.mjs            # Astro configuration
 ├── package.json                # Dependencies and scripts
@@ -104,7 +109,7 @@ This section provides comprehensive technical guidance for AI assistants working
 
 | File | Purpose |
 |------|---------|
-| **src/layouts/BaseLayout.astro** | Main layout wrapper - includes header, footer, Zimbabwe flag strip, mobile menu, SEO, Google Analytics, global styles |
+| **src/layouts/BaseLayout.astro** | Main layout wrapper - includes header (with auto-hide, transparent/solid states, dropdown menus), footer (with global mission messaging), Minerals Strip (5 African minerals), mobile menu, SEO, Google Analytics, global styles, animation system |
 | **src/components/SEO.astro** | SEO meta tags, Open Graph, Twitter Cards, structured data (JSON-LD) |
 | **src/components/Logo.astro** | Nyuchi Learning logo with 3 variants (main, horizontal, compact) and 3 sizes (sm, md, lg) |
 | **astro.config.mjs** | Astro configuration (site URL, integrations, output mode) |
@@ -146,10 +151,11 @@ npm run preview
 
 1. **Always run `npm run build` before committing** to catch TypeScript errors
 2. **Test mobile responsiveness** - Use browser DevTools mobile view (iPhone SE, Pixel 5)
-3. **Check accessibility** - Verify WCAG 2.1 AA compliance (color contrast, keyboard nav)
-4. **Validate Zimbabwe flag strip** - Must appear on all pages (8px desktop, 6px mobile)
+3. **Check accessibility** - Verify WCAG AAA compliance (7:1+ color contrast, keyboard nav)
+4. **Validate Minerals Strip** - Must appear on all pages (4px, desktop only, hidden on mobile <480px)
 5. **No emojis** - Use Lucide icons only
 6. **Use design tokens** - CSS variables defined in BaseLayout.astro
+7. **Use lowercase wordmarks** - All brand names are lowercase (nyuchi, bundu, etc.)
 
 ---
 
@@ -197,8 +203,8 @@ const data = await fetchData();
   }
 
   h1 {
-    font-family: 'Newsreader', serif;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     color: var(--text);
   }
 
@@ -292,27 +298,24 @@ h1 {
 }
 ```
 
-**Color usage rules:**
+**Color usage rules (Five African Minerals):**
 ```css
-/* PRIMARY UI COLOR: Warm Purple (#8B80E8) */
-h1, h2, h3, a, .icon {
-  color: var(--primary);  /* #8B80E8 warm purple */
+/* PRIMARY UI COLOR: Cobalt (Education) */
+a, .btn-primary, .icon-primary {
+  color: var(--primary);  /* #00B0FF Cobalt (dark mode) */
 }
 
-/* Backgrounds: Charcoal only */
+/* Backgrounds: Slate (Education Theme) */
 body, .dark-section {
-  background: var(--bg);  /* #2B2B2B charcoal */
+  background: var(--bg);  /* #0F172A Slate 900 */
 }
 
-/* Secondary actions: Warm Emerald */
-.btn-secondary {
-  background: var(--emerald);  /* #18A877 */
-}
-
-/* Accents: Warm Brown */
-.featured-badge {
-  background: var(--brown);  /* #A67557 */
-}
+/* Five African Minerals Accents */
+.mineral-cobalt    { color: var(--mineral-cobalt); }    /* #00B0FF - CTAs, links, education */
+.mineral-tanzanite { color: var(--mineral-tanzanite); } /* #B388FF - Social, premium */
+.mineral-malachite { color: var(--mineral-malachite); } /* #64FFDA - Success, travel */
+.mineral-gold      { color: var(--mineral-gold); }      /* #FFD740 - Rewards, warmth */
+.mineral-terracotta { color: var(--mineral-terracotta); } /* #D4A574 - Community, Ubuntu */
 ```
 
 ### Icon Usage (Lucide)
@@ -382,12 +385,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ```
 
 **BaseLayout provides:**
-- ✅ Zimbabwe flag strip (automatic)
+- ✅ Minerals Strip (5 African minerals, automatic, desktop only)
 - ✅ Header with navigation (desktop + mobile)
-- ✅ Footer with links and Ubuntu tagline
+- ✅ Footer with links and Ubuntu tagline (lowercase branding)
 - ✅ SEO meta tags via SEO component
 - ✅ Google Analytics tracking
-- ✅ Global CSS variables and styles
+- ✅ Global CSS variables (Five African Minerals palette, Slate theme)
 - ✅ Mobile menu toggle script
 - ✅ Header scroll effects (transparent → solid)
 - ✅ Animation system (Intersection Observer)
@@ -517,8 +520,8 @@ const pageDescription = 'Description for SEO';
   }
 
   h1 {
-    font-family: 'Newsreader', serif;
-    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-family: 'Noto Serif', Georgia, serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-weight: 700;
     color: var(--text);
     margin-bottom: 1.5rem;
@@ -644,12 +647,22 @@ Edit `src/layouts/BaseLayout.astro`:
 
 ```css
 :root {
-  /* Update these values */
-  --primary: #8B80E8;          /* Warm purple */
-  --emerald: #18A877;          /* Warm emerald */
-  --brown: #A67557;            /* Warm brown */
-  --charcoal: #2B2B2B;         /* Charcoal */
-  /* ... */
+  /* Five African Minerals - Dark Mode (Education Theme) */
+  --mineral-cobalt: #00B0FF;      /* Primary - CTAs, links, education */
+  --mineral-tanzanite: #B388FF;   /* Social, premium tiers */
+  --mineral-malachite: #64FFDA;   /* Success, travel, nature */
+  --mineral-gold: #FFD740;        /* Rewards, honey, warmth */
+  --mineral-terracotta: #D4A574;  /* Community, Ubuntu */
+
+  /* Education Theme (Slate surfaces) */
+  --primary: #00B0FF;             /* Cobalt - main interactive color */
+  --bg: #0F172A;                  /* Slate 900 - base background */
+  --bg-surface: #1E293B;          /* Slate 800 - card backgrounds */
+  --text: #F8FAFC;                /* Slate 50 - primary text */
+
+  /* Design Tokens */
+  --radius-button: 12px;
+  --radius-card: 16px;
 }
 ```
 
@@ -664,15 +677,52 @@ Edit `src/layouts/BaseLayout.astro`:
 
 **Edit:** `src/layouts/BaseLayout.astro` (footer section)
 
+The footer has a **hero section** with global mission messaging, followed by a **link grid** and **bottom section**.
+
 ```astro
 <footer>
+  <!-- Footer Hero - Brown Background -->
   <div class="footer-hero">
-    <h2 class="footer-main-text">Your Message</h2>
+    <h2 class="footer-main-text">Leapfrog Traditional Education.<br />Build for 2050.</h2>
     <p class="footer-ubuntu-large">Ubuntu: I am because we are</p>
+    <p class="footer-geographic">Serving schools across Africa • Asia • Latin America • Pacific</p>
   </div>
-  <!-- ... -->
+
+  <!-- Footer Grid - 4 Columns -->
+  <div class="footer-grid">
+    <div class="footer-column">
+      <h3>Frameworks</h3>
+      <ul>
+        <li><a href="/frameworks">All Frameworks</a></li>
+        <li><a href="/framework">K-12 Digital Campus</a></li>
+        <li><a href="/digital-literacy-framework">Digital Literacy Framework</a></li>
+        <li><a href="/support-framework">K-12 Support Process</a></li>
+      </ul>
+    </div>
+    <!-- Resources, Community, About columns... -->
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="footer-branding">
+      <p class="footer-brand-name">nyuchi learning</p>  <!-- lowercase wordmark -->
+      <p class="footer-brand-org">K-12 Digital Campus Framework</p>
+      <p class="footer-division">A division of nyuchi africa</p>  <!-- lowercase wordmark -->
+    </div>
+    <div class="footer-principles">
+      <p>Digital Access • Digital Literacy • Mobile-First</p>
+      <p>AI-Driven • Community-Centered • Education First</p>
+    </div>
+    <p class="footer-copyright">&copy; 2025 Nyuchi Learning. Open framework, freely shareable.</p>
+  </div>
 </footer>
 ```
+
+**Footer Columns (4 total):**
+1. **Frameworks** - Links to all framework pages
+2. **Resources** - Resources Hub, Pricing, Blog, Consultation
+3. **Community** - Community page, GitHub links
+4. **About** - Mission & Impact, Global Reach, Our Team
 
 ### Task 4: Add Blog Post
 
@@ -723,7 +773,7 @@ const author = 'Framework Team';
 - [ ] Check button heights (48px minimum)
 - [ ] Test horizontal scrolling (tables, long navigation)
 - [ ] Verify hamburger menu works
-- [ ] Check Zimbabwe flag strip (6px on mobile)
+- [ ] Verify Minerals Strip is hidden on mobile (<480px)
 - [ ] Test typography readability (16px minimum body)
 - [ ] Verify images scale properly
 
@@ -816,10 +866,11 @@ git branch -d feature/my-feature  # Delete local branch
 - [ ] TypeScript errors resolved
 - [ ] No console errors in browser
 - [ ] Mobile responsive (test in DevTools)
-- [ ] Zimbabwe flag strip present on new pages
-- [ ] Accessibility: color contrast, keyboard nav
+- [ ] Minerals Strip present on desktop, hidden on mobile (<480px)
+- [ ] Accessibility: WCAG AAA (7:1+) color contrast, keyboard nav
 - [ ] No emojis used (Lucide icons only)
 - [ ] Design tokens used (CSS variables, not hard-coded colors)
+- [ ] Lowercase wordmarks for brand names (nyuchi, bundu, etc.)
 
 ---
 
@@ -860,14 +911,15 @@ git branch -d feature/my-feature  # Delete local branch
 
 **Color contrast checker:**
 ```
-WCAG 2.1 AA Requirements:
-- Normal text (< 18px): 4.5:1 contrast ratio
-- Large text (≥ 18px or ≥ 14px bold): 3:1 contrast ratio
-- UI components & graphics: 3:1 contrast ratio
+WCAG 2.1 AAA Requirements (7:1+):
+- All Five African Minerals achieve WCAG AAA
+- All text colors on Slate surfaces achieve 7:1+ contrast
 
-Test combinations:
-- var(--primary) #8B80E8 on white: ✅ Passes (4.6:1)
-- var(--text) #FAFAFA on var(--bg) #2B2B2B: ✅ Passes (14.8:1)
+Test combinations (Education Theme):
+- var(--mineral-cobalt) #00B0FF on Slate 900 #0F172A: ✅ Passes (7:1+)
+- var(--text) #F8FAFC on Slate 900 #0F172A: ✅ Passes (16:1+)
+- var(--mineral-malachite) #64FFDA on Slate 900: ✅ Passes (7:1+)
+- var(--mineral-gold) #FFD740 on Slate 900: ✅ Passes (7:1+)
 ```
 
 **Keyboard navigation test:**
@@ -965,14 +1017,15 @@ npm run build
 # - #closeIcon (X icon)
 ```
 
-**Issue: Zimbabwe flag strip not showing**
+**Issue: Minerals Strip not showing**
 ```bash
 # Solution: Verify in BaseLayout.astro
-# 1. .zimbabwe-flag-strip element exists
+# 1. .minerals-strip element exists with 5 mineral divs
 # 2. z-index: 9999
 # 3. position: fixed
-# 4. body { margin-left: 8px; } (desktop)
-# 5. @media (max-width: 768px) { margin-left: 6px; }
+# 4. body { margin-left: 4px; } (desktop)
+# 5. @media (max-width: 480px) { display: none; margin-left: 0; }
+# 6. Colors: Cobalt, Tanzanite, Malachite, Gold, Terracotta (top to bottom)
 ```
 
 **Issue: Icons not rendering**
@@ -1006,9 +1059,9 @@ npm run build
 ```bash
 # Solution: Check BaseLayout.astro <head>
 # - Google Fonts link present
-# - Newsreader:wght@400;600;700
-# - Inter:wght@400;500;600;700
-# - Font family in CSS matches exactly
+# - Noto+Serif:wght@400;700
+# - Plus+Jakarta+Sans:wght@300;400;500;600;700;800
+# - Font family in CSS: 'Noto Serif' for H1, 'Plus Jakarta Sans' for H2-H6/body
 ```
 
 ### Debug Checklist
@@ -1039,15 +1092,25 @@ If stuck:
 
 ## Brand Identity
 
-### Nyuchi Learning - Parent Brand
+### nyuchi learning - Part of the Bundu Ecosystem
 
-**Nyuchi Learning** is a division of Nyuchi Africa focused on educational frameworks and digital transformation for schools. Nyuchi Learning will release multiple frameworks for education across Africa.
+**nyuchi learning** (lowercase) is part of the Nyuchi brand family within the **Bundu Ecosystem** — technology that serves African communities with Ubuntu philosophy at its core.
+
+**Shona:** nyuchi /njuːtʃi/ = "bee"
+
+Nyuchi embodies the industrious spirit of the African bee — tireless workers who build together, pollinate ideas across communities, and create sweet results through collective effort.
+
+**Brand System:**
+- **Parent Ecosystem**: Bundu Family
+- **Primary Mineral**: Cobalt (for education)
+- **Mission**: To empower African communities through technology that feels like home
 
 **Company Background:**
 - **Nyuchi Africa**: Zimbabwe-registered company (2019)
 - **Mission**: Education-first, built by educators for education
 - **Values**: Commitment to local economy reinvestment, Africa-tested solutions
 - **DNA**: Remote-first, built on dusty African roads, not just theory
+- **Philosophy**: Ubuntu - "Ndiri nekuti tiri" (I am because we are)
 
 ### K-12 Digital Campus Framework
 
@@ -1069,91 +1132,110 @@ The goal is to promote digital learning so that students and communities across 
 
 ---
 
-## What's New in v3.0 (Claude-Aligned)
+## What's New in v4.0 (Education Theme, Five African Minerals)
 
-This version aligns our design with Claude's warm, editorial design language while maintaining our unique African identity.
+This version implements the **Bundu Family brand system** with the **Five African Minerals** palette and **Education Theme** using Cobalt as the primary mineral.
 
-### Key Changes from v2.0
+### Key Changes from v3.x
 
-**Typography Migration:**
-- ❌ Old: Playfair Display → ✅ New: Newsreader (for H1, H2)
-- ❌ Old: Roboto → ✅ New: Inter (for H3-H6, body, UI)
+**Brand System:**
+- ❌ Old: Standalone brand → ✅ New: Part of Bundu Ecosystem
+- ✅ New: Five African Minerals unified palette
+- ✅ New: Cobalt as primary mineral for education
+- ✅ New: Lowercase wordmarks (nyuchi, bundu, mukoko, shamwari)
 
 **Color System Migration:**
-- ❌ Old: Monochrome only (charcoal #2C2C2C) → ✅ New: Warm earth tones
-- ❌ Old: Green only in flag (#00A651) → ✅ New: Warm emerald throughout (#18A877)
-- ✅ New: Warm purple (#8B80E8) for platform features
-- ✅ New: Warm brown (#A67557) for accents
+- ❌ Old: Warm purple (#8B80E8) → ✅ New: Cobalt (#00B0FF dark mode)
+- ❌ Old: Charcoal (#2B2B2B) → ✅ New: Slate (#0F172A / #1E293B)
+- ❌ Old: Warm emerald/brown accents → ✅ New: Five African Minerals palette
+- ✅ New: WCAG AAA (7:1+) contrast on all minerals
 
-**Button Style Migration:**
-- ❌ Old: Pill-shaped (border-radius: 9999px) → ✅ New: Rounded (border-radius: 10px)
-- ❌ Old: Uppercase text-transform → ✅ New: Normal case (Inter font)
-- ❌ Old: Aggressive hover effects → ✅ New: Subtle lift and shadow
+**Typography Migration:**
+- ❌ Old: Newsreader → ✅ New: Noto Serif (for H1 only)
+- ❌ Old: Inter → ✅ New: Plus Jakarta Sans (for H2-H6, body, UI)
 
-**Visual System Updates:**
-- ✅ New: Layered shadows (Claude-style soft shadows)
-- ✅ New: 4px base spacing unit (from 8px)
-- ✅ New: 12px card border-radius
-- ❌ Old: Bold, dramatic feel → ✅ New: Editorial, warm, sophisticated feel
-- ❌ Old: Hero background images → ✅ New: Minimalist hero sections with solid colors
-- ✅ New: Optimized spacing for 13" laptop screens (not just large monitors)
+**Visual Elements:**
+- ❌ Old: Zimbabwe flag strip (4 colors, 8px/6px) → ✅ New: Minerals Strip (5 colors, 4px, hidden on mobile <480px)
+- ❌ Old: 10px button radius → ✅ New: 12px button radius
+- ❌ Old: 12px card radius → ✅ New: 16px card radius
 
-### Why Claude-Aligned?
+### Why Five African Minerals?
 
-Claude's design language is:
-- **Editorial & Sophisticated**: Uses serif titles for trust and authority
-- **Warm & Approachable**: Earth tones create a friendly, inviting feel
-- **Modern & Accessible**: Clean sans-serif for readability
-- **Professional**: Soft shadows, generous spacing, thoughtful hierarchy
+The Bundu Ecosystem uses a unified palette of 5 African Minerals:
+- **Cobalt** (DRC, Zambia) - Education, CTAs, links
+- **Tanzanite** (Tanzania) - Social, premium tiers
+- **Malachite** (Congo) - Success, travel, nature
+- **Gold** (Ghana, South Africa) - Rewards, warmth
+- **Terracotta** (Pan-African) - Community, Ubuntu
 
-This aligns perfectly with our educational mission and Ubuntu philosophy.
+This connects our digital presence to Africa's rich mineral heritage while maintaining professional, accessible design.
 
 ---
 
 ## Visual Brand Elements
 
-### Zimbabwe Flag Strip - CRITICAL Brand Element
+### Minerals Strip - Signature Brand Element
 
-**REQUIRED on all pages:**
-- 8px vertical strip on the left edge of viewport (desktop)
-- 6px vertical strip on mobile (<768px)
+**The signature visual element of the Bundu Ecosystem.**
+
+**Specification:**
+- 4px vertical strip on the left edge of viewport
 - Fixed position (z-index: 9999)
-- Four equal sections with Zimbabwe flag colors:
-  - Warm Emerald: `#18A877` (adapted from traditional green)
-  - Yellow: `#FDD116`
-  - Red: `#EF3340`
-  - Warm Charcoal: `#2B2B2B` (adapted from black)
+- Five equal sections with African Minerals colors (20% each)
+- **Hidden on mobile** (< 480px) for better screen real estate
 
-**This element is NON-NEGOTIABLE and must appear on every page.**
+**Color Order (Top to Bottom):**
+| Position | Mineral | Dark Mode Color |
+|----------|---------|-----------------|
+| 1 | Cobalt | `#00B0FF` |
+| 2 | Tanzanite | `#B388FF` |
+| 3 | Malachite | `#64FFDA` |
+| 4 | Gold | `#FFD740` |
+| 5 | Terracotta | `#D4A574` |
 
 ```css
-.zimbabwe-flag-strip {
+.minerals-strip {
   position: fixed;
   left: 0;
   top: 0;
-  width: 8px; /* 6px on mobile */
+  width: 4px;
   height: 100vh;
   z-index: 9999;
   display: flex;
   flex-direction: column;
 }
 
-.flag-green  { flex: 1; background: #18A877; } /* Warm emerald */
-.flag-yellow { flex: 1; background: #FDD116; }
-.flag-red    { flex: 1; background: #EF3340; }
-.flag-black  { flex: 1; background: #2B2B2B; } /* Warm charcoal */
+.minerals-strip > div { flex: 1; } /* 20% each */
+
+/* Dark mode colors (Education Theme) */
+.mineral-cobalt    { background: #00B0FF; }
+.mineral-tanzanite { background: #B388FF; }
+.mineral-malachite { background: #64FFDA; }
+.mineral-gold      { background: #FFD740; }
+.mineral-terracotta { background: #D4A574; }
+
+/* Hide on mobile */
+@media (max-width: 480px) {
+  .minerals-strip { display: none; }
+  body { margin-left: 0; }
+}
 ```
 
 ### Logo System
 
-**Nyuchi Learning Logo**
+**nyuchi learning Logo** (always lowercase)
 
-The Nyuchi Learning logo features a stylized open book symbol representing education and learning, with Africa-inspired accent elements.
+The nyuchi learning logo features a stylized open book symbol representing education and learning, with Africa-inspired accent elements.
+
+**CRITICAL: Wordmark Rules**
+- All brand wordmarks are **lowercase**: nyuchi, bundu, mukoko, shamwari
+- ✅ `nyuchi learning` (correct)
+- ❌ `Nyuchi Learning` (incorrect)
 
 **Logo Variants:**
-1. **Main (Vertical)**: Stacked layout with icon and "Nyuchi Learning" text
+1. **Main (Vertical)**: Stacked layout with icon and "nyuchi learning" text
 2. **Horizontal**: Side-by-side layout for headers and wide spaces
-3. **Compact**: Icon with "N" initial for small spaces (favicons, mobile)
+3. **Compact**: Icon with "n" initial for small spaces (favicons, mobile)
 
 **Logo Files:**
 - `/public/nyuchi-learning-logo-main.svg`
@@ -1161,10 +1243,9 @@ The Nyuchi Learning logo features a stylized open book symbol representing educa
 - `/public/nyuchi-learning-logo-compact.svg`
 - `/public/favicon.svg` - Monochrome open book icon
 
-**Logo Colors:**
-- Icon: `#2B2B2B` (Warm Charcoal)
-- "Nyuchi" text: `#2B2B2B` (Newsreader, Bold)
-- "Learning" text: `#6B7280` (Inter, Medium)
+**Logo Typography:**
+- Wordmark: Plus Jakarta Sans, 600 weight, lowercase
+- Use `text-transform: lowercase` in CSS for consistency
 
 **Usage:**
 ```astro
@@ -1184,209 +1265,199 @@ import Logo from '../components/Logo.astro';
 
 ---
 
-## Color System - Warm Earth Tones (Claude-Aligned)
+## Color System - Five African Minerals
 
 ### Design Philosophy
 
-The color system uses **warm earth tones** inspired by Claude's design language, creating a sophisticated, approachable, and professional feel while maintaining African heritage through the Zimbabwe flag strip.
+The Bundu Ecosystem uses **ONE unified palette of 5 African Minerals** shared across all brands. All colors achieve **WCAG AAA (7:1+)** contrast ratios. The site supports both **light and dark modes** via `prefers-color-scheme`, automatically adapting to the user's system preference.
 
-### Primary Palette
+### Theme Switching
 
-**Warm Emerald (Primary Actions)**
-- Primary: `#18A877` - Main CTA buttons, primary links, active states, important highlights
-- Hover: `#20C088` - Bright on hover
-- Active: `#139F68` - Deep on press
-- Light: `#D8F3EA` - Soft background
-- Subtle: `#F0FAF6` - Very light background
+The site uses `prefers-color-scheme` media query to automatically switch between light and dark themes:
+- **Dark Mode** (default): Slate surfaces (#0F172A, #1E293B) with bright mineral colors
+- **Light Mode**: White/light gray surfaces with deep mineral colors
 
-**Warm Purple (PRIMARY UI COLOR)**
-- Primary: `#8B80E8` - **Primary UI color for headings, text, links, icons** (replaces old charcoal #2C2C2C)
-- Hover: `#A199EE` - Light on hover
-- Active: `#7569D9` - Deep on press
-- Light: `#EBE8FC` - Soft background
-- Subtle: `#F6F5FE` - Very light background
+No manual toggle is provided - the site respects the user's OS/browser preference.
 
-**CRITICAL**: Use warm purple (#8B80E8) as the primary color for all UI elements (headings, text, links, buttons, icons). Charcoal is reserved for backgrounds only.
+### Five African Minerals Palette
 
-**Warm Brown (Accents)**
-- Primary: `#A67557` - Featured content, premium badges, warm highlights, special callouts
-- Hover: `#BA8668` - Warm on hover
-- Active: `#925F47` - Deep on press
-- Light: `#F5EDE8` - Soft background
-- Subtle: `#FAF7F5` - Very light background
+| Mineral | Light Mode | Dark Mode | Origin | Use Case |
+|---------|------------|-----------|--------|----------|
+| **Cobalt** | `#0047AB` | `#00B0FF` | Katanga (DRC), Zambian Copperbelt | CTAs, links, **education** |
+| **Tanzanite** | `#4B0082` | `#B388FF` | Merelani Hills, Tanzania | Social, premium tiers |
+| **Malachite** | `#004D40` | `#64FFDA` | Congo Copper Belt | Success, travel, nature |
+| **Gold** | `#5D4037` | `#FFD740` | Ghana, South Africa, Mali | Rewards, honey, warmth |
+| **Terracotta** | `#8B4513` | `#D4A574` | Pan-African Earth | Community, Ubuntu |
 
-**Charcoal (Backgrounds & Neutrals)**
-- Primary: `#2B2B2B` - Dark backgrounds, footer
-- Secondary: `#6B6B6B` - Secondary text, captions
-- Tertiary: `#9B9B9B` - Disabled text
-- Border: `#E0E0E0` - Subtle borders
-- Background: `#F7F7F7` - Light backgrounds
-- White: `#FAFAFA` - Off-white backgrounds
+### Education Theme (nyuchi learning)
 
-**CRITICAL**: Charcoal is used for backgrounds and neutral elements only. Use warm purple (#8B80E8) for primary UI elements.
+**Primary Color: Cobalt**
+| Mode | Value | Usage |
+|------|-------|-------|
+| Dark | `#00B0FF` | CTAs, links, buttons, interactive elements |
+| Light | `#0047AB` | CTAs, links, buttons, interactive elements |
+
+**Surface Colors (Dark Mode):**
+| Surface | Value | Name |
+|---------|-------|------|
+| Base | `#0F172A` | Slate 900 |
+| Surface | `#1E293B` | Slate 800 |
+| Elevated | `#334155` | Slate 700 |
+
+**Surface Colors (Light Mode):**
+| Surface | Value | Name |
+|---------|-------|------|
+| Base | `#FFFFFF` | White |
+| Surface | `#F8FAFC` | Slate 50 |
+| Elevated | `#F1F5F9` | Slate 100 |
+
+**Text Colors (Dark Mode):**
+| Type | Value |
+|------|-------|
+| Primary | `#F8FAFC` (Slate 50) |
+| Secondary | `#CBD5E1` (Slate 300) |
+| Muted | `#94A3B8` (Slate 400) |
+
+**Text Colors (Light Mode):**
+| Type | Value |
+|------|-------|
+| Primary | `#0F172A` (Slate 900) |
+| Secondary | `#475569` (Slate 600) |
+| Muted | `#64748B` (Slate 500) |
 
 ### Semantic Colors
 
-- **Success**: `#18A877` (Same as warm emerald)
-- **Warning**: `#E8A040` (Warm amber)
-- **Error**: `#E8574E` (Warm red)
-- **Info**: `#5B9FE3` (Warm blue)
+| Type | Dark Mode | Usage |
+|------|-----------|-------|
+| Success | `#64FFDA` (Malachite) | Confirmations, completed states |
+| Error | `#F2B8B5` | Errors, destructive actions |
+| Warning | `#FFD866` | Alerts, caution states |
+| Info | `#00B0FF` (Cobalt) | Information, tips |
 
-### CSS Variables
+### CSS Variables (Education Theme)
 
 ```css
 :root {
-  /* WARM PURPLE - PRIMARY UI COLOR */
-  --primary: #8B80E8;          /* Main color for headings, text, links, buttons, icons */
-  --primary-hover: #A199EE;    /* Hover states */
-  --primary-active: #7569D9;   /* Active/pressed states */
-  --primary-light: #EBE8FC;    /* Light backgrounds */
-  --primary-subtle: #F6F5FE;   /* Very light backgrounds */
+  /* Five African Minerals - Dark Mode */
+  --mineral-cobalt: #00B0FF;
+  --mineral-tanzanite: #B388FF;
+  --mineral-malachite: #64FFDA;
+  --mineral-gold: #FFD740;
+  --mineral-terracotta: #D4A574;
 
-  /* Warm Emerald - Secondary Actions */
-  --emerald-primary: #18A877;
-  --emerald-hover: #20C088;
-  --emerald-active: #139F68;
-  --emerald-light: #D8F3EA;
-  --emerald-subtle: #F0FAF6;
+  /* Primary Color - Cobalt (Education) */
+  --primary: #00B0FF;
 
-  /* Warm Brown - Accents */
-  --brown-primary: #A67557;
-  --brown-hover: #BA8668;
-  --brown-active: #925F47;
-  --brown-light: #F5EDE8;
-  --brown-subtle: #FAF7F5;
-
-  /* Charcoal - Backgrounds & Neutrals ONLY */
-  --charcoal-bg-dark: #2B2B2B;   /* Dark backgrounds, footer */
-  --charcoal-secondary: #6B6B6B;  /* Secondary text */
-  --charcoal-tertiary: #9B9B9B;   /* Disabled text */
-  --charcoal-border: #E0E0E0;     /* Borders */
-  --charcoal-bg: #F7F7F7;         /* Light backgrounds */
-  --charcoal-white: #FAFAFA;      /* Off-white */
+  /* Slate Dark Theme Surfaces */
+  --bg: #0F172A;            /* Slate 900 - Base */
+  --bg-surface: #1E293B;    /* Slate 800 - Cards */
+  --bg-elevated: #334155;   /* Slate 700 - Elevated */
 
   /* Text Colors */
-  --text: #8B80E8;           /* Primary text - WARM PURPLE */
-  --text-secondary: #6B6B6B; /* Secondary text - Charcoal */
-  --text-light: #9B9B9B;     /* Light text - Charcoal */
+  --text: #F8FAFC;          /* Slate 50 - Primary */
+  --text-secondary: #CBD5E1; /* Slate 300 */
+  --text-muted: #94A3B8;    /* Slate 400 */
 
-  /* Background Colors */
-  --bg: #FAFAFA;              /* Off-white */
-  --bg-gray: #F7F7F7;         /* Light gray */
-  --bg-dark: #2B2B2B;         /* Dark background */
+  /* Design Tokens */
+  --radius-button: 12px;
+  --radius-card: 16px;
+  --radius-input: 8px;
+  --minerals-strip-width: 4px;
 
   /* Semantic */
-  --success: #18A877;
-  --warning: #E8A040;
-  --error: #E8574E;
-  --info: #5B9FE3;
+  --success: #64FFDA;       /* Malachite */
+  --error: #F2B8B5;
+  --warning: #FFD866;
+  --info: #00B0FF;          /* Cobalt */
 }
 ```
 
-**Color Usage Guidelines:**
-- **Warm Purple (#8B80E8)**: Primary UI color for headings, body text, links, buttons, icons
-- **Warm Emerald (#18A877)**: Secondary CTAs, success states, highlights
-- **Warm Brown (#A67557)**: Special accents, featured content
-- **Charcoal (#2B2B2B)**: Backgrounds, footer, dark sections ONLY
+**Color Usage Guidelines (Education Theme):**
+- **Cobalt (#00B0FF)**: Primary interactive color (buttons, links, CTAs)
+- **Malachite (#64FFDA)**: Success states, confirmations
+- **Gold (#FFD740)**: Rewards, highlights, warmth
+- **Tanzanite (#B388FF)**: Premium features, social
+- **Terracotta (#D4A574)**: Community, Ubuntu philosophy
+- **Slate 900 (#0F172A)**: Primary page background
+- **Slate 800 (#1E293B)**: Card backgrounds, surfaces
 
 ---
 
-## Typography - Editorial & Warm (Claude-Aligned)
+## Typography - Bundu Family Fonts
 
 ### Font Families
 
-**Newsreader (Editorial Serif for Titles)**
-- Usage: H1, H2, hero sections, major headlines
-- Weights: 400, 600, 700
-- Google Fonts: `Newsreader:wght@400;600;700`
-- Feel: Editorial, sophisticated, trusted (like Claude's marketing)
-- Backup: Georgia, 'Times New Roman', serif
-
-**Inter (Sans-Serif for Body & UI)**
-- Usage: H3-H6, body text, UI elements, buttons, navigation
-- Weights: 400, 500, 600, 700
-- Google Fonts: `Inter:wght@400;500;600;700`
-- Feel: Clean, modern, accessible (like Claude's interface)
-- Backup: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif
+| Purpose | Font | Weights | Usage |
+|---------|------|---------|-------|
+| **Display/H1** | Noto Serif | 400, 700 | Hero titles, major headlines |
+| **Headings H2-H6** | Plus Jakarta Sans | 600, 700, 800 | Section titles, card titles |
+| **Body** | Plus Jakarta Sans | 300, 400, 500, 600 | Paragraphs, UI text |
+| **Code** | JetBrains Mono | 400, 500 | Code blocks, technical content |
+| **Wordmarks** | Plus Jakarta Sans | 600 | Brand names (always lowercase) |
 
 ### Font Loading
 
 ```html
+<!-- From assets.nyuchi.com CDN (preferred) -->
+<link rel="stylesheet" href="https://assets.nyuchi.com/fonts/all-fonts.css">
+
+<!-- Or Google Fonts fallback -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 ```
 
-### Typography Scale - Editorial Design
+### Typography Scale
 
 **Desktop:**
 
 ```css
-/* H1 - Hero Title */
+/* H1 - Hero Title (Noto Serif) */
 h1 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 56px;
+  font-family: 'Noto Serif', Georgia, serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: var(--text);  /* Warm purple #8B80E8 */
+  color: var(--text);
 }
 
-/* H2 - Section Title */
+/* H2 - Section Title (Plus Jakarta Sans) */
 h2 {
-  font-family: 'Newsreader', Georgia, serif;
-  font-size: 40px;
-  font-weight: 600;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: -0.015em;
-  color: var(--text);  /* Warm purple #8B80E8 */
+  color: var(--text);
 }
 
-/* H3 - Subsection */
+/* H3 - Subsection (Plus Jakarta Sans) */
 h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: 28px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem;
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: -0.01em;
-  color: var(--text);  /* Warm purple #8B80E8 */
+  color: var(--text);
 }
 
-/* H4 - Component Title */
-h4 {
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 600;
-  line-height: 1.4;
-  letter-spacing: normal;
-  color: var(--text);  /* Warm purple #8B80E8 */
-}
-
-/* Body Large */
-.body-large {
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 1.6;
-  color: var(--text);  /* Warm purple #8B80E8 */
+/* H4-H6, Body (Plus Jakarta Sans) */
+h4, h5, h6, body, p {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--text);
 }
 
 /* Body (Default) */
 body, p {
-  font-family: 'Inter', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.6;
-  color: var(--text);  /* Warm purple #8B80E8 */
 }
 
-/* Body Small */
-.body-small {
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.5;
-  color: var(--text-secondary);  /* Charcoal #6B6B6B */
+/* Wordmarks - Always lowercase */
+.brand-wordmark {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 600;
+  text-transform: lowercase;
 }
 ```
 
@@ -1394,47 +1465,50 @@ body, p {
 
 ```css
 @media (max-width: 768px) {
-  h1 { font-size: 40px; }
-  h2 { font-size: 32px; }
-  h3 { font-size: 24px; }
-  h4 { font-size: 18px; }
+  h1 { font-size: clamp(2rem, 8vw, 2.5rem); }
+  h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
+  h3 { font-size: 1.25rem; }
   body, p { font-size: 16px; } /* Keep readable */
 }
 ```
 
 **Responsive Typography:**
-- Use `clamp()` for fluid sizing when appropriate
-- Example: `clamp(2.5rem, 5vw, 3.5rem)` for smooth scaling
+- Use `clamp()` for fluid sizing
+- Example: `clamp(2.5rem, 6vw, 4rem)` for smooth scaling
 - Maintain minimum 16px for body text (readability on mobile)
 
 ---
 
-## Buttons - Claude-Style Rounded Buttons
+## Buttons - Education Theme
 
-### Button Style Philosophy
+### Button Design Tokens
 
-**Rounded buttons (10px border-radius)** - Not pills, not sharp. The Claude-aligned approach uses moderately rounded corners that are modern and friendly without being overly playful.
+| Token | Value |
+|-------|-------|
+| **Button Radius** | 12px (NOT 8px or 10px) |
+| **Card Radius** | 16px |
+| **Input Radius** | 8px |
 
 ### Button Styles
 
-**Primary Button:**
+**Primary Button (Cobalt):**
 ```css
 .btn-primary {
-  /* Colors */
-  background: var(--primary);  /* #8B80E8 warm purple */
+  /* Colors - Cobalt */
+  background: var(--primary);  /* #00B0FF Cobalt */
   color: white;
 
   /* Typography */
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 600;
   font-size: 16px;
 
   /* Spacing */
-  padding: 12px 24px;
-  min-height: 48px;
+  padding: 10px 20px;
+  min-height: 40px;
 
-  /* Shape - Claude style */
-  border-radius: 10px;   /* Slightly rounded, not too much */
+  /* Shape - 12px radius (critical!) */
+  border-radius: 12px;
   border: none;
 
   /* Interaction */
@@ -1443,18 +1517,18 @@ body, p {
 }
 
 .btn-primary:hover {
-  background: var(--primary-hover);  /* #A199EE */
-  transform: translateY(-1px);  /* Subtle lift */
-  box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3);
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 176, 255, 0.3);
 }
 
 .btn-primary:active {
-  background: var(--primary-active);  /* #7569D9 */
+  filter: brightness(0.95);
   transform: translateY(0);
 }
 
 .btn-primary:focus-visible {
-  outline: 3px solid var(--primary-light);  /* #EBE8FC */
+  outline: 3px solid var(--mineral-cobalt);
   outline-offset: 2px;
 }
 ```
@@ -1463,78 +1537,58 @@ body, p {
 ```css
 .btn-secondary {
   background: transparent;
-  color: var(--primary);  /* #8B80E8 warm purple */
-  padding: 12px 24px;
-  border-radius: 10px;
+  color: var(--primary);  /* #00B0FF Cobalt */
+  padding: 10px 20px;
+  border-radius: 12px;
   border: 1.5px solid var(--primary);
-  font-family: 'Inter', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-weight: 600;
   font-size: 16px;
-  min-height: 48px;
+  min-height: 40px;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-secondary:hover {
-  background: var(--primary-subtle);  /* #F6F5FE */
-  border-color: var(--primary-hover);
-  color: var(--primary-active);
+  background: rgba(0, 176, 255, 0.1);
 }
 
 .btn-secondary:focus-visible {
-  outline: 3px solid var(--primary-light);
+  outline: 3px solid var(--mineral-cobalt);
   outline-offset: 2px;
-}
-```
-
-**Tertiary Button (Text Only):**
-```css
-.btn-tertiary {
-  background: transparent;
-  color: var(--primary);  /* #8B80E8 warm purple */
-  padding: 8px 12px;
-  border: none;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.btn-tertiary:hover {
-  color: var(--primary-hover);  /* #A199EE */
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-thickness: 2px;
 }
 ```
 
 ### Button Sizes
 
 ```css
-/* Large */
-.btn-lg {
-  padding: 16px 32px;
-  font-size: 18px;
-  min-height: 52px;
-  border-radius: 12px;
-}
-
-/* Medium (default) */
-.btn-md {
-  padding: 12px 24px;
-  font-size: 16px;
-  min-height: 48px;
-  border-radius: 10px;
-}
-
 /* Small */
 .btn-sm {
-  padding: 8px 16px;
+  height: 32px;
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* Default */
+.btn-default {
+  height: 40px;
+  padding: 10px 20px;
   font-size: 14px;
-  min-height: 36px;
-  border-radius: 8px;
+}
+
+/* Large */
+.btn-lg {
+  height: 48px;
+  padding: 14px 28px;
+  font-size: 16px;
+}
+
+/* Icon Button */
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  font-size: 20px;
 }
 ```
 
@@ -1560,7 +1614,7 @@ body, p {
 - Use **Lucide icons** from `lucide-astro` package
 - Icon size: 24-48px desktop, 40px mobile, 32-56px for feature icons
 - Stroke width: 1.5-2 for consistency
-- Color: `var(--primary)` (#8B80E8 warm purple) for primary icons, `var(--text-secondary)` for neutral icons
+- Color: `var(--primary)` (#00B0FF Cobalt) for primary icons, `var(--text-secondary)` for neutral icons
 
 **Example Usage:**
 ```astro
@@ -1711,19 +1765,19 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 
 ---
 
-## Card System - Soft & Inviting
+## Card System - Education Theme
 
 ### Standard Card
 
 ```css
 .card {
   /* Layout */
-  background: white;
-  border-radius: 12px;
+  background: var(--bg-surface);  /* Slate 800 */
+  border-radius: 16px;  /* 16px for cards (NOT 12px) */
   padding: 24px;
 
-  /* Border - very subtle */
-  border: 1px solid #F0F0F0;
+  /* Border - subtle on dark */
+  border: 1px solid rgba(255, 255, 255, 0.1);
 
   /* Shadow - soft and natural */
   box-shadow: var(--shadow-sm);
@@ -1735,7 +1789,7 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 .card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: #E0E0E0;
+  border-color: var(--mineral-cobalt);  /* Cobalt accent on hover */
 }
 ```
 
@@ -1743,11 +1797,11 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 
 ```css
 .card-feature {
-  background: white;
-  border-radius: 12px;
+  background: var(--bg-surface);  /* Slate 800 */
+  border-radius: 16px;
   padding: 32px;
   text-align: center;
-  border: 1px solid #F0F0F0;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: var(--shadow-sm);
   transition: all 0.3s ease;
 }
@@ -1755,13 +1809,13 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 .card-feature:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
-  border-color: var(--primary);  /* Warm purple */
+  border-color: var(--mineral-cobalt);  /* Cobalt */
 }
 
 .card-icon {
   width: 56px;
   height: 56px;
-  background: var(--primary);  /* Warm purple */
+  background: var(--mineral-cobalt);  /* Cobalt */
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -1772,15 +1826,94 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 }
 ```
 
-### Accent Card (Purple Border)
+### Accent Card (Cobalt Border)
 
 ```css
 .card-accent {
-  background: white;
-  border-radius: 12px;
+  background: var(--bg-surface);  /* Slate 800 */
+  border-radius: 16px;
   padding: 24px;
-  border-left: 4px solid var(--primary);  /* Warm purple accent */
+  border-left: 4px solid var(--mineral-cobalt);  /* Cobalt accent */
   box-shadow: var(--shadow-sm);
+}
+```
+
+---
+
+## Animation System - Intersection Observer
+
+The site uses an Intersection Observer-based animation system that triggers animations when elements scroll into view. This provides smooth, performant scroll animations that respect user preferences.
+
+### Animation Classes
+
+Add these classes to elements you want to animate on scroll:
+
+```css
+/* Fade In - Simple opacity transition */
+.animate-fade-in { opacity: 0; }
+.animate-fade-in.animated { opacity: 1; }
+
+/* Slide Up - Fades in while sliding up 50px */
+.animate-slide-up { transform: translateY(50px); opacity: 0; }
+.animate-slide-up.animated { transform: translateY(0); opacity: 1; }
+
+/* Slide From Left - Fades in while sliding from left */
+.animate-slide-left { transform: translateX(-50px); opacity: 0; }
+.animate-slide-left.animated { transform: translateX(0); opacity: 1; }
+
+/* Slide From Right - Fades in while sliding from right */
+.animate-slide-right { transform: translateX(50px); opacity: 0; }
+.animate-slide-right.animated { transform: translateX(0); opacity: 1; }
+
+/* Scale In - Fades in while scaling up from 90% */
+.animate-scale-in { transform: scale(0.9); opacity: 0; }
+.animate-scale-in.animated { transform: scale(1); opacity: 1; }
+```
+
+### Staggered Animations for Grids
+
+Use `.animate-stagger` on a parent container to automatically stagger child animations:
+
+```astro
+<div class="features-grid animate-stagger">
+  <div class="feature-card animate-slide-up">Card 1</div>  <!-- 0.1s delay -->
+  <div class="feature-card animate-slide-up">Card 2</div>  <!-- 0.2s delay -->
+  <div class="feature-card animate-slide-up">Card 3</div>  <!-- 0.3s delay -->
+</div>
+```
+
+### Usage Example
+
+```astro
+<section class="hero">
+  <h1 class="animate-fade-in">Welcome</h1>
+  <p class="animate-slide-up">Description text</p>
+</section>
+
+<section class="features">
+  <div class="cards-grid animate-stagger">
+    <div class="card animate-slide-up">Feature 1</div>
+    <div class="card animate-slide-up">Feature 2</div>
+    <div class="card animate-slide-up">Feature 3</div>
+  </div>
+</section>
+```
+
+### Accessibility
+
+The animation system automatically respects `prefers-reduced-motion`:
+
+```css
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-left,
+  .animate-slide-right,
+  .animate-scale-in {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
 }
 ```
 
@@ -1790,7 +1923,35 @@ The shadow system uses **layered shadows** (two values) to create more natural d
 
 ### Desktop Navigation
 
-Standard horizontal navigation with rounded hover states (10px border-radius, matching button style).
+Standard horizontal navigation with rounded hover states (10px border-radius, matching button style). Includes dropdown menu for "About" section.
+
+**Navigation Structure:**
+```
+Home | Frameworks | Resources | Pricing | Blog | About (dropdown) | Book a Consultation (CTA)
+                                                    ├── Mission & Impact
+                                                    ├── Global Reach
+                                                    ├── Our Team
+                                                    └── Community
+```
+
+**Dropdown Menu Pattern:**
+```astro
+<li class="nav-dropdown">
+  <a href="/about" class="dropdown-trigger">About</a>
+  <ul class="dropdown-menu">
+    <li><a href="/about">Mission & Impact</a></li>
+    <li><a href="/global-reach">Global Reach</a></li>
+    <li><a href="/team">Our Team</a></li>
+    <li><a href="/community">Community</a></li>
+  </ul>
+</li>
+```
+
+**Header States:**
+- **Transparent**: On page load when at top of page (hero sections)
+- **Solid**: When scrolled past 50px (charcoal background with blur)
+- **Hidden**: When scrolling down (auto-hides after 100px)
+- **Visible**: When scrolling up (shows again)
 
 ### Mobile Navigation - CRITICAL
 
@@ -1808,9 +1969,14 @@ Standard horizontal navigation with rounded hover states (10px border-radius, ma
   <ul class="nav-mobile-links">
     <li><a href="/">Home</a></li>
     <li><a href="/frameworks">Frameworks</a></li>
+    <li><a href="/resources">Resources</a></li>
     <li><a href="/pricing">Pricing</a></li>
     <li><a href="/blog">Blog</a></li>
-    <li><a href="/about">About</a></li>
+    <li><a href="/about">Mission & Impact</a></li>
+    <li><a href="/global-reach">Global Reach</a></li>
+    <li><a href="/team">Our Team</a></li>
+    <li><a href="/community">Community</a></li>
+    <li><a href="/consultation" class="mobile-cta">Book a Consultation</a></li>
   </ul>
 </div>
 ```
@@ -1974,7 +2140,7 @@ Given Africa's mobile-first reality:
 - Full-screen mobile navigation
 - Auto-close menu on link click
 - Logo size reduction (24px icon, hide subtext)
-- 6px flag strip (from 8px desktop)
+- Minerals Strip hidden on mobile (<480px)
 
 **Typography:**
 - H1 titles: 40px mobile (from 56px desktop)
@@ -2016,32 +2182,39 @@ Given Africa's mobile-first reality:
 │   ├── favicon.svg
 │   ├── frameworks/
 │   │   ├── README.md
-│   │   ├── k12-digital-campus-framework.pdf (to be generated)
-│   │   └── k12-support-process-framework.pdf (to be generated)
+│   │   ├── k12-digital-campus-framework.md
+│   │   └── k12-support-process-framework.md
 │   └── OG-IMAGE-README.md
 ├── src/
 │   ├── components/
 │   │   ├── Logo.astro
 │   │   └── SEO.astro
 │   ├── layouts/
-│   │   └── BaseLayout.astro       # Zimbabwe flag strip, navigation, footer
+│   │   └── BaseLayout.astro       # Header (auto-hide, dropdown menus), footer (global messaging), Minerals Strip, animation system
 │   ├── pages/
-│   │   ├── index.astro            # Homepage (Claude-aligned design)
+│   │   ├── index.astro            # Homepage
 │   │   ├── frameworks.astro       # Frameworks overview
 │   │   ├── framework.astro        # K-12 Digital Campus Framework
+│   │   ├── digital-literacy-framework.astro  # Digital Literacy Framework
 │   │   ├── support-framework.astro # K-12 Support Process Framework
 │   │   ├── pricing.astro          # Pricing tiers & breakdowns
-│   │   ├── about.astro            # Mission & founder story
+│   │   ├── resources.astro        # Resources Hub - implementation guides
+│   │   ├── about.astro            # Mission & Impact page
+│   │   ├── global-reach.astro     # Global geographic scope
+│   │   ├── team.astro             # Team page (founder profile)
+│   │   ├── community.astro        # Community page (GitHub integration)
+│   │   ├── consultation.astro     # Book a Consultation
 │   │   └── blog/
 │   │       ├── index.astro
 │   │       ├── digital-literacy-importance.astro
 │   │       ├── launching-the-framework.astro
-│   │       └── why-open-source.astro
+│   │       ├── why-open-source.astro
+│   │       └── developing-world-educational-advantage.astro
 │   └── env.d.ts
 ├── astro.config.mjs
 ├── package.json
 ├── tsconfig.json
-├── CLAUDE.md                       # This file - Design guidelines
+├── CLAUDE.md                       # This file - Comprehensive guidelines
 ├── BRANDING.md                     # Nyuchi branding guidelines
 ├── README.md                       # Project documentation
 ├── DEPLOYMENT.md                   # Deployment instructions
@@ -2053,15 +2226,17 @@ Given Africa's mobile-first reality:
 ## Do's and Don'ts
 
 ### DO:
-✅ Use Zimbabwe flag strip on every page (8px desktop, 6px mobile)
-✅ Use rounded buttons (border-radius: 10px for medium, 12px for large)
+✅ Use Minerals Strip on desktop (4px, 5 colors, left edge)
+✅ Hide Minerals Strip on mobile (<480px)
+✅ Use 12px button radius, 16px card radius
 ✅ Use Lucide icons for all visual icons
-✅ Use warm color system (purple PRIMARY, emerald, brown, charcoal for backgrounds)
-✅ Use Newsreader for H1, H2 (editorial serif)
-✅ Use Inter for H3-H6, body, UI (clean sans-serif)
-✅ Use layered shadows (Claude-style soft shadows)
-✅ Use 4px base spacing unit
-✅ Use 12px border-radius for cards
+✅ **Use Slate dark theme** - Slate 900 (#0F172A) background with Slate 50 (#F8FAFC) text
+✅ Use Cobalt (#00B0FF) for interactive elements (buttons, links, CTAs)
+✅ Use Five African Minerals for semantic colors (Malachite=success, Gold=rewards, etc.)
+✅ Use Noto Serif for H1 (display serif)
+✅ Use Plus Jakarta Sans for H2-H6, body, UI
+✅ **Use lowercase wordmarks** (nyuchi, bundu, mukoko, shamwari)
+✅ Ensure WCAG AAA (7:1+) contrast on all colors
 ✅ Use clamp() for responsive typography
 ✅ Use hamburger menu on mobile (<768px)
 ✅ Use horizontal scrolling for wide content on mobile
@@ -2069,38 +2244,37 @@ Given Africa's mobile-first reality:
 ✅ Ensure 44x44px minimum touch targets (48px for buttons)
 ✅ Use single-column layouts on mobile
 ✅ Focus on framework value for schools
-✅ Include Nyuchi Learning branding for credibility
 ✅ Emphasize open, shareable, adaptable framework nature
-✅ Mention multilingual support (African languages + English, French, Chinese)
-✅ Emphasize Ubuntu philosophy
+✅ Emphasize Ubuntu philosophy ("Ndiri nekuti tiri")
 ✅ Design mobile-first
-✅ **Use warm purple (#8B80E8) as PRIMARY UI color** for headings, text, links, buttons, icons
-✅ Use warm emerald (#18A877) for secondary CTAs and highlights
-✅ Use warm brown (#A67557) for accents
-✅ Use charcoal (#2B2B2B) ONLY for backgrounds and dark sections
+✅ Use animation classes (animate-fade-in, animate-slide-up) for scroll animations
+✅ Use auto-hide header with transparent/solid states
+✅ Use dropdown menus for navigation sections
+✅ Include global mission messaging ("Leapfrog Traditional Education. Build for 2050.")
 ✅ Create editorial, sophisticated feel (not aggressive/bold)
-✅ Optimize spacing for 13" laptop screens
 
 ### DON'T:
 ❌ Use pill-shaped buttons (9999px border-radius)
-❌ Use square buttons (0px border-radius)
+❌ Use 10px button radius (use 12px)
+❌ Use 12px card radius (use 16px)
 ❌ Use emojis anywhere
-❌ Use harsh black (#000) or pure white (#FFF) for backgrounds
-❌ Use old fonts (Playfair Display, Roboto - these are deprecated)
+❌ Use Charcoal (#2B2B2B) for backgrounds (use Slate #0F172A)
+❌ Use warm purple (#8B80E8) (use Cobalt #00B0FF)
+❌ Use Zimbabwe flag strip (use Minerals Strip)
+❌ Use capitalized brand names ("Nyuchi" - use "nyuchi")
+❌ Use old fonts (Newsreader, Inter, Playfair Display, Roboto)
+❌ Use old colors outside the Five African Minerals palette
 ❌ Use single, sharp shadows
-❌ Use 8px spacing base (use 4px instead)
-❌ Use uppercase text-transform everywhere (only when appropriate)
-❌ Make Nyuchi branding the hero (framework is the hero)
+❌ Make nyuchi branding the hero (framework is the hero)
 ❌ Hide that the framework is open and shareable
 ❌ Use "Ubuntu" as a brand name (philosophy only)
 ❌ Ignore mobile experience
-❌ Use fonts other than Newsreader and Inter
+❌ Use fonts other than Noto Serif and Plus Jakarta Sans
 ❌ Use small touch targets (<44px)
 ❌ Allow content to wrap/overflow on mobile (use horizontal scroll)
 ❌ Use aggressive, overly bold design
-❌ Use cold colors (old green #00A651, old charcoal #2C2C2C as primary)
-❌ Use charcoal (#2B2B2B) for primary UI elements (use purple instead)
-❌ Use excessive spacing that doesn't work on 13" screens
+❌ Forget animation accessibility (prefers-reduced-motion)
+❌ Show Minerals Strip on mobile (<480px)
 
 ---
 
@@ -2108,28 +2282,33 @@ Given Africa's mobile-first reality:
 
 - **Framework**: Astro 4.15+
 - **Icons**: lucide-astro
-- **Typography**: Google Fonts (Newsreader, Inter)
-- **Design Language**: Claude-aligned (warm, editorial, accessible)
+- **Typography**: Google Fonts (Noto Serif, Plus Jakarta Sans)
+- **Brand System**: Bundu Family - Five African Minerals
+- **Primary Mineral**: Cobalt (Education Theme)
+- **Dark Theme**: Slate surfaces (#0F172A, #1E293B)
 - **Deployment**: Vercel
 - **Analytics**: Google Analytics (G-BNHM29F8W5)
 - **Sitemap**: @astrojs/sitemap (automatic generation)
 - **SEO**: Comprehensive meta tags, Open Graph, Twitter Cards, JSON-LD structured data
 - **AI Crawlers**: Allowed (GPTBot, Claude-Web, CCBot, PerplexityBot)
+- **Accessibility**: WCAG AAA (7:1+ contrast)
 
 ---
 
 ## Accessibility
 
-### WCAG 2.1 AA Compliance
+### WCAG 2.1 AAA Compliance
 
-- **Color contrast**: 4.5:1 for normal text, 3:1 for large text
+- **Color contrast**: 7:1+ for all text (AAA standard)
+- **Five African Minerals**: All colors achieve WCAG AAA in both modes
 - **Touch targets**: 44x44px minimum, 48px for primary buttons
 - **Semantic HTML**: Proper heading hierarchy, landmarks
 - **ARIA labels**: Where appropriate (e.g., mobile menu button)
 - **Keyboard navigation**: Full keyboard support
 - **Screen reader**: Compatible with screen readers
-- **Focus indicators**: Visible focus states for all interactive elements
+- **Focus indicators**: Visible focus states (Cobalt outline)
 - **Responsive text**: Readable at all sizes (minimum 16px/1rem)
+- **Reduced motion**: Animation system respects prefers-reduced-motion
 
 ### Multilingual Support
 
@@ -2269,7 +2448,37 @@ This document should be updated whenever:
 
 ### Version History
 
-**Version 3.0** (November 2025) - Current (Claude-Aligned)
+**Version 4.0** (December 2025) - Current (Education Theme, Five African Minerals, Bundu Family)
+- **Brand System**: Part of Bundu Ecosystem with Five African Minerals palette
+- **Primary Mineral**: Cobalt (#00B0FF dark mode) for education
+- **Theme**: Slate dark surfaces (#0F172A base, #1E293B surface)
+- **Typography**: Noto Serif for H1, Plus Jakarta Sans for H2-H6/body/UI
+- **Wordmarks**: Always lowercase (nyuchi, bundu, mukoko, shamwari)
+- **Minerals Strip**: 4px, 5 colors (Cobalt, Tanzanite, Malachite, Gold, Terracotta)
+  - Hidden on mobile (<480px)
+  - Replaces Zimbabwe flag strip
+- **Design Tokens**: 12px button radius, 16px card radius
+- **Accessibility**: WCAG AAA (7:1+ contrast) on all minerals
+- **Animation System**: Retained from v3.1
+
+**Version 3.1** (December 2025) - Dark Theme, Animation System, Global Mission
+- **Theme**: Dark mode with charcoal (#2B2B2B) backgrounds
+- **Text**: Off-white (#FAFAFA) primary text on dark backgrounds
+- **Animation System**: Intersection Observer-based scroll animations
+  - animate-fade-in, animate-slide-up, animate-slide-left, animate-slide-right, animate-scale-in
+  - Staggered grid animations with animate-stagger
+  - Respects prefers-reduced-motion
+- **Header**: Auto-hide on scroll down, show on scroll up
+  - Transparent/solid state transitions
+  - Dropdown menus for navigation sections
+- **Navigation**: Updated structure with Resources, Global Reach, Team, Community, Consultation
+- **Footer**: Global mission messaging ("Leapfrog Traditional Education. Build for 2050.")
+  - Brown (#A67557) hero background
+  - Geographic scope messaging (Africa, Asia, Latin America, Pacific)
+  - 4-column link grid
+- **New Pages**: /resources, /global-reach, /team, /community, /consultation
+
+**Version 3.0** (November 2025) - Claude-Aligned
 - **Typography**: Newsreader for H1/H2, Inter for H3-H6/body/UI
 - **Colors**: Warm earth tones (emerald, purple, brown, charcoal)
 - **Buttons**: Rounded (10px) instead of pill-shaped

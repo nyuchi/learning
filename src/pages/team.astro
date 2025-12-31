@@ -1,71 +1,106 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
+
+// Values data
+const values = [
+  {
+    title: "Education First",
+    description: "We're educators first, technologists second. Every decision is guided by what's best for students, teachers, and learning communities."
+  },
+  {
+    title: "Open & Shareable",
+    description: "Our frameworks are free to use, copy, adapt, and improve. We believe in collective success—when one school benefits, all schools benefit."
+  },
+  {
+    title: "African Reality",
+    description: "Built and tested on African roads, not in Silicon Valley boardrooms. We understand connectivity challenges, budget constraints, and diverse communities."
+  },
+  {
+    title: "Local Investment",
+    description: "Committed to Zimbabwe and Africa's economic growth. Revenue earned internationally is reinvested locally to build capacity and create opportunities."
+  },
+  {
+    title: "Community Centered",
+    description: "Ubuntu philosophy guides everything we do: \"I am because we are.\" Success is measured by community impact, not individual achievement."
+  },
+  {
+    title: "Practical Solutions",
+    description: "No buzzwords or vaporware. We provide actionable frameworks, detailed roadmaps, and proven strategies that work in real schools today."
+  }
+];
 ---
 
 <BaseLayout
-  title="Our Team | Nyuchi Learning"
-  description="Meet the team behind Nyuchi Learning and the K-12 Digital Campus Framework. Built by educators for educators, committed to Africa's educational future."
-  keywords="Nyuchi Learning team, Bryan Fawcett, education technology leaders, African education innovators, Zimbabwe education technology, Nyuchi Africa team"
+  title="Our Team | nyuchi learning"
+  description="Meet the team behind nyuchi learning and the K-12 Digital Campus Framework. Built by educators for educators, committed to Africa's educational future."
+  keywords="nyuchi learning team, Bryan Fawcett, education technology leaders, African education innovators, Zimbabwe education technology, nyuchi africa team"
 >
-  <div class="team-container">
-    <div class="team-header">
-      <p class="ubuntu-header">Ubuntu: I am because we are</p>
-      <h1>Our Team</h1>
-      <p class="tagline">
+  <div class="max-w-[1200px] mx-auto px-4 py-8">
+    <!-- Header -->
+    <div class="relative text-center mb-16 py-12 px-4 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl overflow-hidden">
+      <p class="text-lg italic text-[var(--text-secondary)] mb-4 relative z-10">Ubuntu: I am because we are</p>
+      <h1 class="text-[clamp(2rem,8vw,3.5rem)] font-extrabold font-serif mb-4 relative z-10">Our Team</h1>
+      <p class="text-[clamp(1rem,3vw,1.3rem)] opacity-95 max-w-[800px] mx-auto leading-relaxed relative z-10">
         Built by educators for educators. Committed to Zimbabwe and Africa's educational future.
       </p>
     </div>
 
-    <section class="team-intro">
-      <h2>Education First, Technology Second</h2>
-      <p>
-        Nyuchi Learning is a division of Nyuchi Africa, founded with a singular mission: to empower education
+    <!-- Intro Section -->
+    <section class="bg-[var(--bg-surface)] p-8 md:p-12 rounded-xl shadow-sm mb-16 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-2xl font-bold mb-6">Education First, Technology Second</h2>
+      <p class="leading-relaxed text-[var(--text)] mb-4 text-lg">
+        nyuchi learning is a division of nyuchi africa, founded with a singular mission: to empower education
         through accessible, practical technology solutions. We're not a tech company dabbling in education—we're
         educators using technology to transform learning across Africa.
       </p>
-      <p>
+      <p class="leading-relaxed text-[var(--text)] text-lg">
         Our team combines deep educational expertise with technical innovation, all built on the Ubuntu philosophy
         of collective success. When one school thrives, we all benefit.
       </p>
     </section>
 
-    <section class="founder-section">
-      <h2 class="section-title">Founder</h2>
+    <!-- Founder Section -->
+    <section class="mb-16">
+      <h2 class="text-4xl font-extrabold text-[var(--primary)] text-center mb-12 tracking-tight">Founder</h2>
 
-      <div class="founder-card">
-        <div class="founder-image">
+      <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden shadow-md grid grid-cols-1 lg:grid-cols-[350px_1fr] border border-[var(--border)]">
+        <!-- Founder Image -->
+        <div class="bg-[var(--bg)] flex items-center justify-center p-8">
           <img
             src="https://drive.google.com/uc?export=view&id=10aWI8tdcfpRDAv50R84euq6lpTs6-0v0"
-            alt="Bryan Fawcett, Founder of Nyuchi Learning"
-            class="profile-img"
+            alt="Bryan Fawcett, Founder of nyuchi learning"
+            class="w-full max-w-[300px] h-auto aspect-square object-cover rounded-full border-[6px] border-[var(--text-secondary)] shadow-lg"
           />
         </div>
 
-        <div class="founder-info">
-          <h3>Bryan Fawcett</h3>
-          <p class="founder-title">Founder & CEO, Nyuchi Africa</p>
-          <p class="founder-division">Creator of Nyuchi Learning Frameworks</p>
+        <!-- Founder Info -->
+        <div class="p-8 md:p-12">
+          <h3 class="text-4xl mb-2 text-[var(--primary)] font-extrabold">Bryan Fawcett</h3>
+          <p class="text-xl text-[var(--text)] font-semibold mb-1">Founder & CEO, nyuchi africa</p>
+          <p class="text-lg text-[var(--text-secondary)] mb-8">Creator of nyuchi learning Frameworks</p>
 
-          <div class="founder-bio">
-            <p>
-              Bryan Fawcett founded Nyuchi Africa in October 2016 with a vision to create practical, accessible technology
+          <div class="space-y-6">
+            <p class="leading-relaxed text-[var(--text)] text-lg">
+              Bryan Fawcett founded nyuchi africa in October 2016 with a vision to create practical, accessible technology
               solutions built specifically for African realities. His journey from educator to technology innovator
               was shaped by years of teaching in South Africa, Zimbabwe, and Japan, understanding
               firsthand the challenges and opportunities in digital education.
             </p>
-            <p class="founder-summary">
+
+            <blockquote class="italic bg-[var(--bg)] p-6 border-2 border-[var(--primary)] rounded-lg text-[var(--text)] text-lg leading-relaxed">
               "I am driven to craft dynamic ecosystems that unite and empower communities—through accessible experiences,
               innovative solutions, and trusted partnerships—creating a future where barriers dissolve, opportunities flourish,
               and every individual contributes to our shared success."
-            </p>
+            </blockquote>
 
-            <div class="journey-highlights">
-              <div class="highlight">
-                <GraduationCap class="highlight-icon" size={24} strokeWidth={2} />
+            <!-- Journey Highlights -->
+            <div class="space-y-4">
+              <div class="flex gap-4 p-6 bg-[var(--bg)] rounded-lg border-2 border-[var(--primary)]">
+                <GraduationCap class="text-[var(--primary)] flex-shrink-0 mt-1" size={24} strokeWidth={2} />
                 <div>
-                  <h4>Global Education Experience</h4>
-                  <p>
+                  <h4 class="text-xl font-semibold mb-2 text-[var(--primary)]">Global Education Experience</h4>
+                  <p class="text-[var(--text)] leading-relaxed">
                     Over a decade of teaching and technology leadership across Africa and Asia: St. John's College Zimbabwe,
                     St. John the Baptist Catholic School South Africa, Osaka YMCA International School Japan, and currently
                     Singapore American School. This diverse experience revealed the universal need for practical, affordable
@@ -74,23 +109,23 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
                 </div>
               </div>
 
-              <div class="highlight">
-                <Globe class="highlight-icon" size={24} strokeWidth={2} />
+              <div class="flex gap-4 p-6 bg-[var(--bg)] rounded-lg border-2 border-[var(--primary)]">
+                <Globe class="text-[var(--primary)] flex-shrink-0 mt-1" size={24} strokeWidth={2} />
                 <div>
-                  <h4>Built on African Roads</h4>
-                  <p>
+                  <h4 class="text-xl font-semibold mb-2 text-[var(--primary)]">Built on African Roads</h4>
+                  <p class="text-[var(--text)] leading-relaxed">
                     Growing up and working in Africa instilled invaluable qualities—resourcefulness, adaptability,
-                    and initiative. Years of traveling across the continent shaped Nyuchi's DNA: remote-first,
+                    and initiative. Years of traveling across the continent shaped nyuchi's DNA: remote-first,
                     optimized for limited connectivity, and designed for real African conditions—not just theory.
                   </p>
                 </div>
               </div>
 
-              <div class="highlight">
-                <Heart class="highlight-icon" size={24} strokeWidth={2} />
+              <div class="flex gap-4 p-6 bg-[var(--bg)] rounded-lg border-2 border-[var(--primary)]">
+                <Heart class="text-[var(--primary)] flex-shrink-0 mt-1" size={24} strokeWidth={2} />
                 <div>
-                  <h4>Zimbabwe Commitment</h4>
-                  <p>
+                  <h4 class="text-xl font-semibold mb-2 text-[var(--primary)]">Zimbabwe Commitment</h4>
+                  <p class="text-[var(--text)] leading-relaxed">
                     With Africa at the heart of his vision, Bryan dedicates his expertise to building transformative
                     resources across the continent. International revenue is reinvested into Zimbabwe to build, grow,
                     and support education and local economic development.
@@ -98,11 +133,11 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
                 </div>
               </div>
 
-              <div class="highlight">
-                <Code class="highlight-icon" size={24} strokeWidth={2} />
+              <div class="flex gap-4 p-6 bg-[var(--bg)] rounded-lg border-2 border-[var(--primary)]">
+                <Code class="text-[var(--primary)] flex-shrink-0 mt-1" size={24} strokeWidth={2} />
                 <div>
-                  <h4>Technology & Data Solutions Expert</h4>
-                  <p>
+                  <h4 class="text-xl font-semibold mb-2 text-[var(--primary)]">Technology & Data Solutions Expert</h4>
+                  <p class="text-[var(--text)] leading-relaxed">
                     Currently serving as Associate Technology & Innovation Coordinator and former Privacy & Governance
                     Manager at Singapore American School. Led enterprise application management, ERP implementations
                     (SAP S/4 Hana), HRM systems, and data governance. Expertise in creating interconnected systems where
@@ -113,17 +148,18 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
             </div>
           </div>
 
-          <div class="founder-links">
+          <!-- Founder Links -->
+          <div class="flex gap-4 flex-wrap mt-8">
             <a
               href="https://www.linkedin.com/in/bryandavidfawcett/"
               target="_blank"
               rel="noopener noreferrer"
-              class="btn btn-primary linkedin-btn"
+              class="inline-flex items-center justify-center gap-2 py-4 px-8 rounded-full font-semibold text-base transition-all duration-200 min-h-[48px] bg-[var(--color-linkedin)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:bg-[var(--color-linkedin-hover)]"
             >
               <Linkedin size={20} strokeWidth={2} />
               <span>Connect on LinkedIn</span>
             </a>
-            <a href="/consultation" class="btn btn-secondary">
+            <a href="/consultation" class="inline-flex items-center justify-center gap-2 py-4 px-8 rounded-full font-semibold text-base transition-all duration-200 min-h-[48px] bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--primary)] hover:text-white hover:-translate-y-0.5 hover:shadow-lg">
               <span>Book a Consultation</span>
             </a>
           </div>
@@ -131,573 +167,45 @@ import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
       </div>
     </section>
 
-    <section class="values-section">
-      <h2 class="section-title">Our Values</h2>
+    <!-- Values Section -->
+    <section class="mb-16">
+      <h2 class="text-4xl font-extrabold text-[var(--primary)] text-center mb-12 tracking-tight">Our Values</h2>
 
-      <div class="values-grid">
-        <div class="value-card">
-          <h3>Education First</h3>
-          <p>
-            We're educators first, technologists second. Every decision is guided by what's best for students,
-            teachers, and learning communities.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Open & Shareable</h3>
-          <p>
-            Our frameworks are free to use, copy, adapt, and improve. We believe in collective success—when one
-            school benefits, all schools benefit.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>African Reality</h3>
-          <p>
-            Built and tested on African roads, not in Silicon Valley boardrooms. We understand connectivity
-            challenges, budget constraints, and diverse communities.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Local Investment</h3>
-          <p>
-            Committed to Zimbabwe and Africa's economic growth. Revenue earned internationally is reinvested
-            locally to build capacity and create opportunities.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Community Centered</h3>
-          <p>
-            Ubuntu philosophy guides everything we do: "I am because we are." Success is measured by community
-            impact, not individual achievement.
-          </p>
-        </div>
-
-        <div class="value-card">
-          <h3>Practical Solutions</h3>
-          <p>
-            No buzzwords or vaporware. We provide actionable frameworks, detailed roadmaps, and proven strategies
-            that work in real schools today.
-          </p>
-        </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {values.map((value) => (
+          <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm border-2 border-[var(--primary)] transition-all duration-200 hover:-translate-y-1 hover:shadow-md">
+            <h3 class="text-[var(--primary)] text-2xl font-bold mb-4">{value.title}</h3>
+            <p class="text-[var(--text)] leading-relaxed">{value.description}</p>
+          </div>
+        ))}
       </div>
     </section>
 
-    <section class="mission-section">
-      <h2>Our Mission</h2>
-      <p class="mission-statement">
+    <!-- Mission Section -->
+    <section class="bg-[var(--bg)] p-8 md:p-12 rounded-xl border-2 border-[var(--primary)] mb-16">
+      <h2 class="text-[var(--primary)] text-2xl font-bold mb-6">Our Mission</h2>
+      <p class="text-lg leading-relaxed text-[var(--text)] mb-6">
         To democratize access to world-class educational technology across Africa by providing open, shareable
         frameworks that schools can freely adapt to their unique contexts. We're building a future where every
         student, regardless of socioeconomic background or geographic location, has the digital skills to thrive
         in 2050 and beyond.
       </p>
-      <p class="mission-ubuntu">
+      <p class="text-xl italic text-[var(--primary)] font-semibold">
         Ubuntu: I am because we are. Together, we're transforming education across our continent.
       </p>
     </section>
 
-    <section class="team-cta">
-      <h2>Let's Work Together</h2>
-      <p>
+    <!-- CTA Section -->
+    <section class="text-center bg-[var(--bg-surface)] text-[var(--text)] py-16 px-8 rounded-2xl border-2 border-[var(--primary)]">
+      <h2 class="text-[var(--text)] text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4">Let's Work Together</h2>
+      <p class="text-[var(--text)] text-xl mb-8 max-w-[800px] mx-auto">
         Ready to bring the K-12 Digital Campus Framework to your school? Schedule a consultation to discuss how
         we can support your digital transformation journey.
       </p>
-      <div class="cta-buttons">
-        <a href="/consultation" class="btn btn-primary">Book a Consultation</a>
-        <a href="/framework" class="btn btn-secondary">Explore the Framework</a>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/consultation" class="inline-flex items-center justify-center py-4 px-8 rounded-full font-semibold text-base transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">Book a Consultation</a>
+        <a href="/framework" class="inline-flex items-center justify-center py-4 px-8 rounded-full font-semibold text-base transition-all duration-200 min-h-[48px] bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Explore the Framework</a>
       </div>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .team-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem 1rem;
-  }
-
-  .team-header {
-    position: relative;
-    text-align: center;
-    margin-bottom: 4rem;
-    padding: 3rem 1rem;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.85) 0%, rgba(26, 26, 26, 0.9) 100%),
-                url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&q=80') center/cover no-repeat;
-    color: white;
-    border-radius: 1rem;
-    overflow: hidden;
-  }
-
-  .team-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(44, 44, 44, 0.7) 0%, rgba(26, 26, 26, 0.85) 100%);
-    z-index: 0;
-  }
-
-  .team-header > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .ubuntu-header {
-    font-size: 1.1rem;
-    font-style: italic;
-    color: var(--gray-300);
-    margin-bottom: 1rem;
-  }
-
-  .team-header h1 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    font-weight: 800;
-  }
-
-  .tagline {
-    font-size: 1.3rem;
-    opacity: 0.95;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  .team-intro {
-    background: white;
-    padding: 3rem 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 4rem;
-  }
-
-  .team-intro h2 {
-    color: var(--primary);
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .team-intro p {
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 1rem;
-    font-size: 1.05rem;
-  }
-
-  .founder-section {
-    margin-bottom: 4rem;
-  }
-
-  .section-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: 3rem;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-  }
-
-  .founder-card {
-    background: white;
-    border-radius: 1rem;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 0;
-  }
-
-  .founder-image {
-    background: var(--bg-gray);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .profile-img {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    aspect-ratio: 1;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 6px solid white;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .founder-info {
-    padding: 3rem;
-  }
-
-  .founder-info h3 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-    font-weight: 800;
-  }
-
-  .founder-title {
-    font-size: 1.3rem;
-    color: var(--text);
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-
-  .founder-division {
-    font-size: 1.1rem;
-    color: var(--text-light);
-    margin-bottom: 2rem;
-  }
-
-  .founder-bio p {
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-    font-size: 1.05rem;
-  }
-
-  .founder-summary {
-    font-style: italic;
-    background: var(--bg-gray);
-    padding: 1.5rem;
-    border-left: 4px solid var(--primary);
-    border-radius: 0.5rem;
-    margin-bottom: 2rem !important;
-  }
-
-  .journey-highlights {
-    display: grid;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-
-  .highlight {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: var(--bg-gray);
-    border-radius: 0.5rem;
-    border-left: 4px solid var(--primary);
-  }
-
-  .highlight-icon {
-    color: var(--primary);
-    flex-shrink: 0;
-    margin-top: 0.25rem;
-  }
-
-  .highlight h4 {
-    font-size: 1.2rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary-dark);
-  }
-
-  .highlight p {
-    margin: 0;
-    line-height: 1.6;
-    color: var(--text);
-    font-size: 0.95rem;
-  }
-
-  .founder-links {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 1rem 2rem;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
-    min-height: 48px;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .btn-primary {
-    background: var(--primary);
-    color: white;
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
-  }
-
-  .btn-secondary:hover {
-    background: var(--primary);
-    color: white;
-  }
-
-  .linkedin-btn {
-    background: #0A66C2;
-  }
-
-  .linkedin-btn:hover {
-    background: #004182;
-  }
-
-  .values-section {
-    margin-bottom: 4rem;
-  }
-
-  .values-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .value-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    border-top: 4px solid var(--primary);
-    transition: transform 0.2s;
-  }
-
-  .value-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .value-card h3 {
-    color: var(--primary);
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .value-card p {
-    color: var(--text);
-    line-height: 1.7;
-    margin: 0;
-  }
-
-  .mission-section {
-    background: var(--bg-gray);
-    padding: 3rem 2rem;
-    border-radius: 0.75rem;
-    border-left: 4px solid var(--primary);
-    margin-bottom: 4rem;
-  }
-
-  .mission-section h2 {
-    color: var(--primary);
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: 700;
-  }
-
-  .mission-statement {
-    font-size: 1.15rem;
-    line-height: 1.8;
-    color: var(--text);
-    margin-bottom: 1.5rem;
-  }
-
-  .mission-ubuntu {
-    font-size: 1.2rem;
-    font-style: italic;
-    color: var(--primary);
-    font-weight: 600;
-  }
-
-  .team-cta {
-    text-align: center;
-    background: var(--bg-dark);
-    color: white;
-    padding: 4rem 2rem;
-    border-radius: 1rem;
-    border-top: 4px solid var(--primary);
-  }
-
-  .team-cta h2 {
-    color: white;
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-  }
-
-  .team-cta p {
-    color: white;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  .team-cta .btn-primary {
-    background: white;
-    color: var(--primary);
-  }
-
-  .team-cta .btn-secondary {
-    background: transparent;
-    color: white;
-    border: 2px solid white;
-  }
-
-  .team-cta .btn-secondary:hover {
-    background: white;
-    color: var(--primary);
-  }
-
-  /* Mobile Optimization */
-  @media (max-width: 1024px) {
-    .founder-card {
-      grid-template-columns: 1fr;
-    }
-
-    .founder-image {
-      padding: 3rem 2rem 2rem;
-    }
-
-    .profile-img {
-      max-width: 250px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .team-header {
-      padding: 3rem 1.25rem;
-    }
-
-    .team-header h1 {
-      font-size: clamp(2rem, 8vw, 3rem);
-      margin-bottom: 1.25rem;
-      line-height: 1.2;
-    }
-
-    .tagline {
-      font-size: clamp(1rem, 3vw, 1.3rem);
-      padding: 0 0.5rem;
-    }
-
-    .team-intro,
-    .founder-info {
-      padding: 2rem 1.5rem;
-    }
-
-    .team-intro h2,
-    .section-title {
-      font-size: 1.75rem;
-    }
-
-    .founder-info h3 {
-      font-size: 2rem;
-    }
-
-    .founder-title {
-      font-size: 1.1rem;
-    }
-
-    .founder-division {
-      font-size: 1rem;
-    }
-
-    .values-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
-
-    .value-card {
-      padding: 1.5rem;
-    }
-
-    .mission-section {
-      padding: 2rem 1.5rem;
-    }
-
-    .team-cta {
-      padding: 3rem 1.5rem;
-    }
-
-    .team-cta h2 {
-      font-size: 1.75rem;
-    }
-
-    .team-cta p {
-      font-size: 1rem;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .btn {
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .founder-links {
-      flex-direction: column;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .team-header {
-      padding: 2.5rem 1rem;
-    }
-
-    .team-header h1 {
-      font-size: 1.75rem;
-    }
-
-    .tagline {
-      font-size: 1rem;
-    }
-
-    .team-intro,
-    .founder-info,
-    .mission-section {
-      padding: 1.5rem 1rem;
-    }
-
-    .value-card {
-      padding: 1.25rem;
-    }
-
-    .team-cta {
-      padding: 2.5rem 1rem;
-    }
-
-    .team-cta h2 {
-      font-size: 1.5rem;
-    }
-
-    .founder-info h3 {
-      font-size: 1.75rem;
-    }
-
-    .profile-img {
-      max-width: 200px;
-    }
-  }
-</style>

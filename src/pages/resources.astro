@@ -1,6 +1,257 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle, Video, HelpCircle, GraduationCap, Target, Globe } from 'lucide-astro';
+
+// Quick links data
+const quickLinks = [
+  { href: "#getting-started", icon: Target, title: "Getting Started", description: "Begin your digital transformation journey" },
+  { href: "#technical", icon: Wrench, title: "Technical Docs", description: "Platform setup and integration guides" },
+  { href: "#pedagogical", icon: GraduationCap, title: "Pedagogical Resources", description: "Curricula, lesson plans, assessments" },
+  { href: "#community", icon: Users, title: "Community & Support", description: "Forums, office hours, peer mentorship" }
+];
+
+// Getting started resources
+const gettingStartedResources = [
+  {
+    icon: CheckCircle,
+    title: "Self-Assessment Tool",
+    description: "Evaluate your school's digital readiness across infrastructure, staff capacity, and student access. Identify strengths and gaps before implementation.",
+    type: "Interactive Tool",
+    time: "30-45 minutes",
+    href: "/resources/self-assessment",
+    buttonText: "Start Assessment"
+  },
+  {
+    icon: FileText,
+    title: "Readiness Checklist",
+    description: "Step-by-step checklist covering stakeholder buy-in, budget planning, infrastructure audit, and team preparation. Downloadable PDF with worksheets.",
+    type: "PDF Download",
+    time: "12 pages",
+    href: "/frameworks/readiness-checklist.pdf",
+    buttonText: "Download PDF",
+    download: true
+  },
+  {
+    icon: Users,
+    title: "Stakeholder Engagement Templates",
+    description: "Presentation templates for school boards, teacher meetings, parent information sessions. Customizable PowerPoint/Google Slides with talking points.",
+    type: "Templates",
+    time: "3 templates",
+    href: "/resources/stakeholder-templates",
+    buttonText: "View Templates"
+  },
+  {
+    icon: Video,
+    title: "Framework Overview Webinar",
+    description: "60-minute recorded webinar introducing all frameworks, implementation approach, success stories, and Q&A. Perfect for school leadership teams.",
+    type: "Video",
+    time: "60 minutes",
+    href: "/resources/overview-webinar",
+    buttonText: "Watch Webinar"
+  }
+];
+
+// Technical resources
+const technicalResources = [
+  {
+    icon: FileText,
+    title: "Platform Setup Guides",
+    description: "Step-by-step guides for Google Workspace for Education, Moodle LMS, Gibbon SIS, Nextcloud, and other open-source platforms. Screenshots and troubleshooting included.",
+    links: [
+      { href: "/resources/google-workspace-setup", text: "Google Workspace for Education" },
+      { href: "/resources/moodle-setup", text: "Moodle LMS Setup" },
+      { href: "/resources/gibbon-sis-setup", text: "Gibbon SIS Configuration" },
+      { href: "/resources/nextcloud-setup", text: "Nextcloud Storage" }
+    ]
+  },
+  {
+    icon: Wrench,
+    title: "Integration Tutorials",
+    description: "Connect systems together: SSO configuration, API integration between SIS and LMS, data warehouse setup, analytics pipelines. Video walkthroughs and code samples.",
+    links: [
+      { href: "/resources/sso-integration", text: "Single Sign-On (SSO) Setup" },
+      { href: "/resources/sis-lms-integration", text: "SIS ↔ LMS Data Sync" },
+      { href: "/resources/analytics-setup", text: "Analytics & Reporting" }
+    ]
+  },
+  {
+    icon: HelpCircle,
+    title: "Troubleshooting Knowledge Base",
+    description: "Searchable database of common issues, error messages, and solutions. Community-contributed fixes and official support articles. Updated weekly.",
+    type: "Knowledge Base",
+    time: "500+ articles",
+    href: "/resources/knowledge-base",
+    buttonText: "Browse Knowledge Base"
+  },
+  {
+    icon: FileText,
+    title: "System Administration Manual",
+    description: "Comprehensive guide for IT administrators: user management, backups, security best practices, maintenance schedules, disaster recovery procedures.",
+    type: "PDF Download",
+    time: "85 pages",
+    href: "/frameworks/system-admin-manual.pdf",
+    buttonText: "Download Manual",
+    download: true
+  }
+];
+
+// Pedagogical resources
+const pedagogicalResources = [
+  {
+    icon: BookOpen,
+    title: "Digital Literacy K-12 Curricula",
+    description: "Complete digital literacy progression for K-2, 3-5, 6-8, and 9-12. Lesson plans, activities, projects, and assessments for each grade level. Aligned with 2050 competencies.",
+    links: [
+      { href: "/resources/digital-literacy-k2", text: "K-2: Digital Citizenship Foundations" },
+      { href: "/resources/digital-literacy-3-5", text: "3-5: Digital Tools Mastery" },
+      { href: "/resources/digital-literacy-6-8", text: "6-8: Digital Competency & Coding" },
+      { href: "/resources/digital-literacy-9-12", text: "9-12: Advanced Digital & Career Skills" }
+    ]
+  },
+  {
+    icon: FileText,
+    title: "Project-Based Learning Templates",
+    description: "Ready-to-use project templates for interdisciplinary learning: real-world challenges, rubrics, student worksheets, teacher facilitation guides. Mobile-optimized and offline-capable.",
+    type: "Templates",
+    time: "25+ projects",
+    href: "/resources/pbl-templates",
+    buttonText: "Browse Projects"
+  },
+  {
+    icon: CheckCircle,
+    title: "Assessment Rubrics for Competencies",
+    description: "Rubrics for assessing grit, adaptability, collaboration, critical thinking, and digital fluency. Portfolio assessment guides and badge/microcredential criteria.",
+    type: "PDF Download",
+    time: "30 pages",
+    href: "/frameworks/competency-rubrics.pdf",
+    buttonText: "Download Rubrics",
+    download: true
+  },
+  {
+    icon: GraduationCap,
+    title: "Teacher Professional Development",
+    description: "40-hour training curriculum for teachers: digital pedagogy, project-based learning, competency assessment, technology integration. Workshop plans and facilitator guides included.",
+    links: [
+      { href: "/resources/teacher-pd-module1", text: "Module 1: Digital Pedagogy (10 hours)" },
+      { href: "/resources/teacher-pd-module2", text: "Module 2: Project-Based Learning (12 hours)" },
+      { href: "/resources/teacher-pd-module3", text: "Module 3: Competency Assessment (10 hours)" },
+      { href: "/resources/teacher-pd-module4", text: "Module 4: Technology Integration (8 hours)" }
+    ]
+  }
+];
+
+// Community resources
+const communityResources = [
+  {
+    icon: MessageCircle,
+    title: "Implementation Forums",
+    description: "Ask questions, share solutions, troubleshoot issues with schools implementing the same frameworks. Active community moderated by Nyuchi Learning team.",
+    type: "Discussion Forum",
+    time: "1,200+ members",
+    href: "https://community.nyuchi.com",
+    buttonText: "Join Forum",
+    external: true
+  },
+  {
+    icon: Video,
+    title: "Monthly Office Hours",
+    description: "Live Q&A sessions with Nyuchi Learning experts. Every second Tuesday, 2:00 PM CAT. Bring your questions about implementation, technical issues, or pedagogical approaches.",
+    type: "Live Webinar",
+    time: "90 minutes monthly",
+    href: "/resources/office-hours",
+    buttonText: "Register for Next Session"
+  },
+  {
+    icon: Users,
+    title: "Peer Mentorship Program",
+    description: "Connect with schools 6-12 months ahead in implementation journey. Monthly check-ins, shared learnings, accountability partnerships. Free for all implementing schools.",
+    type: "Mentorship",
+    time: "3-6 month commitment",
+    href: "/resources/peer-mentorship",
+    buttonText: "Request a Mentor"
+  },
+  {
+    icon: Globe,
+    title: "Success Stories",
+    description: "Read case studies from schools across Africa, Asia, Latin America, and the Pacific. Lessons learned, implementation timelines, results achieved, challenges overcome.",
+    type: "Case Studies",
+    time: "15+ schools profiled",
+    href: "/resources/success-stories",
+    buttonText: "Read Case Studies"
+  }
+];
+
+// Consultation tiers
+const tiers = [
+  {
+    name: "Free Tier",
+    price: "$0",
+    period: "",
+    subtitle: "Self-Service Resources",
+    features: [
+      "All frameworks and documentation",
+      "Implementation forums access",
+      "Knowledge base articles",
+      "Monthly office hours (group Q&A)",
+      "Peer mentorship program"
+    ],
+    href: "/resources",
+    buttonText: "Start Free",
+    variant: "secondary"
+  },
+  {
+    name: "Basic Tier",
+    price: "$500",
+    period: "/year",
+    subtitle: "Email Support & Group Webinars",
+    features: [
+      "Everything in Free Tier",
+      "Email support (48-hour response)",
+      "Quarterly group webinars (school-specific)",
+      "Priority forum responses",
+      "Early access to new resources"
+    ],
+    href: "/consultation?tier=basic",
+    buttonText: "Get Started",
+    variant: "primary"
+  },
+  {
+    name: "Standard Tier",
+    price: "$2,500",
+    period: "/year",
+    subtitle: "1-on-1 Consulting & Custom Plans",
+    badge: "Most Popular",
+    features: [
+      "Everything in Basic Tier",
+      "1-on-1 video consulting (8 hours/year)",
+      "Custom implementation plan",
+      "Email support (24-hour response)",
+      "Quarterly progress reviews",
+      "Budget & funding guidance"
+    ],
+    href: "/consultation?tier=standard",
+    buttonText: "Get Started",
+    variant: "primary",
+    highlighted: true
+  },
+  {
+    name: "Premium Tier",
+    price: "Custom",
+    period: "",
+    subtitle: "On-Site Support & Full Partnership",
+    features: [
+      "Everything in Standard Tier",
+      "On-site implementation support (2-4 visits/year)",
+      "Dedicated account manager",
+      "Teacher training workshops (on-site)",
+      "Custom framework adaptations",
+      "Priority technical support (4-hour response)"
+    ],
+    href: "/consultation?tier=premium",
+    buttonText: "Contact Us",
+    variant: "primary"
+  }
+];
 ---
 
 <BaseLayout
@@ -8,854 +259,280 @@ import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle
   description="Comprehensive resources for implementing Nyuchi Learning frameworks: getting started guides, technical documentation, pedagogical resources, community support, and consultation services. Open and free for schools across Africa and the developing world."
   keywords="framework implementation, school digital transformation, getting started guide, technical documentation, pedagogical resources, teacher training, educational technology support, school implementation resources"
 >
-  <div class="resources-container">
-    <!-- Hero Section -->
-    <section class="resources-hero">
-      <div class="hero-content">
-        <h1>Resources Hub</h1>
-        <p class="hero-subtitle">Everything you need to implement Nyuchi Learning frameworks in your school—from getting started to advanced implementation strategies</p>
-        <p class="hero-tagline">Open resources • Free access • Community-driven</p>
+  <!-- Coming Soon Overlay -->
+  <div class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg)]/95 backdrop-blur-sm">
+    <div class="text-center px-8 max-w-[600px]">
+      <div class="w-20 h-20 mx-auto mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
+        <BookOpen class="text-white" size={40} strokeWidth={1.5} />
       </div>
+      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-extrabold font-serif text-[var(--text)] mb-4">Coming Soon</h1>
+      <p class="text-xl text-[var(--text-secondary)] mb-8 leading-relaxed">
+        We're putting the finishing touches on our Resources Hub. Check back soon for implementation guides, technical documentation, and community support resources.
+      </p>
+      <div class="flex gap-4 justify-center flex-wrap">
+        <a href="/frameworks" class="inline-flex items-center justify-center py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">
+          Browse Frameworks
+        </a>
+        <a href="/" class="inline-flex items-center justify-center py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)]">
+          Back to Home
+        </a>
+      </div>
+      <p class="text-sm text-[var(--text-muted)] mt-10">
+        Have questions? <a href="/consultation" class="text-[var(--primary)] hover:underline">Book a consultation</a> to discuss your implementation needs.
+      </p>
+    </div>
+  </div>
+
+  <div class="max-w-[1200px] mx-auto">
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-active)] text-[var(--text)] py-24 px-8 text-center rounded-b-3xl mb-16">
+      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-extrabold font-serif mb-6">Resources Hub</h1>
+      <p class="text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed mb-4 max-w-[800px] mx-auto">
+        Everything you need to implement Nyuchi Learning frameworks in your school—from getting started to advanced implementation strategies
+      </p>
+      <p class="text-lg font-medium opacity-90">Open resources • Free access • Community-driven</p>
     </section>
 
     <!-- Quick Links -->
-    <section class="quick-links">
-      <h2>Quick Access</h2>
-      <div class="quick-links-grid">
-        <a href="#getting-started" class="quick-link-card">
-          <Target size={32} strokeWidth={1.5} />
-          <h3>Getting Started</h3>
-          <p>Begin your digital transformation journey</p>
-        </a>
-        <a href="#technical" class="quick-link-card">
-          <Wrench size={32} strokeWidth={1.5} />
-          <h3>Technical Docs</h3>
-          <p>Platform setup and integration guides</p>
-        </a>
-        <a href="#pedagogical" class="quick-link-card">
-          <GraduationCap size={32} strokeWidth={1.5} />
-          <h3>Pedagogical Resources</h3>
-          <p>Curricula, lesson plans, assessments</p>
-        </a>
-        <a href="#community" class="quick-link-card">
-          <Users size={32} strokeWidth={1.5} />
-          <h3>Community & Support</h3>
-          <p>Forums, office hours, peer mentorship</p>
-        </a>
+    <section class="px-8 pb-16">
+      <h2 class="text-center text-2xl font-bold text-[var(--text)] mb-10">Quick Access</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {quickLinks.map((link) => (
+          <a href={link.href} class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm text-center no-underline text-[var(--text)] border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]">
+            <link.icon class="text-[var(--primary)] mx-auto mb-4" size={32} strokeWidth={1.5} />
+            <h3 class="text-xl font-bold text-[var(--primary)] mb-2">{link.title}</h3>
+            <p class="text-sm text-[var(--text-secondary)] m-0">{link.description}</p>
+          </a>
+        ))}
       </div>
     </section>
 
     <!-- Getting Started Section -->
-    <section id="getting-started" class="resource-section">
-      <div class="section-header">
-        <Target class="section-icon" size={40} strokeWidth={1.5} />
+    <section id="getting-started" class="py-16 px-8 border-b border-[var(--border)]">
+      <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
+        <Target class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
         <div>
-          <h2>Getting Started</h2>
-          <p>New to Nyuchi Learning frameworks? Start here.</p>
+          <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Getting Started</h2>
+          <p class="text-lg text-[var(--text-secondary)]">New to Nyuchi Learning frameworks? Start here.</p>
         </div>
       </div>
 
-      <div class="resource-grid">
-        <div class="resource-card">
-          <div class="resource-header">
-            <CheckCircle class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Self-Assessment Tool</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {gettingStartedResources.map((resource) => (
+          <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+            <div class="flex items-center gap-3">
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
+            </div>
+            <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
+            <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+              <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
+              <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
+            </div>
+            <a
+              href={resource.href}
+              class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+              {...(resource.download ? { download: true } : {})}
+            >
+              {resource.download && <Download size={16} />}
+              {resource.buttonText}
+            </a>
           </div>
-          <p>Evaluate your school's digital readiness across infrastructure, staff capacity, and student access. Identify strengths and gaps before implementation.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Interactive Tool</span>
-            <span class="resource-time">30-45 minutes</span>
-          </div>
-          <a href="/resources/self-assessment" class="btn btn-secondary btn-sm">Start Assessment</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <FileText class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Readiness Checklist</h3>
-          </div>
-          <p>Step-by-step checklist covering stakeholder buy-in, budget planning, infrastructure audit, and team preparation. Downloadable PDF with worksheets.</p>
-          <div class="resource-meta">
-            <span class="resource-type">PDF Download</span>
-            <span class="resource-time">12 pages</span>
-          </div>
-          <a href="/frameworks/readiness-checklist.pdf" class="btn btn-secondary btn-sm" download>
-            <Download size={16} /> Download PDF
-          </a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <Users class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Stakeholder Engagement Templates</h3>
-          </div>
-          <p>Presentation templates for school boards, teacher meetings, parent information sessions. Customizable PowerPoint/Google Slides with talking points.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Templates</span>
-            <span class="resource-time">3 templates</span>
-          </div>
-          <a href="/resources/stakeholder-templates" class="btn btn-secondary btn-sm">View Templates</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <Video class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Framework Overview Webinar</h3>
-          </div>
-          <p>60-minute recorded webinar introducing all frameworks, implementation approach, success stories, and Q&A. Perfect for school leadership teams.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Video</span>
-            <span class="resource-time">60 minutes</span>
-          </div>
-          <a href="/resources/overview-webinar" class="btn btn-secondary btn-sm">Watch Webinar</a>
-        </div>
+        ))}
       </div>
     </section>
 
     <!-- Technical Documentation -->
-    <section id="technical" class="resource-section">
-      <div class="section-header">
-        <Wrench class="section-icon" size={40} strokeWidth={1.5} />
+    <section id="technical" class="py-16 px-8 border-b border-[var(--border)]">
+      <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
+        <Wrench class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
         <div>
-          <h2>Technical Documentation</h2>
-          <p>Platform setup guides, integration tutorials, and troubleshooting resources</p>
+          <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Technical Documentation</h2>
+          <p class="text-lg text-[var(--text-secondary)]">Platform setup guides, integration tutorials, and troubleshooting resources</p>
         </div>
       </div>
 
-      <div class="resource-grid">
-        <div class="resource-card">
-          <div class="resource-header">
-            <FileText class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Platform Setup Guides</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {technicalResources.map((resource) => (
+          <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+            <div class="flex items-center gap-3">
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
+            </div>
+            <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
+            {resource.links ? (
+              <div class="flex flex-col gap-2">
+                {resource.links.map((link) => (
+                  <a href={link.href} class="text-[var(--primary)] no-underline text-sm transition-colors hover:underline">
+                    → {link.text}
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+                  <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
+                  <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
+                </div>
+                <a
+                  href={resource.href}
+                  class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+                  {...(resource.download ? { download: true } : {})}
+                >
+                  {resource.download && <Download size={16} />}
+                  {resource.buttonText}
+                </a>
+              </>
+            )}
           </div>
-          <p>Step-by-step guides for Google Workspace for Education, Moodle LMS, Gibbon SIS, Nextcloud, and other open-source platforms. Screenshots and troubleshooting included.</p>
-          <div class="resource-list">
-            <a href="/resources/google-workspace-setup">→ Google Workspace for Education</a>
-            <a href="/resources/moodle-setup">→ Moodle LMS Setup</a>
-            <a href="/resources/gibbon-sis-setup">→ Gibbon SIS Configuration</a>
-            <a href="/resources/nextcloud-setup">→ Nextcloud Storage</a>
-          </div>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <Wrench class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Integration Tutorials</h3>
-          </div>
-          <p>Connect systems together: SSO configuration, API integration between SIS and LMS, data warehouse setup, analytics pipelines. Video walkthroughs and code samples.</p>
-          <div class="resource-list">
-            <a href="/resources/sso-integration">→ Single Sign-On (SSO) Setup</a>
-            <a href="/resources/sis-lms-integration">→ SIS ↔ LMS Data Sync</a>
-            <a href="/resources/analytics-setup">→ Analytics & Reporting</a>
-          </div>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <HelpCircle class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Troubleshooting Knowledge Base</h3>
-          </div>
-          <p>Searchable database of common issues, error messages, and solutions. Community-contributed fixes and official support articles. Updated weekly.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Knowledge Base</span>
-            <span class="resource-time">500+ articles</span>
-          </div>
-          <a href="/resources/knowledge-base" class="btn btn-secondary btn-sm">Browse Knowledge Base</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <FileText class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>System Administration Manual</h3>
-          </div>
-          <p>Comprehensive guide for IT administrators: user management, backups, security best practices, maintenance schedules, disaster recovery procedures.</p>
-          <div class="resource-meta">
-            <span class="resource-type">PDF Download</span>
-            <span class="resource-time">85 pages</span>
-          </div>
-          <a href="/frameworks/system-admin-manual.pdf" class="btn btn-secondary btn-sm" download>
-            <Download size={16} /> Download Manual
-          </a>
-        </div>
+        ))}
       </div>
     </section>
 
     <!-- Pedagogical Resources -->
-    <section id="pedagogical" class="resource-section">
-      <div class="section-header">
-        <GraduationCap class="section-icon" size={40} strokeWidth={1.5} />
+    <section id="pedagogical" class="py-16 px-8 border-b border-[var(--border)]">
+      <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
+        <GraduationCap class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
         <div>
-          <h2>Pedagogical Resources</h2>
-          <p>Curricula, lesson plans, assessments, and teacher professional development</p>
+          <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Pedagogical Resources</h2>
+          <p class="text-lg text-[var(--text-secondary)]">Curricula, lesson plans, assessments, and teacher professional development</p>
         </div>
       </div>
 
-      <div class="resource-grid">
-        <div class="resource-card">
-          <div class="resource-header">
-            <BookOpen class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Digital Literacy K-12 Curricula</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {pedagogicalResources.map((resource) => (
+          <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+            <div class="flex items-center gap-3">
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
+            </div>
+            <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
+            {resource.links ? (
+              <div class="flex flex-col gap-2">
+                {resource.links.map((link) => (
+                  <a href={link.href} class="text-[var(--primary)] no-underline text-sm transition-colors hover:underline">
+                    → {link.text}
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <>
+                <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+                  <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
+                  <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
+                </div>
+                <a
+                  href={resource.href}
+                  class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+                  {...(resource.download ? { download: true } : {})}
+                >
+                  {resource.download && <Download size={16} />}
+                  {resource.buttonText}
+                </a>
+              </>
+            )}
           </div>
-          <p>Complete digital literacy progression for K-2, 3-5, 6-8, and 9-12. Lesson plans, activities, projects, and assessments for each grade level. Aligned with 2050 competencies.</p>
-          <div class="resource-list">
-            <a href="/resources/digital-literacy-k2">→ K-2: Digital Citizenship Foundations</a>
-            <a href="/resources/digital-literacy-3-5">→ 3-5: Digital Tools Mastery</a>
-            <a href="/resources/digital-literacy-6-8">→ 6-8: Digital Competency & Coding</a>
-            <a href="/resources/digital-literacy-9-12">→ 9-12: Advanced Digital & Career Skills</a>
-          </div>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <FileText class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Project-Based Learning Templates</h3>
-          </div>
-          <p>Ready-to-use project templates for interdisciplinary learning: real-world challenges, rubrics, student worksheets, teacher facilitation guides. Mobile-optimized and offline-capable.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Templates</span>
-            <span class="resource-time">25+ projects</span>
-          </div>
-          <a href="/resources/pbl-templates" class="btn btn-secondary btn-sm">Browse Projects</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <CheckCircle class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Assessment Rubrics for Competencies</h3>
-          </div>
-          <p>Rubrics for assessing grit, adaptability, collaboration, critical thinking, and digital fluency. Portfolio assessment guides and badge/microcredential criteria.</p>
-          <div class="resource-meta">
-            <span class="resource-type">PDF Download</span>
-            <span class="resource-time">30 pages</span>
-          </div>
-          <a href="/frameworks/competency-rubrics.pdf" class="btn btn-secondary btn-sm" download>
-            <Download size={16} /> Download Rubrics
-          </a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <GraduationCap class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Teacher Professional Development</h3>
-          </div>
-          <p>40-hour training curriculum for teachers: digital pedagogy, project-based learning, competency assessment, technology integration. Workshop plans and facilitator guides included.</p>
-          <div class="resource-list">
-            <a href="/resources/teacher-pd-module1">→ Module 1: Digital Pedagogy (10 hours)</a>
-            <a href="/resources/teacher-pd-module2">→ Module 2: Project-Based Learning (12 hours)</a>
-            <a href="/resources/teacher-pd-module3">→ Module 3: Competency Assessment (10 hours)</a>
-            <a href="/resources/teacher-pd-module4">→ Module 4: Technology Integration (8 hours)</a>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
 
     <!-- Community & Support -->
-    <section id="community" class="resource-section">
-      <div class="section-header">
-        <Users class="section-icon" size={40} strokeWidth={1.5} />
+    <section id="community" class="py-16 px-8 border-b border-[var(--border)]">
+      <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
+        <Users class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
         <div>
-          <h2>Community & Support</h2>
-          <p>Connect with other schools, share learnings, get help from peers and experts</p>
+          <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Community & Support</h2>
+          <p class="text-lg text-[var(--text-secondary)]">Connect with other schools, share learnings, get help from peers and experts</p>
         </div>
       </div>
 
-      <div class="resource-grid">
-        <div class="resource-card">
-          <div class="resource-header">
-            <MessageCircle class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Implementation Forums</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {communityResources.map((resource) => (
+          <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+            <div class="flex items-center gap-3">
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
+            </div>
+            <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
+            <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+              <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
+              <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
+            </div>
+            <a
+              href={resource.href}
+              class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+              {...(resource.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            >
+              {resource.buttonText}
+            </a>
           </div>
-          <p>Ask questions, share solutions, troubleshoot issues with schools implementing the same frameworks. Active community moderated by Nyuchi Learning team.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Discussion Forum</span>
-            <span class="resource-time">1,200+ members</span>
-          </div>
-          <a href="https://community.nyuchi.com" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer">Join Forum</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <Video class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Monthly Office Hours</h3>
-          </div>
-          <p>Live Q&A sessions with Nyuchi Learning experts. Every second Tuesday, 2:00 PM CAT. Bring your questions about implementation, technical issues, or pedagogical approaches.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Live Webinar</span>
-            <span class="resource-time">90 minutes monthly</span>
-          </div>
-          <a href="/resources/office-hours" class="btn btn-secondary btn-sm">Register for Next Session</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <Users class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Peer Mentorship Program</h3>
-          </div>
-          <p>Connect with schools 6-12 months ahead in implementation journey. Monthly check-ins, shared learnings, accountability partnerships. Free for all implementing schools.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Mentorship</span>
-            <span class="resource-time">3-6 month commitment</span>
-          </div>
-          <a href="/resources/peer-mentorship" class="btn btn-secondary btn-sm">Request a Mentor</a>
-        </div>
-
-        <div class="resource-card">
-          <div class="resource-header">
-            <Globe class="resource-icon" size={28} strokeWidth={1.5} />
-            <h3>Success Stories</h3>
-          </div>
-          <p>Read case studies from schools across Africa, Asia, Latin America, and the Pacific. Lessons learned, implementation timelines, results achieved, challenges overcome.</p>
-          <div class="resource-meta">
-            <span class="resource-type">Case Studies</span>
-            <span class="resource-time">15+ schools profiled</span>
-          </div>
-          <a href="/resources/success-stories" class="btn btn-secondary btn-sm">Read Case Studies</a>
-        </div>
+        ))}
       </div>
     </section>
 
     <!-- Consultation Services -->
-    <section id="consultation" class="consultation-section">
-      <h2>Consultation & Support Services</h2>
-      <p class="consultation-intro">Need more personalized support? We offer tiered consultation services to match your school's needs and budget.</p>
+    <section id="consultation" class="py-20 px-8 bg-[var(--bg)]">
+      <h2 class="text-center text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Consultation & Support Services</h2>
+      <p class="text-center text-lg text-[var(--text-secondary)] max-w-[700px] mx-auto mb-12">
+        Need more personalized support? We offer tiered consultation services to match your school's needs and budget.
+      </p>
 
-      <div class="tiers-grid">
-        <div class="tier-card tier-free">
-          <div class="tier-header">
-            <h3>Free Tier</h3>
-            <div class="tier-price">$0</div>
-            <p>Self-Service Resources</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+        {tiers.map((tier) => (
+          <div class={`bg-[var(--bg-surface)] rounded-xl p-10 shadow-sm relative flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${tier.highlighted ? 'border-2 border-[var(--primary)]' : ''}`}>
+            {tier.badge && (
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--primary)] text-[var(--text)] py-2 px-6 rounded-full text-sm font-semibold">
+                {tier.badge}
+              </div>
+            )}
+            <div class="text-center mb-8 pb-8 border-b-2 border-[var(--border)]">
+              <h3 class="text-2xl font-bold text-[var(--text)] mb-4">{tier.name}</h3>
+              <div class="text-4xl font-bold text-[var(--primary)] mb-2">
+                {tier.price}<span class="text-base font-medium text-[var(--text-secondary)]">{tier.period}</span>
+              </div>
+              <p class="text-sm text-[var(--text-secondary)] m-0">{tier.subtitle}</p>
+            </div>
+            <ul class="list-none p-0 m-0 mb-8 flex-grow">
+              {tier.features.map((feature) => (
+                <li class="flex items-start gap-3 py-3 text-sm leading-relaxed">
+                  <CheckCircle class="text-[var(--success)] flex-shrink-0 mt-0.5" size={20} />
+                  <span class="text-[var(--text)]">{feature}</span>
+                </li>
+              ))}
+            </ul>
+            <a
+              href={tier.href}
+              class={`w-full text-center py-3 px-6 rounded-xl font-semibold transition-all duration-200 ${
+                tier.variant === 'primary'
+                  ? 'bg-[var(--primary)] text-white hover:brightness-110'
+                  : 'bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]'
+              }`}
+            >
+              {tier.buttonText}
+            </a>
           </div>
-          <ul class="tier-features">
-            <li><CheckCircle size={20} /> All frameworks and documentation</li>
-            <li><CheckCircle size={20} /> Implementation forums access</li>
-            <li><CheckCircle size={20} /> Knowledge base articles</li>
-            <li><CheckCircle size={20} /> Monthly office hours (group Q&A)</li>
-            <li><CheckCircle size={20} /> Peer mentorship program</li>
-          </ul>
-          <a href="/resources" class="btn btn-secondary">Start Free</a>
-        </div>
-
-        <div class="tier-card tier-basic">
-          <div class="tier-header">
-            <h3>Basic Tier</h3>
-            <div class="tier-price">$500<span>/year</span></div>
-            <p>Email Support & Group Webinars</p>
-          </div>
-          <ul class="tier-features">
-            <li><CheckCircle size={20} /> Everything in Free Tier</li>
-            <li><CheckCircle size={20} /> Email support (48-hour response)</li>
-            <li><CheckCircle size={20} /> Quarterly group webinars (school-specific)</li>
-            <li><CheckCircle size={20} /> Priority forum responses</li>
-            <li><CheckCircle size={20} /> Early access to new resources</li>
-          </ul>
-          <a href="/consultation?tier=basic" class="btn btn-primary">Get Started</a>
-        </div>
-
-        <div class="tier-card tier-standard">
-          <div class="tier-badge">Most Popular</div>
-          <div class="tier-header">
-            <h3>Standard Tier</h3>
-            <div class="tier-price">$2,500<span>/year</span></div>
-            <p>1-on-1 Consulting & Custom Plans</p>
-          </div>
-          <ul class="tier-features">
-            <li><CheckCircle size={20} /> Everything in Basic Tier</li>
-            <li><CheckCircle size={20} /> 1-on-1 video consulting (8 hours/year)</li>
-            <li><CheckCircle size={20} /> Custom implementation plan</li>
-            <li><CheckCircle size={20} /> Email support (24-hour response)</li>
-            <li><CheckCircle size={20} /> Quarterly progress reviews</li>
-            <li><CheckCircle size={20} /> Budget & funding guidance</li>
-          </ul>
-          <a href="/consultation?tier=standard" class="btn btn-primary">Get Started</a>
-        </div>
-
-        <div class="tier-card tier-premium">
-          <div class="tier-header">
-            <h3>Premium Tier</h3>
-            <div class="tier-price">Custom</div>
-            <p>On-Site Support & Full Partnership</p>
-          </div>
-          <ul class="tier-features">
-            <li><CheckCircle size={20} /> Everything in Standard Tier</li>
-            <li><CheckCircle size={20} /> On-site implementation support (2-4 visits/year)</li>
-            <li><CheckCircle size={20} /> Dedicated account manager</li>
-            <li><CheckCircle size={20} /> Teacher training workshops (on-site)</li>
-            <li><CheckCircle size={20} /> Custom framework adaptations</li>
-            <li><CheckCircle size={20} /> Priority technical support (4-hour response)</li>
-          </ul>
-          <a href="/consultation?tier=premium" class="btn btn-primary">Contact Us</a>
-        </div>
+        ))}
       </div>
 
-      <p class="consultation-note">All tiers include access to open frameworks and community resources. Consultation services help you implement faster and more effectively.</p>
+      <p class="text-center text-[var(--text-secondary)] text-sm max-w-[700px] mx-auto">
+        All tiers include access to open frameworks and community resources. Consultation services help you implement faster and more effectively.
+      </p>
     </section>
 
     <!-- CTA Section -->
-    <section class="resources-cta">
-      <h2>Ready to Get Started?</h2>
-      <p>Download our frameworks, join the community, or schedule a consultation to begin your digital transformation journey.</p>
-      <div class="cta-buttons">
-        <a href="/frameworks" class="btn btn-primary btn-lg">Browse Frameworks</a>
-        <a href="/consultation" class="btn btn-secondary btn-lg">Schedule Consultation</a>
+    <section class="text-center py-20 px-8 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)]">
+      <h2 class="text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Ready to Get Started?</h2>
+      <p class="text-xl text-[var(--text-secondary)] mb-10">
+        Download our frameworks, join the community, or schedule a consultation to begin your digital transformation journey.
+      </p>
+      <div class="flex gap-6 justify-center flex-wrap">
+        <a href="/frameworks" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">
+          Browse Frameworks
+        </a>
+        <a href="/consultation" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)]">
+          Schedule Consultation
+        </a>
       </div>
     </section>
   </div>
 </BaseLayout>
-
-<style>
-  .resources-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  /* Hero Section */
-  .resources-hero {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-active) 100%);
-    color: white;
-    padding: 6rem 2rem;
-    text-align: center;
-    border-radius: 0 0 24px 24px;
-    margin-bottom: 4rem;
-  }
-
-  .hero-content h1 {
-    font-size: 3.5rem;
-    font-family: 'Newsreader', Georgia, serif;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-subtitle {
-    font-size: 1.35rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .hero-tagline {
-    font-size: 1.1rem;
-    opacity: 0.9;
-    font-weight: 500;
-  }
-
-  /* Quick Links */
-  .quick-links {
-    padding: 0 2rem 4rem;
-  }
-
-  .quick-links h2 {
-    text-align: center;
-    font-size: 2rem;
-    color: var(--text);
-    margin-bottom: 2.5rem;
-  }
-
-  .quick-links-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-  }
-
-  .quick-link-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-    text-align: center;
-    text-decoration: none;
-    color: var(--text);
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-  }
-
-  .quick-link-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-    border-color: var(--primary);
-  }
-
-  .quick-link-card :global(svg) {
-    color: var(--primary);
-    margin-bottom: 1rem;
-  }
-
-  .quick-link-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-    color: var(--primary);
-  }
-
-  .quick-link-card p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  /* Resource Sections */
-  .resource-section {
-    padding: 4rem 2rem;
-    border-bottom: 1px solid var(--charcoal-border);
-  }
-
-  .section-header {
-    display: flex;
-    align-items: flex-start;
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-  }
-
-  .section-icon {
-    color: var(--primary);
-    flex-shrink: 0;
-  }
-
-  .section-header h2 {
-    font-size: 2.25rem;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-
-  .section-header p {
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .resource-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-
-  .resource-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    transition: all 0.3s ease;
-  }
-
-  .resource-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.06);
-    transform: translateY(-2px);
-  }
-
-  .resource-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-
-  .resource-icon {
-    color: var(--primary);
-    flex-shrink: 0;
-  }
-
-  .resource-header h3 {
-    font-size: 1.25rem;
-    color: var(--text);
-    margin: 0;
-  }
-
-  .resource-card p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    flex-grow: 1;
-  }
-
-  .resource-meta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    font-size: 0.9rem;
-    color: var(--text-light);
-  }
-
-  .resource-type,
-  .resource-time {
-    padding: 0.25rem 0.75rem;
-    background: var(--bg-gray);
-    border-radius: 6px;
-  }
-
-  .resource-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .resource-list a {
-    color: var(--primary);
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-  }
-
-  .resource-list a:hover {
-    color: var(--primary-hover);
-    text-decoration: underline;
-  }
-
-  /* Consultation Section */
-  .consultation-section {
-    padding: 5rem 2rem;
-    background: var(--bg-gray);
-  }
-
-  .consultation-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .consultation-intro {
-    text-align: center;
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin: 0 auto 3rem;
-  }
-
-  .tiers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-bottom: 2rem;
-  }
-
-  .tier-card {
-    background: white;
-    border-radius: 12px;
-    padding: 2.5rem 2rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    transition: all 0.3s ease;
-  }
-
-  .tier-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-  }
-
-  .tier-standard {
-    border: 2px solid var(--primary);
-  }
-
-  .tier-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: var(--primary);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 20px;
-    font-size: 0.85rem;
-    font-weight: 600;
-  }
-
-  .tier-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 2px solid var(--charcoal-border);
-  }
-
-  .tier-header h3 {
-    font-size: 1.5rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .tier-price {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .tier-price span {
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-  }
-
-  .tier-header p {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    margin: 0;
-  }
-
-  .tier-features {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 2rem 0;
-    flex-grow: 1;
-  }
-
-  .tier-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .tier-features :global(svg) {
-    color: var(--emerald-primary);
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-
-  .tier-card .btn {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .consultation-note {
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    max-width: 700px;
-    margin: 2rem auto 0;
-  }
-
-  /* CTA Section */
-  .resources-cta {
-    text-align: center;
-    padding: 5rem 2rem;
-    background: linear-gradient(135deg, var(--primary-subtle) 0%, var(--emerald-subtle) 100%);
-  }
-
-  .resources-cta h2 {
-    font-size: 2.5rem;
-    color: var(--text);
-    margin-bottom: 1rem;
-  }
-
-  .resources-cta p {
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    margin-bottom: 2.5rem;
-  }
-
-  .cta-buttons {
-    display: flex;
-    gap: 1.5rem;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-
-  /* Buttons */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 10px;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    cursor: pointer;
-    border: none;
-    font-size: 1rem;
-  }
-
-  .btn-primary {
-    background: var(--primary);
-    color: white;
-  }
-
-  .btn-primary:hover {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(139, 128, 232, 0.3);
-  }
-
-  .btn-secondary {
-    background: transparent;
-    color: var(--primary);
-    border: 1.5px solid var(--primary);
-  }
-
-  .btn-secondary:hover {
-    background: var(--primary-subtle);
-    color: var(--primary-active);
-  }
-
-  .btn-sm {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-
-  .btn-lg {
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
-  }
-
-  /* Mobile Optimization */
-  @media (max-width: 768px) {
-    .resources-hero {
-      padding: 4rem 1.5rem;
-      margin-bottom: 3rem;
-    }
-
-    .hero-content h1 {
-      font-size: 2.25rem;
-    }
-
-    .hero-subtitle {
-      font-size: 1.1rem;
-    }
-
-    .quick-links,
-    .resource-section,
-    .consultation-section,
-    .resources-cta {
-      padding-left: 1.25rem;
-      padding-right: 1.25rem;
-    }
-
-    .section-header {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .resource-grid,
-    .tiers-grid {
-      grid-template-columns: 1fr;
-    }
-
-    .cta-buttons {
-      flex-direction: column;
-    }
-
-    .cta-buttons .btn {
-      width: 100%;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .resources-hero {
-      padding: 3rem 1rem;
-    }
-
-    .hero-content h1 {
-      font-size: 1.75rem;
-    }
-
-    .consultation-section h2,
-    .resources-cta h2 {
-      font-size: 2rem;
-    }
-  }
-</style>
