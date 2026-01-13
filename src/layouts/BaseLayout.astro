@@ -458,10 +458,10 @@ const {
         top: 100%;
         left: 0;
         min-width: 220px;
-        background: var(--charcoal-light);
+        background: var(--bg-surface);
         border: 1px solid var(--border);
         border-radius: 0.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
         list-style: none;
         padding: 0.5rem 0;
         margin-top: 0.5rem;
@@ -487,13 +487,14 @@ const {
         padding: 0.75rem 1.25rem;
         color: var(--text);
         text-decoration: none;
-        transition: background 0.2s, color 0.2s;
+        transition: background 0.15s ease, color 0.15s ease;
         white-space: nowrap;
+        font-weight: 500;
       }
 
       .dropdown-menu a:hover {
-        background: rgba(0, 176, 255, 0.15);  /* Cobalt tint for better visibility */
-        color: var(--primary);
+        background: var(--primary);
+        color: white;
       }
 
       /* Dropdown menu - Light Mode (class-based) */
@@ -508,8 +509,8 @@ const {
       }
 
       :global(.light) .dropdown-menu a:hover {
-        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
-        color: var(--primary);
+        background: var(--primary);
+        color: white;
       }
 
       /* Dropdown menu - Light Mode (media query fallback) */
@@ -525,8 +526,8 @@ const {
         }
 
         :global(:not(.dark)) .dropdown-menu a:hover {
-          background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
-          color: var(--primary);
+          background: var(--primary);
+          color: white;
         }
       }
 
@@ -564,14 +565,16 @@ const {
       }
 
       :global(.light) .footer-hero {
-        background: var(--mineral-terracotta);
-        color: white;
+        background: var(--bg-surface);
       }
 
-      :global(.light) .footer-hero .footer-main-text,
+      :global(.light) .footer-hero .footer-main-text {
+        color: var(--text);
+      }
+
       :global(.light) .footer-hero .footer-ubuntu-large,
       :global(.light) .footer-hero .footer-geographic {
-        color: white;
+        color: var(--text-secondary);
       }
 
       :global(.light) .footer-column h3 {
@@ -621,14 +624,16 @@ const {
         }
 
         :global(:not(.dark)) .footer-hero {
-          background: var(--mineral-terracotta);
-          color: white;
+          background: var(--bg-surface);
         }
 
-        :global(:not(.dark)) .footer-hero .footer-main-text,
+        :global(:not(.dark)) .footer-hero .footer-main-text {
+          color: var(--text);
+        }
+
         :global(:not(.dark)) .footer-hero .footer-ubuntu-large,
         :global(:not(.dark)) .footer-hero .footer-geographic {
-          color: white;
+          color: var(--text-secondary);
         }
 
         :global(:not(.dark)) .footer-column h3 {
@@ -675,8 +680,8 @@ const {
       .footer-hero {
         padding: 6rem 2rem;
         text-align: center;
-        background: var(--brown);  /* Terracotta */
-        border-top: 4px solid var(--mineral-gold);  /* Gold accent */
+        background: var(--bg-surface);  /* Slate surface - neutral */
+        border-top: 1px solid var(--border);
       }
 
       .footer-main-text {
