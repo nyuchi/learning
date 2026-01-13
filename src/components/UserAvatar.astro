@@ -1,0 +1,107 @@
+---
+/**
+ * UserAvatar - Astro component for displaying user avatars
+ * Provides image with fallback to initials
+ */
+
+interface Props {
+  src?: string;
+  alt: string;
+  fallback?: string;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  fallback,
+  size = 'md',
+  class: className = ''
+} = Astro.props;
+
+// Generate fallback initials from alt text
+const initials = fallback || alt
+  .split(' ')
+  .map(word => word[0])
+  .slice(0, 2)
+  .join('')
+  .toUpperCase();
+
+const sizeClasses = {
+  sm: 'avatar-sm',
+  md: 'avatar-md',
+  lg: 'avatar-lg',
+  xl: 'avatar-xl'
+};
+---
+
+<div class:list={["user-avatar", sizeClasses[size], className]}>
+  {src ? (
+    <img
+      src={src}
+      alt={alt}
+      class="avatar-image"
+      loading="lazy"
+    />
+  ) : (
+    <span class="avatar-fallback">{initials}</span>
+  )}
+</div>
+
+<style>
+  .user-avatar {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    border: 3px solid var(--primary);
+    flex-shrink: 0;
+  }
+
+  .avatar-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+    border-width: 2px;
+  }
+
+  .avatar-md {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.25rem;
+  }
+
+  .avatar-lg {
+    width: 6rem;
+    height: 6rem;
+    font-size: 1.75rem;
+  }
+
+  .avatar-xl {
+    width: 10rem;
+    height: 10rem;
+    font-size: 2.5rem;
+    border-width: 4px;
+  }
+
+  .avatar-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .avatar-fallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    font-weight: 600;
+    color: var(--primary);
+    background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg) 100%);
+  }
+</style>
