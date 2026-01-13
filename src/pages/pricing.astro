@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import { DollarSign, Check, AlertCircle, Info } from 'lucide-astro';
 
 // Budget scenario tiers - These are cost estimates, NOT prices for Nyuchi services
@@ -107,6 +108,8 @@ const savingsStrategies = [
   keywords="education technology costs, school technology budget, open-source education, free education software, digital transformation budget, affordable education technology, school IT costs Africa, implementation cost estimation"
 >
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <PageBreadcrumb items={[{ label: "Cost Estimation & Budget Planning" }]} />
+
     <!-- Header -->
     <div class="text-center py-10 sm:py-12 md:py-16 px-4 sm:px-6 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-12 md:mb-16 relative overflow-hidden">
       <h1 class="text-[clamp(1.5rem,5vw,3.5rem)] font-bold font-serif mb-3 sm:mb-4 relative z-10">Cost Estimation & Budget Planning</h1>

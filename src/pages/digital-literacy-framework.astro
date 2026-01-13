@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import { Smartphone, Globe, Shield, TrendingUp, Users, GraduationCap, BookOpen, Download, Target, Lightbulb, Award } from 'lucide-astro';
 
 // Navigation items
@@ -381,6 +382,11 @@ const supportResources = [
   keywords="digital literacy Africa, mobile-first education, digital citizenship, K-12 standards, teacher digital skills, adult digital literacy, 2050 skills, African education technology"
 >
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <PageBreadcrumb items={[
+      { label: "Frameworks", href: "/frameworks" },
+      { label: "Digital Literacy" }
+    ]} />
+
     <!-- Framework Header -->
     <div class="relative text-center py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden">
       <h1 class="text-[clamp(1.5rem,4vw,3.5rem)] font-black font-serif mb-3 sm:mb-4 relative z-10">Digital Literacy Framework for Africa</h1>

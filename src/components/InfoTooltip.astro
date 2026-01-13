@@ -1,0 +1,153 @@
+---
+/**
+ * InfoTooltip - Astro component for displaying tooltips
+ * Pure CSS implementation for server-rendered tooltips
+ */
+
+interface Props {
+  text: string;
+  position?: 'top' | 'bottom' | 'left' | 'right';
+  class?: string;
+}
+
+const {
+  text,
+  position = 'top',
+  class: className = ''
+} = Astro.props;
+---
+
+<span class:list={["tooltip-wrapper", `tooltip-${position}`, className]}>
+  <slot />
+  <span class="tooltip-content" role="tooltip">{text}</span>
+</span>
+
+<style>
+  .tooltip-wrapper {
+    position: relative;
+    display: inline-flex;
+    cursor: help;
+  }
+
+  .tooltip-content {
+    position: absolute;
+    z-index: 50;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text);
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+  }
+
+  .tooltip-wrapper:hover .tooltip-content,
+  .tooltip-wrapper:focus-within .tooltip-content {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  /* Top position (default) */
+  .tooltip-top .tooltip-content {
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+  }
+
+  .tooltip-top:hover .tooltip-content,
+  .tooltip-top:focus-within .tooltip-content {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Bottom position */
+  .tooltip-bottom .tooltip-content {
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-4px);
+  }
+
+  .tooltip-bottom:hover .tooltip-content,
+  .tooltip-bottom:focus-within .tooltip-content {
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* Left position */
+  .tooltip-left .tooltip-content {
+    right: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(4px);
+  }
+
+  .tooltip-left:hover .tooltip-content,
+  .tooltip-left:focus-within .tooltip-content {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* Right position */
+  .tooltip-right .tooltip-content {
+    left: calc(100% + 8px);
+    top: 50%;
+    transform: translateY(-50%) translateX(-4px);
+  }
+
+  .tooltip-right:hover .tooltip-content,
+  .tooltip-right:focus-within .tooltip-content {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  /* Arrow/caret */
+  .tooltip-content::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    transform: rotate(45deg);
+  }
+
+  .tooltip-top .tooltip-content::before {
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-top: none;
+    border-left: none;
+  }
+
+  .tooltip-bottom .tooltip-content::before {
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-bottom: none;
+    border-right: none;
+  }
+
+  .tooltip-left .tooltip-content::before {
+    right: -5px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-bottom: none;
+    border-left: none;
+  }
+
+  .tooltip-right .tooltip-content::before {
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+    border-top: none;
+    border-right: none;
+  }
+
+  @media (max-width: 640px) {
+    .tooltip-content {
+      display: none;
+    }
+  }
+</style>

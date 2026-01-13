@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import UserAvatar from '../components/UserAvatar.astro';
 import { Linkedin, GraduationCap, Code, Globe, Heart } from 'lucide-astro';
 
 // Values data
@@ -37,6 +39,8 @@ const values = [
   keywords="nyuchi learning team, Bryan Fawcett, education technology leaders, African education innovators, Zimbabwe education technology, nyuchi africa team"
 >
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <PageBreadcrumb items={[{ label: "About" }, { label: "Our Team" }]} />
+
     <!-- Header -->
     <div class="relative text-center mb-8 sm:mb-12 md:mb-16 py-10 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl overflow-hidden">
       <p class="text-base sm:text-lg italic text-[var(--text-secondary)] mb-3 sm:mb-4 relative z-10">Ubuntu: I am because we are</p>
@@ -67,11 +71,15 @@ const values = [
       <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden shadow-md grid grid-cols-1 lg:grid-cols-[350px_1fr] border border-[var(--border)]">
         <!-- Founder Image -->
         <div class="bg-[var(--bg)] flex items-center justify-center p-8">
-          <img
-            src="https://drive.google.com/uc?export=view&id=10aWI8tdcfpRDAv50R84euq6lpTs6-0v0"
-            alt="Bryan Fawcett, Founder of nyuchi learning"
-            class="w-full max-w-[300px] h-auto aspect-square object-cover rounded-full border-[6px] border-[var(--text-secondary)] shadow-lg"
-          />
+          <div class="founder-avatar">
+            <UserAvatar
+              src="https://drive.google.com/uc?export=view&id=10aWI8tdcfpRDAv50R84euq6lpTs6-0v0"
+              alt="Bryan Fawcett, Founder of nyuchi learning"
+              fallback="BF"
+              size="xl"
+              class="founder-avatar-large"
+            />
+          </div>
         </div>
 
         <!-- Founder Info -->
@@ -209,3 +217,24 @@ const values = [
     </section>
   </div>
 </BaseLayout>
+
+<style>
+  .founder-avatar {
+    width: 280px;
+    height: 280px;
+  }
+
+  .founder-avatar :global(.user-avatar) {
+    width: 100%;
+    height: 100%;
+    border-width: 6px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .founder-avatar {
+      width: 200px;
+      height: 200px;
+    }
+  }
+</style>
