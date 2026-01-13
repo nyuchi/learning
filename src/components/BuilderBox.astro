@@ -1,0 +1,162 @@
+---
+/**
+ * BuilderBox - Astro component for builder UI pattern
+ * Features dashed borders with corner plus markers
+ */
+
+interface Props {
+  variant?: 'default' | 'primary' | 'success' | 'warning';
+  selected?: boolean;
+  class?: string;
+  interactive?: boolean;
+}
+
+const {
+  variant = 'default',
+  selected = false,
+  class: className = '',
+  interactive = false
+} = Astro.props;
+
+const variantClasses = {
+  default: 'border-slate-300 dark:border-slate-700',
+  primary: 'border-[var(--primary)]',
+  success: 'border-[var(--mineral-malachite)]',
+  warning: 'border-[var(--mineral-gold)]',
+};
+---
+
+<div class:list={[
+  "builder-box",
+  variantClasses[variant],
+  { 'builder-box-selected': selected },
+  { 'builder-box-interactive': interactive },
+  className
+]}>
+  <!-- Dashed border overlay -->
+  <div class="builder-border"></div>
+
+  <!-- Corner plusses -->
+  <svg class="corner-plus top-left" viewBox="0 0 12 12">
+    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </svg>
+  <svg class="corner-plus top-right" viewBox="0 0 12 12">
+    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </svg>
+  <svg class="corner-plus bottom-left" viewBox="0 0 12 12">
+    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </svg>
+  <svg class="corner-plus bottom-right" viewBox="0 0 12 12">
+    <path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/>
+  </svg>
+
+  <!-- Content -->
+  <div class="builder-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .builder-box {
+    position: relative;
+    transition: all 0.2s ease;
+  }
+
+  .builder-box-interactive {
+    cursor: pointer;
+  }
+
+  .builder-border {
+    position: absolute;
+    inset: 0;
+    border: 1px dashed;
+    border-color: inherit;
+    border-radius: 0;
+    transition: all 0.2s ease;
+    pointer-events: none;
+  }
+
+  .builder-box-interactive:hover .builder-border {
+    border-color: var(--primary);
+  }
+
+  .builder-box-selected .builder-border {
+    border-color: var(--primary);
+    background: rgba(0, 176, 255, 0.05);
+  }
+
+  /* Corner plus markers */
+  .corner-plus {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    color: rgba(100, 116, 139, 0.4);
+    transition: all 0.2s ease;
+    z-index: 1;
+  }
+
+  .corner-plus path {
+    stroke-width: 1.5;
+  }
+
+  .corner-plus.top-left {
+    top: -5px;
+    left: -5px;
+  }
+
+  .corner-plus.top-right {
+    top: -5px;
+    right: -5px;
+  }
+
+  .corner-plus.bottom-left {
+    bottom: -5px;
+    left: -5px;
+  }
+
+  .corner-plus.bottom-right {
+    bottom: -5px;
+    right: -5px;
+  }
+
+  .builder-box-interactive:hover .corner-plus,
+  .builder-box-selected .corner-plus {
+    color: var(--primary);
+    transform: scale(1.1);
+  }
+
+  .builder-content {
+    position: relative;
+    padding: 1.5rem;
+  }
+
+  /* Variant colors - subtle borders */
+  .builder-box.border-slate-300 .builder-border { border-color: rgb(203 213 225 / 0.4); }
+  .builder-box.border-slate-700 .builder-border { border-color: rgb(71 85 105 / 0.3); }
+
+  :global(.dark) .builder-box.border-slate-300 .builder-border,
+  :global(.dark) .builder-box.border-slate-700 .builder-border {
+    border-color: rgb(71 85 105 / 0.3);
+  }
+
+  :global(.light) .builder-box.border-slate-300 .builder-border,
+  :global(.light) .builder-box.border-slate-700 .builder-border {
+    border-color: rgb(203 213 225 / 0.5);
+  }
+
+  @media (max-width: 640px) {
+    .builder-content {
+      padding: 1rem;
+    }
+
+    .corner-plus {
+      width: 8px;
+      height: 8px;
+    }
+
+    .corner-plus.top-left { top: -4px; left: -4px; }
+    .corner-plus.top-right { top: -4px; right: -4px; }
+    .corner-plus.bottom-left { bottom: -4px; left: -4px; }
+    .corner-plus.bottom-right { bottom: -4px; right: -4px; }
+  }
+</style>

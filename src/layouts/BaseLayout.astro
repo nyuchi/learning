@@ -227,6 +227,21 @@ const {
 
       body {
         margin-left: 4px; /* Space for Minerals Strip */
+        /* Builder UI dot grid pattern */
+        background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
+        background-size: 24px 24px;
+        background-attachment: fixed;
+      }
+
+      /* Light mode dot pattern */
+      :global(.light) body {
+        background-image: radial-gradient(circle, rgba(100, 116, 139, 0.2) 1px, transparent 1px);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :global(:not(.dark)) body {
+          background-image: radial-gradient(circle, rgba(100, 116, 139, 0.2) 1px, transparent 1px);
+        }
       }
 
       /* Minerals Strip - Five African Minerals (v6) */
