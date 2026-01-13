@@ -204,10 +204,14 @@ const {
         </div>
       </div>
 
+      <!-- Full-width wordmark section -->
+      <div class="footer-wordmark">
+        <span class="wordmark-text">nyuchi learning</span>
+      </div>
+
       <div class="footer-bottom">
-        <div class="footer-branding">
-          <p class="footer-brand-name">nyuchi learning</p>
-          <p class="footer-brand-org">K-12 Digital Campus Framework</p>
+        <div class="footer-meta">
+          <p class="footer-tagline">K-12 Digital Campus Framework</p>
           <p class="footer-division">Part of the bundu ecosystem</p>
         </div>
         <div class="footer-principles">
@@ -659,11 +663,7 @@ const {
         color: var(--primary);
       }
 
-      :global(.light) .footer-brand-name {
-        color: var(--text);
-      }
-
-      :global(.light) .footer-brand-org {
+      :global(.light) .footer-tagline {
         color: var(--text-secondary);
       }
 
@@ -718,11 +718,7 @@ const {
           color: var(--primary);
         }
 
-        :global(:not(.dark)) .footer-brand-name {
-          color: var(--text);
-        }
-
-        :global(:not(.dark)) .footer-brand-org {
+        :global(:not(.dark)) .footer-tagline {
           color: var(--text-secondary);
         }
 
@@ -835,6 +831,57 @@ const {
         font-size: 1rem;
       }
 
+      /* Full-width wordmark section - Google Labs style */
+      .footer-wordmark {
+        padding: 6rem 0;
+        text-align: center;
+        border-top: 1px solid var(--border);
+        overflow: hidden;
+        background: var(--bg);
+      }
+
+      .wordmark-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: clamp(6rem, 20vw, 18rem);
+        font-weight: 900;
+        text-transform: lowercase;
+        color: var(--text);
+        letter-spacing: -0.04em;
+        line-height: 0.85;
+        display: block;
+        white-space: nowrap;
+      }
+
+      /* Light mode wordmark */
+      :global(.light) .footer-wordmark {
+        background: var(--bg-surface);
+      }
+
+      :global(.light) .wordmark-text {
+        color: var(--text);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :global(:not(.dark)) .footer-wordmark {
+          background: var(--bg-surface);
+        }
+
+        :global(:not(.dark)) .wordmark-text {
+          color: var(--text);
+        }
+      }
+
+      /* Mobile wordmark sizing */
+      @media (max-width: 768px) {
+        .footer-wordmark {
+          padding: 4rem 0;
+        }
+
+        .wordmark-text {
+          font-size: clamp(3rem, 18vw, 6rem);
+        }
+      }
+
       .footer-bottom {
         border-top: 1px solid var(--gray-700);
         padding: 3rem 2rem 2rem;
@@ -842,34 +889,27 @@ const {
         margin: 0 auto;
       }
 
-      .footer-branding {
+      .footer-meta {
         margin-bottom: 2rem;
+        text-align: center;
       }
 
-      .footer-brand-name {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
+      .footer-tagline {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
         margin-bottom: 0.5rem;
-        text-transform: lowercase;  /* Wordmarks are lowercase */
-      }
-
-      .footer-brand-org {
-        font-size: 1rem;
-        color: var(--gray-300);
-        margin-bottom: 0.25rem;
       }
 
       .footer-division {
-        color: var(--gray-400);
+        color: var(--text-tertiary);
         font-size: 0.9rem;
-        opacity: 0.8;
       }
 
       .footer-principles {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
         border-bottom: 1px solid var(--gray-700);
+        text-align: center;
       }
 
       .footer-principles p {
