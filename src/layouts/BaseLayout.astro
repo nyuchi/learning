@@ -9,11 +9,13 @@ interface Props {
   keywords?: string;
   image?: string;
   type?: 'website' | 'article';
+  author?: string;
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
     section?: string;
     tags?: string[];
+    author?: string;
   };
 }
 
@@ -23,6 +25,7 @@ const {
   keywords,
   image,
   type,
+  author,
   article
 } = Astro.props;
 ---
@@ -42,6 +45,7 @@ const {
       keywords={keywords}
       image={image}
       type={type}
+      author={author}
       article={article}
     />
 
