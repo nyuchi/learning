@@ -380,54 +380,54 @@ const supportResources = [
   description="Comprehensive mobile-first digital literacy framework for K-12 students, teachers, and adults. Emphasizes digital citizenship, lifelong learning, and preparing for the 2050 digital landscape. Designed for African contexts where mobile is the primary access point."
   keywords="digital literacy Africa, mobile-first education, digital citizenship, K-12 standards, teacher digital skills, adult digital literacy, 2050 skills, African education technology"
 >
-  <div class="max-w-[1200px] mx-auto px-4 py-8">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
     <!-- Framework Header -->
-    <div class="relative text-center py-16 px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl mb-12 overflow-hidden">
-      <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-black font-serif mb-4 relative z-10">Digital Literacy Framework for Africa</h1>
-      <p class="text-[clamp(1rem,2.5vw,1.3rem)] opacity-95 mb-8 relative z-10">Mobile-First | Lifelong Learning | 2050-Ready | Digital Citizenship</p>
-      <div class="flex gap-4 justify-center flex-wrap relative z-10">
-        <a href="#overview" class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] min-h-[48px]">Read Online</a>
-        <a href="/frameworks/digital-literacy-framework.pdf" download class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg min-h-[48px]">
+    <div class="relative text-center py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden">
+      <h1 class="text-[clamp(1.5rem,4vw,3.5rem)] font-black font-serif mb-3 sm:mb-4 relative z-10">Digital Literacy Framework for Africa</h1>
+      <p class="text-[clamp(0.9rem,2vw,1.3rem)] opacity-95 mb-6 sm:mb-8 relative z-10">Mobile-First | Lifelong Learning | 2050-Ready | Digital Citizenship</p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center relative z-10">
+        <a href="#overview" class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] w-full sm:w-auto text-sm sm:text-base">Read Online</a>
+        <a href="/frameworks/digital-literacy-framework.pdf" download class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-sm sm:text-base">
           <Download size={20} /> Download PDF
         </a>
       </div>
-      <p class="mt-6 text-sm opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
+      <p class="mt-4 sm:mt-6 text-xs sm:text-sm opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
     </div>
 
     <!-- Quick Navigation -->
-    <nav class="bg-[var(--bg-surface)] p-8 rounded-xl mb-12 border border-[var(--border)]">
-      <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Quick Navigation</h3>
-      <ul class="list-none p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+    <nav class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 md:mb-12 border border-[var(--border)]">
+      <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4">Quick Navigation</h3>
+      <ul class="list-none p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
         {navItems.map((item) => (
           <li>
-            <a href={item.href} class="block py-3 px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
+            <a href={item.href} class="block py-2.5 sm:py-3 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-sm sm:text-base text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
     <!-- Executive Overview -->
-    <section id="overview" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
-      <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
-      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
+    <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-black mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
+      <p class="text-base sm:text-lg leading-relaxed text-[var(--text)] mb-6 sm:mb-8">
         This framework reimagines digital literacy for the African context, where most learners access
         the digital world primarily through mobile devices, often without 1:1 device access at school.
         It prepares students, teachers, and adults for a 2050 world where digital fluency is not optional—it's essential.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {overviewCards.map((card) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-            <card.icon class="text-[var(--primary)] mb-4" size={40} strokeWidth={1.5} />
-            <h3 class="text-[var(--primary)] text-xl font-bold mb-2">{card.title}</h3>
-            <p class="text-[var(--text)] leading-relaxed">{card.description}</p>
+          <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+            <card.icon class="text-[var(--primary)] mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+            <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
+            <p class="text-sm sm:text-base text-[var(--text)] leading-relaxed">{card.description}</p>
           </div>
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
-        <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">African Context: Why This Framework Matters</h3>
-        <ul class="ml-6 leading-relaxed space-y-2">
+      <div class="bg-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)]">
+        <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4 mt-0">African Context: Why This Framework Matters</h3>
+        <ul class="ml-4 sm:ml-6 leading-relaxed space-y-1.5 sm:space-y-2 text-sm sm:text-base">
           {africanContext.map((item) => (
             <li class="text-[var(--text)]"><strong class="text-[var(--primary)]">{item.label}:</strong> {item.text}</li>
           ))}
