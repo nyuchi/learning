@@ -340,7 +340,7 @@ const {
         transform: translateY(0);
       }
 
-      /* White text for transparent header with shadow for contrast */
+      /* White text for transparent header with shadow for contrast - Dark Mode */
       header.header-transparent .logo-text,
       header.header-transparent .logo-icon,
       header.header-transparent .nav-links a {
@@ -365,6 +365,76 @@ const {
 
       header.header-transparent .btn-cta:hover {
         background: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      /* Transparent header - Light Mode (class-based) */
+      :global(.light) header.header-transparent {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      :global(.light) header.header-transparent .logo-text,
+      :global(.light) header.header-transparent .logo-icon,
+      :global(.light) header.header-transparent .nav-links a {
+        color: var(--text);
+        text-shadow: none;
+      }
+
+      :global(.light) header.header-transparent .logo-subtext {
+        color: var(--text-muted);
+        text-shadow: none;
+      }
+
+      :global(.light) header.header-transparent .mobile-menu-btn {
+        color: var(--primary);
+        filter: none;
+      }
+
+      :global(.light) header.header-transparent .btn-cta {
+        background: var(--primary) !important;
+        color: white !important;
+      }
+
+      :global(.light) header.header-transparent .btn-cta:hover {
+        background: var(--primary-hover) !important;
+      }
+
+      /* Transparent header - Light Mode (media query fallback) */
+      @media (prefers-color-scheme: light) {
+        :global(:not(.dark)) header.header-transparent {
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        :global(:not(.dark)) header.header-transparent .logo-text,
+        :global(:not(.dark)) header.header-transparent .logo-icon,
+        :global(:not(.dark)) header.header-transparent .nav-links a {
+          color: var(--text);
+          text-shadow: none;
+        }
+
+        :global(:not(.dark)) header.header-transparent .logo-subtext {
+          color: var(--text-muted);
+          text-shadow: none;
+        }
+
+        :global(:not(.dark)) header.header-transparent .mobile-menu-btn {
+          color: var(--primary);
+          filter: none;
+        }
+
+        :global(:not(.dark)) header.header-transparent .btn-cta {
+          background: var(--primary) !important;
+          color: white !important;
+        }
+
+        :global(:not(.dark)) header.header-transparent .btn-cta:hover {
+          background: var(--primary-hover) !important;
+        }
       }
 
       .nav-container {
@@ -493,8 +563,8 @@ const {
       }
 
       .dropdown-menu a:hover {
-        background: var(--primary);
-        color: white;
+        background: rgba(0, 176, 255, 0.15);  /* Cobalt tint */
+        color: var(--primary);
       }
 
       /* Dropdown menu - Light Mode (class-based) */
@@ -509,8 +579,8 @@ const {
       }
 
       :global(.light) .dropdown-menu a:hover {
-        background: var(--primary);
-        color: white;
+        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for light mode */
+        color: var(--primary);
       }
 
       /* Dropdown menu - Light Mode (media query fallback) */
@@ -526,8 +596,8 @@ const {
         }
 
         :global(:not(.dark)) .dropdown-menu a:hover {
-          background: var(--primary);
-          color: white;
+          background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for light mode */
+          color: var(--primary);
         }
       }
 
