@@ -1,5 +1,5 @@
 import Butter from "buttercms";
 
-const butter = Butter("164b6ac794e698915d40235a89cb179759288038");
+const butter = Butter(import.meta.env.ASTRO_APP_BUTTER_CMS_API_KEY);
 
 export default butter;
