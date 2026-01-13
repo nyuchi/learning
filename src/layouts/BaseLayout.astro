@@ -833,23 +833,25 @@ const {
 
       /* Full-width wordmark section - Google Labs style */
       .footer-wordmark {
-        padding: 6rem 0;
+        padding: 4rem 1rem;
         text-align: center;
         border-top: 1px solid var(--border);
-        overflow: hidden;
         background: var(--bg);
+        width: 100%;
+        box-sizing: border-box;
       }
 
       .wordmark-text {
         font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: clamp(6rem, 20vw, 18rem);
+        font-size: clamp(2.5rem, 12vw, 10rem);
         font-weight: 900;
         text-transform: lowercase;
         color: var(--text);
         letter-spacing: -0.04em;
-        line-height: 0.85;
+        line-height: 1;
         display: block;
-        white-space: nowrap;
+        width: 100%;
+        max-width: 100%;
       }
 
       /* Light mode wordmark */
@@ -874,11 +876,11 @@ const {
       /* Mobile wordmark sizing */
       @media (max-width: 768px) {
         .footer-wordmark {
-          padding: 4rem 0;
+          padding: 3rem 1rem;
         }
 
         .wordmark-text {
-          font-size: clamp(3rem, 18vw, 6rem);
+          font-size: clamp(2rem, 11vw, 4rem);
         }
       }
 
