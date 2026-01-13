@@ -1,0 +1,116 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import butter from '../../lib/buttercms';
+
+export async function getStaticPaths() {
+  // Fetch all posts to generate static paths
+  try {
+    const response = await butter.post.list({ page: 1, page_size: 100 });
+    const posts = response?.data?.data || [];
+
+    return posts.map((post: any) => ({
+      params: { slug: post.slug },
+      props: { post }
+    }));
+  } catch (e) {
+    console.error('Error fetching posts for static paths:', e);
+    return [];
+  }
+}
+
+const { post } = Astro.props as { post: any };
+
+// If post wasn't passed via props, fetch it directly
+let postData = post;
+if (!postData) {
+  const { slug } = Astro.params;
+  try {
+    const response = await butter.post.retrieve(slug as string);
+    postData = response?.data?.data;
+  } catch (e) {
+    console.error('Error fetching post:', e);
+  }
+}
+
+const publishedDate = postData?.published
+  ? new Date(postData.published).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    })
+  : '';
+
+const authorName = postData?.author
+  ? `${postData.author.first_name} ${postData.author.last_name}`.trim()
+  : 'Framework Team';
+---
+
+<BaseLayout
+  title={postData?.title || 'Blog Post'}
+  description={postData?.meta_description || postData?.summary || ''}
+  keywords={postData?.tags?.map((t: any) => t.name).join(', ') || ''}
+  type="article"
+>
+  <article class="max-w-[800px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    {!postData ? (
+      <div class="text-center py-12">
+        <h1 class="text-2xl font-bold text-[var(--text)] mb-4">Post Not Found</h1>
+        <p class="text-[var(--text-secondary)] mb-6">The blog post you're looking for doesn't exist.</p>
+        <a href="/blog" class="text-[var(--primary)] font-semibold">← Back to Blog</a>
+      </div>
+    ) : (
+      <>
+        <header class="text-center mb-8 sm:mb-10 md:mb-12 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
+          <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold font-serif text-[var(--text)] mb-3 sm:mb-4 leading-tight">
+            {postData.title}
+          </h1>
+          <div class="flex justify-center gap-4 sm:gap-8 text-[var(--text-secondary)] text-xs sm:text-sm flex-col sm:flex-row">
+            <span>{publishedDate}</span>
+            <span>By {authorName}</span>
+          </div>
+          {postData.tags && postData.tags.length > 0 && (
+            <div class="flex justify-center gap-2 mt-4 flex-wrap">
+              {postData.tags.map((tag: any) => (
+                <span class="px-3 py-1 bg-[var(--bg-surface)] text-[var(--text-secondary)] text-xs rounded-full">
+                  {tag.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </header>
+
+        {postData.featured_image && (
+          <img
+            src={postData.featured_image}
+            alt={postData.featured_image_alt || postData.title}
+            class="w-full h-auto rounded-xl mb-8 shadow-lg"
+          />
+        )}
+
+        <div
+          class="prose prose-lg max-w-none text-[var(--text)]
+                 [&>p]:mb-6 [&>p]:leading-relaxed
+                 [&>h2]:text-[clamp(1.5rem,4vw,2rem)] [&>h2]:font-bold [&>h2]:text-[var(--primary)] [&>h2]:mt-12 [&>h2]:mb-4
+                 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-[var(--text)] [&>h3]:mt-8 [&>h3]:mb-3
+                 [&>ul]:mb-6 [&>ul]:ml-6 [&>ul]:space-y-3 [&>ul>li]:list-disc
+                 [&>ol]:mb-6 [&>ol]:ml-6 [&>ol]:space-y-3 [&>ol>li]:list-decimal
+                 [&>blockquote]:border-l-4 [&>blockquote]:border-[var(--primary)] [&>blockquote]:pl-4 [&>blockquote]:italic [&>blockquote]:text-[var(--text-secondary)]
+                 [&>pre]:bg-[var(--bg-surface)] [&>pre]:p-4 [&>pre]:rounded-lg [&>pre]:overflow-x-auto
+                 [&>code]:bg-[var(--bg-surface)] [&>code]:px-2 [&>code]:py-1 [&>code]:rounded
+                 [&>a]:text-[var(--primary)] [&>a]:underline
+                 [&>img]:rounded-lg [&>img]:shadow-md"
+          set:html={postData.body}
+        />
+
+        <div class="mt-12 pt-8 border-t-2 border-[var(--border)] flex gap-4 justify-center flex-wrap">
+          <a href="/blog" class="inline-flex items-center justify-center py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)]">
+            ← Back to Blog
+          </a>
+          <a href="/framework" class="inline-flex items-center justify-center py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg">
+            Explore the Framework
+          </a>
+        </div>
+      </>
+    )}
+  </article>
+</BaseLayout>
