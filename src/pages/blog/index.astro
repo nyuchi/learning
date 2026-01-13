@@ -38,27 +38,27 @@ const posts = [
   description="Insights on digital transformation in African education. Implementation strategies, success stories, digital literacy best practices, and open-source technology for schools."
   keywords="education technology blog, digital transformation insights, African education news, school technology implementation, digital literacy strategies, open-source education, education technology case studies"
 >
-  <div class="max-w-[1000px] mx-auto px-4 py-8">
-    <div class="text-center mb-16 py-12 px-4">
-      <h1 class="text-[clamp(2rem,8vw,3rem)] font-extrabold font-serif text-[var(--primary)] mb-4">Framework Insights & Updates</h1>
-      <p class="text-[clamp(1rem,3vw,1.25rem)] text-[var(--text-secondary)]">Exploring digital transformation in education, implementation strategies, and success stories</p>
+  <div class="max-w-[1000px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <div class="text-center mb-8 sm:mb-12 md:mb-16 py-8 sm:py-10 md:py-12 px-4">
+      <h1 class="text-[clamp(1.75rem,6vw,3rem)] font-extrabold font-serif text-[var(--primary)] mb-3 sm:mb-4">Framework Insights & Updates</h1>
+      <p class="text-[clamp(1rem,2.5vw,1.25rem)] text-[var(--text-secondary)]">Exploring digital transformation in education, implementation strategies, and success stories</p>
     </div>
 
-    <div class="grid gap-8">
+    <div class="grid gap-4 sm:gap-6 md:gap-8">
       {posts.map((post) => (
-        <article class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-          <div class="text-[var(--text-secondary)] text-sm mb-3">
+        <article class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
+          <div class="text-[var(--text-secondary)] text-xs sm:text-sm mb-2 sm:mb-3">
             {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </div>
-          <h2 class="text-[clamp(1.35rem,5vw,1.75rem)] leading-tight mb-4">
+          <h2 class="text-[clamp(1.15rem,4vw,1.75rem)] leading-tight mb-3 sm:mb-4">
             <a href={`/blog/${post.slug}`} class="text-[var(--text)] no-underline transition-colors hover:text-[var(--primary)]">
               {post.title}
             </a>
           </h2>
-          <p class="text-[var(--text-secondary)] leading-relaxed mb-6">{post.excerpt}</p>
-          <div class="flex justify-between items-center pt-4 border-t border-[var(--border)]">
-            <span class="text-[var(--text-secondary)] text-sm">By {post.author}</span>
-            <a href={`/blog/${post.slug}`} class="text-[var(--primary)] no-underline font-semibold transition-colors hover:brightness-110">
+          <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed mb-4 sm:mb-6">{post.excerpt}</p>
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 sm:gap-0 pt-3 sm:pt-4 border-t border-[var(--border)]">
+            <span class="text-[var(--text-secondary)] text-xs sm:text-sm">By {post.author}</span>
+            <a href={`/blog/${post.slug}`} class="text-[var(--primary)] no-underline font-semibold text-sm sm:text-base transition-colors hover:brightness-110">
               Read more →
             </a>
           </div>
