@@ -196,6 +196,11 @@
    BASE LAYER - Theme Variables
    ======================================== */
 @layer base {
+  /* Box-sizing reset (in base layer to work with Tailwind) */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
   /* Dark Mode (Default) */
   :root {
     /* Primary - Cobalt for Education */
