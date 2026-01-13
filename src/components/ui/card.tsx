@@ -4,12 +4,13 @@ import { cn } from "@/lib/utils";
 
 const Card = React.forwardRef<
   HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement> & { accent?: boolean }
->(({ className, accent = false, ...props }, ref) => (
+  React.HTMLAttributes<HTMLDivElement> & { accent?: boolean; rounded?: boolean }
+>(({ className, accent = false, rounded = false, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-[var(--radius-card)] bg-[var(--bg-surface)] transition-all duration-300",
+      "bg-[var(--bg-surface)] transition-all duration-300",
+      rounded ? "rounded-[var(--radius-card)]" : "rounded-none",
       accent
         ? "border-2 border-[var(--primary)]"
         : "border border-[var(--border)] hover:-translate-y-0.5 hover:border-[var(--primary)] hover:shadow-[var(--shadow-card-hover)]",
