@@ -1,6 +1,7 @@
 ---
 import { BookOpen, Menu, X } from 'lucide-astro';
 import SEO from '../components/SEO.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -37,6 +38,28 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Theme Initialization (prevent flash) -->
+    <script is:inline>
+      (function() {
+        const getThemePreference = () => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          return 'system';
+        };
+        const theme = getThemePreference();
+        const effectiveTheme = theme === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : theme;
+
+        if (effectiveTheme === 'light') {
+          document.documentElement.classList.add('light');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
 
     <!-- SEO Component -->
     <SEO
@@ -101,6 +124,7 @@ const {
               </ul>
             </li>
             <li><a href="/consultation" class="btn-cta">Book a Consultation</a></li>
+            <li class="theme-toggle-li"><ThemeToggle /></li>
           </ul>
 
           <!-- Mobile Menu Button -->
@@ -249,24 +273,44 @@ const {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
-      /* Solid header state - Light Mode */
+      /* Solid header state - Light Mode (class-based) */
+      :global(.light) header.header-solid {
+        background: rgba(255, 255, 255, 0.98);  /* White */
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      :global(.light) header.header-solid .logo-text,
+      :global(.light) header.header-solid .nav-links a {
+        color: var(--text);
+      }
+
+      :global(.light) header.header-solid .logo-subtext {
+        color: var(--text-muted);
+      }
+
+      :global(.light) header.header-solid .mobile-menu-btn {
+        color: var(--primary);
+      }
+
+      /* Solid header state - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        header.header-solid {
+        :global(:not(.dark)) header.header-solid {
           background: rgba(255, 255, 255, 0.98);  /* White */
           border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        header.header-solid .logo-text,
-        header.header-solid .nav-links a {
+        :global(:not(.dark)) header.header-solid .logo-text,
+        :global(:not(.dark)) header.header-solid .nav-links a {
           color: var(--text);
         }
 
-        header.header-solid .logo-subtext {
+        :global(:not(.dark)) header.header-solid .logo-subtext {
           color: var(--text-muted);
         }
 
-        header.header-solid .mobile-menu-btn {
+        :global(:not(.dark)) header.header-solid .mobile-menu-btn {
           color: var(--primary);
         }
       }
@@ -368,6 +412,10 @@ const {
         align-items: center;
       }
 
+      .theme-toggle-li {
+        margin-left: 0.5rem;
+      }
+
       .nav-links a {
         text-decoration: none;
         color: var(--text);
@@ -433,19 +481,35 @@ const {
         color: var(--primary);
       }
 
-      /* Dropdown menu - Light Mode */
+      /* Dropdown menu - Light Mode (class-based) */
+      :global(.light) .dropdown-menu {
+        background: white;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      :global(.light) .dropdown-menu a {
+        color: var(--text);
+      }
+
+      :global(.light) .dropdown-menu a:hover {
+        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
+        color: var(--primary);
+      }
+
+      /* Dropdown menu - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        .dropdown-menu {
+        :global(:not(.dark)) .dropdown-menu {
           background: white;
           border: 1px solid var(--border);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .dropdown-menu a {
+        :global(:not(.dark)) .dropdown-menu a {
           color: var(--text);
         }
 
-        .dropdown-menu a:hover {
+        :global(:not(.dark)) .dropdown-menu a:hover {
           background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
           color: var(--primary);
         }
@@ -479,60 +543,116 @@ const {
         margin-top: 6rem;
       }
 
-      /* Footer - Light Mode */
+      /* Footer - Light Mode (class-based) */
+      :global(.light) footer {
+        background: var(--bg-surface);
+      }
+
+      :global(.light) .footer-hero {
+        background: var(--mineral-terracotta);
+        color: white;
+      }
+
+      :global(.light) .footer-hero .footer-main-text,
+      :global(.light) .footer-hero .footer-ubuntu-large,
+      :global(.light) .footer-hero .footer-geographic {
+        color: white;
+      }
+
+      :global(.light) .footer-column h3 {
+        color: var(--text);
+      }
+
+      :global(.light) .footer-column a {
+        color: var(--text-secondary);
+      }
+
+      :global(.light) .footer-column a:hover {
+        color: var(--primary);
+      }
+
+      :global(.light) .footer-brand-name {
+        color: var(--text);
+      }
+
+      :global(.light) .footer-brand-org {
+        color: var(--text-secondary);
+      }
+
+      :global(.light) .footer-division {
+        color: var(--text-muted);
+      }
+
+      :global(.light) .footer-principles p {
+        color: var(--text-muted);
+      }
+
+      :global(.light) .footer-copyright {
+        color: var(--text-muted);
+      }
+
+      :global(.light) .footer-bottom {
+        border-top-color: var(--border);
+      }
+
+      :global(.light) .footer-principles {
+        border-bottom-color: var(--border);
+      }
+
+      /* Footer - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        footer {
+        :global(:not(.dark)) footer {
           background: var(--bg-surface);
         }
 
-        .footer-hero {
+        :global(:not(.dark)) .footer-hero {
           background: var(--mineral-terracotta);
           color: white;
         }
 
-        .footer-hero .footer-main-text,
-        .footer-hero .footer-ubuntu-large,
-        .footer-hero .footer-geographic {
+        :global(:not(.dark)) .footer-hero .footer-main-text,
+        :global(:not(.dark)) .footer-hero .footer-ubuntu-large,
+        :global(:not(.dark)) .footer-hero .footer-geographic {
           color: white;
         }
 
-        .footer-column h3 {
+        :global(:not(.dark)) .footer-column h3 {
           color: var(--text);
         }
 
-        .footer-column a {
+        :global(:not(.dark)) .footer-column a {
           color: var(--text-secondary);
         }
 
-        .footer-column a:hover {
+        :global(:not(.dark)) .footer-column a:hover {
           color: var(--primary);
         }
 
-        .footer-brand-name {
+        :global(:not(.dark)) .footer-brand-name {
           color: var(--text);
         }
 
-        .footer-brand-org {
+        :global(:not(.dark)) .footer-brand-org {
           color: var(--text-secondary);
         }
 
-        .footer-division {
+        :global(:not(.dark)) .footer-division {
           color: var(--text-muted);
         }
 
-        .footer-principles p {
+        :global(:not(.dark)) .footer-principles p {
           color: var(--text-muted);
         }
 
-        .footer-copyright {
+        :global(:not(.dark)) .footer-copyright {
           color: var(--text-muted);
         }
 
-        .footer-bottom {
+        :global(:not(.dark)) .footer-bottom {
           border-top-color: var(--border);
         }
 
-        .footer-principles {
+        :global(:not(.dark)) .footer-principles {
           border-bottom-color: var(--border);
         }
       }
@@ -735,12 +855,22 @@ const {
         background: rgba(0, 176, 255, 0.2);
       }
 
+      /* Mobile menu button - Light Mode (class-based) */
+      :global(.light) .mobile-menu-btn:hover {
+        background: rgba(0, 71, 171, 0.1);
+      }
+
+      :global(.light) .mobile-menu-btn:active {
+        background: rgba(0, 71, 171, 0.2);
+      }
+
+      /* Mobile menu button - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        .mobile-menu-btn:hover {
+        :global(:not(.dark)) .mobile-menu-btn:hover {
           background: rgba(0, 71, 171, 0.1);
         }
 
-        .mobile-menu-btn:active {
+        :global(:not(.dark)) .mobile-menu-btn:active {
           background: rgba(0, 71, 171, 0.2);
         }
       }
@@ -774,22 +904,40 @@ const {
         color: var(--gray-50);
       }
 
-      /* Mobile Navigation - Light Mode */
+      /* Mobile Navigation - Light Mode (class-based) */
+      :global(.light) .nav-mobile.active {
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      :global(.light) header.header-transparent .nav-mobile.active {
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      :global(.light) header.header-transparent .nav-mobile.active a {
+        color: var(--text);
+      }
+
+      :global(.light) .nav-mobile-links a:hover,
+      :global(.light) .nav-mobile-links a:active {
+        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
+      }
+
+      /* Mobile Navigation - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        .nav-mobile.active {
+        :global(:not(.dark)) .nav-mobile.active {
           background: rgba(255, 255, 255, 0.98);
         }
 
-        header.header-transparent .nav-mobile.active {
+        :global(:not(.dark)) header.header-transparent .nav-mobile.active {
           background: rgba(255, 255, 255, 0.98);
         }
 
-        header.header-transparent .nav-mobile.active a {
+        :global(:not(.dark)) header.header-transparent .nav-mobile.active a {
           color: var(--text);
         }
 
-        .nav-mobile-links a:hover,
-        .nav-mobile-links a:active {
+        :global(:not(.dark)) .nav-mobile-links a:hover,
+        :global(:not(.dark)) .nav-mobile-links a:active {
           background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
         }
       }

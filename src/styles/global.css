@@ -281,9 +281,85 @@
     color-scheme: dark;
   }
 
-  /* Light Mode */
+  /* Light Mode - Class-based (manual toggle) */
+  :root.light {
+    /* Primary - Cobalt for Education */
+    --primary: var(--color-cobalt-light);
+    --primary-container: var(--color-cobalt-container-light);
+    --on-primary-container: var(--color-cobalt-on-container-light);
+    --primary-hover: #0056D2;
+    --primary-active: #003580;
+
+    /* Minerals */
+    --mineral-cobalt: var(--color-cobalt-light);
+    --mineral-tanzanite: var(--color-tanzanite-light);
+    --mineral-malachite: var(--color-malachite-light);
+    --mineral-gold: var(--color-gold-light);
+    --mineral-terracotta: var(--color-terracotta-light);
+
+    /* Surfaces */
+    --bg: var(--color-bg-base-light);
+    --bg-surface: var(--color-bg-surface-light);
+    --bg-elevated: var(--color-bg-dim-light);
+    --border: var(--color-border-light);
+
+    /* Text */
+    --text: var(--color-text-primary-light);
+    --text-secondary: var(--color-text-secondary-light);
+    --text-tertiary: var(--color-text-tertiary-light);
+
+    /* Semantic */
+    --success: var(--color-success-light);
+    --error: var(--color-error-light);
+    --warning: var(--color-warning-light);
+    --info: var(--color-info-light);
+
+    /* Legacy Compatibility Aliases - Light Mode */
+    --bg-card: var(--bg-surface);
+    --card-bg: var(--bg-surface);
+    --bg-gray: var(--bg-elevated);
+    --bg-dark: var(--bg-elevated);
+    --bg-accent: var(--bg-elevated);
+    --background-gray: var(--bg-elevated);
+    --text-muted: var(--text-tertiary);
+    --text-light: var(--text);
+    --charcoal: var(--text);
+    --charcoal-light: var(--bg-surface);
+    --charcoal-lighter: var(--bg-elevated);
+    --emerald: var(--mineral-malachite);
+    --emerald-hover: #00695C;
+    --emerald-primary: var(--mineral-malachite);
+    --emerald-subtle: rgba(0, 77, 64, 0.08);
+    --brown: var(--mineral-terracotta);
+    --brown-hover: #A0522D;
+    --brown-dark: #6B3A10;
+    --brown-light: #D4A574;
+    --bg-brown: #F5E6D3;
+    --border-light: rgba(0, 0, 0, 0.12);
+    --secondary: var(--mineral-tanzanite);
+    --accent: var(--mineral-gold);
+    --primary-dark: #003580;
+    --primary-light: #E3F2FD;
+    --primary-subtle: #F0F9FF;
+
+    /* Gray Scale - Light Mode (inverted perception) */
+    --gray-50: #0F172A;
+    --gray-100: #1E293B;
+    --gray-200: #334155;
+    --gray-300: #475569;
+    --gray-400: #64748B;
+    --gray-500: #94A3B8;
+    --gray-600: #CBD5E1;
+    --gray-700: #E2E8F0;
+    --gray-800: #F1F5F9;
+    --gray-900: #F8FAFC;
+
+    color-scheme: light;
+  }
+
+  /* Light Mode - Media query fallback (system preference) */
   @media (prefers-color-scheme: light) {
-    :root {
+    :root:not(.dark) {
       /* Primary - Cobalt for Education */
       --primary: var(--color-cobalt-light);
       --primary-container: var(--color-cobalt-container-light);
