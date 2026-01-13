@@ -424,64 +424,64 @@ const budgetItems = [
   description="Complete three-tier support system for K-12 Digital Campus: AI-powered self-service, EdTech customer success, and IT Operations. Comprehensive ticketing, routing, and SLA management for teachers, students, and parents."
   keywords="K-12 support system, educational technology support, three-tier support, AI chatbot education, EdTech support, IT operations education, ticket management, SLA framework, customer success education"
 >
-  <div class="max-w-[1200px] mx-auto px-4 py-8">
+  <div class="max-w-[1200px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
     <!-- Framework Header -->
-    <div class="relative text-center py-16 px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl mb-12 overflow-hidden">
-      <h1 class="text-[clamp(2rem,5vw,3rem)] font-extrabold font-serif mb-4 relative z-10">K-12 Digital Campus Support Process Framework</h1>
-      <p class="text-[clamp(1.1rem,2.5vw,1.5rem)] opacity-95 mb-4 relative z-10">Complete three-tier support system documentation</p>
-      <div class="flex gap-2 justify-center text-sm opacity-80 mb-8 relative z-10">
+    <div class="relative text-center py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden">
+      <h1 class="text-[clamp(1.5rem,4vw,3rem)] font-extrabold font-serif mb-3 sm:mb-4 relative z-10">K-12 Digital Campus Support Process Framework</h1>
+      <p class="text-[clamp(1rem,2.5vw,1.5rem)] opacity-95 mb-3 sm:mb-4 relative z-10">Complete three-tier support system documentation</p>
+      <div class="flex gap-2 justify-center text-xs sm:text-sm opacity-80 mb-6 sm:mb-8 relative z-10 flex-wrap">
         <span>Version 1.0</span>
         <span>•</span>
         <span>October 2025</span>
         <span>•</span>
         <span>Nyuchi Learning</span>
       </div>
-      <div class="flex gap-4 justify-center flex-wrap mt-8 relative z-10">
-        <a href="#overview" class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Read Online</a>
-        <a href="/frameworks/k12-support-process-framework.pdf" download class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-6 sm:mt-8 relative z-10">
+        <a href="#overview" class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] w-full sm:w-auto">Read Online</a>
+        <a href="/frameworks/k12-support-process-framework.pdf" download class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto">
           <Download size={20} /> Download PDF
         </a>
       </div>
-      <p class="mt-6 text-sm opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
+      <p class="mt-4 sm:mt-6 text-xs sm:text-sm opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
     </div>
 
     <!-- Quick Navigation -->
-    <nav class="bg-[var(--bg-surface)] p-8 rounded-xl mb-12 border border-[var(--border)]">
-      <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Quick Navigation</h3>
-      <ul class="list-none p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+    <nav class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-8 sm:mb-10 md:mb-12 border border-[var(--border)]">
+      <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4">Quick Navigation</h3>
+      <ul class="list-none p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3">
         {navItems.map((item) => (
           <li>
-            <a href={item.href} class="block py-3 px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
+            <a href={item.href} class="block py-2.5 sm:py-3 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-sm sm:text-base text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
           </li>
         ))}
       </ul>
     </nav>
 
     <!-- Executive Summary -->
-    <section id="overview" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
-      <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Summary</h2>
-      <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
+    <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border border-[var(--border)]">
+      <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-bold mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Summary</h2>
+      <p class="text-base sm:text-lg leading-relaxed text-[var(--text)] mb-6 sm:mb-8">
         This document defines the comprehensive support process for teachers, students, and parents in the K-12 Digital Campus ecosystem.
         The three-tier support model ensures efficient issue resolution while optimizing resource allocation.
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {summaryCards.map((card) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl text-center border-2 border-[var(--primary)]">
-            <card.icon class="text-[var(--primary)] mx-auto mb-4" size={48} strokeWidth={1.5} />
-            <h3 class="text-[var(--primary)] text-xl font-bold mb-2">{card.title}</h3>
-            <p class="text-[var(--text-secondary)] mb-4">{card.description}</p>
-            <div class="text-3xl font-extrabold text-[var(--primary)]">{card.stat}</div>
+          <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl text-center border-2 border-[var(--primary)]">
+            <card.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+            <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
+            <p class="text-sm sm:text-base text-[var(--text-secondary)] mb-3 sm:mb-4">{card.description}</p>
+            <div class="text-2xl sm:text-3xl font-extrabold text-[var(--primary)]">{card.stat}</div>
           </div>
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-8 rounded-xl">
-        <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Key Metrics Goals</h3>
+      <div class="bg-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl">
+        <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4">Key Metrics Goals</h3>
         <ul class="list-none p-0 space-y-0">
           {kpiMetrics.map((metric) => (
-            <li class="flex items-center gap-3 py-3 border-b border-[var(--border)] last:border-b-0 text-lg">
-              <Check class="text-[var(--primary)] flex-shrink-0" size={20} strokeWidth={2} />
+            <li class="flex items-center gap-2 sm:gap-3 py-2.5 sm:py-3 border-b border-[var(--border)] last:border-b-0 text-sm sm:text-base md:text-lg">
+              <Check class="text-[var(--primary)] flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2} />
               <span class="text-[var(--text)]">{metric}</span>
             </li>
           ))}
@@ -738,12 +738,12 @@ User Access Support Portal
       </div>
 
       <div>
-        <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Service Level Objectives (SLOs)</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4">Service Level Objectives (SLOs)</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
           {sloCards.map((slo) => (
-            <div class="bg-[var(--bg)] p-6 rounded-xl text-center">
-              <div class="text-3xl font-extrabold text-[var(--primary)] mb-2">{slo.value}</div>
-              <div class="text-[var(--text-secondary)] text-sm">{slo.label}</div>
+            <div class="bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl text-center">
+              <div class="text-2xl sm:text-3xl font-extrabold text-[var(--primary)] mb-1 sm:mb-2">{slo.value}</div>
+              <div class="text-[var(--text-secondary)] text-xs sm:text-sm">{slo.label}</div>
             </div>
           ))}
         </div>
@@ -871,16 +871,16 @@ User Access Support Portal
     </section>
 
     <!-- Call to Action -->
-    <section class="text-center py-16 px-8 bg-[var(--bg)] text-[var(--text)] rounded-xl">
-      <h2 class="text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4">Ready to Implement?</h2>
-      <p class="text-xl mb-8 opacity-95">Download the complete support framework with detailed decision trees, sample templates, and implementation guides.</p>
-      <div class="flex gap-4 justify-center flex-wrap mb-6">
-        <a href="/frameworks/k12-support-process-framework.pdf" download class="inline-flex items-center gap-2 py-4 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg">
+    <section class="text-center py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-[var(--bg)] text-[var(--text)] rounded-xl">
+      <h2 class="text-[clamp(1.5rem,4vw,2.5rem)] font-bold mb-3 sm:mb-4">Ready to Implement?</h2>
+      <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 opacity-95">Download the complete support framework with detailed decision trees, sample templates, and implementation guides.</p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-4 sm:mb-6">
+        <a href="/frameworks/k12-support-process-framework.pdf" download class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-sm sm:text-base">
           <Download size={20} /> Download Complete Framework (PDF)
         </a>
-        <a href="/pricing" class="inline-flex items-center gap-2 py-4 px-8 rounded-full font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Budget Planning Guide</a>
+        <a href="/pricing" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] w-full sm:w-auto text-sm sm:text-base">Budget Planning Guide</a>
       </div>
-      <p class="text-sm opacity-80">Free to use, copy, adapt, and share • Created by Nyuchi Learning</p>
+      <p class="text-xs sm:text-sm opacity-80">Free to use, copy, adapt, and share • Created by Nyuchi Learning</p>
     </section>
   </div>
 </BaseLayout>

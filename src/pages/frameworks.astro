@@ -76,21 +76,30 @@ const frameworks = [
   keywords="educational frameworks, K-12 digital transformation, school support systems, African education, open source education"
 >
   <!-- Hero Section -->
-  <section class="min-h-screen flex items-center justify-center text-[var(--text)] text-center overflow-hidden relative">
-    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80')] bg-cover bg-center bg-fixed"></div>
+  <section class="min-h-[70vh] sm:min-h-[80vh] md:min-h-screen flex items-center justify-center text-[var(--text)] text-center overflow-hidden relative">
+    <div class="hero-bg absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80')] bg-cover bg-center"></div>
     <div class="absolute inset-0 bg-gradient-to-br from-black/40 to-neutral-900/50"></div>
-    <div class="relative z-10 px-4 py-8 max-w-[1200px] mx-auto">
-      <p class="text-base md:text-lg italic mb-8 tracking-widest font-medium opacity-95">Ubuntu: I am because we are</p>
-      <div class="mb-12">
-        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tighter drop-shadow-2xl">Frame</h1>
-        <h1 class="font-display text-6xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tighter drop-shadow-2xl">+ Works</h1>
+    <div class="relative z-10 px-4 sm:px-6 py-6 sm:py-8 max-w-[1200px] mx-auto w-full">
+      <p class="text-sm sm:text-base md:text-lg italic mb-6 sm:mb-8 tracking-widest font-medium opacity-95">Ubuntu: I am because we are</p>
+      <div class="mb-8 sm:mb-12">
+        <h1 class="font-display text-[clamp(2.5rem,10vw,6rem)] font-black leading-tight tracking-tighter drop-shadow-2xl">Frame</h1>
+        <h1 class="font-display text-[clamp(2.5rem,10vw,6rem)] font-black leading-tight tracking-tighter drop-shadow-2xl">+ Works</h1>
       </div>
-      <p class="text-lg md:text-xl lg:text-2xl leading-relaxed max-w-[900px] mx-auto font-normal opacity-95">
+      <p class="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-[900px] mx-auto font-normal opacity-95">
         Open, shareable frameworks designed to empower schools across Africa.
         Free to use, copy, adapt, and improve for your community.
       </p>
     </div>
   </section>
+
+  <style>
+    /* Use bg-fixed only on desktop for better mobile performance */
+    @media (min-width: 768px) {
+      .hero-bg {
+        background-attachment: fixed;
+      }
+    }
+  </style>
 
   <!-- Frameworks List -->
   <section class="py-16 md:py-24 px-4 bg-[var(--bg)]">
