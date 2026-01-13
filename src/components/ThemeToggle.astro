@@ -1,0 +1,244 @@
+---
+import { Sun, Moon, Monitor } from 'lucide-astro';
+---
+
+<div class="theme-toggle-wrapper">
+  <button
+    id="themeToggle"
+    class="theme-toggle-btn"
+    aria-label="Toggle theme"
+    title="Toggle theme"
+  >
+    <Sun id="sunIcon" class="theme-icon sun-icon" size={20} strokeWidth={2} />
+    <Moon id="moonIcon" class="theme-icon moon-icon" size={20} strokeWidth={2} />
+  </button>
+
+  <div id="themeDropdown" class="theme-dropdown">
+    <button class="theme-option" data-theme="light">
+      <Sun size={16} strokeWidth={2} />
+      <span>Light</span>
+    </button>
+    <button class="theme-option" data-theme="dark">
+      <Moon size={16} strokeWidth={2} />
+      <span>Dark</span>
+    </button>
+    <button class="theme-option" data-theme="system">
+      <Monitor size={16} strokeWidth={2} />
+      <span>System</span>
+    </button>
+  </div>
+</div>
+
+<style>
+  .theme-toggle-wrapper {
+    position: relative;
+  }
+
+  .theme-toggle-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .theme-toggle-btn:hover {
+    background: rgba(0, 176, 255, 0.1);
+    border-color: var(--primary);
+  }
+
+  .theme-toggle-btn:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }
+
+  .theme-icon {
+    position: absolute;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Dark mode (default): Show moon, hide sun */
+  .sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+  }
+
+  .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  /* Light mode: Show sun, hide moon */
+  :global(.light) .sun-icon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+  }
+
+  :global(.light) .moon-icon {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+  }
+
+  /* Dropdown menu */
+  .theme-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    min-width: 140px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: all 0.2s ease;
+    z-index: 1000;
+  }
+
+  .theme-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .theme-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px 12px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  .theme-option:hover {
+    background: rgba(0, 176, 255, 0.15);
+  }
+
+  .theme-option.active {
+    background: var(--primary);
+    color: white;
+  }
+
+  /* Light mode dropdown styling */
+  :global(.light) .theme-dropdown {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  :global(.light) .theme-option:hover {
+    background: rgba(0, 71, 171, 0.1);
+  }
+
+  /* Transparent header styling */
+  :global(header.header-transparent) .theme-toggle-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+  }
+
+  :global(header.header-transparent) .theme-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+</style>
+
+<script>
+  // Theme toggle functionality
+  const themeToggle = document.getElementById('themeToggle');
+  const themeDropdown = document.getElementById('themeDropdown');
+  const themeOptions = document.querySelectorAll('.theme-option');
+
+  // Get stored theme or default to system
+  function getStoredTheme(): string {
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem('theme') || 'system';
+    }
+    return 'system';
+  }
+
+  // Get system preference
+  function getSystemTheme(): 'light' | 'dark' {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  // Apply theme to document
+  function applyTheme(theme: string) {
+    const effectiveTheme = theme === 'system' ? getSystemTheme() : theme;
+
+    if (effectiveTheme === 'light') {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    } else {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    }
+
+    // Update active state on options
+    themeOptions.forEach(option => {
+      const optionTheme = (option as HTMLElement).dataset.theme;
+      option.classList.toggle('active', optionTheme === theme);
+    });
+
+    // Store preference
+    if (typeof localStorage !== 'undefined') {
+      localStorage.setItem('theme', theme);
+    }
+  }
+
+  // Toggle dropdown
+  themeToggle?.addEventListener('click', (e) => {
+    e.stopPropagation();
+    themeDropdown?.classList.toggle('active');
+  });
+
+  // Handle theme selection
+  themeOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      const theme = (option as HTMLElement).dataset.theme;
+      if (theme) {
+        applyTheme(theme);
+        themeDropdown?.classList.remove('active');
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!themeToggle?.contains(e.target as Node) && !themeDropdown?.contains(e.target as Node)) {
+      themeDropdown?.classList.remove('active');
+    }
+  });
+
+  // Close dropdown on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      themeDropdown?.classList.remove('active');
+    }
+  });
+
+  // Listen for system theme changes
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    const storedTheme = getStoredTheme();
+    if (storedTheme === 'system') {
+      applyTheme('system');
+    }
+  });
+
+  // Initialize theme on load
+  applyTheme(getStoredTheme());
+</script>
