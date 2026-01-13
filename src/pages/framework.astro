@@ -88,14 +88,14 @@ const budgetRows = [
   description="Complete K-12 Digital Campus Framework: foundational principles, technology infrastructure, digital access, digital literacy, platforms, AI analytics, implementation roadmap, budget planning, and equity measures. Open-source solutions for African schools."
   keywords="digital transformation roadmap, education technology architecture, student information system, learning management system, digital literacy framework, AI education analytics, open-source education, education technology budget, device equity program, digital campus infrastructure"
 >
-  <div class="max-w-[1000px] mx-auto px-4 py-8">
+  <div class="max-w-[1000px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
     <!-- Header -->
-    <div class="relative text-center mb-12 py-12 px-6 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-2xl overflow-hidden">
-      <h1 class="text-[clamp(2rem,6vw,2.5rem)] font-extrabold font-serif mb-4 relative z-10">K-12 Digital Campus Framework</h1>
-      <p class="text-[clamp(1rem,3vw,1.25rem)] opacity-95 mb-6 relative z-10">A comprehensive blueprint for digital transformation in African schools</p>
-      <div class="flex gap-4 justify-center flex-wrap relative z-10 mb-4">
-        <a href="#overview" class="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)]">Read Online</a>
-        <a href="/frameworks/k12-digital-campus-framework.pdf" class="inline-flex items-center justify-center gap-2 py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:brightness-110" download>
+    <div class="relative text-center mb-8 sm:mb-10 md:mb-12 py-10 sm:py-12 px-4 sm:px-6 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl overflow-hidden">
+      <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold font-serif mb-3 sm:mb-4 relative z-10">K-12 Digital Campus Framework</h1>
+      <p class="text-[clamp(0.95rem,2.5vw,1.25rem)] opacity-95 mb-4 sm:mb-6 relative z-10">A comprehensive blueprint for digital transformation in African schools</p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center relative z-10 mb-3 sm:mb-4">
+        <a href="#overview" class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)] w-full sm:w-auto text-sm sm:text-base">Read Online</a>
+        <a href="/frameworks/k12-digital-campus-framework.pdf" class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:brightness-110 w-full sm:w-auto text-sm sm:text-base" download>
           <Download size={20} /> Download PDF
         </a>
       </div>
@@ -103,12 +103,12 @@ const budgetRows = [
     </div>
 
     <!-- Navigation -->
-    <nav class="bg-[var(--bg-surface)] p-6 rounded-xl mb-12 sticky top-20 z-50">
-      <h3 class="text-lg font-bold text-[var(--primary)] mb-4">Quick Navigation</h3>
-      <ul class="flex flex-wrap gap-3">
+    <nav class="bg-[var(--bg-surface)] p-4 sm:p-5 md:p-6 rounded-xl mb-6 sm:mb-8 md:mb-12 md:sticky md:top-20 z-50 overflow-x-auto">
+      <h3 class="text-base sm:text-lg font-bold text-[var(--primary)] mb-3 sm:mb-4">Quick Navigation</h3>
+      <ul class="flex flex-nowrap md:flex-wrap gap-2 sm:gap-3 min-w-max md:min-w-0">
         {navItems.map((item) => (
           <li>
-            <a href={item.href} class="inline-block py-2 px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] text-sm no-underline transition-colors hover:bg-[var(--primary)] hover:text-white">
+            <a href={item.href} class="inline-block py-2 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] text-xs sm:text-sm no-underline transition-colors hover:bg-[var(--primary)] hover:text-white whitespace-nowrap">
               {item.label}
             </a>
           </li>
@@ -117,30 +117,30 @@ const budgetRows = [
     </nav>
 
     <!-- Executive Overview -->
-    <section id="overview" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8">
-      <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
-      <p class="leading-relaxed text-[var(--text)]">
+    <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8">
+      <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-bold mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
+      <p class="text-sm sm:text-base leading-relaxed text-[var(--text)]">
         This framework transforms a K-12 school into a digitally-enabled learning ecosystem that prepares students for a 2050 job market while serving students, staff, and parents/guardians. Built on cloud and open-source infrastructure, it prioritizes digital access, digital literacy, mobile-first experience, and AI-driven insights—all designed for cost-efficiency and scalability.
       </p>
     </section>
 
     <!-- Framework Governance -->
-    <section id="governance" class="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] p-8 rounded-xl mb-8 border-2 border-[var(--primary)]">
-      <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">How This Framework Embodies Our Principles</h2>
-      <p class="text-lg text-[var(--text)] mb-10 leading-relaxed">
+    <section id="governance" class="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border-2 border-[var(--primary)]">
+      <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-bold mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">How This Framework Embodies Our Principles</h2>
+      <p class="text-base sm:text-lg text-[var(--text)] mb-6 sm:mb-8 md:mb-10 leading-relaxed">
         All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this K-12 Digital Campus Framework embodies each principle:
       </p>
 
-      <div class="grid gap-6 mb-10">
+      <div class="grid gap-4 sm:gap-5 md:gap-6 mb-6 sm:mb-8 md:mb-10">
         {governancePrinciples.map((principle) => (
-          <div class="flex gap-6 bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md flex-col md:flex-row">
-            <div class="text-[2.5rem] font-serif font-bold text-[var(--primary)] shrink-0 w-16 leading-tight">
+          <div class="flex gap-4 sm:gap-5 md:gap-6 bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md flex-col md:flex-row">
+            <div class="text-2xl sm:text-[2.5rem] font-serif font-bold text-[var(--primary)] shrink-0 w-12 sm:w-16 leading-tight">
               {principle.number}
             </div>
             <div>
-              <h3 class="text-[var(--primary)] text-xl font-bold mb-3 mt-0">{principle.title}</h3>
-              <p class="text-[var(--text)] leading-relaxed mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
-              <p class="text-[var(--text-secondary)] text-sm p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-4">
+              <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2 sm:mb-3 mt-0">{principle.title}</h3>
+              <p class="text-sm sm:text-base text-[var(--text)] leading-relaxed mb-2 sm:mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
+              <p class="text-[var(--text-secondary)] text-xs sm:text-sm p-3 sm:p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-3 sm:mt-4">
                 <em>Example:</em> {principle.example}
               </p>
             </div>
