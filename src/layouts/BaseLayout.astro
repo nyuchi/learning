@@ -571,8 +571,22 @@ const {
         margin: 0 auto;
         padding: 4rem 2rem;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
+        grid-template-columns: 1fr;  /* Single column default (mobile-first) */
+        gap: 2rem;
+      }
+
+      @media (min-width: 640px) {
+        .footer-grid {
+          grid-template-columns: repeat(2, 1fr);  /* 2 columns on small tablets */
+          gap: 2.5rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .footer-grid {
+          grid-template-columns: repeat(4, 1fr);  /* 4 columns on desktop */
+          gap: 3rem;
+        }
       }
 
       .footer-column h3 {
@@ -739,11 +753,12 @@ const {
 
       .nav-mobile.active {
         display: block;
-        max-height: 400px;
+        max-height: calc(100vh - 64px);  /* Dynamic height based on viewport */
         border-top: 1px solid var(--border);
         background: rgba(15, 23, 42, 0.98);  /* Dark mode default */
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
+        overflow-y: auto;  /* Allow scrolling for long menus */
       }
 
       /* Mobile menu always has solid background even with transparent header */
@@ -838,12 +853,7 @@ const {
 
       /* Mobile Responsive Styles */
       @media (max-width: 768px) {
-        body {
-          margin-left: 4px; /* Minerals strip space on tablet */
-        }
-
         header {
-          left: 4px;
           /* Faster transition on mobile for better responsiveness */
           transition: transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease;
         }
@@ -1075,6 +1085,16 @@ const {
               menuIcon.style.display = 'block';
               closeIcon.style.display = 'none';
             });
+          });
+
+          // Close menu with Escape key
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+              mobileMenu.classList.remove('active');
+              menuIcon.style.display = 'block';
+              closeIcon.style.display = 'none';
+              mobileMenuBtn.focus();  // Return focus to menu button for accessibility
+            }
           });
         }
 
