@@ -4,6 +4,10 @@ import butter from '../../lib/buttercms';
 
 export async function getStaticPaths() {
   // Fetch all posts to generate static paths
+  if (!butter) {
+    return [];
+  }
+
   try {
     const response = await butter.post.list({ page: 1, page_size: 100 });
     const posts = response?.data?.data || [];
@@ -22,7 +26,7 @@ const { post } = Astro.props as { post: any };
 
 // If post wasn't passed via props, fetch it directly
 let postData = post;
-if (!postData) {
+if (!postData && butter) {
   const { slug } = Astro.params;
   try {
     const response = await butter.post.retrieve(slug as string);

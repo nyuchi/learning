@@ -6,12 +6,14 @@ import butter from '../../lib/buttercms';
 let posts: any[] = [];
 let error = null;
 
-try {
-  const response = await butter.post.list({ page: 1, page_size: 20 });
-  posts = response?.data?.data || [];
-} catch (e) {
-  console.error('Error fetching posts from ButterCMS:', e);
-  error = e;
+if (butter) {
+  try {
+    const response = await butter.post.list({ page: 1, page_size: 20 });
+    posts = response?.data?.data || [];
+  } catch (e) {
+    console.error('Error fetching posts from ButterCMS:', e);
+    error = e;
+  }
 }
 ---
 
