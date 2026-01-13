@@ -89,15 +89,37 @@ if (butter) {
     font-family: 'Noto Serif', Georgia, serif;
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
-    color: var(--text);
+    color: #F5F5F4; /* Dark mode default */
     margin-bottom: 1rem;
+  }
+
+  /* Light mode header */
+  :global(.light) .blog-header h1 {
+    color: #141413;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:not(.dark)) .blog-header h1 {
+      color: #141413;
+    }
   }
 
   .blog-subtitle {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: var(--text-secondary);
+    color: #A1A1A1; /* Dark mode secondary */
     max-width: 600px;
     margin: 0 auto;
+  }
+
+  /* Light mode subtitle */
+  :global(.light) .blog-subtitle {
+    color: #525251;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:not(.dark)) .blog-subtitle {
+      color: #525251;
+    }
   }
 
   .blog-message {
@@ -160,9 +182,19 @@ if (butter) {
   }
 
   .blog-title a {
-    color: var(--text);
+    color: #F5F5F4; /* Dark mode */
     text-decoration: none;
     transition: color 0.2s;
+  }
+
+  :global(.light) .blog-title a {
+    color: #141413;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:not(.dark)) .blog-title a {
+      color: #141413;
+    }
   }
 
   .blog-title a:hover {
@@ -170,9 +202,19 @@ if (butter) {
   }
 
   .blog-summary {
-    color: var(--text-secondary);
+    color: #A1A1A1; /* Dark mode secondary */
     line-height: 1.7;
     margin-bottom: 1.5rem;
+  }
+
+  :global(.light) .blog-summary {
+    color: #525251;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:not(.dark)) .blog-summary {
+      color: #525251;
+    }
   }
 
   .blog-card-footer {
@@ -185,7 +227,17 @@ if (butter) {
 
   .blog-author {
     font-size: 0.875rem;
-    color: var(--text-tertiary);
+    color: #737373; /* Dark mode tertiary */
+  }
+
+  :global(.light) .blog-author {
+    color: #737372;
+  }
+
+  @media (prefers-color-scheme: light) {
+    :global(:not(.dark)) .blog-author {
+      color: #737372;
+    }
   }
 
   .blog-read-more {
