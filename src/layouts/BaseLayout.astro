@@ -1,6 +1,7 @@
 ---
 import { BookOpen, Menu, X } from 'lucide-astro';
 import SEO from '../components/SEO.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -9,11 +10,13 @@ interface Props {
   keywords?: string;
   image?: string;
   type?: 'website' | 'article';
+  author?: string;
   article?: {
     publishedTime?: string;
     modifiedTime?: string;
     section?: string;
     tags?: string[];
+    author?: string;
   };
 }
 
@@ -23,6 +26,7 @@ const {
   keywords,
   image,
   type,
+  author,
   article
 } = Astro.props;
 ---
@@ -35,6 +39,28 @@ const {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Theme Initialization (prevent flash) -->
+    <script is:inline>
+      (function() {
+        const getThemePreference = () => {
+          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+            return localStorage.getItem('theme');
+          }
+          return 'system';
+        };
+        const theme = getThemePreference();
+        const effectiveTheme = theme === 'system'
+          ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+          : theme;
+
+        if (effectiveTheme === 'light') {
+          document.documentElement.classList.add('light');
+        } else {
+          document.documentElement.classList.add('dark');
+        }
+      })();
+    </script>
+
     <!-- SEO Component -->
     <SEO
       title={title}
@@ -42,6 +68,7 @@ const {
       keywords={keywords}
       image={image}
       type={type}
+      author={author}
       article={article}
     />
 
@@ -97,6 +124,7 @@ const {
               </ul>
             </li>
             <li><a href="/consultation" class="btn-cta">Book a Consultation</a></li>
+            <li class="theme-toggle-li"><ThemeToggle /></li>
           </ul>
 
           <!-- Mobile Menu Button -->
@@ -176,10 +204,14 @@ const {
         </div>
       </div>
 
+      <!-- Full-width wordmark section -->
+      <div class="footer-wordmark">
+        <span class="wordmark-text">nyuchi learning</span>
+      </div>
+
       <div class="footer-bottom">
-        <div class="footer-branding">
-          <p class="footer-brand-name">nyuchi learning</p>
-          <p class="footer-brand-org">K-12 Digital Campus Framework</p>
+        <div class="footer-meta">
+          <p class="footer-tagline">K-12 Digital Campus Framework</p>
           <p class="footer-division">Part of the bundu ecosystem</p>
         </div>
         <div class="footer-principles">
@@ -199,6 +231,21 @@ const {
 
       body {
         margin-left: 4px; /* Space for Minerals Strip */
+        /* Builder UI dot grid pattern */
+        background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
+        background-size: 24px 24px;
+        background-attachment: fixed;
+      }
+
+      /* Light mode dot pattern */
+      :global(.light) body {
+        background-image: radial-gradient(circle, rgba(100, 116, 139, 0.2) 1px, transparent 1px);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :global(:not(.dark)) body {
+          background-image: radial-gradient(circle, rgba(100, 116, 139, 0.2) 1px, transparent 1px);
+        }
       }
 
       /* Minerals Strip - Five African Minerals (v6) */
@@ -245,24 +292,44 @@ const {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
-      /* Solid header state - Light Mode */
+      /* Solid header state - Light Mode (class-based) */
+      :global(.light) header.header-solid {
+        background: rgba(255, 255, 255, 0.98);  /* White */
+        border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      :global(.light) header.header-solid .logo-text,
+      :global(.light) header.header-solid .nav-links a {
+        color: var(--text);
+      }
+
+      :global(.light) header.header-solid .logo-subtext {
+        color: var(--text-muted);
+      }
+
+      :global(.light) header.header-solid .mobile-menu-btn {
+        color: var(--primary);
+      }
+
+      /* Solid header state - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        header.header-solid {
+        :global(:not(.dark)) header.header-solid {
           background: rgba(255, 255, 255, 0.98);  /* White */
           border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        header.header-solid .logo-text,
-        header.header-solid .nav-links a {
+        :global(:not(.dark)) header.header-solid .logo-text,
+        :global(:not(.dark)) header.header-solid .nav-links a {
           color: var(--text);
         }
 
-        header.header-solid .logo-subtext {
+        :global(:not(.dark)) header.header-solid .logo-subtext {
           color: var(--text-muted);
         }
 
-        header.header-solid .mobile-menu-btn {
+        :global(:not(.dark)) header.header-solid .mobile-menu-btn {
           color: var(--primary);
         }
       }
@@ -277,7 +344,7 @@ const {
         transform: translateY(0);
       }
 
-      /* White text for transparent header with shadow for contrast */
+      /* White text for transparent header with shadow for contrast - Dark Mode */
       header.header-transparent .logo-text,
       header.header-transparent .logo-icon,
       header.header-transparent .nav-links a {
@@ -302,6 +369,76 @@ const {
 
       header.header-transparent .btn-cta:hover {
         background: rgba(255, 255, 255, 0.9) !important;
+      }
+
+      /* Transparent header - Light Mode (class-based) */
+      :global(.light) header.header-transparent {
+        background: rgba(255, 255, 255, 0.8);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+
+      :global(.light) header.header-transparent .logo-text,
+      :global(.light) header.header-transparent .logo-icon,
+      :global(.light) header.header-transparent .nav-links a {
+        color: var(--text);
+        text-shadow: none;
+      }
+
+      :global(.light) header.header-transparent .logo-subtext {
+        color: var(--text-muted);
+        text-shadow: none;
+      }
+
+      :global(.light) header.header-transparent .mobile-menu-btn {
+        color: var(--primary);
+        filter: none;
+      }
+
+      :global(.light) header.header-transparent .btn-cta {
+        background: var(--primary) !important;
+        color: white !important;
+      }
+
+      :global(.light) header.header-transparent .btn-cta:hover {
+        background: var(--primary-hover) !important;
+      }
+
+      /* Transparent header - Light Mode (media query fallback) */
+      @media (prefers-color-scheme: light) {
+        :global(:not(.dark)) header.header-transparent {
+          background: rgba(255, 255, 255, 0.8);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        :global(:not(.dark)) header.header-transparent .logo-text,
+        :global(:not(.dark)) header.header-transparent .logo-icon,
+        :global(:not(.dark)) header.header-transparent .nav-links a {
+          color: var(--text);
+          text-shadow: none;
+        }
+
+        :global(:not(.dark)) header.header-transparent .logo-subtext {
+          color: var(--text-muted);
+          text-shadow: none;
+        }
+
+        :global(:not(.dark)) header.header-transparent .mobile-menu-btn {
+          color: var(--primary);
+          filter: none;
+        }
+
+        :global(:not(.dark)) header.header-transparent .btn-cta {
+          background: var(--primary) !important;
+          color: white !important;
+        }
+
+        :global(:not(.dark)) header.header-transparent .btn-cta:hover {
+          background: var(--primary-hover) !important;
+        }
       }
 
       .nav-container {
@@ -364,6 +501,10 @@ const {
         align-items: center;
       }
 
+      .theme-toggle-li {
+        margin-left: 0.5rem;
+      }
+
       .nav-links a {
         text-decoration: none;
         color: var(--text);
@@ -391,10 +532,10 @@ const {
         top: 100%;
         left: 0;
         min-width: 220px;
-        background: var(--charcoal-light);
+        background: var(--bg-surface);
         border: 1px solid var(--border);
         border-radius: 0.5rem;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
         list-style: none;
         padding: 0.5rem 0;
         margin-top: 0.5rem;
@@ -420,29 +561,46 @@ const {
         padding: 0.75rem 1.25rem;
         color: var(--text);
         text-decoration: none;
-        transition: background 0.2s, color 0.2s;
+        transition: background 0.15s ease, color 0.15s ease;
         white-space: nowrap;
+        font-weight: 500;
       }
 
       .dropdown-menu a:hover {
-        background: var(--charcoal-lighter);
-        color: var(--emerald);
+        background: rgba(0, 176, 255, 0.15);  /* Cobalt tint */
+        color: var(--primary);
       }
 
-      /* Dropdown menu - Light Mode */
+      /* Dropdown menu - Light Mode (class-based) */
+      :global(.light) .dropdown-menu {
+        background: white;
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      :global(.light) .dropdown-menu a {
+        color: var(--text);
+      }
+
+      :global(.light) .dropdown-menu a:hover {
+        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for light mode */
+        color: var(--primary);
+      }
+
+      /* Dropdown menu - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        .dropdown-menu {
+        :global(:not(.dark)) .dropdown-menu {
           background: white;
           border: 1px solid var(--border);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        .dropdown-menu a {
+        :global(:not(.dark)) .dropdown-menu a {
           color: var(--text);
         }
 
-        .dropdown-menu a:hover {
-          background: var(--bg-surface);
+        :global(:not(.dark)) .dropdown-menu a:hover {
+          background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for light mode */
           color: var(--primary);
         }
       }
@@ -475,60 +633,112 @@ const {
         margin-top: 6rem;
       }
 
-      /* Footer - Light Mode */
+      /* Footer - Light Mode (class-based) */
+      :global(.light) footer {
+        background: var(--bg-surface);
+      }
+
+      :global(.light) .footer-hero {
+        background: var(--bg-surface);
+      }
+
+      :global(.light) .footer-hero .footer-main-text {
+        color: var(--text);
+      }
+
+      :global(.light) .footer-hero .footer-ubuntu-large,
+      :global(.light) .footer-hero .footer-geographic {
+        color: var(--text-secondary);
+      }
+
+      :global(.light) .footer-column h3 {
+        color: var(--text);
+      }
+
+      :global(.light) .footer-column a {
+        color: var(--text-secondary);
+      }
+
+      :global(.light) .footer-column a:hover {
+        color: var(--primary);
+      }
+
+      :global(.light) .footer-tagline {
+        color: var(--text-secondary);
+      }
+
+      :global(.light) .footer-division {
+        color: var(--text-muted);
+      }
+
+      :global(.light) .footer-principles p {
+        color: var(--text-muted);
+      }
+
+      :global(.light) .footer-copyright {
+        color: var(--text-muted);
+      }
+
+      :global(.light) .footer-bottom {
+        border-top-color: var(--border);
+      }
+
+      :global(.light) .footer-principles {
+        border-bottom-color: var(--border);
+      }
+
+      /* Footer - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        footer {
+        :global(:not(.dark)) footer {
           background: var(--bg-surface);
         }
 
-        .footer-hero {
-          background: var(--mineral-terracotta);
-          color: white;
+        :global(:not(.dark)) .footer-hero {
+          background: var(--bg-surface);
         }
 
-        .footer-hero .footer-main-text,
-        .footer-hero .footer-ubuntu-large,
-        .footer-hero .footer-geographic {
-          color: white;
-        }
-
-        .footer-column h3 {
+        :global(:not(.dark)) .footer-hero .footer-main-text {
           color: var(--text);
         }
 
-        .footer-column a {
+        :global(:not(.dark)) .footer-hero .footer-ubuntu-large,
+        :global(:not(.dark)) .footer-hero .footer-geographic {
           color: var(--text-secondary);
         }
 
-        .footer-column a:hover {
+        :global(:not(.dark)) .footer-column h3 {
+          color: var(--text);
+        }
+
+        :global(:not(.dark)) .footer-column a {
+          color: var(--text-secondary);
+        }
+
+        :global(:not(.dark)) .footer-column a:hover {
           color: var(--primary);
         }
 
-        .footer-brand-name {
-          color: var(--text);
-        }
-
-        .footer-brand-org {
+        :global(:not(.dark)) .footer-tagline {
           color: var(--text-secondary);
         }
 
-        .footer-division {
+        :global(:not(.dark)) .footer-division {
           color: var(--text-muted);
         }
 
-        .footer-principles p {
+        :global(:not(.dark)) .footer-principles p {
           color: var(--text-muted);
         }
 
-        .footer-copyright {
+        :global(:not(.dark)) .footer-copyright {
           color: var(--text-muted);
         }
 
-        .footer-bottom {
+        :global(:not(.dark)) .footer-bottom {
           border-top-color: var(--border);
         }
 
-        .footer-principles {
+        :global(:not(.dark)) .footer-principles {
           border-bottom-color: var(--border);
         }
       }
@@ -536,8 +746,8 @@ const {
       .footer-hero {
         padding: 6rem 2rem;
         text-align: center;
-        background: var(--brown);  /* Terracotta */
-        border-top: 4px solid var(--mineral-gold);  /* Gold accent */
+        background: var(--bg-surface);  /* Slate surface - neutral */
+        border-top: 1px solid var(--border);
       }
 
       .footer-main-text {
@@ -621,6 +831,59 @@ const {
         font-size: 1rem;
       }
 
+      /* Full-width wordmark section - Google Labs style */
+      .footer-wordmark {
+        padding: 4rem 1rem;
+        text-align: center;
+        border-top: 1px solid var(--border);
+        background: var(--bg);
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .wordmark-text {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: clamp(2.5rem, 12vw, 10rem);
+        font-weight: 900;
+        text-transform: lowercase;
+        color: var(--text);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        display: block;
+        width: 100%;
+        max-width: 100%;
+      }
+
+      /* Light mode wordmark */
+      :global(.light) .footer-wordmark {
+        background: var(--bg-surface);
+      }
+
+      :global(.light) .wordmark-text {
+        color: var(--text);
+      }
+
+      @media (prefers-color-scheme: light) {
+        :global(:not(.dark)) .footer-wordmark {
+          background: var(--bg-surface);
+        }
+
+        :global(:not(.dark)) .wordmark-text {
+          color: var(--text);
+        }
+      }
+
+      /* Mobile wordmark sizing */
+      @media (max-width: 768px) {
+        .footer-wordmark {
+          padding: 3rem 1rem;
+        }
+
+        .wordmark-text {
+          font-size: clamp(2rem, 11vw, 4rem);
+        }
+      }
+
       .footer-bottom {
         border-top: 1px solid var(--gray-700);
         padding: 3rem 2rem 2rem;
@@ -628,34 +891,27 @@ const {
         margin: 0 auto;
       }
 
-      .footer-branding {
+      .footer-meta {
         margin-bottom: 2rem;
+        text-align: center;
       }
 
-      .footer-brand-name {
-        font-family: 'Plus Jakarta Sans', sans-serif;
-        font-size: 1.5rem;
-        font-weight: 600;
+      .footer-tagline {
+        font-size: 1.1rem;
+        color: var(--text-secondary);
         margin-bottom: 0.5rem;
-        text-transform: lowercase;  /* Wordmarks are lowercase */
-      }
-
-      .footer-brand-org {
-        font-size: 1rem;
-        color: var(--gray-300);
-        margin-bottom: 0.25rem;
       }
 
       .footer-division {
-        color: var(--gray-400);
+        color: var(--text-tertiary);
         font-size: 0.9rem;
-        opacity: 0.8;
       }
 
       .footer-principles {
         margin-bottom: 2rem;
         padding-bottom: 2rem;
         border-bottom: 1px solid var(--gray-700);
+        text-align: center;
       }
 
       .footer-principles p {
@@ -731,12 +987,22 @@ const {
         background: rgba(0, 176, 255, 0.2);
       }
 
+      /* Mobile menu button - Light Mode (class-based) */
+      :global(.light) .mobile-menu-btn:hover {
+        background: rgba(0, 71, 171, 0.1);
+      }
+
+      :global(.light) .mobile-menu-btn:active {
+        background: rgba(0, 71, 171, 0.2);
+      }
+
+      /* Mobile menu button - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        .mobile-menu-btn:hover {
+        :global(:not(.dark)) .mobile-menu-btn:hover {
           background: rgba(0, 71, 171, 0.1);
         }
 
-        .mobile-menu-btn:active {
+        :global(:not(.dark)) .mobile-menu-btn:active {
           background: rgba(0, 71, 171, 0.2);
         }
       }
@@ -770,23 +1036,41 @@ const {
         color: var(--gray-50);
       }
 
-      /* Mobile Navigation - Light Mode */
+      /* Mobile Navigation - Light Mode (class-based) */
+      :global(.light) .nav-mobile.active {
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      :global(.light) header.header-transparent .nav-mobile.active {
+        background: rgba(255, 255, 255, 0.98);
+      }
+
+      :global(.light) header.header-transparent .nav-mobile.active a {
+        color: var(--text);
+      }
+
+      :global(.light) .nav-mobile-links a:hover,
+      :global(.light) .nav-mobile-links a:active {
+        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
+      }
+
+      /* Mobile Navigation - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        .nav-mobile.active {
+        :global(:not(.dark)) .nav-mobile.active {
           background: rgba(255, 255, 255, 0.98);
         }
 
-        header.header-transparent .nav-mobile.active {
+        :global(:not(.dark)) header.header-transparent .nav-mobile.active {
           background: rgba(255, 255, 255, 0.98);
         }
 
-        header.header-transparent .nav-mobile.active a {
+        :global(:not(.dark)) header.header-transparent .nav-mobile.active a {
           color: var(--text);
         }
 
-        .nav-mobile-links a:hover,
-        .nav-mobile-links a:active {
-          background: var(--bg-surface);
+        :global(:not(.dark)) .nav-mobile-links a:hover,
+        :global(:not(.dark)) .nav-mobile-links a:active {
+          background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
         }
       }
 
@@ -814,7 +1098,7 @@ const {
 
       .nav-mobile-links a:hover,
       .nav-mobile-links a:active {
-        background: var(--gray-100);
+        background: rgba(0, 176, 255, 0.15);  /* Cobalt tint for better visibility */
         color: var(--primary);
       }
 
