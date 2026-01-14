@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../../components/PageBreadcrumb.astro';
 ---
 
 <BaseLayout
@@ -14,6 +15,11 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
   }}
 >
   <article class="max-w-[900px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <PageBreadcrumb items={[
+      { label: "Blog", href: "/blog" },
+      { label: "Developing World's Advantage" }
+    ]} />
+
     <header class="text-center mb-8 sm:mb-10 md:mb-12 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
       <h1 class="text-[clamp(1.5rem,4vw,3rem)] font-extrabold font-serif text-[var(--text)] mb-3 sm:mb-4 leading-tight">The Developing World's Educational Advantage: Building Digital Campuses That Close Skills Gaps Instead of Creating Them</h1>
       <div class="flex justify-center gap-4 sm:gap-8 text-[var(--text-secondary)] text-xs sm:text-sm flex-col sm:flex-row">

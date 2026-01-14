@@ -1,9 +1,31 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../../components/PageBreadcrumb.astro';
+
+const title = "Launching the African Education Digital Framework";
+const description = "Introducing a comprehensive blueprint for digital transformation in K-12 schools across Africa. Learn about the framework's vision, principles, and implementation strategies for preparing students for 2050.";
+const keywords = "African education framework, K-12 digital transformation, education technology Africa, digital campus launch, school technology implementation, Zimbabwe education, educational frameworks";
+const publishedDate = "2025-10-26";
 ---
 
-<BaseLayout title="Launching the African Education Digital Framework">
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  type="article"
+  article={{
+    publishedTime: publishedDate,
+    section: "Education",
+    tags: ["digital transformation", "K-12 education", "Africa", "educational technology", "framework launch"],
+    author: "Framework Team"
+  }}
+>
   <article class="max-w-[800px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <PageBreadcrumb items={[
+      { label: "Blog", href: "/blog" },
+      { label: "Launching the Framework" }
+    ]} />
+
     <header class="text-center mb-8 sm:mb-10 md:mb-12 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
       <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold font-serif text-[var(--text)] mb-3 sm:mb-4 leading-tight">Launching the African Education Digital Framework</h1>
       <div class="flex justify-center gap-4 sm:gap-8 text-[var(--text-secondary)] text-xs sm:text-sm flex-col sm:flex-row">

@@ -1,9 +1,31 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../../components/PageBreadcrumb.astro';
+
+const title = "Digital Literacy: More Than Just Using Technology";
+const description = "True digital literacy goes beyond teaching tools—it develops critical thinking skills for navigating evolving technology. Learn how to prepare students for a future of constant technological change.";
+const keywords = "digital literacy education, critical thinking skills, technology education, future-ready students, digital skills curriculum, technology literacy, computational thinking, digital citizenship, 21st century skills";
+const publishedDate = "2025-10-24";
 ---
 
-<BaseLayout title="Digital Literacy: More Than Just Using Technology">
+<BaseLayout
+  title={title}
+  description={description}
+  keywords={keywords}
+  type="article"
+  article={{
+    publishedTime: publishedDate,
+    section: "Education",
+    tags: ["digital literacy", "critical thinking", "education technology", "future skills", "digital citizenship"],
+    author: "Framework Team"
+  }}
+>
   <article class="max-w-[800px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <PageBreadcrumb items={[
+      { label: "Blog", href: "/blog" },
+      { label: "Digital Literacy" }
+    ]} />
+
     <header class="text-center mb-8 sm:mb-10 md:mb-12 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
       <h1 class="text-[clamp(1.5rem,5vw,2.5rem)] font-extrabold font-serif text-[var(--text)] mb-3 sm:mb-4 leading-tight">Digital Literacy: More Than Just Using Technology</h1>
       <div class="flex justify-center gap-4 sm:gap-8 text-[var(--text-secondary)] text-xs sm:text-sm flex-col sm:flex-row">
