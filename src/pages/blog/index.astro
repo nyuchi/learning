@@ -1,20 +1,37 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import butter from '../../lib/buttercms';
 
-// Fetch posts from ButterCMS
-let posts: any[] = [];
-let error = null;
-
-if (butter) {
-  try {
-    const response = await butter.post.list({ page: 1, page_size: 20 });
-    posts = response?.data?.data || [];
-  } catch (e) {
-    console.error('Error fetching posts from ButterCMS:', e);
-    error = e;
+// Static blog posts (until Sanity is connected)
+const posts = [
+  {
+    slug: 'developing-world-educational-advantage',
+    title: "The Developing World's Educational Advantage: Building Digital Campuses That Close Skills Gaps",
+    excerpt: "Africa and the developing world can leapfrog traditional educational models by building digital-first learning environments optimized for the 2050 workplace from day one.",
+    publishedAt: '2025-11-16',
+    author: 'Framework Team'
+  },
+  {
+    slug: 'launching-the-framework',
+    title: 'Launching the African Education Digital Framework',
+    excerpt: "Introducing a comprehensive blueprint for digital transformation in K-12 schools across Africa. Learn about the framework's vision, principles, and implementation strategies.",
+    publishedAt: '2025-10-26',
+    author: 'Framework Team'
+  },
+  {
+    slug: 'why-open-source',
+    title: 'Why Open-Source Matters for African Schools',
+    excerpt: 'Discover how open-source software can save African schools 60-80% on infrastructure costs while providing world-class educational technology.',
+    publishedAt: '2025-10-25',
+    author: 'Framework Team'
+  },
+  {
+    slug: 'digital-literacy-importance',
+    title: 'Digital Literacy: More Than Just Using Technology',
+    excerpt: 'True digital literacy goes beyond teaching tools—it develops critical thinking skills for navigating evolving technology and prepares students for constant change.',
+    publishedAt: '2025-10-24',
+    author: 'Framework Team'
   }
-}
+];
 ---
 
 <BaseLayout
@@ -22,46 +39,30 @@ if (butter) {
   description="Insights on digital transformation in African education. Implementation strategies, success stories, digital literacy best practices, and open-source technology for schools."
   keywords="education technology blog, digital transformation insights, African education news, school technology implementation, digital literacy strategies, open-source education, education technology case studies"
 >
-  <div class="blog-container">
-    <header class="blog-header">
+  <!-- Blog Hero Section with solid background -->
+  <section class="blog-hero">
+    <div class="blog-hero-content">
       <h1>Framework Insights & Updates</h1>
       <p class="blog-subtitle">Exploring digital transformation in education, implementation strategies, and success stories</p>
-    </header>
+    </div>
+  </section>
 
-    {error && (
-      <div class="blog-message blog-error">
-        <p>Unable to load posts. Please try again later.</p>
-      </div>
-    )}
-
-    {posts.length === 0 && !error && (
-      <div class="blog-message">
-        <p>No blog posts available yet. Check back soon!</p>
-      </div>
-    )}
-
+  <div class="blog-container">
     <div class="blog-grid">
       {posts.map((post) => (
         <article class="blog-card">
           <time class="blog-date">
-            {new Date(post.published).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            {new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
           </time>
-          {post.featured_image && (
-            <img
-              src={post.featured_image}
-              alt={post.featured_image_alt || post.title}
-              class="blog-image"
-            />
-          )}
           <h2 class="blog-title">
             <a href={`/blog/${post.slug}`}>
               {post.title}
             </a>
           </h2>
-          <p class="blog-summary">{post.summary}</p>
+          <p class="blog-summary">{post.excerpt}</p>
           <footer class="blog-card-footer">
             <span class="blog-author">
-              By {post.author?.first_name} {post.author?.last_name}
+              By {post.author}
             </span>
             <a href={`/blog/${post.slug}`} class="blog-read-more">
               Read more →
@@ -74,69 +75,40 @@ if (butter) {
 </BaseLayout>
 
 <style>
-  .blog-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: calc(64px + 2rem) 1.5rem 3rem;
-  }
-
-  .blog-header {
+  /* Blog Hero - pushes content below fixed header */
+  .blog-hero {
+    padding-top: calc(64px + 4rem);
+    padding-bottom: 3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    background: var(--bg);
     text-align: center;
-    margin-bottom: 4rem;
   }
 
-  .blog-header h1 {
+  .blog-hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .blog-hero h1 {
     font-family: 'Noto Serif', Georgia, serif;
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
-    color: #F5F5F4; /* Dark mode default */
+    color: var(--text);
     margin-bottom: 1rem;
-  }
-
-  /* Light mode header */
-  :global(.light) .blog-header h1 {
-    color: #141413;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :global(:not(.dark)) .blog-header h1 {
-      color: #141413;
-    }
   }
 
   .blog-subtitle {
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    color: #A1A1A1; /* Dark mode secondary */
+    color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto;
   }
 
-  /* Light mode subtitle */
-  :global(.light) .blog-subtitle {
-    color: #525251;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :global(:not(.dark)) .blog-subtitle {
-      color: #525251;
-    }
-  }
-
-  .blog-message {
-    background: var(--bg-surface);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2rem;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .blog-message p {
-    color: var(--text-secondary);
-  }
-
-  .blog-error {
-    border-color: var(--error);
+  .blog-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
   }
 
   .blog-grid {
@@ -161,16 +133,8 @@ if (butter) {
   .blog-date {
     display: block;
     font-size: 0.875rem;
-    color: var(--text-tertiary);
+    color: var(--text-muted);
     margin-bottom: 1rem;
-  }
-
-  .blog-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 12px;
-    margin-bottom: 1.5rem;
   }
 
   .blog-title {
@@ -182,19 +146,9 @@ if (butter) {
   }
 
   .blog-title a {
-    color: #F5F5F4; /* Dark mode */
+    color: var(--text);
     text-decoration: none;
     transition: color 0.2s;
-  }
-
-  :global(.light) .blog-title a {
-    color: #141413;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :global(:not(.dark)) .blog-title a {
-      color: #141413;
-    }
   }
 
   .blog-title a:hover {
@@ -202,19 +156,9 @@ if (butter) {
   }
 
   .blog-summary {
-    color: #A1A1A1; /* Dark mode secondary */
+    color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 1.5rem;
-  }
-
-  :global(.light) .blog-summary {
-    color: #525251;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :global(:not(.dark)) .blog-summary {
-      color: #525251;
-    }
   }
 
   .blog-card-footer {
@@ -227,17 +171,7 @@ if (butter) {
 
   .blog-author {
     font-size: 0.875rem;
-    color: #737373; /* Dark mode tertiary */
-  }
-
-  :global(.light) .blog-author {
-    color: #737372;
-  }
-
-  @media (prefers-color-scheme: light) {
-    :global(:not(.dark)) .blog-author {
-      color: #737372;
-    }
+    color: var(--text-muted);
   }
 
   .blog-read-more {
@@ -245,6 +179,7 @@ if (butter) {
     font-weight: 600;
     text-decoration: none;
     transition: transform 0.2s;
+    display: inline-block;
   }
 
   .blog-read-more:hover {
@@ -252,20 +187,19 @@ if (butter) {
   }
 
   @media (max-width: 768px) {
-    .blog-container {
-      padding: calc(64px + 1.5rem) 1rem 2rem;
+    .blog-hero {
+      padding-top: calc(64px + 2rem);
+      padding-bottom: 2rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
     }
 
-    .blog-header {
-      margin-bottom: 2rem;
+    .blog-container {
+      padding: 1.5rem 1rem 3rem;
     }
 
     .blog-card {
       padding: 1.5rem;
-    }
-
-    .blog-image {
-      height: 180px;
     }
 
     .blog-card-footer {

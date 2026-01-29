@@ -26,7 +26,6 @@
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
     "astro": "^5.16.9",
-    "buttercms": "^3.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-astro": "^0.441.0",
