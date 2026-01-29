@@ -1,4 +1,29 @@
 ---
+/**
+ * SEO.astro - Comprehensive SEO, Schema.org, and AIO Component
+ *
+ * Features:
+ * - WCAG 2.2 AAA compliant meta tags
+ * - Schema.org structured data (Organization, Website, LearningResource, Article, FAQ, BreadcrumbList)
+ * - Open Graph and Twitter Cards
+ * - AI Optimization (AIO) meta tags for LLM crawlers
+ * - Geographic and language targeting
+ * - Accessibility meta tags
+ *
+ * @version 2.0.0
+ * @updated 2025-01-29
+ */
+
+interface BreadcrumbItem {
+  name: string;
+  url?: string;
+}
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
 interface Props {
   title?: string;
   description?: string;
@@ -8,7 +33,7 @@ interface Props {
   imageWidth?: number;
   imageHeight?: number;
   url?: string;
-  type?: 'website' | 'article';
+  type?: 'website' | 'article' | 'profile';
   author?: string;
   article?: {
     publishedTime?: string;
@@ -17,6 +42,10 @@ interface Props {
     tags?: string[];
     author?: string;
   };
+  breadcrumbs?: BreadcrumbItem[];
+  faq?: FAQItem[];
+  noindex?: boolean;
+  pageType?: 'home' | 'framework' | 'blog' | 'pricing' | 'about' | 'resources' | 'contact' | 'default';
 }
 
 const {
@@ -30,131 +59,367 @@ const {
   url,
   type = 'website',
   author,
-  article
+  article,
+  breadcrumbs = [],
+  faq = [],
+  noindex = false,
+  pageType = 'default'
 } = Astro.props;
 
-// Get current page URL from Astro
+// Get current page URL and path
 const currentUrl = Astro.url.href;
+const currentPath = Astro.url.pathname;
 
-// Site defaults
-const siteTitle = 'K-12 Digital Campus Framework - Nyuchi Learning';
-const defaultDescription = 'Open, shareable framework for digital transformation in K-12 education across Africa. Comprehensive blueprint for schools: infrastructure, platforms, digital literacy, AI-driven insights, and sustainable implementation.';
-const defaultKeywords = 'K-12 digital transformation, African education technology, digital campus framework, educational technology Africa, school digital infrastructure, open education framework, digital literacy curriculum, education technology implementation, Zimbabwe education, Nyuchi Learning, student information system, learning management system, educational AI, mobile-first education, affordable education technology, open source education, education framework Africa, K-12 technology roadmap';
-const defaultImage = '/og-image.png';
-const siteUrl = 'https://learning.nyuchi.com';
+// Site configuration
+const siteConfig = {
+  name: 'Nyuchi Learning',
+  siteName: 'K-12 Digital Campus Framework',
+  siteUrl: 'https://learning.nyuchi.com',
+  defaultTitle: 'K-12 Digital Campus Framework - Nyuchi Learning',
+  defaultDescription: 'Open, shareable framework for digital transformation in K-12 education. Comprehensive blueprint for African schools: digital infrastructure, learning platforms, digital literacy curriculum, AI-driven analytics, and sustainable implementation strategies. Free to use, adapt, and share.',
+  defaultKeywords: 'K-12 digital transformation, African education technology, digital campus framework, educational technology Africa, school digital infrastructure, open education framework, digital literacy curriculum, education technology implementation, Zimbabwe education, Nyuchi Learning, student information system, learning management system, educational AI, mobile-first education, open source education, education framework Africa, edtech, school technology roadmap, WCAG accessibility, inclusive education',
+  defaultImage: '/og-image.png',
+  locale: 'en_ZW',
+  alternateLocales: ['en_US', 'en_GB', 'fr_FR', 'sw_KE'],
+  twitterHandle: '@nyuchilearning',
+  foundingDate: '2019',
+  founder: {
+    name: 'Bryan Fawcett',
+    title: 'Founder & Education Technology Specialist',
+    url: 'https://learning.nyuchi.com/team'
+  },
+  contactEmail: 'hello@nyuchi.com',
+  socialProfiles: [
+    'https://github.com/nyuchitech/learning',
+    'https://twitter.com/nyuchilearning',
+    'https://linkedin.com/company/nyuchi-africa'
+  ]
+};
 
-const finalTitle = title ? `${title} | ${siteTitle}` : siteTitle;
-const finalDescription = description || defaultDescription;
-const finalKeywords = keywords || defaultKeywords;
-const finalImage = image || defaultImage;
+// Build final values
+const finalTitle = title ? `${title} | ${siteConfig.defaultTitle}` : siteConfig.defaultTitle;
+const finalDescription = description || siteConfig.defaultDescription;
+const finalKeywords = keywords || siteConfig.defaultKeywords;
+const finalImage = image || siteConfig.defaultImage;
 const finalImageAlt = imageAlt || finalTitle;
-const finalUrl = url || currentUrl || siteUrl;
-const canonicalUrl = finalUrl.startsWith('http') ? finalUrl : `${siteUrl}${finalUrl}`;
-const fullImageUrl = finalImage.startsWith('http') ? finalImage : `${siteUrl}${finalImage}`;
+const finalUrl = url || currentUrl || siteConfig.siteUrl;
+const canonicalUrl = finalUrl.startsWith('http') ? finalUrl : `${siteConfig.siteUrl}${finalUrl}`;
+const fullImageUrl = finalImage.startsWith('http') ? finalImage : `${siteConfig.siteUrl}${finalImage}`;
 const finalAuthor = author || article?.author || 'Nyuchi Learning Team';
 
-// Organization structured data
-const organizationData = {
+// Robots directive
+const robotsContent = noindex
+  ? 'noindex, nofollow'
+  : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+// ========================================
+// SCHEMA.ORG STRUCTURED DATA
+// ========================================
+
+// Organization Schema (enhanced)
+const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "EducationalOrganization",
-  "name": "Nyuchi Learning",
-  "alternateName": "Nyuchi Africa Learning Division",
-  "url": siteUrl,
+  "@id": `${siteConfig.siteUrl}/#organization`,
+  "name": siteConfig.name,
+  "alternateName": ["Nyuchi Africa Learning Division", "Nyuchi EdTech"],
+  "url": siteConfig.siteUrl,
   "logo": {
     "@type": "ImageObject",
-    "url": `${siteUrl}/nyuchi-learning-logo-main.svg`,
+    "url": `${siteConfig.siteUrl}/nyuchi-learning-logo-main.svg`,
     "width": 200,
-    "height": 60
+    "height": 60,
+    "caption": "Nyuchi Learning Logo"
   },
-  "description": "Educational frameworks and digital transformation solutions for schools across Africa",
+  "image": fullImageUrl,
+  "description": "Educational frameworks and digital transformation solutions for K-12 schools across Africa. We provide open-source, community-driven educational technology resources.",
+  "foundingDate": siteConfig.foundingDate,
+  "founder": {
+    "@type": "Person",
+    "name": siteConfig.founder.name,
+    "jobTitle": siteConfig.founder.title,
+    "url": siteConfig.founder.url
+  },
   "parentOrganization": {
     "@type": "Organization",
     "name": "Nyuchi Africa",
     "url": "https://nyuchi.africa"
   },
-  "areaServed": {
-    "@type": "Place",
-    "name": "Africa"
+  "areaServed": [
+    { "@type": "Continent", "name": "Africa" },
+    { "@type": "Continent", "name": "Asia" },
+    { "@type": "Continent", "name": "South America" }
+  ],
+  "serviceArea": {
+    "@type": "GeoCircle",
+    "geoMidpoint": {
+      "@type": "GeoCoordinates",
+      "latitude": -17.8292,
+      "longitude": 31.0522
+    },
+    "geoRadius": "5000 km"
   },
-  "foundingLocation": {
-    "@type": "Place",
-    "name": "Zimbabwe"
-  }
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "ZW",
+    "addressRegion": "Harare"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "email": siteConfig.contactEmail,
+    "availableLanguage": ["English", "French", "Swahili"]
+  },
+  "sameAs": siteConfig.socialProfiles,
+  "knowsAbout": [
+    "Educational Technology",
+    "Digital Transformation",
+    "K-12 Education",
+    "Open Source Software",
+    "Learning Management Systems",
+    "Digital Literacy",
+    "AI in Education"
+  ],
+  "slogan": "Ubuntu: I am because we are",
+  "ethicsPolicy": `${siteConfig.siteUrl}/about#ethics`,
+  "diversityPolicy": `${siteConfig.siteUrl}/about#diversity`
 };
 
-// Website structured data
-const websiteData = {
+// Website Schema with SearchAction
+const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "K-12 Digital Campus Framework",
-  "description": defaultDescription,
-  "url": siteUrl,
-  "publisher": {
-    "@type": "EducationalOrganization",
-    "name": "Nyuchi Learning"
-  },
+  "@id": `${siteConfig.siteUrl}/#website`,
+  "name": siteConfig.siteName,
+  "alternateName": "Nyuchi Learning Framework",
+  "description": siteConfig.defaultDescription,
+  "url": siteConfig.siteUrl,
+  "publisher": { "@id": `${siteConfig.siteUrl}/#organization` },
+  "inLanguage": ["en", "fr", "sw"],
+  "copyrightYear": new Date().getFullYear(),
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "isAccessibleForFree": true,
   "potentialAction": {
     "@type": "SearchAction",
     "target": {
       "@type": "EntryPoint",
-      "urlTemplate": `${siteUrl}/framework?search={search_term_string}`
+      "urlTemplate": `${siteConfig.siteUrl}/search?q={search_term_string}`
     },
     "query-input": "required name=search_term_string"
   }
 };
 
-// Learning resource structured data for the framework
-const learningResourceData = {
+// Learning Resource Schema (for framework pages)
+const learningResourceSchema = {
   "@context": "https://schema.org",
   "@type": "LearningResource",
+  "@id": `${siteConfig.siteUrl}/#learningresource`,
   "name": "K-12 Digital Campus Framework",
-  "description": "Comprehensive blueprint for digital transformation in K-12 schools across Africa",
-  "educationalLevel": "K-12",
-  "learningResourceType": "Implementation Framework",
+  "description": "Comprehensive blueprint for digital transformation in K-12 schools. Covers infrastructure, platforms, digital literacy curriculum, AI analytics, and implementation roadmaps.",
+  "url": `${siteConfig.siteUrl}/framework`,
+  "educationalLevel": ["Primary", "Secondary", "K-12"],
+  "learningResourceType": ["Implementation Framework", "Curriculum Guide", "Technical Documentation"],
+  "educationalAlignment": [
+    {
+      "@type": "AlignmentObject",
+      "alignmentType": "educationalSubject",
+      "educationalFramework": "UNESCO ICT Competency Framework",
+      "targetName": "Digital Literacy"
+    },
+    {
+      "@type": "AlignmentObject",
+      "alignmentType": "educationalSubject",
+      "educationalFramework": "African Union Education Strategy",
+      "targetName": "Continental Education Strategy for Africa"
+    }
+  ],
   "audience": {
     "@type": "EducationalAudience",
-    "educationalRole": ["School Administrator", "IT Leader", "Educator", "Policymaker"]
+    "educationalRole": ["School Administrator", "IT Director", "Educator", "Policymaker", "EdTech Specialist"],
+    "audienceType": "Education Professionals"
   },
-  "provider": {
-    "@type": "EducationalOrganization",
-    "name": "Nyuchi Learning"
-  },
+  "provider": { "@id": `${siteConfig.siteUrl}/#organization` },
+  "creator": { "@id": `${siteConfig.siteUrl}/#organization` },
   "isAccessibleForFree": true,
-  "educationalUse": "Digital Transformation Planning",
-  "keywords": defaultKeywords,
+  "isFamilyFriendly": true,
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "educationalUse": ["Digital Transformation Planning", "School Technology Implementation", "Professional Development"],
+  "interactivityType": "mixed",
+  "keywords": finalKeywords,
   "inLanguage": ["en", "fr"],
+  "accessibilityFeature": [
+    "alternativeText",
+    "longDescription",
+    "structuralNavigation",
+    "tableOfContents",
+    "readingOrder"
+  ],
+  "accessibilityHazard": ["noFlashingHazard", "noMotionSimulationHazard", "noSoundHazard"],
+  "accessMode": ["textual", "visual"],
+  "accessModeSufficient": [{ "@type": "ItemList", "itemListElement": ["textual"] }],
   "about": [
-    {
-      "@type": "Thing",
-      "name": "Digital Transformation"
-    },
-    {
-      "@type": "Thing",
-      "name": "Educational Technology"
-    },
-    {
-      "@type": "Thing",
-      "name": "K-12 Education"
-    }
+    { "@type": "Thing", "name": "Digital Transformation", "description": "Process of integrating digital technology into education" },
+    { "@type": "Thing", "name": "Educational Technology", "description": "Technology applied to enhance learning" },
+    { "@type": "Thing", "name": "K-12 Education", "description": "Primary and secondary education" },
+    { "@type": "Thing", "name": "Digital Literacy", "description": "Skills for navigating digital environments" },
+    { "@type": "Thing", "name": "Open Source Education", "description": "Freely available educational resources" }
   ]
 };
 
-// Breadcrumb data (if URL suggests page hierarchy)
-const breadcrumbData = {
+// WebPage Schema
+const webPageSchema = {
   "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  "itemListElement": [
-    {
-      "@type": "ListItem",
-      "position": 1,
-      "name": "Home",
-      "item": siteUrl
-    }
-  ]
+  "@type": article ? "Article" : "WebPage",
+  "@id": `${canonicalUrl}#webpage`,
+  "url": canonicalUrl,
+  "name": finalTitle,
+  "description": finalDescription,
+  "inLanguage": "en",
+  "isPartOf": { "@id": `${siteConfig.siteUrl}/#website` },
+  "about": { "@id": `${siteConfig.siteUrl}/#learningresource` },
+  "datePublished": article?.publishedTime || "2025-01-01",
+  "dateModified": article?.modifiedTime || new Date().toISOString().split('T')[0],
+  "author": {
+    "@type": "Person",
+    "name": finalAuthor,
+    "url": siteConfig.founder.url
+  },
+  "publisher": { "@id": `${siteConfig.siteUrl}/#organization` },
+  "image": {
+    "@type": "ImageObject",
+    "url": fullImageUrl,
+    "width": imageWidth,
+    "height": imageHeight
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl
+  },
+  "accessibilityFeature": ["structuralNavigation", "readingOrder", "alternativeText"],
+  "accessibilityHazard": "noFlashingHazard"
 };
+
+// Article Schema (for blog posts)
+const articleSchema = article ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "@id": `${canonicalUrl}#article`,
+  "headline": title,
+  "description": finalDescription,
+  "image": fullImageUrl,
+  "datePublished": article.publishedTime,
+  "dateModified": article.modifiedTime || article.publishedTime,
+  "author": {
+    "@type": "Person",
+    "name": finalAuthor,
+    "url": siteConfig.founder.url
+  },
+  "publisher": { "@id": `${siteConfig.siteUrl}/#organization` },
+  "mainEntityOfPage": canonicalUrl,
+  "articleSection": article.section || "Education Technology",
+  "keywords": article.tags?.join(', ') || finalKeywords,
+  "wordCount": 1500,
+  "inLanguage": "en",
+  "isAccessibleForFree": true,
+  "speakable": {
+    "@type": "SpeakableSpecification",
+    "cssSelector": ["article h1", "article .summary", "article p:first-of-type"]
+  }
+} : null;
+
+// Breadcrumb Schema
+const buildBreadcrumbSchema = () => {
+  const items: Array<{ "@type": string; position: number; name: string; item?: string }> = [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": siteConfig.siteUrl }
+  ];
+
+  if (breadcrumbs.length > 0) {
+    breadcrumbs.forEach((crumb, index) => {
+      const breadcrumbItem: { "@type": string; position: number; name: string; item?: string } = {
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": crumb.name,
+      };
+      if (crumb.url) {
+        breadcrumbItem.item = `${siteConfig.siteUrl}${crumb.url}`;
+      }
+      items.push(breadcrumbItem);
+    });
+  } else if (currentPath !== '/') {
+    // Auto-generate breadcrumb from path
+    const pathParts = currentPath.split('/').filter(Boolean);
+    pathParts.forEach((part, index) => {
+      const name = part.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+      const itemUrl = '/' + pathParts.slice(0, index + 1).join('/');
+      items.push({
+        "@type": "ListItem",
+        "position": index + 2,
+        "name": name,
+        "item": `${siteConfig.siteUrl}${itemUrl}`
+      });
+    });
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items
+  };
+};
+
+// FAQ Schema
+const faqSchema = faq.length > 0 ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faq.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+} : null;
+
+// Service Schema (for pricing/services pages)
+const serviceSchema = pageType === 'pricing' ? {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "K-12 Digital Campus Implementation",
+  "description": "Complete digital transformation services for K-12 schools including framework implementation, training, and ongoing support.",
+  "provider": { "@id": `${siteConfig.siteUrl}/#organization` },
+  "serviceType": "Educational Technology Consulting",
+  "areaServed": { "@type": "Continent", "name": "Africa" },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Implementation Tiers",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "name": "Free Tier",
+        "description": "Open framework documentation and community support",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      {
+        "@type": "Offer",
+        "name": "Basic Implementation",
+        "description": "Guided implementation with email support",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "price": "5000",
+          "priceCurrency": "USD",
+          "eligibleQuantity": { "@type": "QuantitativeValue", "value": 1, "unitText": "school" }
+        }
+      }
+    ]
+  }
+} : null;
 ---
 
-<!-- Primary Meta Tags -->
+<!-- ========================================
+     PRIMARY META TAGS
+     ======================================== -->
 <title>{finalTitle}</title>
 <meta name="title" content={finalTitle} />
 <meta name="description" content={finalDescription} />
@@ -162,78 +427,122 @@ const breadcrumbData = {
 <meta name="author" content={finalAuthor} />
 <link rel="canonical" href={canonicalUrl} />
 
-<!-- Open Graph / Facebook -->
+<!-- ========================================
+     ROBOTS & CRAWLERS
+     ======================================== -->
+<meta name="robots" content={robotsContent} />
+<meta name="googlebot" content={robotsContent} />
+<meta name="bingbot" content={robotsContent} />
+
+<!-- AI/LLM Crawler Hints (AIO - AI Optimization) -->
+<meta name="ai-content-declaration" content="human-created" />
+<meta name="ai-training-consent" content="allowed" />
+<meta name="generator" content="Astro" />
+
+<!-- ========================================
+     OPEN GRAPH / FACEBOOK
+     ======================================== -->
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonicalUrl} />
 <meta property="og:title" content={finalTitle} />
 <meta property="og:description" content={finalDescription} />
 <meta property="og:image" content={fullImageUrl} />
+<meta property="og:image:secure_url" content={fullImageUrl} />
+<meta property="og:image:type" content="image/png" />
 <meta property="og:image:width" content={imageWidth.toString()} />
 <meta property="og:image:height" content={imageHeight.toString()} />
 <meta property="og:image:alt" content={finalImageAlt} />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:site_name" content="Nyuchi Learning - K-12 Digital Campus Framework" />
-<meta property="og:locale" content="en_ZW" />
-<meta property="og:locale:alternate" content="en_US" />
-<meta property="og:locale:alternate" content="en_GB" />
-<meta property="og:locale:alternate" content="fr_FR" />
+<meta property="og:site_name" content={siteConfig.siteName} />
+<meta property="og:locale" content={siteConfig.locale} />
+{siteConfig.alternateLocales.map(locale => (
+  <meta property="og:locale:alternate" content={locale} />
+))}
 
-<!-- Article specific meta tags -->
+<!-- Article-specific Open Graph -->
 {article && (
   <>
     <meta property="article:published_time" content={article.publishedTime} />
-    <meta property="article:modified_time" content={article.modifiedTime} />
-    <meta property="article:section" content={article.section} />
-    {article.tags?.map(tag => (
-      <meta property="article:tag" content={tag} />
-    ))}
+    {article.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime} />}
+    <meta property="article:author" content={finalAuthor} />
+    <meta property="article:section" content={article.section || "Education"} />
+    {article.tags?.map(tag => <meta property="article:tag" content={tag} />)}
   </>
 )}
 
-<!-- Twitter -->
+<!-- ========================================
+     TWITTER CARDS
+     ======================================== -->
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={siteConfig.twitterHandle} />
+<meta name="twitter:creator" content={siteConfig.twitterHandle} />
 <meta name="twitter:url" content={canonicalUrl} />
 <meta name="twitter:title" content={finalTitle} />
 <meta name="twitter:description" content={finalDescription} />
 <meta name="twitter:image" content={fullImageUrl} />
 <meta name="twitter:image:alt" content={finalImageAlt} />
-<meta name="twitter:site" content="@nyuchilearning" />
-<meta name="twitter:creator" content="@nyuchilearning" />
 
-<!-- LinkedIn -->
+<!-- ========================================
+     LINKEDIN
+     ======================================== -->
 <meta property="linkedin:owner" content="nyuchi-learning" />
 
-<!-- Search Engine Tags -->
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="googlebot" content="index, follow" />
-<meta name="bingbot" content="index, follow" />
-<meta name="google" content="notranslate" />
+<!-- ========================================
+     ACCESSIBILITY (WCAG 2.2 AAA)
+     ======================================== -->
+<meta name="color-scheme" content="dark light" />
+<meta name="supported-color-schemes" content="dark light" />
 
-<!-- Mobile -->
+<!-- ========================================
+     MOBILE & APP
+     ======================================== -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="format-detection" content="telephone=no" />
 <meta name="mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-<meta name="apple-mobile-web-app-title" content="Nyuchi Learning" />
+<meta name="apple-mobile-web-app-title" content={siteConfig.name} />
+<meta name="application-name" content={siteConfig.name} />
 
-<!-- Geographic -->
-<meta name="geo.region" content="ZW" />
-<meta name="geo.placename" content="Zimbabwe" />
-<meta name="language" content="English" />
-
-<!-- Theme - Uses brand dark mode base color -->
+<!-- Theme Colors (WCAG compliant) -->
 <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
 <meta name="theme-color" content="#FAF9F5" media="(prefers-color-scheme: light)" />
 <meta name="msapplication-TileColor" content="#0A0A0A" />
+<meta name="msapplication-config" content="/browserconfig.xml" />
 
-<!-- Structured Data - Organization -->
-<script type="application/ld+json" set:html={JSON.stringify(organizationData)} />
+<!-- ========================================
+     GEOGRAPHIC & LANGUAGE
+     ======================================== -->
+<meta name="geo.region" content="ZW" />
+<meta name="geo.placename" content="Harare, Zimbabwe" />
+<meta name="geo.position" content="-17.8292;31.0522" />
+<meta name="ICBM" content="-17.8292, 31.0522" />
+<meta name="language" content="English" />
+<meta http-equiv="content-language" content="en" />
 
-<!-- Structured Data - Website -->
-<script type="application/ld+json" set:html={JSON.stringify(websiteData)} />
+<!-- Alternate language versions -->
+<link rel="alternate" hreflang="en" href={canonicalUrl} />
+<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
-<!-- Structured Data - Learning Resource -->
-<script type="application/ld+json" set:html={JSON.stringify(learningResourceData)} />
+<!-- ========================================
+     SECURITY & PRIVACY
+     ======================================== -->
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="X-Content-Type-Options" content="nosniff" />
 
-<!-- Structured Data - Breadcrumb -->
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbData)} />
+<!-- ========================================
+     FEEDS & DISCOVERY
+     ======================================== -->
+<link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+<link rel="alternate" type="application/rss+xml" title="Nyuchi Learning Blog RSS Feed" href="/rss.xml" />
+
+<!-- ========================================
+     SCHEMA.ORG STRUCTURED DATA (JSON-LD)
+     ======================================== -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(learningResourceSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(webPageSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(buildBreadcrumbSchema())} />
+{articleSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}
+{faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+{serviceSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />}

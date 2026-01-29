@@ -883,3 +883,380 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ========================================
+   WCAG 2.2 AAA ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Skip Links - Allow keyboard users to bypass navigation */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10000;
+  background: var(--primary);
+  color: white;
+  padding: 1rem 2rem;
+  border-radius: var(--radius-button);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+  outline: 3px solid white;
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only - Visually hidden but accessible */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Screen Reader Only - Focusable variant */
+.sr-only-focusable:focus,
+.sr-only-focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* Enhanced Focus Indicators (WCAG 2.2 AAA - 3:1 contrast minimum) */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* High contrast focus for dark backgrounds */
+.dark *:focus-visible,
+:root:not(.light) *:focus-visible {
+  outline-color: var(--mineral-cobalt);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 5px var(--mineral-cobalt);
+}
+
+/* Light mode focus */
+.light *:focus-visible {
+  outline-color: var(--primary);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 5px var(--primary);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) *:focus-visible {
+    outline-color: var(--primary);
+    box-shadow: 0 0 0 2px var(--bg), 0 0 0 5px var(--primary);
+  }
+}
+
+/* Remove default button focus in favor of custom */
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Link focus states */
+a:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Form element focus */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 0;
+  border-color: var(--primary);
+}
+
+/* Target Size (WCAG 2.2 AAA - 44x44px minimum) */
+.touch-target {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ensure interactive elements meet minimum target size */
+button,
+[role="button"],
+a,
+input[type="checkbox"],
+input[type="radio"],
+select {
+  min-height: 44px;
+}
+
+/* Exception for inline links in body text */
+p a,
+li a,
+td a {
+  min-height: auto;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  :root {
+    --border: rgba(255, 255, 255, 0.3);
+  }
+
+  .light {
+    --border: rgba(0, 0, 0, 0.3);
+  }
+
+  * {
+    border-color: currentColor !important;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+  }
+
+  button,
+  [role="button"] {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Forced Colors Mode (Windows High Contrast) */
+@media (forced-colors: active) {
+  *:focus-visible {
+    outline: 3px solid CanvasText;
+    outline-offset: 3px;
+  }
+
+  a {
+    color: LinkText;
+  }
+
+  button,
+  [role="button"] {
+    border: 2px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+
+  .btn-primary {
+    background: Highlight;
+    color: HighlightText;
+    border-color: Highlight;
+  }
+}
+
+/* Text Spacing Override Support (WCAG 2.1 SC 1.4.12) */
+/* Users can override these values without breaking layout */
+html {
+  line-height: 1.5; /* At least 1.5x font size */
+  letter-spacing: 0.00em; /* Can be increased to 0.12em */
+  word-spacing: 0.00em; /* Can be increased to 0.16em */
+}
+
+p {
+  margin-bottom: 1.5em; /* At least 2x font size for paragraph spacing */
+}
+
+/* Ensure text reflows properly when spacing is increased */
+* {
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Visible Focus for Non-Interactive Elements with tabindex */
+[tabindex]:not([tabindex="-1"]):focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 3px;
+}
+
+/* Improved Selection Contrast */
+::selection {
+  background: var(--primary);
+  color: white;
+}
+
+::-moz-selection {
+  background: var(--primary);
+  color: white;
+}
+
+/* Light mode selection */
+.light ::selection,
+.light ::-moz-selection {
+  background: var(--primary);
+  color: white;
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) ::selection,
+  :root:not(.dark) ::-moz-selection {
+    background: var(--primary);
+    color: white;
+  }
+}
+
+/* Landmark Region Styles for Assistive Technology */
+[role="main"],
+[role="navigation"],
+[role="banner"],
+[role="contentinfo"],
+[role="complementary"],
+[role="search"] {
+  outline: none;
+}
+
+/* Ensure adequate line length for readability (45-75 characters) */
+.readable-width {
+  max-width: 75ch;
+}
+
+article p,
+article li {
+  max-width: 75ch;
+}
+
+/* Motion Preferences - Additional Safety */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    background-attachment: scroll !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Allow essential animations with very short duration */
+  .essential-animation {
+    animation-duration: 0.001s !important;
+  }
+}
+
+/* Print Accessibility */
+@media print {
+  *:focus-visible {
+    outline: 2px solid black;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: #666;
+  }
+
+  abbr[title]::after {
+    content: " (" attr(title) ")";
+  }
+
+  /* Don't print decorative elements */
+  .minerals-strip,
+  .skip-link,
+  [aria-hidden="true"] {
+    display: none !important;
+  }
+}
+
+/* Notification/Alert Accessibility */
+[role="alert"],
+[role="status"],
+[aria-live] {
+  /* Ensure screen readers announce these */
+}
+
+/* Error State Accessibility */
+[aria-invalid="true"],
+.error,
+.invalid {
+  border-color: var(--error) !important;
+  outline-color: var(--error);
+}
+
+[aria-invalid="true"]:focus-visible,
+.error:focus-visible,
+.invalid:focus-visible {
+  outline-color: var(--error);
+  box-shadow: 0 0 0 2px var(--bg), 0 0 0 5px var(--error);
+}
+
+/* Disabled State Accessibility */
+[disabled],
+[aria-disabled="true"],
+.disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Loading State Accessibility */
+[aria-busy="true"] {
+  cursor: wait;
+}
+
+/* Current Page Indicator for Navigation */
+[aria-current="page"],
+[aria-current="true"] {
+  font-weight: var(--font-weight-bold);
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+}
+
+/* Tooltip Accessibility */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.5rem 1rem;
+  background: var(--bg-surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-input);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s, visibility 0.2s;
+  z-index: 1000;
+}
+
+[data-tooltip]:hover::after,
+[data-tooltip]:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-tooltip]::after {
+    transition: none;
+  }
+}

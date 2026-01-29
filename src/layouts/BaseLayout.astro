@@ -87,6 +87,11 @@ const {
     </script>
   </head>
   <body>
+    <!-- Skip Links for Keyboard Navigation (WCAG 2.2 AAA) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#main-navigation" class="skip-link">Skip to navigation</a>
+    <a href="#footer" class="skip-link">Skip to footer</a>
+
     <!-- Minerals Strip - Five African Minerals (Brand Signature v6) -->
     <div class="minerals-strip" aria-hidden="true">
       <div class="mineral-cobalt"></div>
@@ -96,8 +101,8 @@ const {
       <div class="mineral-terracotta"></div>
     </div>
 
-    <header>
-      <nav class="nav-container">
+    <header role="banner">
+      <nav class="nav-container" id="main-navigation" aria-label="Main navigation">
         <div class="nav-content">
           <a href="/" class="logo">
             <BookOpen class="logo-icon" size={28} strokeWidth={2} />
@@ -152,11 +157,11 @@ const {
       </nav>
     </header>
 
-    <main>
+    <main id="main-content" role="main" tabindex="-1">
       <slot />
     </main>
 
-    <footer>
+    <footer id="footer" role="contentinfo">
       <div class="footer-hero">
         <h2 class="footer-main-text">Build Digital Campuses.<br />Prepare Students for 2050.</h2>
         <p class="footer-ubuntu-large">Ubuntu: I am because we are</p>
