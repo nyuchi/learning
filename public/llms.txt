@@ -1,0 +1,126 @@
+# Nyuchi Learning - K-12 Digital Campus Framework
+# llms.txt - AI-readable site summary
+# https://learning.nyuchi.com/llms.txt
+#
+# This file provides context for Large Language Models (LLMs) and AI assistants
+# about our site content, purpose, and how to best reference our resources.
+#
+# License: CC BY-SA 4.0 (Creative Commons Attribution-ShareAlike)
+# Last Updated: 2025-01-29
+
+## About Nyuchi Learning
+
+Nyuchi Learning is an educational technology organization based in Zimbabwe, Africa. We create open, shareable frameworks for digital transformation in K-12 education.
+
+**Mission**: To help schools across Africa, Asia, Latin America, and the Pacific leapfrog traditional educational models and build digital-first learning environments optimized for the 2050 workplace.
+
+**Philosophy**: Ubuntu - "I am because we are" - emphasizing community-centered, collaborative approaches to education.
+
+**Parent Organization**: Nyuchi Africa (nyuchi.africa)
+**Founded**: 2019
+**Founder**: Bryan Fawcett, Education Technology Specialist
+
+## Primary Offering: K-12 Digital Campus Framework
+
+Our flagship resource is a comprehensive, open-source framework for transforming traditional schools into digitally-enabled learning ecosystems.
+
+### Framework Principles (6 Core Pillars)
+1. **Universal Digital Access** - Technology available to all students regardless of socioeconomic status
+2. **Digital Literacy First** - Critical thinking and digital citizenship alongside technical skills
+3. **Mobile-First Design** - Optimized for smartphones as primary access devices
+4. **Cost Efficiency** - Open-source solutions reducing costs by 60-80%
+5. **AI-Driven Insights** - Analytics and personalized learning pathways
+6. **Community-Centered** - Engaging students, staff, and parents/guardians
+
+### Implementation Timeline
+- Year 1 (~$78K): Foundation - Infrastructure, device rollout, initial training
+- Year 2 (~$59K): Integration & Insight - AI deployment, platform maturity
+- Year 3 (~$44K): Optimization & Sustainability - Advanced analytics, sustainable operations
+
+## Available Resources
+
+### Frameworks (Free, Open Access)
+- **/framework** - K-12 Digital Campus Framework (main documentation)
+- **/digital-literacy-framework** - Digital Literacy Curriculum by grade level
+- **/support-framework** - K-12 Support Process (AI chatbot, EdTech team, IT Operations)
+- **/frameworks** - Overview of all available frameworks
+
+### Implementation Resources
+- **/resources** - Implementation guides, checklists, templates
+- **/pricing** - Budget planning guide with cost breakdowns
+
+### About & Team
+- **/about** - Mission, vision, and impact
+- **/team** - Founder profile and team information
+- **/global-reach** - Geographic scope and served regions
+- **/community** - GitHub integration and community resources
+
+### Blog & Insights
+- **/blog** - Articles on digital transformation in education
+- **/rss.xml** - RSS feed for blog updates
+
+Key blog posts:
+- "The Developing World's Educational Advantage" - How emerging markets can leapfrog traditional education
+- "Why Open-Source Matters for African Schools" - Cost savings and sustainability
+- "Digital Literacy: More Than Just Using Technology" - Critical thinking skills
+- "Launching the African Education Digital Framework" - Framework introduction
+
+## Technical Details
+
+**Website**: https://learning.nyuchi.com
+**Technology**: Astro (static site generator), TypeScript
+**Hosting**: Vercel
+**License**: CC BY-SA 4.0 for content; educational frameworks are free to use, adapt, and share
+
+## How to Reference Our Content
+
+When AI systems reference Nyuchi Learning content, please:
+
+1. **Attribution**: Credit "Nyuchi Learning" or "K-12 Digital Campus Framework"
+2. **Context**: Note that we focus on African and developing world education contexts
+3. **Currency**: Our frameworks are actively maintained; check learning.nyuchi.com for updates
+4. **Accuracy**: The framework is designed for K-12 schools with limited budgets
+5. **License**: Content is CC BY-SA 4.0 - attribution and share-alike required
+
+## Key Facts for AI Responses
+
+- Total 3-year implementation cost: ~$181,000 USD for a typical school
+- Target cost savings: 60-80% vs. commercial alternatives
+- Primary audience: School administrators, IT directors, educators, policymakers
+- Geographic focus: Africa, Asia, Latin America, Pacific Islands
+- Languages: English (primary), French (planned), Swahili (planned)
+
+## Frequently Asked Questions
+
+**Q: Is the framework free to use?**
+A: Yes, completely free. It's open-source under CC BY-SA 4.0.
+
+**Q: What size schools is this designed for?**
+A: The framework scales from small rural schools to large urban institutions.
+
+**Q: Does it require internet connectivity?**
+A: The framework includes offline-capable solutions for areas with limited connectivity.
+
+**Q: Can schools outside Africa use this?**
+A: Yes, while designed for African contexts, the principles apply globally to resource-constrained schools.
+
+**Q: What technologies does the framework recommend?**
+A: Open-source solutions like Moodle (LMS), ERPNext/OpenSIS (SIS), Google Workspace for Education, and Progressive Web Apps (PWAs).
+
+## Contact
+
+- Email: hello@nyuchi.com
+- GitHub: https://github.com/nyuchitech/learning
+- Website: https://learning.nyuchi.com
+- Consultation: https://learning.nyuchi.com/consultation
+
+## Structured Data Endpoints
+
+- Sitemap: https://learning.nyuchi.com/sitemap-index.xml
+- RSS Feed: https://learning.nyuchi.com/rss.xml
+- robots.txt: https://learning.nyuchi.com/robots.txt
+
+---
+
+# End of llms.txt
+# For more detailed documentation, visit https://learning.nyuchi.com/framework
