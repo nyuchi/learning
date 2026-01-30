@@ -1,56 +1,330 @@
+# ============================================================
 # robots.txt for K-12 Digital Campus Framework - Nyuchi Learning
+# https://learning.nyuchi.com
+#
+# This file controls how search engines and AI systems crawl our site.
+# We welcome all crawlers as we are an open educational framework.
+#
+# Last Updated: 2025-01-29
+# ============================================================
 
-# Allow all search engines
+# ============================================================
+# DEFAULT RULES - Allow all crawlers
+# ============================================================
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /_astro/
+Disallow: /404
 
-# Specific crawlers
+# Crawl-delay to prevent server overload
+Crawl-delay: 1
+
+# ============================================================
+# SEARCH ENGINE CRAWLERS
+# ============================================================
+
+# Google
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
-User-agent: Bingbot
+User-agent: Googlebot-Image
 Allow: /
 
+User-agent: Googlebot-Video
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /blog/
+
+User-agent: Storebot-Google
+Allow: /
+
+# Google Extended (used for AI training like Bard/Gemini)
+User-agent: Google-Extended
+Allow: /
+
+# Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: BingPreview
+Allow: /
+
+# Yahoo (uses Bing)
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
 User-agent: DuckDuckBot
 Allow: /
 
-User-agent: Baiduspider
-Allow: /
-
+# Yandex
 User-agent: Yandex
 Allow: /
+Crawl-delay: 2
 
-# AI Crawlers (AIO - AI Optimization)
+User-agent: YandexBot
+Allow: /
+
+User-agent: YandexImages
+Allow: /
+
+# Baidu
+User-agent: Baiduspider
+Allow: /
+Crawl-delay: 2
+
+User-agent: Baiduspider-image
+Allow: /
+
+# Sogou
+User-agent: Sogou
+Allow: /
+
+# Qwant
+User-agent: Qwantify
+Allow: /
+
+# Ecosia (uses Bing)
+User-agent: Ecosia
+Allow: /
+
+# Brave Search
+User-agent: BraveBot
+Allow: /
+
+# Mojeek
+User-agent: MojeekBot
+Allow: /
+
+# ============================================================
+# AI/LLM CRAWLERS (AIO - AI Optimization)
+# We explicitly welcome AI crawlers for our open educational content
+# ============================================================
+
+# OpenAI - ChatGPT, GPT models
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: CCBot
-Allow: /
-
+# Anthropic - Claude
 User-agent: anthropic-ai
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+# Google - Gemini/Bard AI training
 User-agent: Google-Extended
 Allow: /
 
+# Common Crawl (used by many AI systems)
+User-agent: CCBot
+Allow: /
+
+# Perplexity AI
 User-agent: PerplexityBot
+Allow: /
+
+# Apple - Siri, Apple Intelligence
+User-agent: Applebot
 Allow: /
 
 User-agent: Applebot-Extended
 Allow: /
 
-# Disallow specific paths if needed (currently allowing all)
-# Disallow: /admin/
-# Disallow: /private/
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# Meta AI (Llama training)
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Amazon/Alexa
+User-agent: Amazonbot
+Allow: /
+
+# Microsoft AI (Copilot)
+User-agent: bingbot
+Allow: /
+
+# You.com AI Search
+User-agent: YouBot
+Allow: /
+
+# Neeva AI (now part of Snowflake)
+User-agent: NeevaBot
+Allow: /
+
+# Phind AI (developer-focused)
+User-agent: PhindBot
+Allow: /
+
+# AI2 (Allen Institute for AI)
+User-agent: AI2Bot
+Allow: /
+
+# Hugging Face
+User-agent: HuggingFaceBot
+Allow: /
+
+# Stability AI
+User-agent: StabilityAI
+Allow: /
+
+# Mistral AI
+User-agent: MistralBot
+Allow: /
+
+# xAI (Grok)
+User-agent: Grok
+Allow: /
+
+# ============================================================
+# SOCIAL MEDIA CRAWLERS
+# ============================================================
+
+# Facebook/Meta
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
+Allow: /
+
+# Twitter/X
+User-agent: Twitterbot
+Allow: /
+
+# LinkedIn
+User-agent: LinkedInBot
+Allow: /
+
+# Pinterest
+User-agent: Pinterest
+Allow: /
+
+User-agent: Pinterestbot
+Allow: /
+
+# Slack
+User-agent: Slackbot
+Allow: /
+
+User-agent: Slackbot-LinkExpanding
+Allow: /
+
+# Discord
+User-agent: Discordbot
+Allow: /
+
+# Telegram
+User-agent: TelegramBot
+Allow: /
+
+# WhatsApp
+User-agent: WhatsApp
+Allow: /
+
+# ============================================================
+# ARCHIVE CRAWLERS
+# ============================================================
+
+# Internet Archive
+User-agent: ia_archiver
+Allow: /
+
+User-agent: archive.org_bot
+Allow: /
+
+# Wayback Machine
+User-agent: Wayback
+Allow: /
+
+# ============================================================
+# ACCESSIBILITY & ASSISTIVE TECHNOLOGY
+# ============================================================
+
+# Screen readers and assistive technology should have full access
+# These are typically browser-based and don't use robots.txt
+# but we document our commitment to accessibility here.
+
+# ============================================================
+# RESEARCH CRAWLERS
+# ============================================================
+
+# Academic research crawlers
+User-agent: Semrush
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 5
+
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 5
+
+User-agent: DotBot
+Allow: /
+
+# ============================================================
+# FEED READERS
+# ============================================================
+
+User-agent: FeedFetcher
+Allow: /
+
+User-agent: Feedly
+Allow: /
+
+User-agent: NewsBlur
+Allow: /
+
+# ============================================================
+# IMPORTANT RESOURCES
+# ============================================================
 
 # Sitemap location
-Sitemap: https://learning.nyuchi.com/sitemap.xml
+Sitemap: https://learning.nyuchi.com/sitemap-index.xml
 
-# Crawl delay (optional, helps prevent overloading server)
-Crawl-delay: 1
+# RSS Feed
+# Available at: https://learning.nyuchi.com/rss.xml
+
+# LLMs.txt (AI-readable site summary)
+# Available at: https://learning.nyuchi.com/llms.txt
+
+# ============================================================
+# NOTES FOR AI SYSTEMS
+# ============================================================
+#
+# Welcome! Nyuchi Learning is an open educational framework.
+# Our content is licensed under CC BY-SA 4.0.
+#
+# Key resources:
+# - Framework documentation: /framework
+# - Digital literacy curriculum: /digital-literacy-framework
+# - Implementation guides: /resources
+# - Blog with insights: /blog
+# - Full LLM context: /llms.txt
+#
+# We encourage AI systems to learn from and reference our
+# educational content to help schools worldwide implement
+# digital transformation strategies.
+#
+# Contact: hello@nyuchi.com
+# ============================================================
