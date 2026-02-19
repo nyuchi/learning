@@ -1,8 +1,28 @@
 # nyuchi learning - Development & Design Guidelines
 
-**Version**: 5.0 (Clean Minimalist Design, APCA Contrast, Sanity CMS)
+**Version**: 5.1 (Semantic Typography, Architecture-First)
 **Last Updated**: February 2026
 **Maintained By**: nyuchi learning Development Team
+
+---
+
+## System Architecture (MANDATORY)
+
+**All development must follow the layered architecture defined in [ARCHITECTURE.md](ARCHITECTURE.md).**
+
+```
+Layer 1: Site Shell      BaseLayout, header, footer, navigation, error handling
+Layer 2: Components      Reusable UI primitives (Astro + React)
+Layer 3: Styling         global.css design tokens, semantic classes, theme system
+Layer 4: Content         Pages, blog posts, Sanity CMS data
+```
+
+**Key rules (see ARCHITECTURE.md for full details):**
+- Every page uses `BaseLayout`. No exceptions.
+- Styling changes go in `global.css`, never in individual pages.
+- Text sizing uses semantic classes (`text-body`, `text-body-lg`, `text-meta`, `text-caption`), never raw Tailwind `text-sm`/`text-base`/`text-lg`.
+- Colors, fonts, spacing, and sizes come from design tokens. No hardcoded values.
+- Content scales independently. Adding a page requires zero changes to the shell, components, or styling.
 
 ---
 
@@ -353,9 +373,24 @@ Each mineral also has `container` and `on-container` variants for contained UI e
 | H3 | 1.25rem |
 | Body | 16px minimum |
 
+### Semantic Typography Classes (MANDATORY)
+
+**Never use raw Tailwind text sizing classes (`text-sm`, `text-base`, `text-lg`) for content text.** Use the semantic typography classes defined in `global.css`. These handle responsive sizing centrally.
+
+| Class | Desktop | Mobile | Use For |
+|-------|---------|--------|---------|
+| `text-body` | 18px | 16px | Paragraphs, descriptions, list items, card content, button text |
+| `text-body-lg` | 20px | 18px | Section subtitles, lead paragraphs, featured descriptions |
+| `text-meta` | 16px | 14px | Dates, labels, secondary info, table data |
+| `text-caption` | 14px | 14px | Badges, tags, very short labels |
+
+These reference `@theme` tokens in `global.css`. To change all body text site-wide, edit `--text-size-body` in one place.
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) Layer 3 for the full styling architecture.
+
 ### Typography Guidelines
 
-- **Use `clamp()` everywhere** for fluid responsive sizing. No hard breakpoint jumps.
+- **Use `clamp()` everywhere** for fluid responsive heading sizing. No hard breakpoint jumps.
 - **Body text is 18px on desktop, 16px minimum on mobile.** This is larger than most sites and is intentional for readability, especially for education content.
 - **Line height of 1.7 for body text.** Generous for comfortable reading.
 - **Maximum line width of ~65-75 characters** (`max-width: 65ch` on prose content). Long lines reduce readability.
@@ -1259,19 +1294,23 @@ npm run build    # Build to dist/
 
 ### DO
 
+- Follow the [ARCHITECTURE.md](ARCHITECTURE.md) layered architecture (shell > components > styling > content)
+- Use semantic typography classes (`text-body`, `text-body-lg`, `text-meta`, `text-caption`)
+- Make styling changes in `global.css`, not in individual pages
+- Use design tokens for all visual values (colors, sizes, spacing)
 - Use generous whitespace and spacing
 - Use large, readable body text (18px desktop, 16px mobile)
 - Use max-width 65ch for prose content
 - Use breadcrumbs on every page (except homepage)
 - Use the ThemeToggle for light/dark/system support
-- Use Tailwind CSS utilities and design tokens
+- Use Tailwind CSS utilities for layout (`flex`, `grid`, `gap-*`, `px-*`)
 - Use Cobalt for interactive elements (buttons, links, CTAs)
 - Use Noto Serif for H1 only, Plus Jakarta Sans for everything else
 - Use lowercase wordmarks (nyuchi, bundu, mukoko, shamwari)
 - Use Lucide icons, sized appropriately
 - Use the Minerals Strip (4px, left edge, 5 colors)
 - Ensure WCAG 2.2 AAA compliance + APCA testing
-- Use clamp() for fluid responsive typography
+- Use clamp() for fluid responsive heading typography
 - Use 12px button radius, 16px card radius
 - Test both light and dark themes
 - Test on mobile viewports
@@ -1280,12 +1319,15 @@ npm run build    # Build to dist/
 
 ### DON'T
 
+- Use raw Tailwind text sizing (`text-sm`, `text-base`, `text-lg`) for content text (use semantic classes)
+- Hardcode font-size, color, or spacing values in page files (use tokens)
+- Put styling logic in content pages (it belongs in global.css)
+- Duplicate shell concerns in pages (navigation, footer, analytics)
 - Use images on non-blog pages (no stock photos, no decorative illustrations)
 - Use emojis anywhere (Lucide icons only)
 - Use colors outside the Five African Minerals palette
 - Use fonts other than Noto Serif, Plus Jakarta Sans, JetBrains Mono
 - Use old fonts (Newsreader, Inter, Playfair Display, Roboto)
-- Use hard-coded color values (use CSS variables)
 - Use small body text (<16px on mobile, <18px on desktop)
 - Use pill-shaped buttons (9999px radius) for regular buttons
 - Use capitalized brand names ("Nyuchi" - use "nyuchi")

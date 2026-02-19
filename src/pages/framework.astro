@@ -105,7 +105,7 @@ const budgetRows = [
           <Download size={20} /> Download PDF
         </a>
       </div>
-      <p class="text-sm text-[var(--text-secondary)] relative z-10">Free to use, copy, adapt, and share under open framework license</p>
+      <p class="text-meta text-[var(--text-secondary)] relative z-10">Free to use, copy, adapt, and share under open framework license</p>
     </div>
 
     <!-- Navigation -->
@@ -114,7 +114,7 @@ const budgetRows = [
       <ul class="flex flex-nowrap md:flex-wrap gap-2 sm:gap-3 min-w-max md:min-w-0">
         {navItems.map((item) => (
           <li>
-            <a href={item.href} class="inline-block py-2 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] text-xs sm:text-sm no-underline transition-colors hover:bg-[var(--primary)] hover:text-white whitespace-nowrap">
+            <a href={item.href} class="inline-block py-2 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-[var(--text)] text-caption no-underline transition-colors hover:bg-[var(--primary)] hover:text-white whitespace-nowrap">
               {item.label}
             </a>
           </li>
@@ -125,7 +125,7 @@ const budgetRows = [
     <!-- Executive Overview -->
     <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8">
       <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-bold mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
-      <p class="text-sm sm:text-base leading-relaxed text-[var(--text)]">
+      <p class="text-body text-[var(--text)]">
         This framework transforms a K-12 school into a digitally-enabled learning ecosystem that prepares students for a 2050 job market while serving students, staff, and parents/guardians. Built on cloud and open-source infrastructure, it prioritizes digital access, digital literacy, mobile-first experience, and AI-driven insights—all designed for cost-efficiency and scalability.
       </p>
     </section>
@@ -133,7 +133,7 @@ const budgetRows = [
     <!-- Framework Governance -->
     <section id="governance" class="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border-2 border-[var(--primary)]">
       <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-bold mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">How This Framework Embodies Our Principles</h2>
-      <p class="text-base sm:text-lg text-[var(--text)] mb-6 sm:mb-8 md:mb-10 leading-relaxed">
+      <p class="text-body-lg text-[var(--text)] mb-6 sm:mb-8 md:mb-10">
         All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this K-12 Digital Campus Framework embodies each principle:
       </p>
 
@@ -145,8 +145,8 @@ const budgetRows = [
             </div>
             <div>
               <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2 sm:mb-3 mt-0">{principle.title}</h3>
-              <p class="text-sm sm:text-base text-[var(--text)] leading-relaxed mb-2 sm:mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
-              <p class="text-[var(--text-secondary)] text-xs sm:text-sm p-3 sm:p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-3 sm:mt-4">
+              <p class="text-body text-[var(--text)] mb-2 sm:mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
+              <p class="text-[var(--text-secondary)] text-meta p-3 sm:p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-3 sm:mt-4">
                 <em>Example:</em> {principle.example}
               </p>
             </div>
@@ -156,7 +156,7 @@ const budgetRows = [
 
       <div class="bg-[var(--bg-surface)] p-10 rounded-xl text-center shadow-sm">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Part of a Broader Mission</h3>
-        <p class="text-lg leading-relaxed text-[var(--text)] mb-6">
+        <p class="text-body text-[var(--text)] mb-6">
           This framework is one of multiple frameworks released by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa committed to empowering developing countries to leapfrog traditional educational models. Learn more about our mission, vision, and strategic goals.
         </p>
         <a href="/about" class="inline-flex items-center justify-center py-3 px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:brightness-110">Read Our Mission & Impact</a>
@@ -173,13 +173,13 @@ const budgetRows = [
           <div class="bg-[var(--bg)] p-6 rounded-xl border-2 border-[var(--primary)] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
             <value.icon class="text-[var(--primary)] mb-4" size={32} stroke-width={1.5} />
             <h4 class="text-[var(--primary)] font-bold mb-2 mt-0">{value.title}</h4>
-            <p class="text-[var(--text)] text-sm m-0">{value.description}</p>
+            <p class="text-[var(--text)] text-body m-0">{value.description}</p>
           </div>
         ))}
       </div>
 
       <h3 class="text-[var(--text)] text-xl font-semibold mt-8 mb-4">Context: Why This Matters Now (2024-2050)</h3>
-      <p class="leading-relaxed text-[var(--text)] mb-4">The internet penetration statistic (37.4% in 2014 to 67.5% in 2024) demonstrates explosive digital transformation. By 2050, the job market will demand:</p>
+      <p class="text-body text-[var(--text)] mb-4">The internet penetration statistic (37.4% in 2014 to 67.5% in 2024) demonstrates explosive digital transformation. By 2050, the job market will demand:</p>
       <ul class="list-disc ml-6 space-y-2 text-[var(--text)]">
         <li>Digital fluency as baseline competency</li>
         <li>Ability to work across cloud platforms and distributed teams</li>
@@ -195,7 +195,7 @@ const budgetRows = [
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">II. Technology Infrastructure Layer</h2>
 
       <h3 class="text-[var(--text)] text-xl font-semibold mt-8 mb-4">Core Architecture: The Digital Backbone</h3>
-      <p class="leading-relaxed text-[var(--text)] mb-6">The framework uses a cloud and open-source stack optimized for cost efficiency:</p>
+      <p class="text-body text-[var(--text)] mb-6">The framework uses a cloud and open-source stack optimized for cost efficiency:</p>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div class="bg-[var(--bg)] p-6 rounded-xl">
@@ -413,7 +413,7 @@ const budgetRows = [
             <li>Early warning system pilot</li>
             <li>Basic student portal launch</li>
           </ul>
-          <p class="mt-4 p-4 bg-[var(--bg-surface)] rounded-lg text-sm"><strong>Investment:</strong> $78K | <strong>Outcomes:</strong> Core infrastructure operational, device equity established</p>
+          <p class="mt-4 p-4 bg-[var(--bg-surface)] rounded-lg text-meta"><strong>Investment:</strong> $78K | <strong>Outcomes:</strong> Core infrastructure operational, device equity established</p>
         </div>
 
         <div class="bg-[var(--bg)] p-8 rounded-xl">
@@ -425,7 +425,7 @@ const budgetRows = [
             <li>Parent portal launch</li>
             <li>Community integration workshops</li>
           </ul>
-          <p class="mt-4 p-4 bg-[var(--bg-surface)] rounded-lg text-sm"><strong>Investment:</strong> $59K | <strong>Outcomes:</strong> 3-4 AI models operational, 75% staff using dashboards</p>
+          <p class="mt-4 p-4 bg-[var(--bg-surface)] rounded-lg text-meta"><strong>Investment:</strong> $59K | <strong>Outcomes:</strong> 3-4 AI models operational, 75% staff using dashboards</p>
         </div>
 
         <div class="bg-[var(--bg)] p-8 rounded-xl">
@@ -437,7 +437,7 @@ const budgetRows = [
             <li>Internal team training for maintenance</li>
             <li>3-year impact evaluation</li>
           </ul>
-          <p class="mt-4 p-4 bg-[var(--bg-surface)] rounded-lg text-sm"><strong>Investment:</strong> $44K | <strong>Outcomes:</strong> 6+ AI models, 80%+ student engagement, sustainable operations</p>
+          <p class="mt-4 p-4 bg-[var(--bg-surface)] rounded-lg text-meta"><strong>Investment:</strong> $44K | <strong>Outcomes:</strong> 6+ AI models, 80%+ student engagement, sustainable operations</p>
         </div>
       </div>
     </section>
@@ -537,7 +537,7 @@ const budgetRows = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div class="bg-[var(--bg)] p-6 rounded-xl">
           <h3 class="text-[var(--primary)] font-bold mb-4 mt-0">Student Outcomes</h3>
-          <ul class="list-disc ml-5 space-y-2 text-[var(--text)] text-sm">
+          <ul class="list-disc ml-5 space-y-2 text-[var(--text)] text-meta">
             <li>Graduation Rate: +5% by Year 3</li>
             <li>College/Career Placement: +8% by Year 3</li>
             <li>At-Risk Identification: 95%+ accuracy</li>
@@ -547,7 +547,7 @@ const budgetRows = [
         </div>
         <div class="bg-[var(--bg)] p-6 rounded-xl">
           <h3 class="text-[var(--primary)] font-bold mb-4 mt-0">Engagement</h3>
-          <ul class="list-disc ml-5 space-y-2 text-[var(--text)] text-sm">
+          <ul class="list-disc ml-5 space-y-2 text-[var(--text)] text-meta">
             <li>Student Portal: 85%+ weekly login</li>
             <li>Staff Dashboard: 95%+ adoption</li>
             <li>Parent Portal: 75%+ family access</li>
@@ -556,7 +556,7 @@ const budgetRows = [
         </div>
         <div class="bg-[var(--bg)] p-6 rounded-xl">
           <h3 class="text-[var(--primary)] font-bold mb-4 mt-0">Operational Efficiency</h3>
-          <ul class="list-disc ml-5 space-y-2 text-[var(--text)] text-sm">
+          <ul class="list-disc ml-5 space-y-2 text-[var(--text)] text-meta">
             <li>Manual Data Entry: -60% by Year 3</li>
             <li>System Uptime: 99.5%+</li>
             <li>Help Desk Tickets: 60% reduction</li>
@@ -569,7 +569,7 @@ const budgetRows = [
     <!-- Vision CTA -->
     <section class="text-center bg-gradient-to-br from-[var(--success)] to-[var(--mineral-malachite)] text-white py-16 px-8 rounded-2xl">
       <h2 class="text-white text-2xl font-bold mb-6 pb-2 border-b-[3px] border-white">Vision for 2050</h2>
-      <p class="text-white text-lg leading-relaxed mb-4 max-w-[800px] mx-auto">
+      <p class="text-white text-body mb-4 max-w-[800px] mx-auto">
         This framework prepares students for a 2050 job market where digital fluency is baseline competency. By emphasizing digital literacy over tools, students develop metacognitive skills to navigate unforeseen technologies. Equity-first design ensures all students benefit regardless of socioeconomic status.
       </p>
       <p class="text-white text-xl font-bold mb-8">By 2050, students won't just adapt to digital change—they'll shape it.</p>
