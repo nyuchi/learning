@@ -262,10 +262,11 @@ Brief description of the changes.
 - [ ] Framework content update
 
 ## Checklist
-- [ ] `npm run build` passes
-- [ ] `npm test` passes (design guidelines + accessibility/SEO)
-- [ ] `npm run lint` passes (no ESLint errors)
-- [ ] `npm run format:check` passes (Prettier formatting)
+
+### Automated checks
+- [ ] `npm run check` passes (lint, format, tests, build)
+
+### Manual verification
 - [ ] Tested on mobile viewport (375px, 393px)
 - [ ] Breadcrumbs present on interior pages
 - [ ] Both light and dark themes work
@@ -273,6 +274,12 @@ Brief description of the changes.
 - [ ] No emojis used (Lucide icons only)
 - [ ] No decorative images (typography and whitespace for visual interest)
 - [ ] Follows design guidelines in CLAUDE.md
+
+### Documentation updates
+- [ ] `CHANGELOG.md` updated with changes
+- [ ] `CLAUDE.md` updated if design system or workflows changed
+- [ ] `README.md` updated if features or project structure changed
+- [ ] Other docs updated as needed (CONTRIBUTING, BRANDING, SECURITY, DEPLOYMENT)
 
 ## Screenshots (if applicable)
 ```

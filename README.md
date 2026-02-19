@@ -307,8 +307,9 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes (follow [CLAUDE.md](CLAUDE.md) guidelines)
-4. Run `npm run build` to verify
-5. Submit a pull request
+4. Run `npm run check` to verify (lint, format, tests, build)
+5. Update documentation: CHANGELOG.md, and any affected docs (CLAUDE.md, README, etc.)
+6. Submit a pull request
 
 ---
 
