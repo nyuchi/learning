@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Download, Users, Bot, Wrench, AlertCircle, Check, Clock, DollarSign, Target } from '@lucide/astro';
+import { Download, Users, Bot, Wrench, CircleAlert, Check, Clock, DollarSign, Target } from '@lucide/astro';
 
 // Navigation items
 const navItems = [
@@ -170,10 +170,10 @@ const routingRows = [
 
 // Auto-escalation rules
 const escalationRules = [
-  { icon: AlertCircle, title: "System-Wide Issues", description: "If 5+ users report same issue in 1 hour → Escalate to High/Critical" },
+  { icon: CircleAlert, title: "System-Wide Issues", description: "If 5+ users report same issue in 1 hour → Escalate to High/Critical" },
   { icon: Target, title: "Teacher During Class", description: "Teacher blocked during school hours → Escalate to High" },
   { icon: Clock, title: "Testing Deadlines", description: "Assessment issue with <2 days until test → Escalate to High" },
-  { icon: AlertCircle, title: "SLA Risk", description: "Ticket age >150% of SLA time → Auto-escalate priority" }
+  { icon: CircleAlert, title: "SLA Risk", description: "Ticket age >150% of SLA time → Auto-escalate priority" }
 ];
 
 // Response time SLAs
@@ -474,7 +474,7 @@ const budgetItems = [
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {summaryCards.map((card) => (
           <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl text-center border-2 border-[var(--primary)]">
-            <card.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+            <card.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)] mb-3 sm:mb-4">{card.description}</p>
             <div class="text-2xl sm:text-3xl font-extrabold text-[var(--primary)]">{card.stat}</div>
@@ -487,7 +487,7 @@ const budgetItems = [
         <ul class="list-none p-0 space-y-0">
           {kpiMetrics.map((metric) => (
             <li class="flex items-center gap-2 sm:gap-3 py-2.5 sm:py-3 border-b border-[var(--border)] last:border-b-0 text-sm sm:text-base md:text-lg">
-              <Check class="text-[var(--primary)] flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2} />
+              <Check class="text-[var(--primary)] flex-shrink-0 w-4 h-4 sm:w-5 sm:h-5" stroke-width={2} />
               <span class="text-[var(--text)]">{metric}</span>
             </li>
           ))}
@@ -527,7 +527,7 @@ const budgetItems = [
       {tierDetails.map((tier) => (
         <div class="mb-12 last:mb-0 border-2 border-[var(--border)] rounded-xl overflow-hidden">
           <div class={`flex items-center gap-4 p-6 text-white ${tier.gradientClass}`}>
-            <tier.icon size={32} strokeWidth={1.5} />
+            <tier.icon size={32} stroke-width={1.5} />
             <h3 class="text-2xl font-bold m-0">{tier.title}</h3>
           </div>
           <div class="p-8">
@@ -680,7 +680,7 @@ User Access Support Portal
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {escalationRules.map((rule) => (
             <div class="bg-[var(--bg)] p-6 rounded-xl border-2 border-[var(--primary)]">
-              <rule.icon class="text-[var(--primary)] mb-3" size={24} strokeWidth={2} />
+              <rule.icon class="text-[var(--primary)] mb-3" size={24} stroke-width={2} />
               <h4 class="text-[var(--primary)] text-lg font-bold mb-2">{rule.title}</h4>
               <p class="text-[var(--text)] m-0">{rule.description}</p>
             </div>
@@ -862,7 +862,7 @@ User Access Support Portal
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
         {budgetItems.map((item) => (
           <div class="flex gap-6 bg-[var(--bg)] p-8 rounded-xl items-start">
-            <DollarSign class="text-[var(--primary)] flex-shrink-0" size={32} strokeWidth={1.5} />
+            <DollarSign class="text-[var(--primary)] flex-shrink-0" size={32} stroke-width={1.5} />
             <div>
               <h3 class="text-[var(--text)] text-xl font-bold mb-2">{item.title}</h3>
               <div class="text-3xl font-extrabold text-[var(--primary)] mb-2">{item.amount}</div>

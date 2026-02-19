@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { DollarSign, Check, AlertCircle, Info } from '@lucide/astro';
+import { DollarSign, Check, CircleAlert, Info } from '@lucide/astro';
 
 // Budget scenario tiers - These are cost estimates, NOT prices for Nyuchi services
 const budgetScenarios = [
@@ -125,7 +125,7 @@ const savingsStrategies = [
       </div>
 
       <div class="flex items-start gap-3 sm:gap-4 max-w-[850px] mx-auto mt-3 sm:mt-4 p-4 sm:p-6 bg-[var(--primary)]/10 rounded-lg text-left relative z-10">
-        <AlertCircle size={20} class="text-[var(--primary)] flex-shrink-0 mt-0.5 hidden sm:block" />
+        <CircleAlert size={20} class="text-[var(--primary)] flex-shrink-0 mt-0.5 hidden sm:block" />
         <p class="m-0 text-sm sm:text-[0.95rem] leading-relaxed text-[var(--text-secondary)]">All costs are estimates for a school of 500-1000 students over 3 years. Your actual costs will vary based on location, existing infrastructure, vendor choices, and specific needs.</p>
       </div>
     </div>

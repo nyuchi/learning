@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Globe, BookOpen, Smartphone, DollarSign, BarChart, Users, Download } from '@lucide/astro';
+import { Globe, BookOpen, Smartphone, DollarSign, ChartBar, Users, Download } from '@lucide/astro';
 
 // Core values data
 const coreValues = [
@@ -9,7 +9,7 @@ const coreValues = [
   { icon: BookOpen, title: "Digital Literacy First", description: "Technology enablement paired with critical thinking and digital citizenship" },
   { icon: Smartphone, title: "Mobile-Centric", description: "Recognizing that smartphones are primary access devices for most users" },
   { icon: DollarSign, title: "Cost Efficiency", description: "Open-source and cloud solutions to maximize limited school budgets" },
-  { icon: BarChart, title: "Data-Driven Decisions", description: "Analytics and insights inform instruction, support, and strategy" },
+  { icon: ChartBar, title: "Data-Driven Decisions", description: "Analytics and insights inform instruction, support, and strategy" },
   { icon: Users, title: "Community-Centered", description: "Seamless experience across students, staff, and parents/guardians" }
 ];
 
@@ -171,7 +171,7 @@ const budgetRows = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {coreValues.map((value) => (
           <div class="bg-[var(--bg)] p-6 rounded-xl border-2 border-[var(--primary)] transition-all duration-200 hover:-translate-y-1 hover:shadow-lg">
-            <value.icon class="text-[var(--primary)] mb-4" size={32} strokeWidth={1.5} />
+            <value.icon class="text-[var(--primary)] mb-4" size={32} stroke-width={1.5} />
             <h4 class="text-[var(--primary)] font-bold mb-2 mt-0">{value.title}</h4>
             <p class="text-[var(--text)] text-sm m-0">{value.description}</p>
           </div>
