@@ -20,9 +20,9 @@ This policy does **not** cover:
 
 | Version | Supported |
 |---------|-----------|
-| 4.x     | Yes       |
-| 3.x     | No        |
-| < 3.0   | No        |
+| 5.x     | Yes       |
+| 4.x     | No        |
+| < 4.0   | No        |
 
 Only the latest major version receives security updates.
 
@@ -42,9 +42,11 @@ The attack surface is minimal by design.
 ### Third-Party Dependencies
 
 We use the following main dependencies:
-- **Astro**: Static site generator
-- **Tailwind CSS**: Styling framework
-- **Lucide Icons**: Icon library
+- **Astro 5.x**: Static site generator
+- **Tailwind CSS 4.x**: Styling framework with PostCSS
+- **React 19 + Radix UI**: Interactive UI components
+- **Lucide Icons**: Icon library (astro + react variants)
+- **Sanity.io** (planned): Headless CMS for blog content
 
 Dependencies are regularly updated. We use `npm audit` to check for known vulnerabilities.
 
@@ -114,7 +116,7 @@ Our frameworks reference various third-party tools and services. We:
 
 ## Updates
 
-This security policy was last updated in December 2025.
+This security policy was last updated in February 2026.
 
 We review and update this policy:
 - When major versions are released
