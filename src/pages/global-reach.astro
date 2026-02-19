@@ -91,9 +91,9 @@ const impactGoals = [
     <!-- Hero Section -->
     <section class="py-12 sm:py-16 md:py-24 text-center">
       <div class="max-w-[1200px] mx-auto">
-        <p class="text-base sm:text-lg text-[var(--text-tertiary)] mb-3 sm:mb-4 italic">Ubuntu: I am because we are</p>
+        <p class="text-body text-[var(--text-tertiary)] mb-3 sm:mb-4 italic">Ubuntu: I am because we are</p>
         <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-display font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-4 sm:mb-6">Global Reach</h1>
-        <p class="text-lg leading-relaxed max-w-[65ch] mx-auto text-[var(--text-secondary)]">Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050</p>
+        <p class="text-body max-w-[65ch] mx-auto text-[var(--text-secondary)]">Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050</p>
       </div>
     </section>
 
@@ -101,7 +101,7 @@ const impactGoals = [
     <section class="py-10 sm:py-12 md:py-16 bg-[var(--bg)]">
       <div class="text-center mb-8 sm:mb-10 md:mb-12">
         <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-4 sm:mb-6">Where We Serve</h2>
-        <p class="text-base sm:text-lg md:text-xl leading-relaxed text-[var(--text-secondary)] max-w-[900px] mx-auto">
+        <p class="text-body-lg text-[var(--text-secondary)] max-w-[900px] mx-auto">
           <strong>nyuchi learning is pan-African with a global developing world focus.</strong>
           While Africa is our home and primary priority, our frameworks are designed for all developing
           countries facing similar challenges: mobile-first populations, limited 1:1 device access,
@@ -113,7 +113,7 @@ const impactGoals = [
         {scopeStats.map((stat) => (
           <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl text-center shadow-sm">
             <div class="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--primary)] mb-2 font-display">{stat.number}</div>
-            <div class="text-sm sm:text-base text-[var(--text-secondary)]">{stat.label}</div>
+            <div class="text-body text-[var(--text-secondary)]">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -129,27 +129,27 @@ const impactGoals = [
           <MapPin class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Africa (Primary Focus)</h3>
-            <p class="text-sm sm:text-base text-[var(--text-secondary)]">Home base • Reinvestment commitment • Local ownership</p>
+            <p class="text-body text-[var(--text-secondary)]">Home base • Reinvestment commitment • Local ownership</p>
           </div>
         </div>
 
-        <p class="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 md:mb-10 text-[var(--text-secondary)]"><strong>Africa is our home.</strong> nyuchi africa is Zimbabwe-registered (2019) with a commitment to reinvesting profits into local economies and building solutions tested on African roads, not just theory.</p>
+        <p class="text-body mb-6 sm:mb-8 md:mb-10 text-[var(--text-secondary)]"><strong>Africa is our home.</strong> nyuchi africa is Zimbabwe-registered (2019) with a commitment to reinvesting profits into local economies and building solutions tested on African roads, not just theory.</p>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 md:gap-6 mb-6 sm:mb-8">
           {africaCountries.map((country) => (
             <div class={`bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-[var(--primary)] ${country.featured ? 'border-2 border-[var(--primary)] bg-[var(--bg-surface)]' : 'border-[var(--border)]'}`}>
               <h4 class="text-lg sm:text-xl text-[var(--text)] mb-2">{country.name}</h4>
-              <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.featured ? <strong>{country.subtitle}</strong> : country.subtitle}</p>
+              <p class="text-meta text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.featured ? <strong>{country.subtitle}</strong> : country.subtitle}</p>
               <ul class="list-none p-0 m-0 space-y-1">
                 {country.points.map((point) => (
-                  <li class="text-xs sm:text-sm text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
+                  <li class="text-meta text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
 
-        <p class="text-xs sm:text-sm text-[var(--text-secondary)] italic"><strong>Also serving:</strong> Rwanda, Senegal, Côte d'Ivoire, Zambia, Malawi, Botswana, Namibia, and other African countries on request.</p>
+        <p class="text-meta text-[var(--text-secondary)] italic"><strong>Also serving:</strong> Rwanda, Senegal, Côte d'Ivoire, Zambia, Malawi, Botswana, Namibia, and other African countries on request.</p>
       </div>
 
       <!-- South Asia -->
@@ -158,7 +158,7 @@ const impactGoals = [
           <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">South Asia</h3>
-            <p class="text-sm sm:text-base text-[var(--text-secondary)]">Massive scale • Mobile-first populations • Multilingual complexity</p>
+            <p class="text-body text-[var(--text-secondary)]">Massive scale • Mobile-first populations • Multilingual complexity</p>
           </div>
         </div>
 
@@ -166,10 +166,10 @@ const impactGoals = [
           {southAsiaCountries.map((country) => (
             <div class="bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-[var(--primary)]">
               <h4 class="text-lg sm:text-xl text-[var(--text)] mb-2">{country.name}</h4>
-              <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
+              <p class="text-meta text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
               <ul class="list-none p-0 m-0 space-y-1">
                 {country.points.map((point) => (
-                  <li class="text-xs sm:text-sm text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
+                  <li class="text-meta text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
                 ))}
               </ul>
             </div>
@@ -183,7 +183,7 @@ const impactGoals = [
           <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Southeast Asia</h3>
-            <p class="text-sm sm:text-base text-[var(--text-secondary)]">Tech-forward • Diverse economies • Strong mobile adoption</p>
+            <p class="text-body text-[var(--text-secondary)]">Tech-forward • Diverse economies • Strong mobile adoption</p>
           </div>
         </div>
 
@@ -191,10 +191,10 @@ const impactGoals = [
           {southeastAsiaCountries.map((country) => (
             <div class="bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-[var(--primary)]">
               <h4 class="text-lg sm:text-xl text-[var(--text)] mb-2">{country.name}</h4>
-              <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
+              <p class="text-meta text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
               <ul class="list-none p-0 m-0 space-y-1">
                 {country.points.map((point) => (
-                  <li class="text-xs sm:text-sm text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
+                  <li class="text-meta text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
                 ))}
               </ul>
             </div>
@@ -208,7 +208,7 @@ const impactGoals = [
           <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Latin America</h3>
-            <p class="text-sm sm:text-base text-[var(--text-secondary)]">Spanish-speaking markets • Urban-rural divide • Growing digital access</p>
+            <p class="text-body text-[var(--text-secondary)]">Spanish-speaking markets • Urban-rural divide • Growing digital access</p>
           </div>
         </div>
 
@@ -216,17 +216,17 @@ const impactGoals = [
           {latinAmericaCountries.map((country) => (
             <div class="bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-[var(--primary)]">
               <h4 class="text-lg sm:text-xl text-[var(--text)] mb-2">{country.name}</h4>
-              <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
+              <p class="text-meta text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
               <ul class="list-none p-0 m-0 space-y-1">
                 {country.points.map((point) => (
-                  <li class="text-xs sm:text-sm text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
+                  <li class="text-meta text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
 
-        <p class="text-xs sm:text-sm text-[var(--text-secondary)] italic"><strong>Also serving:</strong> Argentina, Chile, Ecuador, Bolivia, Central American countries</p>
+        <p class="text-meta text-[var(--text-secondary)] italic"><strong>Also serving:</strong> Argentina, Chile, Ecuador, Bolivia, Central American countries</p>
       </div>
 
       <!-- Pacific & Caribbean -->
@@ -235,7 +235,7 @@ const impactGoals = [
           <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Pacific & Caribbean</h3>
-            <p class="text-sm sm:text-base text-[var(--text-secondary)]">Island nations • Small scale, high impact • Connectivity challenges</p>
+            <p class="text-body text-[var(--text-secondary)]">Island nations • Small scale, high impact • Connectivity challenges</p>
           </div>
         </div>
 
@@ -243,17 +243,17 @@ const impactGoals = [
           {pacificCountries.map((country) => (
             <div class="bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md hover:border-[var(--primary)]">
               <h4 class="text-lg sm:text-xl text-[var(--text)] mb-2">{country.name}</h4>
-              <p class="text-xs sm:text-sm text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
+              <p class="text-meta text-[var(--text-secondary)] font-semibold mb-2 sm:mb-3">{country.subtitle}</p>
               <ul class="list-none p-0 m-0 space-y-1">
                 {country.points.map((point) => (
-                  <li class="text-xs sm:text-sm text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
+                  <li class="text-meta text-[var(--text-secondary)] pl-4 relative before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)]">{point}</li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
 
-        <p class="text-xs sm:text-sm text-[var(--text-secondary)] italic"><strong>Also serving:</strong> Samoa, Tonga, Vanuatu, Solomon Islands, other Caribbean nations</p>
+        <p class="text-meta text-[var(--text-secondary)] italic"><strong>Also serving:</strong> Samoa, Tonga, Vanuatu, Solomon Islands, other Caribbean nations</p>
       </div>
     </section>
 
@@ -265,7 +265,7 @@ const impactGoals = [
           <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl shadow-sm text-center">
             <reason.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
             <h3 class="text-lg sm:text-xl text-[var(--text)] mb-3 sm:mb-4">{reason.title}</h3>
-            <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">{reason.description}</p>
+            <p class="text-body text-[var(--text-secondary)]">{reason.description}</p>
           </div>
         ))}
       </div>
@@ -280,7 +280,7 @@ const impactGoals = [
             <h3 class="text-xl sm:text-2xl text-[var(--primary)] mb-4 sm:mb-6">{goal.region}</h3>
             <ul class="list-none p-0 m-0 space-y-2 sm:space-y-3">
               {goal.goals.map((item) => (
-                <li class="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
+                <li class="flex items-start gap-2 sm:gap-3 text-body text-[var(--text-secondary)]">
                   <CircleCheckBig class="text-[var(--mineral-malachite)] flex-shrink-0 mt-0.5 w-4 h-4 sm:w-5 sm:h-5" />
                   <span>{item}</span>
                 </li>
@@ -290,17 +290,17 @@ const impactGoals = [
         ))}
       </div>
 
-      <p class="text-center text-base sm:text-lg md:text-xl text-[var(--text)] mt-8 sm:mt-10 md:mt-12 p-4 sm:p-5 md:p-6 bg-[var(--bg-surface)] rounded-xl"><strong>Total 2030 Goal:</strong> 1,000 schools, 10 million students across 40+ developing countries</p>
+      <p class="text-center text-body-lg text-[var(--text)] mt-8 sm:mt-10 md:mt-12 p-4 sm:p-5 md:p-6 bg-[var(--bg-surface)] rounded-xl"><strong>Total 2030 Goal:</strong> 1,000 schools, 10 million students across 40+ developing countries</p>
     </section>
 
     <!-- CTA Section -->
     <section class="text-center py-10 sm:py-14 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] rounded-2xl md:rounded-3xl mb-8 sm:mb-12 md:mb-16">
       <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-4 sm:mb-6">Join the Global Movement</h2>
-      <p class="text-base sm:text-lg md:text-xl text-[var(--text-secondary)] max-w-[800px] mx-auto mb-6 sm:mb-8 md:mb-10 leading-relaxed">Whether you're in Harare, Mumbai, Jakarta, São Paulo, or Port Moresby—our frameworks are designed for your school. Download, adapt, implement, and share your learnings with the global community.</p>
+      <p class="text-body-lg text-[var(--text-secondary)] max-w-[800px] mx-auto mb-6 sm:mb-8 md:mb-10">Whether you're in Harare, Mumbai, Jakarta, São Paulo, or Port Moresby—our frameworks are designed for your school. Download, adapt, implement, and share your learnings with the global community.</p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center">
-        <a href="/frameworks" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 text-base sm:text-lg w-full sm:w-auto">Download Frameworks</a>
-        <a href="/resources" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)] text-base sm:text-lg w-full sm:w-auto">Browse Resources</a>
-        <a href="/consultation" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)] text-base sm:text-lg w-full sm:w-auto">Schedule Consultation</a>
+        <a href="/frameworks" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 text-body w-full sm:w-auto">Download Frameworks</a>
+        <a href="/resources" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)] text-body w-full sm:w-auto">Browse Resources</a>
+        <a href="/consultation" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)] text-body w-full sm:w-auto">Schedule Consultation</a>
       </div>
     </section>
   </div>

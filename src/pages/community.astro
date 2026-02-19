@@ -81,8 +81,8 @@ const stats = [
   <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 text-center">
     <div class="max-w-[1200px] mx-auto">
       <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-4 sm:mb-6">Join Our Community</h1>
-      <p class="text-lg italic text-[var(--text-tertiary)] mb-6 sm:mb-8 tracking-wide">Ubuntu: When we build together, we all succeed</p>
-      <p class="text-lg max-w-[65ch] mx-auto leading-relaxed text-[var(--text-secondary)] px-2">
+      <p class="text-body italic text-[var(--text-tertiary)] mb-6 sm:mb-8 tracking-wide">Ubuntu: When we build together, we all succeed</p>
+      <p class="text-body max-w-[65ch] mx-auto text-[var(--text-secondary)] px-2">
         This framework thrives on community collaboration. Whether you're an educator, IT professional,
         student, or administrator, your voice matters. Help us build, improve, and adapt this framework
         for schools across Africa and beyond.
@@ -101,8 +101,8 @@ const stats = [
               <feature.icon class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" stroke-width={1.5} />
             </div>
             <h3 class="text-lg sm:text-xl md:text-2xl text-[var(--text)] font-extrabold tracking-tight text-center m-0">{feature.title}</h3>
-            <p class="leading-relaxed text-[var(--text)] text-base sm:text-lg flex-1 text-center">{feature.description}</p>
-            <div class="flex items-center justify-center gap-2 text-[var(--primary)] font-bold tracking-wide text-base sm:text-lg transition-all duration-300">
+            <p class="text-body text-[var(--text)] flex-1 text-center">{feature.description}</p>
+            <div class="flex items-center justify-center gap-2 text-[var(--primary)] font-bold tracking-wide text-body transition-all duration-300">
               <span>{feature.linkText}</span>
               <ExternalLink size={20} stroke-width={2} />
             </div>
@@ -118,14 +118,14 @@ const stats = [
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-16 items-center">
         <div>
           <h2 class="text-[clamp(1.5rem,5vw,3rem)] font-black mb-4 sm:mb-6 text-[var(--text)] tracking-tight">Why Contribute?</h2>
-          <p class="text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 text-[var(--text)]">
+          <p class="text-body-lg mb-6 sm:mb-8 text-[var(--text)]">
             This framework is <strong>open, shareable, and community-driven</strong>. Every contribution—whether
             it's a bug report, feature suggestion, discussion comment, or documentation improvement—helps
             schools across Africa and beyond implement better digital transformation strategies.
           </p>
           <ul class="list-none p-0 space-y-0">
             {contributionBenefits.map((benefit) => (
-              <li class="py-3 sm:py-4 pl-6 sm:pl-8 relative text-base sm:text-lg leading-relaxed border-b border-[var(--border)] last:border-b-0 before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)] before:font-black before:text-xl sm:before:text-2xl">
+              <li class="py-3 sm:py-4 pl-6 sm:pl-8 relative text-body border-b border-[var(--border)] last:border-b-0 before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)] before:font-black before:text-xl sm:before:text-2xl">
                 <strong class="text-[var(--primary)] font-bold">{benefit.title}:</strong> {benefit.description}
               </li>
             ))}
@@ -149,7 +149,7 @@ const stats = [
               <stat.icon class="w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
             </div>
             <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text)] mb-2 tracking-tight">{stat.number}</div>
-            <div class="text-[var(--text)] text-base sm:text-lg font-medium">{stat.label}</div>
+            <div class="text-[var(--text)] text-body font-medium">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -160,10 +160,10 @@ const stats = [
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 text-center bg-gradient-to-br from-black/95 to-[var(--bg)] text-[var(--text)] border-t-4 sm:border-t-6 md:border-t-[10px] border-white">
     <div class="max-w-[1200px] mx-auto">
       <h2 class="text-[clamp(1.5rem,6vw,3.5rem)] font-black mb-4 sm:mb-6 md:mb-8 tracking-tight leading-tight">Ready to Contribute?</h2>
-      <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-10 max-w-[800px] mx-auto leading-relaxed px-2">
+      <p class="text-body-lg mb-6 sm:mb-8 md:mb-10 max-w-[800px] mx-auto px-2">
         Visit our GitHub repository to get started. Every voice matters in building the future of education.
       </p>
-      <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-8 md:px-10 text-base sm:text-lg rounded-xl bg-[var(--bg-surface)] text-[var(--primary)] font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto">
+      <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-8 md:px-10 text-body rounded-xl bg-[var(--bg-surface)] text-[var(--primary)] font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto">
         <Github size={24} stroke-width={2} />
         Visit GitHub Repository
       </a>

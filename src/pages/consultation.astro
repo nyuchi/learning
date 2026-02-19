@@ -36,9 +36,9 @@ const attendees = [
   <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
     <!-- Header -->
     <div class="relative text-center mb-8 sm:mb-12 md:mb-16 py-10 sm:py-12 px-4 sm:px-6">
-      <p class="text-base sm:text-lg italic text-[var(--text-tertiary)] mb-3 sm:mb-4">Ubuntu: I am because we are</p>
+      <p class="text-body italic text-[var(--text-tertiary)] mb-3 sm:mb-4">Ubuntu: I am because we are</p>
       <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-3 sm:mb-4">Book a Consultation</h1>
-      <p class="text-lg max-w-[65ch] mx-auto leading-relaxed text-[var(--text-secondary)]">
+      <p class="text-body max-w-[65ch] mx-auto text-[var(--text-secondary)]">
         Let's discuss how the K-12 Digital Campus Framework can transform your school's digital experience
       </p>
     </div>
@@ -49,7 +49,7 @@ const attendees = [
         <!-- What to Expect -->
         <section class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl shadow-sm border border-[var(--border)]">
           <h2 class="text-[var(--primary)] text-2xl font-bold mb-4">What to Expect</h2>
-          <p class="leading-relaxed text-[var(--text)] mb-4">
+          <p class="text-body text-[var(--text)] mb-4">
             During your consultation, we'll explore how the K-12 Digital Campus Framework can be adapted to your school's unique needs, challenges, and goals. This is a collaborative conversation focused on practical solutions.
           </p>
         </section>
@@ -59,7 +59,7 @@ const attendees = [
           <h3 class="text-[var(--primary)] text-xl font-bold mb-4">We'll Discuss:</h3>
           <ul class="list-none p-0 m-0 space-y-4">
             {discussionTopics.map((topic) => (
-              <li class="flex items-start gap-3 leading-relaxed">
+              <li class="flex items-start gap-3 text-body">
                 <CircleCheckBig class="text-[var(--primary)] flex-shrink-0 mt-0.5" size={20} stroke-width={2} />
                 <span class="text-[var(--text)]">{topic}</span>
               </li>
@@ -75,7 +75,7 @@ const attendees = [
               <div class="text-center p-6 bg-[var(--bg)] rounded-lg transition-all duration-200 hover:-translate-y-1">
                 <attendee.icon class="text-[var(--primary)] mx-auto mb-4" size={32} stroke-width={1.5} />
                 <h4 class="text-lg font-semibold mb-2 text-[var(--text)]">{attendee.title}</h4>
-                <p class="text-sm text-[var(--text-secondary)] m-0">{attendee.description}</p>
+                <p class="text-body text-[var(--text-secondary)] m-0">{attendee.description}</p>
               </div>
             ))}
           </div>
@@ -84,7 +84,7 @@ const attendees = [
         <!-- Commitment -->
         <section class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
           <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Our Commitment</h3>
-          <p class="leading-relaxed text-[var(--text)] mb-4">
+          <p class="text-body text-[var(--text)] mb-4">
             nyuchi learning is committed to Zimbabwe and Africa's educational future. Built by educators for educators,
             our frameworks are <strong>open, shareable, and adaptable</strong>. We believe in community success—when
             one school thrives, we all benefit.
@@ -99,7 +99,7 @@ const attendees = [
       <div class="lg:sticky lg:top-[100px] h-fit">
         <div class="bg-[var(--bg-surface)] p-8 rounded-xl border border-[var(--border)]">
           <h2 class="text-[var(--primary)] text-2xl font-bold mb-4">Schedule Your Consultation</h2>
-          <p class="text-[var(--text-secondary)] mb-6 leading-relaxed">
+          <p class="text-[var(--text-secondary)] mb-6 text-body">
             Choose a time that works for you. Consultations are typically 45-60 minutes.
           </p>
 
@@ -113,7 +113,7 @@ const attendees = [
             >
               Open Booking Calendar
             </a>
-            <p class="mt-6 text-[var(--text-secondary)] text-sm leading-relaxed max-w-[500px] mx-auto">
+            <p class="mt-6 text-[var(--text-secondary)] text-meta max-w-[500px] mx-auto">
               You'll be redirected to our secure booking calendar where you can view available times and schedule your consultation.
             </p>
           </div>

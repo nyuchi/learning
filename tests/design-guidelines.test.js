@@ -1,15 +1,15 @@
 /**
- * Design Guidelines Compliance Tests
+ * Design Guidelines & Architecture Compliance Tests
  *
- * Validates that all pages and styles conform to the CLAUDE.md v5.0 guidelines:
- * - Breadcrumbs on all interior pages
+ * Validates that all pages and styles conform to CLAUDE.md and ARCHITECTURE.md:
+ * - Architecture: BaseLayout usage, breadcrumbs, semantic typography classes
  * - No background images on non-blog pages
  * - No emoji usage (Lucide icons only)
- * - No hardcoded color hex values (must use CSS variables)
- * - Typography: font-display for H1, proper sizing
+ * - Typography: font-display for H1, semantic classes, no hardcoded text sizing
  * - Proper heading hierarchy (single H1 per page)
  * - No forbidden fonts
  * - Lowercase wordmarks
+ * - Design token usage (no hardcoded values in pages)
  */
 
 import { describe, it, expect } from 'vitest';
@@ -246,6 +246,118 @@ describe('Lowercase wordmarks', () => {
         return line.includes(brand) && !line.includes(brand.toLowerCase());
       });
       // This is a soft check - capitalized brand names in SEO/meta are acceptable
+    }
+  });
+});
+
+// ========================================
+// SEMANTIC TYPOGRAPHY ENFORCEMENT
+// ========================================
+describe('Semantic typography classes', () => {
+  // These Tailwind text sizing classes should NOT appear on body/paragraph content
+  // They are only acceptable on heading elements, clamp() patterns, or stat numbers
+  const rawSizingPattern = /\btext-(?:xs|sm|base|lg)\b/g;
+
+  // Patterns that are acceptable (headings, stat numbers, non-content contexts)
+  const allowedContexts = [
+    /text-(?:xs|sm|base|lg)\s+(?:sm:|md:|lg:)*text-/,  // responsive heading chains like text-lg sm:text-xl
+    /text-lg\s+(?:sm:|md:|lg:)*(?:text-xl|text-2xl)/,   // heading scale-up patterns
+    /text-base\s+(?:sm:|md:|lg:)*(?:text-lg|text-xl)/,   // heading scale-up patterns
+    /<h[1-6]/,                                            // heading elements
+    /\btext-\[clamp\(/,                                   // clamp() sizing
+    /\btext-\[var\(/,                                     // CSS variable (color, not size)
+    /text-(?:2xl|3xl|4xl|5xl|6xl)/,                       // large heading/stat sizes
+  ];
+
+  it('global.css should define semantic typography classes', () => {
+    const css = readFileSync(join(STYLES_DIR, 'global.css'), 'utf-8');
+    expect(css).toContain('.text-body');
+    expect(css).toContain('.text-body-lg');
+    expect(css).toContain('.text-meta');
+    expect(css).toContain('.text-caption');
+  });
+
+  it('global.css should define typography scale tokens', () => {
+    const css = readFileSync(join(STYLES_DIR, 'global.css'), 'utf-8');
+    expect(css).toContain('--text-size-body:');
+    expect(css).toContain('--text-size-body-mobile:');
+    expect(css).toContain('--text-size-body-lg:');
+    expect(css).toContain('--text-size-meta:');
+    expect(css).toContain('--text-size-caption:');
+  });
+
+  it('global.css semantic classes should handle mobile responsive sizing', () => {
+    const css = readFileSync(join(STYLES_DIR, 'global.css'), 'utf-8');
+    // Check that text-body has a mobile media query
+    expect(css).toMatch(/\.text-body\s*\{[^}]*font-size:\s*var\(--text-size-body\)/);
+    expect(css).toMatch(/\.text-body\s*\{[^}]*font-size:\s*var\(--text-size-body-mobile\)/);
+  });
+});
+
+// ========================================
+// ARCHITECTURE: COMPONENT TOKEN MINIMUMS
+// ========================================
+describe('Component token minimums', () => {
+  const css = readFileSync(join(STYLES_DIR, 'global.css'), 'utf-8');
+
+  it('button default font size should be at least 16px', () => {
+    const match = css.match(/--btn-default-font:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(16);
+  });
+
+  it('button large font size should be at least 18px', () => {
+    const match = css.match(/--btn-lg-font:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(18);
+  });
+
+  it('input font size should be at least 16px', () => {
+    const match = css.match(/--input-font:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(16);
+  });
+
+  it('a11y font minimum should be at least 16px', () => {
+    const match = css.match(/--a11y-font-min:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(16);
+  });
+
+  it('button default height should meet touch target minimum', () => {
+    const match = css.match(/--btn-default-height:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(44);
+  });
+
+  it('input height should meet touch target minimum', () => {
+    const match = css.match(/--input-height:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(44);
+  });
+});
+
+// ========================================
+// ARCHITECTURE: PAGES REFERENCE TOKENS
+// ========================================
+describe('Pages use design tokens (no hardcoded font-size in scoped styles)', () => {
+  const pagesWithScopedStyles = allPages.filter((f) => {
+    const content = readFileSync(f, 'utf-8');
+    return content.includes('<style>') || content.includes('<style ');
+  });
+
+  it.each(
+    pagesWithScopedStyles.map((f) => [relPath(f), f])
+  )('%s scoped styles should use tokens (var(--*)) not hardcoded font-size', (name, filePath) => {
+    const content = readFileSync(filePath, 'utf-8');
+    // Extract scoped style blocks
+    const styleBlocks = content.match(/<style[^>]*>([\s\S]*?)<\/style>/gi) || [];
+    for (const block of styleBlocks) {
+      // Find font-size declarations with hardcoded pixel values
+      const hardcodedSizes = block.match(/font-size:\s*\d+px/g) || [];
+      // Filter out acceptable patterns (font-size: 0 for hidden text)
+      const violations = hardcodedSizes.filter((s) => !s.includes('0px'));
+      expect(violations).toEqual([]);
     }
   });
 });

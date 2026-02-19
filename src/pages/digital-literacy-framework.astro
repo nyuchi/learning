@@ -392,12 +392,12 @@ const supportResources = [
       <h1 class="text-[clamp(1.5rem,4vw,3.5rem)] font-black font-display mb-3 sm:mb-4 relative z-10">Digital Literacy Framework for Africa</h1>
       <p class="text-[clamp(0.9rem,2vw,1.3rem)] opacity-95 mb-6 sm:mb-8 relative z-10">Mobile-First | Lifelong Learning | 2050-Ready | Digital Citizenship</p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center relative z-10">
-        <a href="#overview" class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] w-full sm:w-auto text-sm sm:text-base">Read Online</a>
-        <a href="/frameworks/digital-literacy-framework.pdf" download class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-sm sm:text-base">
+        <a href="#overview" class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg-surface)] hover:border-[var(--primary)] hover:text-[var(--primary)] w-full sm:w-auto text-body">Read Online</a>
+        <a href="/frameworks/digital-literacy-framework.pdf" download class="inline-flex items-center justify-center gap-2 h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-body">
           <Download size={20} /> Download PDF
         </a>
       </div>
-      <p class="mt-4 sm:mt-6 text-xs sm:text-sm opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
+      <p class="mt-4 sm:mt-6 text-meta opacity-90 relative z-10">Free to use, copy, adapt, and share under open framework license</p>
     </div>
 
     <!-- Quick Navigation -->
@@ -406,7 +406,7 @@ const supportResources = [
       <ul class="list-none p-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2 sm:gap-3">
         {navItems.map((item) => (
           <li>
-            <a href={item.href} class="block py-2.5 sm:py-3 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-sm sm:text-base text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
+            <a href={item.href} class="block py-2.5 sm:py-3 px-3 sm:px-4 bg-[var(--bg)] rounded-lg text-body text-[var(--text)] no-underline transition-all duration-200 hover:bg-[var(--primary)] hover:text-white hover:translate-x-1">{item.label}</a>
           </li>
         ))}
       </ul>
@@ -415,7 +415,7 @@ const supportResources = [
     <!-- Executive Overview -->
     <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border border-[var(--border)]">
       <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-black mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
-      <p class="text-base sm:text-lg leading-relaxed text-[var(--text)] mb-6 sm:mb-8">
+      <p class="text-body text-[var(--text)] mb-6 sm:mb-8">
         This framework reimagines digital literacy for the African context, where most learners access
         the digital world primarily through mobile devices, often without 1:1 device access at school.
         It prepares students, teachers, and adults for a 2050 world where digital fluency is not optional—it's essential.
@@ -426,14 +426,14 @@ const supportResources = [
           <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
             <card.icon class="text-[var(--primary)] mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
-            <p class="text-sm sm:text-base text-[var(--text)] leading-relaxed">{card.description}</p>
+            <p class="text-body text-[var(--text)]">{card.description}</p>
           </div>
         ))}
       </div>
 
       <div class="bg-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)]">
         <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4 mt-0">African Context: Why This Framework Matters</h3>
-        <ul class="ml-4 sm:ml-6 leading-relaxed space-y-1.5 sm:space-y-2 text-sm sm:text-base">
+        <ul class="ml-4 sm:ml-6 space-y-1.5 sm:space-y-2 text-body">
           {africanContext.map((item) => (
             <li class="text-[var(--text)]"><strong class="text-[var(--primary)]">{item.label}:</strong> {item.text}</li>
           ))}
@@ -453,7 +453,7 @@ const supportResources = [
             <div>
               <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{principle.title}</h3>
               <p class="text-[var(--text)] leading-relaxed mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
-              <p class="text-[var(--text-secondary)] text-sm p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-4"><em>Example:</em> {principle.example}</p>
+              <p class="text-[var(--text-secondary)] text-body p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-4"><em>Example:</em> {principle.example}</p>
             </div>
           </div>
         ))}
@@ -495,7 +495,7 @@ const supportResources = [
             <level.icon size={28} stroke-width={1.5} />
             <div>
               <h3 class="text-2xl font-bold m-0">{level.title}</h3>
-              <p class="m-0 text-sm opacity-90">{level.subtitle}</p>
+              <p class="m-0 text-meta opacity-90">{level.subtitle}</p>
             </div>
           </div>
           <div class="p-8">
@@ -556,7 +556,7 @@ const supportResources = [
           <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
             <pillar.icon class="text-[var(--primary)] mb-4" size={40} stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{pillar.title}</h3>
-            <h4 class="text-[var(--text)] text-sm font-semibold mb-2">Key Competencies:</h4>
+            <h4 class="text-[var(--text)] text-meta font-semibold mb-2">Key Competencies:</h4>
             <ul class="ml-6 leading-relaxed space-y-1 text-[var(--text)]">
               {pillar.items.map((item) => <li>{item}</li>)}
             </ul>
@@ -652,7 +652,7 @@ const supportResources = [
               <div class="flex-shrink-0 bg-[var(--bg-surface)] p-6 rounded-xl text-center min-w-[180px] border-2 border-[var(--primary)]">
                 <div class="w-10 h-10 bg-[var(--primary)] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-extrabold text-lg">{stage.number}</div>
                 <h4 class="text-[var(--primary)] font-bold mb-2">{stage.title}</h4>
-                <p class="text-sm text-[var(--text)] m-0">{stage.description}</p>
+                <p class="text-meta text-[var(--text)] m-0">{stage.description}</p>
               </div>
               {i < progressionStages.length - 1 && <span class="text-3xl text-[var(--primary)] flex-shrink-0 lg:rotate-0 rotate-90">→</span>}
             </>

@@ -123,6 +123,20 @@
   --font-weight-extrabold: 800;
 
   /* ========================================
+     TYPOGRAPHY SCALE TOKENS
+     Centralized text sizing - change here, applies everywhere.
+     Pages use semantic classes (.text-body, .text-body-lg, etc.)
+     that reference these tokens.
+     ======================================== */
+  --text-size-body: 1.125rem;          /* 18px - standard reading text */
+  --text-size-body-mobile: 1rem;       /* 16px - mobile reading text */
+  --text-size-body-lg: 1.25rem;        /* 20px - section subtitles, lead text */
+  --text-size-body-lg-mobile: 1.125rem;/* 18px - mobile lead text */
+  --text-size-meta: 1rem;              /* 16px - dates, labels, secondary info */
+  --text-size-meta-mobile: 0.875rem;   /* 14px - mobile meta text */
+  --text-size-caption: 0.875rem;       /* 14px - badges, tags, short labels */
+
+  /* ========================================
      SPACING
      ======================================== */
   --spacing-xs: 4px;
@@ -157,27 +171,27 @@
      COMPONENT TOKENS
      ======================================== */
   /* Button Sizes */
-  --btn-sm-height: 32px;
-  --btn-sm-padding: 6px 12px;
-  --btn-sm-font: 12px;
+  --btn-sm-height: 36px;
+  --btn-sm-padding: 8px 16px;
+  --btn-sm-font: 14px;
   --btn-sm-icon: 16px;
 
-  --btn-default-height: 40px;
+  --btn-default-height: 44px;
   --btn-default-padding: 10px 20px;
-  --btn-default-font: 14px;
+  --btn-default-font: 16px;
   --btn-default-icon: 18px;
 
   --btn-lg-height: 48px;
   --btn-lg-padding: 14px 28px;
-  --btn-lg-font: 16px;
+  --btn-lg-font: 18px;
   --btn-lg-icon: 20px;
 
-  --btn-icon-size: 40px;
+  --btn-icon-size: 44px;
 
   /* Input */
-  --input-height: 40px;
+  --input-height: 44px;
   --input-padding: 10px 14px;
-  --input-font: 14px;
+  --input-font: 16px;
 
   /* Navigation */
   --nav-height: 64px;
@@ -189,7 +203,7 @@
   /* Accessibility */
   --a11y-contrast-min: 7;
   --a11y-touch-target: 44px;
-  --a11y-font-min: 14px;
+  --a11y-font-min: 16px;
 }
 
 /* ========================================
@@ -709,11 +723,57 @@
     display: inline-flex;
     align-items: center;
     padding: 4px 12px;
-    font-size: 12px;
+    font-size: var(--text-size-caption);
     font-weight: var(--font-weight-medium);
     border-radius: var(--radius-badge);
     background: var(--primary-container);
     color: var(--on-primary-container);
+  }
+
+  /* ========================================
+     SEMANTIC TYPOGRAPHY SYSTEM
+     Centralized, responsive text sizing.
+     Use these classes instead of raw Tailwind
+     text-sm / text-base / text-lg on content.
+     Sizes reference @theme tokens so changes
+     propagate from a single source of truth.
+     ======================================== */
+
+  /* Body text - paragraphs, descriptions, list items, card content */
+  .text-body {
+    font-size: var(--text-size-body);
+    line-height: 1.7;
+  }
+
+  /* Body large - section subtitles, lead paragraphs, featured descriptions */
+  .text-body-lg {
+    font-size: var(--text-size-body-lg);
+    line-height: 1.6;
+  }
+
+  /* Meta text - dates, labels, secondary information, form hints */
+  .text-meta {
+    font-size: var(--text-size-meta);
+    line-height: 1.5;
+  }
+
+  /* Caption - badges, tags, very short decorative labels */
+  .text-caption {
+    font-size: var(--text-size-caption);
+    line-height: 1.4;
+  }
+
+  /* Mobile responsive adjustments - baked into the classes */
+  @media (max-width: 640px) {
+    .text-body {
+      font-size: var(--text-size-body-mobile);
+    }
+    .text-body-lg {
+      font-size: var(--text-size-body-lg-mobile);
+    }
+    .text-meta {
+      font-size: var(--text-size-meta-mobile);
+    }
   }
 }
 
@@ -857,7 +917,7 @@
   padding: 1rem 2rem;
   border-radius: var(--radius-button);
   font-weight: var(--font-weight-semibold);
-  font-size: 0.875rem;
+  font-size: 1rem;
   text-decoration: none;
   transition: top 0.3s ease;
 }
@@ -1203,7 +1263,7 @@ article li {
   color: var(--text);
   border: 1px solid var(--border);
   border-radius: var(--radius-input);
-  font-size: 0.875rem;
+  font-size: 1rem;
   white-space: nowrap;
   opacity: 0;
   visibility: hidden;
