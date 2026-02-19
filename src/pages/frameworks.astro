@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import PageHero from '../components/PageHero.astro';
 import { BookOpen, Download, Users, Smartphone } from '@lucide/astro';
 
 const frameworks = [
@@ -84,18 +85,12 @@ const frameworks = [
   </div>
 
   <!-- Hero Section -->
-  <section class="py-16 sm:py-20 md:py-24 px-6 sm:px-8">
-    <div class="max-w-[1200px] mx-auto">
-      <p class="text-body italic mb-4 tracking-widest font-medium text-[var(--text-tertiary)]">Ubuntu: I am because we are</p>
-      <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)]">
-        Frameworks
-      </h1>
-      <p class="mt-6 text-body text-[var(--text-secondary)] max-w-[65ch]">
-        Open, shareable frameworks designed to empower schools across Africa.
-        Free to use, copy, adapt, and improve for your community.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    tagline="Ubuntu: I am because we are"
+    title="Frameworks"
+    subtitle="Open, shareable frameworks designed to empower schools across Africa. Free to use, copy, adapt, and improve for your community."
+    share
+  />
 
   <!-- Frameworks List -->
   <section class="py-16 md:py-24 px-4 bg-[var(--bg)]">

@@ -5,6 +5,24 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0] - February 2026
+
+### Added
+- **PageHero component**: Standard hero section (tagline, h1 with accent-colored word, subtitle, share button, CTA slot) — follows cross-site nhimbe.com pattern. Used on 6 pages (about, frameworks, community, global-reach, consultation, team)
+- **FeatureGrid component**: Reusable icon + title + description card grid with support for linked cards, alignment, and column variants. Used on 3 pages (about, global-reach, community)
+- **CTASection component**: Standard end-of-page call-to-action section with heading, description, tagline, and button slot. Used on 3 pages (about, resources, pricing)
+- **MetricCard/MetricGroup components**: Stat/metric display cards with responsive grid container. Used on 2 pages (index, global-reach)
+- **ShareButton component**: Social sharing with Web Share API (mobile native) and fallback dropdown (X, LinkedIn, Facebook, WhatsApp, Copy Link). Integrated into PageHero via `share` prop
+- **Component-level design tests**: UI components tested for semantic typography compliance (no hardcoded `text-xs`/`text-sm`). Reusable component existence tests added
+
+### Changed
+- **UI components**: All React UI primitives (`badge`, `card`, `dialog`, `label`, `tooltip`, `tabs`, `dropdown-menu`, `navigation-menu`, `breadcrumb`, `input`) migrated from hardcoded Tailwind text sizes to semantic typography classes (`text-body`, `text-meta`, `text-caption`)
+- **Team page**: Normalized breadcrumb and hero structure to match standard pattern (was using gradient container with non-standard layout)
+
+### Fixed
+- **input.tsx**: `file:text-sm` replaced with `file:text-meta` for consistent typography
+- **dropdown-menu.tsx**: Missing space in `text-metaoutline-none` classes (was `text-sm` before migration)
+
 ## [5.0.0] - February 2026
 
 ### Added

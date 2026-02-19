@@ -18,7 +18,8 @@ import { join } from 'path';
 
 const PAGES_DIR = join(process.cwd(), 'src/pages');
 const STYLES_DIR = join(process.cwd(), 'src/styles');
-const LAYOUT_FILE = join(process.cwd(), 'src/layouts/BaseLayout.astro');
+const COMPONENTS_UI_DIR = join(process.cwd(), 'src/components/ui');
+const COMPONENTS_DIR = join(process.cwd(), 'src/components');
 
 // Helper: read all .astro page files recursively
 function getPageFiles(dir, files = []) {
@@ -359,5 +360,67 @@ describe('Pages use design tokens (no hardcoded font-size in scoped styles)', ()
       const violations = hardcodedSizes.filter((s) => !s.includes('0px'));
       expect(violations).toEqual([]);
     }
+  });
+});
+
+// ========================================
+// UI COMPONENTS: NO HARDCODED TEXT SIZING
+// ========================================
+describe('UI components use semantic typography', () => {
+  // Get all .tsx files in src/components/ui/
+  let uiComponents = [];
+  try {
+    uiComponents = readdirSync(COMPONENTS_UI_DIR)
+      .filter((f) => f.endsWith('.tsx'))
+      .map((f) => join(COMPONENTS_UI_DIR, f));
+  } catch {
+    // Directory may not exist in some test environments
+  }
+
+  if (uiComponents.length > 0) {
+    it.each(
+      uiComponents.map((f) => [relPath(f), f])
+    )('%s should not use raw Tailwind text-xs or text-sm', (name, filePath) => {
+      const content = readFileSync(filePath, 'utf-8');
+      // text-xs and text-sm should be replaced with text-caption and text-meta
+      const violations = [];
+      const lines = content.split('\n');
+      lines.forEach((line, i) => {
+        // Skip import lines and comments
+        if (line.trim().startsWith('import ') || line.trim().startsWith('//')) return;
+        if (/\btext-xs\b/.test(line)) violations.push({ line: i + 1, match: 'text-xs', content: line.trim() });
+        if (/\btext-sm\b/.test(line)) violations.push({ line: i + 1, match: 'text-sm', content: line.trim() });
+      });
+      expect(violations).toEqual([]);
+    });
+  }
+});
+
+// ========================================
+// REUSABLE COMPONENTS EXIST
+// ========================================
+describe('Reusable components exist', () => {
+  const requiredComponents = [
+    'PageHero.astro',
+    'FeatureGrid.astro',
+    'CTASection.astro',
+    'MetricCard.astro',
+    'MetricGroup.astro',
+    'ShareButton.astro',
+    'PageBreadcrumb.astro',
+  ];
+
+  it.each(
+    requiredComponents.map((name) => [name])
+  )('%s component should exist', (name) => {
+    const filePath = join(COMPONENTS_DIR, name);
+    let exists = false;
+    try {
+      readFileSync(filePath);
+      exists = true;
+    } catch {
+      exists = false;
+    }
+    expect(exists).toBe(true);
   });
 });

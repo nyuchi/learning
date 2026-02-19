@@ -1,0 +1,48 @@
+---
+/**
+ * CTASection - Standard call-to-action section for end-of-page prompts.
+ *
+ * Pattern used across all nyuchi sites:
+ *   1. Centered heading
+ *   2. Description text
+ *   3. Action buttons (via default slot)
+ *   4. Optional tagline/footnote
+ *
+ * Usage:
+ *   <CTASection
+ *     heading="Ready to Get Started?"
+ *     description="Download our frameworks and begin your digital transformation."
+ *     tagline="Free to use, copy, adapt, and share"
+ *   >
+ *     <a href="/frameworks" class="btn-primary">Browse Frameworks</a>
+ *     <a href="/consultation" class="btn-secondary">Schedule Consultation</a>
+ *   </CTASection>
+ */
+
+interface Props {
+  heading: string;
+  description: string;
+  tagline?: string;
+}
+
+const { heading, description, tagline } = Astro.props;
+---
+
+<section class="text-center py-12 sm:py-16 md:py-20 px-6 sm:px-8 bg-[var(--bg-surface)] rounded-2xl">
+  <div class="max-w-[900px] mx-auto">
+    <h2 class="font-display text-[clamp(1.5rem,4vw,2.5rem)] font-bold text-[var(--text)] mb-4 sm:mb-6">
+      {heading}
+    </h2>
+    <p class="text-body-lg text-[var(--text-secondary)] mb-8 sm:mb-10 max-w-[800px] mx-auto">
+      {description}
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+      <slot />
+    </div>
+    {tagline && (
+      <p class="mt-6 sm:mt-8 text-meta text-[var(--text-secondary)] italic">
+        {tagline}
+      </p>
+    )}
+  </div>
+</section>

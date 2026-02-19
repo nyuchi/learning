@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import MetricGroup from '../components/MetricGroup.astro';
 import { Globe, Smartphone, Lightbulb, DollarSign, ChartBar, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageCircle, Github, Bug, Code } from '@lucide/astro';
 
 // Blog posts data (latest 3)
@@ -149,32 +150,14 @@ const latestPosts = [
       <p class="text-center max-w-[850px] mx-auto mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
         Traditional education is failing spectacularly. Here's what the research shows:
       </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-        <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl border border-[var(--border)] hover:scale-105 hover:border-[var(--primary)] transition-all duration-300">
-          <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4">$8.5 Trillion</div>
-          <div class="text-[var(--text-secondary)] text-body font-medium">Annual cost of global skills mismatch</div>
-        </div>
-        <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl border border-[var(--border)] hover:scale-105 hover:border-[var(--primary)] transition-all duration-300">
-          <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4">87%</div>
-          <div class="text-[var(--text-secondary)] text-body font-medium">Of executives report critical skills gaps</div>
-        </div>
-        <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl border border-[var(--border)] hover:scale-105 hover:border-[var(--primary)] transition-all duration-300">
-          <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4">Only 4%</div>
-          <div class="text-[var(--text-secondary)] text-body font-medium">GPA predicts job performance (yet schools optimize for grades)</div>
-        </div>
-        <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl border border-[var(--border)] hover:scale-105 hover:border-[var(--primary)] transition-all duration-300">
-          <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4">39%</div>
-          <div class="text-[var(--text-secondary)] text-body font-medium">Of workplace skills will change by 2030</div>
-        </div>
-        <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl border border-[var(--border)] hover:scale-105 hover:border-[var(--primary)] transition-all duration-300">
-          <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4">30%</div>
-          <div class="text-[var(--text-secondary)] text-body font-medium">Of recent graduates find full-time work in their field</div>
-        </div>
-        <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl border border-[var(--border)] hover:scale-105 hover:border-[var(--primary)] transition-all duration-300">
-          <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4">60-80%</div>
-          <div class="text-[var(--text-secondary)] text-body font-medium">Cost savings through our open-source frameworks</div>
-        </div>
-      </div>
+      <MetricGroup metrics={[
+        { value: "$8.5 Trillion", label: "Annual cost of global skills mismatch" },
+        { value: "87%", label: "Of executives report critical skills gaps" },
+        { value: "Only 4%", label: "GPA predicts job performance (yet schools optimize for grades)" },
+        { value: "39%", label: "Of workplace skills will change by 2030" },
+        { value: "30%", label: "Of recent graduates find full-time work in their field" },
+        { value: "60-80%", label: "Cost savings through our open-source frameworks" },
+      ]} />
       <div class="mt-8 sm:mt-12 p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl text-center">
         <p class="text-[var(--text)] text-body">
           <strong>Our frameworks address the root cause:</strong> We focus on competencies that predict success

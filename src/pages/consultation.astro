@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import PageHero from '../components/PageHero.astro';
 import { Calendar, CircleCheckBig, Users, Zap } from '@lucide/astro';
 
 // Discussion topics
@@ -33,15 +34,16 @@ const attendees = [
     ]} />
   </div>
 
+  <!-- Hero Section -->
+  <PageHero
+    tagline="Ubuntu: I am because we are"
+    title="Book a Consultation"
+    subtitle="Let's discuss how the K-12 Digital Campus Framework can transform your school's digital experience"
+    align="center"
+    share
+  />
+
   <div class="max-w-[1400px] mx-auto px-4 sm:px-6 py-6 sm:py-8">
-    <!-- Header -->
-    <div class="relative text-center mb-8 sm:mb-12 md:mb-16 py-10 sm:py-12 px-4 sm:px-6">
-      <p class="text-body italic text-[var(--text-tertiary)] mb-3 sm:mb-4">Ubuntu: I am because we are</p>
-      <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-3 sm:mb-4">Book a Consultation</h1>
-      <p class="text-body max-w-[65ch] mx-auto text-[var(--text-secondary)]">
-        Let's discuss how the K-12 Digital Campus Framework can transform your school's digital experience
-      </p>
-    </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12 md:mb-16">
       <!-- Info Section -->

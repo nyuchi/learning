@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import CTASection from '../components/CTASection.astro';
 import { DollarSign, Check, CircleAlert, Info } from '@lucide/astro';
 
 // Budget scenario tiers - These are cost estimates, NOT prices for Nyuchi services
@@ -560,14 +561,13 @@ const savingsStrategies = [
     </section>
 
     <!-- CTA Section -->
-    <section class="text-center py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-[var(--bg-surface)] text-[var(--text)] rounded-xl md:rounded-2xl">
-      <h2 class="text-[var(--text)] mb-3 sm:mb-4 text-[clamp(1.5rem,4vw,2.5rem)] font-bold">Ready to Plan Your Implementation?</h2>
-      <p class="text-body-lg mb-3 sm:mb-4 opacity-95">Use these estimates to build your budget proposal and secure funding.</p>
-      <p class="text-body mb-6 sm:mb-8 text-[var(--text-secondary)]">Remember: The framework and guidance are free. You only invest in the actual implementation.</p>
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-        <a href="/framework" class="inline-flex items-center justify-center h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-300 bg-[var(--primary)] text-white hover:brightness-110 hover:-translate-y-0.5 hover:shadow-lg w-full sm:w-auto text-body">Download Free Framework</a>
-        <a href="/consultation" class="inline-flex items-center justify-center h-12 sm:h-14 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-300 bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)] w-full sm:w-auto text-body">Book Free Consultation</a>
-      </div>
-    </section>
+    <CTASection
+      heading="Ready to Plan Your Implementation?"
+      description="Use these estimates to build your budget proposal and secure funding. The framework and guidance are free — you only invest in the actual implementation."
+      tagline="Free to use, copy, adapt, and share"
+    >
+      <a href="/framework" class="inline-flex items-center justify-center h-12 px-6 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">Download Free Framework</a>
+      <a href="/consultation" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--text-secondary)] text-[var(--text)] font-semibold rounded-xl hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all duration-200 w-full sm:w-auto">Book Free Consultation</a>
+    </CTASection>
   </div>
 </BaseLayout>
