@@ -1,30 +1,27 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import MetricGroup from '../components/MetricGroup.astro';
-import { Globe, Smartphone, Lightbulb, DollarSign, ChartBar, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageCircle, Github, Bug, Code } from '@lucide/astro';
+import CTASection from '../components/CTASection.astro';
+import { BookOpen, ArrowRight } from '@lucide/astro';
 
 // Blog posts data (latest 3)
 const latestPosts = [
   {
-    title: 'The Developing World\'s Educational Advantage: Building Digital Campuses That Close Skills Gaps',
+    title: 'The Developing World\'s Educational Advantage',
     slug: 'developing-world-educational-advantage',
     date: '2025-11-16',
-    excerpt: 'While wealthy nations maintain educational systems designed for economies that no longer exist, developing countries can leapfrog outdated models—building digital campuses optimized for the 2050 workplace from day one.',
-    author: 'Framework Team'
+    excerpt: 'Developing countries can leapfrog outdated models—building digital campuses optimized for the 2050 workplace from day one.',
   },
   {
     title: 'Launching the African Education Digital Framework',
     slug: 'launching-the-framework',
     date: '2025-10-26',
-    excerpt: 'Introducing a comprehensive blueprint for digital transformation in K-12 schools across Africa, designed to prepare students for the 2050 job market.',
-    author: 'Framework Team'
+    excerpt: 'A comprehensive blueprint for digital transformation in K-12 schools across Africa.',
   },
   {
     title: 'Why Open-Source Matters for African Schools',
     slug: 'why-open-source',
     date: '2025-10-25',
-    excerpt: 'Exploring how open-source solutions can save schools 60-80% on infrastructure costs while maintaining world-class educational technology.',
-    author: 'Framework Team'
+    excerpt: 'How open-source solutions can save schools 60-80% on infrastructure costs.',
   }
 ];
 ---
@@ -32,7 +29,7 @@ const latestPosts = [
 <BaseLayout
   title="Build Digital Campuses. Prepare Students for 2050."
   description="Open frameworks for building and upgrading digital campuses and digital literacy programs. Guidance for schools across Africa and the developing world to prepare students for a world that doesn't yet exist. Research-driven, mobile-first, 60-80% cost savings."
-  keywords="digital campus framework, digital literacy programs, developing countries education, K-12 digital transformation, Africa education technology, Asia education technology, Latin America schools, mobile-first learning, open education frameworks, 2050 education"
+  keywords="digital campus framework, digital literacy programs, developing countries education, K-12 digital transformation, Africa education technology, mobile-first learning, open education frameworks, 2050 education"
 >
   <!-- Hero Section -->
   <section class="min-h-screen flex items-center bg-[var(--bg)] text-[var(--text)] px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 relative overflow-hidden">
@@ -64,224 +61,81 @@ const latestPosts = [
     </div>
   </section>
 
-  <!-- Mission & Vision Section -->
+  <!-- Value Proposition -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg-surface)]">
     <div class="max-w-[1100px] mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 md:gap-12 mb-8 sm:mb-12">
-        <div>
-          <h2 class="font-display text-2xl md:text-3xl text-[var(--primary)] mb-6">Our Mission</h2>
-          <p class="text-body text-[var(--text)]">
-            To provide open, evidence-based frameworks for <strong>building and upgrading digital campuses</strong> and
-            <strong>digital literacy programs</strong>—helping schools prepare students for a 2050 world that doesn't yet exist,
-            with guidance designed for African and developing world contexts.
-          </p>
-        </div>
-        <div>
-          <h2 class="font-display text-2xl md:text-3xl text-[var(--primary)] mb-6">Our Vision</h2>
-          <p class="text-body text-[var(--text)]">
-            By 2035, Nyuchi Learning frameworks will be implemented in schools across Africa, Asia, Latin America, and the Pacific,
-            enabling <strong>10 million students</strong> to develop the competencies—<em>grit, adaptability, collaboration, critical thinking</em>—that
-            predict success in an uncertain future.
-          </p>
-        </div>
-      </div>
-
-      <div class="bg-[var(--bg)] p-8 rounded-2xl border-2 border-[var(--primary)]">
-        <h3 class="font-display text-xl md:text-2xl text-[var(--primary)] mb-5">Why Digital Campuses for 2050?</h3>
-        <p class="text-body text-[var(--text)] mb-4">
-          <strong>How do you teach students for jobs that don't exist yet? How do you prepare them for a world we can't fully imagine?</strong>
-          The answer isn't changing what you teach—it's transforming how students learn and access knowledge.
-        </p>
-        <p class="text-body text-[var(--text)]">
-          Our frameworks help schools build the digital infrastructure and literacy programs needed to develop adaptable,
-          digitally-fluent learners who can thrive in whatever 2050 brings—whether that's AI collaboration, remote work, or technologies we haven't yet invented.
-        </p>
-      </div>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--text)] mb-6">Why Digital Campuses for 2050?</h2>
+      <p class="text-body-lg text-[var(--text)] mb-6 max-w-[65ch]">
+        <strong>How do you prepare students for jobs that don't exist yet?</strong> The answer isn't changing what you teach—it's transforming how students learn and access knowledge.
+      </p>
+      <p class="text-body text-[var(--text-secondary)] mb-8 max-w-[65ch]">
+        Our frameworks help schools build the digital infrastructure and literacy programs that develop adaptable, digitally-fluent learners.
+        Open, evidence-based, and designed for schools with limited resources.
+      </p>
+      <a href="/about" class="inline-flex items-center gap-2 text-[var(--primary)] font-bold hover:gap-4 transition-all duration-300 text-body min-h-[44px]">
+        Read our full mission
+        <ArrowRight class="w-5 h-5" stroke-width={2} />
+      </a>
     </div>
   </section>
 
-  <!-- Features Section -->
+  <!-- Available Frameworks -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg)]">
     <div class="max-w-[1100px] mx-auto">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-[var(--text)] font-bold tracking-tight">Framework Governance Principles</h2>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Available Frameworks</h2>
       <p class="max-w-[65ch] mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
-        All Nyuchi Learning frameworks adhere to these non-negotiable principles, grounded in research on what actually matters for student success.
+        Open, shareable frameworks for K-12 education transformation. Free to copy, adapt, and improve.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Globe class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Universal Access</h3>
-          <p class="text-body text-[var(--text-secondary)]">Digital tools available to all students, regardless of socioeconomic status</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Smartphone class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Mobile-First</h3>
-          <p class="text-body text-[var(--text-secondary)]">Recognizing smartphones as primary access devices for most users</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Lightbulb class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Digital Literacy</h3>
-          <p class="text-body text-[var(--text-secondary)]">Technology enablement paired with critical thinking and digital citizenship</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <DollarSign class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Cost Efficient</h3>
-          <p class="text-body text-[var(--text-secondary)]">Open-source and cloud solutions to maximize limited school budgets</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <ChartBar class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Data-Driven</h3>
-          <p class="text-body text-[var(--text-secondary)]">Analytics and insights inform instruction, support, and strategy</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Users class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Community-Centered</h3>
-          <p class="text-body text-[var(--text-secondary)]">Seamless experience across students, staff, and parents/guardians</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg-surface)] relative">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_50%,rgba(0,176,255,0.05)_0%,transparent_60%)]"></div>
-    <div class="max-w-[1100px] mx-auto relative z-10">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-[var(--text)] font-bold">The Global Education Crisis</h2>
-      <p class="max-w-[65ch] mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
-        Traditional education is failing spectacularly. Here's what the research shows:
-      </p>
-      <MetricGroup metrics={[
-        { value: "$8.5 Trillion", label: "Annual cost of global skills mismatch" },
-        { value: "87%", label: "Of executives report critical skills gaps" },
-        { value: "Only 4%", label: "GPA predicts job performance (yet schools optimize for grades)" },
-        { value: "39%", label: "Of workplace skills will change by 2030" },
-        { value: "30%", label: "Of recent graduates find full-time work in their field" },
-        { value: "60-80%", label: "Cost savings through our open-source frameworks" },
-      ]} />
-      <div class="mt-8 sm:mt-12 p-5 sm:p-6 md:p-8 bg-[var(--bg-elevated)] rounded-2xl">
-        <p class="text-[var(--text)] text-body">
-          <strong>Our frameworks address the root cause:</strong> We focus on competencies that predict success
-          (grit, adaptability, collaboration, critical thinking) instead of metrics that don't (standardized test scores, GPA).
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Benefits Section -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg)]">
-    <div class="max-w-[1100px] mx-auto">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-[var(--text)] font-bold">What Your School Gets</h2>
-      <p class="max-w-[65ch] mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
-        An <strong class="text-[var(--text)]">open framework</strong> you can freely copy, adapt, and improve for your school.
-        This complete toolkit provides everything you need for successful digital transformation—
-        from technical specifications to budget templates and implementation timelines.
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12">
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <ClipboardList class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Complete Implementation Guide</h3>
-          <p class="text-body text-[var(--text-secondary)]">
-            Detailed 3-year phased roadmap with specific milestones, resource requirements, and
-            success metrics. Know exactly what to do, when to do it, and how much it will cost.
-          </p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Settings class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Technology Stack Recommendations</h3>
-          <p class="text-body text-[var(--text-secondary)]">
-            Open-source and cloud solutions tested in African conditions. Moodle LMS, PostgreSQL data
-            warehouse, API connectors, and AI/analytics—all with setup instructions and best practices.
-          </p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <DollarSign class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Budget & Funding Strategy</h3>
-          <p class="text-body text-[var(--text-secondary)]">
-            Complete cost breakdown: $181K over 3 years including infrastructure, devices, software,
-            training, and contingency. Plus funding sources (E-Rate, grants, partnerships) and cost-reduction strategies.
-          </p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Users class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Digital Literacy Curriculum</h3>
-          <p class="text-body text-[var(--text-secondary)]">
-            K-12 progression from digital citizenship foundations to advanced AI collaboration skills.
-            Includes staff professional development and parent engagement programs.
-          </p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <TrendingUp class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">AI & Analytics Framework</h3>
-          <p class="text-body text-[var(--text-secondary)]">
-            Early warning systems, personalized learning pathways, predictive resource allocation,
-            and data governance protocols—all designed for ethical, effective use in education.
-          </p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Accessibility class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Equity & Accessibility</h3>
-          <p class="text-body text-[var(--text-secondary)]">
-            Device lending programs, WCAG compliance, and socioeconomic equity measures ensuring every student
-            has access. Multilingual support for African languages plus English, French, and Chinese.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Frameworks Showcase -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg)]">
-    <div class="max-w-[1100px] mx-auto">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-[var(--text)] font-bold">Available Frameworks</h2>
-      <p class="max-w-[65ch] mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
-        Nyuchi Learning provides multiple open, shareable frameworks for K-12 education transformation.
-        Each framework addresses specific challenges and opportunities in African schools.
-      </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
-          <h3 class="text-lg sm:text-xl font-bold text-[var(--primary)]">K-12 Digital Campus Framework</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-[var(--primary)]">K-12 Digital Campus</h3>
           <p class="text-body text-[var(--text-secondary)] flex-1">
             Comprehensive blueprint for digital transformation: infrastructure, platforms, digital literacy,
-            AI analytics, and 3-year implementation roadmap. Complete cost breakdown and technology stack recommendations.
+            AI analytics, and 3-year implementation roadmap.
           </p>
-          <a href="/framework" class="inline-flex items-center justify-center h-10 sm:h-11 px-5 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 transition-all duration-200 self-start w-full sm:w-auto text-body">
+          <a href="/framework" class="btn-primary self-start w-full sm:w-auto">
             Explore Framework
           </a>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
-          <h3 class="text-lg sm:text-xl font-bold text-[var(--primary)]">Digital Literacy Framework</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-[var(--primary)]">Digital Literacy</h3>
           <p class="text-body text-[var(--text-secondary)] flex-1">
-            Progressive K-12 digital literacy curriculum addressing Africa's unique context. From digital citizenship
-            foundations to advanced AI collaboration skills for students, staff, and parents.
+            Progressive K-12 digital literacy curriculum. From digital citizenship foundations to
+            advanced AI collaboration skills for students, staff, and parents.
           </p>
-          <a href="/digital-literacy-framework" class="inline-flex items-center justify-center h-10 sm:h-11 px-5 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 transition-all duration-200 self-start w-full sm:w-auto text-body">
+          <a href="/digital-literacy-framework" class="btn-primary self-start w-full sm:w-auto">
             Explore Framework
           </a>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
-          <h3 class="text-lg sm:text-xl font-bold text-[var(--primary)]">K-12 Support Process Framework</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-[var(--primary)]">Support Process</h3>
           <p class="text-body text-[var(--text-secondary)] flex-1">
             Three-tier support system: AI chatbot for instant help, EdTech team for educational technology,
-            and IT Operations for infrastructure. Efficient, scalable support for the entire school community.
+            and IT Operations for infrastructure.
           </p>
-          <a href="/support-framework" class="inline-flex items-center justify-center h-10 sm:h-11 px-5 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 transition-all duration-200 self-start w-full sm:w-auto text-body">
+          <a href="/support-framework" class="btn-primary self-start w-full sm:w-auto">
             Explore Framework
           </a>
         </div>
       </div>
+      <div class="mt-8 sm:mt-12">
+        <a href="/frameworks" class="btn-secondary w-full sm:w-auto">
+          View All Frameworks
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- Blog Section -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg)]">
+  <!-- Latest Insights -->
+  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg-surface)]">
     <div class="max-w-[1100px] mx-auto">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-[var(--text)] font-bold">Latest Insights</h2>
+      <h2 class="font-display text-[clamp(2rem,4vw,3rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Latest Insights</h2>
       <p class="max-w-[65ch] mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
         Exploring the future of education, digital transformation strategies, and implementation insights from the field.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         {latestPosts.map((post) => (
-          <article class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
+          <article class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
             <div class="flex justify-between items-center pb-3 sm:pb-4 border-b-2 border-[var(--border)]">
               <BookOpen class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
               <div class="text-meta text-[var(--text-tertiary)] font-medium">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
@@ -303,91 +157,17 @@ const latestPosts = [
     </div>
   </section>
 
-  <!-- Implementation Roadmap -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg)]">
-    <div class="max-w-[1100px] mx-auto">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-8 sm:mb-12 text-[var(--text)] font-bold">3-Year Implementation Roadmap</h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <span class="inline-block bg-[var(--primary)] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-black text-caption tracking-wide mb-4 sm:mb-6">Year 1</span>
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Foundation</h3>
-          <p class="text-body text-[var(--text-secondary)]">Infrastructure setup, device rollout, digital literacy curriculum launch, and early warning system pilot</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <span class="inline-block bg-[var(--primary)] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-black text-caption tracking-wide mb-4 sm:mb-6">Year 2</span>
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Integration & Insight</h3>
-          <p class="text-body text-[var(--text-secondary)]">API expansion, AI/analytics deployment, platform maturity, and community integration</p>
-        </div>
-        <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <span class="inline-block bg-[var(--primary)] text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full font-black text-caption tracking-wide mb-4 sm:mb-6">Year 3</span>
-          <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Optimization & Sustainability</h3>
-          <p class="text-body text-[var(--text-secondary)]">Advanced analytics, student-centered innovation, and sustainable operations model</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Community Section -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg)]">
-    <div class="max-w-[1100px] mx-auto">
-      <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-[var(--text)] font-bold">Join Our Community</h2>
-      <p class="max-w-[65ch] mb-8 sm:mb-12 text-body text-[var(--text-secondary)]">
-        This framework thrives on community collaboration. Help us build, improve, and adapt together.
-        <strong class="text-[var(--text)]">Ubuntu: I am because we are.</strong>
-      </p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12">
-        <a href="https://chat.whatsapp.com/C0ixUbtKiNS4DbciDpmlO7?mode=wwt" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <MessageCircle class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">WhatsApp Community</h3>
-          <p class="text-body text-[var(--text-secondary)]">Join our WhatsApp groups to connect with educators across Africa.</p>
-        </a>
-        <a href="https://github.com/nyuchitech/learning/discussions" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <Code class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">Framework Development</h3>
-          <p class="text-body text-[var(--text-secondary)]">Technical discussions about improving the frameworks.</p>
-        </a>
-        <a href="https://github.com/nyuchitech/learning/issues" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <Bug class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">Report Issues</h3>
-          <p class="text-body text-[var(--text-secondary)]">Found a bug or technical issue? Help us track and prioritize.</p>
-        </a>
-        <a href="https://github.com/nyuchitech/learning" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <Github class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
-          <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">Contribute Code</h3>
-          <p class="text-body text-[var(--text-secondary)]">Access the open-source repository and contribute.</p>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA Section -->
-  <section class="py-16 sm:py-24 md:py-32 px-4 sm:px-6 bg-[var(--bg-surface)] relative overflow-hidden">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(0,176,255,0.08)_0%,transparent_50%),radial-gradient(circle_at_bottom_left,rgba(0,176,255,0.05)_0%,transparent_60%)]"></div>
-    <div class="max-w-[1100px] mx-auto relative z-10 w-full">
-      <h2 class="font-display text-[clamp(1.75rem,6vw,3.75rem)] font-black tracking-tight mb-6 sm:mb-8 text-[var(--text)]">Build the Future. Don't Replicate the Past.</h2>
-      <p class="text-[var(--primary)] italic text-body-lg mb-4 sm:mb-6 font-medium tracking-widest">Ubuntu: When we grow together, we all succeed</p>
-      <p class="text-body-lg mb-8 sm:mb-10 max-w-[65ch] text-[var(--text)]">
-        <strong>Join schools across Africa, Asia, Latin America, and the Pacific</strong> building digital-first learning environments
-        that develop the competencies students actually need for 2050. Access our open, evidence-based frameworks with detailed implementation
-        guides, budget templates, and proven strategies.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start mb-8 sm:mb-10">
-        <a href="/frameworks" class="btn-primary shadow-md w-full sm:w-auto">
-          Explore All Frameworks
-        </a>
-        <a href="/about" class="btn-secondary w-full sm:w-auto">
-          Our Mission & Impact
-        </a>
-        <a href="/consultation" class="btn-secondary w-full sm:w-auto">
-          Book a Consultation
-        </a>
-      </div>
-      <p class="text-body text-[var(--text-secondary)] italic mb-4">
-        Need guidance? Schedule a consultation to discuss how these frameworks can be adapted to your school's unique context.
-      </p>
-      <p class="text-meta text-[var(--text-secondary)] mt-8 sm:mt-10 font-medium">
-        Created by <strong class="text-[var(--text)]">nyuchi learning</strong>, a division of nyuchi africa • Zimbabwe-registered, globally focused • Built by educators, for education
-      </p>
-    </div>
-  </section>
+  <CTASection
+    heading="Build the Future. Don't Replicate the Past."
+    description="Join schools across Africa, Asia, Latin America, and the Pacific building digital-first learning environments. Access our open, evidence-based frameworks with detailed implementation guides, budget templates, and proven strategies."
+    tagline="Free to use, copy, adapt, and share"
+  >
+    <a href="/frameworks" class="btn-primary shadow-md w-full sm:w-auto">
+      Explore All Frameworks
+    </a>
+    <a href="/consultation" class="btn-secondary w-full sm:w-auto">
+      Book a Consultation
+    </a>
+  </CTASection>
 </BaseLayout>
