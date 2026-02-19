@@ -451,8 +451,8 @@
     background-size: 24px 24px;
     background-attachment: fixed;
     color: var(--text);
-    line-height: 1.5;
-    font-size: 16px;
+    line-height: 1.7;
+    font-size: 18px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -468,19 +468,19 @@
     }
   }
 
-  /* Typography Scale */
+  /* Typography Scale - Fluid responsive sizing with clamp() */
   h1 {
     font-family: var(--font-display);
-    font-size: 48px;
+    font-size: clamp(2rem, 6vw, 4rem);
     font-weight: var(--font-weight-bold);
-    line-height: 1.2;
+    line-height: 1.1;
     letter-spacing: -0.02em;
     color: var(--text);
   }
 
   h2 {
     font-family: var(--font-heading);
-    font-size: 36px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: var(--font-weight-bold);
     line-height: 1.2;
     color: var(--text);
@@ -488,7 +488,7 @@
 
   h3 {
     font-family: var(--font-heading);
-    font-size: 28px;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
     font-weight: var(--font-weight-semibold);
     line-height: 1.3;
     color: var(--text);
@@ -496,31 +496,31 @@
 
   h4 {
     font-family: var(--font-heading);
-    font-size: 24px;
+    font-size: clamp(1.125rem, 2.5vw, 1.25rem);
     font-weight: var(--font-weight-semibold);
-    line-height: 1.25;
+    line-height: 1.4;
     color: var(--text);
   }
 
   h5 {
     font-family: var(--font-heading);
-    font-size: 20px;
+    font-size: 1.125rem;
     font-weight: var(--font-weight-semibold);
-    line-height: 1.25;
+    line-height: 1.4;
     color: var(--text);
   }
 
   h6 {
     font-family: var(--font-heading);
-    font-size: 18px;
+    font-size: 1rem;
     font-weight: var(--font-weight-semibold);
-    line-height: 1.25;
+    line-height: 1.4;
     color: var(--text);
   }
 
   p {
-    font-size: 16px;
-    line-height: 1.5;
+    font-size: inherit;
+    line-height: 1.7;
     color: var(--text);
   }
 
@@ -534,60 +534,17 @@
     opacity: 0.8;
   }
 
-  /* Focus states - AAA compliant */
-  *:focus-visible {
-    outline: 2px solid var(--primary);
-    outline-offset: 2px;
-  }
+  /* Focus states - see WCAG 2.2 AAA section below for comprehensive rules */
 
   /* Code */
   code, pre {
     font-family: var(--font-mono);
   }
 
-  /* Mobile Typography - Responsive font sizing */
+  /* Mobile body text - 16px minimum on small screens */
   @media (max-width: 768px) {
-    h1 {
-      font-size: clamp(1.75rem, 8vw, 2.5rem);  /* 28px-40px */
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 6vw, 2rem);  /* 24px-32px */
-    }
-
-    h3 {
-      font-size: clamp(1.25rem, 5vw, 1.5rem);  /* 20px-24px */
-    }
-
-    h4 {
-      font-size: clamp(1.125rem, 4vw, 1.375rem);  /* 18px-22px */
-    }
-
-    h5 {
-      font-size: 1.125rem;  /* 18px */
-    }
-
-    h6 {
-      font-size: 1rem;  /* 16px */
-    }
-  }
-
-  /* Extra small screens */
-  @media (max-width: 480px) {
-    h1 {
-      font-size: clamp(1.5rem, 7vw, 2rem);  /* 24px-32px */
-    }
-
-    h2 {
-      font-size: clamp(1.25rem, 5.5vw, 1.75rem);  /* 20px-28px */
-    }
-
-    h3 {
-      font-size: 1.25rem;  /* 20px */
-    }
-
-    h4 {
-      font-size: 1.125rem;  /* 18px */
+    body {
+      font-size: 16px;
     }
   }
 }
@@ -891,7 +848,7 @@
 /* Skip Links - Allow keyboard users to bypass navigation */
 .skip-link {
   position: absolute;
-  top: -100%;
+  top: -9999px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10000;
@@ -900,14 +857,19 @@
   padding: 1rem 2rem;
   border-radius: var(--radius-button);
   font-weight: var(--font-weight-semibold);
+  font-size: 0.875rem;
   text-decoration: none;
   transition: top 0.3s ease;
 }
 
 .skip-link:focus {
-  top: 1rem;
+  top: 0.75rem;
   outline: 3px solid white;
   outline-offset: 2px;
+}
+
+.light .skip-link:focus {
+  outline-color: var(--text);
 }
 
 /* Screen Reader Only - Visually hidden but accessible */
@@ -1070,7 +1032,7 @@ td a {
 /* Text Spacing Override Support (WCAG 2.1 SC 1.4.12) */
 /* Users can override these values without breaking layout */
 html {
-  line-height: 1.5; /* At least 1.5x font size */
+  line-height: 1.7; /* Generous for comfortable reading */
   letter-spacing: 0.00em; /* Can be increased to 0.12em */
   word-spacing: 0.00em; /* Can be increased to 0.16em */
 }
@@ -1127,14 +1089,14 @@ p {
   outline: none;
 }
 
-/* Ensure adequate line length for readability (45-75 characters) */
+/* Ensure adequate line length for readability (~65 characters) */
 .readable-width {
-  max-width: 75ch;
+  max-width: 65ch;
 }
 
 article p,
 article li {
-  max-width: 75ch;
+  max-width: 65ch;
 }
 
 /* Motion Preferences - Additional Safety */
