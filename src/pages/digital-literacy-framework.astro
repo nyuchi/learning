@@ -388,7 +388,7 @@ const supportResources = [
     ]} />
 
     <!-- Framework Header -->
-    <div class="relative py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden">
+    <div class="relative py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden hero-dots">
       <h1 class="text-[clamp(1.5rem,4vw,3.5rem)] font-black font-display mb-3 sm:mb-4 relative z-10">Digital Literacy Framework for Africa</h1>
       <p class="text-[clamp(0.9rem,2vw,1.3rem)] opacity-95 mb-6 sm:mb-8 relative z-10">Mobile-First | Lifelong Learning | 2050-Ready | Digital Citizenship</p>
       <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center relative z-10">
@@ -413,7 +413,7 @@ const supportResources = [
     </nav>
 
     <!-- Executive Overview -->
-    <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border border-[var(--border)]">
+    <section id="overview" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-black mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Overview</h2>
       <p class="text-body text-[var(--text)] mb-6 sm:mb-8">
         This framework reimagines digital literacy for the African context, where most learners access
@@ -423,7 +423,7 @@ const supportResources = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {overviewCards.map((card) => (
-          <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
             <card.icon class="text-[var(--primary)] mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
             <p class="text-body text-[var(--text)]">{card.description}</p>
@@ -431,7 +431,7 @@ const supportResources = [
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)]">
+      <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4 mt-0">African Context: Why This Framework Matters</h3>
         <ul class="ml-4 sm:ml-6 space-y-1.5 sm:space-y-2 text-body">
           {africanContext.map((item) => (
@@ -442,24 +442,24 @@ const supportResources = [
     </section>
 
     <!-- Framework Governance -->
-    <section id="governance" class="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] p-8 rounded-xl mb-8 border-2 border-[var(--primary)]">
+    <section id="governance" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">How This Framework Embodies Our Principles</h2>
       <p class="text-lg text-[var(--text)] mb-10 leading-relaxed">All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this Digital Literacy Framework embodies each principle:</p>
 
       <div class="grid gap-6 mb-12">
         {governancePrinciples.map((principle) => (
-          <div class="flex flex-col md:flex-row gap-6 bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex flex-col md:flex-row gap-6 bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
             <div class="font-display text-4xl font-bold text-[var(--primary)] flex-shrink-0 w-16 leading-tight">{principle.number}</div>
             <div>
               <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{principle.title}</h3>
               <p class="text-[var(--text)] leading-relaxed mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
-              <p class="text-[var(--text-secondary)] text-body p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-4"><em>Example:</em> {principle.example}</p>
+              <p class="text-[var(--text-secondary)] text-body p-4 bg-[var(--bg)] rounded-xl border border-[var(--border)] mt-4"><em>Example:</em> {principle.example}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div class="bg-[var(--bg-surface)] p-10 rounded-xl shadow-sm">
+      <div class="bg-[var(--bg-surface)] p-6 md:p-8 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Part of a Broader Mission</h3>
         <p class="text-lg leading-relaxed text-[var(--text)] mb-6">This framework is one of multiple frameworks released by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa committed to empowering developing countries to leapfrog traditional educational models. Learn more about our mission, vision, and strategic goals.</p>
         <a href="/about" class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">Read Our Mission & Impact</a>
@@ -467,11 +467,11 @@ const supportResources = [
     </section>
 
     <!-- Core Principles -->
-    <section id="principles" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="principles" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Core Principles</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {corePrinciples.map((principle) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl relative transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)] relative transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
             <span class="absolute top-4 right-4 text-5xl font-black text-[var(--primary)] opacity-15">{principle.number}</span>
             <h3 class="text-[var(--primary)] text-xl font-bold mb-2 mt-0">{principle.title}</h3>
             <p class="text-[var(--text)] leading-relaxed">{principle.description}</p>
@@ -481,7 +481,7 @@ const supportResources = [
     </section>
 
     <!-- Student Standards -->
-    <section id="student-standards" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="student-standards" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Student Standards & Learning Outcomes</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital literacy standards organized by age group, recognizing that progression is based on
@@ -498,7 +498,7 @@ const supportResources = [
               <p class="m-0 text-meta opacity-90">{level.subtitle}</p>
             </div>
           </div>
-          <div class="p-8">
+          <div class="p-5 md:p-6">
             {level.domains.map((domain) => (
               <div class="mb-8 last:mb-0">
                 <h4 class="text-[var(--primary)] text-lg font-bold mb-3">{domain.title}</h4>
@@ -513,7 +513,7 @@ const supportResources = [
     </section>
 
     <!-- Adult Framework -->
-    <section id="adult-framework" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="adult-framework" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Adult Digital Literacy Framework</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital literacy is not just for students. Teachers, staff, parents, and community members
@@ -528,7 +528,7 @@ const supportResources = [
               <pathway.icon size={32} stroke-width={1.5} class="flex-shrink-0" />
               <h3 class="text-2xl font-bold m-0">{pathway.title}</h3>
             </div>
-            <div class="p-8">
+            <div class="p-5 md:p-6">
               {pathway.levels.map((level) => (
                 <div class="mb-6 last:mb-0">
                   <h4 class="text-[var(--primary)] text-lg font-bold mb-3">{level.title}</h4>
@@ -544,7 +544,7 @@ const supportResources = [
     </section>
 
     <!-- Digital Citizenship -->
-    <section id="digital-citizenship" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="digital-citizenship" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Digital Citizenship Framework</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital citizenship is the foundation of all digital literacy. It encompasses the rights,
@@ -553,7 +553,7 @@ const supportResources = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {citizenshipPillars.map((pillar) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
             <pillar.icon class="text-[var(--primary)] mb-4" size={40} stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{pillar.title}</h3>
             <h4 class="text-[var(--text)] text-meta font-semibold mb-2">Key Competencies:</h4>
@@ -566,7 +566,7 @@ const supportResources = [
     </section>
 
     <!-- Mobile-First Implementation -->
-    <section id="mobile-first" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="mobile-first" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Mobile-First Implementation Strategies</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         In Africa, mobile devices are the gateway to the digital world. This framework recognizes that
@@ -575,7 +575,7 @@ const supportResources = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         {mobileStrategies.map((strategy) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
             <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{strategy.title}</h3>
             <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
               {strategy.items.map((item) => <li>{item}</li>)}
@@ -584,7 +584,7 @@ const supportResources = [
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+      <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Digital Equity Considerations</h3>
         <p class="text-[var(--text)] mb-4">No student should be disadvantaged by lack of device access. Schools implementing this framework must:</p>
         <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
@@ -594,7 +594,7 @@ const supportResources = [
     </section>
 
     <!-- 2050 Vision -->
-    <section id="2050-vision" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="2050-vision" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Preparing for 2050: Future-Ready Skills</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         The job market of 2050 will look radically different from today. This framework prepares learners
@@ -603,7 +603,7 @@ const supportResources = [
 
       <div class="grid gap-8 mb-8">
         {futureSkills.map((skill) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
             <h3 class="text-[var(--primary)] text-xl font-bold mb-2 mt-0">{skill.title}</h3>
             <p class="text-[var(--text-secondary)] italic mb-4">{skill.description}</p>
             <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
@@ -613,7 +613,7 @@ const supportResources = [
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
+      <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">2050 Vision Statement</h3>
         <p class="text-lg leading-relaxed italic text-[var(--text)]">
           "By 2050, every African—regardless of age, location, or socioeconomic status—will have the digital
@@ -625,7 +625,7 @@ const supportResources = [
     </section>
 
     <!-- Assessment & Progression -->
-    <section id="assessment" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="assessment" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Assessment & Progression</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Digital literacy is best assessed through demonstration, not memorization. This framework uses
@@ -634,7 +634,7 @@ const supportResources = [
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
         {assessmentMethods.map((method) => (
-          <div class="bg-[var(--bg)] p-8 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
             <h3 class="text-[var(--primary)] text-xl font-bold mb-2 mt-0">{method.title}</h3>
             <p class="font-semibold text-[var(--text)] mb-4">{method.intro}</p>
             <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)]">
@@ -644,12 +644,12 @@ const supportResources = [
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-8 rounded-xl">
+      <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-6 mt-0">Progression Model: From Novice to Expert</h3>
         <div class="flex flex-col lg:flex-row items-center gap-4 overflow-x-auto pb-4">
           {progressionStages.map((stage, i) => (
             <>
-              <div class="flex-shrink-0 bg-[var(--bg-surface)] p-6 rounded-xl text-center min-w-[180px] border-2 border-[var(--primary)]">
+              <div class="flex-shrink-0 bg-[var(--bg)] p-5 rounded-xl text-center min-w-[180px] border border-[var(--border)]">
                 <div class="w-10 h-10 bg-[var(--primary)] text-white rounded-full flex items-center justify-center mx-auto mb-4 font-extrabold text-lg">{stage.number}</div>
                 <h4 class="text-[var(--primary)] font-bold mb-2">{stage.title}</h4>
                 <p class="text-meta text-[var(--text)] m-0">{stage.description}</p>
@@ -662,7 +662,7 @@ const supportResources = [
     </section>
 
     <!-- Implementation Guide -->
-    <section id="implementation" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="implementation" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-black mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Implementation Guide</h2>
       <p class="text-lg leading-relaxed text-[var(--text)] mb-8">
         Implementing this framework requires phased, contextualized planning. Schools and communities
@@ -673,12 +673,12 @@ const supportResources = [
         {implementationPhases.map((phase) => (
           <div class="border-2 border-[var(--border)] rounded-xl overflow-hidden">
             <h3 class="bg-[var(--primary)] text-white p-6 m-0 text-xl font-bold">{phase.title}</h3>
-            <div class="p-8">
+            <div class="p-5 md:p-6">
               <h4 class="text-[var(--primary)] text-lg font-bold mb-4">Goal: {phase.goal}</h4>
               <ul class="ml-6 leading-relaxed space-y-2 text-[var(--text)] mb-6">
                 {phase.tasks.map((task) => <li>{task}</li>)}
               </ul>
-              <div class="bg-[var(--bg)] p-4 border-2 border-[var(--primary)] rounded-lg">
+              <div class="bg-[var(--bg-surface)] p-4 border border-[var(--border)] rounded-lg">
                 <strong class="text-[var(--text)]">Outcome:</strong> <span class="text-[var(--text-secondary)]">{phase.outcome}</span>
               </div>
             </div>
@@ -686,7 +686,7 @@ const supportResources = [
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-8 rounded-xl">
+      <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Implementation Support Resources</h3>
         <ul class="ml-6 leading-relaxed space-y-2">
           {supportResources.map((resource) => (
