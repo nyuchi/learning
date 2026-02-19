@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import { Globe, MapPin, Users, TrendingUp, Heart, Smartphone, Target, CheckCircle } from 'lucide-astro';
 
 // Scope stats
@@ -78,13 +79,21 @@ const impactGoals = [
   description="nyuchi learning serves schools across Africa, Asia, Latin America, and the Pacific. Pan-African priority with global developing world focus. Shared challenges, mobile-first reality, leapfrog opportunity."
   keywords="pan-African education, global education framework, developing countries education, Africa schools, Asia education, Latin America schools, Pacific education, mobile-first education global"
 >
+  <!-- Breadcrumb -->
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8 pt-6">
+    <PageBreadcrumb items={[
+      { label: 'About', href: '/about' },
+      { label: 'Global Reach' }
+    ]} />
+  </div>
+
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary)]/80 text-[var(--text)] py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 text-center rounded-b-2xl md:rounded-b-3xl mb-8 sm:mb-12 md:mb-16">
+    <section class="py-12 sm:py-16 md:py-24 text-center">
       <div class="max-w-[1200px] mx-auto">
-        <p class="text-base sm:text-lg opacity-90 mb-3 sm:mb-4 italic">Ubuntu: I am because we are</p>
-        <h1 class="text-[clamp(1.75rem,6vw,3.5rem)] font-serif mb-4 sm:mb-6">Global Reach</h1>
-        <p class="text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed max-w-[800px] mx-auto">Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050</p>
+        <p class="text-base sm:text-lg text-[var(--text-tertiary)] mb-3 sm:mb-4 italic">Ubuntu: I am because we are</p>
+        <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-display font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-4 sm:mb-6">Global Reach</h1>
+        <p class="text-lg leading-relaxed max-w-[65ch] mx-auto text-[var(--text-secondary)]">Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050</p>
       </div>
     </section>
 

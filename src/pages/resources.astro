@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle, Video, HelpCircle, GraduationCap, Target, Globe } from 'lucide-astro';
 
 // Quick links data
@@ -259,13 +260,20 @@ const tiers = [
   description="Comprehensive resources for implementing Nyuchi Learning frameworks: getting started guides, technical documentation, pedagogical resources, community support, and consultation services. Open and free for schools across Africa and the developing world."
   keywords="framework implementation, school digital transformation, getting started guide, technical documentation, pedagogical resources, teacher training, educational technology support, school implementation resources"
 >
+  <!-- Breadcrumb -->
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8 pt-6">
+    <PageBreadcrumb items={[
+      { label: 'Resources' }
+    ]} />
+  </div>
+
   <!-- Coming Soon Overlay -->
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg)]/95 backdrop-blur-sm px-4 sm:px-6">
     <div class="text-center px-4 sm:px-8 max-w-[600px]">
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
         <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
       </div>
-      <h1 class="text-[clamp(1.75rem,6vw,3.5rem)] font-extrabold font-serif text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h1>
+      <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h1>
       <p class="text-base sm:text-lg md:text-xl text-[var(--text-secondary)] mb-6 sm:mb-8 leading-relaxed">
         We're putting the finishing touches on our Resources Hub. Check back soon for implementation guides, technical documentation, and community support resources.
       </p>

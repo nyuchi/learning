@@ -290,18 +290,18 @@ const {
 
       /* Solid header state (when scrolled) - Dark Mode */
       header.header-solid {
-        background: rgba(15, 23, 42, 0.98);  /* Slate 900 */
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(51, 65, 85, 0.5);  /* Slate 700 */
+        background: rgba(10, 10, 10, 0.98);  /* Warm dark #0A0A0A */
+        backdrop-filter: blur(var(--nav-blur));
+        -webkit-backdrop-filter: blur(var(--nav-blur));
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
       /* Solid header state - Light Mode (class-based) */
       :global(.light) header.header-solid {
-        background: rgba(255, 255, 255, 0.98);  /* White */
-        border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background: rgba(250, 249, 245, 0.98);  /* Warm cream #FAF9F5 */
+        border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       }
 
       :global(.light) header.header-solid .logo-text,
@@ -320,9 +320,9 @@ const {
       /* Solid header state - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
         :global(:not(.dark)) header.header-solid {
-          background: rgba(255, 255, 255, 0.98);  /* White */
-          border-bottom: 1px solid rgba(226, 232, 240, 0.8);  /* Slate 200 */
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          background: rgba(250, 249, 245, 0.98);  /* Warm cream #FAF9F5 */
+          border-bottom: 1px solid rgba(10, 10, 10, 0.08);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
         }
 
         :global(:not(.dark)) header.header-solid .logo-text,
@@ -540,7 +540,7 @@ const {
         background: var(--bg-surface);
         border: 1px solid var(--border);
         border-radius: 0.5rem;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        box-shadow: var(--shadow-lg);
         list-style: none;
         padding: 0.5rem 0;
         margin-top: 0.5rem;
@@ -767,14 +767,14 @@ const {
       .footer-ubuntu-large {
         font-size: clamp(1.25rem, 3vw, 2rem);
         font-style: italic;
-        color: var(--gray-300);
+        color: var(--text-secondary);
         opacity: 0.9;
         margin-bottom: 0.75rem;
       }
 
       .footer-geographic {
         font-size: clamp(1rem, 2vw, 1.2rem);
-        color: var(--gray-300);
+        color: var(--text-secondary);
         opacity: 0.85;
         margin-top: 0.75rem;
       }
@@ -806,7 +806,7 @@ const {
         font-family: 'Plus Jakarta Sans', sans-serif;
         font-size: 1.25rem;
         margin-bottom: 1.5rem;
-        color: white;
+        color: var(--text);
         font-weight: 700;
       }
 
@@ -820,18 +820,18 @@ const {
       }
 
       .footer-column a {
-        color: var(--gray-300);
+        color: var(--text-secondary);
         text-decoration: none;
         font-size: 1rem;
         transition: color 0.2s;
       }
 
       .footer-column a:hover {
-        color: white;
+        color: var(--text);
       }
 
       .footer-mission {
-        color: var(--gray-300);
+        color: var(--text-secondary);
         line-height: 1.8;
         font-size: 1rem;
       }
@@ -1391,9 +1391,15 @@ const {
         let scrollThreshold = 5; // Minimum scroll amount to trigger hide/show
         let hideThreshold = 100; // Scroll position before header can hide
         let transparentThreshold = 50; // Scroll position to switch from transparent to solid
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Initialize header as transparent
         header.classList.add('header-transparent');
+
+        // Disable header transitions if user prefers reduced motion
+        if (prefersReducedMotion) {
+          header.style.transition = 'none';
+        }
 
         window.addEventListener('scroll', function() {
           const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
