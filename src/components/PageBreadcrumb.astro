@@ -54,7 +54,7 @@ const { items, class: className = '' } = Astro.props;
     list-style: none;
     padding: 0;
     margin: 0;
-    font-size: 0.875rem;
+    font-size: var(--text-size-meta);
   }
 
   .breadcrumb-item {
@@ -69,8 +69,8 @@ const { items, class: className = '' } = Astro.props;
   }
 
   .breadcrumb-separator svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem;
+    height: 1.125rem;
   }
 
   .breadcrumb-link {
@@ -91,7 +91,7 @@ const { items, class: className = '' } = Astro.props;
 
   @media (max-width: 640px) {
     .breadcrumb-list {
-      font-size: 0.8rem;
+      font-size: var(--text-size-meta-mobile);
       gap: 0.375rem;
     }
   }

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageBreadcrumb from '../../components/PageBreadcrumb.astro';
 
 // Static blog posts (until Sanity is connected)
 const posts = [
@@ -39,7 +40,14 @@ const posts = [
   description="Insights on digital transformation in African education. Implementation strategies, success stories, digital literacy best practices, and open-source technology for schools."
   keywords="education technology blog, digital transformation insights, African education news, school technology implementation, digital literacy strategies, open-source education, education technology case studies"
 >
-  <!-- Blog Hero Section with solid background -->
+  <!-- Breadcrumb -->
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8 pt-6">
+    <PageBreadcrumb items={[
+      { label: 'Blog' }
+    ]} />
+  </div>
+
+  <!-- Blog Hero Section -->
   <section class="blog-hero">
     <div class="blog-hero-content">
       <h1>Framework Insights & Updates</h1>
@@ -82,16 +90,16 @@ const posts = [
     padding-left: 1.5rem;
     padding-right: 1.5rem;
     background: var(--bg);
-    text-align: center;
+    text-align: left;
   }
 
   .blog-hero-content {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .blog-hero h1 {
-    font-family: 'Noto Serif', Georgia, serif;
+    font-family: var(--font-display);
     font-size: clamp(2rem, 6vw, 3rem);
     font-weight: 700;
     color: var(--text);
@@ -102,7 +110,7 @@ const posts = [
     font-size: clamp(1rem, 2.5vw, 1.25rem);
     color: var(--text-secondary);
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0;
   }
 
   .blog-container {

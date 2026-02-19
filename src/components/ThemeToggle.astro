@@ -1,5 +1,5 @@
 ---
-import { Sun, Moon, Monitor } from 'lucide-astro';
+import { Sun, Moon, Monitor } from '@lucide/astro';
 ---
 
 <div class="theme-toggle-wrapper">
@@ -9,21 +9,21 @@ import { Sun, Moon, Monitor } from 'lucide-astro';
     aria-label="Toggle theme"
     title="Toggle theme"
   >
-    <Sun id="sunIcon" class="theme-icon sun-icon" size={20} strokeWidth={2} />
-    <Moon id="moonIcon" class="theme-icon moon-icon" size={20} strokeWidth={2} />
+    <Sun id="sunIcon" class="theme-icon sun-icon" size={20} stroke-width={2} />
+    <Moon id="moonIcon" class="theme-icon moon-icon" size={20} stroke-width={2} />
   </button>
 
   <div id="themeDropdown" class="theme-dropdown">
     <button class="theme-option" data-theme="light">
-      <Sun size={16} strokeWidth={2} />
+      <Sun size={16} stroke-width={2} />
       <span>Light</span>
     </button>
     <button class="theme-option" data-theme="dark">
-      <Moon size={16} strokeWidth={2} />
+      <Moon size={16} stroke-width={2} />
       <span>Dark</span>
     </button>
     <button class="theme-option" data-theme="system">
-      <Monitor size={16} strokeWidth={2} />
+      <Monitor size={16} stroke-width={2} />
       <span>System</span>
     </button>
   </div>
@@ -120,7 +120,7 @@ import { Sun, Moon, Monitor } from 'lucide-astro';
     background: transparent;
     color: var(--text);
     font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 14px;
+    font-size: var(--text-size-meta);
     font-weight: 500;
     cursor: pointer;
     transition: background 0.2s ease;

@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, BookOpen, Github, ExternalLink } from 'lucide-astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, BookOpen, Github } from '@lucide/astro';
 
 const githubRepo = 'https://github.com/nyuchitech/learning';
 
@@ -10,43 +13,49 @@ const communityFeatures = [
     icon: MessageSquare,
     title: "Discussions",
     description: "Join conversations about implementation strategies, best practices, and share your experiences. Ask questions, get advice from other schools, and discuss the future of digital education in Africa.",
-    link: `${githubRepo}/discussions`,
-    linkText: "Start a Discussion"
+    href: `${githubRepo}/discussions`,
+    linkText: "Start a Discussion",
+    external: true
   },
   {
     icon: GitPullRequest,
     title: "Issues & Suggestions",
     description: "Found something that needs improvement? Have ideas for new features? Browse existing issues or create new ones to help us track and prioritize improvements.",
-    link: `${githubRepo}/issues`,
-    linkText: "Browse Issues"
+    href: `${githubRepo}/issues`,
+    linkText: "Browse Issues",
+    external: true
   },
   {
     icon: Bug,
     title: "Report a Bug",
     description: "Encountered a technical issue or something not working as expected? Report bugs so we can fix them quickly and improve the framework for everyone.",
-    link: `${githubRepo}/issues/new?template=bug_report.md`,
-    linkText: "Report Bug"
+    href: `${githubRepo}/issues/new?template=bug_report.md`,
+    linkText: "Report Bug",
+    external: true
   },
   {
     icon: Lightbulb,
     title: "Feature Requests",
     description: "Have an idea for a new capability or enhancement? Submit feature requests and help shape the future direction of the framework.",
-    link: `${githubRepo}/issues/new?template=feature_request.md`,
-    linkText: "Request Feature"
+    href: `${githubRepo}/issues/new?template=feature_request.md`,
+    linkText: "Request Feature",
+    external: true
   },
   {
     icon: BookOpen,
     title: "Community Wiki",
     description: "Access community-contributed documentation, implementation guides, troubleshooting tips, and real-world case studies from schools using the framework.",
-    link: `${githubRepo}/wiki`,
-    linkText: "Explore Wiki"
+    href: `${githubRepo}/wiki`,
+    linkText: "Explore Wiki",
+    external: true
   },
   {
     icon: Shield,
     title: "Security",
     description: "Review our security policies and report security vulnerabilities responsibly. We take security seriously to protect schools and student data.",
-    link: `${githubRepo}/security`,
-    linkText: "View Security Policy"
+    href: `${githubRepo}/security`,
+    linkText: "View Security Policy",
+    external: true
   }
 ];
 
@@ -69,38 +78,26 @@ const stats = [
   description="Join our community to help build and improve the K-12 Digital Campus Framework. Report issues, request features, contribute ideas, and collaborate with educators across Africa."
   keywords="K-12 framework community, educational technology collaboration, open-source education, GitHub community, digital transformation community, African education community"
 >
+  <!-- Breadcrumb -->
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8 pt-6">
+    <PageBreadcrumb items={[
+      { label: 'Community' }
+    ]} />
+  </div>
+
   <!-- Hero Section -->
-  <section class="py-16 sm:py-20 md:py-28 px-4 sm:px-6 text-center bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] border-b-4 sm:border-b-[6px] border-[var(--primary)]">
-    <div class="max-w-[1200px] mx-auto">
-      <h1 class="text-[clamp(1.75rem,8vw,4rem)] font-black mb-4 sm:mb-6 text-[var(--text)] tracking-tight leading-tight font-serif">Join Our Community</h1>
-      <p class="text-[clamp(0.95rem,2.5vw,1.5rem)] italic text-[var(--text-secondary)] mb-6 sm:mb-8 tracking-wide">Ubuntu: When we build together, we all succeed</p>
-      <p class="text-[clamp(1rem,2.5vw,1.25rem)] max-w-[900px] mx-auto leading-relaxed text-[var(--text)] px-2">
-        This framework thrives on community collaboration. Whether you're an educator, IT professional,
-        student, or administrator, your voice matters. Help us build, improve, and adapt this framework
-        for schools across Africa and beyond.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    tagline="Ubuntu: When we build together, we all succeed"
+    title="Join Our Community"
+    subtitle="This framework thrives on community collaboration. Whether you're an educator, IT professional, student, or administrator, your voice matters. Help us build, improve, and adapt this framework for schools across Africa and beyond."
+    share
+  />
 
   <!-- Community Features Grid -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg-surface)]">
     <div class="max-w-[1200px] mx-auto">
-      <h2 class="text-center text-[clamp(1.5rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight leading-tight relative pb-6 sm:pb-8 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] sm:after:w-[150px] after:h-1.5 sm:after:h-2 after:bg-[var(--primary)] after:shadow-lg">How to Get Involved</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-        {communityFeatures.map((feature) => (
-          <a href={feature.link} target="_blank" rel="noopener noreferrer" class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 no-underline text-inherit flex flex-col gap-4 sm:gap-5 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:bg-[var(--bg-surface)]">
-            <div class="flex justify-center items-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[var(--bg-surface)] rounded-full mx-auto shadow-md">
-              <feature.icon class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" strokeWidth={1.5} />
-            </div>
-            <h3 class="text-lg sm:text-xl md:text-2xl text-[var(--text)] font-extrabold tracking-tight text-center m-0">{feature.title}</h3>
-            <p class="leading-relaxed text-[var(--text)] text-base sm:text-lg flex-1 text-center">{feature.description}</p>
-            <div class="flex items-center justify-center gap-2 text-[var(--primary)] font-bold tracking-wide text-base sm:text-lg transition-all duration-300">
-              <span>{feature.linkText}</span>
-              <ExternalLink size={20} strokeWidth={2} />
-            </div>
-          </a>
-        ))}
-      </div>
+      <h2 class="text-[clamp(1.75rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight leading-tight">How to Get Involved</h2>
+      <FeatureGrid items={communityFeatures} />
     </div>
   </section>
 
@@ -110,21 +107,21 @@ const stats = [
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 md:gap-16 items-center">
         <div>
           <h2 class="text-[clamp(1.5rem,5vw,3rem)] font-black mb-4 sm:mb-6 text-[var(--text)] tracking-tight">Why Contribute?</h2>
-          <p class="text-base sm:text-lg md:text-xl leading-relaxed mb-6 sm:mb-8 text-[var(--text)]">
+          <p class="text-body-lg mb-6 sm:mb-8 text-[var(--text)]">
             This framework is <strong>open, shareable, and community-driven</strong>. Every contribution—whether
             it's a bug report, feature suggestion, discussion comment, or documentation improvement—helps
             schools across Africa and beyond implement better digital transformation strategies.
           </p>
           <ul class="list-none p-0 space-y-0">
             {contributionBenefits.map((benefit) => (
-              <li class="py-3 sm:py-4 pl-6 sm:pl-8 relative text-base sm:text-lg leading-relaxed border-b border-[var(--border)] last:border-b-0 before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)] before:font-black before:text-xl sm:before:text-2xl">
+              <li class="py-3 sm:py-4 pl-6 sm:pl-8 relative text-body border-b border-[var(--border)] last:border-b-0 before:content-['→'] before:absolute before:left-0 before:text-[var(--primary)] before:font-black before:text-xl sm:before:text-2xl">
                 <strong class="text-[var(--primary)] font-bold">{benefit.title}:</strong> {benefit.description}
               </li>
             ))}
           </ul>
         </div>
         <div class="hidden lg:flex justify-center items-center">
-          <Github size={200} strokeWidth={1} class="text-[var(--primary)] opacity-30" />
+          <Github size={200} stroke-width={1} class="text-[var(--primary)] opacity-30" />
         </div>
       </div>
     </div>
@@ -133,15 +130,15 @@ const stats = [
   <!-- Community Stats -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--primary)] text-[var(--text)] border-y-4 sm:border-y-6 md:border-y-8 border-white">
     <div class="max-w-[1200px] mx-auto">
-      <h2 class="text-center text-[clamp(1.5rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight relative pb-6 sm:pb-8 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] sm:after:w-[150px] after:h-1.5 sm:after:h-2 after:bg-[var(--bg-surface)] after:shadow-lg">Growing Together</h2>
+      <h2 class="text-[clamp(1.75rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight">Growing Together</h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-[1200px] mx-auto">
         {stats.map((stat) => (
-          <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--primary)]/10 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)]/15">
-            <div class="mb-4 sm:mb-6 flex justify-center text-[var(--text)]">
-              <stat.icon class="w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <div class="p-5 sm:p-6 md:p-8 bg-[var(--primary)]/10 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)]/15">
+            <div class="mb-4 sm:mb-6 text-[var(--text)]">
+              <stat.icon class="w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
             </div>
             <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text)] mb-2 tracking-tight">{stat.number}</div>
-            <div class="text-[var(--text)] text-base sm:text-lg font-medium">{stat.label}</div>
+            <div class="text-[var(--text)] text-body font-medium">{stat.label}</div>
           </div>
         ))}
       </div>
@@ -149,14 +146,14 @@ const stats = [
   </section>
 
   <!-- Call to Action -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 text-center bg-gradient-to-br from-black/95 to-[var(--bg)] text-[var(--text)] border-t-4 sm:border-t-6 md:border-t-[10px] border-white">
+  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-br from-black/95 to-[var(--bg)] text-[var(--text)] border-t-4 sm:border-t-6 md:border-t-[10px] border-white">
     <div class="max-w-[1200px] mx-auto">
-      <h2 class="text-[clamp(1.5rem,6vw,3.5rem)] font-black mb-4 sm:mb-6 md:mb-8 tracking-tight leading-tight">Ready to Contribute?</h2>
-      <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 md:mb-10 max-w-[800px] mx-auto leading-relaxed px-2">
+      <h2 class="text-[clamp(1.75rem,6vw,3.5rem)] font-black mb-4 sm:mb-6 md:mb-8 tracking-tight leading-tight">Ready to Contribute?</h2>
+      <p class="text-body-lg mb-6 sm:mb-8 md:mb-10 max-w-[65ch] px-2">
         Visit our GitHub repository to get started. Every voice matters in building the future of education.
       </p>
-      <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-8 md:px-10 text-base sm:text-lg rounded-xl bg-[var(--bg-surface)] text-[var(--primary)] font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto">
-        <Github size={24} strokeWidth={2} />
+      <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-8 md:px-10 text-body rounded-xl bg-[var(--bg-surface)] text-[var(--primary)] font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto">
+        <Github size={24} stroke-width={2} />
         Visit GitHub Repository
       </a>
     </div>
