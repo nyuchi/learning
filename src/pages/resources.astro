@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import CTASection from '../components/CTASection.astro';
-import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CircleCheckBig, Video, CircleHelp, GraduationCap, Target, Globe } from '@lucide/astro';
+import { FileText, Wrench, Users, MessageCircle, Download, CircleCheckBig, Video, CircleHelp, GraduationCap, Target, Globe, Lightbulb } from '@lucide/astro';
 
 // Quick links data
 const quickLinks = [
@@ -100,7 +100,7 @@ const technicalResources = [
 // Pedagogical resources
 const pedagogicalResources = [
   {
-    icon: BookOpen,
+    icon: FileText,
     title: "Digital Literacy K-12 Curricula",
     description: "Complete digital literacy progression for K-2, 3-5, 6-8, and 9-12. Lesson plans, activities, projects, and assessments for each grade level. Aligned with 2050 competencies.",
     links: [
@@ -272,7 +272,7 @@ const tiers = [
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg)]/95 backdrop-blur-sm px-4 sm:px-6">
     <div class="px-4 sm:px-8 max-w-[600px]">
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
-        <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
+        <Lightbulb class="text-white w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
       </div>
       <h2 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h2>
       <p class="text-body-lg text-[var(--text-secondary)] mb-6 sm:mb-8">

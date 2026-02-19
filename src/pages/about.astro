@@ -4,7 +4,7 @@ import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import PageHero from '../components/PageHero.astro';
 import FeatureGrid from '../components/FeatureGrid.astro';
 import CTASection from '../components/CTASection.astro';
-import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, GraduationCap, Monitor } from '@lucide/astro';
+import { Target, Globe, TrendingUp, Users, Heart, Lightbulb, DollarSign, MapPin, GraduationCap, Monitor } from '@lucide/astro';
 ---
 
 <BaseLayout
@@ -113,7 +113,7 @@ import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, 
       </p>
       <FeatureGrid items={[
         { icon: Heart, title: 'Ubuntu: "I am because we are"', description: 'Community success over individual achievement. Open collaboration over proprietary solutions.' },
-        { icon: BookOpen, title: 'Evidence-Based Innovation', description: 'Research drives design decisions. Data informs continuous improvement.' },
+        { icon: Lightbulb, title: 'Evidence-Based Innovation', description: 'Research drives design decisions. Data informs continuous improvement.' },
         { icon: TrendingUp, title: 'Leapfrog Mindset', description: 'Build from first principles, not imitation. Leverage constraints as competitive advantages.' },
         { icon: Target, title: 'Learning Outcomes Over Technology', description: 'Competencies matter more than credentials. Character strengths predict success, not GPA.' },
         { icon: Users, title: 'Radical Accessibility', description: 'Open frameworks, freely shareable. Designed for schools with limited resources.' },
@@ -155,7 +155,7 @@ import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, 
         {[
           { icon: TrendingUp, title: 'Leapfrog Traditional Models', target: 'Enable 1,000 schools to skip outdated approaches', desc: 'Developing countries can build 2050-ready learning environments immediately.' },
           { icon: Target, title: 'Close the Global Skills Gap', target: 'Address the $8.5 trillion annual cost', desc: 'Develop frameworks that produce competencies employers actually need.' },
-          { icon: BookOpen, title: 'Expand Framework Portfolio', target: 'Release 5+ frameworks by 2030', desc: 'K-12 Digital Campus, Support Process, Digital Literacy, and more.' },
+          { icon: Target, title: 'Expand Framework Portfolio', target: 'Release 5+ frameworks by 2030', desc: 'K-12 Digital Campus, Support Process, Digital Literacy, and more.' },
           { icon: Users, title: 'Build Global Community', target: 'Create vibrant ecosystem', desc: 'Active forums, peer support, shared resource libraries.' },
           { icon: DollarSign, title: 'Demonstrate Cost-Effectiveness', target: 'Document $500M+ in savings', desc: 'Track total cost of ownership vs. commercial alternatives.' },
           { icon: Globe, title: 'Drive Policy Impact', target: 'Influence policy in 10+ countries', desc: 'Partner with ministries of education, support pilot programs.' }
