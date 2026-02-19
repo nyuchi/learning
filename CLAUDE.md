@@ -1167,12 +1167,16 @@ chore: update dependencies
 
 ### Pre-Commit Checklist
 
-- [ ] `npm run build` passes
-- [ ] `npm test` passes (all design + accessibility tests)
+**Automated checks** (run `npm run check` for all at once):
 - [ ] `npm run lint` passes (no ESLint errors)
 - [ ] `npm run format:check` passes (Prettier formatting)
+- [ ] `npm run test:design` passes (design guidelines compliance)
+- [ ] `npm run build` passes (TypeScript check + production build)
+- [ ] `npm run test:a11y` passes (accessibility/SEO on built output)
+
+**Manual verification:**
 - [ ] TypeScript errors resolved
-- [ ] Mobile responsive (test in DevTools)
+- [ ] Mobile responsive (test in DevTools: 375px, 393px)
 - [ ] Breadcrumbs present (except homepage)
 - [ ] Both light and dark themes work
 - [ ] No emojis used
@@ -1180,6 +1184,15 @@ chore: update dependencies
 - [ ] Lowercase wordmarks
 - [ ] Accessibility: keyboard nav, focus indicators, touch targets
 - [ ] Minerals Strip visible desktop, hidden mobile (<480px)
+
+**Documentation updates** (required for features, breaking changes, and releases):
+- [ ] `CHANGELOG.md` updated with changes under appropriate version heading
+- [ ] `CLAUDE.md` updated if design system, tech stack, or workflows changed
+- [ ] `README.md` updated if features, scripts, or project structure changed
+- [ ] `CONTRIBUTING.md` updated if development workflow or standards changed
+- [ ] `BRANDING.md` updated if colors, typography, or brand guidelines changed
+- [ ] `SECURITY.md` updated if dependencies or security model changed
+- [ ] `DEPLOYMENT.md` updated if build process or deployment config changed
 
 ---
 
