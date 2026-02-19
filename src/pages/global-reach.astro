@@ -96,15 +96,14 @@ const impactGoals = [
       tagline="Ubuntu: I am because we are"
       title="Global Reach"
       subtitle="Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050"
-      align="center"
       share
     />
 
     <!-- Geographic Scope Overview -->
     <section class="py-10 sm:py-12 md:py-16 bg-[var(--bg)]">
-      <div class="text-center mb-8 sm:mb-10 md:mb-12">
+      <div class="mb-8 sm:mb-10 md:mb-12">
         <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-4 sm:mb-6">Where We Serve</h2>
-        <p class="text-body-lg text-[var(--text-secondary)] max-w-[900px] mx-auto">
+        <p class="text-body-lg text-[var(--text-secondary)] max-w-[65ch]">
           <strong>nyuchi learning is pan-African with a global developing world focus.</strong>
           While Africa is our home and primary priority, our frameworks are designed for all developing
           countries facing similar challenges: mobile-first populations, limited 1:1 device access,
@@ -122,7 +121,7 @@ const impactGoals = [
 
     <!-- Regional Focus Areas -->
     <section class="py-10 sm:py-12 md:py-16">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] text-center mb-8 sm:mb-12 md:mb-16">Regional Focus Areas</h2>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-8 sm:mb-12 md:mb-16">Regional Focus Areas</h2>
 
       <!-- Africa (Primary) -->
       <div class="mb-8 sm:mb-12 md:mb-16 bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 lg:p-12 rounded-xl shadow-sm border-2 border-[var(--primary)]">
@@ -260,13 +259,13 @@ const impactGoals = [
 
     <!-- Why These Regions -->
     <section class="py-10 sm:py-12 md:py-16 bg-[var(--bg)]">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] text-center mb-8 sm:mb-10 md:mb-12">Why These Regions?</h2>
-      <FeatureGrid items={reasons} align="center" />
+      <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-8 sm:mb-10 md:mb-12">Why These Regions?</h2>
+      <FeatureGrid items={reasons} />
     </section>
 
     <!-- Impact Goals by Region -->
     <section class="py-10 sm:py-12 md:py-16">
-      <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] text-center mb-8 sm:mb-10 md:mb-12">2025-2030 Impact Goals by Region</h2>
+      <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-8 sm:mb-10 md:mb-12">2025-2030 Impact Goals by Region</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {impactGoals.map((goal) => (
           <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)] shadow-sm">
@@ -283,14 +282,14 @@ const impactGoals = [
         ))}
       </div>
 
-      <p class="text-center text-body-lg text-[var(--text)] mt-8 sm:mt-10 md:mt-12 p-4 sm:p-5 md:p-6 bg-[var(--bg-surface)] rounded-xl"><strong>Total 2030 Goal:</strong> 1,000 schools, 10 million students across 40+ developing countries</p>
+      <p class="text-body-lg text-[var(--text)] mt-8 sm:mt-10 md:mt-12 p-4 sm:p-5 md:p-6 bg-[var(--bg-surface)] rounded-xl"><strong>Total 2030 Goal:</strong> 1,000 schools, 10 million students across 40+ developing countries</p>
     </section>
 
     <!-- CTA Section -->
-    <section class="text-center py-10 sm:py-14 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] rounded-2xl md:rounded-3xl mb-8 sm:mb-12 md:mb-16">
+    <section class="py-10 sm:py-14 md:py-20 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] rounded-2xl md:rounded-3xl mb-8 sm:mb-12 md:mb-16">
       <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] mb-4 sm:mb-6">Join the Global Movement</h2>
-      <p class="text-body-lg text-[var(--text-secondary)] max-w-[800px] mx-auto mb-6 sm:mb-8 md:mb-10">Whether you're in Harare, Mumbai, Jakarta, São Paulo, or Port Moresby—our frameworks are designed for your school. Download, adapt, implement, and share your learnings with the global community.</p>
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 justify-center items-center">
+      <p class="text-body-lg text-[var(--text-secondary)] max-w-[65ch] mb-6 sm:mb-8 md:mb-10">Whether you're in Harare, Mumbai, Jakarta, São Paulo, or Port Moresby—our frameworks are designed for your school. Download, adapt, implement, and share your learnings with the global community.</p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 md:gap-6 items-start">
         <a href="/frameworks" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 text-body w-full sm:w-auto">Download Frameworks</a>
         <a href="/resources" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)] text-body w-full sm:w-auto">Browse Resources</a>
         <a href="/consultation" class="inline-flex items-center justify-center gap-2 h-12 sm:h-14 px-6 sm:px-8 md:px-10 rounded-xl font-semibold transition-all duration-200 bg-[var(--bg-surface)] text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)] text-body w-full sm:w-auto">Schedule Consultation</a>
