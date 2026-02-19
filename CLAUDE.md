@@ -1010,8 +1010,8 @@ npm run check        # Run build + tests + lint (full CI check locally)
 
 The `.github/workflows/ci.yml` workflow runs on every push to `main` and on pull requests:
 
-1. **Build & Test** job: checkout, Node 18, npm ci, `astro check`, `astro build`, design guidelines tests, accessibility/SEO tests
-2. **Lint & Format** job: checkout, Node 18, npm ci, ESLint, Prettier check
+1. **Lint & Format** job (runs first): ESLint, Prettier check, design guidelines tests
+2. **Build & Test** job (runs after lint passes): TypeScript check, `astro build`, accessibility/SEO tests
 
 ### Development Best Practices
 
