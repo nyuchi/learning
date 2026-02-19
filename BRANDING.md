@@ -139,30 +139,30 @@ Nyuchi Learning uses the **Education Theme** variant with Cobalt as the primary 
 |---------|-------|------|
 | Base | `#FAF9F5` | Warm Cream |
 | Surface | `#FFFFFF` | White |
-| Surface Dim | `#F3F2EE` | Subtle Gray |
+| Surface Dim | `#F3F2EE` | Subtle Warm Gray |
 
-**Dark Mode (Education Slate Variant):**
+**Dark Mode (Warm Dark):**
 | Surface | Value | Name |
 |---------|-------|------|
-| Base | `#0F172A` | Slate 900 |
-| Surface | `#1E293B` | Slate 800 |
-| Elevated | `#334155` | Slate 700 |
+| Base | `#0A0A0A` | Near Black |
+| Surface | `#141414` | Warm Dark |
+| Elevated | `#1E1E1E` | Warm Dark Gray |
 
 ### Text Colors
 
 **Light Mode:**
 | Type | Value |
 |------|-------|
-| Primary | `#1A1A1A` |
-| Secondary | `#4B5563` |
-| Muted | `#6B7280` |
+| Primary | `#141413` |
+| Secondary | `#4A4A46` |
+| Tertiary | `#5C5B58` |
 
 **Dark Mode:**
 | Type | Value |
 |------|-------|
-| Primary | `#F8FAFC` |
-| Secondary | `#CBD5E1` |
-| Muted | `#94A3B8` |
+| Primary | `#F5F5F4` |
+| Secondary | `#B8B8B3` |
+| Tertiary | `#9A9A95` |
 
 ### Semantic Colors
 

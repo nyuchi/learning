@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BookOpen, Download, Users, Smartphone, ArrowRight } from 'lucide-astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import PageHero from '../components/PageHero.astro';
+import { BookOpen, Download, Users, Smartphone } from '@lucide/astro';
 
 const frameworks = [
   {
@@ -75,43 +77,32 @@ const frameworks = [
   description="Browse our collection of open, shareable frameworks for digital transformation in African schools. Free to use, copy, adapt, and share."
   keywords="educational frameworks, K-12 digital transformation, school support systems, African education, open source education"
 >
-  <!-- Hero Section -->
-  <section class="min-h-[70vh] sm:min-h-[80vh] md:min-h-screen flex items-center justify-center text-[var(--text)] text-center overflow-hidden relative">
-    <div class="hero-bg absolute inset-0 bg-[url('https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=1600&q=80')] bg-cover bg-center"></div>
-    <div class="absolute inset-0 bg-gradient-to-br from-black/40 to-neutral-900/50"></div>
-    <div class="relative z-10 px-4 sm:px-6 py-6 sm:py-8 max-w-[1200px] mx-auto w-full">
-      <p class="text-sm sm:text-base md:text-lg italic mb-6 sm:mb-8 tracking-widest font-medium opacity-95">Ubuntu: I am because we are</p>
-      <div class="mb-8 sm:mb-12">
-        <h1 class="font-display text-[clamp(2.5rem,10vw,6rem)] font-black leading-tight tracking-tighter drop-shadow-2xl">Frame</h1>
-        <h1 class="font-display text-[clamp(2.5rem,10vw,6rem)] font-black leading-tight tracking-tighter drop-shadow-2xl">+ Works</h1>
-      </div>
-      <p class="text-base sm:text-lg md:text-xl lg:text-2xl leading-relaxed max-w-[900px] mx-auto font-normal opacity-95">
-        Open, shareable frameworks designed to empower schools across Africa.
-        Free to use, copy, adapt, and improve for your community.
-      </p>
-    </div>
-  </section>
+  <!-- Breadcrumb -->
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8 pt-6">
+    <PageBreadcrumb items={[
+      { label: 'Frameworks' }
+    ]} />
+  </div>
 
-  <style>
-    /* Use bg-fixed only on desktop for better mobile performance */
-    @media (min-width: 768px) {
-      .hero-bg {
-        background-attachment: fixed;
-      }
-    }
-  </style>
+  <!-- Hero Section -->
+  <PageHero
+    tagline="Ubuntu: I am because we are"
+    title="Frameworks"
+    subtitle="Open, shareable frameworks designed to empower schools across Africa. Free to use, copy, adapt, and improve for your community."
+    share
+  />
 
   <!-- Frameworks List -->
   <section class="py-16 md:py-24 px-4 bg-[var(--bg)]">
     <div class="max-w-[1400px] mx-auto">
-      <h2 class="font-display text-3xl md:text-4xl font-bold text-[var(--primary)] text-center mb-12">Available Frameworks</h2>
+      <h2 class="font-display text-3xl md:text-4xl font-bold text-[var(--primary)] mb-12">Available Frameworks</h2>
 
       <div class="flex flex-col gap-8 mb-16">
         {frameworks.map((framework) => (
           <div class="bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)] p-6 md:p-10 flex flex-col md:flex-row gap-6 md:gap-8 hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
             <!-- Icon -->
             <div class="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 flex items-center justify-center bg-[var(--bg-elevated)] rounded-2xl text-[var(--primary)]">
-              <framework.icon size={48} strokeWidth={1.5} />
+              <framework.icon size={48} stroke-width={1.5} />
             </div>
 
             <!-- Content -->
@@ -120,24 +111,24 @@ const frameworks = [
               <div class="flex flex-wrap items-start gap-3">
                 <h3 class="font-display text-xl md:text-2xl font-bold text-[var(--primary)]">{framework.title}</h3>
                 <div class="flex gap-2">
-                  <span class={`inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-[var(--color-${framework.badgeColor}-container-dark)] text-[var(--color-${framework.badgeColor}-on-container-dark)]`}>
+                  <span class={`inline-flex items-center px-3 py-1 text-caption font-medium rounded-full bg-[var(--color-${framework.badgeColor}-container-dark)] text-[var(--color-${framework.badgeColor}-on-container-dark)]`}>
                     {framework.badge}
                   </span>
-                  <span class="inline-flex items-center px-3 py-1 text-xs font-medium rounded-full bg-[var(--bg-elevated)] text-[var(--text-secondary)]">
+                  <span class="inline-flex items-center px-3 py-1 text-caption font-medium rounded-full bg-[var(--bg-elevated)] text-[var(--text-secondary)]">
                     {framework.version}
                   </span>
                 </div>
               </div>
 
               <!-- Version date -->
-              <p class="text-sm text-[var(--text-tertiary)] font-medium">{framework.date}</p>
+              <p class="text-meta text-[var(--text-tertiary)] font-medium">{framework.date}</p>
 
               <!-- Description -->
-              <p class="text-base leading-relaxed text-[var(--text)]">{framework.description}</p>
+              <p class="text-body text-[var(--text)]">{framework.description}</p>
 
               <!-- Features -->
               <div class="bg-[var(--bg-elevated)] rounded-xl p-5">
-                <h4 class="text-sm font-semibold text-[var(--primary)] mb-3 tracking-wide">Key Features</h4>
+                <h4 class="text-base font-semibold text-[var(--primary)] mb-3 tracking-wide">Key Features</h4>
                 <ul class="space-y-2">
                   {framework.features.map((feature) => (
                     <li class="flex items-start gap-2 text-[var(--text)]">
@@ -157,7 +148,7 @@ const frameworks = [
                 {framework.stats.map((stat) => (
                   <div class="flex flex-col gap-1">
                     <span class="font-display text-xl font-bold text-[var(--primary)]">{stat.label}</span>
-                    <span class="text-sm text-[var(--text-secondary)]">{stat.value}</span>
+                    <span class="text-meta text-[var(--text-secondary)]">{stat.value}</span>
                   </div>
                 ))}
               </div>
@@ -178,12 +169,12 @@ const frameworks = [
       </div>
 
       <!-- Coming Soon -->
-      <div class="text-center p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
-        <span class="inline-flex items-center px-4 py-1.5 text-sm font-medium rounded-full bg-[var(--color-gold-container-dark)] text-[var(--color-gold-on-container-dark)] mb-6">
+      <div class="p-8 md:p-12 bg-[var(--bg-surface)] rounded-2xl border border-[var(--border)]">
+        <span class="inline-flex items-center px-4 py-1.5 text-caption font-medium rounded-full bg-[var(--color-gold-container-dark)] text-[var(--color-gold-on-container-dark)] mb-6">
           Coming Soon
         </span>
         <h2 class="font-display text-2xl md:text-3xl font-bold text-[var(--primary)] mb-4">More Frameworks Coming Soon</h2>
-        <p class="text-base md:text-lg leading-relaxed text-[var(--text-secondary)] max-w-[700px] mx-auto">
+        <p class="text-body text-[var(--text-secondary)] max-w-[700px]">
           Nyuchi Learning is committed to developing comprehensive frameworks for digital
           transformation in African education. Stay tuned for upcoming releases covering
           data analytics, student information systems, and more.

@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle, Video, HelpCircle, GraduationCap, Target, Globe } from 'lucide-astro';
+import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import CTASection from '../components/CTASection.astro';
+import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CircleCheckBig, Video, CircleHelp, GraduationCap, Target, Globe } from '@lucide/astro';
 
 // Quick links data
 const quickLinks = [
@@ -13,7 +15,7 @@ const quickLinks = [
 // Getting started resources
 const gettingStartedResources = [
   {
-    icon: CheckCircle,
+    icon: CircleCheckBig,
     title: "Self-Assessment Tool",
     description: "Evaluate your school's digital readiness across infrastructure, staff capacity, and student access. Identify strengths and gaps before implementation.",
     type: "Interactive Tool",
@@ -75,7 +77,7 @@ const technicalResources = [
     ]
   },
   {
-    icon: HelpCircle,
+    icon: CircleHelp,
     title: "Troubleshooting Knowledge Base",
     description: "Searchable database of common issues, error messages, and solutions. Community-contributed fixes and official support articles. Updated weekly.",
     type: "Knowledge Base",
@@ -118,7 +120,7 @@ const pedagogicalResources = [
     buttonText: "Browse Projects"
   },
   {
-    icon: CheckCircle,
+    icon: CircleCheckBig,
     title: "Assessment Rubrics for Competencies",
     description: "Rubrics for assessing grit, adaptability, collaboration, critical thinking, and digital fluency. Portfolio assessment guides and badge/microcredential criteria.",
     type: "PDF Download",
@@ -259,25 +261,32 @@ const tiers = [
   description="Comprehensive resources for implementing Nyuchi Learning frameworks: getting started guides, technical documentation, pedagogical resources, community support, and consultation services. Open and free for schools across Africa and the developing world."
   keywords="framework implementation, school digital transformation, getting started guide, technical documentation, pedagogical resources, teacher training, educational technology support, school implementation resources"
 >
+  <!-- Breadcrumb -->
+  <div class="max-w-[1200px] mx-auto px-6 sm:px-8 pt-6">
+    <PageBreadcrumb items={[
+      { label: 'Resources' }
+    ]} />
+  </div>
+
   <!-- Coming Soon Overlay -->
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg)]/95 backdrop-blur-sm px-4 sm:px-6">
-    <div class="text-center px-4 sm:px-8 max-w-[600px]">
+    <div class="px-4 sm:px-8 max-w-[600px]">
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
-        <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+        <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
       </div>
-      <h1 class="text-[clamp(1.75rem,6vw,3.5rem)] font-extrabold font-serif text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h1>
-      <p class="text-base sm:text-lg md:text-xl text-[var(--text-secondary)] mb-6 sm:mb-8 leading-relaxed">
+      <h2 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h2>
+      <p class="text-body-lg text-[var(--text-secondary)] mb-6 sm:mb-8">
         We're putting the finishing touches on our Resources Hub. Check back soon for implementation guides, technical documentation, and community support resources.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
-        <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 w-full sm:w-auto text-sm sm:text-base">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start">
+        <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 w-full sm:w-auto text-body">
           Browse Frameworks
         </a>
-        <a href="/" class="inline-flex items-center justify-center h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)] w-full sm:w-auto text-sm sm:text-base">
+        <a href="/" class="inline-flex items-center justify-center h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)] w-full sm:w-auto text-body">
           Back to Home
         </a>
       </div>
-      <p class="text-xs sm:text-sm text-[var(--text-muted)] mt-6 sm:mt-10">
+      <p class="text-caption text-[var(--text-muted)] mt-6 sm:mt-10">
         Have questions? <a href="/consultation" class="text-[var(--primary)] hover:underline">Book a consultation</a> to discuss your implementation needs.
       </p>
     </div>
@@ -285,9 +294,9 @@ const tiers = [
 
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-active)] text-[var(--text)] py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 text-center rounded-b-2xl md:rounded-b-3xl mb-8 sm:mb-12 md:mb-16">
-      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-extrabold font-serif mb-6">Resources Hub</h1>
-      <p class="text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed mb-4 max-w-[800px] mx-auto">
+    <section class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-active)] text-[var(--text)] py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 rounded-b-2xl md:rounded-b-3xl mb-8 sm:mb-12 md:mb-16">
+      <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-extrabold font-display mb-6">Resources Hub</h1>
+      <p class="text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed mb-4 max-w-[800px]">
         Everything you need to implement Nyuchi Learning frameworks in your school—from getting started to advanced implementation strategies
       </p>
       <p class="text-lg font-medium opacity-90">Open resources • Free access • Community-driven</p>
@@ -295,13 +304,13 @@ const tiers = [
 
     <!-- Quick Links -->
     <section class="px-8 pb-16">
-      <h2 class="text-center text-2xl font-bold text-[var(--text)] mb-10">Quick Access</h2>
+      <h2 class="text-2xl font-bold text-[var(--text)] mb-10">Quick Access</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {quickLinks.map((link) => (
-          <a href={link.href} class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm text-center no-underline text-[var(--text)] border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]">
-            <link.icon class="text-[var(--primary)] mx-auto mb-4" size={32} strokeWidth={1.5} />
+          <a href={link.href} class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm no-underline text-[var(--text)] border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]">
+            <link.icon class="text-[var(--primary)] mb-4" size={32} stroke-width={1.5} />
             <h3 class="text-xl font-bold text-[var(--primary)] mb-2">{link.title}</h3>
-            <p class="text-sm text-[var(--text-secondary)] m-0">{link.description}</p>
+            <p class="text-body text-[var(--text-secondary)] m-0">{link.description}</p>
           </a>
         ))}
       </div>
@@ -310,7 +319,7 @@ const tiers = [
     <!-- Getting Started Section -->
     <section id="getting-started" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <Target class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <Target class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Getting Started</h2>
           <p class="text-lg text-[var(--text-secondary)]">New to Nyuchi Learning frameworks? Start here.</p>
@@ -321,17 +330,17 @@ const tiers = [
         {gettingStartedResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
-            <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+            <div class="flex gap-4 flex-wrap text-meta text-[var(--text-muted)]">
               <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
               <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
             </div>
             <a
               href={resource.href}
-              class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+              class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-body transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
               {...(resource.download ? { download: true } : {})}
             >
               {resource.download && <Download size={16} />}
@@ -345,7 +354,7 @@ const tiers = [
     <!-- Technical Documentation -->
     <section id="technical" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <Wrench class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <Wrench class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Technical Documentation</h2>
           <p class="text-lg text-[var(--text-secondary)]">Platform setup guides, integration tutorials, and troubleshooting resources</p>
@@ -356,27 +365,27 @@ const tiers = [
         {technicalResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
             {resource.links ? (
               <div class="flex flex-col gap-2">
                 {resource.links.map((link) => (
-                  <a href={link.href} class="text-[var(--primary)] no-underline text-sm transition-colors hover:underline">
+                  <a href={link.href} class="text-[var(--primary)] no-underline text-body transition-colors hover:underline">
                     → {link.text}
                   </a>
                 ))}
               </div>
             ) : (
               <>
-                <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+                <div class="flex gap-4 flex-wrap text-meta text-[var(--text-muted)]">
                   <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
                   <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
                 </div>
                 <a
                   href={resource.href}
-                  class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+                  class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-body transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
                   {...(resource.download ? { download: true } : {})}
                 >
                   {resource.download && <Download size={16} />}
@@ -392,7 +401,7 @@ const tiers = [
     <!-- Pedagogical Resources -->
     <section id="pedagogical" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <GraduationCap class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <GraduationCap class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Pedagogical Resources</h2>
           <p class="text-lg text-[var(--text-secondary)]">Curricula, lesson plans, assessments, and teacher professional development</p>
@@ -403,27 +412,27 @@ const tiers = [
         {pedagogicalResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
             {resource.links ? (
               <div class="flex flex-col gap-2">
                 {resource.links.map((link) => (
-                  <a href={link.href} class="text-[var(--primary)] no-underline text-sm transition-colors hover:underline">
+                  <a href={link.href} class="text-[var(--primary)] no-underline text-body transition-colors hover:underline">
                     → {link.text}
                   </a>
                 ))}
               </div>
             ) : (
               <>
-                <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+                <div class="flex gap-4 flex-wrap text-meta text-[var(--text-muted)]">
                   <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
                   <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
                 </div>
                 <a
                   href={resource.href}
-                  class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+                  class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-body transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
                   {...(resource.download ? { download: true } : {})}
                 >
                   {resource.download && <Download size={16} />}
@@ -439,7 +448,7 @@ const tiers = [
     <!-- Community & Support -->
     <section id="community" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <Users class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <Users class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Community & Support</h2>
           <p class="text-lg text-[var(--text-secondary)]">Connect with other schools, share learnings, get help from peers and experts</p>
@@ -450,17 +459,17 @@ const tiers = [
         {communityResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
-            <div class="flex gap-4 flex-wrap text-sm text-[var(--text-muted)]">
+            <div class="flex gap-4 flex-wrap text-meta text-[var(--text-muted)]">
               <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.type}</span>
               <span class="py-1 px-3 bg-[var(--bg)] rounded-md">{resource.time}</span>
             </div>
             <a
               href={resource.href}
-              class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-sm transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
+              class="inline-flex items-center justify-center gap-2 py-3 px-6 rounded-xl font-semibold text-body transition-all duration-200 bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg)]"
               {...(resource.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
               {resource.buttonText}
@@ -472,8 +481,8 @@ const tiers = [
 
     <!-- Consultation Services -->
     <section id="consultation" class="py-20 px-8 bg-[var(--bg)]">
-      <h2 class="text-center text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Consultation & Support Services</h2>
-      <p class="text-center text-lg text-[var(--text-secondary)] max-w-[700px] mx-auto mb-12">
+      <h2 class="text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Consultation & Support Services</h2>
+      <p class="text-lg text-[var(--text-secondary)] max-w-[700px] mb-12">
         Need more personalized support? We offer tiered consultation services to match your school's needs and budget.
       </p>
 
@@ -481,21 +490,21 @@ const tiers = [
         {tiers.map((tier) => (
           <div class={`bg-[var(--bg-surface)] rounded-xl p-10 shadow-sm relative flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-lg ${tier.highlighted ? 'border-2 border-[var(--primary)]' : ''}`}>
             {tier.badge && (
-              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--primary)] text-[var(--text)] py-2 px-6 rounded-full text-sm font-semibold">
+              <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--primary)] text-[var(--text)] py-2 px-6 rounded-full text-caption font-semibold">
                 {tier.badge}
               </div>
             )}
-            <div class="text-center mb-8 pb-8 border-b-2 border-[var(--border)]">
+            <div class="mb-8 pb-8 border-b-2 border-[var(--border)]">
               <h3 class="text-2xl font-bold text-[var(--text)] mb-4">{tier.name}</h3>
               <div class="text-4xl font-bold text-[var(--primary)] mb-2">
-                {tier.price}<span class="text-base font-medium text-[var(--text-secondary)]">{tier.period}</span>
+                {tier.price}<span class="text-body font-medium text-[var(--text-secondary)]">{tier.period}</span>
               </div>
-              <p class="text-sm text-[var(--text-secondary)] m-0">{tier.subtitle}</p>
+              <p class="text-body text-[var(--text-secondary)] m-0">{tier.subtitle}</p>
             </div>
             <ul class="list-none p-0 m-0 mb-8 flex-grow">
               {tier.features.map((feature) => (
-                <li class="flex items-start gap-3 py-3 text-sm leading-relaxed">
-                  <CheckCircle class="text-[var(--success)] flex-shrink-0 mt-0.5" size={20} />
+                <li class="flex items-start gap-3 py-3 text-body">
+                  <CircleCheckBig class="text-[var(--success)] flex-shrink-0 mt-0.5" size={20} />
                   <span class="text-[var(--text)]">{feature}</span>
                 </li>
               ))}
@@ -514,25 +523,22 @@ const tiers = [
         ))}
       </div>
 
-      <p class="text-center text-[var(--text-secondary)] text-sm max-w-[700px] mx-auto">
+      <p class="text-[var(--text-secondary)] text-body max-w-[700px]">
         All tiers include access to open frameworks and community resources. Consultation services help you implement faster and more effectively.
       </p>
     </section>
 
     <!-- CTA Section -->
-    <section class="text-center py-20 px-8 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)]">
-      <h2 class="text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Ready to Get Started?</h2>
-      <p class="text-xl text-[var(--text-secondary)] mb-10">
-        Download our frameworks, join the community, or schedule a consultation to begin your digital transformation journey.
-      </p>
-      <div class="flex gap-6 justify-center flex-wrap">
-        <a href="/frameworks" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">
-          Browse Frameworks
-        </a>
-        <a href="/consultation" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)]">
-          Schedule Consultation
-        </a>
-      </div>
-    </section>
+    <CTASection
+      heading="Ready to Get Started?"
+      description="Download our frameworks, join the community, or schedule a consultation to begin your digital transformation journey."
+    >
+      <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">
+        Browse Frameworks
+      </a>
+      <a href="/consultation" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary-container)] transition-all duration-200 w-full sm:w-auto">
+        Schedule Consultation
+      </a>
+    </CTASection>
   </div>
 </BaseLayout>

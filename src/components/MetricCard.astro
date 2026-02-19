@@ -1,0 +1,25 @@
+---
+/**
+ * MetricCard - Single stat/metric card displaying a number and label.
+ *
+ * Usage:
+ *   <MetricCard value="50+" label="Countries Served" />
+ *   <MetricCard value="$8.5T" label="Annual skills gap cost" />
+ */
+
+interface Props {
+  value: string;
+  label: string;
+}
+
+const { value, label } = Astro.props;
+---
+
+<div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 hover:scale-105 hover:border-[var(--primary)]">
+  <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--primary)] mb-3 sm:mb-4 font-display">
+    {value}
+  </div>
+  <div class="text-body text-[var(--text-secondary)] font-medium">
+    {label}
+  </div>
+</div>

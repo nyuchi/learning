@@ -165,8 +165,9 @@ The site includes Google Analytics (G-BNHM29F8W5) configured in `BaseLayout.astr
 
 ### Styling Issues
 
-- **Check**: Ensure Tailwind CSS is properly configured
-- **Verify**: CSS custom properties defined in `BaseLayout.astro`
+- **Check**: Ensure Tailwind CSS is properly configured in `postcss.config.mjs`
+- **Verify**: Design tokens defined in `src/styles/global.css` (@theme directive)
+- **Verify**: CSS variables defined in `src/styles/global.css` (@layer base)
 - **Test**: Run `npm run preview` locally after building
 
 ## Cost
@@ -219,4 +220,4 @@ For deployment issues:
 
 **Production URL**: [learning.nyuchi.com](https://learning.nyuchi.com)
 
-**Last Updated**: December 2025
+**Last Updated**: February 2026

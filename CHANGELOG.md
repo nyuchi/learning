@@ -5,6 +5,60 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0] - February 2026
+
+### Added
+- **PageHero component**: Standard hero section (tagline, h1 with accent-colored word, subtitle, share button, CTA slot) — follows cross-site nhimbe.com pattern. Used on 6 pages (about, frameworks, community, global-reach, consultation, team)
+- **FeatureGrid component**: Reusable icon + title + description card grid with support for linked cards, alignment, and column variants. Used on 3 pages (about, global-reach, community)
+- **CTASection component**: Standard end-of-page call-to-action section with heading, description, tagline, and button slot. Used on 3 pages (about, resources, pricing)
+- **MetricCard/MetricGroup components**: Stat/metric display cards with responsive grid container. Used on 2 pages (index, global-reach)
+- **ShareButton component**: Social sharing with Web Share API (mobile native) and fallback dropdown (X, LinkedIn, Facebook, WhatsApp, Copy Link). Integrated into PageHero via `share` prop
+- **Component-level design tests**: UI components tested for semantic typography compliance (no hardcoded `text-xs`/`text-sm`). Reusable component existence tests added
+
+### Changed
+- **UI components**: All React UI primitives (`badge`, `card`, `dialog`, `label`, `tooltip`, `tabs`, `dropdown-menu`, `navigation-menu`, `breadcrumb`, `input`) migrated from hardcoded Tailwind text sizes to semantic typography classes (`text-body`, `text-meta`, `text-caption`)
+- **Team page**: Normalized breadcrumb and hero structure to match standard pattern (was using gradient container with non-standard layout)
+
+### Fixed
+- **input.tsx**: `file:text-sm` replaced with `file:text-meta` for consistent typography
+- **dropdown-menu.tsx**: Missing space in `text-metaoutline-none` classes (was `text-sm` before migration)
+
+## [5.0.0] - February 2026
+
+### Added
+- **Testing Infrastructure**: Vitest test suites with 356 tests
+  - Design guidelines compliance tests (breadcrumbs, no images, no emojis, heading hierarchy, typography, forbidden fonts, BaseLayout usage)
+  - Accessibility & SEO tests (meta tags, Open Graph, JSON-LD, skip links, landmarks, heading hierarchy, viewport, CSS accessibility features)
+- **Linting & Formatting**: ESLint with Astro plugin, Prettier with Astro plugin
+- **CI/CD Pipeline**: GitHub Actions workflow (lint → design tests → build → a11y tests)
+- **JetBrains Mono**: Now loaded via Google Fonts for code blocks
+- **APCA Contrast Guidelines**: Forward-looking WCAG 3.0 contrast testing documented
+
+### Changed
+- **Design Philosophy**: Anthropic-inspired clean minimalist design (typography-led, restrained, content-first)
+- **Color System**: Warm neutral surfaces - light `#FAF9F5`, dark `#0A0A0A`/`#141414`/`#1E1E1E` (replaced cold Slate palette)
+- **Typography**: Body text 18px desktop/16px mobile, line-height 1.7, fluid `clamp()` headings, 65ch max prose width
+- **All Hero Sections**: Converted to text-only (removed Unsplash images from about, frameworks pages)
+- **H1 Font**: All pages now use `font-display` (Noto Serif) consistently, not `font-serif` (Georgia)
+- **Icons**: Migrated from deprecated `lucide-astro` to `@lucide/astro` v0.574
+  - Updated props: `strokeWidth` → `stroke-width` (kebab-case for Astro)
+  - Renamed deprecated icons: CheckCircle→CircleCheckBig, AlertCircle→CircleAlert, BarChart→ChartBar, HelpCircle→CircleHelp
+- **Header**: Warm dark solid state `rgba(10,10,10,0.98)`, backdrop blur, semantic color tokens
+- **Footer**: All colors use semantic tokens (`--text`, `--text-secondary`) instead of hardcoded values
+- **Breadcrumbs**: Added to all interior pages (about, frameworks, global-reach, community, consultation, resources, blog/index)
+- **Pre-Commit Checklist**: Now includes documentation update requirements (CHANGELOG, CLAUDE.md, README, etc.)
+- **CI Order**: Lint and tests run before build (fail fast on code quality)
+
+### Fixed
+- **Emojis Removed**: Replaced ✅/❌ in support-framework with text headings
+- **Dual H1**: Fixed resources.astro Coming Soon overlay from `<h1>` to `<h2>`
+- **ESLint Warnings**: Removed unused imports, fixed `let` → `const` in BaseLayout scroll handler
+- **Reduced Motion**: Added `prefers-reduced-motion` check to header scroll transitions
+
+### Updated
+- All packages to latest versions: Astro 5.17, Tailwind CSS 4.2, React 19.2, TypeScript 5.9
+- Documentation: CLAUDE.md v5.0, README.md, BRANDING.md, CONTRIBUTING.md, SECURITY.md, DEPLOYMENT.md
+
 ## [4.0.0] - December 2025
 
 ### Added

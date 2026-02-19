@@ -1,4 +1,4 @@
-# Nyuchi Learning - Build Digital Campuses. Prepare for 2050.
+# nyuchi learning - Build Digital Campuses. Prepare for 2050.
 
 [![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
 
@@ -8,9 +8,9 @@
 
 ## Overview
 
-**Nyuchi Learning** is a division of Nyuchi Africa focused on creating comprehensive, open-source frameworks for digital transformation in K-12 schools across Africa and the developing world. Our frameworks are designed to be freely accessible, adaptable to local contexts, and community-driven.
+**nyuchi learning** is a division of nyuchi africa focused on creating comprehensive, open-source frameworks for digital transformation in K-12 schools across Africa and the developing world. Our frameworks are designed to be freely accessible, adaptable to local contexts, and community-driven.
 
-**The frameworks are completely free.** We provide guidance on how to build or upgrade to a digital campus—schools implement the recommendations using their own resources and vendors.
+**The frameworks are completely free.** We provide guidance on how to build or upgrade to a digital campus -- schools implement the recommendations using their own resources and vendors.
 
 **Live Site:** [learning.nyuchi.com](https://learning.nyuchi.com)
 
@@ -48,54 +48,66 @@ This African philosophy guides everything we create:
 
 ## Features
 
-### Frameworks & Documentation
+### Clean Minimalist Design
 
-- **Multiple Frameworks**: K-12 Digital Campus, Digital Literacy, and Support Process frameworks
-- **Comprehensive Documentation**: Detailed implementation guides, budget estimates, technical specifications
-- **Download Options**: Markdown downloads for offline access and sharing
-- **Budget Planning**: Four budget scenarios from minimal to comprehensive implementation
-
-### Design & User Experience
-
-- **Modern Design**: Bundu Brand System with Five African Minerals palette
-- **Dark Mode**: Slate-based dark theme with Cobalt (education) as primary color
-- **Mobile-First**: Fully optimized for smartphones and tablets
-- **Responsive Navigation**: Touch-friendly mobile menu with auto-hide header
-- **WCAG AAA Compliant**: 7:1+ color contrast ratios throughout
-- **Minerals Strip**: Signature 5-color vertical strip (desktop only)
+- **Typography-led** - Large, readable text as the primary design element
+- **Minimal imagery** - No stock photos; Lucide icons and whitespace for visual interest
+- **Warm palette** - Anthropic-inspired warm neutrals with Five African Minerals accents
+- **Light/Dark/System themes** - Automatic theme switching with manual toggle
+- **WCAG 2.2 AAA + APCA** - Forward-looking accessibility with perceptual contrast testing
+- **Minerals Strip** - Signature 5-color vertical strip (desktop only)
 
 ### Technical Excellence
 
-- **Fast & Performant**: Built with Astro for optimal speed
-- **Tailwind CSS v4**: Utility-first CSS with design tokens
-- **SEO Optimized**: Comprehensive meta tags, Open Graph, Twitter Cards
-- **AI-Friendly**: Allows GPTBot, Claude-Web, CCBot, PerplexityBot
-- **Automatic Sitemap**: Generated via @astrojs/sitemap
-- **Google Analytics**: Integrated tracking (G-BNHM29F8W5)
-- **Structured Data**: JSON-LD for educational organizations and resources
+- **Astro 5.16+** - Static site generation for optimal performance
+- **Tailwind CSS 4.1+** - Utility-first CSS with comprehensive design tokens
+- **React 19 + Radix UI** - Accessible interactive components
+- **TypeScript** - Strict type checking throughout
+- **Comprehensive SEO** - Meta tags, Open Graph, Twitter Cards, JSON-LD structured data
+- **AI-friendly** - Allows GPTBot, Claude-Web, CCBot, PerplexityBot
+- **Automatic sitemap** - Per-page priorities via @astrojs/sitemap
+- **RSS feed** - Content syndication at /rss.xml
+- **Google Analytics** - Integrated tracking (G-BNHM29F8W5)
+
+### Navigation & Wayfinding
+
+- **Breadcrumb navigation** - On every interior page for SEO and usability
+- **Auto-hide header** - Transparent/solid states, hides on scroll down, shows on scroll up
+- **Dropdown menus** - Desktop navigation with About section dropdown
+- **Mobile hamburger menu** - Full-screen overlay with 48px touch targets
+- **4-column footer** - Organized link groups with Ubuntu messaging
 
 ### Accessibility
 
-- **WCAG 2.1 AAA Compliant**: Color contrast (7:1+), keyboard navigation, screen reader support
-- **Mobile Optimized**: Horizontal scrolling for tables, single-column layouts
-- **Touch-Friendly**: 48px button heights, 44x44px minimum touch targets
-- **Reduced Motion**: Respects prefers-reduced-motion preference
-- **Multilingual Support**: Designed for African languages, English, French, Chinese
+- **WCAG 2.2 AAA compliance** - 7:1+ color contrast ratios
+- **APCA testing** - Forward-looking WCAG 3.0 perceptual contrast
+- **Skip links** - 3 navigation targets (content, nav, footer)
+- **Keyboard navigation** - Full keyboard support with visible focus indicators
+- **Screen reader support** - Semantic HTML, ARIA labels, landmarks
+- **Touch targets** - 44x44px minimum, 48px for primary buttons
+- **Reduced motion** - Respects `prefers-reduced-motion`
+- **Forced colors** - Supports Windows High Contrast Mode
+- **Print styles** - Clean print output with visible URLs
 
 ---
 
 ## Tech Stack
 
-| Technology | Purpose |
-|------------|---------|
-| **Astro 4.15+** | Static site generator, optimal performance |
-| **Tailwind CSS v4** | Utility-first CSS with design tokens |
-| **TypeScript** | Type safety and better developer experience |
-| **Lucide Icons** | Beautiful, consistent icon system (no emojis) |
-| **Google Fonts** | Noto Serif (H1) & Plus Jakarta Sans (H2-H6, body) |
-| **@astrojs/sitemap** | Automatic sitemap generation |
-| **Vercel** | Deployment and hosting |
-| **Google Analytics** | Usage tracking and insights |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| **Astro** | 5.16+ | Static site generator |
+| **Tailwind CSS** | 4.1+ | Utility-first CSS with design tokens |
+| **React** | 19+ | Interactive components |
+| **Radix UI** | Latest | Accessible UI primitives |
+| **TypeScript** | 5.6+ | Type safety (strict mode) |
+| **Lucide Icons** | 0.441+ | Icon system (no emojis) |
+| **PostCSS** | 8.5+ | CSS processing pipeline |
+| **Google Fonts** | - | Noto Serif (H1) & Plus Jakarta Sans (body) |
+| **@astrojs/sitemap** | 3.6+ | Sitemap with per-page priorities |
+| **@astrojs/rss** | 4.0+ | RSS feed generation |
+| **@astrojs/mdx** | 4.3+ | Rich content authoring |
+| **Sanity.io** | Planned | Headless CMS for blog content |
+| **Vercel** | - | Deployment and hosting |
 
 ---
 
@@ -104,42 +116,53 @@ This African philosophy guides everything we create:
 ```
 /
 ├── public/                     # Static assets
-│   ├── nyuchi-learning-logo-*.svg  # Logo variants
-│   ├── favicon.svg            # Brand favicon
-│   ├── frameworks/            # Framework documentation (Markdown)
-│   └── robots.txt             # SEO & AI crawler configuration
+│   ├── *.svg                   # Logo variants, favicon
+│   ├── frameworks/             # Framework documentation (Markdown)
+│   ├── llms.txt                # AI crawler directives
+│   └── robots.txt              # SEO crawler configuration
 ├── src/
-│   ├── components/
-│   │   ├── Logo.astro         # Nyuchi Learning logo component
-│   │   └── SEO.astro          # Reusable SEO component
+│   ├── components/             # Reusable components
+│   │   ├── Logo.astro          # Logo (3 variants: main, horizontal, compact)
+│   │   ├── SEO.astro           # Meta tags, Open Graph, JSON-LD
+│   │   ├── ThemeToggle.astro   # Light/Dark/System theme switcher
+│   │   ├── PageBreadcrumb.astro # Breadcrumb navigation
+│   │   ├── BuilderBox.astro    # Builder UI pattern
+│   │   ├── InfoTooltip.astro   # Tooltip component
+│   │   └── UserAvatar.astro    # Avatar component
 │   ├── layouts/
-│   │   └── BaseLayout.astro   # Global layout (header, footer, Minerals Strip)
-│   ├── pages/
-│   │   ├── index.astro        # Homepage
-│   │   ├── frameworks.astro   # Frameworks overview
-│   │   ├── framework.astro    # K-12 Digital Campus Framework
-│   │   ├── digital-literacy-framework.astro  # Digital Literacy Framework
-│   │   ├── support-framework.astro  # K-12 Support Process Framework
-│   │   ├── pricing.astro      # Budget planning guide
-│   │   ├── resources.astro    # Resources hub (coming soon)
-│   │   ├── about.astro        # Mission & Impact
-│   │   ├── global-reach.astro # Geographic scope
-│   │   ├── team.astro         # Team page
-│   │   ├── community.astro    # Community & GitHub
-│   │   ├── consultation.astro # Book a consultation
-│   │   └── blog/              # Blog posts and insights
-│   └── env.d.ts               # TypeScript environment definitions
-├── astro.config.mjs           # Astro configuration
-├── tailwind.config.mjs        # Tailwind CSS configuration
-├── package.json               # Dependencies and scripts
-├── tsconfig.json              # TypeScript configuration
-├── CLAUDE.md                  # Design guidelines and technical docs
-├── BRANDING.md                # Nyuchi Learning brand guidelines
-├── DEPLOYMENT.md              # Deployment instructions
-├── CONTRIBUTING.md            # Contribution guidelines
-├── CHANGELOG.md               # Version history
-├── SECURITY.md                # Security policy
-└── README.md                  # This file
+│   │   └── BaseLayout.astro    # Master layout (header, footer, minerals strip, animations)
+│   ├── lib/                    # Utility functions
+│   ├── pages/                  # File-based routing
+│   │   ├── index.astro         # Homepage
+│   │   ├── frameworks.astro    # Frameworks overview
+│   │   ├── framework.astro     # K-12 Digital Campus Framework
+│   │   ├── digital-literacy-framework.astro
+│   │   ├── support-framework.astro
+│   │   ├── pricing.astro       # Budget planning guide
+│   │   ├── resources.astro     # Resources hub
+│   │   ├── about.astro         # Mission & Impact
+│   │   ├── global-reach.astro  # Geographic scope
+│   │   ├── team.astro          # Team
+│   │   ├── community.astro     # Community & GitHub
+│   │   ├── consultation.astro  # Book a consultation
+│   │   ├── rss.xml.ts          # RSS feed
+│   │   └── blog/               # Blog posts
+│   ├── styles/
+│   │   └── global.css          # Tailwind theme, design tokens, component & accessibility layers
+│   └── env.d.ts                # TypeScript environment definitions
+├── astro.config.mjs            # Astro configuration (sitemap priorities, React)
+├── package.json                # Dependencies and scripts
+├── tsconfig.json               # TypeScript strict mode, path aliases (@/*)
+├── tailwind.config.js          # Tailwind configuration
+├── postcss.config.mjs          # PostCSS configuration
+├── vercel.json                 # Vercel deployment configuration
+├── CLAUDE.md                   # Development & design guidelines (v5.0)
+├── BRANDING.md                 # Brand guidelines (v6.0)
+├── DEPLOYMENT.md               # Deployment instructions
+├── CONTRIBUTING.md             # Contribution guidelines
+├── SECURITY.md                 # Security policy
+├── LICENSE                     # MIT License
+└── README.md                   # This file
 ```
 
 ---
@@ -174,49 +197,70 @@ This African philosophy guides everything we create:
 ### Available Scripts
 
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
+# Development
+npm run dev          # Start development server (HMR enabled)
+npm run build        # TypeScript check + production build to dist/
 npm run preview      # Preview production build locally
 npm run astro        # Run Astro CLI commands
+
+# Testing
+npm test             # Run all test suites
+npm run test:design  # Design guidelines compliance tests
+npm run test:a11y    # Accessibility & SEO tests (build first)
+npm run test:watch   # Run tests in watch mode
+
+# Linting & Formatting
+npm run lint         # Run ESLint on src/
+npm run lint:fix     # Auto-fix lint issues
+npm run format       # Format code with Prettier
+npm run format:check # Check formatting
+npm run check        # Full CI check (build + test + lint)
 ```
+
+### CI/CD
+
+GitHub Actions runs automatically on pushes to `main` and pull requests:
+- **Build & Test**: TypeScript check, production build, design guidelines tests, accessibility/SEO tests
+- **Lint & Format**: ESLint and Prettier checks
 
 ---
 
-## Development Guidelines
-
-### Design System
+## Design System
 
 **For comprehensive design guidelines, see [CLAUDE.md](CLAUDE.md)**
 
-Key principles:
-- **Bundu Brand System**: Five African Minerals palette (Cobalt, Tanzanite, Malachite, Gold, Terracotta)
-- **Education Theme**: Cobalt (#00B0FF) as primary color on Slate dark surfaces
-- **Typography**: Noto Serif for H1 headings, Plus Jakarta Sans for H2-H6 and body
-- **Buttons**: 12px border-radius (NOT pill-shaped)
-- **Cards**: 16px border-radius with soft shadows
-- **Lucide icons only**: No emojis allowed
-- **Minerals Strip**: 4px vertical strip on left edge (hidden on mobile <480px)
-- **Mobile-first**: Touch targets 44x44px minimum, buttons 48px height
-- **Lowercase wordmarks**: Brand names always lowercase (nyuchi, bundu)
+### Design Philosophy
+
+The site follows a **clean minimalist design** inspired by Anthropic's website:
+- Typography-led design with large, readable body text (18px desktop)
+- Generous whitespace as structural element
+- Minimal imagery (blogs are the only exception, via Sanity.io)
+- Warm, trust-building palette (warm cream light mode, deep warm black dark mode)
+- Content-first approach where reading flow is prioritized
+
+### Key Design Tokens
+
+| Element | Value |
+|---------|-------|
+| Primary (dark) | `#00B0FF` (Cobalt) |
+| Primary (light) | `#0047AB` (Cobalt) |
+| Background (dark) | `#0A0A0A` |
+| Background (light) | `#FAF9F5` |
+| Body text size | 18px desktop, 16px mobile |
+| Button radius | 12px |
+| Card radius | 16px |
+| Body line height | 1.7 |
+| Max prose width | 65ch |
 
 ### Branding
 
 **For brand guidelines, see [BRANDING.md](BRANDING.md)**
 
-Key elements:
-- **Company**: nyuchi learning, a division of nyuchi africa (lowercase)
+- **Company**: nyuchi learning, a division of nyuchi africa (always lowercase)
 - **Philosophy**: Ubuntu - "I am because we are" (Shona: "Ndiri nekuti tiri")
-- **Mission**: Open, shareable frameworks for digital campus transformation
-- **Values**: Education-first, community-driven, Africa-tested
-
-### Accessibility Standards
-
-- **WCAG 2.1 AAA compliance** (7:1+ contrast ratios)
-- **Touch targets**: 44x44px minimum, 48px for buttons
-- **Keyboard navigation**: Full keyboard support required
-- **Screen reader**: Compatible with all major screen readers
-- **Reduced motion**: Respects prefers-reduced-motion preference
-- **Responsive text**: Minimum 16px/1rem for body text
+- **Palette**: Five African Minerals (Cobalt, Tanzanite, Malachite, Gold, Terracotta)
+- **Fonts**: Noto Serif (H1), Plus Jakarta Sans (everything else)
+- **Icons**: Lucide only, no emojis
 
 ---
 
@@ -226,10 +270,10 @@ Key elements:
 
 This site is optimized for Vercel deployment:
 
-1. **Push code to GitHub**
-2. **Import repository in Vercel**
-3. **Vercel auto-detects Astro** and configures build settings
-4. **Deploy!**
+1. Push code to GitHub
+2. Import repository in Vercel
+3. Vercel auto-detects Astro and configures build settings
+4. Deploy
 
 **Production URL:** [learning.nyuchi.com](https://learning.nyuchi.com)
 
@@ -242,57 +286,7 @@ npm run build
 # Upload the 'dist' folder to your hosting provider
 ```
 
-Supported platforms:
-- Netlify
-- Cloudflare Pages
-- GitHub Pages
-- Any static file host
-
----
-
-## Framework Principles
-
-### Core Values
-
-1. **Universal Access**
-   - Digital tools available to all students
-   - Regardless of socioeconomic status
-   - Mobile-first approach
-
-2. **Digital Literacy**
-   - Technology skills + critical thinking
-   - Safe, responsible digital citizenship
-   - K-12 progression pathway
-
-3. **Mobile-First**
-   - Smartphones as primary devices
-   - Low-bandwidth considerations
-   - Touch-optimized interfaces
-
-4. **Cost Efficient**
-   - Open-source solutions prioritized
-   - Budget scenarios from minimal to comprehensive
-   - Maximum value from limited budgets
-
-5. **Data-Driven**
-   - Analytics inform instruction and strategy
-   - Early warning systems
-   - Personalized learning pathways
-
-6. **Community-Centered**
-   - Seamless experience for students, staff, parents
-   - Ubuntu philosophy throughout
-   - Collaborative improvement
-
-### Multilingual Support
-
-Designed to support diverse African communities:
-- **African languages** (based on country/region)
-- **English**
-- **French**
-- **Chinese**
-
-Implementation is community-driven and adaptable to local needs.
+Supported: Netlify, Cloudflare Pages, GitHub Pages, any static file host.
 
 ---
 
@@ -300,9 +294,7 @@ Implementation is community-driven and adaptable to local needs.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
 
-### Framework Evolution
-
-These frameworks are designed to evolve through community feedback and contributions:
+### Framework Contributions
 
 - **Use the frameworks** in your school and share your experiences
 - **Adapt the frameworks** to fit your local context
@@ -312,43 +304,37 @@ These frameworks are designed to evolve through community feedback and contribut
 
 ### Code Contributions
 
-While the frameworks are open and shareable, code contributions to the website follow standard practices:
-
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-**Please follow:**
-- Design guidelines in [CLAUDE.md](CLAUDE.md)
-- Brand guidelines in [BRANDING.md](BRANDING.md)
-- Accessibility standards (WCAG 2.1 AAA)
-- Mobile-first approach
+3. Make your changes (follow [CLAUDE.md](CLAUDE.md) guidelines)
+4. Run `npm run check` to verify (lint, format, tests, build)
+5. Update documentation: CHANGELOG.md, and any affected docs (CLAUDE.md, README, etc.)
+6. Submit a pull request
 
 ---
 
 ## Roadmap
 
-### Current (v4.0 - December 2025)
+### Current (v5.0 - February 2026)
 
-- K-12 Digital Campus Framework
-- Digital Literacy Framework
-- K-12 Support Process Framework
-- Bundu Brand System with Five African Minerals
-- Tailwind CSS v4 integration
-- Dark mode with Slate theme
-- Budget planning guide (replaces pricing)
-- SEO and AI optimization
-- Google Analytics integration
+- Clean minimalist design (Anthropic-inspired)
+- WCAG 2.2 AAA + APCA contrast testing
+- Light/Dark/System theme support
+- Breadcrumb navigation on all pages
+- Tailwind CSS 4.1+ with comprehensive design tokens
+- React 19 + Radix UI components
+- Enhanced SEO with per-page sitemap priorities
+- RSS feed
+- AI crawler support (llms.txt)
 
 ### Planned
 
-- Additional frameworks (TBD)
-- Framework PDF generation automation
+- Sanity.io CMS integration for blog content
+- Additional frameworks
+- Framework PDF generation
 - Multilingual content support
 - Community showcase section
 - Implementation case studies
-- Interactive implementation tools
 
 ---
 
@@ -356,17 +342,15 @@ While the frameworks are open and shareable, code contributions to the website f
 
 | Document | Purpose |
 |----------|---------|
-| [CLAUDE.md](CLAUDE.md) | Comprehensive design and technical guidelines |
-| [BRANDING.md](BRANDING.md) | Nyuchi Learning brand guidelines |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | Deployment instructions and configuration |
+| [CLAUDE.md](CLAUDE.md) | Development & design guidelines (v5.0) |
+| [BRANDING.md](BRANDING.md) | Brand guidelines (v6.0) |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Deployment instructions |
 | [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guidelines |
-| [CHANGELOG.md](CHANGELOG.md) | Version history and changes |
 | [SECURITY.md](SECURITY.md) | Security policy |
-| [README.md](README.md) | This file - Project overview and quickstart |
 
 ---
 
-## About Nyuchi
+## About nyuchi
 
 ### nyuchi africa
 
@@ -382,13 +366,13 @@ Focused on educational frameworks and digital transformation:
 - Creates open, shareable implementation guides
 - Serves K-12 schools across Africa and the developing world
 - Community-driven improvement model
-- Completely free frameworks—no paid services
+- Completely free frameworks
 
 ---
 
 ## License
 
-**Frameworks:** Open and freely shareable under open framework license. Copy, adapt, improve, and share freely.
+**Frameworks:** Open and freely shareable. Copy, adapt, improve, and share freely.
 
 **Website Code:** See [LICENSE](LICENSE) file for details.
 
@@ -402,18 +386,10 @@ Focused on educational frameworks and digital transformation:
 
 ---
 
-## Acknowledgments
-
-Built with gratitude for:
-- The African education community
-- Open-source contributors worldwide
-- Educators sharing their experiences
-- Schools implementing these frameworks
-
 **Ubuntu:** I am because we are. We grow together, we succeed together.
 
 ---
 
-**Last Updated:** December 2025
-**Version:** 4.0 (Bundu Brand System, Five African Minerals, Tailwind CSS v4)
+**Last Updated:** February 2026
+**Version:** 5.0 (Clean Minimalist Design, APCA Contrast, Sanity CMS)
 **Maintained By:** nyuchi learning Development Team
