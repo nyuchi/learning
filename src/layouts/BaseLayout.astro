@@ -271,19 +271,6 @@ const {
         left: 4px;
         right: 0;
         z-index: 100;
-        transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease, border-bottom 0.3s ease;
-        transform: translateY(0);
-      }
-
-      /* Transparent header state (on hero) */
-      header.header-transparent {
-        background: transparent;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: none;
-      }
-
-      /* Solid header state (when scrolled) - Dark Mode */
-      header.header-solid {
         background: rgba(10, 10, 10, 0.98);  /* Warm dark #0A0A0A */
         backdrop-filter: blur(var(--nav-blur));
         -webkit-backdrop-filter: blur(var(--nav-blur));
@@ -291,152 +278,19 @@ const {
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
       }
 
-      /* Solid header state - Light Mode (class-based) */
-      :global(.light) header.header-solid {
+      /* Header - Light Mode (class-based) */
+      :global(.light) header {
         background: rgba(250, 249, 245, 0.98);  /* Warm cream #FAF9F5 */
         border-bottom: 1px solid rgba(10, 10, 10, 0.08);
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
       }
 
-      :global(.light) header.header-solid .logo-text,
-      :global(.light) header.header-solid .nav-links a {
-        color: var(--text);
-      }
-
-      :global(.light) header.header-solid .logo-subtext {
-        color: var(--text-muted);
-      }
-
-      :global(.light) header.header-solid .mobile-menu-btn {
-        color: var(--primary);
-      }
-
-      /* Solid header state - Light Mode (media query fallback) */
+      /* Header - Light Mode (media query fallback) */
       @media (prefers-color-scheme: light) {
-        :global(:not(.dark)) header.header-solid {
+        :global(:not(.dark)) header {
           background: rgba(250, 249, 245, 0.98);  /* Warm cream #FAF9F5 */
           border-bottom: 1px solid rgba(10, 10, 10, 0.08);
           box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
-
-        :global(:not(.dark)) header.header-solid .logo-text,
-        :global(:not(.dark)) header.header-solid .nav-links a {
-          color: var(--text);
-        }
-
-        :global(:not(.dark)) header.header-solid .logo-subtext {
-          color: var(--text-muted);
-        }
-
-        :global(:not(.dark)) header.header-solid .mobile-menu-btn {
-          color: var(--primary);
-        }
-      }
-
-      /* Header hidden state when scrolling down */
-      header.header-hidden {
-        transform: translateY(-100%);
-      }
-
-      /* Header visible state when scrolling up */
-      header.header-visible {
-        transform: translateY(0);
-      }
-
-      /* White text for transparent header with shadow for contrast - Dark Mode */
-      header.header-transparent .logo-text,
-      header.header-transparent .logo-icon,
-      header.header-transparent .nav-links a {
-        color: white;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
-
-      header.header-transparent .logo-subtext {
-        color: rgba(255, 255, 255, 0.9);
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
-
-      header.header-transparent .mobile-menu-btn {
-        color: white;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
-      }
-
-      header.header-transparent .btn-cta {
-        background: white !important;
-        color: var(--primary) !important;
-      }
-
-      header.header-transparent .btn-cta:hover {
-        background: rgba(255, 255, 255, 0.9) !important;
-      }
-
-      /* Transparent header - Light Mode (class-based) */
-      :global(.light) header.header-transparent {
-        background: rgba(255, 255, 255, 0.8);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      }
-
-      :global(.light) header.header-transparent .logo-text,
-      :global(.light) header.header-transparent .logo-icon,
-      :global(.light) header.header-transparent .nav-links a {
-        color: var(--text);
-        text-shadow: none;
-      }
-
-      :global(.light) header.header-transparent .logo-subtext {
-        color: var(--text-muted);
-        text-shadow: none;
-      }
-
-      :global(.light) header.header-transparent .mobile-menu-btn {
-        color: var(--primary);
-        filter: none;
-      }
-
-      :global(.light) header.header-transparent .btn-cta {
-        background: var(--primary) !important;
-        color: white !important;
-      }
-
-      :global(.light) header.header-transparent .btn-cta:hover {
-        background: var(--primary-hover) !important;
-      }
-
-      /* Transparent header - Light Mode (media query fallback) */
-      @media (prefers-color-scheme: light) {
-        :global(:not(.dark)) header.header-transparent {
-          background: rgba(255, 255, 255, 0.8);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        :global(:not(.dark)) header.header-transparent .logo-text,
-        :global(:not(.dark)) header.header-transparent .logo-icon,
-        :global(:not(.dark)) header.header-transparent .nav-links a {
-          color: var(--text);
-          text-shadow: none;
-        }
-
-        :global(:not(.dark)) header.header-transparent .logo-subtext {
-          color: var(--text-muted);
-          text-shadow: none;
-        }
-
-        :global(:not(.dark)) header.header-transparent .mobile-menu-btn {
-          color: var(--primary);
-          filter: none;
-        }
-
-        :global(:not(.dark)) header.header-transparent .btn-cta {
-          background: var(--primary) !important;
-          color: white !important;
-        }
-
-        :global(:not(.dark)) header.header-transparent .btn-cta:hover {
-          background: var(--primary-hover) !important;
         }
       }
 
@@ -623,6 +477,7 @@ const {
 
       main {
         min-height: calc(100vh - 200px);
+        padding-top: 64px; /* Offset for fixed header (--nav-height) */
       }
 
       footer {
@@ -1023,28 +878,9 @@ const {
         overflow-y: auto;  /* Allow scrolling for long menus */
       }
 
-      /* Mobile menu always has solid background even with transparent header */
-      header.header-transparent .nav-mobile.active {
-        background: rgba(15, 23, 42, 0.98);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-      }
-
-      header.header-transparent .nav-mobile.active a {
-        color: var(--gray-50);
-      }
-
       /* Mobile Navigation - Light Mode (class-based) */
       :global(.light) .nav-mobile.active {
         background: rgba(255, 255, 255, 0.98);
-      }
-
-      :global(.light) header.header-transparent .nav-mobile.active {
-        background: rgba(255, 255, 255, 0.98);
-      }
-
-      :global(.light) header.header-transparent .nav-mobile.active a {
-        color: var(--text);
       }
 
       :global(.light) .nav-mobile-links a:hover,
@@ -1056,14 +892,6 @@ const {
       @media (prefers-color-scheme: light) {
         :global(:not(.dark)) .nav-mobile.active {
           background: rgba(255, 255, 255, 0.98);
-        }
-
-        :global(:not(.dark)) header.header-transparent .nav-mobile.active {
-          background: rgba(255, 255, 255, 0.98);
-        }
-
-        :global(:not(.dark)) header.header-transparent .nav-mobile.active a {
-          color: var(--text);
         }
 
         :global(:not(.dark)) .nav-mobile-links a:hover,
@@ -1133,11 +961,6 @@ const {
 
       /* Mobile Responsive Styles */
       @media (max-width: 768px) {
-        header {
-          /* Faster transition on mobile for better responsiveness */
-          transition: transform 0.25s ease, background 0.3s ease, box-shadow 0.3s ease;
-        }
-
         /* Hide desktop nav, show mobile button */
         .nav-desktop {
           display: none !important;
@@ -1377,71 +1200,6 @@ const {
             }
           });
         }
-
-        // Header scroll effect with auto-hide and transparent/solid transitions
-        const header = document.querySelector('header');
-        let lastScrollTop = 0;
-        const scrollThreshold = 5; // Minimum scroll amount to trigger hide/show
-        const hideThreshold = 100; // Scroll position before header can hide
-        const transparentThreshold = 50; // Scroll position to switch from transparent to solid
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-        // Initialize header as transparent
-        header.classList.add('header-transparent');
-
-        // Disable header transitions if user prefers reduced motion
-        if (prefersReducedMotion) {
-          header.style.transition = 'none';
-        }
-
-        window.addEventListener('scroll', function() {
-          const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-          // Handle transparent/solid transition
-          if (currentScroll > transparentThreshold) {
-            header.classList.remove('header-transparent');
-            header.classList.add('header-solid');
-          } else {
-            header.classList.remove('header-solid');
-            header.classList.add('header-transparent');
-          }
-
-          // Auto-hide/show logic
-          // Don't hide header at very top of page
-          if (currentScroll <= hideThreshold) {
-            header.classList.remove('header-hidden');
-            header.classList.add('header-visible');
-            lastScrollTop = currentScroll;
-            return;
-          }
-
-          // Detect scroll direction
-          if (Math.abs(currentScroll - lastScrollTop) < scrollThreshold) {
-            // Ignore small scrolls
-            return;
-          }
-
-          if (currentScroll > lastScrollTop) {
-            // Scrolling down - hide header
-            header.classList.add('header-hidden');
-            header.classList.remove('header-visible');
-
-            // Close mobile menu if open
-            if (mobileMenu && mobileMenu.classList.contains('active')) {
-              mobileMenu.classList.remove('active');
-              if (menuIcon && closeIcon) {
-                menuIcon.style.display = 'block';
-                closeIcon.style.display = 'none';
-              }
-            }
-          } else {
-            // Scrolling up - show header
-            header.classList.remove('header-hidden');
-            header.classList.add('header-visible');
-          }
-
-          lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-        });
 
         // Animation System - Intersection Observer
         const animationObserver = new IntersectionObserver(
