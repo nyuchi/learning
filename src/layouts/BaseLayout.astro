@@ -1,5 +1,5 @@
 ---
-import { BookOpen, Menu, X } from 'lucide-astro';
+import { BookOpen, Menu, X } from '@lucide/astro';
 import SEO from '../components/SEO.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
@@ -1388,9 +1388,9 @@ const {
         // Header scroll effect with auto-hide and transparent/solid transitions
         const header = document.querySelector('header');
         let lastScrollTop = 0;
-        let scrollThreshold = 5; // Minimum scroll amount to trigger hide/show
-        let hideThreshold = 100; // Scroll position before header can hide
-        let transparentThreshold = 50; // Scroll position to switch from transparent to solid
+        const scrollThreshold = 5; // Minimum scroll amount to trigger hide/show
+        const hideThreshold = 100; // Scroll position before header can hide
+        const transparentThreshold = 50; // Scroll position to switch from transparent to solid
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
         // Initialize header as transparent

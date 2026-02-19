@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle, Video, HelpCircle, GraduationCap, Target, Globe } from 'lucide-astro';
+import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle, Video, HelpCircle, GraduationCap, Target, Globe } from '@lucide/astro';
 
 // Quick links data
 const quickLinks = [
@@ -273,7 +273,7 @@ const tiers = [
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
         <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
       </div>
-      <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h1>
+      <h2 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h2>
       <p class="text-base sm:text-lg md:text-xl text-[var(--text-secondary)] mb-6 sm:mb-8 leading-relaxed">
         We're putting the finishing touches on our Resources Hub. Check back soon for implementation guides, technical documentation, and community support resources.
       </p>

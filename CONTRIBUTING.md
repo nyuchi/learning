@@ -124,8 +124,11 @@ git checkout -b docs/add-case-study
 
 3. **Test your changes**
    ```bash
-   npm run build    # Ensure build passes
-   npm run preview  # Test production build
+   npm run build        # Ensure build passes
+   npm test             # Run all test suites
+   npm run lint         # Check for lint errors
+   npm run format:check # Verify code formatting
+   npm run preview      # Preview production build
    ```
 
 4. **Commit with clear messages**
@@ -206,7 +209,7 @@ All contributions must maintain WCAG 2.2 AAA compliance and should be tested aga
 ---
 // 1. Imports
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { BookOpen } from 'lucide-astro';
+import { BookOpen } from '@lucide/astro';
 
 // 2. TypeScript types
 interface Props {
@@ -260,6 +263,9 @@ Brief description of the changes.
 
 ## Checklist
 - [ ] `npm run build` passes
+- [ ] `npm test` passes (design guidelines + accessibility/SEO)
+- [ ] `npm run lint` passes (no ESLint errors)
+- [ ] `npm run format:check` passes (Prettier formatting)
 - [ ] Tested on mobile viewport (375px, 393px)
 - [ ] Breadcrumbs present on interior pages
 - [ ] Both light and dark themes work

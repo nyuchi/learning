@@ -197,11 +197,31 @@ This African philosophy guides everything we create:
 ### Available Scripts
 
 ```bash
+# Development
 npm run dev          # Start development server (HMR enabled)
 npm run build        # TypeScript check + production build to dist/
 npm run preview      # Preview production build locally
 npm run astro        # Run Astro CLI commands
+
+# Testing
+npm test             # Run all test suites
+npm run test:design  # Design guidelines compliance tests
+npm run test:a11y    # Accessibility & SEO tests (build first)
+npm run test:watch   # Run tests in watch mode
+
+# Linting & Formatting
+npm run lint         # Run ESLint on src/
+npm run lint:fix     # Auto-fix lint issues
+npm run format       # Format code with Prettier
+npm run format:check # Check formatting
+npm run check        # Full CI check (build + test + lint)
 ```
+
+### CI/CD
+
+GitHub Actions runs automatically on pushes to `main` and pull requests:
+- **Build & Test**: TypeScript check, production build, design guidelines tests, accessibility/SEO tests
+- **Lint & Format**: ESLint and Prettier checks
 
 ---
 
