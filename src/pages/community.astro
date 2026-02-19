@@ -98,13 +98,13 @@ const stats = [
         {communityFeatures.map((feature) => (
           <a href={feature.link} target="_blank" rel="noopener noreferrer" class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 no-underline text-inherit flex flex-col gap-4 sm:gap-5 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:bg-[var(--bg-surface)]">
             <div class="flex justify-center items-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[var(--bg-surface)] rounded-full mx-auto shadow-md">
-              <feature.icon class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" strokeWidth={1.5} />
+              <feature.icon class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" stroke-width={1.5} />
             </div>
             <h3 class="text-lg sm:text-xl md:text-2xl text-[var(--text)] font-extrabold tracking-tight text-center m-0">{feature.title}</h3>
             <p class="leading-relaxed text-[var(--text)] text-base sm:text-lg flex-1 text-center">{feature.description}</p>
             <div class="flex items-center justify-center gap-2 text-[var(--primary)] font-bold tracking-wide text-base sm:text-lg transition-all duration-300">
               <span>{feature.linkText}</span>
-              <ExternalLink size={20} strokeWidth={2} />
+              <ExternalLink size={20} stroke-width={2} />
             </div>
           </a>
         ))}
@@ -132,7 +132,7 @@ const stats = [
           </ul>
         </div>
         <div class="hidden lg:flex justify-center items-center">
-          <Github size={200} strokeWidth={1} class="text-[var(--primary)] opacity-30" />
+          <Github size={200} stroke-width={1} class="text-[var(--primary)] opacity-30" />
         </div>
       </div>
     </div>
@@ -146,7 +146,7 @@ const stats = [
         {stats.map((stat) => (
           <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--primary)]/10 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)]/15">
             <div class="mb-4 sm:mb-6 flex justify-center text-[var(--text)]">
-              <stat.icon class="w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+              <stat.icon class="w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
             </div>
             <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text)] mb-2 tracking-tight">{stat.number}</div>
             <div class="text-[var(--text)] text-base sm:text-lg font-medium">{stat.label}</div>
@@ -164,7 +164,7 @@ const stats = [
         Visit our GitHub repository to get started. Every voice matters in building the future of education.
       </p>
       <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-8 md:px-10 text-base sm:text-lg rounded-xl bg-[var(--bg-surface)] text-[var(--primary)] font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto">
-        <Github size={24} strokeWidth={2} />
+        <Github size={24} stroke-width={2} />
         Visit GitHub Repository
       </a>
     </div>

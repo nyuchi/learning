@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Calendar, CheckCircle, Users, Zap } from '@lucide/astro';
+import { Calendar, CircleCheckBig, Users, Zap } from '@lucide/astro';
 
 // Discussion topics
 const discussionTopics = [
@@ -60,7 +60,7 @@ const attendees = [
           <ul class="list-none p-0 m-0 space-y-4">
             {discussionTopics.map((topic) => (
               <li class="flex items-start gap-3 leading-relaxed">
-                <CheckCircle class="text-[var(--primary)] flex-shrink-0 mt-0.5" size={20} strokeWidth={2} />
+                <CircleCheckBig class="text-[var(--primary)] flex-shrink-0 mt-0.5" size={20} stroke-width={2} />
                 <span class="text-[var(--text)]">{topic}</span>
               </li>
             ))}
@@ -73,7 +73,7 @@ const attendees = [
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {attendees.map((attendee) => (
               <div class="text-center p-6 bg-[var(--bg)] rounded-lg transition-all duration-200 hover:-translate-y-1">
-                <attendee.icon class="text-[var(--primary)] mx-auto mb-4" size={32} strokeWidth={1.5} />
+                <attendee.icon class="text-[var(--primary)] mx-auto mb-4" size={32} stroke-width={1.5} />
                 <h4 class="text-lg font-semibold mb-2 text-[var(--text)]">{attendee.title}</h4>
                 <p class="text-sm text-[var(--text-secondary)] m-0">{attendee.description}</p>
               </div>

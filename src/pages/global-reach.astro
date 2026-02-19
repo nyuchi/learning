@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Globe, MapPin, Users, TrendingUp, Heart, Smartphone, Target, CheckCircle } from '@lucide/astro';
+import { Globe, MapPin, Users, TrendingUp, Heart, Smartphone, Target, CircleCheckBig } from '@lucide/astro';
 
 // Scope stats
 const scopeStats = [
@@ -62,7 +62,7 @@ const reasons = [
   { icon: Users, title: "Similar Challenges", description: "Budget constraints, limited 1:1 device access, multilingual needs, urban-rural divides, connectivity issues—shared challenges require shared solutions." },
   { icon: TrendingUp, title: "High-Growth Markets", description: "Young populations, expanding middle class, government education investment, digital infrastructure growth—conditions ripe for transformation." },
   { icon: Heart, title: "Ubuntu Philosophy Alignment", description: "\"I am because we are\" resonates across cultures—community-centered values in Africa, Asia, Latin America, and Pacific align with collaborative education." },
-  { icon: CheckCircle, title: "Proven Adaptability", description: "Open frameworks designed to adapt to local contexts: languages, cultural values, curriculum standards, budget realities, infrastructure constraints." }
+  { icon: CircleCheckBig, title: "Proven Adaptability", description: "Open frameworks designed to adapt to local contexts: languages, cultural values, curriculum standards, budget realities, infrastructure constraints." }
 ];
 
 // Impact goals
@@ -126,7 +126,7 @@ const impactGoals = [
       <!-- Africa (Primary) -->
       <div class="mb-8 sm:mb-12 md:mb-16 bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 lg:p-12 rounded-xl shadow-sm border-2 border-[var(--primary)]">
         <div class="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
-          <MapPin class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+          <MapPin class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Africa (Primary Focus)</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)]">Home base • Reinvestment commitment • Local ownership</p>
@@ -155,7 +155,7 @@ const impactGoals = [
       <!-- South Asia -->
       <div class="mb-8 sm:mb-12 md:mb-16 bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 lg:p-12 rounded-xl shadow-sm">
         <div class="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
-          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">South Asia</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)]">Massive scale • Mobile-first populations • Multilingual complexity</p>
@@ -180,7 +180,7 @@ const impactGoals = [
       <!-- Southeast Asia -->
       <div class="mb-8 sm:mb-12 md:mb-16 bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 lg:p-12 rounded-xl shadow-sm">
         <div class="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
-          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Southeast Asia</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)]">Tech-forward • Diverse economies • Strong mobile adoption</p>
@@ -205,7 +205,7 @@ const impactGoals = [
       <!-- Latin America -->
       <div class="mb-8 sm:mb-12 md:mb-16 bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 lg:p-12 rounded-xl shadow-sm">
         <div class="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
-          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Latin America</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)]">Spanish-speaking markets • Urban-rural divide • Growing digital access</p>
@@ -232,7 +232,7 @@ const impactGoals = [
       <!-- Pacific & Caribbean -->
       <div class="mb-8 sm:mb-12 md:mb-16 bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 lg:p-12 rounded-xl shadow-sm">
         <div class="flex items-start gap-4 sm:gap-6 mb-6 sm:mb-8 pb-6 sm:pb-8 border-b-2 border-[var(--border)]">
-          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+          <Globe class="text-[var(--primary)] flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
           <div>
             <h3 class="text-xl sm:text-2xl md:text-3xl text-[var(--text)] mb-2">Pacific & Caribbean</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)]">Island nations • Small scale, high impact • Connectivity challenges</p>
@@ -263,7 +263,7 @@ const impactGoals = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         {reasons.map((reason) => (
           <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl shadow-sm text-center">
-            <reason.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+            <reason.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
             <h3 class="text-lg sm:text-xl text-[var(--text)] mb-3 sm:mb-4">{reason.title}</h3>
             <p class="text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">{reason.description}</p>
           </div>
@@ -281,7 +281,7 @@ const impactGoals = [
             <ul class="list-none p-0 m-0 space-y-2 sm:space-y-3">
               {goal.goals.map((item) => (
                 <li class="flex items-start gap-2 sm:gap-3 text-sm sm:text-base text-[var(--text-secondary)] leading-relaxed">
-                  <CheckCircle class="text-[var(--mineral-malachite)] flex-shrink-0 mt-0.5 w-4 h-4 sm:w-5 sm:h-5" />
+                  <CircleCheckBig class="text-[var(--mineral-malachite)] flex-shrink-0 mt-0.5 w-4 h-4 sm:w-5 sm:h-5" />
                   <span>{item}</span>
                 </li>
               ))}

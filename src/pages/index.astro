@@ -1,6 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { Globe, Smartphone, Lightbulb, DollarSign, BarChart, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageCircle, Github, Bug, Code } from '@lucide/astro';
+import { Globe, Smartphone, Lightbulb, DollarSign, ChartBar, Users, ClipboardList, Settings, TrendingUp, Accessibility, BookOpen, ArrowRight, MessageCircle, Github, Bug, Code } from '@lucide/astro';
 
 // Blog posts data (latest 3)
 const latestPosts = [
@@ -108,32 +108,32 @@ const latestPosts = [
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Globe class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Globe class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Universal Access</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">Digital tools available to all students, regardless of socioeconomic status</p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Smartphone class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Smartphone class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Mobile-First</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">Recognizing smartphones as primary access devices for most users</p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Lightbulb class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Lightbulb class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Digital Literacy</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">Technology enablement paired with critical thinking and digital citizenship</p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <DollarSign class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <DollarSign class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Cost Efficient</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">Open-source and cloud solutions to maximize limited school budgets</p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <BarChart class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <ChartBar class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Data-Driven</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">Analytics and insights inform instruction, support, and strategy</p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Users class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Users class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-[var(--text)]">Community-Centered</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">Seamless experience across students, staff, and parents/guardians</p>
         </div>
@@ -195,7 +195,7 @@ const latestPosts = [
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12">
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <ClipboardList class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <ClipboardList class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Complete Implementation Guide</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
             Detailed 3-year phased roadmap with specific milestones, resource requirements, and
@@ -203,7 +203,7 @@ const latestPosts = [
           </p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Settings class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Settings class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Technology Stack Recommendations</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
             Open-source and cloud solutions tested in African conditions. Moodle LMS, PostgreSQL data
@@ -211,7 +211,7 @@ const latestPosts = [
           </p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <DollarSign class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <DollarSign class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Budget & Funding Strategy</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
             Complete cost breakdown: $181K over 3 years including infrastructure, devices, software,
@@ -219,7 +219,7 @@ const latestPosts = [
           </p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Users class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Users class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Digital Literacy Curriculum</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
             K-12 progression from digital citizenship foundations to advanced AI collaboration skills.
@@ -227,7 +227,7 @@ const latestPosts = [
           </p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <TrendingUp class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <TrendingUp class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">AI & Analytics Framework</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
             Early warning systems, personalized learning pathways, predictive resource allocation,
@@ -235,7 +235,7 @@ const latestPosts = [
           </p>
         </div>
         <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300">
-          <Accessibility class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Accessibility class="text-[var(--primary)] mb-4 sm:mb-6 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-[var(--text)]">Equity & Accessibility</h3>
           <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)]">
             Device lending programs, WCAG compliance, and socioeconomic equity measures ensuring every student
@@ -300,14 +300,14 @@ const latestPosts = [
         {latestPosts.map((post) => (
           <article class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
             <div class="flex justify-between items-center pb-3 sm:pb-4 border-b-2 border-[var(--border)]">
-              <BookOpen class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+              <BookOpen class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
               <div class="text-xs sm:text-sm text-[var(--text-tertiary)] font-medium">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
             </div>
             <h3 class="text-base sm:text-lg font-bold text-[var(--text)] leading-tight">{post.title}</h3>
             <p class="text-sm sm:text-base leading-relaxed text-[var(--text-secondary)] flex-1">{post.excerpt}</p>
             <a href={`/blog/${post.slug}`} class="inline-flex items-center gap-2 text-[var(--primary)] font-bold hover:gap-4 transition-all duration-300 text-sm sm:text-base min-h-[44px]">
               Read Article
-              <ArrowRight class="w-4 h-4 sm:w-5 sm:h-5" strokeWidth={2} />
+              <ArrowRight class="w-4 h-4 sm:w-5 sm:h-5" stroke-width={2} />
             </a>
           </article>
         ))}
@@ -354,22 +354,22 @@ const latestPosts = [
       </p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-12">
         <a href="https://chat.whatsapp.com/C0ixUbtKiNS4DbciDpmlO7?mode=wwt" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <MessageCircle class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <MessageCircle class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">WhatsApp Community</h3>
           <p class="text-sm sm:text-base text-[var(--text-secondary)]">Join our WhatsApp groups to connect with educators across Africa.</p>
         </a>
         <a href="https://github.com/nyuchitech/learning/discussions" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <Code class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Code class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">Framework Development</h3>
           <p class="text-sm sm:text-base text-[var(--text-secondary)]">Technical discussions about improving the frameworks.</p>
         </a>
         <a href="https://github.com/nyuchitech/learning/issues" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <Bug class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Bug class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">Report Issues</h3>
           <p class="text-sm sm:text-base text-[var(--text-secondary)]">Found a bug or technical issue? Help us track and prioritize.</p>
         </a>
         <a href="https://github.com/nyuchitech/learning" target="_blank" rel="noopener noreferrer" class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col items-center text-center gap-3 sm:gap-4 no-underline min-h-[44px]">
-          <Github class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" strokeWidth={1.5} />
+          <Github class="text-[var(--primary)] w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
           <h3 class="text-base sm:text-lg font-bold text-[var(--primary)]">Contribute Code</h3>
           <p class="text-sm sm:text-base text-[var(--text-secondary)]">Access the open-source repository and contribute.</p>
         </a>

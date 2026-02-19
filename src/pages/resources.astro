@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CheckCircle, Video, HelpCircle, GraduationCap, Target, Globe } from '@lucide/astro';
+import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CircleCheckBig, Video, CircleHelp, GraduationCap, Target, Globe } from '@lucide/astro';
 
 // Quick links data
 const quickLinks = [
@@ -14,7 +14,7 @@ const quickLinks = [
 // Getting started resources
 const gettingStartedResources = [
   {
-    icon: CheckCircle,
+    icon: CircleCheckBig,
     title: "Self-Assessment Tool",
     description: "Evaluate your school's digital readiness across infrastructure, staff capacity, and student access. Identify strengths and gaps before implementation.",
     type: "Interactive Tool",
@@ -76,7 +76,7 @@ const technicalResources = [
     ]
   },
   {
-    icon: HelpCircle,
+    icon: CircleHelp,
     title: "Troubleshooting Knowledge Base",
     description: "Searchable database of common issues, error messages, and solutions. Community-contributed fixes and official support articles. Updated weekly.",
     type: "Knowledge Base",
@@ -119,7 +119,7 @@ const pedagogicalResources = [
     buttonText: "Browse Projects"
   },
   {
-    icon: CheckCircle,
+    icon: CircleCheckBig,
     title: "Assessment Rubrics for Competencies",
     description: "Rubrics for assessing grit, adaptability, collaboration, critical thinking, and digital fluency. Portfolio assessment guides and badge/microcredential criteria.",
     type: "PDF Download",
@@ -271,7 +271,7 @@ const tiers = [
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg)]/95 backdrop-blur-sm px-4 sm:px-6">
     <div class="text-center px-4 sm:px-8 max-w-[600px]">
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
-        <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+        <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
       </div>
       <h2 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold text-[var(--text)] mb-3 sm:mb-4">Coming Soon</h2>
       <p class="text-base sm:text-lg md:text-xl text-[var(--text-secondary)] mb-6 sm:mb-8 leading-relaxed">
@@ -307,7 +307,7 @@ const tiers = [
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {quickLinks.map((link) => (
           <a href={link.href} class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm text-center no-underline text-[var(--text)] border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]">
-            <link.icon class="text-[var(--primary)] mx-auto mb-4" size={32} strokeWidth={1.5} />
+            <link.icon class="text-[var(--primary)] mx-auto mb-4" size={32} stroke-width={1.5} />
             <h3 class="text-xl font-bold text-[var(--primary)] mb-2">{link.title}</h3>
             <p class="text-sm text-[var(--text-secondary)] m-0">{link.description}</p>
           </a>
@@ -318,7 +318,7 @@ const tiers = [
     <!-- Getting Started Section -->
     <section id="getting-started" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <Target class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <Target class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Getting Started</h2>
           <p class="text-lg text-[var(--text-secondary)]">New to Nyuchi Learning frameworks? Start here.</p>
@@ -329,7 +329,7 @@ const tiers = [
         {gettingStartedResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
@@ -353,7 +353,7 @@ const tiers = [
     <!-- Technical Documentation -->
     <section id="technical" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <Wrench class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <Wrench class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Technical Documentation</h2>
           <p class="text-lg text-[var(--text-secondary)]">Platform setup guides, integration tutorials, and troubleshooting resources</p>
@@ -364,7 +364,7 @@ const tiers = [
         {technicalResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
@@ -400,7 +400,7 @@ const tiers = [
     <!-- Pedagogical Resources -->
     <section id="pedagogical" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <GraduationCap class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <GraduationCap class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Pedagogical Resources</h2>
           <p class="text-lg text-[var(--text-secondary)]">Curricula, lesson plans, assessments, and teacher professional development</p>
@@ -411,7 +411,7 @@ const tiers = [
         {pedagogicalResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
@@ -447,7 +447,7 @@ const tiers = [
     <!-- Community & Support -->
     <section id="community" class="py-16 px-8 border-b border-[var(--border)]">
       <div class="flex items-start gap-6 mb-12 flex-col md:flex-row">
-        <Users class="text-[var(--primary)] flex-shrink-0" size={40} strokeWidth={1.5} />
+        <Users class="text-[var(--primary)] flex-shrink-0" size={40} stroke-width={1.5} />
         <div>
           <h2 class="text-[clamp(1.75rem,4vw,2.25rem)] font-bold text-[var(--text)] mb-2">Community & Support</h2>
           <p class="text-lg text-[var(--text-secondary)]">Connect with other schools, share learnings, get help from peers and experts</p>
@@ -458,7 +458,7 @@ const tiers = [
         {communityResources.map((resource) => (
           <div class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm flex flex-col gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
             <div class="flex items-center gap-3">
-              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} strokeWidth={1.5} />
+              <resource.icon class="text-[var(--primary)] flex-shrink-0" size={28} stroke-width={1.5} />
               <h3 class="text-xl font-bold text-[var(--text)] m-0">{resource.title}</h3>
             </div>
             <p class="text-[var(--text-secondary)] leading-relaxed flex-grow">{resource.description}</p>
@@ -503,7 +503,7 @@ const tiers = [
             <ul class="list-none p-0 m-0 mb-8 flex-grow">
               {tier.features.map((feature) => (
                 <li class="flex items-start gap-3 py-3 text-sm leading-relaxed">
-                  <CheckCircle class="text-[var(--success)] flex-shrink-0 mt-0.5" size={20} />
+                  <CircleCheckBig class="text-[var(--success)] flex-shrink-0 mt-0.5" size={20} />
                   <span class="text-[var(--text)]">{feature}</span>
                 </li>
               ))}

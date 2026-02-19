@@ -424,7 +424,7 @@ const supportResources = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {overviewCards.map((card) => (
           <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl border-2 border-[var(--primary)] transition-transform duration-200 hover:-translate-y-1 hover:shadow-lg">
-            <card.icon class="text-[var(--primary)] mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" strokeWidth={1.5} />
+            <card.icon class="text-[var(--primary)] mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
             <p class="text-sm sm:text-base text-[var(--text)] leading-relaxed">{card.description}</p>
           </div>
@@ -492,7 +492,7 @@ const supportResources = [
       {studentLevels.map((level) => (
         <div class="border-2 border-[var(--border)] rounded-xl mb-12 last:mb-0 overflow-hidden">
           <div class={`flex items-center gap-4 p-6 text-white ${level.gradientClass}`}>
-            <level.icon size={28} strokeWidth={1.5} />
+            <level.icon size={28} stroke-width={1.5} />
             <div>
               <h3 class="text-2xl font-bold m-0">{level.title}</h3>
               <p class="m-0 text-sm opacity-90">{level.subtitle}</p>
@@ -525,7 +525,7 @@ const supportResources = [
         {adultPathways.map((pathway) => (
           <div class="border-2 border-[var(--border)] rounded-xl overflow-hidden">
             <div class="bg-[var(--primary)] text-white p-6 flex items-center gap-4">
-              <pathway.icon size={32} strokeWidth={1.5} class="flex-shrink-0" />
+              <pathway.icon size={32} stroke-width={1.5} class="flex-shrink-0" />
               <h3 class="text-2xl font-bold m-0">{pathway.title}</h3>
             </div>
             <div class="p-8">
@@ -554,7 +554,7 @@ const supportResources = [
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {citizenshipPillars.map((pillar) => (
           <div class="bg-[var(--bg)] p-8 rounded-xl border-2 border-[var(--primary)]">
-            <pillar.icon class="text-[var(--primary)] mb-4" size={40} strokeWidth={1.5} />
+            <pillar.icon class="text-[var(--primary)] mb-4" size={40} stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{pillar.title}</h3>
             <h4 class="text-[var(--text)] text-sm font-semibold mb-2">Key Competencies:</h4>
             <ul class="ml-6 leading-relaxed space-y-1 text-[var(--text)]">
