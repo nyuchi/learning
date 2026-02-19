@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
-import { BookOpen, ArrowRight } from '@lucide/astro';
+import { FileText, ArrowRight } from '@lucide/astro';
 
 // Blog posts data (latest 3)
 const latestPosts = [
@@ -137,7 +137,7 @@ const latestPosts = [
         {latestPosts.map((post) => (
           <article class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
             <div class="flex justify-between items-center pb-3 sm:pb-4 border-b-2 border-[var(--border)]">
-              <BookOpen class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
+              <FileText class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
               <div class="text-meta text-[var(--text-tertiary)] font-medium">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
             </div>
             <h3 class="text-base sm:text-lg font-bold text-[var(--text)] leading-tight">{post.title}</h3>

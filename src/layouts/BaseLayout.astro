@@ -1,5 +1,5 @@
 ---
-import { BookOpen, Menu, X } from '@lucide/astro';
+import { Menu, X } from '@lucide/astro';
 import SEO from '../components/SEO.astro';
 import ThemeToggle from '../components/ThemeToggle.astro';
 import '../styles/global.css';
@@ -109,7 +109,7 @@ const {
       <nav class="nav-container" id="main-navigation" aria-label="Main navigation">
         <div class="nav-content">
           <a href="/" class="logo">
-            <BookOpen class="logo-icon" size={28} stroke-width={2} />
+            <img src="/favicon.svg" alt="" class="logo-icon" width="32" height="32" aria-hidden="true" />
             <div class="logo-text-container">
               <span class="logo-text">nyuchi learning</span>
               <span class="logo-subtext">K-12 Digital Campus Framework</span>
@@ -321,8 +321,8 @@ const {
       }
 
       .logo-icon {
-        color: var(--primary);  /* Cobalt */
         flex-shrink: 0;
+        border-radius: 6px;
       }
 
       .logo-text-container {

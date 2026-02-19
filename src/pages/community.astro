@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
 import PageHero from '../components/PageHero.astro';
 import FeatureGrid from '../components/FeatureGrid.astro';
-import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, BookOpen, Github } from '@lucide/astro';
+import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, FileText, Github } from '@lucide/astro';
 
 const githubRepo = 'https://github.com/nyuchitech/learning';
 
@@ -42,7 +42,7 @@ const communityFeatures = [
     external: true
   },
   {
-    icon: BookOpen,
+    icon: FileText,
     title: "Community Wiki",
     description: "Access community-contributed documentation, implementation guides, troubleshooting tips, and real-world case studies from schools using the framework.",
     href: `${githubRepo}/wiki`,
