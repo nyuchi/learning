@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import CTASection from '../components/CTASection.astro';
-import { BookOpen, ArrowRight } from '@lucide/astro';
+import { FileText, ArrowRight } from '@lucide/astro';
 
 // Blog posts data (latest 3)
 const latestPosts = [
@@ -32,7 +32,7 @@ const latestPosts = [
   keywords="digital campus framework, digital literacy programs, developing countries education, K-12 digital transformation, Africa education technology, mobile-first learning, open education frameworks, 2050 education"
 >
   <!-- Hero Section -->
-  <section class="min-h-screen flex items-center bg-[var(--bg)] text-[var(--text)] px-4 sm:px-6 pt-20 sm:pt-24 pb-12 sm:pb-16 relative overflow-hidden">
+  <section class="bg-[var(--bg)] text-[var(--text)] px-4 sm:px-6 pt-10 sm:pt-16 pb-12 sm:pb-16 relative overflow-hidden">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(0,176,255,0.06)_0%,transparent_50%),radial-gradient(ellipse_at_80%_80%,rgba(0,71,171,0.04)_0%,transparent_40%)]"></div>
     <div class="max-w-[1100px] mx-auto relative z-10 w-full">
       <p class="text-body-lg mb-4 sm:mb-6 italic text-[var(--text-secondary)] font-medium tracking-widest animate-fade-in">Ubuntu: I am because we are</p>
@@ -137,7 +137,7 @@ const latestPosts = [
         {latestPosts.map((post) => (
           <article class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] hover:-translate-y-1 hover:border-[var(--primary)] transition-all duration-300 flex flex-col gap-4 sm:gap-6">
             <div class="flex justify-between items-center pb-3 sm:pb-4 border-b-2 border-[var(--border)]">
-              <BookOpen class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
+              <FileText class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
               <div class="text-meta text-[var(--text-tertiary)] font-medium">{new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</div>
             </div>
             <h3 class="text-base sm:text-lg font-bold text-[var(--text)] leading-tight">{post.title}</h3>
