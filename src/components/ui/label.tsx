@@ -4,7 +4,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const labelVariants = cva(
-  "inline-flex items-center gap-1.5 font-medium text-sm",
+  "inline-flex items-center gap-1.5 font-medium text-meta",
   {
     variants: {
       variant: {

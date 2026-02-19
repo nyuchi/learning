@@ -1,6 +1,6 @@
 # nyuchi learning - Development & Design Guidelines
 
-**Version**: 5.1 (Semantic Typography, Architecture-First)
+**Version**: 5.2 (Component Extraction, Cross-Site Patterns)
 **Last Updated**: February 2026
 **Maintained By**: nyuchi learning Development Team
 
@@ -133,6 +133,12 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 │   │   ├── SEO.astro           # Meta tags, Open Graph, JSON-LD
 │   │   ├── ThemeToggle.astro   # Light/Dark/System theme switcher
 │   │   ├── PageBreadcrumb.astro # Breadcrumb navigation
+│   │   ├── PageHero.astro      # Standard hero (tagline, h1, subtitle, share, CTA)
+│   │   ├── FeatureGrid.astro   # Icon + title + description card grid
+│   │   ├── CTASection.astro    # End-of-page call-to-action section
+│   │   ├── MetricCard.astro    # Single stat/metric card
+│   │   ├── MetricGroup.astro   # Responsive grid for MetricCards
+│   │   ├── ShareButton.astro   # Social sharing (Web Share API + fallback)
 │   │   ├── BuilderBox.astro    # Builder UI pattern (dashed borders)
 │   │   ├── InfoTooltip.astro   # Tooltip component
 │   │   └── UserAvatar.astro    # Avatar component
@@ -183,6 +189,8 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 | `src/components/SEO.astro` | Comprehensive SEO: meta tags, Open Graph, Twitter Cards, JSON-LD structured data |
 | `src/components/ThemeToggle.astro` | Light/Dark/System theme with localStorage persistence |
 | `src/components/PageBreadcrumb.astro` | Accessible breadcrumb navigation with structured markup |
+| `src/components/PageHero.astro` | Standard hero section with tagline, accent word, share button (cross-site pattern) |
+| `src/components/ShareButton.astro` | Social sharing: Web Share API + dropdown fallback (X, LinkedIn, FB, WhatsApp, Copy) |
 | `astro.config.mjs` | Site config, sitemap with per-page priorities, React integration |
 
 ---
@@ -543,6 +551,90 @@ Accessible breadcrumb navigation:
 - Chevron separators with `aria-hidden="true"`
 - Responsive font sizing
 - Hover states on links
+
+### PageHero
+
+Standard hero section used across all nyuchi sites. Follows the nhimbe.com cross-site pattern:
+
+```astro
+<PageHero
+  tagline="Ubuntu: I am because we are"
+  title="Mission & Impact"
+  accentWord="Impact"
+  subtitle="Frameworks for building digital campuses."
+  align="center"
+  share
+>
+  <a href="/frameworks" class="btn-primary">Explore Frameworks</a>
+</PageHero>
+```
+
+**Props:**
+- `tagline` - Italic text above heading (optional)
+- `title` - H1 heading text (required)
+- `accentWord` - Word in title to highlight with primary color (optional)
+- `subtitle` - Description paragraph below heading (optional)
+- `align` - `"left"` (default) or `"center"`
+- `share` - Show ShareButton in the hero (optional boolean)
+- Default slot for CTA buttons
+
+### FeatureGrid
+
+Reusable icon + title + description card grid:
+
+```astro
+<FeatureGrid
+  items={[
+    { icon: Heart, title: "Ubuntu", description: "Community success over individual achievement." },
+    { icon: Globe, title: "Global", description: "Worldwide impact." },
+  ]}
+  align="center"
+  columns={3}
+/>
+```
+
+**Props:**
+- `items` - Array of `{ icon?, title, description, href?, linkText?, external? }`
+- `align` - `"left"` (default) or `"center"`
+- `columns` - `2`, `3` (default), or `4`
+
+### CTASection
+
+End-of-page call-to-action section:
+
+```astro
+<CTASection
+  heading="Ready to Get Started?"
+  description="Download our frameworks and begin your transformation."
+  tagline="Free to use, copy, adapt, and share"
+>
+  <a href="/frameworks" class="btn-primary">Browse Frameworks</a>
+</CTASection>
+```
+
+### MetricCard / MetricGroup
+
+Stat/metric display cards:
+
+```astro
+<MetricGroup
+  metrics={[
+    { value: "50+", label: "Countries Served" },
+    { value: "10M+", label: "Students Impacted" },
+  ]}
+  columns={4}
+/>
+```
+
+### ShareButton
+
+Social sharing component with Web Share API (mobile native) and fallback dropdown:
+
+```astro
+<ShareButton title="K-12 Digital Campus Framework" text="Learn about our framework" />
+```
+
+Platforms: X (Twitter), LinkedIn, Facebook, WhatsApp, Copy Link. Integrated into PageHero via the `share` prop.
 
 ### Logo
 

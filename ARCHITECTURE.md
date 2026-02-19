@@ -82,6 +82,12 @@ Components are reusable UI building blocks. They accept props, render markup, an
 | `SEO.astro` | Meta tags, Open Graph, JSON-LD structured data |
 | `ThemeToggle.astro` | Light/dark/system theme switcher |
 | `PageBreadcrumb.astro` | Accessible breadcrumb navigation |
+| `PageHero.astro` | Standard hero section (tagline, h1 with accent word, subtitle, share, CTA slot) |
+| `FeatureGrid.astro` | Reusable icon + title + description card grid (static or linked) |
+| `CTASection.astro` | End-of-page call-to-action section (heading, description, button slot) |
+| `MetricCard.astro` | Single stat/metric card (value + label) |
+| `MetricGroup.astro` | Responsive grid container for MetricCard components |
+| `ShareButton.astro` | Social sharing (Web Share API + fallback dropdown) |
 | `BuilderBox.astro` | Builder UI pattern (dashed borders) |
 | `InfoTooltip.astro` | Contextual help tooltip |
 | `UserAvatar.astro` | Avatar with fallback initials |

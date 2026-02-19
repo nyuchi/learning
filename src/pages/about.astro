@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import CTASection from '../components/CTASection.astro';
 import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, GraduationCap, Monitor } from '@lucide/astro';
 ---
 
@@ -17,17 +20,12 @@ import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, 
   </div>
 
   <!-- Hero Section -->
-  <section class="py-16 sm:py-20 md:py-24 px-6 sm:px-8">
-    <div class="max-w-[1200px] mx-auto">
-      <p class="text-body italic mb-4 tracking-widest font-medium text-[var(--text-tertiary)]">Ubuntu: I am because we are</p>
-      <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)]">
-        Mission & Impact
-      </h1>
-      <p class="mt-6 text-body text-[var(--text-secondary)] max-w-[65ch]">
-        Frameworks for building digital campuses and preparing students for a world that doesn't yet exist.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    tagline="Ubuntu: I am because we are"
+    title="Mission & Impact"
+    subtitle="Frameworks for building digital campuses and preparing students for a world that doesn't yet exist."
+    share
+  />
 
   <div class="max-w-[1200px] mx-auto px-5 sm:px-6 md:px-8 py-8">
     <!-- Mission & Vision -->
@@ -113,22 +111,14 @@ import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, 
       <p class="text-center text-body text-[var(--text-secondary)] mb-12 max-w-[700px] mx-auto">
         These principles guide every framework we create and every decision we make.
       </p>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          { icon: Heart, title: 'Ubuntu: "I am because we are"', desc: 'Community success over individual achievement. Open collaboration over proprietary solutions.' },
-          { icon: BookOpen, title: 'Evidence-Based Innovation', desc: 'Research drives design decisions. Data informs continuous improvement.' },
-          { icon: TrendingUp, title: 'Leapfrog Mindset', desc: 'Build from first principles, not imitation. Leverage constraints as competitive advantages.' },
-          { icon: Target, title: 'Learning Outcomes Over Technology', desc: 'Competencies matter more than credentials. Character strengths predict success, not GPA.' },
-          { icon: Users, title: 'Radical Accessibility', desc: 'Open frameworks, freely shareable. Designed for schools with limited resources.' },
-          { icon: Globe, title: 'Local Ownership', desc: 'Frameworks adaptable to cultural contexts. Sustainable models, not vendor dependence.' }
-        ].map(value => (
-          <div class="p-6 bg-[var(--bg-surface)] rounded-2xl border-2 border-[var(--primary)] hover:-translate-y-1 transition-all duration-300">
-            <value.icon class="text-[var(--primary)] mb-4" size={40} stroke-width={1.5} />
-            <h3 class="text-xl font-bold text-[var(--text)] mb-3">{value.title}</h3>
-            <p class="text-body text-[var(--text-secondary)]">{value.desc}</p>
-          </div>
-        ))}
-      </div>
+      <FeatureGrid items={[
+        { icon: Heart, title: 'Ubuntu: "I am because we are"', description: 'Community success over individual achievement. Open collaboration over proprietary solutions.' },
+        { icon: BookOpen, title: 'Evidence-Based Innovation', description: 'Research drives design decisions. Data informs continuous improvement.' },
+        { icon: TrendingUp, title: 'Leapfrog Mindset', description: 'Build from first principles, not imitation. Leverage constraints as competitive advantages.' },
+        { icon: Target, title: 'Learning Outcomes Over Technology', description: 'Competencies matter more than credentials. Character strengths predict success, not GPA.' },
+        { icon: Users, title: 'Radical Accessibility', description: 'Open frameworks, freely shareable. Designed for schools with limited resources.' },
+        { icon: Globe, title: 'Local Ownership', description: 'Frameworks adaptable to cultural contexts. Sustainable models, not vendor dependence.' },
+      ]} />
     </section>
 
     <!-- Governance Principles -->
@@ -289,23 +279,19 @@ import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, 
     </section>
 
     <!-- CTA Section -->
-    <section class="py-16 text-center bg-[var(--bg-surface)] rounded-2xl my-8 border border-[var(--primary)]">
-      <h2 class="font-display text-3xl md:text-4xl text-[var(--text)] mb-6">Join the Movement</h2>
-      <p class="text-body text-[var(--text-secondary)] mb-8 max-w-[800px] mx-auto">
-        Ready to build the future instead of replicating the past? Explore our frameworks, join our community,
-        and help prove that developing countries can lead educational transformation.
-      </p>
-      <div class="flex gap-4 justify-center flex-wrap">
-        <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200">
-          Explore All Frameworks
-        </a>
-        <a href="/blog/developing-world-educational-advantage" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary-container)] transition-all duration-200">
-          Read Our Vision
-        </a>
-        <a href="/consultation" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--text-secondary)] text-[var(--text)] font-semibold rounded-xl hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all duration-200">
-          Book a Consultation
-        </a>
-      </div>
-    </section>
+    <CTASection
+      heading="Join the Movement"
+      description="Ready to build the future instead of replicating the past? Explore our frameworks, join our community, and help prove that developing countries can lead educational transformation."
+    >
+      <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">
+        Explore All Frameworks
+      </a>
+      <a href="/blog/developing-world-educational-advantage" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary-container)] transition-all duration-200 w-full sm:w-auto">
+        Read Our Vision
+      </a>
+      <a href="/consultation" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--text-secondary)] text-[var(--text)] font-semibold rounded-xl hover:border-[var(--primary)] hover:text-[var(--primary)] transition-all duration-200 w-full sm:w-auto">
+        Book a Consultation
+      </a>
+    </CTASection>
   </div>
 </BaseLayout>

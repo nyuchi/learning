@@ -1,0 +1,113 @@
+---
+/**
+ * PageHero - Standard hero section used across all nyuchi sites.
+ *
+ * Pattern (from nhimbe.com standard):
+ *   1. Italic tagline/quote
+ *   2. H1 heading with optional accent-colored word
+ *   3. Subtitle/description paragraph
+ *   4. Optional share button
+ *   5. Optional CTA button(s) via default slot
+ *
+ * Usage:
+ *   <PageHero
+ *     tagline="Ubuntu: I am because we are"
+ *     title="Mission & Impact"
+ *     subtitle="Frameworks for building digital campuses."
+ *     share
+ *   />
+ *
+ *   With accent word and CTA:
+ *   <PageHero
+ *     tagline="Together we gather, together we grow"
+ *     title="Discover gatherings that move you"
+ *     accentWord="gatherings"
+ *     subtitle="Find and join meaningful events."
+ *     align="center"
+ *     share
+ *   >
+ *     <a href="/events" class="btn-primary">Create Your First Event →</a>
+ *   </PageHero>
+ */
+import ShareButton from './ShareButton.astro';
+
+interface Props {
+  tagline?: string;
+  title: string;
+  accentWord?: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+  share?: boolean;
+}
+
+const {
+  tagline,
+  title,
+  accentWord,
+  subtitle,
+  align = 'left',
+  share = false,
+} = Astro.props;
+
+const isCenter = align === 'center';
+
+// Build heading parts: split title around the accent word if provided
+function buildTitleParts(title: string, accent?: string) {
+  if (!accent) return [{ text: title, isAccent: false }];
+  const index = title.toLowerCase().indexOf(accent.toLowerCase());
+  if (index === -1) return [{ text: title, isAccent: false }];
+  const before = title.slice(0, index);
+  const match = title.slice(index, index + accent.length);
+  const after = title.slice(index + accent.length);
+  const parts: { text: string; isAccent: boolean }[] = [];
+  if (before) parts.push({ text: before, isAccent: false });
+  parts.push({ text: match, isAccent: true });
+  if (after) parts.push({ text: after, isAccent: false });
+  return parts;
+}
+
+const titleParts = buildTitleParts(title, accentWord);
+const hasSlot = Astro.slots.has('default');
+---
+
+<section class:list={[
+  "py-16 sm:py-20 md:py-24 px-6 sm:px-8",
+  isCenter && "text-center"
+]}>
+  <div class="max-w-[1200px] mx-auto">
+    {tagline && (
+      <p class="text-body italic mb-4 tracking-widest font-medium text-[var(--text-tertiary)]">
+        {tagline}
+      </p>
+    )}
+
+    <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)]">
+      {titleParts.map((part) =>
+        part.isAccent ? (
+          <span class="text-[var(--primary)]">{part.text}</span>
+        ) : (
+          part.text
+        )
+      )}
+    </h1>
+
+    {subtitle && (
+      <p class:list={[
+        "mt-6 text-body text-[var(--text-secondary)] max-w-[65ch]",
+        isCenter && "mx-auto"
+      ]}>
+        {subtitle}
+      </p>
+    )}
+
+    {(hasSlot || share) && (
+      <div class:list={[
+        "mt-8 flex flex-wrap gap-4 items-center",
+        isCenter && "justify-center"
+      ]}>
+        <slot />
+        {share && <ShareButton title={title} text={subtitle} />}
+      </div>
+    )}
+  </div>
+</section>

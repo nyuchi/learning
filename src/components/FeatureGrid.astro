@@ -1,0 +1,111 @@
+---
+/**
+ * FeatureGrid - Reusable icon + title + description card grid.
+ *
+ * Standard pattern used across nyuchi sites for feature/value/reason cards.
+ *
+ * Usage:
+ *   <FeatureGrid
+ *     items={[
+ *       { icon: Heart, title: "Ubuntu", description: "I am because we are" },
+ *       { icon: Globe, title: "Global", description: "Worldwide impact" },
+ *     ]}
+ *   />
+ *
+ *   With links:
+ *   <FeatureGrid
+ *     items={[
+ *       { icon: MessageSquare, title: "Discuss", description: "Join the conversation", href: "/discuss", linkText: "Start" },
+ *     ]}
+ *     align="center"
+ *   />
+ */
+
+interface FeatureItem {
+  icon?: any;
+  title: string;
+  description: string;
+  href?: string;
+  linkText?: string;
+  external?: boolean;
+}
+
+interface Props {
+  items: FeatureItem[];
+  align?: 'left' | 'center';
+  columns?: 2 | 3 | 4;
+}
+
+const {
+  items,
+  align = 'left',
+  columns = 3,
+} = Astro.props;
+
+const isCenter = align === 'center';
+
+const colsClass = {
+  2: 'md:grid-cols-2',
+  3: 'md:grid-cols-2 lg:grid-cols-3',
+  4: 'sm:grid-cols-2 lg:grid-cols-4',
+}[columns];
+---
+
+<div class:list={["grid grid-cols-1 gap-4 sm:gap-6 md:gap-8", colsClass]}>
+  {items.map((item) => {
+    const content = (
+      <>
+        {item.icon && (
+          <item.icon
+            class="text-[var(--primary)] mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12"
+            stroke-width={1.5}
+          />
+        )}
+        <h3 class:list={[
+          "text-lg sm:text-xl font-bold text-[var(--text)] mb-3",
+          isCenter && "text-center"
+        ]}>
+          {item.title}
+        </h3>
+        <p class:list={[
+          "text-body text-[var(--text-secondary)]",
+          isCenter && "text-center"
+        ]}>
+          {item.description}
+        </p>
+        {item.linkText && (
+          <div class:list={[
+            "mt-4 flex items-center gap-2 text-[var(--primary)] font-bold text-body",
+            isCenter && "justify-center"
+          ]}>
+            <span>{item.linkText}</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </div>
+        )}
+      </>
+    );
+
+    return item.href ? (
+      <a
+        href={item.href}
+        target={item.external ? "_blank" : undefined}
+        rel={item.external ? "noopener noreferrer" : undefined}
+        class:list={[
+          "bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 no-underline text-inherit flex flex-col hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]",
+          isCenter && "items-center text-center"
+        ]}
+      >
+        {content}
+      </a>
+    ) : (
+      <div
+        class:list={[
+          "bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-1",
+          isCenter && "items-center text-center"
+        ]}
+      >
+        {content}
+      </div>
+    );
+  })}
+</div>

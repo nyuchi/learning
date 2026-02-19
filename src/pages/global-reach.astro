@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import MetricGroup from '../components/MetricGroup.astro';
 import { Globe, MapPin, Users, TrendingUp, Heart, Smartphone, Target, CircleCheckBig } from '@lucide/astro';
 
 // Scope stats
@@ -89,13 +92,13 @@ const impactGoals = [
 
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6 md:px-8">
     <!-- Hero Section -->
-    <section class="py-12 sm:py-16 md:py-24 text-center">
-      <div class="max-w-[1200px] mx-auto">
-        <p class="text-body text-[var(--text-tertiary)] mb-3 sm:mb-4 italic">Ubuntu: I am because we are</p>
-        <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-display font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-4 sm:mb-6">Global Reach</h1>
-        <p class="text-body max-w-[65ch] mx-auto text-[var(--text-secondary)]">Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050</p>
-      </div>
-    </section>
+    <PageHero
+      tagline="Ubuntu: I am because we are"
+      title="Global Reach"
+      subtitle="Empowering schools across Africa, Asia, Latin America, and the Pacific to leapfrog traditional education and build for 2050"
+      align="center"
+      share
+    />
 
     <!-- Geographic Scope Overview -->
     <section class="py-10 sm:py-12 md:py-16 bg-[var(--bg)]">
@@ -109,13 +112,11 @@ const impactGoals = [
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10 md:mt-12">
-        {scopeStats.map((stat) => (
-          <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl text-center shadow-sm">
-            <div class="text-3xl sm:text-4xl md:text-5xl font-bold text-[var(--primary)] mb-2 font-display">{stat.number}</div>
-            <div class="text-body text-[var(--text-secondary)]">{stat.label}</div>
-          </div>
-        ))}
+      <div class="mt-8 sm:mt-10 md:mt-12">
+        <MetricGroup
+          metrics={scopeStats.map(s => ({ value: s.number, label: s.label }))}
+          columns={4}
+        />
       </div>
     </section>
 
@@ -260,15 +261,7 @@ const impactGoals = [
     <!-- Why These Regions -->
     <section class="py-10 sm:py-12 md:py-16 bg-[var(--bg)]">
       <h2 class="text-2xl sm:text-3xl md:text-4xl text-[var(--text)] text-center mb-8 sm:mb-10 md:mb-12">Why These Regions?</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-        {reasons.map((reason) => (
-          <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-xl shadow-sm text-center">
-            <reason.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
-            <h3 class="text-lg sm:text-xl text-[var(--text)] mb-3 sm:mb-4">{reason.title}</h3>
-            <p class="text-body text-[var(--text-secondary)]">{reason.description}</p>
-          </div>
-        ))}
-      </div>
+      <FeatureGrid items={reasons} align="center" />
     </section>
 
     <!-- Impact Goals by Region -->

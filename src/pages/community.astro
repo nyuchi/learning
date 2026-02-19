@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, BookOpen, Github, ExternalLink } from '@lucide/astro';
+import PageHero from '../components/PageHero.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import { Users, MessageSquare, GitPullRequest, Bug, Lightbulb, Shield, BookOpen, Github } from '@lucide/astro';
 
 const githubRepo = 'https://github.com/nyuchitech/learning';
 
@@ -11,43 +13,49 @@ const communityFeatures = [
     icon: MessageSquare,
     title: "Discussions",
     description: "Join conversations about implementation strategies, best practices, and share your experiences. Ask questions, get advice from other schools, and discuss the future of digital education in Africa.",
-    link: `${githubRepo}/discussions`,
-    linkText: "Start a Discussion"
+    href: `${githubRepo}/discussions`,
+    linkText: "Start a Discussion",
+    external: true
   },
   {
     icon: GitPullRequest,
     title: "Issues & Suggestions",
     description: "Found something that needs improvement? Have ideas for new features? Browse existing issues or create new ones to help us track and prioritize improvements.",
-    link: `${githubRepo}/issues`,
-    linkText: "Browse Issues"
+    href: `${githubRepo}/issues`,
+    linkText: "Browse Issues",
+    external: true
   },
   {
     icon: Bug,
     title: "Report a Bug",
     description: "Encountered a technical issue or something not working as expected? Report bugs so we can fix them quickly and improve the framework for everyone.",
-    link: `${githubRepo}/issues/new?template=bug_report.md`,
-    linkText: "Report Bug"
+    href: `${githubRepo}/issues/new?template=bug_report.md`,
+    linkText: "Report Bug",
+    external: true
   },
   {
     icon: Lightbulb,
     title: "Feature Requests",
     description: "Have an idea for a new capability or enhancement? Submit feature requests and help shape the future direction of the framework.",
-    link: `${githubRepo}/issues/new?template=feature_request.md`,
-    linkText: "Request Feature"
+    href: `${githubRepo}/issues/new?template=feature_request.md`,
+    linkText: "Request Feature",
+    external: true
   },
   {
     icon: BookOpen,
     title: "Community Wiki",
     description: "Access community-contributed documentation, implementation guides, troubleshooting tips, and real-world case studies from schools using the framework.",
-    link: `${githubRepo}/wiki`,
-    linkText: "Explore Wiki"
+    href: `${githubRepo}/wiki`,
+    linkText: "Explore Wiki",
+    external: true
   },
   {
     icon: Shield,
     title: "Security",
     description: "Review our security policies and report security vulnerabilities responsibly. We take security seriously to protect schools and student data.",
-    link: `${githubRepo}/security`,
-    linkText: "View Security Policy"
+    href: `${githubRepo}/security`,
+    linkText: "View Security Policy",
+    external: true
   }
 ];
 
@@ -78,37 +86,19 @@ const stats = [
   </div>
 
   <!-- Hero Section -->
-  <section class="py-16 sm:py-20 md:py-24 px-4 sm:px-6 text-center">
-    <div class="max-w-[1200px] mx-auto">
-      <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)] mb-4 sm:mb-6">Join Our Community</h1>
-      <p class="text-body italic text-[var(--text-tertiary)] mb-6 sm:mb-8 tracking-wide">Ubuntu: When we build together, we all succeed</p>
-      <p class="text-body max-w-[65ch] mx-auto text-[var(--text-secondary)] px-2">
-        This framework thrives on community collaboration. Whether you're an educator, IT professional,
-        student, or administrator, your voice matters. Help us build, improve, and adapt this framework
-        for schools across Africa and beyond.
-      </p>
-    </div>
-  </section>
+  <PageHero
+    tagline="Ubuntu: When we build together, we all succeed"
+    title="Join Our Community"
+    subtitle="This framework thrives on community collaboration. Whether you're an educator, IT professional, student, or administrator, your voice matters. Help us build, improve, and adapt this framework for schools across Africa and beyond."
+    align="center"
+    share
+  />
 
   <!-- Community Features Grid -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg-surface)]">
     <div class="max-w-[1200px] mx-auto">
       <h2 class="text-center text-[clamp(1.5rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight leading-tight relative pb-6 sm:pb-8 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] sm:after:w-[150px] after:h-1.5 sm:after:h-2 after:bg-[var(--primary)] after:shadow-lg">How to Get Involved</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-        {communityFeatures.map((feature) => (
-          <a href={feature.link} target="_blank" rel="noopener noreferrer" class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 no-underline text-inherit flex flex-col gap-4 sm:gap-5 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-xl hover:bg-[var(--bg-surface)]">
-            <div class="flex justify-center items-center w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-[var(--bg-surface)] rounded-full mx-auto shadow-md">
-              <feature.icon class="text-[var(--primary)] w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12" stroke-width={1.5} />
-            </div>
-            <h3 class="text-lg sm:text-xl md:text-2xl text-[var(--text)] font-extrabold tracking-tight text-center m-0">{feature.title}</h3>
-            <p class="text-body text-[var(--text)] flex-1 text-center">{feature.description}</p>
-            <div class="flex items-center justify-center gap-2 text-[var(--primary)] font-bold tracking-wide text-body transition-all duration-300">
-              <span>{feature.linkText}</span>
-              <ExternalLink size={20} stroke-width={2} />
-            </div>
-          </a>
-        ))}
-      </div>
+      <FeatureGrid items={communityFeatures} align="center" />
     </div>
   </section>
 

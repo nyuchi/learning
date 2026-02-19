@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
+import CTASection from '../components/CTASection.astro';
 import { BookOpen, FileText, Wrench, Users, MessageCircle, Download, CircleCheckBig, Video, CircleHelp, GraduationCap, Target, Globe } from '@lucide/astro';
 
 // Quick links data
@@ -528,19 +529,16 @@ const tiers = [
     </section>
 
     <!-- CTA Section -->
-    <section class="text-center py-20 px-8 bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)]">
-      <h2 class="text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Ready to Get Started?</h2>
-      <p class="text-xl text-[var(--text-secondary)] mb-10">
-        Download our frameworks, join the community, or schedule a consultation to begin your digital transformation journey.
-      </p>
-      <div class="flex gap-6 justify-center flex-wrap">
-        <a href="/frameworks" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">
-          Browse Frameworks
-        </a>
-        <a href="/consultation" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-transparent text-[var(--primary)] border-2 border-[var(--primary)] hover:bg-[var(--bg-surface)]">
-          Schedule Consultation
-        </a>
-      </div>
-    </section>
+    <CTASection
+      heading="Ready to Get Started?"
+      description="Download our frameworks, join the community, or schedule a consultation to begin your digital transformation journey."
+    >
+      <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 bg-[var(--primary)] text-white font-semibold rounded-xl hover:brightness-110 hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto">
+        Browse Frameworks
+      </a>
+      <a href="/consultation" class="inline-flex items-center justify-center h-12 px-6 border-2 border-[var(--primary)] text-[var(--primary)] font-semibold rounded-xl hover:bg-[var(--primary-container)] transition-all duration-200 w-full sm:w-auto">
+        Schedule Consultation
+      </a>
+    </CTASection>
   </div>
 </BaseLayout>
