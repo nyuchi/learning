@@ -61,7 +61,7 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
   "framework": "Astro 5.16+",
   "language": "TypeScript 5.6+ (strict mode)",
   "styling": "Tailwind CSS 4.1+ with PostCSS",
-  "icons": "lucide-astro 0.441+, lucide-react 0.562+",
+  "icons": "@lucide/astro 0.574+, lucide-react 0.574+",
   "ui": "Radix UI React primitives",
   "react": "React 19+",
   "utilities": ["clsx", "class-variance-authority", "tailwind-merge"],
@@ -92,7 +92,7 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 | **UI** | `@radix-ui/react-*` | Accessible UI primitives (avatar, dialog, dropdown, navigation, scroll-area, tabs, tooltip) |
 | **React** | `react` 19+, `react-dom` 19+ | Interactive components |
 | **Utilities** | `clsx`, `class-variance-authority`, `tailwind-merge` | Conditional classes, variant management |
-| **Icons** | `lucide-astro`, `lucide-react` | Icon library |
+| **Icons** | `@lucide/astro`, `lucide-react` | Icon library |
 | **Content** | `@astrojs/mdx` | Rich content authoring |
 | **SEO** | `@astrojs/sitemap`, `@astrojs/rss` | Sitemap and RSS generation |
 
@@ -546,7 +546,7 @@ Avatar component for user profiles. Built on Radix UI avatar primitive with fall
 // src/pages/my-page.astro
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { BookOpen } from 'lucide-astro';
+import { BookOpen } from '@lucide/astro';
 ---
 
 <BaseLayout
@@ -973,10 +973,45 @@ Use `.animate-stagger` on a parent container to delay child animations:
 ### Local Development
 
 ```bash
-npm run dev        # Start dev server at http://localhost:4321 (HMR enabled)
-npm run build      # TypeScript check + production build to dist/
-npm run preview    # Preview production build locally
+npm run dev          # Start dev server at http://localhost:4321 (HMR enabled)
+npm run build        # TypeScript check + production build to dist/
+npm run preview      # Preview production build locally
 ```
+
+### Testing
+
+```bash
+npm test             # Run all tests (design guidelines + accessibility/SEO)
+npm run test:design  # Run design guidelines compliance tests only
+npm run test:a11y    # Run accessibility & SEO tests only (requires build first)
+npm run test:watch   # Run tests in watch mode during development
+```
+
+**Test suites:**
+- `tests/design-guidelines.test.js` - Validates source files against CLAUDE.md design rules: breadcrumbs, no background images, no emojis, heading hierarchy, display font usage, no forbidden fonts, BaseLayout usage, typography tokens
+- `tests/accessibility-seo.test.js` - Validates built HTML output: meta tags, Open Graph, JSON-LD, skip links, landmarks, lang attribute, heading hierarchy, viewport meta, CSS accessibility features, BaseLayout features, sitemap, RSS
+
+### Linting & Formatting
+
+```bash
+npm run lint         # Run ESLint on src/
+npm run lint:fix     # Run ESLint with auto-fix
+npm run format       # Format all source files with Prettier
+npm run format:check # Check formatting without modifying files
+npm run check        # Run build + tests + lint (full CI check locally)
+```
+
+**Configuration:**
+- ESLint: `eslint.config.js` - Astro plugin, no-var, prefer-const, no-unused-vars
+- Prettier: `.prettierrc` - 2-space indent, single quotes, trailing commas, 100 char width
+- Prettier plugin: `prettier-plugin-astro` for `.astro` file support
+
+### CI/CD (GitHub Actions)
+
+The `.github/workflows/ci.yml` workflow runs on every push to `main` and on pull requests:
+
+1. **Build & Test** job: checkout, Node 18, npm ci, `astro check`, `astro build`, design guidelines tests, accessibility/SEO tests
+2. **Lint & Format** job: checkout, Node 18, npm ci, ESLint, Prettier check
 
 ### Development Best Practices
 
@@ -1002,7 +1037,7 @@ npm run preview    # Preview production build locally
 // 1. Imports
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { BookOpen, Users } from 'lucide-astro';
+import { BookOpen, Users } from '@lucide/astro';
 
 // 2. TypeScript interfaces
 interface Props {
@@ -1085,7 +1120,7 @@ const data: any = fetchData();
 
 ```astro
 ---
-import { BookOpen, Users, Globe } from 'lucide-astro';
+import { BookOpen, Users, Globe } from '@lucide/astro';
 ---
 
 <BookOpen size={48} strokeWidth={1.5} />
@@ -1133,6 +1168,9 @@ chore: update dependencies
 ### Pre-Commit Checklist
 
 - [ ] `npm run build` passes
+- [ ] `npm test` passes (all design + accessibility tests)
+- [ ] `npm run lint` passes (no ESLint errors)
+- [ ] `npm run format:check` passes (Prettier formatting)
 - [ ] TypeScript errors resolved
 - [ ] Mobile responsive (test in DevTools)
 - [ ] Breadcrumbs present (except homepage)
@@ -1194,7 +1232,7 @@ npm run build    # Build to dist/
 - Ensure the file is importing global.css
 
 **Icons not rendering:**
-- Verify import: `import { IconName } from 'lucide-astro'`
+- Verify import: `import { IconName } from '@lucide/astro'`
 - Check icon name exists in Lucide library (PascalCase)
 
 **Page not found (404):**

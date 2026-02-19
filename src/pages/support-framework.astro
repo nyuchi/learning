@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Download, Users, Bot, Wrench, AlertCircle, Check, Clock, DollarSign, Target } from 'lucide-astro';
+import { Download, Users, Bot, Wrench, AlertCircle, Check, Clock, DollarSign, Target } from '@lucide/astro';
 
 // Navigation items
 const navItems = [
@@ -524,7 +524,7 @@ const budgetItems = [
     <section id="tiers" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Support Tier Overview</h2>
 
-      {tierDetails.map((tier, index) => (
+      {tierDetails.map((tier) => (
         <div class="mb-12 last:mb-0 border-2 border-[var(--border)] rounded-xl overflow-hidden">
           <div class={`flex items-center gap-4 p-6 text-white ${tier.gradientClass}`}>
             <tier.icon size={32} strokeWidth={1.5} />
@@ -557,13 +557,13 @@ const budgetItems = [
             {tier.inScope && tier.outOfScope && (
               <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
                 <div>
-                  <h4 class="text-[var(--primary)] text-lg font-bold mb-2">Scope of Responsibility ✅</h4>
+                  <h4 class="text-[var(--primary)] text-lg font-bold mb-2">Scope of Responsibility</h4>
                   <ul class="list-disc ml-6 text-[var(--text)] space-y-1">
                     {tier.inScope.map((item) => <li>{item}</li>)}
                   </ul>
                 </div>
                 <div>
-                  <h4 class="text-[var(--primary)] text-lg font-bold mb-2">Out of Scope ❌</h4>
+                  <h4 class="text-[var(--primary)] text-lg font-bold mb-2">Out of Scope</h4>
                   <ul class="list-disc ml-6 text-[var(--text)] space-y-1">
                     {tier.outOfScope.map((item) => <li>{item}</li>)}
                   </ul>

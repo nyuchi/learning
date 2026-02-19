@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageBreadcrumb from '../components/PageBreadcrumb.astro';
-import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphone, DollarSign, MapPin, GraduationCap, Monitor } from 'lucide-astro';
+import { Target, Globe, TrendingUp, Users, Heart, BookOpen, DollarSign, MapPin, GraduationCap, Monitor } from '@lucide/astro';
 ---
 
 <BaseLayout
@@ -235,8 +235,8 @@ import { Target, Globe, Lightbulb, TrendingUp, Users, Heart, BookOpen, Smartphon
     <!-- Founder Story -->
     <section class="py-16 bg-[var(--bg-surface)] -mx-4 px-4 md:-mx-8 md:px-8 rounded-2xl my-8">
       <h2 class="font-display text-3xl md:text-4xl text-[var(--primary)] mb-8 text-center">Our Founder's Journey</h2>
-      <div class="max-w-[900px] mx-auto overflow-hidden rounded-2xl mb-8">
-        <img src="https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?w=1200&q=80" alt="African landscape" class="w-full h-[400px] object-cover" />
+      <div class="max-w-[900px] mx-auto mb-8">
+        <div class="h-px bg-[var(--border)]"></div>
       </div>
       <div class="max-w-[900px] mx-auto space-y-6">
         {[
