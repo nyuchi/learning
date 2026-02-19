@@ -48,9 +48,10 @@ For the website codebase:
 - **npm** (comes with Node.js)
 - **Git** for version control
 - Basic familiarity with:
-  - Astro framework
-  - Tailwind CSS
-  - TypeScript
+  - Astro 5.x framework
+  - Tailwind CSS 4.x
+  - TypeScript (strict mode)
+  - React (for interactive components)
 
 ### Local Setup
 
@@ -79,12 +80,16 @@ For the website codebase:
 
 ```
 src/
-├── components/     # Reusable Astro components
-├── layouts/        # Page layouts (BaseLayout.astro)
+├── components/     # Reusable components (Logo, SEO, ThemeToggle, PageBreadcrumb, etc.)
+├── layouts/        # Page layouts (BaseLayout.astro - master layout)
+├── lib/            # Utility functions
 ├── pages/          # File-based routing
 │   └── blog/       # Blog posts
+├── styles/
+│   └── global.css  # Tailwind theme, design tokens, component & accessibility layers
 public/
 ├── frameworks/     # Framework documentation (Markdown)
+├── llms.txt        # AI crawler directives
 └── *.svg           # Logo and brand assets
 ```
 
@@ -165,13 +170,15 @@ Follow the Bundu Brand System as documented in [CLAUDE.md](CLAUDE.md):
 
 ### Accessibility Requirements
 
-All contributions must maintain WCAG 2.1 AAA compliance:
+All contributions must maintain WCAG 2.2 AAA compliance and should be tested against APCA (WCAG 3.0 draft):
 
-- **Color contrast**: 7:1+ for normal text
-- **Touch targets**: 44x44px minimum
-- **Keyboard navigation**: All interactive elements accessible
-- **Screen reader**: Proper ARIA labels and semantic HTML
+- **Color contrast**: WCAG 2.2 AAA (7:1+) for normal text, plus APCA Lc 60+ for body text
+- **Touch targets**: 44x44px minimum, 48px for primary buttons
+- **Keyboard navigation**: All interactive elements accessible with visible focus indicators
+- **Screen reader**: Proper ARIA labels, semantic HTML, landmarks
 - **Reduced motion**: Respect `prefers-reduced-motion`
+- **Theme support**: Changes must work in both light and dark modes
+- **Breadcrumbs**: All interior pages must include PageBreadcrumb component
 
 ### Mobile-First Development
 
@@ -253,10 +260,13 @@ Brief description of the changes.
 
 ## Checklist
 - [ ] `npm run build` passes
-- [ ] Tested on mobile viewport
-- [ ] Accessibility verified (contrast, keyboard nav)
+- [ ] Tested on mobile viewport (375px, 393px)
+- [ ] Breadcrumbs present on interior pages
+- [ ] Both light and dark themes work
+- [ ] Accessibility verified (WCAG 2.2 AAA contrast, keyboard nav, touch targets)
 - [ ] No emojis used (Lucide icons only)
-- [ ] Follows Bundu Brand System guidelines
+- [ ] No decorative images (typography and whitespace for visual interest)
+- [ ] Follows design guidelines in CLAUDE.md
 
 ## Screenshots (if applicable)
 ```
