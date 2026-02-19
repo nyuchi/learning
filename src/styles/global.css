@@ -461,26 +461,11 @@
   body {
     min-height: 100vh;
     background-color: var(--bg);
-    /* Builder UI dot grid pattern */
-    background-image: radial-gradient(circle, rgba(100, 116, 139, 0.12) 1px, transparent 1px);
-    background-size: 24px 24px;
-    background-attachment: fixed;
     color: var(--text);
     line-height: 1.7;
     font-size: 20px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  /* Light mode - slightly more visible dots */
-  :root.light body {
-    background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
-  }
-
-  @media (prefers-color-scheme: light) {
-    :root:not(.dark) body {
-      background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
-    }
   }
 
   /* Typography Scale - Fluid responsive sizing with clamp() */
@@ -717,6 +702,22 @@
   .input:focus {
     border-color: var(--primary);
     box-shadow: 0 0 0 3px var(--primary-container);
+  }
+
+  /* Hero dot grid background - applied to hero sections only */
+  .hero-dots {
+    background-image: radial-gradient(circle, rgba(100, 116, 139, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  :root.light .hero-dots {
+    background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root:not(.dark) .hero-dots {
+      background-image: radial-gradient(circle, rgba(100, 116, 139, 0.15) 1px, transparent 1px);
+    }
   }
 
   /* Badge */
