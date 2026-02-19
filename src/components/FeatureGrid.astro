@@ -3,6 +3,7 @@
  * FeatureGrid - Reusable icon + title + description card grid.
  *
  * Standard pattern used across nyuchi sites for feature/value/reason cards.
+ * All content is left-aligned for readability.
  *
  * Usage:
  *   <FeatureGrid
@@ -17,7 +18,6 @@
  *     items={[
  *       { icon: MessageSquare, title: "Discuss", description: "Join the conversation", href: "/discuss", linkText: "Start" },
  *     ]}
- *     align="center"
  *   />
  */
 
@@ -32,17 +32,13 @@ interface FeatureItem {
 
 interface Props {
   items: FeatureItem[];
-  align?: 'left' | 'center';
   columns?: 2 | 3 | 4;
 }
 
 const {
   items,
-  align = 'left',
   columns = 3,
 } = Astro.props;
-
-const isCenter = align === 'center';
 
 const colsClass = {
   2: 'md:grid-cols-2',
@@ -61,23 +57,14 @@ const colsClass = {
             stroke-width={1.5}
           />
         )}
-        <h3 class:list={[
-          "text-lg sm:text-xl font-bold text-[var(--text)] mb-3",
-          isCenter && "text-center"
-        ]}>
+        <h3 class="text-body-lg font-bold text-[var(--text)] mb-3">
           {item.title}
         </h3>
-        <p class:list={[
-          "text-body text-[var(--text-secondary)]",
-          isCenter && "text-center"
-        ]}>
+        <p class="text-body text-[var(--text-secondary)]">
           {item.description}
         </p>
         {item.linkText && (
-          <div class:list={[
-            "mt-4 flex items-center gap-2 text-[var(--primary)] font-bold text-body",
-            isCenter && "justify-center"
-          ]}>
+          <div class="mt-4 flex items-center gap-2 text-[var(--primary)] font-bold text-body">
             <span>{item.linkText}</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
           </div>
@@ -90,20 +77,12 @@ const colsClass = {
         href={item.href}
         target={item.external ? "_blank" : undefined}
         rel={item.external ? "noopener noreferrer" : undefined}
-        class:list={[
-          "bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 no-underline text-inherit flex flex-col hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]",
-          isCenter && "items-center text-center"
-        ]}
+        class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 no-underline text-inherit flex flex-col hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]"
       >
         {content}
       </a>
     ) : (
-      <div
-        class:list={[
-          "bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-1",
-          isCenter && "items-center text-center"
-        ]}
-      >
+      <div class="bg-[var(--bg-surface)] p-5 sm:p-6 md:p-8 rounded-2xl border border-[var(--border)] transition-all duration-300 hover:-translate-y-1">
         {content}
       </div>
     );

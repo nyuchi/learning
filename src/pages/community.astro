@@ -90,15 +90,14 @@ const stats = [
     tagline="Ubuntu: When we build together, we all succeed"
     title="Join Our Community"
     subtitle="This framework thrives on community collaboration. Whether you're an educator, IT professional, student, or administrator, your voice matters. Help us build, improve, and adapt this framework for schools across Africa and beyond."
-    align="center"
     share
   />
 
   <!-- Community Features Grid -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--bg-surface)]">
     <div class="max-w-[1200px] mx-auto">
-      <h2 class="text-center text-[clamp(1.5rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight leading-tight relative pb-6 sm:pb-8 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] sm:after:w-[150px] after:h-1.5 sm:after:h-2 after:bg-[var(--primary)] after:shadow-lg">How to Get Involved</h2>
-      <FeatureGrid items={communityFeatures} align="center" />
+      <h2 class="text-[clamp(1.75rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight leading-tight">How to Get Involved</h2>
+      <FeatureGrid items={communityFeatures} />
     </div>
   </section>
 
@@ -131,11 +130,11 @@ const stats = [
   <!-- Community Stats -->
   <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-[var(--primary)] text-[var(--text)] border-y-4 sm:border-y-6 md:border-y-8 border-white">
     <div class="max-w-[1200px] mx-auto">
-      <h2 class="text-center text-[clamp(1.5rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight relative pb-6 sm:pb-8 after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-[100px] sm:after:w-[150px] after:h-1.5 sm:after:h-2 after:bg-[var(--bg-surface)] after:shadow-lg">Growing Together</h2>
+      <h2 class="text-[clamp(1.75rem,6vw,3rem)] mb-8 sm:mb-12 md:mb-16 text-[var(--text)] font-black tracking-tight">Growing Together</h2>
       <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-[1200px] mx-auto">
         {stats.map((stat) => (
-          <div class="text-center p-5 sm:p-6 md:p-8 bg-[var(--primary)]/10 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)]/15">
-            <div class="mb-4 sm:mb-6 flex justify-center text-[var(--text)]">
+          <div class="p-5 sm:p-6 md:p-8 bg-[var(--primary)]/10 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 hover:bg-[var(--primary)]/15">
+            <div class="mb-4 sm:mb-6 text-[var(--text)]">
               <stat.icon class="w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
             </div>
             <div class="text-3xl sm:text-4xl md:text-5xl font-black text-[var(--text)] mb-2 tracking-tight">{stat.number}</div>
@@ -147,10 +146,10 @@ const stats = [
   </section>
 
   <!-- Call to Action -->
-  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 text-center bg-gradient-to-br from-black/95 to-[var(--bg)] text-[var(--text)] border-t-4 sm:border-t-6 md:border-t-[10px] border-white">
+  <section class="py-12 sm:py-16 md:py-24 px-4 sm:px-6 bg-gradient-to-br from-black/95 to-[var(--bg)] text-[var(--text)] border-t-4 sm:border-t-6 md:border-t-[10px] border-white">
     <div class="max-w-[1200px] mx-auto">
-      <h2 class="text-[clamp(1.5rem,6vw,3.5rem)] font-black mb-4 sm:mb-6 md:mb-8 tracking-tight leading-tight">Ready to Contribute?</h2>
-      <p class="text-body-lg mb-6 sm:mb-8 md:mb-10 max-w-[800px] mx-auto px-2">
+      <h2 class="text-[clamp(1.75rem,6vw,3.5rem)] font-black mb-4 sm:mb-6 md:mb-8 tracking-tight leading-tight">Ready to Contribute?</h2>
+      <p class="text-body-lg mb-6 sm:mb-8 md:mb-10 max-w-[65ch] px-2">
         Visit our GitHub repository to get started. Every voice matters in building the future of education.
       </p>
       <a href={githubRepo} target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 sm:gap-3 h-12 sm:h-14 px-6 sm:px-8 md:px-10 text-body rounded-xl bg-[var(--bg-surface)] text-[var(--primary)] font-semibold transition-all duration-300 hover:-translate-y-1 hover:shadow-xl w-full sm:w-auto">

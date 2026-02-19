@@ -270,7 +270,7 @@ const tiers = [
 
   <!-- Coming Soon Overlay -->
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-[var(--bg)]/95 backdrop-blur-sm px-4 sm:px-6">
-    <div class="text-center px-4 sm:px-8 max-w-[600px]">
+    <div class="px-4 sm:px-8 max-w-[600px]">
       <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-6 sm:mb-8 rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--mineral-tanzanite)] flex items-center justify-center">
         <BookOpen class="text-white w-8 h-8 sm:w-10 sm:h-10" stroke-width={1.5} />
       </div>
@@ -278,7 +278,7 @@ const tiers = [
       <p class="text-body-lg text-[var(--text-secondary)] mb-6 sm:mb-8">
         We're putting the finishing touches on our Resources Hub. Check back soon for implementation guides, technical documentation, and community support resources.
       </p>
-      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-start">
         <a href="/frameworks" class="inline-flex items-center justify-center h-12 px-6 sm:px-8 rounded-xl font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110 w-full sm:w-auto text-body">
           Browse Frameworks
         </a>
@@ -294,9 +294,9 @@ const tiers = [
 
   <div class="max-w-[1200px] mx-auto px-4 sm:px-6">
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-active)] text-[var(--text)] py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 text-center rounded-b-2xl md:rounded-b-3xl mb-8 sm:mb-12 md:mb-16">
+    <section class="bg-gradient-to-br from-[var(--primary)] to-[var(--primary-active)] text-[var(--text)] py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8 rounded-b-2xl md:rounded-b-3xl mb-8 sm:mb-12 md:mb-16">
       <h1 class="text-[clamp(2rem,6vw,3.5rem)] font-extrabold font-display mb-6">Resources Hub</h1>
-      <p class="text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed mb-4 max-w-[800px] mx-auto">
+      <p class="text-[clamp(1rem,2.5vw,1.35rem)] leading-relaxed mb-4 max-w-[800px]">
         Everything you need to implement Nyuchi Learning frameworks in your school—from getting started to advanced implementation strategies
       </p>
       <p class="text-lg font-medium opacity-90">Open resources • Free access • Community-driven</p>
@@ -304,11 +304,11 @@ const tiers = [
 
     <!-- Quick Links -->
     <section class="px-8 pb-16">
-      <h2 class="text-center text-2xl font-bold text-[var(--text)] mb-10">Quick Access</h2>
+      <h2 class="text-2xl font-bold text-[var(--text)] mb-10">Quick Access</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {quickLinks.map((link) => (
-          <a href={link.href} class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm text-center no-underline text-[var(--text)] border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]">
-            <link.icon class="text-[var(--primary)] mx-auto mb-4" size={32} stroke-width={1.5} />
+          <a href={link.href} class="bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm no-underline text-[var(--text)] border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:border-[var(--primary)]">
+            <link.icon class="text-[var(--primary)] mb-4" size={32} stroke-width={1.5} />
             <h3 class="text-xl font-bold text-[var(--primary)] mb-2">{link.title}</h3>
             <p class="text-body text-[var(--text-secondary)] m-0">{link.description}</p>
           </a>
@@ -481,8 +481,8 @@ const tiers = [
 
     <!-- Consultation Services -->
     <section id="consultation" class="py-20 px-8 bg-[var(--bg)]">
-      <h2 class="text-center text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Consultation & Support Services</h2>
-      <p class="text-center text-lg text-[var(--text-secondary)] max-w-[700px] mx-auto mb-12">
+      <h2 class="text-[clamp(2rem,5vw,2.5rem)] font-bold text-[var(--text)] mb-4">Consultation & Support Services</h2>
+      <p class="text-lg text-[var(--text-secondary)] max-w-[700px] mb-12">
         Need more personalized support? We offer tiered consultation services to match your school's needs and budget.
       </p>
 
@@ -494,7 +494,7 @@ const tiers = [
                 {tier.badge}
               </div>
             )}
-            <div class="text-center mb-8 pb-8 border-b-2 border-[var(--border)]">
+            <div class="mb-8 pb-8 border-b-2 border-[var(--border)]">
               <h3 class="text-2xl font-bold text-[var(--text)] mb-4">{tier.name}</h3>
               <div class="text-4xl font-bold text-[var(--primary)] mb-2">
                 {tier.price}<span class="text-body font-medium text-[var(--text-secondary)]">{tier.period}</span>
@@ -523,7 +523,7 @@ const tiers = [
         ))}
       </div>
 
-      <p class="text-center text-[var(--text-secondary)] text-body max-w-[700px] mx-auto">
+      <p class="text-[var(--text-secondary)] text-body max-w-[700px]">
         All tiers include access to open frameworks and community resources. Consultation services help you implement faster and more effectively.
       </p>
     </section>

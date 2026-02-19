@@ -1,6 +1,6 @@
 # nyuchi learning - Development & Design Guidelines
 
-**Version**: 5.2 (Component Extraction, Cross-Site Patterns)
+**Version**: 5.3 (Responsive Typography & Left-Aligned Design)
 **Last Updated**: February 2026
 **Maintained By**: nyuchi learning Development Team
 
@@ -44,7 +44,8 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 
 - **No hero images or background photos** - Use typography, whitespace, and color for visual impact
 - **No decorative illustrations** - Lucide icons only, used sparingly and purposefully
-- **Large body text** - 18px minimum on desktop, 16px minimum on mobile for comfortable reading
+- **Large body text** - 20px on desktop, 18px on mobile (exceeds Anthropic's benchmark)
+- **Left-aligned content** - All text content is left-aligned. No centered headings, paragraphs, or descriptions. Only button text within buttons uses `text-center`.
 - **Generous spacing** - Sections breathe. Cards don't crowd. Content has room.
 - **One font family doing most of the work** - Plus Jakarta Sans handles body and headings H2-H6; Noto Serif adds distinction to H1 headlines only
 - **Muted accents** - The Five African Minerals palette provides color, but applied with restraint. Cobalt is for interactive elements, not decoration.
@@ -361,16 +362,18 @@ Each mineral also has `container` and `on-container` variants for contained UI e
 
 ### Typography Scale
 
-**Desktop** (prioritize readability - large, comfortable sizes):
+**Desktop** (prioritize readability - large, comfortable sizes, exceeding Anthropic's 20px benchmark):
 
 | Element | Font | Size | Weight | Line Height | Letter Spacing |
 |---------|------|------|--------|-------------|----------------|
-| H1 | Noto Serif | `clamp(2.5rem, 6vw, 4rem)` | 700 | 1.1 | -0.02em |
-| H2 | Plus Jakarta Sans | `clamp(2rem, 4vw, 2.5rem)` | 700 | 1.2 | — |
-| H3 | Plus Jakarta Sans | 1.5rem | 600 | 1.3 | — |
-| H4 | Plus Jakarta Sans | 1.25rem | 600 | 1.4 | — |
-| Body | Plus Jakarta Sans | 18px | 400 | 1.7 | — |
-| Small | Plus Jakarta Sans | 14px | 400 | 1.5 | — |
+| H1 | Noto Serif | `clamp(2.5rem, 6vw, 4.5rem)` | 700 | 1.1 | -0.02em |
+| H2 | Plus Jakarta Sans | `clamp(2rem, 4vw, 3rem)` | 700 | 1.2 | — |
+| H3 | Plus Jakarta Sans | 1.75rem | 600 | 1.3 | — |
+| H4 | Plus Jakarta Sans | 1.5rem | 600 | 1.4 | — |
+| H5 | Plus Jakarta Sans | 1.25rem | 600 | 1.4 | — |
+| H6 | Plus Jakarta Sans | 1.125rem | 600 | 1.5 | — |
+| Body | Plus Jakarta Sans | 20px | 400 | 1.7 | — |
+| Small | Plus Jakarta Sans | 16px | 400 | 1.5 | — |
 
 **Mobile** (maintain readability):
 
@@ -378,8 +381,8 @@ Each mineral also has `container` and `on-container` variants for contained UI e
 |---------|------|
 | H1 | `clamp(2rem, 8vw, 2.5rem)` |
 | H2 | `clamp(1.5rem, 6vw, 2rem)` |
-| H3 | 1.25rem |
-| Body | 16px minimum |
+| H3 | 1.5rem |
+| Body | 18px minimum |
 
 ### Semantic Typography Classes (MANDATORY)
 
@@ -387,10 +390,10 @@ Each mineral also has `container` and `on-container` variants for contained UI e
 
 | Class | Desktop | Mobile | Use For |
 |-------|---------|--------|---------|
-| `text-body` | 18px | 16px | Paragraphs, descriptions, list items, card content, button text |
-| `text-body-lg` | 20px | 18px | Section subtitles, lead paragraphs, featured descriptions |
-| `text-meta` | 16px | 14px | Dates, labels, secondary info, table data |
-| `text-caption` | 14px | 14px | Badges, tags, very short labels |
+| `text-body` | 20px | 18px | Paragraphs, descriptions, list items, card content, button text |
+| `text-body-lg` | 24px | 20px | Section subtitles, lead paragraphs, featured descriptions |
+| `text-meta` | 18px | 16px | Dates, labels, secondary info, table data |
+| `text-caption` | 16px | 16px | Badges, tags, very short labels |
 
 These reference `@theme` tokens in `global.css`. To change all body text site-wide, edit `--text-size-body` in one place.
 
@@ -399,7 +402,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) Layer 3 for the full styling architecture
 ### Typography Guidelines
 
 - **Use `clamp()` everywhere** for fluid responsive heading sizing. No hard breakpoint jumps.
-- **Body text is 18px on desktop, 16px minimum on mobile.** This is larger than most sites and is intentional for readability, especially for education content.
+- **Body text is 20px on desktop, 18px minimum on mobile.** This exceeds Anthropic's 20px benchmark and is intentional for readability, especially for education content.
 - **Line height of 1.7 for body text.** Generous for comfortable reading.
 - **Maximum line width of ~65-75 characters** (`max-width: 65ch` on prose content). Long lines reduce readability.
 - **Noto Serif is for H1 only.** It provides editorial distinction. Everything else uses Plus Jakarta Sans to keep the visual language clean.
@@ -562,7 +565,6 @@ Standard hero section used across all nyuchi sites. Follows the nhimbe.com cross
   title="Mission & Impact"
   accentWord="Impact"
   subtitle="Frameworks for building digital campuses."
-  align="center"
   share
 >
   <a href="/frameworks" class="btn-primary">Explore Frameworks</a>
@@ -574,9 +576,9 @@ Standard hero section used across all nyuchi sites. Follows the nhimbe.com cross
 - `title` - H1 heading text (required)
 - `accentWord` - Word in title to highlight with primary color (optional)
 - `subtitle` - Description paragraph below heading (optional)
-- `align` - `"left"` (default) or `"center"`
 - `share` - Show ShareButton in the hero (optional boolean)
 - Default slot for CTA buttons
+- **Note:** Always left-aligned. No center alignment option.
 
 ### FeatureGrid
 
@@ -588,15 +590,14 @@ Reusable icon + title + description card grid:
     { icon: Heart, title: "Ubuntu", description: "Community success over individual achievement." },
     { icon: Globe, title: "Global", description: "Worldwide impact." },
   ]}
-  align="center"
   columns={3}
 />
 ```
 
 **Props:**
 - `items` - Array of `{ icon?, title, description, href?, linkText?, external? }`
-- `align` - `"left"` (default) or `"center"`
 - `columns` - `2`, `3` (default), or `4`
+- **Note:** Always left-aligned. No center alignment option.
 
 ### CTASection
 
@@ -1391,7 +1392,8 @@ npm run build    # Build to dist/
 - Make styling changes in `global.css`, not in individual pages
 - Use design tokens for all visual values (colors, sizes, spacing)
 - Use generous whitespace and spacing
-- Use large, readable body text (18px desktop, 16px mobile)
+- Use large, readable body text (20px desktop, 18px mobile)
+- Left-align all content (no centered headings, paragraphs, or descriptions)
 - Use max-width 65ch for prose content
 - Use breadcrumbs on every page (except homepage)
 - Use the ThemeToggle for light/dark/system support
@@ -1420,7 +1422,8 @@ npm run build    # Build to dist/
 - Use colors outside the Five African Minerals palette
 - Use fonts other than Noto Serif, Plus Jakarta Sans, JetBrains Mono
 - Use old fonts (Newsreader, Inter, Playfair Display, Roboto)
-- Use small body text (<16px on mobile, <18px on desktop)
+- Use small body text (<18px on mobile, <20px on desktop)
+- Center-align text content (headings, paragraphs, descriptions)
 - Use pill-shaped buttons (9999px radius) for regular buttons
 - Use capitalized brand names ("Nyuchi" - use "nyuchi")
 - Use heavy shadows or gradients (keep shadows soft and minimal)
@@ -1449,7 +1452,7 @@ npm run build    # Build to dist/
 | Code font | JetBrains Mono |
 | Button radius | 12px |
 | Card radius | 16px |
-| Body text size | 18px desktop, 16px mobile |
+| Body text size | 20px desktop, 18px mobile |
 | Line height (body) | 1.7 |
 | Max prose width | 65ch |
 | Touch target min | 44x44px |

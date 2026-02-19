@@ -49,7 +49,6 @@ const values = [
     tagline="Ubuntu: I am because we are"
     title="Our Team"
     subtitle="Built by educators for educators. Committed to Zimbabwe and Africa's educational future."
-    align="center"
     share
   />
 
@@ -70,7 +69,7 @@ const values = [
 
     <!-- Founder Section -->
     <section class="mb-16">
-      <h2 class="text-4xl font-extrabold text-[var(--primary)] text-center mb-12 tracking-tight">Founder</h2>
+      <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-12 tracking-tight">Founder</h2>
 
       <div class="bg-[var(--bg-surface)] rounded-2xl overflow-hidden shadow-md grid grid-cols-1 lg:grid-cols-[350px_1fr] border border-[var(--border)]">
         <!-- Founder Image -->
@@ -181,7 +180,7 @@ const values = [
 
     <!-- Values Section -->
     <section class="mb-16">
-      <h2 class="text-4xl font-extrabold text-[var(--primary)] text-center mb-12 tracking-tight">Our Values</h2>
+      <h2 class="text-4xl font-extrabold text-[var(--primary)] mb-12 tracking-tight">Our Values</h2>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {values.map((value) => (
@@ -208,15 +207,15 @@ const values = [
     </section>
 
     <!-- CTA Section -->
-    <section class="text-center bg-[var(--bg-surface)] text-[var(--text)] py-16 px-8 rounded-2xl border-2 border-[var(--primary)]">
-      <h2 class="text-[var(--text)] text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4">Let's Work Together</h2>
-      <p class="text-[var(--text)] text-xl mb-8 max-w-[800px] mx-auto">
+    <section class="bg-[var(--bg-surface)] text-[var(--text)] py-16 px-8 rounded-2xl border-2 border-[var(--primary)]">
+      <h2 class="text-[var(--text)] text-[clamp(1.75rem,5vw,3rem)] font-bold mb-4">Let's Work Together</h2>
+      <p class="text-[var(--text)] text-body-lg mb-8 max-w-[65ch]">
         Ready to bring the K-12 Digital Campus Framework to your school? Schedule a consultation to discuss how
         we can support your digital transformation journey.
       </p>
-      <div class="flex gap-4 justify-center flex-wrap">
-        <a href="/consultation" class="inline-flex items-center justify-center py-4 px-8 rounded-full font-semibold text-body transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">Book a Consultation</a>
-        <a href="/framework" class="inline-flex items-center justify-center py-4 px-8 rounded-full font-semibold text-body transition-all duration-200 min-h-[48px] bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Explore the Framework</a>
+      <div class="flex gap-4 flex-wrap">
+        <a href="/consultation" class="btn-primary">Book a Consultation</a>
+        <a href="/framework" class="btn-secondary">Explore the Framework</a>
       </div>
     </section>
   </div>

@@ -197,9 +197,9 @@ describe('BaseLayout usage', () => {
 describe('Global CSS typography', () => {
   const css = readFileSync(join(STYLES_DIR, 'global.css'), 'utf-8');
 
-  it('body should have font-size 18px on desktop', () => {
-    // Check that body font-size is 18px (not 16px)
-    expect(css).toMatch(/body\s*\{[^}]*font-size:\s*18px/);
+  it('body should have font-size 20px on desktop', () => {
+    // Check that body font-size is 20px (matching Anthropic benchmark)
+    expect(css).toMatch(/body\s*\{[^}]*font-size:\s*20px/);
   });
 
   it('body should have line-height 1.7', () => {
@@ -301,40 +301,40 @@ describe('Semantic typography classes', () => {
 describe('Component token minimums', () => {
   const css = readFileSync(join(STYLES_DIR, 'global.css'), 'utf-8');
 
-  it('button default font size should be at least 16px', () => {
+  it('button default font size should be at least 18px', () => {
     const match = css.match(/--btn-default-font:\s*(\d+)px/);
-    expect(match).not.toBeNull();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(16);
-  });
-
-  it('button large font size should be at least 18px', () => {
-    const match = css.match(/--btn-lg-font:\s*(\d+)px/);
     expect(match).not.toBeNull();
     expect(parseInt(match[1])).toBeGreaterThanOrEqual(18);
   });
 
-  it('input font size should be at least 16px', () => {
+  it('button large font size should be at least 20px', () => {
+    const match = css.match(/--btn-lg-font:\s*(\d+)px/);
+    expect(match).not.toBeNull();
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(20);
+  });
+
+  it('input font size should be at least 18px', () => {
     const match = css.match(/--input-font:\s*(\d+)px/);
     expect(match).not.toBeNull();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(16);
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(18);
   });
 
-  it('a11y font minimum should be at least 16px', () => {
+  it('a11y font minimum should be at least 18px', () => {
     const match = css.match(/--a11y-font-min:\s*(\d+)px/);
     expect(match).not.toBeNull();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(16);
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(18);
   });
 
-  it('button default height should meet touch target minimum', () => {
+  it('button default height should meet touch target minimum (48px)', () => {
     const match = css.match(/--btn-default-height:\s*(\d+)px/);
     expect(match).not.toBeNull();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(44);
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(48);
   });
 
-  it('input height should meet touch target minimum', () => {
+  it('input height should meet touch target minimum (48px)', () => {
     const match = css.match(/--input-height:\s*(\d+)px/);
     expect(match).not.toBeNull();
-    expect(parseInt(match[1])).toBeGreaterThanOrEqual(44);
+    expect(parseInt(match[1])).toBeGreaterThanOrEqual(48);
   });
 });
 

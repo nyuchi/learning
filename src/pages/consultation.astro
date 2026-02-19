@@ -39,7 +39,6 @@ const attendees = [
     tagline="Ubuntu: I am because we are"
     title="Book a Consultation"
     subtitle="Let's discuss how the K-12 Digital Campus Framework can transform your school's digital experience"
-    align="center"
     share
   />
 
@@ -74,8 +73,8 @@ const attendees = [
           <h3 class="text-[var(--primary)] text-xl font-bold mb-6">Who Should Attend</h3>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
             {attendees.map((attendee) => (
-              <div class="text-center p-6 bg-[var(--bg)] rounded-lg transition-all duration-200 hover:-translate-y-1">
-                <attendee.icon class="text-[var(--primary)] mx-auto mb-4" size={32} stroke-width={1.5} />
+              <div class="p-6 bg-[var(--bg)] rounded-lg transition-all duration-200 hover:-translate-y-1">
+                <attendee.icon class="text-[var(--primary)] mb-4" size={32} stroke-width={1.5} />
                 <h4 class="text-lg font-semibold mb-2 text-[var(--text)]">{attendee.title}</h4>
                 <p class="text-body text-[var(--text-secondary)] m-0">{attendee.description}</p>
               </div>
@@ -106,7 +105,7 @@ const attendees = [
           </p>
 
           <!-- Cal.com Button Link -->
-          <div class="mt-8 text-center py-12 px-8 bg-[var(--bg)] rounded-xl">
+          <div class="mt-8 py-12 px-8 bg-[var(--bg)] rounded-xl">
             <a
               href="https://cal.com/bryanfawcett"
               target="_blank"
@@ -115,7 +114,7 @@ const attendees = [
             >
               Open Booking Calendar
             </a>
-            <p class="mt-6 text-[var(--text-secondary)] text-meta max-w-[500px] mx-auto">
+            <p class="mt-6 text-[var(--text-secondary)] text-meta max-w-[500px]">
               You'll be redirected to our secure booking calendar where you can view available times and schedule your consultation.
             </p>
           </div>
@@ -124,14 +123,14 @@ const attendees = [
     </div>
 
     <!-- CTA Section -->
-    <section class="text-center bg-[var(--bg-surface)] text-[var(--text)] py-16 px-8 rounded-2xl border-2 border-[var(--primary)]">
-      <h2 class="text-[var(--text)] text-[clamp(1.75rem,5vw,2.5rem)] font-bold mb-4">Questions Before Booking?</h2>
-      <p class="text-[var(--text)] text-xl mb-8">
+    <section class="bg-[var(--bg-surface)] text-[var(--text)] py-16 px-8 rounded-2xl border-2 border-[var(--primary)]">
+      <h2 class="text-[var(--text)] text-[clamp(1.75rem,5vw,3rem)] font-bold mb-4">Questions Before Booking?</h2>
+      <p class="text-[var(--text)] text-body-lg mb-8 max-w-[65ch]">
         Feel free to explore the framework documentation or read our blog for implementation insights.
       </p>
-      <div class="flex gap-4 justify-center flex-wrap">
-        <a href="/framework" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">View Framework</a>
-        <a href="/blog" class="inline-flex items-center justify-center py-4 px-10 rounded-full font-semibold text-lg transition-all duration-200 min-h-[48px] bg-transparent text-[var(--text)] border-2 border-[var(--text-secondary)] hover:bg-[var(--bg)] hover:border-[var(--primary)] hover:text-[var(--primary)]">Read Blog</a>
+      <div class="flex gap-4 flex-wrap">
+        <a href="/framework" class="btn-primary">View Framework</a>
+        <a href="/blog" class="btn-secondary">Read Blog</a>
       </div>
     </section>
   </div>

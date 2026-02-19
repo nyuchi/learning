@@ -9,6 +9,8 @@
  *   4. Optional share button
  *   5. Optional CTA button(s) via default slot
  *
+ * All content is left-aligned for readability.
+ *
  * Usage:
  *   <PageHero
  *     tagline="Ubuntu: I am because we are"
@@ -23,10 +25,9 @@
  *     title="Discover gatherings that move you"
  *     accentWord="gatherings"
  *     subtitle="Find and join meaningful events."
- *     align="center"
  *     share
  *   >
- *     <a href="/events" class="btn-primary">Create Your First Event →</a>
+ *     <a href="/events" class="btn-primary">Create Your First Event</a>
  *   </PageHero>
  */
 import ShareButton from './ShareButton.astro';
@@ -36,7 +37,6 @@ interface Props {
   title: string;
   accentWord?: string;
   subtitle?: string;
-  align?: 'left' | 'center';
   share?: boolean;
 }
 
@@ -45,11 +45,8 @@ const {
   title,
   accentWord,
   subtitle,
-  align = 'left',
   share = false,
 } = Astro.props;
-
-const isCenter = align === 'center';
 
 // Build heading parts: split title around the accent word if provided
 function buildTitleParts(title: string, accent?: string) {
@@ -70,18 +67,15 @@ const titleParts = buildTitleParts(title, accentWord);
 const hasSlot = Astro.slots.has('default');
 ---
 
-<section class:list={[
-  "py-16 sm:py-20 md:py-24 px-6 sm:px-8",
-  isCenter && "text-center"
-]}>
+<section class="py-16 sm:py-20 md:py-24 px-6 sm:px-8">
   <div class="max-w-[1200px] mx-auto">
     {tagline && (
-      <p class="text-body italic mb-4 tracking-widest font-medium text-[var(--text-tertiary)]">
+      <p class="text-body-lg italic mb-4 tracking-widest font-medium text-[var(--text-tertiary)]">
         {tagline}
       </p>
     )}
 
-    <h1 class="font-display text-[clamp(2.5rem,6vw,4rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)]">
+    <h1 class="font-display text-[clamp(2.5rem,6vw,4.5rem)] font-bold leading-[1.1] tracking-tight text-[var(--text)]">
       {titleParts.map((part) =>
         part.isAccent ? (
           <span class="text-[var(--primary)]">{part.text}</span>
@@ -92,19 +86,13 @@ const hasSlot = Astro.slots.has('default');
     </h1>
 
     {subtitle && (
-      <p class:list={[
-        "mt-6 text-body text-[var(--text-secondary)] max-w-[65ch]",
-        isCenter && "mx-auto"
-      ]}>
+      <p class="mt-6 text-body-lg text-[var(--text-secondary)] max-w-[65ch]">
         {subtitle}
       </p>
     )}
 
     {(hasSlot || share) && (
-      <div class:list={[
-        "mt-8 flex flex-wrap gap-4 items-center",
-        isCenter && "justify-center"
-      ]}>
+      <div class="mt-8 flex flex-wrap gap-4 items-center">
         <slot />
         {share && <ShareButton title={title} text={subtitle} />}
       </div>
