@@ -18,6 +18,7 @@ interface Props {
     tags?: string[];
     author?: string;
   };
+  pageType?: 'home' | 'framework' | 'blog' | 'pricing' | 'about' | 'resources' | 'contact' | 'default';
 }
 
 const {
@@ -27,7 +28,8 @@ const {
   image,
   type,
   author,
-  article
+  article,
+  pageType = 'default'
 } = Astro.props;
 ---
 
@@ -74,12 +76,13 @@ const {
       type={type}
       author={author}
       article={article}
+      pageType={pageType}
     />
 
     <!-- Google Fonts: Noto Serif & Plus Jakarta Sans (Education Theme v6) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Serif:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Noto+Serif:wght@700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BNHM29F8W5"></script>
@@ -265,27 +268,11 @@ const {
         left: 4px;
         right: 0;
         z-index: 100;
-        background: rgba(10, 10, 10, 0.98);  /* Warm dark #0A0A0A */
+        background: var(--header-bg);
         backdrop-filter: blur(var(--nav-blur));
         -webkit-backdrop-filter: blur(var(--nav-blur));
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-      }
-
-      /* Header - Light Mode (class-based) */
-      :global(.light) header {
-        background: rgba(250, 249, 245, 0.98);  /* Warm cream #FAF9F5 */
-        border-bottom: 1px solid rgba(10, 10, 10, 0.08);
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-      }
-
-      /* Header - Light Mode (media query fallback) */
-      @media (prefers-color-scheme: light) {
-        :global(:not(.dark)) header {
-          background: rgba(250, 249, 245, 0.98);  /* Warm cream #FAF9F5 */
-          border-bottom: 1px solid rgba(10, 10, 10, 0.08);
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-        }
+        border-bottom: var(--header-border);
+        box-shadow: var(--header-shadow);
       }
 
       .nav-container {
@@ -379,10 +366,10 @@ const {
         top: 100%;
         left: 0;
         min-width: 220px;
-        background: var(--bg-surface);
+        background: var(--dropdown-bg);
         border: 1px solid var(--border);
         border-radius: 0.5rem;
-        box-shadow: var(--shadow-lg);
+        box-shadow: var(--dropdown-shadow);
         list-style: none;
         padding: 0.5rem 0;
         margin-top: 0.5rem;
@@ -414,42 +401,8 @@ const {
       }
 
       .dropdown-menu a:hover {
-        background: rgba(0, 176, 255, 0.15);  /* Cobalt tint */
+        background: var(--nav-link-hover);
         color: var(--primary);
-      }
-
-      /* Dropdown menu - Light Mode (class-based) */
-      :global(.light) .dropdown-menu {
-        background: white;
-        border: 1px solid var(--border);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-      }
-
-      :global(.light) .dropdown-menu a {
-        color: var(--text);
-      }
-
-      :global(.light) .dropdown-menu a:hover {
-        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for light mode */
-        color: var(--primary);
-      }
-
-      /* Dropdown menu - Light Mode (media query fallback) */
-      @media (prefers-color-scheme: light) {
-        :global(:not(.dark)) .dropdown-menu {
-          background: white;
-          border: 1px solid var(--border);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-
-        :global(:not(.dark)) .dropdown-menu a {
-          color: var(--text);
-        }
-
-        :global(:not(.dark)) .dropdown-menu a:hover {
-          background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for light mode */
-          color: var(--primary);
-        }
       }
 
       /* CTA Button in Nav */
@@ -827,31 +780,12 @@ const {
       }
 
       .mobile-menu-btn:hover {
-        background: rgba(0, 176, 255, 0.1);
+        background: var(--nav-link-hover);
       }
 
       .mobile-menu-btn:active {
-        background: rgba(0, 176, 255, 0.2);
-      }
-
-      /* Mobile menu button - Light Mode (class-based) */
-      :global(.light) .mobile-menu-btn:hover {
-        background: rgba(0, 71, 171, 0.1);
-      }
-
-      :global(.light) .mobile-menu-btn:active {
-        background: rgba(0, 71, 171, 0.2);
-      }
-
-      /* Mobile menu button - Light Mode (media query fallback) */
-      @media (prefers-color-scheme: light) {
-        :global(:not(.dark)) .mobile-menu-btn:hover {
-          background: rgba(0, 71, 171, 0.1);
-        }
-
-        :global(:not(.dark)) .mobile-menu-btn:active {
-          background: rgba(0, 71, 171, 0.2);
-        }
+        background: var(--nav-link-hover);
+        opacity: 0.8;
       }
 
       /* Mobile Navigation */
@@ -866,32 +800,10 @@ const {
         display: block;
         max-height: calc(100vh - 64px);  /* Dynamic height based on viewport */
         border-top: 1px solid var(--border);
-        background: rgba(15, 23, 42, 0.98);  /* Dark mode default */
+        background: var(--mobile-menu-bg);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
         overflow-y: auto;  /* Allow scrolling for long menus */
-      }
-
-      /* Mobile Navigation - Light Mode (class-based) */
-      :global(.light) .nav-mobile.active {
-        background: rgba(255, 255, 255, 0.98);
-      }
-
-      :global(.light) .nav-mobile-links a:hover,
-      :global(.light) .nav-mobile-links a:active {
-        background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
-      }
-
-      /* Mobile Navigation - Light Mode (media query fallback) */
-      @media (prefers-color-scheme: light) {
-        :global(:not(.dark)) .nav-mobile.active {
-          background: rgba(255, 255, 255, 0.98);
-        }
-
-        :global(:not(.dark)) .nav-mobile-links a:hover,
-        :global(:not(.dark)) .nav-mobile-links a:active {
-          background: rgba(0, 71, 171, 0.1);  /* Cobalt tint for better visibility */
-        }
       }
 
       .nav-mobile-links {

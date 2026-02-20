@@ -253,6 +253,15 @@
     --warning: var(--color-warning-dark);
     --info: var(--color-info-dark);
 
+    /* Header */
+    --header-bg: rgba(10, 10, 10, 0.98);
+    --header-border: 1px solid rgba(255, 255, 255, 0.08);
+    --header-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --mobile-menu-bg: rgba(15, 23, 42, 0.98);
+    --nav-link-hover: rgba(0, 176, 255, 0.1);
+    --dropdown-bg: var(--color-bg-surface-dark);
+    --dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+
     /* Legacy Compatibility Aliases */
     --bg-card: var(--bg-surface);
     --card-bg: var(--bg-surface);
@@ -336,6 +345,15 @@
     --error: var(--color-error-light);
     --warning: var(--color-warning-light);
     --info: var(--color-info-light);
+
+    /* Header */
+    --header-bg: rgba(250, 249, 245, 0.98);
+    --header-border: 1px solid rgba(10, 10, 10, 0.08);
+    --header-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --mobile-menu-bg: rgba(255, 255, 255, 0.98);
+    --nav-link-hover: rgba(0, 71, 171, 0.1);
+    --dropdown-bg: #FFFFFF;
+    --dropdown-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
     /* Legacy Compatibility Aliases - Light Mode */
     --bg-card: var(--bg-surface);
