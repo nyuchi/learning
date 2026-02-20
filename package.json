@@ -12,11 +12,21 @@
     "test:watch": "vitest",
     "test:design": "vitest run tests/design-guidelines.test.js",
     "test:a11y": "vitest run tests/accessibility-seo.test.js",
+    "test:seo": "vitest run tests/seo-schemas.test.js",
+    "test:colors": "vitest run tests/color-contrast.test.js",
+    "test:theme": "vitest run tests/theme-system.test.js",
+    "test:components": "vitest run tests/components.test.js",
+    "test:security": "vitest run tests/security.test.js",
+    "test:performance": "vitest run tests/performance.test.js",
+    "test:content": "vitest run tests/content-quality.test.js",
+    "test:infra": "vitest run tests/infrastructure.test.js",
+    "test:source": "vitest run tests/design-guidelines.test.js tests/color-contrast.test.js tests/theme-system.test.js tests/components.test.js",
+    "test:build": "vitest run tests/accessibility-seo.test.js tests/seo-schemas.test.js tests/security.test.js tests/performance.test.js tests/content-quality.test.js tests/infrastructure.test.js",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "format": "prettier --write \"src/**/*.{astro,ts,tsx,js,jsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{astro,ts,tsx,js,jsx,css}\"",
-    "check": "npm run lint && npm run format:check && npm run test:design && npm run build && npm run test:a11y"
+    "check": "npm run lint && npm run format:check && npm run test:source && npm run build && npm run test:build"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",

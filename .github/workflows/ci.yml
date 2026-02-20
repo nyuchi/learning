@@ -30,8 +30,8 @@ jobs:
       - name: Prettier check
         run: npx prettier --check "src/**/*.{astro,ts,tsx,js,jsx,css}"
 
-      - name: Design guidelines tests
-        run: npx vitest run tests/design-guidelines.test.js
+      - name: Source tests (design, colors, theme, components)
+        run: npx vitest run tests/design-guidelines.test.js tests/color-contrast.test.js tests/theme-system.test.js tests/components.test.js
 
   build-and-test:
     name: Build & Test
@@ -58,4 +58,16 @@ jobs:
         run: npx astro build
 
       - name: Accessibility & SEO tests
-        run: npx vitest run tests/accessibility-seo.test.js
+        run: npx vitest run tests/accessibility-seo.test.js tests/seo-schemas.test.js
+
+      - name: Security tests
+        run: npx vitest run tests/security.test.js
+
+      - name: Performance & build output tests
+        run: npx vitest run tests/performance.test.js
+
+      - name: Content quality & link validation
+        run: npx vitest run tests/content-quality.test.js
+
+      - name: Infrastructure & resilience tests
+        run: npx vitest run tests/infrastructure.test.js
