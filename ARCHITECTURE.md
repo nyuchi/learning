@@ -155,10 +155,10 @@ All visual values are defined as CSS custom properties in the `@theme` block. Th
 
 | Class | Desktop | Mobile | Line Height | Use For |
 |-------|---------|--------|-------------|---------|
-| `.text-body` | 18px | 16px | 1.7 | Paragraphs, descriptions, list items, card content, button text |
-| `.text-body-lg` | 20px | 18px | 1.6 | Section subtitles, lead paragraphs, featured descriptions |
-| `.text-meta` | 16px | 14px | 1.5 | Dates, labels, secondary info, table data, form hints |
-| `.text-caption` | 14px | 14px | 1.4 | Badges, tags, very short decorative labels |
+| `.text-body` | 20px | 18px | 1.7 | Paragraphs, descriptions, list items, card content, button text |
+| `.text-body-lg` | 24px | 20px | 1.6 | Section subtitles, lead paragraphs, featured descriptions |
+| `.text-meta` | 18px | 16px | 1.5 | Dates, labels, secondary info, table data, form hints |
+| `.text-caption` | 16px | 16px | 1.4 | Badges, tags, very short decorative labels |
 
 These classes reference `@theme` tokens (`--text-size-body`, `--text-size-body-mobile`, etc.), so changing a single token value updates every instance across the site.
 
