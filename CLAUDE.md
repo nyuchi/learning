@@ -1,6 +1,6 @@
 # nyuchi learning - Development & Design Guidelines
 
-**Version**: 5.3 (Responsive Typography & Left-Aligned Design)
+**Version**: 5.4 (Updated Codebase Inventory & shadcn/ui Documentation)
 **Last Updated**: February 2026
 **Maintained By**: nyuchi learning Development Team
 
@@ -79,13 +79,14 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 
 ```json
 {
-  "framework": "Astro 5.16+",
-  "language": "TypeScript 5.6+ (strict mode)",
-  "styling": "Tailwind CSS 4.1+ with PostCSS",
+  "framework": "Astro 5.17+",
+  "language": "TypeScript 5.9+ (strict mode)",
+  "styling": "Tailwind CSS 4.2+ with PostCSS",
   "icons": "@lucide/astro 0.574+, lucide-react 0.574+",
-  "ui": "Radix UI React primitives",
+  "ui": "shadcn/ui components built on Radix UI React primitives",
   "react": "React 19+",
   "utilities": ["clsx", "class-variance-authority", "tailwind-merge"],
+  "testing": "Vitest 4.0+",
   "integrations": [
     "@astrojs/mdx",
     "@astrojs/react",
@@ -106,16 +107,21 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 
 | Category | Package | Purpose |
 |----------|---------|---------|
-| **Framework** | `astro` 5.16+ | Static site generator |
-| **Styling** | `tailwindcss` 4.1+ | Utility-first CSS |
+| **Framework** | `astro` 5.17+ | Static site generator |
+| **Styling** | `tailwindcss` 4.2+ | Utility-first CSS |
 | **Styling** | `@tailwindcss/postcss` | PostCSS integration |
 | **Styling** | `@tailwindcss/typography` | Prose typography |
-| **UI** | `@radix-ui/react-*` | Accessible UI primitives (avatar, dialog, dropdown, navigation, scroll-area, tabs, tooltip) |
+| **UI** | `shadcn/ui` components | Pre-built React UI components (configured via `components.json`) |
+| **UI** | `@radix-ui/react-*` | Accessible UI primitives (avatar, dialog, dropdown, navigation, scroll-area, slot, tabs, tooltip) |
 | **React** | `react` 19+, `react-dom` 19+ | Interactive components |
 | **Utilities** | `clsx`, `class-variance-authority`, `tailwind-merge` | Conditional classes, variant management |
+| **Utilities** | `src/lib/utils.ts` | `cn()` helper — merges clsx + tailwind-merge for conditional class names |
 | **Icons** | `@lucide/astro`, `lucide-react` | Icon library |
 | **Content** | `@astrojs/mdx` | Rich content authoring |
 | **SEO** | `@astrojs/sitemap`, `@astrojs/rss` | Sitemap and RSS generation |
+| **Testing** | `vitest` 4.0+ | Test runner for design and accessibility tests |
+| **Linting** | `eslint` 10+, `eslint-plugin-astro` | Code linting |
+| **Formatting** | `prettier` 3.8+, `prettier-plugin-astro` | Code formatting |
 
 ---
 
@@ -124,12 +130,20 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 ```
 /
 ├── public/                     # Static assets (served as-is)
-│   ├── *.svg                   # Logo files, favicon
+│   ├── favicon.svg             # Site favicon
+│   ├── apple-touch-icon.svg    # Apple touch icon
+│   ├── icon-dark.svg           # Dark mode icon variant
+│   ├── icon-light.svg          # Light mode icon variant
+│   ├── site.webmanifest        # PWA web app manifest
+│   ├── OG-IMAGE-README.md      # Open Graph image guidelines
 │   ├── frameworks/             # Framework documentation (Markdown)
+│   │   ├── README.md           # Frameworks overview
+│   │   ├── k12-digital-campus-framework.md
+│   │   └── k12-support-process-framework.md
 │   ├── llms.txt                # LLM/AI crawler directives
 │   └── robots.txt              # SEO crawler configuration
 ├── src/
-│   ├── components/             # Reusable components
+│   ├── components/             # Reusable Astro components
 │   │   ├── Logo.astro          # Logo (3 variants: main, horizontal, compact)
 │   │   ├── SEO.astro           # Meta tags, Open Graph, JSON-LD
 │   │   ├── ThemeToggle.astro   # Light/Dark/System theme switcher
@@ -142,10 +156,28 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 │   │   ├── ShareButton.astro   # Social sharing (Web Share API + fallback)
 │   │   ├── BuilderBox.astro    # Builder UI pattern (dashed borders)
 │   │   ├── InfoTooltip.astro   # Tooltip component
-│   │   └── UserAvatar.astro    # Avatar component
+│   │   ├── UserAvatar.astro    # Avatar component
+│   │   └── ui/                 # React UI primitives (shadcn/ui + Radix)
+│   │       ├── index.ts        # Barrel export for all UI components
+│   │       ├── accordion.tsx   # Expandable content sections
+│   │       ├── avatar.tsx      # User avatars with fallback
+│   │       ├── badge.tsx       # Status indicators, tags
+│   │       ├── breadcrumb.tsx  # Breadcrumb (React version)
+│   │       ├── button.tsx      # Button variants (CVA-based)
+│   │       ├── card.tsx        # Card container
+│   │       ├── dialog.tsx      # Modal dialogs (Radix)
+│   │       ├── dropdown-menu.tsx # Dropdown menus (Radix)
+│   │       ├── input.tsx       # Form inputs
+│   │       ├── label.tsx       # Form labels (Radix)
+│   │       ├── navigation-menu.tsx # Navigation menus (Radix)
+│   │       ├── scroll-area.tsx # Custom scroll containers (Radix)
+│   │       ├── separator.tsx   # Visual dividers (Radix)
+│   │       ├── tabs.tsx        # Tab interfaces (Radix)
+│   │       └── tooltip.tsx     # Tooltips (Radix)
 │   ├── layouts/
 │   │   └── BaseLayout.astro    # Master layout (header, footer, minerals strip, animations)
 │   ├── lib/                    # Utility functions
+│   │   └── utils.ts            # cn() helper (clsx + tailwind-merge)
 │   ├── pages/                  # File-based routing (each .astro = route)
 │   │   ├── index.astro         # Homepage (/)
 │   │   ├── frameworks.astro    # Frameworks overview (/frameworks)
@@ -162,18 +194,33 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 │   │   ├── rss.xml.ts          # RSS feed
 │   │   └── blog/               # Blog section
 │   │       ├── index.astro     # Blog index (/blog)
-│   │       └── *.astro         # Individual blog posts
+│   │       ├── developing-world-educational-advantage.astro
+│   │       ├── digital-literacy-importance.astro
+│   │       ├── launching-the-framework.astro
+│   │       └── why-open-source.astro
 │   ├── styles/
 │   │   └── global.css          # Tailwind theme, design tokens, component layer
 │   └── env.d.ts                # TypeScript environment definitions
+├── tests/                      # Test suites
+│   ├── design-guidelines.test.js    # Design system compliance tests
+│   └── accessibility-seo.test.js    # Accessibility & SEO tests (requires build)
+├── .github/
+│   └── workflows/
+│       └── ci.yml              # CI pipeline (lint, format, test, build)
 ├── astro.config.mjs            # Astro configuration
 ├── package.json                # Dependencies and scripts
 ├── tsconfig.json               # TypeScript configuration (strict, path aliases)
-├── tailwind.config.js          # Tailwind configuration
 ├── postcss.config.mjs          # PostCSS configuration
+├── components.json             # shadcn/ui configuration
+├── vitest.config.js            # Vitest test runner configuration
+├── eslint.config.js            # ESLint configuration
+├── .prettierrc                 # Prettier formatting rules
+├── .prettierignore             # Prettier ignore patterns
 ├── vercel.json                 # Vercel deployment configuration
-├── CLAUDE.md                   # This file
+├── CLAUDE.md                   # This file - AI assistant guidelines
+├── ARCHITECTURE.md             # Layered architecture specification
 ├── BRANDING.md                 # Brand guidelines (v6.0)
+├── CHANGELOG.md                # Version history
 ├── CONTRIBUTING.md             # Contribution guidelines
 ├── DEPLOYMENT.md               # Deployment instructions
 ├── README.md                   # Project documentation
@@ -192,7 +239,12 @@ This project follows a **clean minimalist design philosophy** inspired by Anthro
 | `src/components/PageBreadcrumb.astro` | Accessible breadcrumb navigation with structured markup |
 | `src/components/PageHero.astro` | Standard hero section with tagline, accent word, share button (cross-site pattern) |
 | `src/components/ShareButton.astro` | Social sharing: Web Share API + dropdown fallback (X, LinkedIn, FB, WhatsApp, Copy) |
+| `src/components/ui/index.ts` | Barrel export for all shadcn/ui React components |
+| `src/lib/utils.ts` | `cn()` utility — combines `clsx` + `tailwind-merge` for conditional class names |
+| `components.json` | shadcn/ui configuration — defines component paths, aliases, and styling preferences |
 | `astro.config.mjs` | Site config, sitemap with per-page priorities, React integration |
+| `vitest.config.js` | Test runner config — test file patterns, timeout (30s), reporters |
+| `ARCHITECTURE.md` | Authoritative layered architecture spec — referenced by this file |
 
 ---
 
@@ -250,14 +302,22 @@ src/styles/global.css
 
 **Component Tokens**:
 
-| Token | Value |
-|-------|-------|
-| `--nav-height` | 64px |
-| `--nav-max-width` | 1200px |
-| `--nav-touch-target` | 44px |
-| `--nav-blur` | 24px |
-| `--a11y-touch-target` | 44px |
-| `--a11y-font-min` | 14px |
+| Token | Value | Purpose |
+|-------|-------|---------|
+| `--nav-height` | 64px | Fixed header height |
+| `--nav-max-width` | 1200px | Max content width |
+| `--nav-touch-target` | 44px | Nav link touch target |
+| `--nav-blur` | 24px | Header backdrop blur |
+| `--nav-opacity` | 0.7 | Header backdrop opacity |
+| `--btn-sm-height` | 36px | Small button height |
+| `--btn-default-height` | 48px | Default button height |
+| `--btn-lg-height` | 56px | Large button height |
+| `--btn-icon-size` | 44px | Icon-only button size |
+| `--input-height` | 48px | Form input height |
+| `--input-font` | 18px | Form input font size |
+| `--a11y-touch-target` | 44px | Min touch target size |
+| `--a11y-font-min` | 18px | Min accessible font size |
+| `--a11y-contrast-min` | 7 | Min contrast ratio target |
 
 ---
 
@@ -663,6 +723,62 @@ Tooltip component for contextual help. Built on Radix UI tooltip primitive.
 
 Avatar component for user profiles. Built on Radix UI avatar primitive with fallback initials.
 
+### React UI Primitives (shadcn/ui)
+
+Located in `src/components/ui/`, these are React components built on Radix UI primitives, installed and configured via [shadcn/ui](https://ui.shadcn.com). They use the `cn()` utility from `src/lib/utils.ts` for conditional class merging and class-variance-authority (CVA) for variant management.
+
+**Configuration**: `components.json` at the project root defines paths, aliases, and the Lucide icon library.
+
+**All React UI components are barrel-exported from `src/components/ui/index.ts`.**
+
+| Component | File | Radix Primitive | Purpose |
+|-----------|------|-----------------|---------|
+| Accordion | `accordion.tsx` | Accordion | Expandable content sections |
+| Avatar | `avatar.tsx` | Avatar | User avatars with fallback initials |
+| Badge | `badge.tsx` | — | Status indicators, tags (CVA variants) |
+| Breadcrumb | `breadcrumb.tsx` | — | Breadcrumb navigation (React version) |
+| Button | `button.tsx` | Slot | Button variants: default, destructive, outline, secondary, ghost, link (CVA) |
+| Card | `card.tsx` | — | Card container with header, content, footer, title, description |
+| Dialog | `dialog.tsx` | Dialog | Accessible modal dialogs |
+| DropdownMenu | `dropdown-menu.tsx` | DropdownMenu | Multi-level dropdown menus |
+| Input | `input.tsx` | — | Styled form inputs |
+| Label | `label.tsx` | Label | Accessible form labels |
+| NavigationMenu | `navigation-menu.tsx` | NavigationMenu | Desktop navigation menus |
+| ScrollArea | `scroll-area.tsx` | ScrollArea | Custom scrollable containers |
+| Separator | `separator.tsx` | Separator | Horizontal/vertical dividers |
+| Tabs | `tabs.tsx` | Tabs | Tabbed content interfaces |
+| Tooltip | `tooltip.tsx` | Tooltip | Contextual tooltips |
+
+**Usage in Astro pages** (requires `client:load` or `client:visible` directive for interactivity):
+
+```astro
+---
+import { Button, Card, CardHeader, CardTitle, CardContent } from '../components/ui';
+---
+
+<Card client:load>
+  <CardHeader>
+    <CardTitle>Title</CardTitle>
+  </CardHeader>
+  <CardContent>Content here</CardContent>
+</Card>
+```
+
+### Utility: `cn()` Helper
+
+Located at `src/lib/utils.ts`, the `cn()` function combines `clsx` and `tailwind-merge`:
+
+```typescript
+import { type ClassValue, clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}
+```
+
+Use `cn()` in React components for conditional class names that safely merge Tailwind classes without conflicts.
+
 ---
 
 ## Page Development
@@ -744,6 +860,13 @@ Follow this visual hierarchy on every page:
 ### Current State
 
 Blog posts are currently Astro page files (`src/pages/blog/*.astro`). The site is migrating to **Sanity.io** as the headless CMS for blog content.
+
+**Existing blog posts:**
+- `index.astro` — Blog listing page (`/blog`)
+- `developing-world-educational-advantage.astro` — Developing world educational advantage
+- `digital-literacy-importance.astro` — Digital literacy importance
+- `launching-the-framework.astro` — Launching the framework
+- `why-open-source.astro` — Why open source
 
 ### Sanity.io Integration (Planned)
 
@@ -1130,9 +1253,11 @@ npm run check        # Run build + tests + lint (full CI check locally)
 ```
 
 **Configuration:**
-- ESLint: `eslint.config.js` - Astro plugin, no-var, prefer-const, no-unused-vars
-- Prettier: `.prettierrc` - 2-space indent, single quotes, trailing commas, 100 char width
-- Prettier plugin: `prettier-plugin-astro` for `.astro` file support
+- ESLint: `eslint.config.js` - Astro plugin, no-var, prefer-const, no-unused-vars, no-console (warn/error allowed)
+- Prettier: `.prettierrc` - semi: true, singleQuote: true, tabWidth: 2, trailingComma: "all", printWidth: 100
+- Prettier plugin: `prettier-plugin-astro` for `.astro` file support (with parser override)
+- Prettier ignore: `.prettierignore` - dist/, node_modules/, .astro/, package-lock.json, *.md
+- Test runner: `vitest.config.js` - test files in `tests/**/*.test.{js,ts}`, 30s timeout
 
 ### CI/CD (GitHub Actions)
 
