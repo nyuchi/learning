@@ -432,7 +432,7 @@ const budgetItems = [
     ]} />
 
     <!-- Framework Header -->
-    <div class="relative py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden">
+    <div class="relative py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 bg-gradient-to-br from-[var(--bg-surface)]/90 to-[var(--bg)]/95 text-[var(--text)] rounded-xl md:rounded-2xl mb-8 sm:mb-10 md:mb-12 overflow-hidden hero-dots">
       <h1 class="text-[clamp(1.5rem,4vw,3rem)] font-extrabold font-display mb-3 sm:mb-4 relative z-10">K-12 Digital Campus Support Process Framework</h1>
       <p class="text-[clamp(1rem,2.5vw,1.5rem)] opacity-95 mb-3 sm:mb-4 relative z-10">Complete three-tier support system documentation</p>
       <div class="flex gap-2 text-meta opacity-80 mb-6 sm:mb-8 relative z-10 flex-wrap">
@@ -464,7 +464,7 @@ const budgetItems = [
     </nav>
 
     <!-- Executive Summary -->
-    <section id="overview" class="bg-[var(--bg-surface)] p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-8 border border-[var(--border)]">
+    <section id="overview" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-xl sm:text-2xl font-bold mb-4 sm:mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Executive Summary</h2>
       <p class="text-body text-[var(--text)] mb-6 sm:mb-8">
         This document defines the comprehensive support process for teachers, students, and parents in the K-12 Digital Campus ecosystem.
@@ -473,7 +473,7 @@ const budgetItems = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-6 sm:mb-8">
         {summaryCards.map((card) => (
-          <div class="bg-[var(--bg)] p-5 sm:p-6 md:p-8 rounded-xl text-center border-2 border-[var(--primary)]">
+          <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl text-center border-2 border-[var(--primary)]">
             <card.icon class="text-[var(--primary)] mx-auto mb-3 sm:mb-4 w-10 h-10 sm:w-12 sm:h-12" stroke-width={1.5} />
             <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-2">{card.title}</h3>
             <p class="text-body text-[var(--text-secondary)] mb-3 sm:mb-4">{card.description}</p>
@@ -482,7 +482,7 @@ const budgetItems = [
         ))}
       </div>
 
-      <div class="bg-[var(--bg)] p-4 sm:p-6 md:p-8 rounded-xl">
+      <div class="bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4">Key Metrics Goals</h3>
         <ul class="list-none p-0 space-y-0">
           {kpiMetrics.map((metric) => (
@@ -496,24 +496,24 @@ const budgetItems = [
     </section>
 
     <!-- Framework Governance -->
-    <section id="governance" class="bg-gradient-to-br from-[var(--bg-surface)] to-[var(--bg)] p-8 rounded-xl mb-8 border-2 border-[var(--primary)]">
+    <section id="governance" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">How This Framework Embodies Our Principles</h2>
       <p class="text-lg text-[var(--text)] mb-10 leading-relaxed">All Nyuchi Learning frameworks adhere to core governance principles that ensure they deliver maximum value for schools across Africa and the developing world. Here's how this K-12 Support Process Framework embodies each principle:</p>
 
       <div class="grid gap-6 mb-12">
         {governancePrinciples.map((principle) => (
-          <div class="flex flex-col md:flex-row gap-6 bg-[var(--bg-surface)] p-8 rounded-xl shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
+          <div class="flex flex-col md:flex-row gap-6 bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)] shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md">
             <div class="font-display text-4xl font-bold text-[var(--primary)] flex-shrink-0 w-16 leading-tight">{principle.number}</div>
             <div>
               <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">{principle.title}</h3>
               <p class="text-[var(--text)] leading-relaxed mb-3"><strong>How this framework delivers:</strong> {principle.description}</p>
-              <p class="text-[var(--text-secondary)] text-body p-4 bg-[var(--bg)] rounded-xl border-2 border-[var(--primary)] mt-4"><em>Example:</em> {principle.example}</p>
+              <p class="text-[var(--text-secondary)] text-body p-4 bg-[var(--bg-surface)] rounded-xl border-2 border-[var(--primary)] mt-4"><em>Example:</em> {principle.example}</p>
             </div>
           </div>
         ))}
       </div>
 
-      <div class="bg-[var(--bg-surface)] p-10 rounded-xl shadow-sm">
+      <div class="bg-[var(--bg-surface)] p-6 md:p-8 rounded-xl border border-[var(--border)]">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4 mt-0">Part of a Broader Mission</h3>
         <p class="text-lg leading-relaxed text-[var(--text)] mb-6">This framework is one of multiple frameworks released by <strong>Nyuchi Learning</strong>, a division of Nyuchi Africa committed to empowering developing countries to leapfrog traditional educational models. Learn more about our mission, vision, and strategic goals.</p>
         <a href="/about" class="inline-flex items-center gap-2 py-3 px-8 rounded-full font-semibold transition-all duration-200 bg-[var(--primary)] text-white hover:-translate-y-0.5 hover:shadow-lg hover:brightness-110">Read Our Mission & Impact</a>
@@ -521,7 +521,7 @@ const budgetItems = [
     </section>
 
     <!-- Support Tier Overview -->
-    <section id="tiers" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="tiers" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Support Tier Overview</h2>
 
       {tierDetails.map((tier) => (
@@ -530,7 +530,7 @@ const budgetItems = [
             <tier.icon size={32} stroke-width={1.5} />
             <h3 class="text-2xl font-bold m-0">{tier.title}</h3>
           </div>
-          <div class="p-8">
+          <div class="p-5 md:p-6">
             <div class="mb-6">
               <h4 class="text-[var(--primary)] text-lg font-bold mb-2">Purpose</h4>
               <p class="text-[var(--text)]">{tier.purpose}</p>
@@ -594,12 +594,12 @@ const budgetItems = [
     </section>
 
     <!-- Process Flow Diagrams -->
-    <section id="process-flows" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="process-flows" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Process Flow Diagrams</h2>
 
       <div class="mb-8">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4">High-Level Support Flow</h3>
-        <div class="bg-[var(--bg)] text-[var(--text-secondary)] p-8 rounded-xl overflow-x-auto">
+        <div class="bg-[var(--bg-surface)] text-[var(--text-secondary)] p-5 md:p-6 rounded-xl border border-[var(--border)] overflow-x-auto">
           <pre class="font-mono text-meta whitespace-pre m-0">
 User Access Support Portal
           ↓
@@ -636,7 +636,7 @@ User Access Support Portal
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4">User Journey Stages</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {userJourneyStages.map((stage) => (
-            <div class="bg-[var(--bg)] p-6 rounded-xl text-center">
+            <div class="bg-[var(--bg-surface)] p-5 rounded-xl text-center border border-[var(--border)]">
               <h4 class="text-[var(--primary)] text-lg font-bold mb-2">{stage.step}</h4>
               <p class="text-[var(--text-secondary)] m-0">{stage.description}</p>
             </div>
@@ -646,7 +646,7 @@ User Access Support Portal
     </section>
 
     <!-- Routing Criteria -->
-    <section id="routing" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="routing" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Routing Criteria & Decision Trees</h2>
 
       <div class="mb-8">
@@ -679,7 +679,7 @@ User Access Support Portal
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Auto-Escalation Rules</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {escalationRules.map((rule) => (
-            <div class="bg-[var(--bg)] p-6 rounded-xl border-2 border-[var(--primary)]">
+            <div class="bg-[var(--bg-surface)] p-5 rounded-xl border-2 border-[var(--primary)]">
               <rule.icon class="text-[var(--primary)] mb-3" size={24} stroke-width={2} />
               <h4 class="text-[var(--primary)] text-lg font-bold mb-2">{rule.title}</h4>
               <p class="text-[var(--text)] m-0">{rule.description}</p>
@@ -690,7 +690,7 @@ User Access Support Portal
     </section>
 
     <!-- SLA Recommendations -->
-    <section id="sla" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="sla" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">SLA Recommendations</h2>
 
       <div class="mb-8">
@@ -747,7 +747,7 @@ User Access Support Portal
         <h3 class="text-[var(--primary)] text-lg sm:text-xl font-bold mb-3 sm:mb-4">Service Level Objectives (SLOs)</h3>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 md:gap-6">
           {sloCards.map((slo) => (
-            <div class="bg-[var(--bg)] p-4 sm:p-5 md:p-6 rounded-xl text-center">
+            <div class="bg-[var(--bg-surface)] p-4 md:p-5 rounded-xl text-center border border-[var(--border)]">
               <div class="text-2xl sm:text-3xl font-extrabold text-[var(--primary)] mb-1 sm:mb-2">{slo.value}</div>
               <div class="text-[var(--text-secondary)] text-meta">{slo.label}</div>
             </div>
@@ -757,14 +757,14 @@ User Access Support Portal
     </section>
 
     <!-- Ticket Field Requirements -->
-    <section id="ticket-fields" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="ticket-fields" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Ticket Field Requirements</h2>
 
       <div class="mb-8">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-2">Tier 0: AI Chat Bot - Initial Capture</h3>
         <p class="text-[var(--text-secondary)] mb-4">These fields are automatically collected when a user interacts with the AI chatbot:</p>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-[var(--bg)] p-6 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)]">
             <h4 class="text-[var(--primary)] text-lg font-bold mb-4 mt-0">Required Fields</h4>
             <ul class="list-none p-0 space-y-0">
               {tier0RequiredFields.map((field) => (
@@ -772,7 +772,7 @@ User Access Support Portal
               ))}
             </ul>
           </div>
-          <div class="bg-[var(--bg)] p-6 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)]">
             <h4 class="text-[var(--primary)] text-lg font-bold mb-4 mt-0">Auto-Captured Data</h4>
             <ul class="list-none p-0 space-y-0">
               {tier0AutoCaptured.map((field) => (
@@ -786,7 +786,7 @@ User Access Support Portal
       <div class="mb-8">
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Tier 1: EdTech Team - Enhanced Fields</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-[var(--bg)] p-6 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)]">
             <h4 class="text-[var(--primary)] text-lg font-bold mb-4 mt-0">EdTech-Specific Fields</h4>
             <ul class="list-none p-0 space-y-0">
               {tier1EdTechFields.map((field) => (
@@ -794,7 +794,7 @@ User Access Support Portal
               ))}
             </ul>
           </div>
-          <div class="bg-[var(--bg)] p-6 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)]">
             <h4 class="text-[var(--primary)] text-lg font-bold mb-4 mt-0">Category Options</h4>
             <ul class="list-none p-0 space-y-0">
               {tier1Categories.map((cat) => (
@@ -810,7 +810,7 @@ User Access Support Portal
       <div>
         <h3 class="text-[var(--primary)] text-xl font-bold mb-4">Tier 2: IT Ops - Comprehensive Fields</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="bg-[var(--bg)] p-6 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)]">
             <h4 class="text-[var(--primary)] text-lg font-bold mb-4 mt-0">Technical Fields</h4>
             <ul class="list-none p-0 space-y-0">
               {tier2TechnicalFields.map((field) => (
@@ -818,7 +818,7 @@ User Access Support Portal
               ))}
             </ul>
           </div>
-          <div class="bg-[var(--bg)] p-6 rounded-xl">
+          <div class="bg-[var(--bg-surface)] p-5 rounded-xl border border-[var(--border)]">
             <h4 class="text-[var(--primary)] text-lg font-bold mb-4 mt-0">Security & Compliance</h4>
             <ul class="list-none p-0 space-y-0">
               {tier2SecurityFields.map((field) => (
@@ -831,7 +831,7 @@ User Access Support Portal
     </section>
 
     <!-- Implementation Checklist -->
-    <section id="implementation" class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section id="implementation" class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Implementation Checklist</h2>
 
       <div class="grid gap-8">
@@ -841,7 +841,7 @@ User Access Support Portal
               <h3 class="text-xl font-bold m-0">{phase.title}</h3>
               <span class="bg-white/20 py-2 px-4 rounded-full text-caption">{phase.duration}</span>
             </div>
-            <div class="p-8">
+            <div class="p-5 md:p-6">
               {phase.weeks.map((week) => (
                 <div class="mb-6 last:mb-0">
                   <h4 class="text-[var(--primary)] text-lg font-bold mb-3">{week.title}</h4>
@@ -857,11 +857,11 @@ User Access Support Portal
     </section>
 
     <!-- Implementation Budget -->
-    <section class="bg-[var(--bg-surface)] p-8 rounded-xl mb-8 border border-[var(--border)]">
+    <section class="mb-8 sm:mb-12">
       <h2 class="text-[var(--primary)] text-2xl font-bold mb-6 pb-2 border-b-[3px] border-[var(--primary)]">Implementation Budget</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-6">
         {budgetItems.map((item) => (
-          <div class="flex gap-6 bg-[var(--bg)] p-8 rounded-xl items-start">
+          <div class="flex gap-6 bg-[var(--bg-surface)] p-5 md:p-6 rounded-xl border border-[var(--border)] items-start">
             <DollarSign class="text-[var(--primary)] flex-shrink-0" size={32} stroke-width={1.5} />
             <div>
               <h3 class="text-[var(--text)] text-xl font-bold mb-2">{item.title}</h3>
@@ -871,7 +871,7 @@ User Access Support Portal
           </div>
         ))}
       </div>
-      <div class="bg-[var(--bg)] p-6 border-2 border-[var(--primary)] rounded-lg">
+      <div class="bg-[var(--bg-surface)] p-5 border-2 border-[var(--primary)] rounded-lg">
         <strong class="text-[var(--text)]">Note:</strong> <span class="text-[var(--text-secondary)]">Costs vary significantly based on school size, existing systems, and staffing decisions. See full breakdown in downloadable PDF.</span>
       </div>
     </section>
