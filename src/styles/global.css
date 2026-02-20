@@ -243,6 +243,10 @@
     --text-secondary: var(--color-text-secondary-dark);
     --text-tertiary: var(--color-text-tertiary-dark);
 
+    /* Logo */
+    --logo-bg: #0A0A0A;
+    --logo-icon: #00B0FF;
+
     /* Semantic */
     --success: var(--color-success-dark);
     --error: var(--color-error-dark);
@@ -323,6 +327,10 @@
     --text-secondary: var(--color-text-secondary-light);
     --text-tertiary: var(--color-text-tertiary-light);
 
+    /* Logo */
+    --logo-bg: #FAF9F5;
+    --logo-icon: #0047AB;
+
     /* Semantic */
     --success: var(--color-success-light);
     --error: var(--color-error-light);
@@ -399,6 +407,10 @@
       --text: var(--color-text-primary-light);
       --text-secondary: var(--color-text-secondary-light);
       --text-tertiary: var(--color-text-tertiary-light);
+
+      /* Logo */
+      --logo-bg: #FAF9F5;
+      --logo-icon: #0047AB;
 
       /* Semantic */
       --success: var(--color-success-light);
