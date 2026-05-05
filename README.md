@@ -1,395 +1,107 @@
-# nyuchi learning - Build Digital Campuses. Prepare for 2050.
+# nyuchi learning — landing one-pager
 
-[![Built with Astro](https://astro.badg.es/v2/built-with-astro/tiny.svg)](https://astro.build)
+The site at [learning.nyuchi.com](https://learning.nyuchi.com) is a SvelteKit
+one-pager. Its only job is to redirect visitors to the right place now that
+the original learning content has been split across the Bundu Family
+ecosystem.
 
-> **Open, shareable frameworks for building and upgrading digital campuses and digital literacy programs.**
->
-> Built by educators, for education. Copy it. Adapt it. Improve it. Share it.
+## What this repo used to be
 
-## Overview
+Up to May 2026 this repo housed `learning.nyuchi.com` — an Astro site that
+mixed two concerns under one brand:
 
-**nyuchi learning** is a division of nyuchi africa focused on creating comprehensive, open-source frameworks for digital transformation in K-12 schools across Africa and the developing world. Our frameworks are designed to be freely accessible, adaptable to local contexts, and community-driven.
+- **Open educational frameworks** (the K-12 Digital Campus, support
+  process, and digital literacy frameworks; framework blog; resources
+  hub) — content that belonged to the Bundu Foundation's education
+  initiative.
+- **Commercial training and consultation** (cohort programmes, pricing,
+  consultations) — content that belonged to Nyuchi Africa.
 
-**The frameworks are completely free.** We provide guidance on how to build or upgrade to a digital campus -- schools implement the recommendations using their own resources and vendors.
+Mixing the two muddled the audience. The Foundation publishes; Nyuchi
+sells; Mukoko reaches consumers. One repo couldn't be all three.
 
-**Live Site:** [learning.nyuchi.com](https://learning.nyuchi.com)
+## What this repo is now
 
-### Our Frameworks
+In [bundu-labs/marketing#5](https://github.com/bundu-labs/marketing/pull/5)
+the content was migrated into the marketing monorepo and split across
+three surfaces:
 
-1. **K-12 Digital Campus Framework**
-   - Comprehensive blueprint for building and upgrading digital campuses
-   - Infrastructure, software, pedagogy, professional development
-   - 3-year implementation roadmap
-   - Budget scenarios from minimal ($0-$15K) to comprehensive ($120K-$180K)
+| Surface         | URL                                                | Audience              | Mineral   |
+| --------------- | -------------------------------------------------- | --------------------- | --------- |
+| Bundu Education | [bundu.org/education](https://bundu.org/education) | Open frameworks       | malachite |
+| Nyuchi Learning | [nyuchi.com/learning](https://nyuchi.com/learning) | Commercial training   | gold      |
+| Mukoko Lingo    | [mukoko.com/lingo](https://mukoko.com/lingo)       | Consumer language app | tanzanite |
 
-2. **Digital Literacy Framework**
-   - K-12 progression pathway for digital skills
-   - Technology skills + critical thinking
-   - Safe, responsible digital citizenship
+This repo now ships a single one-pager that:
 
-3. **K-12 Support Process Framework**
-   - Three-tier support system (AI chatbot, EdTech team, IT Operations)
-   - SLA recommendations and routing criteria
-   - Implementation checklist and budget estimates
+1. Tells visitors arriving at the old domain that the content moved.
+2. Lists the three destinations with a one-paragraph description each.
+3. Links them out so the visitor lands on the surface that matches what
+   they came for.
 
-4. **More frameworks coming soon...**
+The page is responsive (single column on mobile, two columns at `md`,
+three at `lg`), uses the same design tokens as `nyuchi.com` and
+`bundu.org` (Five African Minerals, Noto Sans / Noto Serif, pill
+primitives), and themes its primary mineral to **malachite** — the
+canonical "education" colour in the marketing monorepo's data.
 
-### Philosophy: Ubuntu
+## Stack
 
-**"I am because we are"** (Shona: "Ndiri nekuti tiri")
+- **SvelteKit 2** + **Svelte 5** runes (`$props`, snippets via `{@render}`)
+- **Vite 8**
+- **Tailwind 3** with the design tokens copied verbatim from
+  `apps/nyuchi/src/styles/global.css` (the marketing monorepo)
+- **`@sveltejs/adapter-vercel`** for deployment
 
-This African philosophy guides everything we create:
-- Community success over individual achievement
-- Open and shareable resources
-- Collaborative improvement
-- Mutual support and growth
+The entire app is one route (`src/routes/+page.svelte`) and one shared
+layout (`src/routes/+layout.svelte`) that imports the global CSS.
 
----
+## Local development
 
-## Features
+```sh
+npm install
+npm run dev          # http://localhost:5173
+npm run check        # svelte-check
+npm run build        # produces .vercel/output for adapter-vercel
+npm run preview      # serve the built output
+```
 
-### Clean Minimalist Design
-
-- **Typography-led** - Large, readable text as the primary design element
-- **Minimal imagery** - No stock photos; Lucide icons and whitespace for visual interest
-- **Warm palette** - Anthropic-inspired warm neutrals with Five African Minerals accents
-- **Light/Dark/System themes** - Automatic theme switching with manual toggle
-- **WCAG 2.2 AAA + APCA** - Forward-looking accessibility with perceptual contrast testing
-- **Minerals Strip** - Signature 5-color vertical strip (desktop only)
-
-### Technical Excellence
-
-- **Astro 5.16+** - Static site generation for optimal performance
-- **Tailwind CSS 4.1+** - Utility-first CSS with comprehensive design tokens
-- **React 19 + Radix UI** - Accessible interactive components
-- **TypeScript** - Strict type checking throughout
-- **Comprehensive SEO** - Meta tags, Open Graph, Twitter Cards, JSON-LD structured data
-- **AI-friendly** - Allows GPTBot, Claude-Web, CCBot, PerplexityBot
-- **Automatic sitemap** - Per-page priorities via @astrojs/sitemap
-- **RSS feed** - Content syndication at /rss.xml
-- **Google Analytics** - Integrated tracking (G-BNHM29F8W5)
-
-### Navigation & Wayfinding
-
-- **Breadcrumb navigation** - On every interior page for SEO and usability
-- **Auto-hide header** - Transparent/solid states, hides on scroll down, shows on scroll up
-- **Dropdown menus** - Desktop navigation with About section dropdown
-- **Mobile hamburger menu** - Full-screen overlay with 48px touch targets
-- **4-column footer** - Organized link groups with Ubuntu messaging
-
-### Accessibility
-
-- **WCAG 2.2 AAA compliance** - 7:1+ color contrast ratios
-- **APCA testing** - Forward-looking WCAG 3.0 perceptual contrast
-- **Skip links** - 3 navigation targets (content, nav, footer)
-- **Keyboard navigation** - Full keyboard support with visible focus indicators
-- **Screen reader support** - Semantic HTML, ARIA labels, landmarks
-- **Touch targets** - 44x44px minimum, 48px for primary buttons
-- **Reduced motion** - Respects `prefers-reduced-motion`
-- **Forced colors** - Supports Windows High Contrast Mode
-- **Print styles** - Clean print output with visible URLs
-
----
-
-## Tech Stack
-
-| Technology | Version | Purpose |
-|------------|---------|---------|
-| **Astro** | 5.16+ | Static site generator |
-| **Tailwind CSS** | 4.1+ | Utility-first CSS with design tokens |
-| **React** | 19+ | Interactive components |
-| **Radix UI** | Latest | Accessible UI primitives |
-| **TypeScript** | 5.6+ | Type safety (strict mode) |
-| **Lucide Icons** | 0.441+ | Icon system (no emojis) |
-| **PostCSS** | 8.5+ | CSS processing pipeline |
-| **Google Fonts** | - | Noto Serif (H1) & Plus Jakarta Sans (body) |
-| **@astrojs/sitemap** | 3.6+ | Sitemap with per-page priorities |
-| **@astrojs/rss** | 4.0+ | RSS feed generation |
-| **@astrojs/mdx** | 4.3+ | Rich content authoring |
-| **Sanity.io** | Planned | Headless CMS for blog content |
-| **Vercel** | - | Deployment and hosting |
-
----
-
-## Project Structure
+## File map
 
 ```
-/
-├── public/                     # Static assets
-│   ├── *.svg                   # Logo variants, favicon
-│   ├── frameworks/             # Framework documentation (Markdown)
-│   ├── llms.txt                # AI crawler directives
-│   └── robots.txt              # SEO crawler configuration
+.
 ├── src/
-│   ├── components/             # Reusable components
-│   │   ├── Logo.astro          # Logo (3 variants: main, horizontal, compact)
-│   │   ├── SEO.astro           # Meta tags, Open Graph, JSON-LD
-│   │   ├── ThemeToggle.astro   # Light/Dark/System theme switcher
-│   │   ├── PageBreadcrumb.astro # Breadcrumb navigation
-│   │   ├── BuilderBox.astro    # Builder UI pattern
-│   │   ├── InfoTooltip.astro   # Tooltip component
-│   │   └── UserAvatar.astro    # Avatar component
-│   ├── layouts/
-│   │   └── BaseLayout.astro    # Master layout (header, footer, minerals strip, animations)
-│   ├── lib/                    # Utility functions
-│   ├── pages/                  # File-based routing
-│   │   ├── index.astro         # Homepage
-│   │   ├── frameworks.astro    # Frameworks overview
-│   │   ├── framework.astro     # K-12 Digital Campus Framework
-│   │   ├── digital-literacy-framework.astro
-│   │   ├── support-framework.astro
-│   │   ├── pricing.astro       # Budget planning guide
-│   │   ├── resources.astro     # Resources hub
-│   │   ├── about.astro         # Mission & Impact
-│   │   ├── global-reach.astro  # Geographic scope
-│   │   ├── team.astro          # Team
-│   │   ├── community.astro     # Community & GitHub
-│   │   ├── consultation.astro  # Book a consultation
-│   │   ├── rss.xml.ts          # RSS feed
-│   │   └── blog/               # Blog posts
-│   ├── styles/
-│   │   └── global.css          # Tailwind theme, design tokens, component & accessibility layers
-│   └── env.d.ts                # TypeScript environment definitions
-├── astro.config.mjs            # Astro configuration (sitemap priorities, React)
-├── package.json                # Dependencies and scripts
-├── tsconfig.json               # TypeScript strict mode, path aliases (@/*)
-├── tailwind.config.js          # Tailwind configuration
-├── postcss.config.mjs          # PostCSS configuration
-├── vercel.json                 # Vercel deployment configuration
-├── CLAUDE.md                   # Development & design guidelines (v5.0)
-├── BRANDING.md                 # Brand guidelines (v6.0)
-├── DEPLOYMENT.md               # Deployment instructions
-├── CONTRIBUTING.md             # Contribution guidelines
-├── SECURITY.md                 # Security policy
-├── LICENSE                     # MIT License
-└── README.md                   # This file
+│   ├── app.html              # shell — fonts, html lang, body classes
+│   ├── app.css               # design tokens + components (mirrors marketing monorepo)
+│   └── routes/
+│       ├── +layout.svelte    # imports app.css, renders page snippet
+│       └── +page.svelte      # the one-pager
+├── static/
+│   └── favicon.svg           # carried over from the old Astro site
+├── svelte.config.js          # adapter-vercel
+├── vite.config.js            # sveltekit() plugin
+├── tailwind.config.mjs       # mineral palette + fluid type scale + dynamic-class safelist
+├── postcss.config.mjs        # tailwind + autoprefixer
+└── vercel.json               # framework: sveltekit, security headers
 ```
 
----
-
-## Getting Started
-
-### Prerequisites
-
-- **Node.js** 18+ and npm
-- Basic familiarity with terminal/command line
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/nyuchitech/learning.git
-   cd learning
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-   The site will be available at `http://localhost:4321`
-
-### Available Scripts
-
-```bash
-# Development
-npm run dev          # Start development server (HMR enabled)
-npm run build        # TypeScript check + production build to dist/
-npm run preview      # Preview production build locally
-npm run astro        # Run Astro CLI commands
-
-# Testing
-npm test             # Run all test suites
-npm run test:design  # Design guidelines compliance tests
-npm run test:a11y    # Accessibility & SEO tests (build first)
-npm run test:watch   # Run tests in watch mode
-
-# Linting & Formatting
-npm run lint         # Run ESLint on src/
-npm run lint:fix     # Auto-fix lint issues
-npm run format       # Format code with Prettier
-npm run format:check # Check formatting
-npm run check        # Full CI check (build + test + lint)
-```
-
-### CI/CD
-
-GitHub Actions runs automatically on pushes to `main` and pull requests:
-- **Build & Test**: TypeScript check, production build, design guidelines tests, accessibility/SEO tests
-- **Lint & Format**: ESLint and Prettier checks
-
----
-
-## Design System
-
-**For comprehensive design guidelines, see [CLAUDE.md](CLAUDE.md)**
-
-### Design Philosophy
-
-The site follows a **clean minimalist design** inspired by Anthropic's website:
-- Typography-led design with large, readable body text (18px desktop)
-- Generous whitespace as structural element
-- Minimal imagery (blogs are the only exception, via Sanity.io)
-- Warm, trust-building palette (warm cream light mode, deep warm black dark mode)
-- Content-first approach where reading flow is prioritized
-
-### Key Design Tokens
-
-| Element | Value |
-|---------|-------|
-| Primary (dark) | `#00B0FF` (Cobalt) |
-| Primary (light) | `#0047AB` (Cobalt) |
-| Background (dark) | `#0A0A0A` |
-| Background (light) | `#FAF9F5` |
-| Body text size | 18px desktop, 16px mobile |
-| Button radius | 12px |
-| Card radius | 16px |
-| Body line height | 1.7 |
-| Max prose width | 65ch |
-
-### Branding
-
-**For brand guidelines, see [BRANDING.md](BRANDING.md)**
-
-- **Company**: nyuchi learning, a division of nyuchi africa (always lowercase)
-- **Philosophy**: Ubuntu - "I am because we are" (Shona: "Ndiri nekuti tiri")
-- **Palette**: Five African Minerals (Cobalt, Tanzanite, Malachite, Gold, Terracotta)
-- **Fonts**: Noto Serif (H1), Plus Jakarta Sans (everything else)
-- **Icons**: Lucide only, no emojis
-
----
-
-## Deployment
-
-### Vercel (Recommended)
-
-This site is optimized for Vercel deployment:
-
-1. Push code to GitHub
-2. Import repository in Vercel
-3. Vercel auto-detects Astro and configures build settings
-4. Deploy
-
-**Production URL:** [learning.nyuchi.com](https://learning.nyuchi.com)
-
-### Manual Deployment
-
-For other static hosting providers:
-
-```bash
-npm run build
-# Upload the 'dist' folder to your hosting provider
-```
-
-Supported: Netlify, Cloudflare Pages, GitHub Pages, any static file host.
-
----
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
-### Framework Contributions
-
-- **Use the frameworks** in your school and share your experiences
-- **Adapt the frameworks** to fit your local context
-- **Share improvements** back with the community
-- **Translate content** into local languages
-- **Report issues** or suggest enhancements
-
-### Code Contributions
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes (follow [CLAUDE.md](CLAUDE.md) guidelines)
-4. Run `npm run check` to verify (lint, format, tests, build)
-5. Update documentation: CHANGELOG.md, and any affected docs (CLAUDE.md, README, etc.)
-6. Submit a pull request
-
----
-
-## Roadmap
-
-### Current (v5.0 - February 2026)
-
-- Clean minimalist design (Anthropic-inspired)
-- WCAG 2.2 AAA + APCA contrast testing
-- Light/Dark/System theme support
-- Breadcrumb navigation on all pages
-- Tailwind CSS 4.1+ with comprehensive design tokens
-- React 19 + Radix UI components
-- Enhanced SEO with per-page sitemap priorities
-- RSS feed
-- AI crawler support (llms.txt)
-
-### Planned
-
-- Sanity.io CMS integration for blog content
-- Additional frameworks
-- Framework PDF generation
-- Multilingual content support
-- Community showcase section
-- Implementation case studies
-
----
-
-## Documentation
-
-| Document | Purpose |
-|----------|---------|
-| [CLAUDE.md](CLAUDE.md) | Development & design guidelines (v5.0) |
-| [BRANDING.md](BRANDING.md) | Brand guidelines (v6.0) |
-| [DEPLOYMENT.md](DEPLOYMENT.md) | Deployment instructions |
-| [CONTRIBUTING.md](CONTRIBUTING.md) | Contribution guidelines |
-| [SECURITY.md](SECURITY.md) | Security policy |
-
----
-
-## About nyuchi
-
-### nyuchi africa
-
-Parent company, Zimbabwe-registered (2019):
-- Commitment to local economy reinvestment
-- Education-first mission (founder is an educator)
-- Remote-first organization
-- Africa-tested solutions
-
-### nyuchi learning (This Division)
-
-Focused on educational frameworks and digital transformation:
-- Creates open, shareable implementation guides
-- Serves K-12 schools across Africa and the developing world
-- Community-driven improvement model
-- Completely free frameworks
-
----
-
-## License
-
-**Frameworks:** Open and freely shareable. Copy, adapt, improve, and share freely.
-
-**Website Code:** See [LICENSE](LICENSE) file for details.
-
----
-
-## Contact & Links
-
-- **Website:** [learning.nyuchi.com](https://learning.nyuchi.com)
-- **Frameworks:** [learning.nyuchi.com/frameworks](https://learning.nyuchi.com/frameworks)
-- **GitHub:** [github.com/nyuchitech/learning](https://github.com/nyuchitech/learning)
-
----
-
-**Ubuntu:** I am because we are. We grow together, we succeed together.
-
----
-
-**Last Updated:** February 2026
-**Version:** 5.0 (Clean Minimalist Design, APCA Contrast, Sanity CMS)
-**Maintained By:** nyuchi learning Development Team
+## Updating the redirect targets
+
+The three destinations are an array at the top of
+`src/routes/+page.svelte`. Change a URL or add a fourth surface there;
+the grid adapts automatically (it goes 1 → 2 → 3 columns at the `md`
+and `lg` breakpoints).
+
+## Why SvelteKit and not just a static HTML file?
+
+Two reasons:
+
+1. **Convention with the rest of the ecosystem.** The marketing apps
+   are Astro, but Nyuchi's product surfaces lean SvelteKit. Standing this
+   redirect up on SvelteKit lets the team treat it the same as any
+   other Nyuchi-operated micro-app — same deploy story, same auth
+   primitives if we ever need them, same telemetry hooks.
+2. **Headroom.** If `learning.nyuchi.com` ever needs to grow beyond a
+   redirect (e.g. a sign-in page that routes alumni to the right
+   surface, or a search form that types into all three at once), the
+   scaffolding is already in place.

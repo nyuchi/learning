@@ -1,0 +1,13 @@
+// markdownlint-cli2 config — paths in scope for this repo.
+{
+  "config": {
+    "extends": ".markdownlint.jsonc",
+  },
+  "globs": ["**/*.md", "**/*.mdx"],
+  "ignores": [
+    "node_modules/**",
+    "**/.svelte-kit/**",
+    "**/.vercel/**",
+    "build/**",
+  ],
+}

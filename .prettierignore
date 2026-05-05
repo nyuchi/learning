@@ -1,5 +1,5 @@
-dist/
-node_modules/
-.astro/
+.svelte-kit
+build
+.vercel
+node_modules
 package-lock.json
-*.md

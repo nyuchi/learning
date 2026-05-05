@@ -1,0 +1,36 @@
+# yamllint config — matches nyuchi/.github.
+#
+# See https://yamllint.readthedocs.io/en/stable/configuration.html
+
+extends: default
+
+ignore: |
+  node_modules/
+  .svelte-kit/
+  .vercel/
+  build/
+
+rules:
+  line-length:
+    max: 140
+    level: error
+    allow-non-breakable-words: true
+    allow-non-breakable-inline-mappings: true
+
+  truthy:
+    check-keys: false
+    level: error
+
+  document-start: disable
+
+  comments:
+    min-spaces-from-content: 1
+
+  comments-indentation: disable
+
+  indentation:
+    spaces: 2
+    indent-sequences: consistent
+
+  empty-lines:
+    max-end: 1

@@ -1,0 +1,22 @@
+name: lint
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    uses: nyuchi/.github/.github/workflows/reusable-lint.yml@main
+    with:
+      # .svelte is excluded — formatting it needs prettier-plugin-svelte,
+      # which the org's reusable-lint workflow does not install. Svelte
+      # files stay locally-formattable; CI lints the rest.
+      prettier-glob: "**/*.{md,mdx,json,jsonc,ts,css,mjs}"
