@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens — copied verbatim from the marketing monorepo
+ * (apps/nyuchi/src/styles/global.css and apps/bundu/src/styles/global.css).
+ *
+ * The two production sites are identical except for --primary and --ring:
+ *   nyuchi.com  → gold
+ *   bundu.org   → terracotta
+ *
+ * This site is the learning hub redirect/landing. It uses malachite,
+ * which is the canonical "education" mineral on bundu-education and
+ * nyuchi-learning data records (see ecosystem.ts and products.ts in the
+ * marketing monorepo).
+ */
+
+@layer base {
+  :root {
+    --color-cobalt: #0047ab;
+    --color-cobalt-container: #e3f2fd;
+    --color-cobalt-on-container: #002966;
+
+    --color-tanzanite: #4b0082;
+    --color-tanzanite-container: #f3e5f5;
+    --color-tanzanite-on-container: #2e004d;
+
+    --color-malachite: #004d40;
+    --color-malachite-container: #e0f2f1;
+    --color-malachite-on-container: #00332b;
+
+    --color-gold: #5d4037;
+    --color-gold-container: #fff8e1;
+    --color-gold-on-container: #3e2723;
+
+    --color-terracotta: #a0522d;
+    --color-terracotta-container: #f5e6d3;
+    --color-terracotta-on-container: #5d2906;
+
+    --background: #faf9f4;
+    --canvas: #faf9f4;
+    --foreground: #1a1a17;
+    --ink: #1a1a17;
+
+    --card: #ffffff;
+    --card-foreground: #1a1a17;
+
+    --primary: var(--color-malachite);
+    --primary-foreground: #ffffff;
+
+    --secondary: #f4f2ec;
+    --secondary-foreground: #1a1a17;
+
+    --muted: #f4f2ec;
+    --muted-foreground: #5d5c57;
+
+    --accent: var(--color-cobalt-container);
+    --accent-foreground: var(--color-cobalt-on-container);
+
+    --border: #e7e5e0;
+    --input: #ffffff;
+    --ring: var(--color-malachite);
+  }
+
+  .dark {
+    --color-cobalt: #00b0ff;
+    --color-cobalt-container: #001f3f;
+    --color-cobalt-on-container: #b3e5fc;
+
+    --color-tanzanite: #b388ff;
+    --color-tanzanite-container: #1a0033;
+    --color-tanzanite-on-container: #e1bee7;
+
+    --color-malachite: #64ffda;
+    --color-malachite-container: #00251a;
+    --color-malachite-on-container: #a7ffeb;
+
+    --color-gold: #ffd740;
+    --color-gold-container: #332200;
+    --color-gold-on-container: #ffecb3;
+
+    --color-terracotta: #e1b07e;
+    --color-terracotta-container: #3e2817;
+    --color-terracotta-on-container: #f5e6d3;
+
+    --background: #100f0e;
+    --canvas: #100f0e;
+    --foreground: #f0efe9;
+    --ink: #f0efe9;
+
+    --card: #1a1917;
+    --card-foreground: #f0efe9;
+
+    --primary: var(--color-malachite);
+    --primary-foreground: #1a1917;
+
+    --secondary: #2a2927;
+    --secondary-foreground: #f0efe9;
+
+    --muted: #2a2927;
+    --muted-foreground: #a8a6a0;
+
+    --accent: var(--color-cobalt-container);
+    --accent-foreground: var(--color-cobalt-on-container);
+
+    --border: #2a2927;
+    --input: #100f0e;
+    --ring: var(--color-malachite);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: "Noto Sans", system-ui, sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Noto Serif", Georgia, serif;
+    color: var(--foreground);
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background-color: var(--color-malachite-container);
+    color: var(--color-malachite-on-container);
+  }
+}
+
+@layer components {
+  .container-custom {
+    @apply max-w-7xl mx-auto px-6 sm:px-8 lg:px-10;
+  }
+
+  .container-prose {
+    @apply max-w-3xl mx-auto px-6 sm:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-6 h-12
+           bg-primary text-primary-foreground font-medium rounded-full
+           transition-all duration-200 ease-soft
+           hover:opacity-90
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 px-6 h-12
+           border border-foreground text-foreground font-medium rounded-full
+           transition-all duration-200 ease-soft
+           hover:bg-foreground hover:text-background
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 h-10
+           text-foreground font-medium rounded-full
+           transition-colors duration-200 ease-soft
+           hover:bg-muted
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+
+  .card {
+    @apply bg-card text-card-foreground rounded-lg border border-border;
+  }
+
+  .section {
+    @apply py-16 md:py-24;
+  }
+
+  .section-tight {
+    @apply py-12 md:py-16;
+  }
+
+  .eyebrow {
+    @apply inline-block text-caption font-semibold uppercase tracking-wider text-muted-foreground mb-4;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+}
