@@ -1,8 +1,22 @@
-# nyuchi learning — landing one-pager
+# Nyuchi Learning
 
-The site at [learning.nyuchi.com](https://learning.nyuchi.com) is a SvelteKit
-one-pager. Its only job is to redirect visitors to the right place now that
-the original learning content has been split across the Bundu Family
+> The landing one-pager at learning.nyuchi.com, whose only job is to send
+> visitors to wherever the learning content lives now.
+
+[![Lint](https://github.com/nyuchi/learning/actions/workflows/lint.yml/badge.svg)](https://github.com/nyuchi/learning/actions/workflows/lint.yml)
+[![build](https://github.com/nyuchi/learning/actions/workflows/build.yml/badge.svg)](https://github.com/nyuchi/learning/actions/workflows/build.yml)
+![SvelteKit](https://img.shields.io/badge/SvelteKit-2-FF3E00?style=flat-square&logo=svelte&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=flat-square&logo=vercel&logoColor=white)
+
+**Version:** 2.0.0 | **Live:** [learning.nyuchi.com](https://learning.nyuchi.com) | **Default branch:** `master` | **Deploy:** Vercel
+
+---
+
+## What it is
+
+A SvelteKit one-pager. It is the whole site at
+[learning.nyuchi.com](https://learning.nyuchi.com), and it exists to redirect
+visitors now that the original learning content has been split across the
 ecosystem.
 
 ## What this repo used to be
@@ -22,15 +36,18 @@ sells; Mukoko reaches consumers. One repo couldn't be all three.
 
 ## What this repo is now
 
-In [bundu-labs/marketing#5](https://github.com/bundu-labs/marketing/pull/5)
-the content was migrated into the marketing monorepo and split across
+The content was migrated into the `bundu-labs/marketing` monorepo (in its PR #5
+— a private repository, so that link is not reproduced here) and split across
 three surfaces:
 
-| Surface         | URL                                                | Audience              | Mineral   |
-| --------------- | -------------------------------------------------- | --------------------- | --------- |
-| Bundu Education | [bundu.org/education](https://bundu.org/education) | Open frameworks       | malachite |
-| Nyuchi Learning | [nyuchi.com/learning](https://nyuchi.com/learning) | Commercial training   | gold      |
-| Mukoko Lingo    | [mukoko.com/lingo](https://mukoko.com/lingo)       | Consumer language app | tanzanite |
+| Surface         | URL                                                | Audience              | Accent colour |
+| --------------- | -------------------------------------------------- | --------------------- | ------------- |
+| Bundu Education | [bundu.org/education](https://bundu.org/education) | Open frameworks       | malachite     |
+| Nyuchi Learning | [nyuchi.com/learning](https://nyuchi.com/learning) | Commercial training   | gold          |
+| Mukoko Lingo    | [mukoko.com](https://mukoko.com)                   | Consumer language app | tanzanite     |
+
+> The page itself links Mukoko Lingo at `mukoko.com/lingo`, which currently
+> returns 404. The parent site resolves; the deep link does not yet.
 
 This repo now ships a single one-pager that:
 
@@ -40,10 +57,16 @@ This repo now ships a single one-pager that:
    they came for.
 
 The page is responsive (single column on mobile, two columns at `md`,
-three at `lg`), uses the same design tokens as `nyuchi.com` and
-`bundu.org` (Five African Minerals, Noto Sans / Noto Serif, pill
-primitives), and themes its primary mineral to **malachite** — the
-canonical "education" colour in the marketing monorepo's data.
+three at `lg`) and uses the same design tokens as `nyuchi.com` and
+`bundu.org`: Noto Sans and Noto Serif with JetBrains Mono, pill primitives, and
+three colour families from the shared palette — **malachite**, **gold** and
+**tanzanite** — with malachite as this site's primary, being the canonical
+"education" colour in the marketing monorepo's data.
+
+Those three are minerals from the shared palette, which has **21 colour
+families in total**: seven minerals (cobalt, tanzanite, malachite, gold,
+terracotta, sodalite, copper), seven heritage and seven experimental. This site
+implements only the three it needs.
 
 ## Stack
 
@@ -56,19 +79,24 @@ canonical "education" colour in the marketing monorepo's data.
 The entire app is one route (`src/routes/+page.svelte`) and one shared
 layout (`src/routes/+layout.svelte`) that imports the global CSS.
 
-## Local development
+## Commands
 
 ```sh
 npm install
-npm run dev          # http://localhost:5173
-npm run check        # svelte-check
-npm run build        # produces .vercel/output for adapter-vercel
-npm run preview      # serve the built output
 ```
+
+| Command           | Description                                    |
+| ----------------- | ---------------------------------------------- |
+| `npm run dev`     | Development server on <http://localhost:5173>  |
+| `npm run check`   | `svelte-check` against `tsconfig.json`         |
+| `npm run test`    | Vitest — redirect targets and security headers |
+| `npm run build`   | Produces `.vercel/output` for `adapter-vercel` |
+| `npm run preview` | Serve the built output                         |
+| `npm run format`  | Prettier over `src` and `tests`                |
 
 ## File map
 
-```
+```text
 .
 ├── src/
 │   ├── app.html              # shell — fonts, html lang, body classes
@@ -78,9 +106,12 @@ npm run preview      # serve the built output
 │       └── +page.svelte      # the one-pager
 ├── static/
 │   └── favicon.svg           # carried over from the old Astro site
+├── tests/
+│   ├── redirects.test.ts     # the three destinations resolve as configured
+│   └── security.test.ts      # the headers vercel.json promises
 ├── svelte.config.js          # adapter-vercel
 ├── vite.config.js            # sveltekit() plugin
-├── tailwind.config.mjs       # mineral palette + fluid type scale + dynamic-class safelist
+├── tailwind.config.mjs       # palette + fluid type scale + dynamic-class safelist
 ├── postcss.config.mjs        # tailwind + autoprefixer
 └── vercel.json               # framework: sveltekit, security headers
 ```
@@ -105,3 +136,11 @@ Two reasons:
    redirect (e.g. a sign-in page that routes alumni to the right
    surface, or a search form that types into all three at once), the
    scaffolding is already in place.
+
+## Licence
+
+This repository ships **no LICENSE file** and GitHub reports no licence for it.
+It is `"private": true` in `package.json` and is not published to npm. Treat it
+as all rights reserved until a licence is added.
+
+© Nyuchi Africa (PVT) Ltd.
