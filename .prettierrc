@@ -1,7 +1,16 @@
 {
-  "semi": true,
-  "singleQuote": false,
+  "printWidth": 80,
+  "proseWrap": "preserve",
   "tabWidth": 2,
+  "useTabs": false,
+  "endOfLine": "lf",
   "trailingComma": "all",
-  "printWidth": 80
+  "overrides": [
+    {
+      "files": ["*.md", "*.mdx"],
+      "options": {
+        "embeddedLanguageFormatting": "off"
+      }
+    }
+  ]
 }
