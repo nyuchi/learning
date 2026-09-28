@@ -29,7 +29,9 @@ describe("app shell", () => {
      assertion would pass while missing the very thing it exists to catch. */
   it("has exactly one inline script, and it is the theme bootstrap", () => {
     const inline = [
-      ...layout.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi),
+      ...layout.matchAll(
+        /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi,
+      ),
     ].map((match) => match[1]);
     expect(inline).toHaveLength(2); // the is:inline bootstrap, and the bundled toggle
     const [bootstrap] = inline;
