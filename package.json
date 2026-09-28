@@ -11,7 +11,7 @@
     "check": "astro check",
     "format": "prettier --write \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
-    "test": "vitest run && npm run build && npm run csp",
+    "test": "npm run build && vitest run && npm run csp",
     "csp": "node scripts/check-csp.mjs",
     "csp:fix": "node scripts/check-csp.mjs --fix",
     "deploy": "npm run build && wrangler deploy"
