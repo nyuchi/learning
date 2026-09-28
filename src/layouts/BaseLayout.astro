@@ -9,6 +9,7 @@
 import "../styles/global.css";
 import MineralStrip from "@bundu/ui/MineralStrip.astro";
 import SiteFooter from "../components/SiteFooter.astro";
+import SupportWidget from "../components/SupportWidget.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { site } from "../data/site";
 
@@ -148,6 +149,7 @@ const schemaGraph = {
       <slot />
     </main>
     <SiteFooter />
+    <SupportWidget />
 
     <script>
       // Theme toggle. Deferred and external to the shell, because unlike the

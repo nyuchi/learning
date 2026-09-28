@@ -96,14 +96,24 @@ if (!fix) {
   process.exit(1);
 }
 
+/* Replace only the hashes, keeping every other source in script-src.
+   This used to rewrite the directive as `script-src 'self' <hashes>`, which
+   silently deleted anything else that had been added to it — a host for a
+   third-party widget, say. The deletion did not fail anything here: the hashes
+   were still correct, so this script reported success while production started
+   refusing to load a script it had been loading the day before. So keep what we
+   did not come here to change. */
 csp.value = csp.value
   .split(";")
   .map((part) => part.trim())
-  .map((part) =>
-    part.startsWith("script-src")
-      ? `script-src 'self' ${[...hashes].join(" ")}`
-      : part,
-  )
+  .map((part) => {
+    if (!part.startsWith("script-src")) return part;
+    const kept = part
+      .split(/\s+/)
+      .slice(1)
+      .filter((source) => !/^'sha(256|384|512)-/.test(source));
+    return ["script-src", ...kept, ...hashes].join(" ");
+  })
   .join("; ");
 writeFileSync(vercelPath, `${JSON.stringify(vercel, null, 2)}\n`);
 console.log(`updated vercel.json with ${hashes.size} inline script hash(es)`);

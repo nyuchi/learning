@@ -6,7 +6,7 @@
  * quiet merge.
  */
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -14,6 +14,15 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative: string) => readFileSync(join(root, relative), "utf8");
 
 const layout = read("src/layouts/BaseLayout.astro");
+
+/* Every component, not just the shell. The tracker check used to read
+   BaseLayout alone, which was fine while the shell was the only place a third
+   party could enter. It is not any more: the support messenger arrives as a
+   component, and a check that only reads the layout would have let it — or
+   anything else — in silently. Read the whole tree instead. */
+const componentSources = readdirSync(join(root, "src/components"))
+  .filter((entry) => entry.endsWith(".astro"))
+  .map((entry) => read(join("src/components", entry)));
 const pages = [
   "src/pages/index.astro",
   "src/pages/toddle-enhancement-extension.astro",
@@ -116,10 +125,80 @@ describe("pages", () => {
       /clarity\.ms/,
       /posthog/,
     ];
-    for (const source of [...pages, layout]) {
+    for (const source of [...pages, layout, ...componentSources]) {
       for (const tracker of trackers) {
         expect(source, `matched ${tracker}`).not.toMatch(tracker);
       }
+    }
+  });
+});
+
+/* The support messenger is the one third party on this site, and it is allowed
+   here on one condition: it does not load until a visitor asks for it. That is
+   what lets the privacy policy still say this website sets no cookies unless
+   you open the messenger, and it is a property of the source that is easy to
+   destroy by accident — moving the loader out of the click handler, or adding
+   the stock Intercom snippet next to it, would boot Intercom on every visit and
+   nothing would look broken. So it is asserted rather than trusted. */
+describe("support messenger", () => {
+  const widget = read("src/components/SupportWidget.astro");
+
+  it("loads Intercom only from inside a click handler", () => {
+    expect(widget).toContain("widget.intercom.io/widget/");
+
+    /* What matters is where the loader is CALLED, not where it is declared —
+       declaring it above the handler is ordinary hoisting and says nothing. So
+       find every call site that is not the declaration and require each one to
+       come after the click listener opens. */
+    const clickHandler = widget.indexOf('addEventListener("click"');
+    expect(clickHandler, "no click handler at all").toBeGreaterThan(-1);
+
+    const callSites = [...widget.matchAll(/(\w*)\s*loadIntercom\s*\(/g)].filter(
+      (match) => match[1] !== "function",
+    );
+    expect(callSites.length, "loadIntercom is never called").toBeGreaterThan(0);
+    for (const call of callSites) {
+      expect(
+        call.index,
+        `loadIntercom is called at ${call.index}, before the click handler at ${clickHandler} — it may be loading on page load`,
+      ).toBeGreaterThan(clickHandler);
+    }
+  });
+
+  it("ships no eagerly-executing Intercom snippet", () => {
+    /* Intercom's copy-paste snippet is an IIFE that appends the script
+       immediately. If someone pastes it in beside this component, the widget
+       still looks click-to-load while Intercom boots on arrival. */
+    expect(widget).not.toMatch(
+      /<script[^>]*\bsrc=["']https:\/\/widget\.intercom\.io/i,
+    );
+    expect(widget).not.toMatch(
+      /\(function\s*\(\s*\)\s*\{[\s\S]*intercomSettings/i,
+    );
+  });
+
+  it("degrades to email when the messenger cannot load", () => {
+    /* A support button that fails silently is worse than no button: the visitor
+       believes they have been heard. */
+    expect(widget).toContain("noscript");
+    expect(widget).toMatch(/mailto:/);
+  });
+
+  it("is the only third-party host the CSP allows beyond fonts", () => {
+    const vercel = JSON.parse(read("vercel.json"));
+    const csp: string = vercel.headers[0].headers.find(
+      (header: { key: string }) => header.key === "Content-Security-Policy",
+    ).value;
+    const hosts = [
+      ...csp.matchAll(/https?:\/\/([^\s;]+)|wss:\/\/([^\s;]+)/g),
+    ].map((match) => match[1] ?? match[2]);
+    const allowed =
+      /(^|\.)intercom\.io$|(^|\.)intercomcdn\.com$|(^|\.)intercomcdn\.eu$|(^|\.)intercomassets\.com$|(^|\.)intercomusercontent\.com$|(^|\.)intercom-messenger\.com$|(^|\.)intercom-sheets\.com$|(^|\.)intercom-reporting\.com$|(^|\.)gstatic\.com$|(^|\.)googleapis\.com$/;
+    for (const host of hosts) {
+      expect(
+        host.replace(/^\*\./, ""),
+        `unexpected host in CSP: ${host}`,
+      ).toMatch(allowed);
     }
   });
 });
