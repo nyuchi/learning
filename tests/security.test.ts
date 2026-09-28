@@ -85,10 +85,20 @@ describe("app shell", () => {
   });
 
   /* Cloudflare serves _headers only if it reaches the uploaded assets, and it
-     does that by sitting in public/. A rule that never ships is worse than no
-     rule, because the policy still reads as if it were enforced. */
+     does that by sitting in public/, which Astro copies verbatim. A rule that
+     never ships is worse than no rule, because the policy still reads as if it
+     were enforced.
+
+     `npm test` builds before it runs vitest so this sees a fresh dist/. */
   it("ships _headers into the build output", () => {
-    expect(existsSync(join(root, "dist", "_headers"))).toBe(true);
+    expect(
+      existsSync(join(root, "public", "_headers")),
+      "_headers must live in public/ to be copied into the build",
+    ).toBe(true);
+    expect(
+      existsSync(join(root, "dist", "_headers")),
+      "run `npm run build` first — _headers did not reach dist/",
+    ).toBe(true);
   });
 
   it("has a skip link ahead of the header", () => {
