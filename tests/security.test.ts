@@ -24,13 +24,15 @@ describe("app shell", () => {
      before the first paint or the page flashes light. Anything else inlined
      into the shell should be argued for in review, which is what this asserts.
 
-     The `i` flag is load-bearing, not habit: HTML tag names are
-     case-insensitive, so a case-sensitive pattern would skip <SCRIPT> and this
-     assertion would pass while missing the very thing it exists to catch. */
+     Both quirks in the pattern are load-bearing, not habit. HTML tag names are
+     case-insensitive, so a case-sensitive pattern would skip <SCRIPT>; and a
+     close tag may carry whitespace, so `</script>` alone would skip
+     `</script >`. Either way the assertion would pass while missing the very
+     thing it exists to read. */
   it("has exactly one inline script, and it is the theme bootstrap", () => {
     const inline = [
       ...layout.matchAll(
-        /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi,
+        /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script\s*>/gi,
       ),
     ].map((match) => match[1]);
     expect(inline).toHaveLength(2); // the is:inline bootstrap, and the bundled toggle
@@ -40,7 +42,9 @@ describe("app shell", () => {
   });
 
   it("makes no network calls from the shell's scripts", () => {
-    const inline = [...layout.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)]
+    const inline = [
+      ...layout.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script\s*>/gi),
+    ]
       .map((match) => match[1])
       .join("\n");
     for (const forbidden of [
@@ -89,20 +93,27 @@ describe("pages", () => {
     for (const page of pages) expect(page).not.toMatch(/<form\b/);
   });
 
+  /* Matched as the host or global a tracker actually appears as, not as a bare
+     substring. "segment" alone also matches the word segment in a comment, and
+     a security check that cries wolf is one that gets deleted. */
   it("contain no analytics or tracking scripts", () => {
     const trackers = [
-      "googletagmanager",
-      "google-analytics",
-      "gtag",
-      "plausible",
-      "fathom",
-      "mixpanel",
-      "segment",
-      "hotjar",
+      /googletagmanager\.com/,
+      /google-analytics\.com/,
+      /\bgtag\s*\(/,
+      /\bdataLayer\b/,
+      /plausible\.io/,
+      /usefathom\.com/,
+      /cdn\.segment\.com/,
+      /\banalytics\.(load|track|page)\s*\(/,
+      /mixpanel/,
+      /hotjar/,
+      /clarity\.ms/,
+      /posthog/,
     ];
-    for (const page of [...pages, layout]) {
+    for (const source of [...pages, layout]) {
       for (const tracker of trackers) {
-        expect(page.toLowerCase()).not.toContain(tracker);
+        expect(source, `matched ${tracker}`).not.toMatch(tracker);
       }
     }
   });
