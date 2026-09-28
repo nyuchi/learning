@@ -34,3 +34,22 @@
     }
   }
 }
+
+@layer components {
+  /* Inline links inside running text.
+   *
+   * Underlined at rest, not just on hover. axe-core flags the hover-only
+   * version as a serious WCAG 1.4.1 violation (`link-in-text-block`): a link
+   * set apart from its paragraph by colour alone is invisible to a reader who
+   * cannot distinguish that colour, and a hover state does not exist on touch.
+   *
+   * This is a component class, not a token — the colours still come from
+   * @bundu/ui. If the kit grows its own prose-link class, delete this.
+   */
+  .link {
+    @apply text-foreground underline underline-offset-4 decoration-border
+           transition-colors hover:decoration-foreground
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring
+           focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+  }
+}

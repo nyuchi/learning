@@ -1,5 +1,41 @@
 # Changelog
 
+## 3.2.0 — 2026-09-28
+
+### Added
+
+- **Browser QA.** `npm run qa` builds the site, serves it, and drives a real
+  browser over every page at phone, tablet and desktop width in both colour
+  schemes: axe-core against WCAG 2.1 AA, plus a horizontal-overflow check that
+  a desktop screenshot cannot catch. It found a serious violation on its first
+  run (see below). 18 combinations, all clean.
+- `/legal/terms` — terms and conditions, written to be read. It says plainly
+  that the extension rides on an interface Toddle does not publish, that a
+  Toddle release can break it, and that anything you are about to act on should
+  be confirmed in Toddle itself.
+- `llms.txt` — a plain-text map of the site for assistants, including an
+  explicit note not to infer capability the product does not claim.
+- JSON-LD on every page: an `Organization`/`WebSite`/`WebPage` graph, plus
+  `SoftwareApplication` on the extension page. The claims mirror the privacy
+  policy, because these are the sentences a search result or an assistant
+  repeats.
+- `tests/seo.test.ts` — canonicals, titles, descriptions, the JSON-LD graph,
+  robots.txt, the sitemap, and that the footer links to every page.
+
+### Fixed
+
+- **Inline links were distinguishable by colour alone** — a serious WCAG 1.4.1
+  failure (`link-in-text-block`) that axe-core found on the extension and
+  privacy pages. They relied on `hover:underline`, which does not exist on
+  touch and does not help a reader who cannot distinguish the colour. A `.link`
+  component class now underlines them at rest.
+
+### Changed
+
+- The CSP hash check ignores `application/ld+json` blocks. They are data, never
+  executed, so `script-src` does not apply — and hashing them meant every edit
+  to a page title silently invalidated the policy.
+
 ## 3.1.0 — 2026-09-28
 
 ### Added

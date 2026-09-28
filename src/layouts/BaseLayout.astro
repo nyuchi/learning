@@ -18,10 +18,60 @@ interface Props {
   /** Path only, e.g. "/toddle-enhancement-extension". Defaults to this page. */
   canonical?: string;
   ogType?: "website" | "article";
+  /** Extra schema.org nodes for this page, merged into the site graph. */
+  schema?: Record<string, unknown>[];
 }
 
-const { title, description, canonical, ogType = "website" } = Astro.props;
+const {
+  title,
+  description,
+  canonical,
+  ogType = "website",
+  schema = [],
+} = Astro.props;
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).toString();
+
+/* One JSON-LD graph per page: the organisation and the site, plus whatever the
+   page adds. Kept as a graph rather than several script tags so the nodes can
+   reference each other by @id, which is what lets a consumer tell that the
+   publisher of the page and the maker of the software are the same body. */
+const schemaGraph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site.url}/#organization`,
+      name: site.parent.name,
+      url: site.parent.url,
+      parentOrganization: { "@type": "Organization", name: "Bundu Foundation", url: "https://bundu.org" },
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer support",
+        email: "support@nyuchi.com",
+        availableLanguage: ["en"],
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site.url}/#website`,
+      url: site.url,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": `${site.url}/#organization` },
+      inLanguage: "en",
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      isPartOf: { "@id": `${site.url}/#website` },
+      inLanguage: "en",
+    },
+    ...schema,
+  ],
+};
 ---
 
 <!doctype html>
@@ -42,6 +92,12 @@ const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).toString
     <meta property="og:description" content={description} />
     <meta property="og:site_name" content={site.name} />
     <meta name="twitter:card" content="summary_large_image" />
+
+    <script
+      type="application/ld+json"
+      is:inline
+      set:html={JSON.stringify(schemaGraph)}
+    />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
