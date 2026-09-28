@@ -1,0 +1,92 @@
+---
+/**
+ * Footer, matching nyuchi.com's anatomy: the seven-mineral strip across the
+ * top, a brand block beside the link columns, then the legal row.
+ */
+import MineralStrip from "./MineralStrip.astro";
+import Wordmark from "./Wordmark.astro";
+import { MINERALS, footerColumns, legalLinks, site } from "../data/site";
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-canvas border-t border-border">
+  <MineralStrip />
+
+  <div class="container-custom py-12 md:py-20">
+    <div class="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10 md:gap-8">
+      <div class="col-span-2 md:col-span-4">
+        <Wordmark />
+        <p class="mt-3 text-body-sm text-muted-foreground max-w-xs text-pretty">
+          {site.description}
+        </p>
+        <div class="mt-5 flex items-center gap-1.5" role="img" aria-label="Seven African Minerals">
+          {
+            MINERALS.map((mineral) => (
+              <span
+                aria-hidden="true"
+                title={mineral}
+                class="inline-block w-2 h-2 rounded-full"
+                style={`background-color: var(--color-${mineral});`}
+              />
+            ))
+          }
+        </div>
+      </div>
+
+      {
+        footerColumns.map((column) => (
+          <div class="md:col-span-2">
+            <p class="text-caption font-semibold uppercase tracking-wider text-muted-foreground mb-3">
+              {column.title}
+            </p>
+            <ul class="space-y-2">
+              {column.links.map((link) => (
+                <li>
+                  <a
+                    href={link.href}
+                    {...(link.external ? { rel: "noopener noreferrer" } : {})}
+                    class="text-body-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+
+  <div class="border-t border-border">
+    <div class="container-custom py-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <p class="text-caption text-muted-foreground">
+          &copy; {year} {site.parent.name}. Part of the{" "}
+          <a
+            href="https://bundu.org"
+            rel="noopener noreferrer"
+            class="font-medium text-foreground/80 hover:text-foreground underline-offset-4 hover:underline"
+            >Bundu Foundation</a
+          >.
+        </p>
+        <ul class="flex items-center gap-5">
+          {
+            legalLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  {...(link.external ? { rel: "noopener noreferrer" } : {})}
+                  class="text-caption text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
