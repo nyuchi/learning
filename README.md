@@ -17,9 +17,9 @@
 
 A small static Astro site with two pages:
 
-| Route | What it does |
-| --- | --- |
-| `/` | Points visitors at the three surfaces the learning content lives on, and at the tool they can use today. |
+| Route                           | What it does                                                                                                     |
+| ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `/`                             | Points visitors at the three surfaces the learning content lives on, and at the tool they can use today.         |
 | `/toddle-enhancement-extension` | The product page for the [Toddle Enhancement Extension](https://github.com/nyuchi/toddle-enhancement-extension). |
 
 The redirect job has not gone away — the content split described in
@@ -89,7 +89,7 @@ hash, rather than the theme quietly breaking in production.
   `presets` config, and `@astrojs/tailwind` supports Astro ≤ 5. When the kit
   ships a Tailwind 4 build, this can move up.
 - **`postcss-import` runs before `tailwindcss`.** Without it, the `@layer
-  components` blocks inside the imported `globals.css` are dropped and every
+components` blocks inside the imported `globals.css` are dropped and every
   `.btn-primary` / `.card` / `.eyebrow` silently disappears from the build.
 - **`vitest` is pinned to `~4.0.18`.** `4.1.11` trips a resolver bug in npm
   10.9 (`Cannot read properties of null (reading 'edgesOut')`) and `npm install`

@@ -5,15 +5,15 @@ three predictable places.
 
 ## What gets changed where
 
-| Change | File |
-| --- | --- |
-| Nav links, footer columns, legal links, the wordmark | `src/data/site.ts` |
-| Links to the extension (repo, releases, deployment guide) | `src/data/site.ts` (`toddleExtension`) |
-| The three destination cards | the `surfaces` array in `src/pages/index.astro` |
-| Home page copy | `src/pages/index.astro` |
-| Extension page copy | `src/pages/toddle-enhancement-extension.astro` |
-| Header / footer structure | `src/components/SiteHeader.astro`, `SiteFooter.astro` |
-| `<head>`, metadata, theme bootstrap | `src/layouts/BaseLayout.astro` |
+| Change                                                    | File                                                  |
+| --------------------------------------------------------- | ----------------------------------------------------- |
+| Nav links, footer columns, legal links, the wordmark      | `src/data/site.ts`                                    |
+| Links to the extension (repo, releases, deployment guide) | `src/data/site.ts` (`toddleExtension`)                |
+| The three destination cards                               | the `surfaces` array in `src/pages/index.astro`       |
+| Home page copy                                            | `src/pages/index.astro`                               |
+| Extension page copy                                       | `src/pages/toddle-enhancement-extension.astro`        |
+| Header / footer structure                                 | `src/components/SiteHeader.astro`, `SiteFooter.astro` |
+| `<head>`, metadata, theme bootstrap                       | `src/layouts/BaseLayout.astro`                        |
 
 ## What must not be changed here
 
