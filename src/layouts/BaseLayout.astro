@@ -7,6 +7,7 @@
  * other's CSS.
  */
 import "../styles/global.css";
+import MineralStrip from "@bundu/ui/MineralStrip.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { site } from "../data/site";
@@ -80,6 +81,11 @@ const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).toString
       class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-primary-foreground"
       >Skip to content</a
     >
+
+    <!-- The seven-mineral identity strip: fixed to the left edge, full height,
+         seven equal segments top to bottom. Straight from @bundu/ui rather
+         than reimplemented, so it stays identical across every surface. -->
+    <MineralStrip />
 
     <SiteHeader />
     <main id="main" class="flex-1">

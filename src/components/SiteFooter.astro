@@ -1,9 +1,12 @@
 ---
 /**
- * Footer, matching nyuchi.com's anatomy: the seven-mineral strip across the
- * top, a brand block beside the link columns, then the legal row.
+ * Footer, and the site's canonical navigation: every page is reachable from
+ * here. A brand block beside the link columns, then the legal row.
+ *
+ * The seven-mineral identity strip is NOT here — it is a fixed, full-height
+ * element on the left edge of every page, rendered once by the layout from
+ * @bundu/ui. The dots in the brand block are a separate, smaller motif.
  */
-import MineralStrip from "./MineralStrip.astro";
 import Wordmark from "./Wordmark.astro";
 import { MINERALS, footerColumns, legalLinks, site } from "../data/site";
 
@@ -11,8 +14,6 @@ const year = new Date().getFullYear();
 ---
 
 <footer class="bg-canvas border-t border-border">
-  <MineralStrip />
-
   <div class="container-custom py-12 md:py-20">
     <div class="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10 md:gap-8">
       <div class="col-span-2 md:col-span-4">
