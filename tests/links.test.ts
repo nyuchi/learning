@@ -52,7 +52,7 @@ describe("outbound links", () => {
      adding one later cannot silently introduce the hole. */
   it("marks external links rel=noopener noreferrer", () => {
     const externalAnchors = [
-      ...sources.matchAll(/<a\b[^>]*href=\{?["']?https?:[^>]*>/g),
+      ...sources.matchAll(/<a\b[^>]*href=\{?["']?https?:[^>]*>/gi),
     ].map((match) => match[0]);
     for (const anchor of externalAnchors) {
       expect(anchor, `missing rel on: ${anchor}`).toMatch(

@@ -22,10 +22,14 @@ const pages = [
 describe("app shell", () => {
   /* There is exactly one inline script: the theme bootstrap, which has to run
      before the first paint or the page flashes light. Anything else inlined
-     into the shell should be argued for in review, which is what this asserts. */
+     into the shell should be argued for in review, which is what this asserts.
+
+     The `i` flag is load-bearing, not habit: HTML tag names are
+     case-insensitive, so a case-sensitive pattern would skip <SCRIPT> and this
+     assertion would pass while missing the very thing it exists to catch. */
   it("has exactly one inline script, and it is the theme bootstrap", () => {
     const inline = [
-      ...layout.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/g),
+      ...layout.matchAll(/<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi),
     ].map((match) => match[1]);
     expect(inline).toHaveLength(2); // the is:inline bootstrap, and the bundled toggle
     const [bootstrap] = inline;
@@ -34,7 +38,7 @@ describe("app shell", () => {
   });
 
   it("makes no network calls from the shell's scripts", () => {
-    const inline = [...layout.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/g)]
+    const inline = [...layout.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script>/gi)]
       .map((match) => match[1])
       .join("\n");
     for (const forbidden of [
