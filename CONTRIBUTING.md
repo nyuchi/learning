@@ -46,12 +46,12 @@ npm run format:check # the org lint gate runs this
 ## If you touch the theme bootstrap
 
 The one inline script in `BaseLayout.astro` is allowed by a hash in the
-Content-Security-Policy in `vercel.json`. Change the script and the hash no
+Content-Security-Policy in `public/_headers`. Change the script and the hash no
 longer matches, so:
 
 ```sh
 npm run build
-npm run csp:fix      # rewrite vercel.json with the new hashes
+npm run csp:fix      # rewrite public/_headers with the new hashes
 ```
 
 Then review the diff — a changed hash should correspond to a change you meant
@@ -70,7 +70,10 @@ in production.
 
 CI runs `astro check`, the tests, the build and the CSP check, plus the org
 lint gate (actionlint, JSON validity, Prettier, markdownlint, yamllint). All of
-it has to be green.
+it has to be green. Merging to `master` deploys to Cloudflare Workers.
+
+Do not add a link to the extension's source repository — it is private, and a
+test fails the build on any `github.com` link for that reason.
 
 Keep the copy in British English, and keep claims about the extension's privacy
 behaviour accurate — the page is what a school's IT lead will read before

@@ -7,9 +7,9 @@
 [![Lint](https://github.com/nyuchi/learning/actions/workflows/lint.yml/badge.svg)](https://github.com/nyuchi/learning/actions/workflows/lint.yml)
 [![build](https://github.com/nyuchi/learning/actions/workflows/build.yml/badge.svg)](https://github.com/nyuchi/learning/actions/workflows/build.yml)
 ![Astro](https://img.shields.io/badge/Astro-7-BC52EE?style=flat-square&logo=astro&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=flat-square&logo=vercel&logoColor=white)
+![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?style=flat-square&logo=cloudflare&logoColor=white)
 
-**Version:** 3.0.0 | **Live:** [learning.nyuchi.com](https://learning.nyuchi.com) | **Default branch:** `master` | **Deploy:** Vercel
+**Version:** 3.0.0 | **Live:** [learning.nyuchi.com](https://learning.nyuchi.com) | **Default branch:** `master` | **Deploy:** Cloudflare Workers
 
 ---
 
@@ -17,10 +17,10 @@
 
 A small static Astro site with two pages:
 
-| Route                           | What it does                                                                                                     |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `/`                             | Points visitors at the three surfaces the learning content lives on, and at the tool they can use today.         |
-| `/toddle-enhancement-extension` | The product page for the [Toddle Enhancement Extension](https://github.com/nyuchi/toddle-enhancement-extension). |
+| Route                           | What it does                                                                                             |
+| ------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `/`                             | Points visitors at the three surfaces the learning content lives on, and at the tool they can use today. |
+| `/toddle-enhancement-extension` | The product page for the Toddle Enhancement Extension.                                                   |
 
 The redirect job has not gone away — the content split described in
 [CHANGELOG.md](CHANGELOG.md) still holds — but this domain is now also where
@@ -52,6 +52,28 @@ build if a token is redefined locally.
 If a colour looks wrong, it is wrong in `@bundu/ui` — fixing it there fixes
 every Nyuchi surface at once.
 
+## Hosting
+
+Cloudflare Workers, serving `dist/` as static assets. There is **no Astro
+adapter**: the site is fully static, so `astro build` emits `dist/`, wrangler
+uploads it, and no Worker code runs per request. An SSR adapter would add a
+worker invocation and a cold start to every page view of a site that has
+nothing to compute.
+
+```sh
+npm run build      # → dist/
+npm run preview    # build, then serve it locally through wrangler
+npm run deploy     # build, then wrangler deploy
+```
+
+Configuration is `wrangler.jsonc`. Response headers, including the CSP, are in
+`public/_headers` — it has to live in `public/` so it reaches the uploaded
+assets, and a test asserts it ends up in `dist/`.
+
+Deploys happen on merge to `master` via `.github/workflows/deploy.yml`, which
+needs two repository secrets: `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID`.
+
 ## Local workflow
 
 ```sh
@@ -66,7 +88,7 @@ npm run preview      # serve the built output locally
 
 ## Security headers
 
-`vercel.json` carries a real Content-Security-Policy, not just the framing and
+`public/_headers` carries a real Content-Security-Policy, not just the framing and
 sniffing headers. `script-src` is `'self'` plus a hash for each inline script,
 so nothing inline runs unless it was in the build that was reviewed.
 
@@ -77,7 +99,7 @@ allowlist is only worth something if it cannot silently fall out of date, so
 
 ```sh
 npm run csp        # fail if a built inline script is not in the CSP
-npm run csp:fix    # rewrite vercel.json with the current hashes, then review
+npm run csp:fix    # rewrite public/_headers with the current hashes, then review
 ```
 
 Edit the bootstrap without running `csp:fix` and CI fails with the missing
@@ -91,10 +113,6 @@ hash, rather than the theme quietly breaking in production.
   as utilities here and inside the kit's own `@apply` rules. Verified in the
   build output: every component class, the full token set, and the `dark:`
   variants are all present.
-- **`overrides` pins `path-to-regexp` to `^6.3.0`.** The current
-  `@astrojs/vercel` still pulls in a version with a high-severity advisory and
-  there is no fixed release upstream; the override is within the same major, so
-  it is a patch rather than a behaviour change.
 - **`vitest` is pinned to `~4.0.18`.** `4.1.11` trips a resolver bug in npm
   10.9 (`Cannot read properties of null (reading 'edgesOut')`) and
   `npm install` cannot complete at all. This is why the advisory on vitest is

@@ -6,11 +6,11 @@
  * the first paint — so the CSP allows it by hash rather than by opening
  * script-src to all inline code. A hash allowlist is only worth anything if it
  * cannot silently fall out of date, hence this check: edit the bootstrap
- * without updating vercel.json and the build fails here, loudly, instead of the
- * theme quietly breaking in production.
+ * without updating public/_headers and the build fails here, loudly, instead of
+ * the theme quietly breaking in production.
  *
  *   node scripts/check-csp.mjs        # verify
- *   node scripts/check-csp.mjs --fix  # rewrite vercel.json with current hashes
+ *   node scripts/check-csp.mjs --fix  # rewrite public/_headers with current hashes
  */
 import { createHash } from "node:crypto";
 import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
@@ -38,15 +38,15 @@ try {
 
 /** sha256-<base64> over the exact bytes between the script tags.
  *
- * The pattern tolerates the two ways a script tag can legally vary — upper
- * case, and whitespace before the closing ">" — because a block this missed
- * would get no hash, and the CSP would then block it in production while every
- * check here stayed green. */
+ * The pattern tolerates how a script tag can legally vary — upper case, and
+ * whitespace or bogus attributes inside the end tag (`</script\t\n bar>` is
+ * valid) — because a block this missed would get no hash, and the CSP would
+ * then block it in production while every check here stayed green. */
 const hashes = new Set();
 for (const page of pages) {
   const html = readFileSync(page, "utf8");
   for (const match of html.matchAll(
-    /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script\s*>/gi,
+    /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script[^>]*>/gi,
   )) {
     hashes.add(
       `'sha256-${createHash("sha256").update(match[1], "utf8").digest("base64")}'`,
@@ -54,18 +54,20 @@ for (const page of pages) {
   }
 }
 
-const vercelPath = join(root, "vercel.json");
-const vercel = JSON.parse(readFileSync(vercelPath, "utf8"));
-const headerBlock = vercel.headers?.[0]?.headers ?? [];
-const csp = headerBlock.find(
-  (header) => header.key === "Content-Security-Policy",
-);
-if (!csp) {
-  console.error("vercel.json declares no Content-Security-Policy");
+const headersPath = join(root, "public", "_headers");
+const headersFile = readFileSync(headersPath, "utf8");
+
+/* The CSP lives on one line of a Cloudflare _headers file: two spaces, the
+   header name, a colon, then the value to end of line. */
+const CSP_LINE = /^(\s*Content-Security-Policy:\s*)(.*)$/m;
+const match = CSP_LINE.exec(headersFile);
+if (!match) {
+  console.error("public/_headers declares no Content-Security-Policy");
   process.exit(1);
 }
+const [, prefix, policy] = match;
 
-const scriptSrc = csp.value
+const scriptSrc = policy
   .split(";")
   .map((part) => part.trim())
   .find((part) => part.startsWith("script-src"));
@@ -79,15 +81,15 @@ if (missing.length === 0) {
 }
 
 if (!fix) {
-  console.error("inline scripts not allowed by the CSP in vercel.json:");
+  console.error("inline scripts not allowed by the CSP in public/_headers:");
   for (const hash of missing) console.error(`  ${hash}`);
   console.error(
-    "\nRun `npm run csp:fix` to update vercel.json, then review the diff.",
+    "\nRun `npm run csp:fix` to update public/_headers, then review the diff.",
   );
   process.exit(1);
 }
 
-csp.value = csp.value
+const updated = policy
   .split(";")
   .map((part) => part.trim())
   .map((part) =>
@@ -96,5 +98,10 @@ csp.value = csp.value
       : part,
   )
   .join("; ");
-writeFileSync(vercelPath, `${JSON.stringify(vercel, null, 2)}\n`);
-console.log(`updated vercel.json with ${hashes.size} inline script hash(es)`);
+writeFileSync(
+  headersPath,
+  headersFile.replace(CSP_LINE, `${prefix}${updated}`),
+);
+console.log(
+  `updated public/_headers with ${hashes.size} inline script hash(es)`,
+);

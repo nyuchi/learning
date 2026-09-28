@@ -6,7 +6,7 @@
  * quiet merge.
  */
 import { describe, expect, it } from "vitest";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -24,15 +24,15 @@ describe("app shell", () => {
      before the first paint or the page flashes light. Anything else inlined
      into the shell should be argued for in review, which is what this asserts.
 
-     Both quirks in the pattern are load-bearing, not habit. HTML tag names are
-     case-insensitive, so a case-sensitive pattern would skip <SCRIPT>; and a
-     close tag may carry whitespace, so `</script>` alone would skip
-     `</script >`. Either way the assertion would pass while missing the very
-     thing it exists to read. */
+     The shape of the pattern is load-bearing, not habit. HTML tag names are
+     case-insensitive, and an end tag may carry whitespace and even bogus
+     attributes before the ">" — `</script\t\n bar>` is valid. A tighter
+     pattern would skip such a block and this assertion would pass while
+     missing the very thing it exists to read. */
   it("has exactly one inline script, and it is the theme bootstrap", () => {
     const inline = [
       ...layout.matchAll(
-        /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script\s*>/gi,
+        /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script[^>]*>/gi,
       ),
     ].map((match) => match[1]);
     expect(inline).toHaveLength(2); // the is:inline bootstrap, and the bundled toggle
@@ -43,7 +43,7 @@ describe("app shell", () => {
 
   it("makes no network calls from the shell's scripts", () => {
     const inline = [
-      ...layout.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script\s*>/gi),
+      ...layout.matchAll(/<script\b[^>]*>([\s\S]*?)<\/script[^>]*>/gi),
     ]
       .map((match) => match[1])
       .join("\n");
@@ -69,16 +69,26 @@ describe("app shell", () => {
     }
   });
 
-  it("declares the security headers via vercel.json", () => {
-    const vercel = JSON.parse(read("vercel.json"));
-    const keys =
-      vercel.headers?.[0]?.headers?.map(
-        (header: { key: string }) => header.key,
-      ) ?? [];
-    expect(keys).toContain("X-Content-Type-Options");
-    expect(keys).toContain("X-Frame-Options");
-    expect(keys).toContain("Referrer-Policy");
-    expect(keys).toContain("Content-Security-Policy");
+  it("declares the security headers in public/_headers", () => {
+    const headers = read("public/_headers");
+    for (const key of [
+      "X-Content-Type-Options",
+      "X-Frame-Options",
+      "Referrer-Policy",
+      "Permissions-Policy",
+      "Content-Security-Policy",
+    ]) {
+      expect(headers, `missing ${key}`).toMatch(
+        new RegExp(`^\\s*${key}:`, "m"),
+      );
+    }
+  });
+
+  /* Cloudflare serves _headers only if it reaches the uploaded assets, and it
+     does that by sitting in public/. A rule that never ships is worse than no
+     rule, because the policy still reads as if it were enforced. */
+  it("ships _headers into the build output", () => {
+    expect(existsSync(join(root, "dist", "_headers"))).toBe(true);
   });
 
   it("has a skip link ahead of the header", () => {
