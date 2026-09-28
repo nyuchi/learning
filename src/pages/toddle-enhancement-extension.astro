@@ -59,9 +59,36 @@ const facts = [
 const title = "Toddle Enhancement Extension — Nyuchi Learning";
 const description =
   "A Chrome extension for the Toddle gradebook: every rubric expanded into per-criterion columns, CSV export, and a switch that hides student flags so you can share your screen without compromising privacy.";
+
+/* The claims here are the ones a search result or an assistant will repeat, so
+   they mirror the privacy policy rather than the marketing copy. */
+const schema = [
+  {
+    "@type": "SoftwareApplication",
+    "@id": "https://learning.nyuchi.com/toddle-enhancement-extension#software",
+    name: toddleExtension.name,
+    applicationCategory: "BrowserApplication",
+    operatingSystem: "Chrome, Chromium-based browsers",
+    description,
+    url: "https://learning.nyuchi.com/toddle-enhancement-extension",
+    ...(live ? { downloadUrl: toddleExtension.webStore } : {}),
+    publisher: { "@id": "https://learning.nyuchi.com/#organization" },
+    featureList: [
+      "Expands every Toddle assessment tool into per-criterion columns",
+      "Hides student flags across Toddle with one switch",
+      "CSV export of results and submission status",
+    ],
+    privacyPolicy: "https://learning.nyuchi.com/legal/privacy",
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} canonical="/toddle-enhancement-extension">
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/toddle-enhancement-extension"
+  schema={schema}
+>
   <!-- Hero -->
   <section class="container-custom pt-12 md:pt-20 pb-10 md:pb-16">
     <div class="max-w-3xl">
@@ -260,7 +287,7 @@ const description =
         specific questions at
         <a
           href={`mailto:${toddleExtension.supportEmail}`}
-          class="text-foreground/80 hover:text-foreground underline-offset-4 hover:underline"
+          class="link"
           >{toddleExtension.supportEmail}</a
         >.
       </p>

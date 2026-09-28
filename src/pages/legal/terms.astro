@@ -1,0 +1,117 @@
+---
+/**
+ * Terms and conditions.
+ *
+ * Written to be read, not to be impressive. Anything a school's procurement
+ * will actually ask about — what happens if it breaks, who owns the data,
+ * whether we can withdraw it — is answered plainly rather than buried.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legal } from "../../data/legal";
+import { toddleExtension } from "../../data/site";
+
+const title = "Terms and conditions — Nyuchi Learning";
+const description =
+  "The terms for using the Toddle Enhancement Extension and learning.nyuchi.com.";
+---
+
+<BaseLayout title={title} description={description} canonical="/legal/terms">
+  <article class="container-prose section">
+    <p class="eyebrow">Legal</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">
+      Terms and conditions
+    </h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">
+      Last updated {legal.updated}. Between you and {legal.entity}.
+    </p>
+
+    <div class="mt-10 ubuntu-quote">
+      <p class="text-body text-pretty">
+        <strong>The short version.</strong> Use it in your school. Do not resell it or
+        take it apart to make a competing product. It reads Toddle and changes nothing, but
+        it is software that rides on someone else's app, so it can break — check anything
+        that matters before you act on it. We are not liable for what you do with what it
+        shows you.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What you may do</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Install and use the {toddleExtension.name} for teaching and administration at the
+      school or organisation the licence covers, on as many machines as that licence
+      allows, for as long as it is current.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What you may not do</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>Resell it, sublicense it, or charge anyone else for access to it.</li>
+      <li>
+        Take it apart in order to build a competing product. Reading the code to satisfy
+        yourself about what it does is fine — we encourage it.
+      </li>
+      <li>Share a licence key beyond the organisation it was issued to.</li>
+      <li>Remove or obscure the attribution in the interface.</li>
+    </ul>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Your data stays yours</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We claim no ownership or licence over anything the extension reads. It transmits
+      nothing to us, so there is nothing for us to claim. The
+      <a href="/legal/privacy" class="link">privacy policy</a> sets out the detail.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">It rides on Toddle</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      This matters more than the usual boilerplate, so it is said plainly. The extension
+      works by reading the interface Toddle's own web app uses. Toddle does not publish
+      that interface and is under no obligation to keep it stable. A Toddle release can
+      change it, and when that happens a column may stop appearing or a flag may stop being
+      hidden.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We will fix breakages as quickly as we can, and the extension is built to fail
+      visibly rather than quietly. But we cannot promise it will always work, because that
+      is not ours to promise. Treat anything you are about to act on — a report, a
+      moderation decision, a conversation with a parent — as something to confirm in Toddle
+      itself.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We are not affiliated with, endorsed by, or connected to Toddle. "Toddle" is their
+      name, used here only to say what this software works with.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Liability</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The software is provided as it is. To the extent the law allows, we are not liable
+      for indirect or consequential loss, and our total liability is limited to what you
+      paid us in the twelve months before the claim. Nothing here limits liability for
+      death or personal injury caused by negligence, for fraud, or for anything else the
+      law does not permit us to limit.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Ending it</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      You can stop using it at any time by removing the extension. We can end a licence if
+      these terms are breached. If we withdraw the product altogether we will say so with
+      as much notice as we can manage, and refund the unused part of a current licence.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Changes</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If these terms change, the date at the top changes and the current version lives
+      here. A change that materially reduces what you are entitled to will be notified to
+      the contact on the licence, not slipped in.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Law</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      These terms are governed by the law of {legal.country}. If your institution needs a
+      different governing law or its own contract, write to
+      <a href={`mailto:${legal.supportEmail}`} class="link">{legal.supportEmail}</a> — that
+      is a normal request and we would rather have the conversation than have you sign
+      something that does not work for you.
+    </p>
+  </article>
+</BaseLayout>
