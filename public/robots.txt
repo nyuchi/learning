@@ -1,0 +1,10 @@
+# learning.nyuchi.com
+
+User-agent: *
+Allow: /
+
+# Assistants and crawlers that read the site on someone's behalf are welcome.
+# /llms.txt is a short, plain-text map of what is here and what it is for —
+# cheaper to read than the HTML, and it says the same thing.
+
+Sitemap: https://learning.nyuchi.com/sitemap-index.xml

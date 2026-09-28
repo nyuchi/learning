@@ -1,0 +1,122 @@
+---
+/**
+ * Privacy policy.
+ *
+ * The Chrome Web Store requires a privacy policy URL, and this is it. The
+ * store also makes the publisher certify that the policy matches the
+ * disclosures on the listing — so the claims here are generated from
+ * src/data/legal.ts, which is the same file the listing copy is checked
+ * against. They cannot drift apart without someone editing the shared source.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { extensionDataFacts, legal } from "../../data/legal";
+import { toddleExtension } from "../../data/site";
+
+const title = "Privacy policy — Nyuchi Learning";
+const description =
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere, and the site sets no cookies and runs no analytics.";
+---
+
+<BaseLayout title={title} description={description} canonical="/legal/privacy">
+  <article class="container-prose section">
+    <p class="eyebrow">Legal</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Privacy policy</h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">
+      Last updated {legal.updated}. Applies to
+      <strong class="text-foreground">learning.nyuchi.com</strong> and to the
+      <strong class="text-foreground">{toddleExtension.name}</strong>.
+    </p>
+
+    <div class="mt-10 ubuntu-quote">
+      <p class="text-body text-pretty">
+        <strong>The short version.</strong> The extension reads your Toddle gradebook
+        inside your own browser and sends it nowhere. There is no server, no account and
+        no analytics. The only thing it stores is whether you have turned the flag switch
+        on. This website sets no cookies and tracks nothing.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Who we are</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      {legal.entity}, trading as Nyuchi Learning, registered in {legal.country}.
+      For anything in this policy, write to
+      <a
+        href={`mailto:${legal.privacyEmail}`}
+        class="text-foreground hover:opacity-80 underline-offset-4 hover:underline"
+        >{legal.privacyEmail}</a
+      >.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">The extension</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Each of the following is a statement about how the software is built, not a promise
+      about how we intend to behave. They can be checked against the extension itself.
+    </p>
+
+    <dl class="mt-6 space-y-6">
+      {
+        extensionDataFacts.map((fact) => (
+          <div class="card p-6">
+            <dt class="font-serif text-h5 text-foreground">{fact.claim}</dt>
+            <dd class="mt-2 text-body-sm text-muted-foreground text-pretty">{fact.detail}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">
+      Are you a processor of our students' data?
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      No. A data processor receives personal data and does something with it on the
+      controller's behalf. We receive none: the extension reads what your browser has
+      already loaded from Toddle, renders it differently on that same screen, and
+      transmits nothing. Your school remains the controller of its data, and Toddle
+      remains its processor, exactly as before the extension was installed.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If your data protection officer would like that in writing against a specific
+      framework, or wants to review the code before approving it, write to us — we would
+      rather answer the question properly than have you take a web page's word for it.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">This website</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      It sets no cookies and includes no analytics, advertising or tracking of any kind.
+      It is a set of static pages served from Cloudflare's network. Cloudflare processes
+      the request in order to serve it and keeps operational logs, as any host must; we
+      do not add anything to that, and we build no profile of who visits.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Fonts are loaded from Google Fonts, which means your browser makes a request to
+      Google to fetch them and Google sees your IP address in doing so. That is the one
+      third party involved in serving this page.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Email</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If you email us we keep the email, because that is what email is. We use it to
+      answer you and to keep a record of support requests. We do not add you to a
+      marketing list off the back of a support question.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Your rights</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Depending on where you live you may have rights to access, correct, export or
+      delete personal data we hold about you. In practice the only personal data we are
+      likely to hold is correspondence you have sent us. Write to
+      <a
+        href={`mailto:${legal.privacyEmail}`}
+        class="text-foreground hover:opacity-80 underline-offset-4 hover:underline"
+        >{legal.privacyEmail}</a
+      > and we will act on it.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Changes</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If what the software does with data changes, this page changes with it and the date
+      at the top moves. A change that widened what we collect would be announced, not
+      slipped in.
+    </p>
+  </article>
+</BaseLayout>
