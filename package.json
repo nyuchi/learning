@@ -7,13 +7,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "check": "astro check",
     "format": "prettier --write \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
     "test": "vitest run && npm run build && npm run csp",
     "csp": "node scripts/check-csp.mjs",
-    "csp:fix": "node scripts/check-csp.mjs --fix"
+    "csp:fix": "node scripts/check-csp.mjs --fix",
+    "deploy": "npm run build && wrangler deploy"
   },
   "dependencies": {
     "@bundu/ui": "^0.1.1",
@@ -22,7 +23,6 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/sitemap": "^3.7.4",
-    "@astrojs/vercel": "^11.0.11",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^24.10.0",
@@ -31,9 +31,7 @@
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "vitest": "~4.0.18"
-  },
-  "overrides": {
-    "path-to-regexp": "^6.3.0"
+    "vitest": "~4.0.18",
+    "wrangler": "^4.142.0"
   }
 }

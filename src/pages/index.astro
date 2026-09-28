@@ -11,6 +11,12 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
 
+// One switch drives the call to action everywhere: an install link once the
+// store listing is live, an enquiry until then. Never a link that 404s.
+const extensionCta = toddleExtension.webStore
+  ? { label: "Install", href: toddleExtension.webStore }
+  : { label: "Get in touch", href: toddleExtension.enquiry };
+
 const surfaces = [
   {
     name: "Bundu Education",
@@ -72,21 +78,17 @@ const description =
             {toddleExtension.name}
           </h2>
           <p class="mt-4 text-body text-muted-foreground text-pretty">
-            A Chrome extension for the Toddle gradebook. It turns standards-based rubrics
-            into one column per standard, exports the lot to CSV, and hides every student
-            identity with one keystroke so a gradebook can go on a classroom projector.
+            A Chrome extension for the Toddle gradebook. It expands every rubric
+            into per-criterion columns, exports the lot to CSV, and hides student
+            flags with one switch so you can share your screen safely.
           </p>
         </div>
         <div class="mt-6 md:mt-10 flex flex-col sm:flex-row md:flex-col gap-3 md:shrink-0">
           <a href="/toddle-enhancement-extension" class="btn-primary whitespace-nowrap">
             What it does
           </a>
-          <a
-            href={toddleExtension.latestRelease}
-            rel="noopener noreferrer"
-            class="btn-outline whitespace-nowrap"
-          >
-            Download
+          <a href={extensionCta.href} class="btn-outline whitespace-nowrap">
+            {extensionCta.label}
           </a>
         </div>
       </div>

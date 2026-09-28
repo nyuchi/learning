@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.1.0 — 2026-09-28
+
+### Changed
+
+- **Deploys to Cloudflare Workers, not Vercel.** The site is fully static, so
+  there is no Astro adapter at all: `astro build` emits `dist/`, wrangler
+  uploads it as Worker static assets, and nothing runs per request. Dropping
+  `@astrojs/vercel` also removed the only dependency carrying a security
+  advisory, so the `path-to-regexp` override is gone with it.
+- Response headers moved from `vercel.json` to `public/_headers`. The CSP hash
+  check reads that file now, and a test asserts it reaches `dist/` — a header
+  rule that never ships is worse than none, because the policy still reads as
+  if it were enforced.
+- **The extension's source repository is private**, so the site no longer links
+  to it. A test fails the build on any `github.com` link, and one switch
+  (`toddleExtension.webStore`) drives every call to action: an enquiry while
+  there is no store listing, an install link the moment there is one.
+- **Corrected the product page.** It described hiding student names; the
+  shipping extension hides Toddle's student _flags_ and deliberately never
+  hides names. A page a school reads before trusting the software is the wrong
+  place for a feature description that does not match the software.
+- Dropped the "free and open source" and "the source is public" claims, which
+  stopped being true when the repository went private.
+
 ## 3.0.0 — 2026-09-28
 
 Rebuilt in Astro, rebranded, and given a second page.
