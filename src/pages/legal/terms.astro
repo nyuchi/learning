@@ -7,7 +7,7 @@
  * whether we can withdraw it — is answered plainly rather than buried.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal } from "../../data/legal";
+import { legal, pricing } from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Terms and conditions — Nyuchi Learning";
@@ -40,6 +40,41 @@ const description =
       Install and use the {toddleExtension.name} for teaching and administration at the
       school or organisation the licence covers, on as many machines as that licence
       allows, for as long as it is current.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What it costs</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Hiding student flags is free and is not licensed. It protects a child, so it is not
+      something we will ever put behind a payment. A licence covers the gradebook columns
+      and the CSV export.
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      {
+        pricing.map((plan) => (
+          <li>
+            <strong class="text-foreground">
+              {plan.name} — {plan.price} {plan.period}.
+            </strong>{" "}
+            {plan.who}
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A licence runs for twelve months from the day it is issued and does not renew
+      itself — nothing is charged to you automatically, and a key simply stops working
+      when its year is up. Payment is taken by
+      <a href="https://paynow.co.zw" rel="noopener noreferrer" class="link">Paynow</a>
+      through our shop; we never hold your card or mobile money details. Prices are in US
+      dollars and exclude any tax your own country adds.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      An organisation licence is issued as keys, one per teacher, to the contact who
+      signed up. If a key does not work and we cannot make it work for you, write to
+      <a href={`mailto:${legal.supportEmail}`} class="link">{legal.supportEmail}</a>
+      within thirty days of buying it and we will refund you.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What you may not do</h2>

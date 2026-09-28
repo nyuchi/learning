@@ -31,8 +31,9 @@ const description =
       <p class="text-body text-pretty">
         <strong>The short version.</strong> The extension reads your Toddle gradebook
         inside your own browser and sends it nowhere. There is no server, no account and
-        no analytics. The only thing it stores is whether you have turned the flag switch
-        on. This website sets no cookies and tracks nothing.
+        no analytics — buying a licence does not change that, because your key is checked
+        on your own machine. We do hold your email address if you bought something, the
+        way any shop does. This website sets no cookies and tracks nothing.
       </p>
     </div>
 
@@ -93,10 +94,44 @@ const description =
       third party involved in serving this page.
     </p>
 
+    <h2 class="font-serif text-h3 text-foreground mt-12">If you buy a licence</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      This is the one place we hold personal data about you, and it is worth being exact
+      about it, because it is easy to confuse with what the extension does.
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">We hold your email address and your order.</strong>
+        We need them to issue your key, to let you renew, and to give you an invoice.
+      </li>
+      <li>
+        <strong class="text-foreground">Your payment goes to Paynow, not to us.</strong> We
+        never see your card or mobile money details. Our shop runs on Shopify, so Shopify
+        processes the order on our behalf.
+      </li>
+      <li>
+        <strong class="text-foreground">Your key contains your email.</strong> That is how
+        a key is tied to a person. It is stored in your own browser and checked there —
+        the extension does not send it to us or to anyone else.
+      </li>
+      <li>
+        <strong class="text-foreground">We do not market to you off the back of it.</strong>
+        Buying a licence does not put you on a mailing list.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We keep order records for as long as tax law requires us to, and no longer for any
+      other purpose.
+    </p>
+
     <h2 class="font-serif text-h3 text-foreground mt-12">Email</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       If you email us we keep the email, because that is what email is. We use it to
-      answer you and to keep a record of support requests. We do not add you to a
+      answer you and to keep a record of support requests. Support runs on
+      <a href={legal.helpCentre} rel="noopener noreferrer" class="link">Intercom</a>, so
+      Intercom processes those conversations on our behalf. We do not add you to a
       marketing list off the back of a support question.
     </p>
 
