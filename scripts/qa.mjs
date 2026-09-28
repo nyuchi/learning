@@ -7,19 +7,51 @@
  * horizontally on a small screen.
  */
 import { chromium } from "playwright";
-import { readFileSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
 import { createRequire } from "node:module";
 
 /** Where the built site is being served. `npm run qa` starts one for you. */
 const BASE = process.env.QA_BASE_URL || "http://127.0.0.1:4173";
 
-/** Chromium: Playwright's own by default, or one already on the machine. */
-const EXECUTABLE = process.env.CHROMIUM_PATH || undefined;
+/** Chromium: CHROMIUM_PATH wins, else Playwright's own, else one on the box.
+ *
+ * Playwright's default is the headless shell, which a machine can be missing
+ * even when it has a perfectly good Chromium — and a gate that cannot start is
+ * a gate that gets skipped, which is how the last accessibility regression
+ * would have reached production. So look for one before giving up. */
+function findChromium() {
+  if (process.env.CHROMIUM_PATH) return process.env.CHROMIUM_PATH;
+  try {
+    const fallback = chromium.executablePath();
+    if (existsSync(fallback)) return undefined; // let Playwright use its own
+  } catch {
+    /* no Playwright browser registered at all */
+  }
+  const roots = [process.env.PLAYWRIGHT_BROWSERS_PATH, "/opt/pw-browsers"];
+  for (const root of roots.filter(Boolean)) {
+    if (!existsSync(root)) continue;
+    for (const entry of readdirSync(root).sort().reverse()) {
+      for (const leaf of ["chrome-linux/chrome", "chrome-linux64/chrome"]) {
+        const candidate = join(root, entry, leaf);
+        if (existsSync(candidate)) return candidate;
+      }
+    }
+  }
+  return undefined;
+}
+
+const EXECUTABLE = findChromium();
 
 const require = createRequire(import.meta.url);
 const AXE = readFileSync(require.resolve("axe-core/axe.min.js"), "utf8");
 
-const PAGES = ["/", "/toddle-enhancement-extension/", "/legal/privacy/"];
+const PAGES = [
+  "/",
+  "/toddle-enhancement-extension/",
+  "/legal/privacy/",
+  "/legal/terms/",
+];
 const VIEWPORTS = [
   { name: "phone", width: 375, height: 812 },
   { name: "tablet", width: 768, height: 1024 },

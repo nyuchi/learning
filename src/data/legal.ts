@@ -15,7 +15,38 @@ export const legal = {
   country: "Zimbabwe",
   supportEmail: "support@nyuchi.com",
   privacyEmail: "support@nyuchi.com",
+  helpCentre: "https://support.nyuchi.com",
 } as const;
+
+/**
+ * Pricing. In one place because it appears on the product page, in the terms,
+ * and in the help centre, and three copies of a price is how one of them ends
+ * up wrong.
+ */
+export const pricing = [
+  {
+    name: "Individual",
+    price: "US$5",
+    period: "per year",
+    who: "One teacher.",
+    includes: [
+      "Every assessment tool expanded into columns",
+      "CSV export",
+      "Hiding student flags",
+    ],
+  },
+  {
+    name: "Organisation",
+    price: "US$49.99",
+    period: "per year",
+    who: "A school. Keys issued per teacher.",
+    includes: [
+      "Everything in Individual, for your whole staff",
+      "Managed rollout through the Google Admin console",
+      "Invoice, and a named contact for support",
+    ],
+  },
+] as const;
 
 /**
  * What the extension does with data. Each of these is a claim that can be
@@ -44,9 +75,14 @@ export const extensionDataFacts = [
       "There is no server, no account, no analytics, no telemetry, no advertising and no remote code. No student data, no teacher data and no school data leaves your browser.",
   },
   {
-    claim: "The only thing stored is one preference.",
+    claim: "The only things stored are a preference and your licence key.",
     detail:
-      "Whether you have turned the flag-hiding switch on. It is stored in your own browser and is never sent anywhere.",
+      "Whether you have turned the flag-hiding switch on, and the licence key if you have bought one. Both are stored in your own browser and neither is sent anywhere.",
+  },
+  {
+    claim: "Your licence is checked on your machine, not by asking us.",
+    detail:
+      "A licence key is a signed statement that the extension verifies locally. Activating one contacts nothing, which is why it works without a connection — and why buying a licence does not start the extension talking to us.",
   },
   {
     claim: "Exports are local.",
