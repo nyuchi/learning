@@ -1,33 +1,39 @@
 {
   "name": "nyuchi-learning",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
-  "description": "Landing page for learning.nyuchi.com — points to where the learning content lives now.",
+  "description": "learning.nyuchi.com — the Nyuchi Learning surface and the home of the Toddle Enhancement Extension.",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "format": "prettier --plugin prettier-plugin-svelte --write \"src/**/*.{svelte,ts,js,css}\" \"tests/**/*.ts\"",
-    "format:check": "prettier --plugin prettier-plugin-svelte --check \"src/**/*.{svelte,ts,js,css}\" \"tests/**/*.ts\"",
-    "test": "vitest run"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "format": "prettier --write \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
+    "test": "vitest run && npm run build && npm run csp",
+    "csp": "node scripts/check-csp.mjs",
+    "csp:fix": "node scripts/check-csp.mjs --fix"
+  },
+  "dependencies": {
+    "@bundu/ui": "^0.1.1",
+    "astro": "^5.18.2"
   },
   "devDependencies": {
-    "@sveltejs/adapter-vercel": "^6.3.3",
-    "@sveltejs/kit": "^2.59.0",
-    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/sitemap": "^3.7.4",
+    "@astrojs/tailwind": "^6.0.2",
+    "@astrojs/vercel": "^8.2.9",
     "@tailwindcss/typography": "^0.5.19",
     "@types/node": "^24.10.0",
     "autoprefixer": "^10.4.21",
     "postcss": "^8.5.6",
+    "postcss-import": "^17.0.0",
     "prettier": "3.3.3",
-    "prettier-plugin-svelte": "^3.5.1",
-    "svelte": "^5.43.6",
-    "svelte-check": "^4.4.7",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3",
-    "vite": "^8.0.10",
-    "vitest": "^4.0.18"
+    "vitest": "~4.0.18"
   }
 }

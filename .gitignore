@@ -1,6 +1,6 @@
-# SvelteKit
-.svelte-kit
-build
+# Astro
+dist
+.astro
 
 # Vercel adapter output
 .vercel

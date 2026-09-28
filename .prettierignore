@@ -28,3 +28,15 @@ profile/governance/
 *-lock.yaml
 package-lock.json
 pnpm-lock.yaml
+
+# Astro components.
+#
+# The org lint gate (.github/workflows/lint.yml) runs Prettier from
+# nyuchi/.github's reusable workflow, which does not install
+# prettier-plugin-astro — without that plugin Prettier has no parser for
+# .astro and the gate fails on files it cannot read. Declaring the plugin in
+# .prettierrc would not help: the plugin has to exist in the environment doing
+# the formatting, and that environment is not this repo's node_modules.
+#
+# These files are still type-checked by `npm run check` (astro check).
+*.astro

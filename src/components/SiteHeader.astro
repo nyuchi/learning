@@ -1,0 +1,105 @@
+---
+/**
+ * Sticky header, matching nyuchi.com's shell: translucent canvas over a blur,
+ * a single hairline border, and a 64/80px row.
+ */
+import Wordmark from "./Wordmark.astro";
+import { headerCta, primaryNav } from "../data/site";
+
+const { pathname } = Astro.url;
+const isCurrent = (href: string) =>
+  href.startsWith("/") && (href === "/" ? pathname === "/" : pathname.startsWith(href));
+---
+
+<header class="sticky top-0 z-40">
+  <div class="bg-canvas/80 backdrop-blur-md border-b border-border">
+    <div class="container-custom">
+      <div class="flex items-center justify-between h-16 lg:h-20 gap-6">
+        <Wordmark />
+
+        <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
+          {
+            primaryNav.map((link) => (
+              <a
+                href={link.href}
+                aria-current={isCurrent(link.href) ? "page" : undefined}
+                {...(link.external ? { rel: "noopener noreferrer" } : {})}
+                class:list={[
+                  "px-3 py-2 text-body-sm font-medium transition-colors duration-200",
+                  isCurrent(link.href)
+                    ? "text-foreground"
+                    : "text-foreground/70 hover:text-foreground",
+                ]}
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <button
+            type="button"
+            id="theme-toggle"
+            class="btn-ghost !px-2.5 !h-9"
+            aria-label="Switch between light and dark"
+          >
+            <svg
+              class="w-4 h-4 block dark:hidden"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"
+              ></path>
+            </svg>
+            <svg
+              class="w-4 h-4 hidden dark:block"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+            </svg>
+          </button>
+
+          <a href={headerCta.href} rel="noopener noreferrer" class="btn-primary !h-10 !px-5 text-body-sm">
+            {headerCta.label}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Small screens: the same links, scrolled rather than folded into a menu.
+         A disclosure would need JS to be accessible; four links do not. -->
+    <div class="md:hidden border-t border-border">
+      <nav class="container-custom flex gap-1 overflow-x-auto py-2" aria-label="Primary">
+        {
+          primaryNav.map((link) => (
+            <a
+              href={link.href}
+              aria-current={isCurrent(link.href) ? "page" : undefined}
+              {...(link.external ? { rel: "noopener noreferrer" } : {})}
+              class:list={[
+                "shrink-0 px-3 py-1.5 rounded-full text-body-sm font-medium transition-colors duration-200",
+                isCurrent(link.href)
+                  ? "bg-muted text-foreground"
+                  : "text-foreground/70 hover:text-foreground",
+              ]}
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </div>
+</header>
