@@ -11,9 +11,10 @@ marketing estate is built on, and it is what `@bundu/ui` ships components for,
 so a Svelte site could only ever reimplement the design system rather than
 consume it.
 
-Astro 5 rather than the current 7: `@bundu/ui@0.1.1` ships Tailwind 3 syntax
-and a Tailwind 3 preset, and `@astrojs/tailwind` supports Astro up to 5. This
-moves up when the kit ships a Tailwind 4 build.
+Astro 7 with Tailwind 4. `@bundu/ui@0.1.1` ships a Tailwind 3 style config,
+which Tailwind 4 consumes through `@config` — component classes, the token
+set, the type scale and the `dark:` variants all come through intact, verified
+against the build output.
 
 ### The design system comes from the package now
 
@@ -54,6 +55,11 @@ setting. A test fails on a lowercase spelling anywhere in `src/`.
 - `npm run check` is `astro check`, not `svelte-check`.
 - `vitest` pinned to `~4.0.18`; `4.1.11` trips a resolver bug in npm 10.9 that
   makes `npm install` fail outright.
+- `overrides` pins `path-to-regexp` to `^6.3.0`, clearing the high-severity
+  advisory that the current `@astrojs/vercel` still pulls in.
+- The CI audit is split: `--omit=dev` at high severity blocks and is at zero;
+  build and test tooling is reported without blocking, because the one
+  remaining advisory (vitest) has no installable fix.
 - `*.astro` added to `.prettierignore`, because the org lint gate runs Prettier
   without `prettier-plugin-astro` and cannot parse those files.
 
