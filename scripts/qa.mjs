@@ -7,39 +7,13 @@
  * horizontally on a small screen.
  */
 import { chromium } from "playwright";
+import { findChromium } from "./lib/browser.mjs";
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { createRequire } from "node:module";
 
 /** Where the built site is being served. `npm run qa` starts one for you. */
 const BASE = process.env.QA_BASE_URL || "http://127.0.0.1:4173";
-
-/** Chromium: CHROMIUM_PATH wins, else Playwright's own, else one on the box.
- *
- * Playwright's default is the headless shell, which a machine can be missing
- * even when it has a perfectly good Chromium — and a gate that cannot start is
- * a gate that gets skipped, which is how the last accessibility regression
- * would have reached production. So look for one before giving up. */
-function findChromium() {
-  if (process.env.CHROMIUM_PATH) return process.env.CHROMIUM_PATH;
-  try {
-    const fallback = chromium.executablePath();
-    if (existsSync(fallback)) return undefined; // let Playwright use its own
-  } catch {
-    /* no Playwright browser registered at all */
-  }
-  const roots = [process.env.PLAYWRIGHT_BROWSERS_PATH, "/opt/pw-browsers"];
-  for (const root of roots.filter(Boolean)) {
-    if (!existsSync(root)) continue;
-    for (const entry of readdirSync(root).sort().reverse()) {
-      for (const leaf of ["chrome-linux/chrome", "chrome-linux64/chrome"]) {
-        const candidate = join(root, entry, leaf);
-        if (existsSync(candidate)) return candidate;
-      }
-    }
-  }
-  return undefined;
-}
 
 const EXECUTABLE = findChromium();
 
@@ -74,6 +48,19 @@ for (const scheme of ["light", "dark"]) {
         (m) => m.type() === "error" && consoleErrors.push(m.text()),
       );
       page.on("pageerror", (e) => consoleErrors.push(String(e)));
+
+      /* The support messenger must not load until someone asks for it — that is
+         what lets the privacy policy say this site sets no cookies unless you
+         open it. Asserting it here, in a browser, is the real check; a test that
+         reads the component's source can only ever guess at it. Fonts are the
+         one third party a page may reach on its own, and the policy says so. */
+      const thirdParty = [];
+      page.on("request", (request) => {
+        const host = new URL(request.url()).host;
+        if (host === new URL(BASE).host) return;
+        if (/(^|\.)(googleapis|gstatic)\.com$/.test(host)) return;
+        thirdParty.push(host);
+      });
 
       const res = await page.goto(`${BASE}${path}`, {
         waitUntil: "networkidle",
@@ -126,11 +113,35 @@ for (const scheme of ["light", "dark"]) {
         offenders: overflow.offenders,
         consoleErrors,
         violations,
+        thirdParty: [...new Set(thirdParty)],
+        cookies: (await page.context().cookies()).length,
       });
       await page.close();
     }
   }
 }
+/* The other half of the messenger contract: pressing the button must actually
+   reach Intercom. Checked once rather than on all 24 combinations — it is the
+   same button on every page, and each run would otherwise hit a third party two
+   dozen times. */
+let messenger = "not checked";
+{
+  const page = await browser.newPage();
+  await page.goto(`${BASE}/toddle-enhancement-extension/`, {
+    waitUntil: "networkidle",
+  });
+  const asked = [];
+  page.on("request", (request) => {
+    if (/intercom/i.test(request.url())) asked.push(request.url());
+  });
+  await page.locator("[data-support-launcher]").click();
+  await page.waitForTimeout(2500);
+  messenger = asked.length
+    ? "ok"
+    : "the button was pressed and nothing was requested from Intercom";
+  await page.close();
+}
+
 await browser.close();
 writeFileSync(
   new URL("../qa-report.json", import.meta.url),
@@ -143,11 +154,19 @@ writeFileSync(
    that is the environment, not the site. Overflow and accessibility
    violations do fail. */
 const bad = report.filter(
-  (r) => r.overflows || r.violations.length || r.status !== 200,
+  (r) =>
+    r.overflows ||
+    r.violations.length ||
+    r.status !== 200 ||
+    r.thirdParty.length ||
+    r.cookies,
 );
 console.log(`checked ${report.length} page/viewport/scheme combinations`);
 if (!bad.length) {
-  console.log("no overflow, no console errors, no accessibility violations");
+  console.log(
+    "no overflow, no console errors, no accessibility violations,\n" +
+      "no third party and no cookies before a click",
+  );
 } else {
   for (const r of bad) {
     console.log(`\n${r.scheme} ${r.path} @${r.viewport} (HTTP ${r.status})`);
@@ -155,6 +174,11 @@ if (!bad.length) {
       console.log(
         `  OVERFLOW by ${r.overflowBy}px — ${r.offenders.join(", ")}`,
       );
+    if (r.thirdParty.length)
+      console.log(
+        `  THIRD PARTY loaded without being asked: ${r.thirdParty.join(", ")}`,
+      );
+    if (r.cookies) console.log(`  COOKIES set on load: ${r.cookies}`);
     for (const e of r.consoleErrors)
       console.log(`  CONSOLE: ${e.slice(0, 160)}`);
     for (const v of r.violations)
@@ -164,4 +188,10 @@ if (!bad.length) {
   }
 }
 
-process.exit(bad.length ? 1 : 0);
+if (messenger === "ok") {
+  console.log("support messenger: loads on click, not before");
+} else {
+  console.log(`support messenger: FAIL — ${messenger}`);
+}
+
+process.exit(bad.length || messenger !== "ok" ? 1 : 0);

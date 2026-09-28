@@ -9,24 +9,37 @@ import { describe, expect, it } from "vitest";
 import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  policyHosts,
+  readPolicy,
+  readVercelConfig,
+} from "../scripts/lib/csp.mjs";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative: string) => readFileSync(join(root, relative), "utf8");
 
 const layout = read("src/layouts/BaseLayout.astro");
 
-/* Every component, not just the shell. The tracker check used to read
-   BaseLayout alone, which was fine while the shell was the only place a third
-   party could enter. It is not any more: the support messenger arrives as a
-   component, and a check that only reads the layout would have let it — or
-   anything else — in silently. Read the whole tree instead. */
-const componentSources = readdirSync(join(root, "src/components"))
-  .filter((entry) => entry.endsWith(".astro"))
-  .map((entry) => read(join("src/components", entry)));
-const pages = [
-  "src/pages/index.astro",
-  "src/pages/toddle-enhancement-extension.astro",
-].map(read);
+/* Every source file under src/, not an enumerated list of directories.
+   The tracker check used to read BaseLayout alone, which was fine while the
+   shell was the only place a third party could enter. It is not any more — and
+   an enumerated list is the same bug one directory later: the two legal pages
+   were never scanned at all, and one of them now names a third party by design.
+   Walk the tree, so the next arrival is caught wherever it lands. */
+function walk(directory: string): string[] {
+  return readdirSync(join(root, directory), { withFileTypes: true }).flatMap(
+    (entry) => {
+      const path = `${directory}/${entry.name}`;
+      if (entry.isDirectory()) return walk(path);
+      return /\.(astro|ts|js)$/.test(entry.name) ? [path] : [];
+    },
+  );
+}
+
+const sources = walk("src").map((path) => ({ path, text: read(path) }));
+const pages = sources
+  .filter((file) => file.path.startsWith("src/pages/"))
+  .map((file) => file.text);
 
 describe("app shell", () => {
   /* There is exactly one inline script: the theme bootstrap, which has to run
@@ -79,7 +92,7 @@ describe("app shell", () => {
   });
 
   it("declares the security headers via vercel.json", () => {
-    const vercel = JSON.parse(read("vercel.json"));
+    const vercel = readVercelConfig();
     const keys =
       vercel.headers?.[0]?.headers?.map(
         (header: { key: string }) => header.key,
@@ -125,7 +138,7 @@ describe("pages", () => {
       /clarity\.ms/,
       /posthog/,
     ];
-    for (const source of [...pages, layout, ...componentSources]) {
+    for (const source of sources.map((file) => file.text)) {
       for (const tracker of trackers) {
         expect(source, `matched ${tracker}`).not.toMatch(tracker);
       }
@@ -134,41 +147,20 @@ describe("pages", () => {
 });
 
 /* The support messenger is the one third party on this site, and it is allowed
-   here on one condition: it does not load until a visitor asks for it. That is
-   what lets the privacy policy still say this website sets no cookies unless
-   you open the messenger, and it is a property of the source that is easy to
-   destroy by accident — moving the loader out of the click handler, or adding
-   the stock Intercom snippet next to it, would boot Intercom on every visit and
-   nothing would look broken. So it is asserted rather than trusted. */
+   here on one condition: it does not load until a visitor asks for it.
+
+   That condition is a RUNTIME property, and scripts/qa.mjs is what proves it —
+   it loads every page in Chromium and fails the run on any third-party request
+   or any cookie before a click. What is left here is the part that is genuinely
+   a property of the source, and cheap enough to run in CI without a browser. */
 describe("support messenger", () => {
   const widget = read("src/components/SupportWidget.astro");
-
-  it("loads Intercom only from inside a click handler", () => {
-    expect(widget).toContain("widget.intercom.io/widget/");
-
-    /* What matters is where the loader is CALLED, not where it is declared —
-       declaring it above the handler is ordinary hoisting and says nothing. So
-       find every call site that is not the declaration and require each one to
-       come after the click listener opens. */
-    const clickHandler = widget.indexOf('addEventListener("click"');
-    expect(clickHandler, "no click handler at all").toBeGreaterThan(-1);
-
-    const callSites = [...widget.matchAll(/(\w*)\s*loadIntercom\s*\(/g)].filter(
-      (match) => match[1] !== "function",
-    );
-    expect(callSites.length, "loadIntercom is never called").toBeGreaterThan(0);
-    for (const call of callSites) {
-      expect(
-        call.index,
-        `loadIntercom is called at ${call.index}, before the click handler at ${clickHandler} — it may be loading on page load`,
-      ).toBeGreaterThan(clickHandler);
-    }
-  });
 
   it("ships no eagerly-executing Intercom snippet", () => {
     /* Intercom's copy-paste snippet is an IIFE that appends the script
        immediately. If someone pastes it in beside this component, the widget
-       still looks click-to-load while Intercom boots on arrival. */
+       still looks click-to-load while Intercom boots on arrival — and unlike
+       most regressions this one would pass a casual read of the diff. */
     expect(widget).not.toMatch(
       /<script[^>]*\bsrc=["']https:\/\/widget\.intercom\.io/i,
     );
@@ -184,21 +176,37 @@ describe("support messenger", () => {
     expect(widget).toMatch(/mailto:/);
   });
 
+  it("takes the workspace id and support address from site data", () => {
+    /* Both are facts kept in src/data/legal.ts. A literal here is a second copy
+       that will not be updated with the first. */
+    expect(widget).toContain("legal.support.intercomAppId");
+    expect(widget).not.toMatch(/f1vga504|support@nyuchi\.com/);
+  });
+
   it("is the only third-party host the CSP allows beyond fonts", () => {
-    const vercel = JSON.parse(read("vercel.json"));
-    const csp: string = vercel.headers[0].headers.find(
-      (header: { key: string }) => header.key === "Content-Security-Policy",
-    ).value;
-    const hosts = [
-      ...csp.matchAll(/https?:\/\/([^\s;]+)|wss:\/\/([^\s;]+)/g),
-    ].map((match) => match[1] ?? match[2]);
-    const allowed =
-      /(^|\.)intercom\.io$|(^|\.)intercomcdn\.com$|(^|\.)intercomcdn\.eu$|(^|\.)intercomassets\.com$|(^|\.)intercomusercontent\.com$|(^|\.)intercom-messenger\.com$|(^|\.)intercom-sheets\.com$|(^|\.)intercom-reporting\.com$|(^|\.)gstatic\.com$|(^|\.)googleapis\.com$/;
+    /* A tripwire, not a copy of the policy: it fails when a host nobody
+       expected appears, whatever else changes. A list of suffixes rather than
+       one alternation regex, because a missing (^|\.) in that regex silently
+       widens the check it exists to narrow. */
+    const ALLOWED = [
+      "intercom.io",
+      "intercomcdn.com",
+      "intercomcdn.eu",
+      "intercomassets.com",
+      "intercomusercontent.com",
+      "intercom-messenger.com",
+      "intercom-sheets.com",
+      "intercom-reporting.com",
+      "gstatic.com",
+      "googleapis.com",
+    ];
+    const hosts = policyHosts(readPolicy());
+    expect(hosts.length).toBeGreaterThan(0);
     for (const host of hosts) {
-      expect(
-        host.replace(/^\*\./, ""),
-        `unexpected host in CSP: ${host}`,
-      ).toMatch(allowed);
+      const ok = ALLOWED.some(
+        (suffix) => host === suffix || host.endsWith(`.${suffix}`),
+      );
+      expect(ok, `unexpected host in CSP: ${host}`).toBe(true);
     }
   });
 });

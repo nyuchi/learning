@@ -1,10 +1,19 @@
 #!/usr/bin/env node
 /**
- * Serve dist/ and run the browser QA against it.
+ * Serve dist/ and run a browser script against it.
  *
- * A tiny static server rather than a dependency: the QA needs real HTTP (a
- * file:// origin changes how the browser treats scripts and fonts) and this is
- * thirty lines against another package in the tree.
+ * A tiny static server rather than a dependency: a browser check needs real HTTP
+ * (a file:// origin changes how the browser treats scripts and fonts) and this
+ * is thirty lines against another package in the tree.
+ *
+ * Which script to run is an argument, defaulting to qa.mjs. It used to be
+ * hardcoded, which meant the CSP probe — the one check that catches a hole all
+ * the green checks miss — had no way to get a served dist/ and expected a server
+ * somebody had started by hand. A check that takes two commands and a spare
+ * terminal is a check nobody runs.
+ *
+ *   node scripts/serve-and-qa.mjs                          # qa.mjs
+ *   node scripts/serve-and-qa.mjs probe-intercom-csp.mjs
  */
 import { createServer } from "node:http";
 import { spawn } from "node:child_process";
@@ -59,16 +68,21 @@ const server = createServer(async (req, res) => {
 
 await new Promise((ready) => server.listen(PORT, "127.0.0.1", ready));
 
-const qa = spawn(
+const script = process.argv[2] || "qa.mjs";
+const base = `http://127.0.0.1:${PORT}`;
+
+const child = spawn(
   process.execPath,
-  [join(dirname(fileURLToPath(import.meta.url)), "qa.mjs")],
+  [join(dirname(fileURLToPath(import.meta.url)), script)],
   {
     stdio: "inherit",
-    env: { ...process.env, QA_BASE_URL: `http://127.0.0.1:${PORT}` },
+    /* Both variables, so the served origin reaches whichever script is run
+       without each one having to know the other's name for it. */
+    env: { ...process.env, QA_BASE_URL: base, PROBE_BASE_URL: base },
   },
 );
 
-qa.on("exit", (code) => {
+child.on("exit", (code) => {
   server.close();
   process.exit(code ?? 1);
 });

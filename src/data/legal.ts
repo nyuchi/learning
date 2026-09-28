@@ -16,6 +16,11 @@ export const legal = {
   supportEmail: "support@nyuchi.com",
   privacyEmail: "support@nyuchi.com",
   helpCentre: "https://support.nyuchi.com",
+  /* The support messenger's workspace id. Public by design — it is in the
+     snippet on every site that uses Intercom, and identifies the workspace, not
+     a person. It lives here rather than in the component because it is a fact
+     about the same integration the privacy policy describes and the CSP allows. */
+  support: { intercomAppId: "f1vga504" },
 } as const;
 
 /**
