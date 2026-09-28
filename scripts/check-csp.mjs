@@ -38,14 +38,15 @@ try {
 
 /** sha256-<base64> over the exact bytes between the script tags.
  *
- * Matched case-insensitively because HTML tag names are: a <SCRIPT> block that
- * this missed would get no hash, and the CSP would then block it in production
- * while every check here stayed green. */
+ * The pattern tolerates the two ways a script tag can legally vary — upper
+ * case, and whitespace before the closing ">" — because a block this missed
+ * would get no hash, and the CSP would then block it in production while every
+ * check here stayed green. */
 const hashes = new Set();
 for (const page of pages) {
   const html = readFileSync(page, "utf8");
   for (const match of html.matchAll(
-    /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi,
+    /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script\s*>/gi,
   )) {
     hashes.add(
       `'sha256-${createHash("sha256").update(match[1], "utf8").digest("base64")}'`,
