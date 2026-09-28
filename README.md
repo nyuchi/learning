@@ -65,7 +65,8 @@ Response headers, including the CSP, are declared in `vercel.json`.
 npm install
 npm run dev          # http://localhost:4321 — hot reload
 npm run check        # astro check (TypeScript across .astro files)
-npm test             # vitest, then build, then the CSP hash check
+npm test             # build, then vitest, then the CSP hash check
+npm run qa           # drive a real browser: accessibility + layout, 18 combinations
 npm run format       # prettier --write
 npm run build        # produces .vercel/output for the Vercel adapter
 npm run preview      # serve the built output locally
@@ -109,6 +110,18 @@ hash, rather than the theme quietly breaking in production.
 - **`*.astro` is in `.prettierignore`.** The org lint gate runs Prettier from
   `nyuchi/.github`, which has no `prettier-plugin-astro`, so it cannot parse
   those files. They are still type-checked by `npm run check`.
+
+## Browser QA
+
+`npm run qa` builds the site, serves it, and drives Chromium over every page at
+phone, tablet and desktop width in both colour schemes. It runs axe-core
+against WCAG 2.1 AA and checks for horizontal overflow, which is the classic
+small-screen bug and is invisible in a desktop screenshot.
+
+It is not in `npm test` because it needs a browser; run it before shipping a
+visual change. A sandboxed browser that does not trust the local TLS proxy
+fails the Google Fonts request — console errors are reported but do not fail
+the run, for that reason. Overflow and accessibility violations do.
 
 ## Dependency audit
 
