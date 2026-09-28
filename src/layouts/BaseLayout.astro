@@ -1,0 +1,107 @@
+---
+/**
+ * The page shell: fonts, metadata, the theme bootstrap, header and footer.
+ *
+ * Fonts, tokens and component classes all come from @bundu/ui, so a page here
+ * looks like a page on nyuchi.com without either site holding a copy of the
+ * other's CSS.
+ */
+import "../styles/global.css";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title: string;
+  description: string;
+  /** Path only, e.g. "/toddle-enhancement-extension". Defaults to this page. */
+  canonical?: string;
+  ogType?: "website" | "article";
+}
+
+const { title, description, canonical, ogType = "website" } = Astro.props;
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).toString();
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Theme bootstrap. This has to run before the first paint or the page
+      flashes light before switching to dark, so it is inline and synchronous
+      rather than a module.
+
+      It is the ONLY inline script on this site, and tests/security.test.ts
+      asserts that — it reads two local values and sets two attributes. No
+      network, no third party, no analytics.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem("theme");
+          var dark =
+            stored === "dark" ||
+            (stored === null && window.matchMedia("(prefers-color-scheme: dark)").matches);
+          document.documentElement.classList.toggle("dark", dark);
+          document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+        } catch (e) {
+          /* Private mode, or storage blocked — fall through to light. */
+        }
+      })();
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-canvas text-foreground antialiased flex flex-col">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:m-4 focus:rounded-full focus:bg-primary focus:px-5 focus:py-2.5 focus:text-primary-foreground"
+      >Skip to content</a
+    >
+
+    <SiteHeader />
+    <main id="main" class="flex-1">
+      <slot />
+    </main>
+    <SiteFooter />
+
+    <script>
+      // Theme toggle. Deferred and external to the shell, because unlike the
+      // bootstrap above it does not need to beat the first paint.
+      const toggle = document.getElementById("theme-toggle");
+      toggle?.addEventListener("click", () => {
+        const root = document.documentElement;
+        const dark = !root.classList.contains("dark");
+        root.classList.toggle("dark", dark);
+        root.setAttribute("data-theme", dark ? "dark" : "light");
+        try {
+          localStorage.setItem("theme", dark ? "dark" : "light");
+        } catch {
+          /* Nothing to persist to; the choice lasts for this page view. */
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,156 @@
+---
+/**
+ * learning.nyuchi.com.
+ *
+ * The standalone learning site that used to live here was split into three
+ * surfaces in the marketing monorepo, so the destination cards remain the
+ * front door. What is new is that this domain is also where the classroom
+ * tools Nyuchi Web Services builds for schools now live — starting with the
+ * Toddle Enhancement Extension.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { toddleExtension } from "../data/site";
+
+const surfaces = [
+  {
+    name: "Bundu Education",
+    eyebrow: "Foundation initiative",
+    description:
+      "Open, evidence-based frameworks for K-12 digital campuses, digital literacy, and support process. Free to copy, adapt, and share. The Foundation publishes; anyone can implement.",
+    cta: "Explore the frameworks",
+    href: "https://bundu.org/education",
+    mineral: "malachite",
+  },
+  {
+    name: "Nyuchi Learning",
+    eyebrow: "Commercial product",
+    description:
+      "Cohort-based and self-paced training in software, AI, and digital skills. Localised for Africa with offline study packs. Implementation services for organisations adopting the Bundu Education frameworks.",
+    cta: "See the programme",
+    href: "https://nyuchi.com/learning",
+    mineral: "gold",
+  },
+  {
+    name: "Mukoko Lingo",
+    eyebrow: "Consumer surface",
+    description:
+      "African language learning, free for personal use. Shona and Ndebele primary, plus English, French, Portuguese, and travel phrase courses. The same content library Bundu Education and Nyuchi Learning draw from.",
+    cta: "Start learning",
+    href: "https://mukoko.com/lingo",
+    mineral: "tanzanite",
+  },
+];
+
+const title = "Nyuchi Learning — programmes, frameworks, and classroom tools";
+const description =
+  "Nyuchi Learning: commercial training at nyuchi.com/learning, the open Bundu Education frameworks, Mukoko Lingo for languages, and the classroom tools Nyuchi Web Services builds for schools.";
+---
+
+<BaseLayout title={title} description={description} canonical="/">
+  <section class="container-custom pt-12 md:pt-20 pb-10 md:pb-14">
+    <div class="max-w-3xl">
+      <p class="eyebrow">Nyuchi Learning</p>
+      <h1 class="font-serif text-display-sm text-foreground text-balance">
+        Learning, and the tools that carry it.
+      </h1>
+      <p class="mt-6 text-body-lg text-muted-foreground text-pretty max-w-2xl">
+        The learning content that used to live here is now spread across three surfaces of
+        the Bundu Family ecosystem. This domain is also where the classroom software we
+        build for schools lives.
+      </p>
+    </div>
+  </section>
+
+  <!-- The tool comes first: it is the thing a visitor can actually use today. -->
+  <section class="container-custom pb-14 md:pb-20">
+    <article class="card p-6 md:p-10 relative overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-[3px] bg-primary" aria-hidden="true"></div>
+      <div class="md:flex md:items-start md:justify-between md:gap-10">
+        <div class="max-w-2xl">
+          <p class="eyebrow mb-3">Classroom tools · Nyuchi Web Services</p>
+          <h2 class="font-serif text-h2 text-foreground text-balance">
+            {toddleExtension.name}
+          </h2>
+          <p class="mt-4 text-body text-muted-foreground text-pretty">
+            A Chrome extension for the Toddle gradebook. It turns standards-based rubrics
+            into one column per standard, exports the lot to CSV, and hides every student
+            identity with one keystroke so a gradebook can go on a classroom projector.
+          </p>
+        </div>
+        <div class="mt-6 md:mt-10 flex flex-col sm:flex-row md:flex-col gap-3 md:shrink-0">
+          <a href="/toddle-enhancement-extension" class="btn-primary whitespace-nowrap">
+            What it does
+          </a>
+          <a
+            href={toddleExtension.latestRelease}
+            rel="noopener noreferrer"
+            class="btn-outline whitespace-nowrap"
+          >
+            Download
+          </a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="container-custom pb-4">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Where the learning went</p>
+      <h2 class="font-serif text-h2 text-foreground text-balance">
+        One library, three surfaces.
+      </h2>
+      <p class="mt-4 text-body text-muted-foreground text-pretty">
+        The Foundation publishes the open frameworks at Bundu Education. Nyuchi Learning is
+        the commercial vehicle organisations use when they want help implementing them.
+        Mukoko Lingo is the consumer app for individuals who want to learn a language. Same
+        content library underneath; different surfaces for different audiences.
+      </p>
+    </div>
+  </section>
+
+  <section class="container-custom py-10 md:py-14">
+    <div class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
+      {
+        surfaces.map((surface) => (
+          <article class="card-hover p-6 md:p-8 flex flex-col h-full">
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                aria-hidden="true"
+                class="inline-block w-2 h-2 rounded-full"
+                style={`background-color: var(--color-${surface.mineral});`}
+              />
+              <p class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+                {surface.eyebrow}
+              </p>
+            </div>
+            <h3 class="font-serif text-h3 text-foreground text-balance">{surface.name}</h3>
+            <p class="mt-4 text-body text-muted-foreground text-pretty flex-1">
+              {surface.description}
+            </p>
+            <a
+              href={surface.href}
+              rel="noopener noreferrer"
+              class="mt-6 inline-flex items-center gap-1.5 text-body-sm font-medium text-foreground hover:opacity-80 transition-opacity self-start"
+            >
+              {surface.cta}
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.75"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

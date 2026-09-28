@@ -1,5 +1,62 @@
 # Changelog
 
+## 3.0.0 — 2026-09-28
+
+Rebuilt in Astro, rebranded, and given a second page.
+
+### The site is Astro again
+
+The SvelteKit one-pager is gone. Astro is what the rest of the Nyuchi
+marketing estate is built on, and it is what `@bundu/ui` ships components for,
+so a Svelte site could only ever reimplement the design system rather than
+consume it.
+
+Astro 5 rather than the current 7: `@bundu/ui@0.1.1` ships Tailwind 3 syntax
+and a Tailwind 3 preset, and `@astrojs/tailwind` supports Astro up to 5. This
+moves up when the kit ships a Tailwind 4 build.
+
+### The design system comes from the package now
+
+`src/app.css` used to carry a hand-copied subset of the design tokens, under a
+comment claiming they were verbatim from the marketing monorepo. They were not:
+nyuchi.com had since gained the sodalite and copper minerals, the heritage
+palette, popover and destructive tokens, touch targets and a radius scale, and
+had settled on gold as its primary. This site had none of that and was still on
+malachite.
+
+All of it now comes from `@bundu/ui` — `globals.css` for the tokens and
+component classes, `brand-nyuchi.css` for the primary, and the Tailwind preset
+for the utilities. `tests/branding.test.ts` fails the build if a token is
+redefined locally, so the drift cannot recur quietly.
+
+### Branding
+
+The wordmark is capitalised: **Nyuchi Learning**, not the previous lowercase
+setting. A test fails on a lowercase spelling anywhere in `src/`.
+
+### Added
+
+- `/toddle-enhancement-extension` — the product page for the Toddle
+  Enhancement Extension: what it does, how to install it as a teacher or push
+  it to a school, what it can see, and what Present mode does and does not do.
+- A site shell matching nyuchi.com: sticky translucent header, the
+  seven-mineral identity strip, a four-column footer, and a light/dark toggle
+  that remembers the choice.
+- A real Content-Security-Policy in `vercel.json`, with `script-src 'self'`
+  plus a hash per inline script, plus `Referrer-Policy` and
+  `Permissions-Policy`. `npm test` verifies the hashes against the build, so
+  editing the theme bootstrap without updating the policy fails CI instead of
+  breaking the theme in production.
+- A skip link, and `prefers-reduced-motion` handling.
+
+### Changed
+
+- `npm run check` is `astro check`, not `svelte-check`.
+- `vitest` pinned to `~4.0.18`; `4.1.11` trips a resolver bug in npm 10.9 that
+  makes `npm install` fail outright.
+- `*.astro` added to `.prettierignore`, because the org lint gate runs Prettier
+  without `prettier-plugin-astro` and cannot parse those files.
+
 ## 2.0.0 — 2026-05-04
 
 Complete rewrite. The `learning.nyuchi.com` site is no longer a
