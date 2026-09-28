@@ -13,7 +13,8 @@
     "format:check": "prettier --check \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
     "test": "npm run build && vitest run && npm run csp",
     "csp": "node scripts/check-csp.mjs",
-    "csp:fix": "node scripts/check-csp.mjs --fix"
+    "csp:fix": "node scripts/check-csp.mjs --fix",
+    "qa": "npm run build && node scripts/serve-and-qa.mjs"
   },
   "dependencies": {
     "@bundu/ui": "^0.1.1",
@@ -26,6 +27,8 @@
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
     "@types/node": "^24.10.0",
+    "axe-core": "^4.12.1",
+    "playwright": "^1.63.0",
     "prettier": "3.3.3",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

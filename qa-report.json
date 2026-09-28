@@ -1,0 +1,254 @@
+[
+  {
+    "scheme": "light",
+    "path": "/",
+    "viewport": "phone",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [
+      "a.shrink-0"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/",
+    "viewport": "tablet",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/",
+    "viewport": "desktop",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/toddle-enhancement-extension/",
+    "viewport": "phone",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [
+      "a.shrink-0"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/toddle-enhancement-extension/",
+    "viewport": "tablet",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/toddle-enhancement-extension/",
+    "viewport": "desktop",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/legal/privacy/",
+    "viewport": "phone",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [
+      "a.shrink-0"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/legal/privacy/",
+    "viewport": "tablet",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "light",
+    "path": "/legal/privacy/",
+    "viewport": "desktop",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/",
+    "viewport": "phone",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [
+      "a.shrink-0"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/",
+    "viewport": "tablet",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/",
+    "viewport": "desktop",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/toddle-enhancement-extension/",
+    "viewport": "phone",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [
+      "a.shrink-0"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/toddle-enhancement-extension/",
+    "viewport": "tablet",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/toddle-enhancement-extension/",
+    "viewport": "desktop",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/legal/privacy/",
+    "viewport": "phone",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [
+      "a.shrink-0"
+    ],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/legal/privacy/",
+    "viewport": "tablet",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  },
+  {
+    "scheme": "dark",
+    "path": "/legal/privacy/",
+    "viewport": "desktop",
+    "status": 200,
+    "overflows": false,
+    "overflowBy": 0,
+    "offenders": [],
+    "consoleErrors": [
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID",
+      "Failed to load resource: net::ERR_CERT_AUTHORITY_INVALID"
+    ],
+    "violations": []
+  }
+]

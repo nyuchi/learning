@@ -46,10 +46,19 @@ const hashes = new Set();
 for (const page of pages) {
   const html = readFileSync(page, "utf8");
   for (const match of html.matchAll(
-    /<script\b(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script[^>]*>/gi,
+    /<script\b(?![^>]*\bsrc=)([^>]*)>([\s\S]*?)<\/script[^>]*>/gi,
   )) {
+    const [, attrs, body] = match;
+    /* A script element whose type is not a JavaScript MIME type is a data
+       block: the browser never executes it, so CSP's script-src does not
+       apply and it needs no hash. Hashing them anyway would mean every edit
+       to the JSON-LD — that is, every edit to a page's title or description —
+       silently invalidated the policy until someone re-ran csp:fix. And if a
+       browser did block one, the page would still be correct; it would lose
+       its structured data, not its behaviour. */
+    if (/\btype\s*=\s*["']?application\/ld\+json/i.test(attrs)) continue;
     hashes.add(
-      `'sha256-${createHash("sha256").update(match[1], "utf8").digest("base64")}'`,
+      `'sha256-${createHash("sha256").update(body, "utf8").digest("base64")}'`,
     );
   }
 }
