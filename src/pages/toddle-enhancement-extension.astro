@@ -15,11 +15,17 @@ import { pricing } from "../data/legal";
 /* One switch drives every call to action on this page. While there is no store
    listing the page says so and offers to take an enquiry; the moment
    `webStore` is set it becomes an install page, with no other edit. The source
-   repository is private, so nothing here links to it. */
+   repository is private, so nothing here links to it.
+
+   Distribution is the Chrome Web Store and only the Chrome Web Store — there is
+   no download, no .zip and no Developer mode anywhere in this copy. That is a
+   deliberate constraint, not an omission: "unzip this and turn on Developer
+   mode" is where a teacher gives up, and a school's IT will not push a
+   self-hosted package when a store ID will do. */
 const live = Boolean(toddleExtension.webStore);
 const primaryCta = live
   ? { label: "Add to Chrome", href: toddleExtension.webStore! }
-  : { label: "Ask for access", href: toddleExtension.enquiry };
+  : { label: "Tell me when it is live", href: toddleExtension.enquiry };
 
 const features = [
   {
@@ -108,8 +114,8 @@ const schema = [
       <p class="mt-4 text-caption text-muted-foreground">
         {
           live
-            ? "Chrome and Chromium browsers · one click to install"
-            : "Chrome and Chromium browsers · listing in preparation — get in touch and we will let you know"
+            ? "Chrome and Chromium browsers · one click from the Chrome Web Store"
+            : "Chrome and Chromium browsers · going on the Chrome Web Store shortly, and it will be one click"
         }
       </p>
     </div>
@@ -205,9 +211,12 @@ const schema = [
   <section id="install" class="container-custom section scroll-mt-24">
     <div class="max-w-2xl">
       <p class="eyebrow">Install</p>
-      <h2 class="font-serif text-h1 text-foreground text-balance">Two ways in.</h2>
+      <h2 class="font-serif text-h1 text-foreground text-balance">
+        It is one click either way.
+      </h2>
       <p class="mt-6 text-body text-muted-foreground text-pretty">
-        Which one you want depends on whether you are installing it for yourself or for a
+        It lives on the Chrome Web Store, so there is nothing to download and nothing to
+        configure. The only question is whether you are installing it for yourself or for a
         staff room.
       </p>
     </div>
@@ -215,27 +224,23 @@ const schema = [
     <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-2">
       <article class="card p-6 md:p-8">
         <p class="badge badge-info mb-4">For a teacher</p>
-        <h3 class="font-serif text-h4 text-foreground">Load it yourself</h3>
+        <h3 class="font-serif text-h4 text-foreground">One click, from the Web Store</h3>
         <ol
           class="mt-4 space-y-3 text-body-sm text-muted-foreground list-decimal list-outside pl-5 marker:text-foreground/40"
         >
           <li>
-            Download the <code class="text-foreground">.zip</code> from the latest release and
-            unzip it.
-          </li>
-          <li>
-            Open <code class="text-foreground">chrome://extensions</code> and turn on
-            <strong class="text-foreground">Developer mode</strong>.
-          </li>
-          <li>
-            Click <strong class="text-foreground">Load unpacked</strong> and choose the
-            unzipped folder.
+            Press <strong class="text-foreground">Add to Chrome</strong>. Chrome asks you to
+            confirm, and that is the install.
           </li>
           <li>Open any Toddle gradebook: <em>Gradebook → Assessments</em>.</li>
+          <li>
+            The new columns appear, and the flag switch is in the Toddle header, ready
+            before your next lesson.
+          </li>
         </ol>
         <p class="mt-4 text-caption text-muted-foreground">
-          Chrome will remind you about developer extensions each time it starts, and this
-          route does not update itself. Fine for one machine.
+          No files to download, no Developer mode, nothing to unzip. Updates arrive on
+          their own, the way every other Chrome extension does.
         </p>
         <a href={primaryCta.href} class="btn-primary mt-6">{primaryCta.label}</a>
       </article>
@@ -244,14 +249,14 @@ const schema = [
         <p class="badge badge-success mb-4">For a school</p>
         <h3 class="font-serif text-h4 text-foreground">Push it from the Admin console</h3>
         <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
-          Every release also ships a signed package and an update manifest, so IT can
-          force-install it to a teaching organisational unit through the Google Admin
-          console. No Developer mode, nothing for staff to click, and updates arrive on
-          their own within a few hours of a release.
+          Because it is on the Chrome Web Store, IT can force-install it to a teaching
+          organisational unit by its extension ID — the standard route, with no
+          self-hosted package to maintain and no Developer mode on anyone's machine.
+          Nothing for staff to click, and updates arrive on their own.
         </p>
         <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
-          The deployment guide covers the console steps, how to verify a rollout, and the
-          full answer to "what can this thing see?" — which somebody will ask.
+          We will send you the ID, the console steps, and the full answer to "what can this
+          thing see?" — which somebody will ask, and should.
         </p>
         <a href={toddleExtension.enquiry} class="btn-outline mt-6">
           Talk to us about a rollout
