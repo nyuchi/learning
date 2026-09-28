@@ -63,20 +63,42 @@ describe("outbound links", () => {
 });
 
 describe("the extension page", () => {
-  it("points at the extension repository", () => {
-    expect(siteData).toContain(
-      "https://github.com/nyuchi/toddle-enhancement-extension",
-    );
+  const sources = [siteData, home, extensionPage].join("\n");
+
+  /* The extension's source repository is private. A link to it returns 404 to
+     everyone who is not a collaborator, so a public page must not carry one —
+     and a dead "Download" is worse than an honest "not yet". */
+  it("links to no private GitHub repository", () => {
+    const links = [
+      ...sources.matchAll(/https:\/\/github\.com\/[^"'\s`)]+/g),
+    ].map((match) => match[0]);
+    expect(links, `remove these: ${links.join(", ")}`).toEqual([]);
   });
 
-  it("links to the latest release and the deployment guide", () => {
-    expect(extensionPage).toContain("toddleExtension.latestRelease");
-    expect(extensionPage).toContain("toddleExtension.enterpriseGuide");
+  /* One switch drives every call to action. While it is null the page offers an
+     enquiry; setting it turns the same page into an install page. This asserts
+     the switch is wired, so the flip is a one-line change and not a hunt. */
+  it("drives its calls to action from the store switch", () => {
+    expect(siteData).toMatch(/webStore:\s*null as string \| null/);
+    expect(extensionPage).toContain("toddleExtension.webStore");
+    expect(extensionPage).toContain("toddleExtension.enquiry");
+  });
+
+  it("offers a support address", () => {
+    expect(siteData).toContain("support@nyuchi.com");
   });
 
   /* The privacy claim is the reason a school would adopt this, so the page must
      keep stating the limits next to it. */
-  it("states what Present mode does not do", () => {
+  it("states what the flag switch does not do", () => {
     expect(extensionPage).toContain("What it does not do");
+  });
+
+  /* The shipping feature hides flags and deliberately never hides names.
+     Describing it as anonymising the class would be a false claim on a page a
+     school reads before trusting it. */
+  it("does not claim to hide student names", () => {
+    expect(extensionPage).toContain("It hides flags, not names");
+    expect(extensionPage).not.toMatch(/Present mode/);
   });
 });

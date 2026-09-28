@@ -1,0 +1,18 @@
+# Response headers for every route, served by Cloudflare's static assets.
+#
+# This replaces the `headers` block that lived in vercel.json. The
+# Content-Security-Policy carries a sha256 for each inline script in the build;
+# `npm run csp` verifies those hashes against the built HTML, so editing the
+# theme bootstrap without updating this file fails CI rather than shipping a
+# page whose own script the browser refuses to run.
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-FFGFlD4m+iq+1VF7UwfmwBt3tn7qHB2INa+7rAycUC8=' 'sha256-H7lTFTHP+LM756VatSdCPdQqI5KgMvle+T0W7x3MQnM='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; frame-ancestors 'none'; base-uri 'self'; object-src 'none'
+
+# Hashed build output is immutable — Astro fingerprints these filenames.
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable

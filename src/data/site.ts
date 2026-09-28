@@ -55,15 +55,10 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
         href: "/toddle-enhancement-extension",
       },
       {
-        label: "Releases",
-        href: "https://github.com/nyuchi/toddle-enhancement-extension/releases",
-        external: true,
-      },
-      {
         label: "Deploy to a school",
-        href: "https://github.com/nyuchi/toddle-enhancement-extension/blob/main/docs/enterprise-deploy.md",
-        external: true,
+        href: "/toddle-enhancement-extension#install",
       },
+      { label: "Get in touch", href: "mailto:support@nyuchi.com" },
     ],
   },
   {
@@ -113,16 +108,24 @@ export const MINERALS = [
   "copper",
 ] as const;
 
-/** The Toddle Enhancement Extension, described once. */
+/**
+ * The Toddle Enhancement Extension, described once.
+ *
+ * The source repository is private, so nothing here links to GitHub — a
+ * private repo returns 404 to the public, and a dead "Download" is worse than
+ * an honest "not yet".
+ *
+ * `webStore` is the single switch. While it is null the page offers to put
+ * people on the list; set it to the listing URL and the same page becomes a
+ * download page, with no other edit needed.
+ */
 export const toddleExtension = {
   name: "Toddle Enhancement Extension",
   tagline:
     "The Toddle gradebook, with the views it is missing — and a way to project it.",
-  repo: "https://github.com/nyuchi/toddle-enhancement-extension",
-  latestRelease:
-    "https://github.com/nyuchi/toddle-enhancement-extension/releases/latest",
-  releases: "https://github.com/nyuchi/toddle-enhancement-extension/releases",
-  enterpriseGuide:
-    "https://github.com/nyuchi/toddle-enhancement-extension/blob/main/docs/enterprise-deploy.md",
-  issues: "https://github.com/nyuchi/toddle-enhancement-extension/issues",
+  /** Set to the Chrome Web Store listing URL once it is live. */
+  webStore: null as string | null,
+  supportEmail: "support@nyuchi.com",
+  /** Mailto used while there is no store listing, and for school enquiries. */
+  enquiry: "mailto:support@nyuchi.com?subject=Toddle%20Enhancement%20Extension",
 } as const;
