@@ -6,20 +6,20 @@
  * dark. brand-nyuchi.css then selects gold as this surface's primary and ring,
  * exactly as nyuchi.com does — it must come second or globals.css wins.
  *
- * CSS requires @import to precede everything else, so these come before the
- * @tailwind directives. postcss-import inlines them first (see
- * postcss.config.mjs); Tailwind then sorts their @layer blocks into the right
- * layer regardless of where they appeared in the source.
+ * @config loads tailwind.config.mjs, which is where the @bundu/ui preset is
+ * applied. The kit ships a Tailwind 3 style config, and this is Tailwind 4's
+ * supported path for consuming one; it is what makes `text-h2`, `ease-soft`,
+ * `max-w-narrow` and the mineral colours resolve, both as utilities and inside
+ * the kit's own @apply rules.
  *
  * Nothing in this repo should ever redefine a token. If a colour looks wrong,
  * it is wrong in @bundu/ui, and fixing it there fixes every Nyuchi surface.
  */
+@import "tailwindcss";
 @import "@bundu/ui/styles/globals.css";
 @import "@bundu/ui/styles/brand-nyuchi.css";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config "../../tailwind.config.mjs";
 
 @layer base {
   /* Respect a reader who has asked the OS for less movement. */
