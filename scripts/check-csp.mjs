@@ -13,8 +13,13 @@
  *   node scripts/check-csp.mjs --fix  # rewrite vercel.json with current hashes
  */
 import { createHash } from "node:crypto";
-import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
+import {
+  findCspHeader,
+  readVercelConfig,
+  writeVercelConfig,
+} from "./lib/csp.mjs";
 import { fileURLToPath } from "node:url";
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
@@ -63,21 +68,20 @@ for (const page of pages) {
   }
 }
 
-const vercelPath = join(root, "vercel.json");
-const vercel = JSON.parse(readFileSync(vercelPath, "utf8"));
-const headerBlock = vercel.headers?.[0]?.headers ?? [];
-const csp = headerBlock.find(
-  (header) => header.key === "Content-Security-Policy",
-);
+const vercel = readVercelConfig();
+const csp = findCspHeader(vercel);
 if (!csp) {
   console.error("vercel.json declares no Content-Security-Policy");
   process.exit(1);
 }
 
-const scriptSrc = csp.value
+/* Split once; both the read below and the rewrite at the end work off this. */
+const directives = csp.value
   .split(";")
   .map((part) => part.trim())
-  .find((part) => part.startsWith("script-src"));
+  .filter(Boolean);
+
+const scriptSrc = directives.find((part) => part.startsWith("script-src"));
 const missing = [...hashes].filter((hash) => !scriptSrc?.includes(hash));
 
 if (missing.length === 0) {
@@ -103,9 +107,7 @@ if (!fix) {
    were still correct, so this script reported success while production started
    refusing to load a script it had been loading the day before. So keep what we
    did not come here to change. */
-csp.value = csp.value
-  .split(";")
-  .map((part) => part.trim())
+csp.value = directives
   .map((part) => {
     if (!part.startsWith("script-src")) return part;
     const kept = part
@@ -115,5 +117,5 @@ csp.value = csp.value
     return ["script-src", ...kept, ...hashes].join(" ");
   })
   .join("; ");
-writeFileSync(vercelPath, `${JSON.stringify(vercel, null, 2)}\n`);
+writeVercelConfig(vercel);
 console.log(`updated vercel.json with ${hashes.size} inline script hash(es)`);

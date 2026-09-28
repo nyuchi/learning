@@ -14,7 +14,8 @@
     "test": "npm run build && vitest run && npm run csp",
     "csp": "node scripts/check-csp.mjs",
     "csp:fix": "node scripts/check-csp.mjs --fix",
-    "qa": "npm run build && node scripts/serve-and-qa.mjs"
+    "qa": "npm run build && node scripts/serve-and-qa.mjs",
+    "csp:probe": "npm run build && node scripts/serve-and-qa.mjs probe-intercom-csp.mjs"
   },
   "dependencies": {
     "@bundu/ui": "^0.1.1",
