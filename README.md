@@ -93,6 +93,10 @@ hash, rather than the theme quietly breaking in production.
 
 ## Notes on the toolchain
 
+Vite+ was evaluated and cannot be adopted yet — npm cannot install it, and both
+CI and Vercel install with npm. The evaluation, and the conditions for
+revisiting it, are in [docs/toolchain.md](docs/toolchain.md).
+
 - **Astro 7 with Tailwind 4.** `@bundu/ui@0.1.1` ships a Tailwind 3 style
   config, which Tailwind 4 consumes through `@config` — that is what makes
   `text-h2`, `ease-soft`, `max-w-narrow` and the mineral colours resolve, both
