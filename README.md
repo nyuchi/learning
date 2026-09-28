@@ -6,7 +6,7 @@
 
 [![Lint](https://github.com/nyuchi/learning/actions/workflows/lint.yml/badge.svg)](https://github.com/nyuchi/learning/actions/workflows/lint.yml)
 [![build](https://github.com/nyuchi/learning/actions/workflows/build.yml/badge.svg)](https://github.com/nyuchi/learning/actions/workflows/build.yml)
-![Astro](https://img.shields.io/badge/Astro-5-BC52EE?style=flat-square&logo=astro&logoColor=white)
+![Astro](https://img.shields.io/badge/Astro-7-BC52EE?style=flat-square&logo=astro&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=flat-square&logo=vercel&logoColor=white)
 
 **Version:** 3.0.0 | **Live:** [learning.nyuchi.com](https://learning.nyuchi.com) | **Default branch:** `master` | **Deploy:** Vercel
@@ -85,18 +85,39 @@ hash, rather than the theme quietly breaking in production.
 
 ## Notes on the toolchain
 
-- **Astro 5, not 7.** `@bundu/ui@0.1.1` ships Tailwind 3 syntax and a Tailwind 3
-  `presets` config, and `@astrojs/tailwind` supports Astro ≤ 5. When the kit
-  ships a Tailwind 4 build, this can move up.
-- **`postcss-import` runs before `tailwindcss`.** Without it, the `@layer
-components` blocks inside the imported `globals.css` are dropped and every
-  `.btn-primary` / `.card` / `.eyebrow` silently disappears from the build.
+- **Astro 7 with Tailwind 4.** `@bundu/ui@0.1.1` ships a Tailwind 3 style
+  config, which Tailwind 4 consumes through `@config` — that is what makes
+  `text-h2`, `ease-soft`, `max-w-narrow` and the mineral colours resolve, both
+  as utilities here and inside the kit's own `@apply` rules. Verified in the
+  build output: every component class, the full token set, and the `dark:`
+  variants are all present.
+- **`overrides` pins `path-to-regexp` to `^6.3.0`.** The current
+  `@astrojs/vercel` still pulls in a version with a high-severity advisory and
+  there is no fixed release upstream; the override is within the same major, so
+  it is a patch rather than a behaviour change.
 - **`vitest` is pinned to `~4.0.18`.** `4.1.11` trips a resolver bug in npm
-  10.9 (`Cannot read properties of null (reading 'edgesOut')`) and `npm install`
-  cannot complete.
+  10.9 (`Cannot read properties of null (reading 'edgesOut')`) and
+  `npm install` cannot complete at all. This is why the advisory on vitest is
+  reported rather than blocking in CI — see below.
 - **`*.astro` is in `.prettierignore`.** The org lint gate runs Prettier from
   `nyuchi/.github`, which has no `prettier-plugin-astro`, so it cannot parse
   those files. They are still type-checked by `npm run check`.
+
+## Dependency audit
+
+CI splits the audit in two:
+
+| Step                                        | Scope                          | Blocking                       |
+| ------------------------------------------- | ------------------------------ | ------------------------------ |
+| Audit what ships                            | `--omit=dev`, high and above   | yes — expected to stay at zero |
+| Report advisories in build and test tooling | everything, moderate and above | no                             |
+
+The split exists because of one specific, temporary situation: every published
+vitest up to `4.1.10` carries an advisory, and `4.1.11` — the fix — cannot be
+installed under npm 10.9. Blocking on it would pin the job red indefinitely,
+which teaches people to ignore a red audit. Surfacing it in the log keeps it
+visible without that cost. The second step goes back to blocking as soon as
+vitest `4.1.11` installs cleanly.
 
 ## Repo layout
 
