@@ -1,0 +1,36 @@
+/*
+ * The design system, straight from the package.
+ *
+ * globals.css carries the seven-mineral palette, the semantic tokens and the
+ * component classes (.btn-primary, .card, .section, .eyebrow, …) in light and
+ * dark. brand-nyuchi.css then selects gold as this surface's primary and ring,
+ * exactly as nyuchi.com does — it must come second or globals.css wins.
+ *
+ * CSS requires @import to precede everything else, so these come before the
+ * @tailwind directives. postcss-import inlines them first (see
+ * postcss.config.mjs); Tailwind then sorts their @layer blocks into the right
+ * layer regardless of where they appeared in the source.
+ *
+ * Nothing in this repo should ever redefine a token. If a colour looks wrong,
+ * it is wrong in @bundu/ui, and fixing it there fixes every Nyuchi surface.
+ */
+@import "@bundu/ui/styles/globals.css";
+@import "@bundu/ui/styles/brand-nyuchi.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Respect a reader who has asked the OS for less movement. */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

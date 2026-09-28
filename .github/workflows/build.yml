@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   check:
-    name: svelte-check + tests + build
+    name: astro check + tests + build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -27,14 +27,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: svelte-check
+      - name: Type-check
         run: npm run check
 
-      - name: Tests
+      # `npm test` runs vitest, builds the site, and then verifies that every
+      # inline script in the build is covered by the CSP hash allowlist in
+      # vercel.json — so an edit to the theme bootstrap cannot ship a page the
+      # browser will refuse to run.
+      - name: Tests, build, and CSP check
         run: npm test
-
-      - name: Build
-        run: npm run build
 
   audit:
     name: npm audit

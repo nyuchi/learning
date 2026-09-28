@@ -1,0 +1,285 @@
+---
+/**
+ * The product page for the Toddle Enhancement Extension.
+ *
+ * Written for two readers who arrive with different questions: a teacher who
+ * wants to know what it does and how to get it, and an IT lead who wants to
+ * know what it can see before putting it on a hundred machines. Present mode
+ * gets the most room because it is the part people will be asked to justify.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { toddleExtension } from "../data/site";
+
+const features = [
+  {
+    mineral: "cobalt",
+    title: "Standards view",
+    body: "Toddle shows a standards-based rubric as one icon per student, and you open a side panel to read each one. This puts one column per standard on the grid, with every student's descriptor visible at once and the full standard text on hover.",
+  },
+  {
+    mineral: "malachite",
+    title: "Present mode",
+    body: "One toggle, or Alt+P, and every student becomes Student 01, Student 02. Names, emails and photos are gone from the grid, so you can put the gradebook on the projector and talk about the class without showing the class.",
+  },
+  {
+    mineral: "gold",
+    title: "CSV export",
+    body: "Student × assessment × standard × rating × submission status, in one click. Generated in your browser and saved by your browser — it never passes through a server of ours, because there isn't one.",
+  },
+];
+
+const facts = [
+  {
+    label: "Where it runs",
+    value: "Only on web.toddleapp.com. It has no access to any other site.",
+  },
+  {
+    label: "What it reads",
+    value:
+      "Gradebook data, through Toddle's own API, reusing the session you are already signed in with. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
+  },
+  { label: "What it writes", value: "Nothing. Every request it makes is a read." },
+  {
+    label: "What it sends",
+    value:
+      "Nothing, anywhere. No server, no analytics, no telemetry, no remote code. The only thing it stores is whether Present mode is on.",
+  },
+];
+
+const title = "Toddle Enhancement Extension — Nyuchi Learning";
+const description =
+  "A Chrome extension for the Toddle gradebook: one column per standard, CSV export, and a Present mode that hides every student identity so you can project a gradebook without compromising privacy.";
+---
+
+<BaseLayout title={title} description={description} canonical="/toddle-enhancement-extension">
+  <!-- Hero -->
+  <section class="container-custom pt-12 md:pt-20 pb-10 md:pb-16">
+    <div class="max-w-3xl">
+      <p class="eyebrow">Classroom tools · Nyuchi Web Services</p>
+      <h1 class="font-serif text-display-sm text-foreground text-balance">
+        {toddleExtension.name}
+      </h1>
+      <p class="mt-6 text-body-lg text-muted-foreground text-pretty max-w-2xl">
+        {toddleExtension.tagline} Free, open source, and it sends your students' data
+        precisely nowhere.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={toddleExtension.latestRelease} rel="noopener noreferrer" class="btn-primary">
+          Download the latest release
+        </a>
+        <a href="#install" class="btn-outline">How to install</a>
+      </div>
+      <p class="mt-4 text-caption text-muted-foreground">
+        Chrome and Chromium browsers · MIT licensed ·
+        <a
+          href={toddleExtension.repo}
+          rel="noopener noreferrer"
+          class="text-foreground/80 hover:text-foreground underline-offset-4 hover:underline"
+          >source on GitHub</a
+        >
+      </p>
+    </div>
+  </section>
+
+  <!-- What it does -->
+  <section class="container-custom pb-16 md:pb-24">
+    <div class="grid gap-6 md:gap-8 md:grid-cols-3">
+      {
+        features.map((feature) => (
+          <article class="card-hover p-6 md:p-8 flex flex-col h-full">
+            <span
+              aria-hidden="true"
+              class="inline-block w-2 h-2 rounded-full mb-4"
+              style={`background-color: var(--color-${feature.mineral});`}
+            />
+            <h2 class="font-serif text-h4 text-foreground text-balance">{feature.title}</h2>
+            <p class="mt-3 text-body-sm text-muted-foreground text-pretty flex-1">
+              {feature.body}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Present mode, at length -->
+  <section class="bg-secondary border-y border-border">
+    <div class="container-custom section">
+      <div class="max-w-3xl">
+        <p class="eyebrow">Present mode</p>
+        <h2 class="font-serif text-h1 text-foreground text-balance">
+          Project the gradebook. Not the students.
+        </h2>
+        <p class="mt-6 text-body-lg text-muted-foreground text-pretty">
+          Every teacher who has ever put a gradebook on a projector has done the same
+          nervous dance: shrink the window, scroll fast, hope nobody read row four. Present
+          mode removes the dance.
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-2 max-w-4xl">
+        <div class="card p-6 md:p-8">
+          <h3 class="font-serif text-h5 text-foreground">How it actually works</h3>
+          <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
+            Toddle draws the gradebook on an HTML canvas, which means the student column
+            cannot simply be hidden with styling. So the extension replaces those cells
+            <em>before</em> the browser paints them — the canvas is handed a cell we built,
+            not a copy of Toddle's with the name taken out. There is no leftover field that
+            might still be carrying an identity. Names, emails and photos never arrive.
+          </p>
+        </div>
+
+        <div class="card p-6 md:p-8">
+          <h3 class="font-serif text-h5 text-foreground">Two details worth knowing</h3>
+          <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
+            <strong class="text-foreground">The row order is scrambled.</strong> Sorting by
+            surname and numbering the rows would hand the room an alphabetical key, so in
+            Present mode the roster is ordered by a hash of the email instead.
+          </p>
+          <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
+            <strong class="text-foreground">It fails loudly.</strong> If it cannot redact
+            the grid, the toolbar says so and tells you to switch views before projecting. A
+            privacy control that quietly half-works is worse than one that is plainly off.
+          </p>
+        </div>
+      </div>
+
+      <!-- Nobody is served by a privacy claim that is broader than the truth. -->
+      <div class="mt-8 max-w-4xl ubuntu-quote">
+        <h3 class="font-serif text-h5">What it does not do</h3>
+        <p class="mt-2 text-body-sm text-pretty">
+          Present mode hides the student identity <em>column</em>. It does not hide a
+          student profile or a submission that you deliberately open, and the blurring
+          applied to identity shown outside the grid relies on Toddle's own markup, which
+          can change in any Toddle release. Arm it before you share your screen, confirm the
+          <strong>Names hidden</strong> marker is showing, and treat it as a good lid — not as
+          a compliance control.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Install -->
+  <section id="install" class="container-custom section scroll-mt-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Install</p>
+      <h2 class="font-serif text-h1 text-foreground text-balance">Two ways in.</h2>
+      <p class="mt-6 text-body text-muted-foreground text-pretty">
+        Which one you want depends on whether you are installing it for yourself or for a
+        staff room.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-2">
+      <article class="card p-6 md:p-8">
+        <p class="badge badge-info mb-4">For a teacher</p>
+        <h3 class="font-serif text-h4 text-foreground">Load it yourself</h3>
+        <ol
+          class="mt-4 space-y-3 text-body-sm text-muted-foreground list-decimal list-outside pl-5 marker:text-foreground/40"
+        >
+          <li>
+            Download the <code class="text-foreground">.zip</code> from the latest release and
+            unzip it.
+          </li>
+          <li>
+            Open <code class="text-foreground">chrome://extensions</code> and turn on
+            <strong class="text-foreground">Developer mode</strong>.
+          </li>
+          <li>
+            Click <strong class="text-foreground">Load unpacked</strong> and choose the
+            unzipped folder.
+          </li>
+          <li>Open any Toddle gradebook: <em>Gradebook → Assessments</em>.</li>
+        </ol>
+        <p class="mt-4 text-caption text-muted-foreground">
+          Chrome will remind you about developer extensions each time it starts, and this
+          route does not update itself. Fine for one machine.
+        </p>
+        <a
+          href={toddleExtension.latestRelease}
+          rel="noopener noreferrer"
+          class="btn-primary mt-6"
+        >
+          Latest release
+        </a>
+      </article>
+
+      <article class="card p-6 md:p-8">
+        <p class="badge badge-success mb-4">For a school</p>
+        <h3 class="font-serif text-h4 text-foreground">Push it from the Admin console</h3>
+        <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
+          Every release also ships a signed package and an update manifest, so IT can
+          force-install it to a teaching organisational unit through the Google Admin
+          console. No Developer mode, nothing for staff to click, and updates arrive on
+          their own within a few hours of a release.
+        </p>
+        <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
+          The deployment guide covers the console steps, how to verify a rollout, and the
+          full answer to "what can this thing see?" — which somebody will ask.
+        </p>
+        <a
+          href={toddleExtension.enterpriseGuide}
+          rel="noopener noreferrer"
+          class="btn-outline mt-6"
+        >
+          Deployment guide
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <!-- Privacy facts -->
+  <section class="bg-secondary border-y border-border">
+    <div class="container-custom section-tight">
+      <div class="max-w-2xl">
+        <p class="eyebrow">For whoever has to sign this off</p>
+        <h2 class="font-serif text-h2 text-foreground text-balance">
+          What it can see, precisely.
+        </h2>
+      </div>
+      <dl class="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-2 max-w-4xl">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+                {fact.label}
+              </dt>
+              <dd class="mt-2 text-body-sm text-foreground/90 text-pretty">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="mt-8 text-body-sm text-muted-foreground max-w-2xl text-pretty">
+        The extension is MIT licensed and the source is public, so none of the above has to
+        be taken on trust — it can be read.
+      </p>
+    </div>
+  </section>
+
+  <!-- Honesty about fragility -->
+  <section class="container-custom section">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Worth knowing</p>
+      <h2 class="font-serif text-h2 text-foreground text-balance">It rides on Toddle.</h2>
+      <p class="mt-6 text-body text-muted-foreground text-pretty">
+        Toddle does not publish an API for this, so the extension reads the same internal
+        interface the Toddle web app uses, reverse-engineered from the app's own requests.
+        That works well and costs one request per assessment rather than one per student —
+        but it also means a Toddle release can break it, usually by renaming something.
+      </p>
+      <p class="mt-4 text-body text-muted-foreground text-pretty">
+        When that happens the extension falls back to its own table rather than breaking the
+        gradebook, and Present mode tells you it could not redact the grid rather than
+        pretending it did. Report a break and we will chase the rename.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={toddleExtension.issues} rel="noopener noreferrer" class="btn-outline">
+          Report a problem
+        </a>
+        <a href={toddleExtension.repo} rel="noopener noreferrer" class="btn-ghost">
+          Read the source
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

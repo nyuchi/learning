@@ -1,0 +1,26 @@
+---
+/**
+ * The Nyuchi Learning wordmark.
+ *
+ * Capitalised, per the ecosystem branding: "Nyuchi Learning". The mineral dot
+ * stands in for the icon asset nyuchi.com uses, so this site carries no image
+ * that has to be kept in sync with the parent brand.
+ */
+import { site } from "../data/site";
+
+interface Props {
+  href?: string;
+  class?: string;
+}
+
+const { href = "/", class: className = "" } = Astro.props;
+---
+
+<a
+  href={href}
+  class={`inline-flex items-center gap-2.5 font-serif text-h5 font-bold text-foreground ${className}`}
+  aria-label={`${site.wordmark} — home`}
+>
+  <span aria-hidden="true" class="inline-block w-2.5 h-2.5 rounded-full bg-primary"></span>
+  {site.wordmark}
+</a>

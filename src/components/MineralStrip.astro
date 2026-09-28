@@ -1,0 +1,15 @@
+---
+/**
+ * The seven-mineral identity strip. Canonical N7 shell anatomy — it sits across
+ * the top of the footer on every Nyuchi surface.
+ */
+import { MINERALS } from "../data/site";
+---
+
+<div class="flex h-[3px] w-full" aria-hidden="true">
+  {
+    MINERALS.map((mineral) => (
+      <span class="flex-1" style={`background-color: var(--color-${mineral});`} />
+    ))
+  }
+</div>
