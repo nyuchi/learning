@@ -14,7 +14,7 @@ import { toddleExtension } from "../../data/site";
 
 const title = "Privacy policy — Nyuchi Learning";
 const description =
-  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere, and the site runs no analytics and sets no cookies unless you open the support messenger.";
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere; the website itself uses Google Analytics and a support messenger you open yourself.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/privacy">
@@ -33,8 +33,8 @@ const description =
         inside your own browser and sends it nowhere. There is no server, no account and
         no analytics — buying a licence does not change that, because your key is checked
         on your own machine. We do hold your email address if you bought something, the
-        way any shop does. This website runs no analytics and sets no cookies unless you
-        open the support messenger yourself.
+        way any shop does. This website itself uses Google Analytics, so it sets cookies
+        and measures your visit; the extension does not, and never will.
       </p>
     </div>
 
@@ -84,10 +84,25 @@ const description =
 
     <h2 class="font-serif text-h3 text-foreground mt-12">This website</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      It includes no analytics, advertising or tracking of any kind, and it sets no cookies
-      of its own. It is a set of static pages served by Vercel. Vercel processes the request
-      in order to serve it and keeps operational logs, as any host must; we do not add
-      anything to that, and we build no profile of who visits.
+      It is a set of static pages served by Vercel. Vercel processes the request in order
+      to serve it and keeps operational logs, as any host must.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground">It uses Google Analytics.</strong> We want to know
+      which pages people read and whether this one leads anywhere, and that means Google
+      Analytics runs when the page loads, sets its own cookies, and receives the pages you
+      view along with your approximate location and device. It carries no advertising, we
+      sell nothing to anyone, and we build no profile of you by name — but this is a third
+      party measuring your visit, and it would be wrong to describe it as anything softer
+      than that.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground"
+        >None of that is true of the extension.</strong
+      > It contains no analytics and sends nothing anywhere. This is the website measuring
+      the website. If the distinction matters to you — and for anyone assessing the
+      software for a school, it is the part that matters — the extension section above is
+      the one to read.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Fonts are loaded from Google Fonts, so your browser fetches them from Google and
@@ -95,9 +110,9 @@ const description =
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       <strong class="text-foreground">The support messenger is opt-in.</strong> There is a
-      Support button in the corner of every page. Until you press it, nothing loads: no
-      cookie is set, and no request is made to anyone but our host and Google Fonts. Press
-      it and the messenger loads from
+      Support button in the corner of every page. Until you press it Intercom loads nothing
+      and sets no cookie of its own — the analytics above is separate, and arrives without
+      being asked. Press it and the messenger loads from
       <a href={legal.helpCentre} rel="noopener noreferrer" class="link">Intercom</a>, which
       at that point sets its own cookies, can see which pages you have open while you use
       it, and holds the conversation on our behalf so we can answer you. We chose to load it

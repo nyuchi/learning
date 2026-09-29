@@ -15,6 +15,20 @@ export const site = {
     "The Nyuchi Learning surface: training programmes, the open Bundu Education frameworks, and the classroom tools Nyuchi Web Services builds for schools.",
 } as const;
 
+/**
+ * Google Analytics. The id is not a secret — it ships in the page on every site
+ * that uses GA — but it lives here rather than in the component so there is one
+ * place to change it, and one place to turn it off.
+ *
+ * `cookieless: true` runs GA with client_storage: "none": no cookies, nothing
+ * stored on the device, no consent banner needed. You keep pageviews and
+ * events and lose returning-visitor attribution. See components/Analytics.astro.
+ */
+export const analytics = {
+  measurementId: "G-BNHM29F8W5",
+  cookieless: false,
+} as const;
+
 export type NavLink = { label: string; href: string; external?: boolean };
 
 export const primaryNav: NavLink[] = [
