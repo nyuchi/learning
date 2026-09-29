@@ -86,8 +86,26 @@ const year = new Date().getFullYear();
               </li>
             ))
           }
+          <li>
+            <!-- Withdrawing consent must be as easy as giving it, so it sits in
+                 the same row as the other legal links rather than buried in the
+                 privacy policy. Rendered hidden and wired up by
+                 CookieBanner.astro, which owns the consent state: depending on
+                 a global that another component's script sets is a race, and it
+                 lost — the button stayed hidden because the footer's script ran
+                 first. One owner instead. -->
+            <button
+              type="button"
+              id="cookie-choices"
+              class="text-caption text-muted-foreground hover:text-foreground transition-colors"
+              hidden
+            >
+              Cookie choices
+            </button>
+          </li>
         </ul>
       </div>
     </div>
   </div>
 </footer>
+

@@ -1,0 +1,185 @@
+---
+/**
+ * The consent banner.
+ *
+ * Two things make this more than decoration, and both are requirements rather
+ * than polish:
+ *
+ *   1. Declining is as easy as accepting. One press either way, both buttons
+ *      equally prominent. A banner whose only real button is "Accept" is not
+ *      consent, and it is the pattern regulators have been fining.
+ *   2. The choice can be withdrawn later, from the footer. Consent you cannot
+ *      take back is not consent either.
+ *
+ * It starts hidden and is shown by script only when no choice has been stored,
+ * so a returning visitor never sees it flash. Nothing here blocks the page:
+ * analytics is already denied by Analytics.astro before this renders, so a
+ * visitor who ignores the banner entirely is in the same position as one who
+ * declines.
+ */
+import { CONSENT_KEY } from "./Analytics.astro";
+---
+
+<div
+  class="cookie-banner"
+  data-consent-key={CONSENT_KEY}
+  role="region"
+  aria-label="Cookie choices"
+  hidden
+>
+  <div class="cookie-inner card">
+    <p class="text-body-sm text-muted-foreground text-pretty">
+      We would like to use <strong class="text-foreground">Google Analytics</strong> to
+      see which pages are read. It sets a cookie. Decline and nothing is stored on
+      your device — the site works exactly the same either way. The
+      <a href="/legal/privacy" class="link">privacy policy</a> has the detail.
+    </p>
+    <div class="cookie-actions">
+      <button type="button" class="btn-outline !h-10 !px-5 text-body-sm" data-consent="denied">
+        Decline
+      </button>
+      <button type="button" class="btn-primary !h-10 !px-5 text-body-sm" data-consent="granted">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .cookie-banner {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 50;
+    /* Clear of the phone's home indicator, and of the support button's corner. */
+    padding: 1rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .cookie-inner {
+    pointer-events: auto;
+    max-width: 44rem;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.25rem;
+  }
+
+  .cookie-inner > p {
+    flex: 1 1 22rem;
+    margin: 0;
+  }
+
+  .cookie-actions {
+    display: flex;
+    gap: 0.6rem;
+    flex: 0 0 auto;
+  }
+
+  /* On a phone the buttons get their own full-width row so neither is the easy
+     one to hit by accident. */
+  @media (max-width: 30rem) {
+    .cookie-actions {
+      width: 100%;
+    }
+    .cookie-actions > * {
+      flex: 1;
+    }
+    /* Leave room for the Support button, which owns the bottom-right corner. */
+    .cookie-banner {
+      padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    }
+  }
+</style>
+
+<script>
+  declare global {
+    interface Window {
+      Intercom?: (command: string, options?: unknown) => void;
+      intercomSettings?: { app_id: string };
+      dataLayer?: unknown[];
+      gtag?: (...args: unknown[]) => void;
+    }
+  }
+
+  const banner = document.querySelector<HTMLElement>(".cookie-banner");
+  const key = banner?.dataset.consentKey;
+
+  function read(): string | null {
+    try {
+      return key ? localStorage.getItem(key) : null;
+    } catch {
+      return null;
+    }
+  }
+
+  /* Call the real gtag that Analytics.astro defined.
+   *
+   * This used to push its own array onto dataLayer, which looks equivalent and
+   * is not: Google's snippet pushes the `arguments` object, and the consent API
+   * only recognises a command in that shape. A pushed Array is silently ignored
+   * — the banner dismissed itself, the choice persisted, and consent never
+   * actually changed. The browser probe caught it; nothing on the page would
+   * have.
+   *
+   * The fallback keeps the `arguments` shape for the same reason, and exists
+   * only for the case where analytics is switched off and there is no gtag. */
+  function gtag(...args: unknown[]) {
+    if (typeof window.gtag === "function") {
+      (window.gtag as (...a: unknown[]) => void)(...args);
+      return;
+    }
+    (window.dataLayer = window.dataLayer || []).push(arguments);
+  }
+
+  function apply(choice: "granted" | "denied") {
+    try {
+      if (key) localStorage.setItem(key, choice);
+    } catch {
+      /* Storage blocked. The choice holds for this page view only, which is the
+         best that can be offered without somewhere to keep it. */
+    }
+    /* Only analytics_storage is ever granted. The ad_* signals stay denied
+       because this site runs no advertising. */
+    gtag("consent", "update", { analytics_storage: choice });
+    banner?.setAttribute("hidden", "");
+  }
+
+  if (banner && !read()) banner.removeAttribute("hidden");
+
+  for (const button of banner?.querySelectorAll<HTMLButtonElement>(
+    "[data-consent]",
+  ) ?? []) {
+    button.addEventListener("click", () => {
+      const choice = button.dataset.consent;
+      if (choice === "granted" || choice === "denied") apply(choice);
+    });
+  }
+
+  /* Withdrawing consent has to be as easy as giving it. The control lives in the
+     footer, but this component wires it, because this component owns the state —
+     and because a footer script that waits for a global set by this one is a
+     race between two deferred modules. */
+  function reset() {
+    try {
+      if (key) localStorage.removeItem(key);
+    } catch {
+      /* nothing stored to remove */
+    }
+    gtag("consent", "update", { analytics_storage: "denied" });
+    banner?.removeAttribute("hidden");
+    banner?.querySelector<HTMLButtonElement>("[data-consent]")?.focus();
+  }
+
+  const footerControl = document.getElementById("cookie-choices");
+  if (footerControl) {
+    footerControl.removeAttribute("hidden");
+    footerControl.addEventListener("click", reset);
+  }
+</script>
