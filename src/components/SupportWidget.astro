@@ -64,6 +64,27 @@ import { legal } from "../data/legal";
   >
     Email support
   </a>
+  <!-- Shown when someone presses Support without having answered the consent
+       question. Pressing "Support" is not agreement to load a third party, so
+       this says what opening the chat does and lets them decide. -->
+  <div class="support-consent card" data-support-consent hidden>
+    <p class="text-body-sm text-muted-foreground text-pretty">
+      Opening the chat loads <strong class="text-foreground">Intercom</strong>, which
+      sets its own cookies. Email works without that.
+    </p>
+    <div class="support-consent-actions">
+      <button type="button" class="btn-primary !h-9 !px-4 text-caption" data-support-confirm>
+        Open chat
+      </button>
+      <a
+        class="btn-outline !h-9 !px-4 text-caption"
+        href={`mailto:${legal.supportEmail}`}
+      >
+        Email instead
+      </a>
+    </div>
+  </div>
+
   <noscript>
     <style>
       [data-support-launcher] {
@@ -77,15 +98,31 @@ import { legal } from "../data/legal";
 </div>
 
 <style>
-  /* The only rule this component owns: once Intercom is up it draws its own
-     launcher in the same corner, and two buttons stacked on each other is
-     worse than either alone. Everything else is @bundu/ui. */
+  /* Once Intercom is up it draws its own launcher in the same corner, and two
+     buttons stacked on each other is worse than either alone. Everything else
+     here is @bundu/ui. */
   .support-widget[data-loaded="true"] [data-support-launcher] {
     display: none;
+  }
+
+  .support-consent {
+    width: min(20rem, calc(100vw - 2rem));
+    padding: 0.9rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .support-consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
   }
 </style>
 
 <script>
+  import { CONSENT_KEY } from "../data/consent";
+
   declare global {
     interface Window {
       Intercom?: (command: string, options?: unknown) => void;
@@ -104,6 +141,28 @@ import { legal } from "../data/legal";
      there is no second press to handle and no state machine to keep in sync. */
   let started = false;
 
+  /* Read the consent record from storage rather than from the banner's global.
+     Both are deferred modules with no guaranteed order, and reading a global
+     another module sets is a race this file has already lost once. Storage is
+     there either way. */
+  function supportConsent(): "granted" | "denied" | "unset" {
+    try {
+      const raw = localStorage.getItem(CONSENT_KEY);
+      if (!raw) return "unset";
+      const record = JSON.parse(raw) as { support?: boolean };
+      return record.support === true ? "granted" : "denied";
+    } catch {
+      return "unset";
+    }
+  }
+
+  function showFallback() {
+    if (button) button.hidden = true;
+    widget
+      ?.querySelector<HTMLElement>("[data-support-fallback]")
+      ?.removeAttribute("hidden");
+  }
+
   function loadIntercom(appId: string): Promise<void> {
     return new Promise((resolve, reject) => {
       window.intercomSettings = { app_id: appId };
@@ -118,12 +177,10 @@ import { legal } from "../data/legal";
     });
   }
 
-  button?.addEventListener("click", async () => {
-    const appId = widget?.dataset.appId;
-    if (!appId || started) return;
+  async function open(appId: string) {
+    if (started) return;
     started = true;
-    button.disabled = true;
-
+    if (button) button.disabled = true;
     try {
       await loadIntercom(appId);
       /* Intercom auto-boots from window.intercomSettings; ask it to open. */
@@ -132,8 +189,50 @@ import { legal } from "../data/legal";
     } catch {
       /* Blocked or offline. Don't leave someone pressing a button that does
          nothing — show the email address that was in the markup all along. */
-      button.hidden = true;
-      widget?.querySelector<HTMLElement>("[data-support-fallback]")?.removeAttribute("hidden");
+      started = false;
+      showFallback();
     }
+  }
+
+  /* Somebody who turned the messenger off in the consent panel should not be
+     offered it at all. Offer the email address instead, which asks nothing. */
+  if (supportConsent() === "denied") showFallback();
+
+  button?.addEventListener("click", async () => {
+    const appId = widget?.dataset.appId;
+    if (!appId) return;
+
+    const consent = supportConsent();
+    if (consent === "denied") {
+      showFallback();
+      return;
+    }
+
+    if (consent === "unset") {
+      /* No answer yet. Pressing a button labelled "Support" is not consent to
+         load a third party, so say what happens and let them choose — pressing
+         "Open chat" on that prompt is the unambiguous affirmative act, and it
+         is recorded like any other answer. */
+      const prompt = widget?.querySelector<HTMLElement>("[data-support-consent]");
+      if (prompt) {
+        button.hidden = true;
+        prompt.removeAttribute("hidden");
+        prompt.querySelector<HTMLButtonElement>("[data-support-confirm]")?.focus();
+        return;
+      }
+    }
+
+    await open(appId);
   });
+
+  widget
+    ?.querySelector<HTMLButtonElement>("[data-support-confirm]")
+    ?.addEventListener("click", async () => {
+      const appId = widget?.dataset.appId;
+      window.nyuchiConsent?.grant("support");
+      widget
+        ?.querySelector<HTMLElement>("[data-support-consent]")
+        ?.setAttribute("hidden", "");
+      if (appId) await open(appId);
+    });
 </script>

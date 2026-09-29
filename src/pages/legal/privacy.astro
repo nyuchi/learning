@@ -10,11 +10,12 @@
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { extensionDataFacts, legal } from "../../data/legal";
+import { CONSENT_CATEGORIES } from "../../data/consent";
 import { toddleExtension } from "../../data/site";
 
 const title = "Privacy policy — Nyuchi Learning";
 const description =
-  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere; the website sets no cookies unless you agree to analytics, and its support messenger loads only when you open it.";
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere; the website asks before it measures anything, and lets you take all, some or none of it.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/privacy">
@@ -33,8 +34,8 @@ const description =
         inside your own browser and sends it nowhere. There is no server, no account and
         no analytics — buying a licence does not change that, because your key is checked
         on your own machine. We do hold your email address if you bought something, the
-        way any shop does. This website asks before it measures anything, and sets no
-        cookies unless you agree; the extension measures nothing at all, and never will.
+        way any shop does. This website asks before it measures anything and lets you take
+        all, some or none of it; the extension measures nothing at all, and never will.
       </p>
     </div>
 
@@ -87,18 +88,47 @@ const description =
       It is a set of static pages served by Vercel. Vercel processes the request in order
       to serve it and keeps operational logs, as any host must.
     </p>
+    <h2 class="font-serif text-h3 text-foreground mt-12">Your choices, and what they control</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      <strong class="text-foreground">It uses Google Analytics, and only if you agree.</strong>
-      The first time you visit, a banner asks. Until you press Accept, nothing is stored on
-      your device — no analytics cookie is set, and declining leaves the site working
-      exactly as it does otherwise. If you accept, Google Analytics records the pages you
-      view along with your approximate location and device. It carries no advertising, we
-      sell nothing to anyone, and we build no profile of you by name.
+      The first time you visit, a banner asks. Nothing optional is switched on until you
+      switch it on, and you can take all of it, some of it, or none. Ignoring the banner
+      leaves you exactly where refusing does.
+    </p>
+    <div class="mt-6 space-y-5">
+      {
+        CONSENT_CATEGORIES.map((category) => (
+          <div>
+            <h3 class="font-serif text-h4 text-foreground">
+              {category.name}
+              {category.required && (
+                <span class="text-body-sm text-muted-foreground font-sans"> · always on</span>
+              )}
+            </h3>
+            <p class="mt-2 text-body-sm text-muted-foreground text-pretty">
+              {category.detail}
+            </p>
+            <p class="mt-1 text-body-sm text-muted-foreground text-pretty">
+              {category.used}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-6 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground">Changing your mind costs one press.</strong>
+      <strong class="text-foreground">Cookie choices</strong> at the bottom of any page reopens
+      the panel with your current answers, and withdrawing is as easy as agreeing was. We keep
+      a record of what you chose and when, because the law puts the burden of showing that on
+      us rather than on you — it is stored in your own browser, alongside the choice itself.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      You can change your mind at any time: <strong class="text-foreground">Cookie choices</strong>
-      at the bottom of any page clears the answer and asks again. Withdrawing is one press,
-      the same as giving it.
+      This is written to satisfy the three regimes that actually apply to our readers:
+      <strong class="text-foreground">UK and EU GDPR</strong>, Zimbabwe's
+      <strong class="text-foreground">Data Protection Act (Chapter 11:12)</strong>, and
+      Singapore's <strong class="text-foreground">PDPA</strong>. They differ in detail and
+      agree on the substance, so one approach serves all three: nothing optional before you
+      ask for it, each purpose chosen separately, refusal as easy as agreement, withdrawal at
+      any time, and a record we can produce.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       One detail we would rather state than have you discover. While consent is denied,

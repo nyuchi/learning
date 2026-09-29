@@ -6,9 +6,10 @@
  * one direction only: the consent defaults must be set BEFORE gtag/js loads. Set
  * them after and there is a window in which GA has already written a cookie, the
  * banner is still asking, and the privacy policy is wrong. That is why this is
- * one `is:inline` block emitted ahead of the loader rather than something tidier.
+ * one `is:inline` block emitted ahead of the loader rather than something tidier,
+ * and why tests/security.test.ts asserts the ordering.
  *
- * What the visitor gets before they choose:
+ * What a visitor gets before they choose:
  *
  *   analytics_storage: denied   → no GA cookie, nothing kept on the device
  *   ad_storage, ad_user_data, ad_personalization: denied
@@ -16,29 +17,20 @@
  * Consent Mode v2 requires the three ad_* signals to be declared even though
  * this site runs no advertising, so they are declared and denied permanently —
  * the banner never grants them, because there is nothing here to grant them for.
- * Only `analytics_storage` is ever flipped.
+ * Only `analytics_storage` is ever flipped, by CookieBanner.astro.
  *
  * An honest caveat, because a data protection lead will find it: with consent
  * denied, GA still loads and still sends Google a cookieless ping. That is how
- * Consent Mode is designed to work — it is what lets Google model the traffic it
- * cannot measure — and it means "no cookies until you agree" is exactly true
- * while "no contact with Google until you agree" is not. If you need the
- * stronger claim, do not load this component until consent exists; you lose
+ * Consent Mode is designed to work, and it means "no cookies until you agree" is
+ * exactly true while "no contact with Google until you agree" is not. If you need
+ * the stronger claim, do not render this component until consent exists; you lose
  * Consent Mode's modelling and gain a cleaner sentence.
  *
- * Two things this deliberately does NOT change:
- *
- *   1. The extension. Nothing here is in the extension, which still sends
- *      nothing anywhere. This is the marketing site measuring the marketing
- *      site, and the product claim is untouched.
- *   2. The support messenger still loads only on a click, and scripts/qa.mjs
- *      still enforces that.
+ * Nothing here is in the extension, which still sends nothing anywhere. This is
+ * the marketing site measuring the marketing site.
  */
 import { analytics } from "../data/site";
-
-/* Kept in one place because three files agree on it: this component writes the
-   default, CookieBanner.astro writes the choice, and the footer link clears it. */
-export const CONSENT_KEY = "analytics-consent";
+import { CONSENT_KEY, LEGACY_CONSENT_KEY } from "../data/consent";
 ---
 
 {
@@ -51,7 +43,7 @@ window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
 /* Deny everything up front. This runs before the loader below, so there is no
-   moment in which GA is storing anything the visitor has not agreed to. */
+   moment in which GA stores anything the visitor has not agreed to. */
 gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
@@ -60,14 +52,20 @@ gtag('consent', 'default', {
   wait_for_update: 500
 });
 
-/* A visitor who already said yes should not be asked again, and should not
-   spend a page view denied while we get round to reading their answer. */
+/* Someone who already agreed should not spend a page view denied while we get
+   round to reading their answer. Read it here, before the tag loads, rather
+   than leaving it to the banner's deferred module. */
 try {
-  if (localStorage.getItem(${JSON.stringify(CONSENT_KEY)}) === 'granted') {
-    gtag('consent', 'update', { analytics_storage: 'granted' });
+  var stored = localStorage.getItem(${JSON.stringify(CONSENT_KEY)});
+  var ok = false;
+  if (stored) {
+    ok = JSON.parse(stored).analytics === true;
+  } else {
+    ok = localStorage.getItem(${JSON.stringify(LEGACY_CONSENT_KEY)}) === 'granted';
   }
+  if (ok) gtag('consent', 'update', { analytics_storage: 'granted' });
 } catch (e) {
-  /* Storage blocked or unavailable — stay denied, which is the safe direction. */
+  /* Storage blocked, or a malformed record — stay denied, the safe direction. */
 }
 `}
       />
