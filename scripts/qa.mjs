@@ -128,9 +128,10 @@ for (const scheme of ["light", "dark"]) {
         violations,
         unapproved: [...new Set(unapproved)],
         intercomBeforeClick: [...new Set(intercomBeforeClick)],
-        /* Cookies are no longer zero on load — Google Analytics sets its own,
-           deliberately. What must stay zero is an Intercom cookie, which is
-           covered by intercomBeforeClick above: no request, no cookie. */
+        /* Zero again, and it is a stronger claim than before: analytics now
+           loads denied behind a consent banner, so nothing stores anything until
+           a visitor chooses. Any cookie here means either consent defaults
+           regressed or a third party started setting one unasked. */
         cookies: (await page.context().cookies()).map((cookie) => cookie.name),
       });
       await page.close();
@@ -176,13 +177,15 @@ const bad = report.filter(
     r.violations.length ||
     r.status !== 200 ||
     r.unapproved.length ||
-    r.intercomBeforeClick.length,
+    r.intercomBeforeClick.length ||
+    r.cookies.length,
 );
 console.log(`checked ${report.length} page/viewport/scheme combinations`);
 if (!bad.length) {
   console.log(
     "no overflow, no console errors, no accessibility violations,\n" +
-      "no unapproved third party, and no Intercom before a click",
+      "no unapproved third party, no cookies before consent,\n" +
+      "and no Intercom before a click",
   );
 } else {
   for (const r of bad) {
@@ -197,6 +200,8 @@ if (!bad.length) {
       console.log(
         `  INTERCOM loaded before any click: ${r.intercomBeforeClick.join(", ")}`,
       );
+    if (r.cookies.length)
+      console.log(`  COOKIES set before any consent: ${r.cookies.join(", ")}`);
     for (const e of r.consoleErrors)
       console.log(`  CONSOLE: ${e.slice(0, 160)}`);
     for (const v of r.violations)

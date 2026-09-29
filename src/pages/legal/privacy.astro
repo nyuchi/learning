@@ -14,7 +14,7 @@ import { toddleExtension } from "../../data/site";
 
 const title = "Privacy policy — Nyuchi Learning";
 const description =
-  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere; the website itself uses Google Analytics and a support messenger you open yourself.";
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere; the website sets no cookies unless you agree to analytics, and its support messenger loads only when you open it.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/privacy">
@@ -33,8 +33,8 @@ const description =
         inside your own browser and sends it nowhere. There is no server, no account and
         no analytics — buying a licence does not change that, because your key is checked
         on your own machine. We do hold your email address if you bought something, the
-        way any shop does. This website itself uses Google Analytics, so it sets cookies
-        and measures your visit; the extension does not, and never will.
+        way any shop does. This website asks before it measures anything, and sets no
+        cookies unless you agree; the extension measures nothing at all, and never will.
       </p>
     </div>
 
@@ -88,13 +88,24 @@ const description =
       to serve it and keeps operational logs, as any host must.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      <strong class="text-foreground">It uses Google Analytics.</strong> We want to know
-      which pages people read and whether this one leads anywhere, and that means Google
-      Analytics runs when the page loads, sets its own cookies, and receives the pages you
+      <strong class="text-foreground">It uses Google Analytics, and only if you agree.</strong>
+      The first time you visit, a banner asks. Until you press Accept, nothing is stored on
+      your device — no analytics cookie is set, and declining leaves the site working
+      exactly as it does otherwise. If you accept, Google Analytics records the pages you
       view along with your approximate location and device. It carries no advertising, we
-      sell nothing to anyone, and we build no profile of you by name — but this is a third
-      party measuring your visit, and it would be wrong to describe it as anything softer
-      than that.
+      sell nothing to anyone, and we build no profile of you by name.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      You can change your mind at any time: <strong class="text-foreground">Cookie choices</strong>
+      at the bottom of any page clears the answer and asks again. Withdrawing is one press,
+      the same as giving it.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      One detail we would rather state than have you discover. While consent is denied,
+      Google's tag is still on the page and still contacts Google, without cookies and
+      without identifying you — that is how Google's consent mechanism is built. So "no
+      cookies until you agree" is exactly true; "no contact with Google until you agree"
+      would not be, and we are not going to claim it.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       <strong class="text-foreground"

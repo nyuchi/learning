@@ -15,7 +15,8 @@
     "csp": "node scripts/check-csp.mjs",
     "csp:fix": "node scripts/check-csp.mjs --fix",
     "qa": "npm run build && node scripts/serve-and-qa.mjs",
-    "csp:probe": "npm run build && node scripts/serve-and-qa.mjs probe-intercom-csp.mjs"
+    "csp:probe": "npm run build && node scripts/serve-and-qa.mjs probe-intercom-csp.mjs",
+    "consent:probe": "npm run build && node scripts/serve-and-qa.mjs probe-consent.mjs"
   },
   "dependencies": {
     "@bundu/ui": "^0.1.1",
