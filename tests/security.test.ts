@@ -129,7 +129,10 @@ describe("pages", () => {
      measure visitors was made once, deliberately, and is reviewable in one
      place. A tracker appearing anywhere else — or a second one appearing beside
      GA in Analytics.astro — is not that decision, and fails here. */
-  const ANALYTICS_COMPONENT = "src/components/Analytics.astro";
+  const ANALYTICS_COMPONENTS = [
+    "src/components/Analytics.astro",
+    "src/components/CookieBanner.astro",
+  ];
 
   it("contain no analytics or tracking scripts beyond the approved one", () => {
     const trackers = [
@@ -154,8 +157,9 @@ describe("pages", () => {
       /\bdataLayer\b/,
     ];
     for (const file of sources) {
-      const excused =
-        file.path === ANALYTICS_COMPONENT ? APPROVED : ([] as RegExp[]);
+      const excused = ANALYTICS_COMPONENTS.includes(file.path)
+        ? APPROVED
+        : ([] as RegExp[]);
       for (const tracker of trackers) {
         if (excused.some((ok) => ok.source === tracker.source)) continue;
         expect(file.text, `${file.path} matched ${tracker}`).not.toMatch(
@@ -234,5 +238,72 @@ describe("support messenger", () => {
       );
       expect(ok, `unexpected host in CSP: ${host}`).toBe(true);
     }
+  });
+});
+
+/* Consent. The privacy policy promises no analytics cookie until the visitor
+   presses Accept, and that promise rests entirely on the ORDER of three inline
+   scripts: deny, then load Google's tag, then configure. Reorder the head for an
+   unrelated reason and the cookie starts appearing with nothing visibly broken
+   and the policy quietly false.
+
+   scripts/probe-consent.mjs proves the behaviour in a browser. This is the
+   cheap CI-safe half: the defaults exist, they are all denied, and they come
+   first. */
+describe("consent", () => {
+  const analytics = read("src/components/Analytics.astro");
+  const banner = read("src/components/CookieBanner.astro");
+
+  it("denies every storage signal by default", () => {
+    const defaults = analytics.slice(analytics.indexOf("'consent', 'default'"));
+    for (const signal of [
+      "ad_storage",
+      "ad_user_data",
+      "ad_personalization",
+      "analytics_storage",
+    ]) {
+      const declared = new RegExp(`${signal}:\\s*'denied'`).test(defaults);
+      expect(declared, `${signal} is not denied by default`).toBe(true);
+    }
+  });
+
+  it("sets the defaults before Google's tag is loaded", () => {
+    const deny = analytics.indexOf("'consent', 'default'");
+    const load = analytics.indexOf("googletagmanager.com/gtag/js");
+    const config = analytics.indexOf("'config'");
+    expect(deny).toBeGreaterThan(-1);
+    expect(load).toBeGreaterThan(-1);
+    expect(
+      deny,
+      "consent defaults are declared after the tag loads — GA could store before the visitor chooses",
+    ).toBeLessThan(load);
+    expect(load).toBeLessThan(config);
+  });
+
+  it("grants analytics_storage only, never the advertising signals", () => {
+    /* This site runs no advertising, so the ad_* signals are denied permanently.
+       A banner that grants them would be granting something with no purpose. */
+    const updates = [
+      ...banner.matchAll(/consent",\s*"update",\s*\{([^}]*)\}/g),
+    ].map((match) => match[1]);
+    expect(updates.length).toBeGreaterThan(0);
+    for (const update of updates) {
+      expect(update).toContain("analytics_storage");
+      for (const ad of ["ad_storage", "ad_user_data", "ad_personalization"]) {
+        expect(update, `banner grants ${ad}`).not.toContain(ad);
+      }
+    }
+  });
+
+  it("offers declining as plainly as accepting", () => {
+    /* A banner whose only real button is Accept is not consent. Both must exist
+       and both must be ordinary buttons. */
+    expect(banner).toMatch(/data-consent="denied"/);
+    expect(banner).toMatch(/data-consent="granted"/);
+  });
+
+  it("lets the choice be withdrawn later", () => {
+    expect(banner).toContain("cookie-choices");
+    expect(banner).toMatch(/removeItem/);
   });
 });

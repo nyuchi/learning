@@ -1,45 +1,76 @@
 ---
 /**
- * Google Analytics 4.
+ * Google Analytics 4, behind Google Consent Mode v2.
  *
- * This is the one place on the site that measures visitors, and it is worth
- * being explicit about what it costs, because the rest of this repo is built
- * around not doing this.
+ * The order of the three scripts below is the whole design, and it is fragile in
+ * one direction only: the consent defaults must be set BEFORE gtag/js loads. Set
+ * them after and there is a window in which GA has already written a cookie, the
+ * banner is still asking, and the privacy policy is wrong. That is why this is
+ * one `is:inline` block emitted ahead of the loader rather than something tidier.
  *
- * It sets cookies on arrival and sends page and event data to Google. That is a
- * real change to what this site is, and the privacy policy says so in plain
- * words rather than burying it — the previous wording ("no analytics of any
- * kind") would otherwise have become false the moment this shipped.
+ * What the visitor gets before they choose:
  *
- * Two things it deliberately does NOT change:
+ *   analytics_storage: denied   → no GA cookie, nothing kept on the device
+ *   ad_storage, ad_user_data, ad_personalization: denied
+ *
+ * Consent Mode v2 requires the three ad_* signals to be declared even though
+ * this site runs no advertising, so they are declared and denied permanently —
+ * the banner never grants them, because there is nothing here to grant them for.
+ * Only `analytics_storage` is ever flipped.
+ *
+ * An honest caveat, because a data protection lead will find it: with consent
+ * denied, GA still loads and still sends Google a cookieless ping. That is how
+ * Consent Mode is designed to work — it is what lets Google model the traffic it
+ * cannot measure — and it means "no cookies until you agree" is exactly true
+ * while "no contact with Google until you agree" is not. If you need the
+ * stronger claim, do not load this component until consent exists; you lose
+ * Consent Mode's modelling and gain a cleaner sentence.
+ *
+ * Two things this deliberately does NOT change:
  *
  *   1. The extension. Nothing here is in the extension, which still sends
  *      nothing anywhere. This is the marketing site measuring the marketing
  *      site, and the product claim is untouched.
  *   2. The support messenger still loads only on a click, and scripts/qa.mjs
- *      still enforces that. Analytics loading eagerly is not a licence for
- *      every other third party to.
- *
- * CONSENT: this sends data before the visitor has agreed to anything. Most of
- * the audience is staff at international schools, so UK/EU GDPR is the relevant
- * regime and it treats analytics cookies as needing consent. Two ways to be
- * straight about that, either of which is a small change from here:
- *
- *   - Set `cookieless: true` in src/data/site.ts. GA then runs with
- *     `client_storage: "none"`, sets no cookies and stores nothing on the
- *     device. You keep pageviews and events; you lose returning-visitor and
- *     cross-session attribution.
- *   - Or keep cookies and add a consent banner, gating this behind it.
- *
- * Left as the straightforward configuration because that is what was asked for.
- * The switch is there when you want it.
+ *      still enforces that.
  */
 import { analytics } from "../data/site";
+
+/* Kept in one place because three files agree on it: this component writes the
+   default, CookieBanner.astro writes the choice, and the footer link clears it. */
+export const CONSENT_KEY = "analytics-consent";
 ---
 
 {
   analytics.measurementId && (
     <>
+      <script
+        is:inline
+        set:html={`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+/* Deny everything up front. This runs before the loader below, so there is no
+   moment in which GA is storing anything the visitor has not agreed to. */
+gtag('consent', 'default', {
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  analytics_storage: 'denied',
+  wait_for_update: 500
+});
+
+/* A visitor who already said yes should not be asked again, and should not
+   spend a page view denied while we get round to reading their answer. */
+try {
+  if (localStorage.getItem(${JSON.stringify(CONSENT_KEY)}) === 'granted') {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+  }
+} catch (e) {
+  /* Storage blocked or unavailable — stay denied, which is the safe direction. */
+}
+`}
+      />
       <script
         is:inline
         async
@@ -48,12 +79,8 @@ import { analytics } from "../data/site";
       <script
         is:inline
         set:html={`
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${analytics.measurementId}'${
-          analytics.cookieless ? ", { client_storage: 'none' }" : ""
-        });
+gtag('config', '${analytics.measurementId}');
 `}
       />
     </>
