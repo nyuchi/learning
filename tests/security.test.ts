@@ -122,8 +122,16 @@ describe("pages", () => {
 
   /* Matched as the host or global a tracker actually appears as, not as a bare
      substring. "segment" alone also matches the word segment in a comment, and
-     a security check that cries wolf is one that gets deleted. */
-  it("contain no analytics or tracking scripts", () => {
+     a security check that cries wolf is one that gets deleted.
+
+     Google Analytics is now here on purpose, and it is the ONLY one. It lives in
+     exactly one file, which is the point of this assertion: the decision to
+     measure visitors was made once, deliberately, and is reviewable in one
+     place. A tracker appearing anywhere else — or a second one appearing beside
+     GA in Analytics.astro — is not that decision, and fails here. */
+  const ANALYTICS_COMPONENT = "src/components/Analytics.astro";
+
+  it("contain no analytics or tracking scripts beyond the approved one", () => {
     const trackers = [
       /googletagmanager\.com/,
       /google-analytics\.com/,
@@ -138,9 +146,21 @@ describe("pages", () => {
       /clarity\.ms/,
       /posthog/,
     ];
-    for (const source of sources.map((file) => file.text)) {
+    /* Only GA's own hosts and globals are excused, and only in its own file. */
+    const APPROVED = [
+      /googletagmanager\.com/,
+      /google-analytics\.com/,
+      /\bgtag\s*\(/,
+      /\bdataLayer\b/,
+    ];
+    for (const file of sources) {
+      const excused =
+        file.path === ANALYTICS_COMPONENT ? APPROVED : ([] as RegExp[]);
       for (const tracker of trackers) {
-        expect(source, `matched ${tracker}`).not.toMatch(tracker);
+        if (excused.some((ok) => ok.source === tracker.source)) continue;
+        expect(file.text, `${file.path} matched ${tracker}`).not.toMatch(
+          tracker,
+        );
       }
     }
   });
@@ -183,12 +203,18 @@ describe("support messenger", () => {
     expect(widget).not.toMatch(/f1vga504|support@nyuchi\.com/);
   });
 
-  it("is the only third-party host the CSP allows beyond fonts", () => {
+  it("lets the CSP name no third-party host beyond the approved ones", () => {
     /* A tripwire, not a copy of the policy: it fails when a host nobody
        expected appears, whatever else changes. A list of suffixes rather than
        one alternation regex, because a missing (^|\.) in that regex silently
-       widens the check it exists to narrow. */
+       widens the check it exists to narrow.
+
+       Three groups, and each one earned its place in a commit: Google Fonts,
+       the Intercom messenger, and Google Analytics. */
     const ALLOWED = [
+      "googletagmanager.com",
+      "google-analytics.com",
+      "analytics.google.com",
       "intercom.io",
       "intercomcdn.com",
       "intercomcdn.eu",

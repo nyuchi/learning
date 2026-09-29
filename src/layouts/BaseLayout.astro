@@ -10,6 +10,7 @@ import "../styles/global.css";
 import MineralStrip from "@bundu/ui/MineralStrip.astro";
 import SiteFooter from "../components/SiteFooter.astro";
 import SupportWidget from "../components/SupportWidget.astro";
+import Analytics from "../components/Analytics.astro";
 import SiteHeader from "../components/SiteHeader.astro";
 import { site } from "../data/site";
 
@@ -107,6 +108,8 @@ const schemaGraph = {
       rel="stylesheet"
     />
 
+    <Analytics />
+
     <!--
       Theme bootstrap. This has to run before the first paint or the page
       flashes light before switching to dark, so it is inline and synchronous
@@ -114,7 +117,8 @@ const schemaGraph = {
 
       It is the ONLY inline script on this site, and tests/security.test.ts
       asserts that — it reads two local values and sets two attributes. No
-      network, no third party, no analytics.
+      network and no third party — it reads two local values and sets two
+      attributes. Analytics is a separate component, declared above.
     -->
     <script is:inline>
       (function () {

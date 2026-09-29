@@ -1,0 +1,61 @@
+---
+/**
+ * Google Analytics 4.
+ *
+ * This is the one place on the site that measures visitors, and it is worth
+ * being explicit about what it costs, because the rest of this repo is built
+ * around not doing this.
+ *
+ * It sets cookies on arrival and sends page and event data to Google. That is a
+ * real change to what this site is, and the privacy policy says so in plain
+ * words rather than burying it — the previous wording ("no analytics of any
+ * kind") would otherwise have become false the moment this shipped.
+ *
+ * Two things it deliberately does NOT change:
+ *
+ *   1. The extension. Nothing here is in the extension, which still sends
+ *      nothing anywhere. This is the marketing site measuring the marketing
+ *      site, and the product claim is untouched.
+ *   2. The support messenger still loads only on a click, and scripts/qa.mjs
+ *      still enforces that. Analytics loading eagerly is not a licence for
+ *      every other third party to.
+ *
+ * CONSENT: this sends data before the visitor has agreed to anything. Most of
+ * the audience is staff at international schools, so UK/EU GDPR is the relevant
+ * regime and it treats analytics cookies as needing consent. Two ways to be
+ * straight about that, either of which is a small change from here:
+ *
+ *   - Set `cookieless: true` in src/data/site.ts. GA then runs with
+ *     `client_storage: "none"`, sets no cookies and stores nothing on the
+ *     device. You keep pageviews and events; you lose returning-visitor and
+ *     cross-session attribution.
+ *   - Or keep cookies and add a consent banner, gating this behind it.
+ *
+ * Left as the straightforward configuration because that is what was asked for.
+ * The switch is there when you want it.
+ */
+import { analytics } from "../data/site";
+---
+
+{
+  analytics.measurementId && (
+    <>
+      <script
+        is:inline
+        async
+        src={`https://www.googletagmanager.com/gtag/js?id=${analytics.measurementId}`}
+      />
+      <script
+        is:inline
+        set:html={`
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${analytics.measurementId}'${
+          analytics.cookieless ? ", { client_storage: 'none' }" : ""
+        });
+`}
+      />
+    </>
+  )
+}
