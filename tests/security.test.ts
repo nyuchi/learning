@@ -295,15 +295,70 @@ describe("consent", () => {
     }
   });
 
-  it("offers declining as plainly as accepting", () => {
-    /* A banner whose only real button is Accept is not consent. Both must exist
-       and both must be ordinary buttons. */
-    expect(banner).toMatch(/data-consent="denied"/);
-    expect(banner).toMatch(/data-consent="granted"/);
+  it("offers reject, accept and choose", () => {
+    /* All, some, or none. A banner whose only real button is Accept is not
+       consent, and one with no middle path is not granular. */
+    for (const action of ["reject", "accept", "customise", "save"]) {
+      expect(banner, `no ${action} action`).toMatch(
+        new RegExp(`data-consent-action="${action}"`),
+      );
+    }
+  });
+
+  it("gives reject and accept the same styling class", () => {
+    /* Equal prominence, enforced structurally: both take .consent-btn and
+       .btn-primary, so they cannot drift apart by someone restyling one.
+       scripts/probe-consent.mjs measures the rendered boxes as well. */
+    const buttons = [
+      ...banner.matchAll(
+        /<button[^>]*data-consent-action="(reject|accept)"[^>]*>/g,
+      ),
+    ];
+    expect(buttons.length).toBe(2);
+    for (const [tag] of buttons) {
+      expect(tag).toContain("btn-primary");
+      expect(tag).toContain("consent-btn");
+    }
+  });
+
+  it("pre-ticks nothing optional", () => {
+    /* Every optional category must be declared without `checked`, so ignoring
+       the banner lands where rejecting does. */
+    const categories = read("src/data/consent.ts");
+    expect(categories).toContain("required: false");
+    /* The only checked/disabled input is the required one. */
+    const checked = [...banner.matchAll(/checked=\{([^}]*)\}/g)].map(
+      (m) => m[1],
+    );
+    for (const expression of checked) {
+      expect(expression).toContain("category.required");
+    }
+  });
+
+  it("records a version and a timestamp, not just a boolean", () => {
+    /* All three regimes put the burden of demonstrating consent on us. */
+    expect(banner).toMatch(/v: version/);
+    expect(banner).toMatch(/at: new Date\(\)\.toISOString\(\)/);
+  });
+
+  it("declares a category only where something implements it", () => {
+    /* A toggle that controls nothing is theatre, and an inaccurate notice is a
+       worse position than a short one. Each optional category must be read by
+       some component. */
+    const categories = read("src/data/consent.ts");
+    const ids = [...categories.matchAll(/id: "(\w+)"/g)].map(
+      (match) => match[1],
+    );
+    expect(ids).toContain("analytics");
+    expect(ids).toContain("support");
+    expect(banner).toContain('granted("analytics")');
+    expect(read("src/components/SupportWidget.astro")).toContain(
+      "record.support",
+    );
   });
 
   it("lets the choice be withdrawn later", () => {
     expect(banner).toContain("cookie-choices");
-    expect(banner).toMatch(/removeItem/);
+    expect(banner).toContain("reopen");
   });
 });
