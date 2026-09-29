@@ -66,17 +66,41 @@ describe("crawlers and assistants", () => {
     );
   });
 
-  it("ships a sitemap listing every page", () => {
+  it("ships a sitemap whose URLs are exactly the pages' canonicals", () => {
     expect(existsSync(join(root, "dist", "sitemap-index.xml"))).toBe(true);
     const sitemap = built("sitemap-0.xml");
-    for (const path of [
-      "https://learning.nyuchi.com/",
-      "https://learning.nyuchi.com/toddle-enhancement-extension",
-      "https://learning.nyuchi.com/legal/privacy",
-      "https://learning.nyuchi.com/legal/terms",
-    ]) {
-      expect(sitemap, `sitemap is missing ${path}`).toContain(path);
-    }
+
+    /* Compare the two SETS, not substrings.
+     *
+     * This assertion used to be a `toContain` per path, which passes when the
+     * sitemap says `/legal/privacy/` and the page says `/legal/privacy` — the
+     * canonical is a substring of the sitemap entry. That is exactly the bug it
+     * existed to catch: Google follows the sitemap, reads a page declaring a
+     * different canonical, and drops the URL as a duplicate. Nothing indexed,
+     * and every check here was green.
+     *
+     * A set comparison cannot be satisfied by a prefix. */
+    const inSitemap = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)]
+      .map((match) => match[1])
+      .sort();
+
+    const canonicals = PAGES.map((page) => {
+      const html = built(page);
+      const found = html.match(/<link rel="canonical" href="([^"]+)"/);
+      expect(found, `${page} declares no canonical`).not.toBeNull();
+      return found![1];
+    }).sort();
+
+    expect(inSitemap).toEqual(canonicals);
+  });
+
+  it("gives every sitemap entry a lastmod", () => {
+    /* Search Console reports its absence, and without it a crawler has no
+       cheap signal that a page changed. */
+    const sitemap = built("sitemap-0.xml");
+    const locs = [...sitemap.matchAll(/<loc>/g)].length;
+    const lastmods = [...sitemap.matchAll(/<lastmod>/g)].length;
+    expect(lastmods).toBe(locs);
   });
 
   it("ships llms.txt describing the product accurately", () => {

@@ -49,17 +49,30 @@ for (const scheme of ["light", "dark"]) {
       );
       page.on("pageerror", (e) => consoleErrors.push(String(e)));
 
-      /* The support messenger must not load until someone asks for it — that is
-         what lets the privacy policy say this site sets no cookies unless you
-         open it. Asserting it here, in a browser, is the real check; a test that
-         reads the component's source can only ever guess at it. Fonts are the
-         one third party a page may reach on its own, and the policy says so. */
-      const thirdParty = [];
+      /* Two separate things to catch, and they must not be conflated.
+       *
+       * The messenger must not load until someone asks for it. That is the
+       * claim the privacy policy makes and the one worth a browser to check.
+       *
+       * Everything else third-party must be on the approved list. Google Fonts
+       * and Google Analytics are there because a commit put them there; anything
+       * else arriving is the regression this exists to catch.
+       *
+       * Analytics loading eagerly is not a licence for the messenger to, which
+       * is why these are two assertions rather than one "no third parties". */
+      const APPROVED =
+        /(^|\.)(googleapis|gstatic|googletagmanager|google-analytics)\.com$|(^|\.)analytics\.google\.com$/;
+      const unapproved = [];
+      const intercomBeforeClick = [];
       page.on("request", (request) => {
         const host = new URL(request.url()).host;
         if (host === new URL(BASE).host) return;
-        if (/(^|\.)(googleapis|gstatic)\.com$/.test(host)) return;
-        thirdParty.push(host);
+        if (/intercom/i.test(host)) {
+          intercomBeforeClick.push(host);
+          return;
+        }
+        if (APPROVED.test(host)) return;
+        unapproved.push(host);
       });
 
       const res = await page.goto(`${BASE}${path}`, {
@@ -113,8 +126,12 @@ for (const scheme of ["light", "dark"]) {
         offenders: overflow.offenders,
         consoleErrors,
         violations,
-        thirdParty: [...new Set(thirdParty)],
-        cookies: (await page.context().cookies()).length,
+        unapproved: [...new Set(unapproved)],
+        intercomBeforeClick: [...new Set(intercomBeforeClick)],
+        /* Cookies are no longer zero on load — Google Analytics sets its own,
+           deliberately. What must stay zero is an Intercom cookie, which is
+           covered by intercomBeforeClick above: no request, no cookie. */
+        cookies: (await page.context().cookies()).map((cookie) => cookie.name),
       });
       await page.close();
     }
@@ -158,14 +175,14 @@ const bad = report.filter(
     r.overflows ||
     r.violations.length ||
     r.status !== 200 ||
-    r.thirdParty.length ||
-    r.cookies,
+    r.unapproved.length ||
+    r.intercomBeforeClick.length,
 );
 console.log(`checked ${report.length} page/viewport/scheme combinations`);
 if (!bad.length) {
   console.log(
     "no overflow, no console errors, no accessibility violations,\n" +
-      "no third party and no cookies before a click",
+      "no unapproved third party, and no Intercom before a click",
   );
 } else {
   for (const r of bad) {
@@ -174,11 +191,12 @@ if (!bad.length) {
       console.log(
         `  OVERFLOW by ${r.overflowBy}px — ${r.offenders.join(", ")}`,
       );
-    if (r.thirdParty.length)
+    if (r.unapproved.length)
+      console.log(`  UNAPPROVED third party: ${r.unapproved.join(", ")}`);
+    if (r.intercomBeforeClick.length)
       console.log(
-        `  THIRD PARTY loaded without being asked: ${r.thirdParty.join(", ")}`,
+        `  INTERCOM loaded before any click: ${r.intercomBeforeClick.join(", ")}`,
       );
-    if (r.cookies) console.log(`  COOKIES set on load: ${r.cookies}`);
     for (const e of r.consoleErrors)
       console.log(`  CONSOLE: ${e.slice(0, 160)}`);
     for (const v of r.violations)
