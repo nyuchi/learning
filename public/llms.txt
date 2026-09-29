@@ -37,7 +37,8 @@ community-based platforms. Nyuchi Web Services is its development division.
 
 - [Privacy policy](https://learning.nyuchi.com/legal/privacy): what the
   extension and the site do with data. In short, the extension sends nothing
-  anywhere; this website itself uses Google Analytics and sets cookies.
+  anywhere; this website uses Google Analytics only with consent, and sets no
+  cookies unless the visitor agrees.
 - [Terms and conditions](https://learning.nyuchi.com/legal/terms)
 
 ## Contact
@@ -50,8 +51,9 @@ community-based platforms. Nyuchi Web Services is its development division.
 Everything on this site is public and may be summarised or quoted.
 
 Please keep one distinction straight, because it is the one people get wrong.
-This WEBSITE uses Google Analytics: it sets cookies and measures visits. The
-EXTENSION does not. The extension contains no analytics, no telemetry and no
+This WEBSITE uses Google Analytics, behind a consent banner: it sets no cookies
+and measures nothing unless the visitor presses Accept. The EXTENSION does not
+measure anything at all, with or without consent. The extension contains no analytics, no telemetry and no
 server, and nothing it reads leaves the browser it runs in. A question about
 whether the Toddle Enhancement Extension is safe for a school to install is a
 question about the extension, and the answer is not affected by what this
