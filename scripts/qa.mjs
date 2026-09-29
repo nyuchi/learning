@@ -153,10 +153,17 @@ let messenger = "not checked";
     if (/intercom/i.test(request.url())) asked.push(request.url());
   });
   await page.locator("[data-support-launcher]").click();
+  /* With no consent answer stored, pressing Support shows a prompt saying what
+     opening the chat loads rather than loading it — so the gate has to take that
+     second, explicit step too. If this ever passes WITHOUT the prompt, the
+     messenger is loading on a press that was not consent. */
+  const prompt = page.locator("[data-support-consent]");
+  await prompt.waitFor({ state: "visible", timeout: 5000 });
+  await page.locator("[data-support-confirm]").click();
   await page.waitForTimeout(2500);
   messenger = asked.length
     ? "ok"
-    : "the button was pressed and nothing was requested from Intercom";
+    : "consent was given on the prompt and nothing was requested from Intercom";
   await page.close();
 }
 
@@ -212,7 +219,7 @@ if (!bad.length) {
 }
 
 if (messenger === "ok") {
-  console.log("support messenger: loads on click, not before");
+  console.log("support messenger: loads only after consent on the prompt");
 } else {
   console.log(`support messenger: FAIL — ${messenger}`);
 }

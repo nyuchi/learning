@@ -47,14 +47,51 @@ function check(label, condition, detail = "") {
   }
 }
 
-/* --- declining --- */
+/* --- rejecting all --- */
 {
   const context = await browser.newContext();
   const page = await context.newPage();
   await page.goto(PAGE, { waitUntil: "networkidle" });
 
-  const banner = page.locator(".cookie-banner");
+  const banner = page.locator(".consent");
   check("banner is shown on a first visit", await banner.isVisible());
+
+  /* Equal prominence is a requirement, not a preference: a reject button that is
+     smaller or quieter than accept is the pattern regulators have been fining.
+     Compare the rendered boxes rather than the classes. */
+  const reject = page.locator('[data-consent-action="reject"]');
+  const accept = page.locator('[data-consent-action="accept"]');
+  const rejectBox = await reject.boundingBox();
+  const acceptBox = await accept.boundingBox();
+  check(
+    "Reject all is the same size as Accept all",
+    rejectBox && acceptBox && Math.abs(rejectBox.height - acceptBox.height) < 2,
+    `reject ${JSON.stringify(rejectBox)} vs accept ${JSON.stringify(acceptBox)}`,
+  );
+
+  /* Nothing optional may start on. */
+  await page.locator('[data-consent-action="customise"]').click();
+  const optional = page.locator("[data-consent-category]:not([disabled])");
+  const optionalCount = await optional.count();
+  check(
+    "there is more than one optional category to choose between",
+    optionalCount > 1,
+  );
+  let preChecked = 0;
+  for (let i = 0; i < optionalCount; i += 1) {
+    if (await optional.nth(i).isChecked()) preChecked += 1;
+  }
+  check(
+    "no optional category is pre-ticked",
+    preChecked === 0,
+    `${preChecked} were`,
+  );
+
+  const required = page.locator("[data-consent-category][disabled]");
+  check(
+    "the necessary category is on and cannot be switched off",
+    (await required.count()) === 1 && (await required.first().isChecked()),
+  );
 
   let cookies = await analyticsCookies(context);
   check(
@@ -63,18 +100,35 @@ function check(label, condition, detail = "") {
     cookies.join(", "),
   );
 
-  await page.locator('[data-consent="denied"]').click();
+  await reject.click();
   await page.waitForTimeout(1500);
-
-  check("banner is dismissed after declining", !(await banner.isVisible()));
+  check("banner is dismissed after rejecting all", !(await banner.isVisible()));
   cookies = await analyticsCookies(context);
   check(
-    "no analytics cookie after declining",
+    "no analytics cookie after rejecting all",
     cookies.length === 0,
     cookies.join(", "),
   );
 
-  /* The decision has to survive a reload, or it is not a decision. */
+  /* The record has to be produceable later — all three regimes put the burden of
+     showing consent on us, and a bare boolean is not a record. */
+  const record = await page.evaluate(() => {
+    try {
+      return JSON.parse(localStorage.getItem("nyuchi-consent") ?? "null");
+    } catch {
+      return null;
+    }
+  });
+  check(
+    "a versioned, timestamped record is stored",
+    Boolean(record?.v && record?.at),
+  );
+  check(
+    "rejecting all records every optional category as false",
+    record && record.analytics === false && record.support === false,
+    JSON.stringify(record),
+  );
+
   await page.reload({ waitUntil: "networkidle" });
   await page.waitForTimeout(1000);
   check("banner stays dismissed after a reload", !(await banner.isVisible()));
@@ -85,7 +139,7 @@ function check(label, condition, detail = "") {
     cookies.join(", "),
   );
 
-  /* And it has to be reversible from the footer. */
+  /* Withdrawal must be as easy as giving it. */
   const reopen = page.locator("#cookie-choices");
   check("the footer offers a way to change it", (await reopen.count()) > 0);
   if (await reopen.count()) {
@@ -97,6 +151,45 @@ function check(label, condition, detail = "") {
   await context.close();
 }
 
+/* --- choosing SOME: analytics on, support off --- */
+{
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto(PAGE, { waitUntil: "networkidle" });
+
+  await page.locator('[data-consent-action="customise"]').click();
+  await page.locator('[data-consent-category="analytics"]').check();
+  await page.locator('[data-consent-action="save"]').click();
+  await page.waitForTimeout(1500);
+
+  const record = await page.evaluate(() => {
+    try {
+      return JSON.parse(localStorage.getItem("nyuchi-consent") ?? "null");
+    } catch {
+      return null;
+    }
+  });
+  check(
+    "choosing some records exactly what was chosen",
+    record && record.analytics === true && record.support === false,
+    JSON.stringify(record),
+  );
+
+  /* Support was declined, so the messenger must not be on offer at all. */
+  await page.reload({ waitUntil: "networkidle" });
+  await page.waitForTimeout(1000);
+  check(
+    "declining the messenger hides its button",
+    !(await page.locator("[data-support-launcher]").isVisible()),
+  );
+  check(
+    "and offers email instead",
+    await page.locator("[data-support-fallback]").isVisible(),
+  );
+
+  await context.close();
+}
+
 /* --- accepting, in a clean profile --- */
 let acceptPath = "verified";
 {
@@ -104,7 +197,7 @@ let acceptPath = "verified";
   const page = await context.newPage();
   await page.goto(PAGE, { waitUntil: "networkidle" });
 
-  await page.locator('[data-consent="granted"]').click();
+  await page.locator('[data-consent-action="accept"]').click();
   /* GA writes its cookie on the next measurement call after the update. */
   await page.waitForTimeout(3000);
 
@@ -133,7 +226,7 @@ let acceptPath = "verified";
   await page.waitForTimeout(1000);
   check(
     "banner stays dismissed for someone who accepted",
-    !(await page.locator(".cookie-banner").isVisible()),
+    !(await page.locator(".consent").isVisible()),
   );
 
   await context.close();
@@ -148,7 +241,7 @@ if (failures.length) {
   console.log(`\n${failures.length} consent check(s) failed`);
   process.exit(1);
 }
-console.log("\nconsent gating works: no analytics cookie until Accept");
+console.log("\nconsent works: all, some or none — and nothing until asked");
 
 if (acceptPath === "unverifiable") {
   console.log(

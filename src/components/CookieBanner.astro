@@ -1,58 +1,123 @@
 ---
 /**
- * The consent banner.
+ * The consent banner: all, some, or none.
  *
- * Two things make this more than decoration, and both are requirements rather
- * than polish:
+ * Three things here are compliance requirements rather than polish, and each is
+ * asserted in tests/security.test.ts because each is easy to erode by accident:
  *
- *   1. Declining is as easy as accepting. One press either way, both buttons
- *      equally prominent. A banner whose only real button is "Accept" is not
- *      consent, and it is the pattern regulators have been fining.
- *   2. The choice can be withdrawn later, from the footer. Consent you cannot
- *      take back is not consent either.
+ *   1. Refusing is exactly as easy as agreeing. "Reject all" and "Accept all"
+ *      are the same size, the same weight, and sit side by side. A banner whose
+ *      only real button is Accept is the pattern regulators have been fining.
+ *   2. Nothing optional starts on. Every toggle in the panel is unchecked until
+ *      someone checks it, so closing the banner without answering leaves you
+ *      where rejecting does.
+ *   3. The record carries a timestamp and a version. All three regimes put the
+ *      burden on us to show consent was given, and "the cookie was there" is
+ *      not that.
  *
- * It starts hidden and is shown by script only when no choice has been stored,
- * so a returning visitor never sees it flash. Nothing here blocks the page:
- * analytics is already denied by Analytics.astro before this renders, so a
- * visitor who ignores the banner entirely is in the same position as one who
- * declines.
+ * Withdrawal is the footer's "Cookie choices", which reopens this with the
+ * current answers loaded, so changing your mind costs the same as deciding.
  */
-import { CONSENT_KEY } from "./Analytics.astro";
+import {
+  CONSENT_CATEGORIES,
+  CONSENT_KEY,
+  CONSENT_VERSION,
+  LEGACY_CONSENT_KEY,
+} from "../data/consent";
+import { legal } from "../data/legal";
 ---
 
 <div
-  class="cookie-banner"
+  class="consent"
   data-consent-key={CONSENT_KEY}
-  role="region"
-  aria-label="Cookie choices"
+  data-legacy-key={LEGACY_CONSENT_KEY}
+  data-consent-version={CONSENT_VERSION}
+  role="dialog"
+  aria-modal="false"
+  aria-labelledby="consent-heading"
   hidden
 >
-  <div class="cookie-inner card">
-    <p class="text-body-sm text-muted-foreground text-pretty">
-      We would like to use <strong class="text-foreground">Google Analytics</strong> to
-      see which pages are read. It sets a cookie. Decline and nothing is stored on
-      your device — the site works exactly the same either way. The
-      <a href="/legal/privacy" class="link">privacy policy</a> has the detail.
-    </p>
-    <div class="cookie-actions">
-      <button type="button" class="btn-outline !h-10 !px-5 text-body-sm" data-consent="denied">
-        Decline
+  <div class="consent-inner card">
+    <div>
+      <h2 id="consent-heading" class="font-serif text-h4 text-foreground">
+        Your choice, before we measure anything
+      </h2>
+      <p class="mt-2 text-body-sm text-muted-foreground text-pretty">
+        Nothing optional is switched on. Choose all of it, some of it, or none —
+        the site works the same either way. You can change this at any time from
+        <strong class="text-foreground">Cookie choices</strong> at the bottom of any
+        page, and the <a href="/legal/privacy" class="link">privacy policy</a> explains
+        each one.
+      </p>
+    </div>
+
+    <!-- The three actions. Reject and Accept are deliberately identical in
+         weight; "Choose" is the quieter middle path, not the loud one. -->
+    <div class="consent-actions">
+      <button type="button" class="btn-primary consent-btn" data-consent-action="reject">
+        Reject all
       </button>
-      <button type="button" class="btn-primary !h-10 !px-5 text-body-sm" data-consent="granted">
-        Accept
+      <button type="button" class="btn-primary consent-btn" data-consent-action="accept">
+        Accept all
       </button>
+      <button
+        type="button"
+        class="btn-outline consent-btn"
+        data-consent-action="customise"
+        aria-expanded="false"
+        aria-controls="consent-panel"
+      >
+        Choose
+      </button>
+    </div>
+
+    <div class="consent-panel" id="consent-panel" hidden>
+      <ul class="consent-list">
+        {
+          CONSENT_CATEGORIES.map((category) => (
+            <li>
+              <label class="consent-label">
+                <input
+                  type="checkbox"
+                  class="consent-toggle"
+                  id={`consent-${category.id}`}
+                  data-consent-category={category.id}
+                  checked={category.required}
+                  disabled={category.required}
+                />
+                <span>
+                  <span class="consent-name">
+                    {category.name}
+                    {category.required && (
+                      <span class="consent-always"> · always on</span>
+                    )}
+                  </span>
+                  <span class="consent-detail">{category.detail}</span>
+                  <span class="consent-used">{category.used}</span>
+                </span>
+              </label>
+            </li>
+          ))
+        }
+      </ul>
+      <div class="consent-save">
+        <button type="button" class="btn-primary consent-btn" data-consent-action="save">
+          Save my choices
+        </button>
+        <a href={`mailto:${legal.privacyEmail}`} class="link text-caption">
+          Ask us about this
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  .cookie-banner {
+  .consent {
     position: fixed;
-    left: 0;
-    right: 0;
+    inset-inline: 0;
     bottom: 0;
     z-index: 50;
-    /* Clear of the phone's home indicator, and of the support button's corner. */
     padding: 1rem;
     padding-bottom: calc(1rem + env(safe-area-inset-bottom, 0px));
     display: flex;
@@ -60,126 +125,328 @@ import { CONSENT_KEY } from "./Analytics.astro";
     pointer-events: none;
   }
 
-  .cookie-inner {
+  .consent-inner {
     pointer-events: auto;
-    max-width: 44rem;
     width: 100%;
+    max-width: 46rem;
+    max-height: min(80vh, 40rem);
+    overflow-y: auto;
+    padding: 1.15rem 1.35rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .consent-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  /* Reject and Accept must be indistinguishable in prominence. Sizing them
+     through one shared class rather than per button is what keeps them that way
+     when someone edits this later. */
+  .consent-btn {
+    height: 2.5rem !important;
+    padding-inline: 1.15rem !important;
+    font-size: 0.875rem;
+    flex: 1 1 auto;
+    min-width: 8rem;
+  }
+
+  .consent-panel {
+    border-top: 1px solid var(--color-border);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .consent-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+
+  .consent-label {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    cursor: pointer;
+  }
+
+  .consent-label:has(.consent-toggle:disabled) {
+    cursor: default;
+  }
+
+  .consent-toggle {
+    margin-top: 0.2rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--color-primary);
+    flex: none;
+  }
+
+  .consent-toggle:focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+
+  .consent-name {
+    display: block;
+    font-weight: 500;
+    color: var(--color-foreground);
+    font-size: 0.9375rem;
+  }
+
+  .consent-always {
+    font-weight: 400;
+    color: var(--color-muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  .consent-detail,
+  .consent-used {
+    display: block;
+    color: var(--color-muted-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.45;
+  }
+
+  .consent-detail {
+    margin-top: 0.15rem;
+  }
+
+  /* No opacity reduction here. muted-foreground is already at the edge of the
+     WCAG AA contrast ratio, and dimming it further failed the audit on the
+     privacy page where the same text appears. */
+  .consent-used {
+    margin-top: 0.25rem;
+  }
+
+  .consent-save {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 1rem;
-    padding: 1rem 1.25rem;
+    gap: 0.75rem 1rem;
   }
 
-  .cookie-inner > p {
-    flex: 1 1 22rem;
-    margin: 0;
-  }
-
-  .cookie-actions {
-    display: flex;
-    gap: 0.6rem;
-    flex: 0 0 auto;
-  }
-
-  /* On a phone the buttons get their own full-width row so neither is the easy
-     one to hit by accident. */
   @media (max-width: 30rem) {
-    .cookie-actions {
-      width: 100%;
-    }
-    .cookie-actions > * {
-      flex: 1;
-    }
-    /* Leave room for the Support button, which owns the bottom-right corner. */
-    .cookie-banner {
+    /* Clear of the Support button, which owns the bottom-right corner. */
+    .consent {
       padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    }
+    .consent-btn {
+      flex: 1 1 100%;
     }
   }
 </style>
 
 <script>
+  import { CONSENT_CATEGORIES, OPTIONAL_CATEGORIES } from "../data/consent";
+
+  type CategoryId = "necessary" | "analytics" | "support";
+
+  /** What gets stored. The timestamp and version are the demonstrable part. */
+  type ConsentRecord = { v: number; at: string } & Partial<
+    Record<CategoryId, boolean>
+  >;
+
   declare global {
     interface Window {
-      Intercom?: (command: string, options?: unknown) => void;
-      intercomSettings?: { app_id: string };
       dataLayer?: unknown[];
       gtag?: (...args: unknown[]) => void;
+      /** Read by SupportWidget.astro, which must not load Intercom unasked. */
+      nyuchiConsent?: {
+        granted: (id: CategoryId) => boolean;
+        grant: (id: CategoryId) => void;
+        onChange: (listener: () => void) => void;
+        reopen: () => void;
+      };
     }
   }
 
-  const banner = document.querySelector<HTMLElement>(".cookie-banner");
-  const key = banner?.dataset.consentKey;
+  const root = document.querySelector<HTMLElement>(".consent");
+  const panel = document.getElementById("consent-panel");
+  const key = root?.dataset.consentKey;
+  const legacyKey = root?.dataset.legacyKey;
+  const version = Number(root?.dataset.consentVersion ?? 1);
 
-  function read(): string | null {
+  const listeners: (() => void)[] = [];
+  let record: ConsentRecord | null = null;
+
+  function load(): ConsentRecord | null {
     try {
-      return key ? localStorage.getItem(key) : null;
+      const raw = key ? localStorage.getItem(key) : null;
+      if (raw) {
+        const parsed = JSON.parse(raw) as ConsentRecord;
+        /* A record written against different categories is not an answer to the
+           question now being asked, so ask again rather than assume. */
+        return parsed.v === version ? parsed : null;
+      }
+      /* Migrate the first version, which stored analytics alone. Someone who
+         already decided should not be asked twice. */
+      const legacy = legacyKey ? localStorage.getItem(legacyKey) : null;
+      if (legacy === "granted" || legacy === "denied") {
+        return {
+          v: version,
+          at: new Date().toISOString(),
+          necessary: true,
+          analytics: legacy === "granted",
+          support: false,
+        };
+      }
     } catch {
-      return null;
+      /* Storage blocked. Treated as "no answer yet", which denies everything. */
     }
+    return null;
   }
 
-  /* Call the real gtag that Analytics.astro defined.
-   *
-   * This used to push its own array onto dataLayer, which looks equivalent and
-   * is not: Google's snippet pushes the `arguments` object, and the consent API
-   * only recognises a command in that shape. A pushed Array is silently ignored
-   * — the banner dismissed itself, the choice persisted, and consent never
-   * actually changed. The browser probe caught it; nothing on the page would
-   * have.
-   *
-   * The fallback keeps the `arguments` shape for the same reason, and exists
-   * only for the case where analytics is switched off and there is no gtag. */
+  function granted(id: CategoryId): boolean {
+    if (id === "necessary") return true;
+    return record?.[id] === true;
+  }
+
   function gtag(...args: unknown[]) {
+    /* Call the real gtag Analytics.astro defined. Pushing our own Array onto
+       dataLayer looks equivalent and is not: Google's snippet pushes the
+       `arguments` object, and the consent API only recognises that shape. */
     if (typeof window.gtag === "function") {
-      (window.gtag as (...a: unknown[]) => void)(...args);
+      window.gtag(...args);
       return;
     }
-    (window.dataLayer = window.dataLayer || []).push(arguments);
+    (window.dataLayer = window.dataLayer || []).push(args);
   }
 
-  function apply(choice: "granted" | "denied") {
-    try {
-      if (key) localStorage.setItem(key, choice);
-    } catch {
-      /* Storage blocked. The choice holds for this page view only, which is the
-         best that can be offered without somewhere to keep it. */
-    }
-    /* Only analytics_storage is ever granted. The ad_* signals stay denied
-       because this site runs no advertising. */
-    gtag("consent", "update", { analytics_storage: choice });
-    banner?.setAttribute("hidden", "");
-  }
-
-  if (banner && !read()) banner.removeAttribute("hidden");
-
-  for (const button of banner?.querySelectorAll<HTMLButtonElement>(
-    "[data-consent]",
-  ) ?? []) {
-    button.addEventListener("click", () => {
-      const choice = button.dataset.consent;
-      if (choice === "granted" || choice === "denied") apply(choice);
+  function apply() {
+    /* Only analytics_storage is ever granted — this site runs no advertising,
+       so the ad_* signals stay denied permanently. */
+    gtag("consent", "update", {
+      analytics_storage: granted("analytics") ? "granted" : "denied",
     });
   }
 
-  /* Withdrawing consent has to be as easy as giving it. The control lives in the
-     footer, but this component wires it, because this component owns the state —
-     and because a footer script that waits for a global set by this one is a
-     race between two deferred modules. */
-  function reset() {
+  function save(choices: Partial<Record<CategoryId, boolean>>) {
+    record = {
+      v: version,
+      at: new Date().toISOString(),
+      necessary: true,
+      ...choices,
+    };
     try {
-      if (key) localStorage.removeItem(key);
+      if (key) localStorage.setItem(key, JSON.stringify(record));
+      /* Retire the old key so the migration path cannot resurrect a stale
+         answer after a fresh one has been given. */
+      if (legacyKey) localStorage.removeItem(legacyKey);
     } catch {
-      /* nothing stored to remove */
+      /* Holds for this page view only; better than refusing to proceed. */
     }
-    gtag("consent", "update", { analytics_storage: "denied" });
-    banner?.removeAttribute("hidden");
-    banner?.querySelector<HTMLButtonElement>("[data-consent]")?.focus();
+    apply();
+    root?.setAttribute("hidden", "");
+    for (const listener of listeners) listener();
   }
 
+  function toggleFor(id: CategoryId) {
+    return document.querySelector<HTMLInputElement>(
+      `[data-consent-category="${id}"]`,
+    );
+  }
+
+  function paint() {
+    for (const category of OPTIONAL_CATEGORIES) {
+      const input = toggleFor(category.id as CategoryId);
+      if (input) input.checked = granted(category.id as CategoryId);
+    }
+  }
+
+  function readToggles(): Partial<Record<CategoryId, boolean>> {
+    const choices: Partial<Record<CategoryId, boolean>> = {};
+    for (const category of OPTIONAL_CATEGORIES) {
+      choices[category.id as CategoryId] = Boolean(
+        toggleFor(category.id as CategoryId)?.checked,
+      );
+    }
+    return choices;
+  }
+
+  function setAll(value: boolean): Partial<Record<CategoryId, boolean>> {
+    return Object.fromEntries(
+      OPTIONAL_CATEGORIES.map((category) => [category.id, value]),
+    ) as Partial<Record<CategoryId, boolean>>;
+  }
+
+  function openPanel(open: boolean) {
+    if (open) panel?.removeAttribute("hidden");
+    else panel?.setAttribute("hidden", "");
+    document
+      .querySelector<HTMLButtonElement>('[data-consent-action="customise"]')
+      ?.setAttribute("aria-expanded", String(open));
+  }
+
+  function reopen() {
+    paint();
+    openPanel(true);
+    root?.removeAttribute("hidden");
+    document
+      .querySelector<HTMLButtonElement>('[data-consent-action="reject"]')
+      ?.focus();
+  }
+
+  /* Boot. Apply whatever was already decided before anything else runs, so a
+     returning visitor's answer is honoured on their first page view rather than
+     their second. */
+  record = load();
+  apply();
+  paint();
+  if (!record) root?.removeAttribute("hidden");
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>(
+    "[data-consent-action]",
+  )) {
+    button.addEventListener("click", () => {
+      switch (button.dataset.consentAction) {
+        case "accept":
+          save(setAll(true));
+          break;
+        case "reject":
+          save(setAll(false));
+          break;
+        case "customise":
+          openPanel(panel?.hasAttribute("hidden") ?? true);
+          break;
+        case "save":
+          save(readToggles());
+          break;
+      }
+    });
+  }
+
+  /* The footer control. Owned here rather than by SiteFooter, because this
+     component owns the state — and because a footer script waiting on a global
+     this one sets is a race between two deferred modules, which it lost once. */
   const footerControl = document.getElementById("cookie-choices");
   if (footerControl) {
     footerControl.removeAttribute("hidden");
-    footerControl.addEventListener("click", reset);
+    footerControl.addEventListener("click", reopen);
   }
+
+  window.nyuchiConsent = {
+    granted,
+    /* For an action that IS the consent: pressing "Open chat" on a prompt that
+       says what opening it loads is an unambiguous affirmative act, and it gets
+       recorded like any other answer rather than treated as a special case. */
+    grant(id: CategoryId) {
+      save({ ...(record ?? {}), [id]: true });
+    },
+    onChange(listener: () => void) {
+      listeners.push(listener);
+    },
+    reopen,
+  };
+
+  void CONSENT_CATEGORIES;
 </script>
