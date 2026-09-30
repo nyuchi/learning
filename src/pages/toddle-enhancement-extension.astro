@@ -307,18 +307,28 @@ const schema = [
                 </li>
               ))}
             </ul>
-            <a href={toddleExtension.enquiry} class:list={[index === 1 ? "btn-primary" : "btn-outline", "mt-6"]}>
-              {index === 1 ? "Talk to us about a rollout" : "Get in touch"}
+            <a
+              href={plan.buy}
+              rel="noopener noreferrer"
+              class:list={[index === 1 ? "btn-primary" : "btn-outline", "mt-6"]}
+            >
+              Buy — {plan.price} {plan.period}
             </a>
+            {index === 1 && (
+              <a href={toddleExtension.enquiry} class="link mt-3 text-body-sm self-start">
+                Need an invoice or a rollout plan? Talk to us
+              </a>
+            )}
           </article>
         ))
       }
     </div>
 
     <p class="mt-6 text-caption text-muted-foreground max-w-2xl text-pretty">
-      Paid through Paynow. Your key is checked on your own machine, so activating it
-      contacts nothing and works offline — and one key covers your laptop and your
-      classroom desktop.
+      Checkout is through Buy Me a Coffee, and your licence key arrives by email within
+      one working day. It is checked on your own machine, so activating it contacts
+      nothing and works offline — and one key covers your laptop and your classroom
+      desktop.
     </p>
   </section>
 
