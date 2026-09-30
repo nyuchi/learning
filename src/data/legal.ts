@@ -34,6 +34,8 @@ export const pricing = [
     price: "US$5",
     period: "per year",
     who: "One teacher.",
+    /** Checkout. Buy Me a Coffee for now; the key is issued by email. */
+    buy: "https://buymeacoffee.com/bryany/e/581737",
     includes: [
       "Every assessment tool expanded into columns",
       "CSV export",
@@ -45,6 +47,7 @@ export const pricing = [
     price: "US$49.99",
     period: "per year",
     who: "A school. Keys issued per teacher.",
+    buy: "https://buymeacoffee.com/bryany/e/581738",
     includes: [
       "Everything in Individual, for your whole staff",
       "Managed rollout through the Google Admin console",
