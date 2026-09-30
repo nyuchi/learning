@@ -72,6 +72,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
         label: "Deploy to a school",
         href: "/toddle-enhancement-extension#install",
       },
+      { label: "Send feedback", href: "/feedback" },
       { label: "Get in touch", href: "mailto:support@nyuchi.com" },
     ],
   },
@@ -142,4 +143,28 @@ export const toddleExtension = {
   supportEmail: "support@nyuchi.com",
   /** Mailto used while there is no store listing, and for school enquiries. */
   enquiry: "mailto:support@nyuchi.com?subject=Toddle%20Enhancement%20Extension",
+} as const;
+
+/**
+ * The feedback form posts to Formspree, which emails each submission to Nyuchi.
+ * The site stays static: there is no endpoint of ours to run or secure.
+ *
+ * `thanks` is where a visitor lands afterwards. With JavaScript the page sends
+ * the form itself and moves there on success, which works on any Formspree
+ * plan. Without JavaScript the browser posts directly, and Formspree honours
+ * the `_next` redirect only on paid plans — on the free plan it shows its own
+ * thank-you page instead.
+ */
+export const feedback = {
+  endpoint: "https://formspree.io/f/xdekjwvj",
+  subject: "Nyuchi Learning feedback",
+  thanks: "/feedback/thanks",
+  topics: [
+    "Toddle Enhancement Extension",
+    "An idea for the extension",
+    "Something that is not working",
+    "This website",
+    "Something else",
+  ],
+  maxLength: 5000,
 } as const;
