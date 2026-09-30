@@ -23,6 +23,8 @@ interface Props {
   ogType?: "website" | "article";
   /** Extra schema.org nodes for this page, merged into the site graph. */
   schema?: Record<string, unknown>[];
+  /** Keep the page out of search results, e.g. a thank-you page. */
+  noindex?: boolean;
 }
 
 const {
@@ -31,6 +33,7 @@ const {
   canonical,
   ogType = "website",
   schema = [],
+  noindex = false,
 } = Astro.props;
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).toString();
 
@@ -87,6 +90,7 @@ const schemaGraph = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
     <meta property="og:type" content={ogType} />

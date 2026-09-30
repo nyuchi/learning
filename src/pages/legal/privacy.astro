@@ -88,6 +88,16 @@ const description =
       It is a set of static pages served by Vercel. Vercel processes the request in order
       to serve it and keeps operational logs, as any host must.
     </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If you use the <a class="link" href="/feedback">feedback form</a>, what you type —
+      the topic, your message, your email address if you give one, and the page you came
+      from — is sent through Formspree, a form service, and recorded as an issue in
+      {legal.shortEntity}'s private GitHub repository for the extension, where only our
+      team can see it. We use it to reply to you and to decide what to build; we do not
+      add you to a mailing list or share it. Ask us at
+      <a class="link" href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a> and
+      we will delete it.
+    </p>
     <h2 class="font-serif text-h3 text-foreground mt-12">Your choices, and what they control</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       The first time you visit, a banner asks. Nothing optional is switched on until you

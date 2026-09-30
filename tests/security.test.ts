@@ -37,9 +37,6 @@ function walk(directory: string): string[] {
 }
 
 const sources = walk("src").map((path) => ({ path, text: read(path) }));
-const pages = sources
-  .filter((file) => file.path.startsWith("src/pages/"))
-  .map((file) => file.text);
 
 describe("app shell", () => {
   /* There is exactly one inline script: the theme bootstrap, which has to run
@@ -116,8 +113,19 @@ describe("app shell", () => {
 });
 
 describe("pages", () => {
-  it("contain no <form> elements", () => {
-    for (const page of pages) expect(page).not.toMatch(/<form\b/);
+  /* One form, on purpose: feedback, posted to Formspree. Any other form — or
+     this one pointed somewhere else — should be argued for in review. */
+  it("contain exactly one <form>, the feedback form, posting to Formspree", () => {
+    const forms = sources.filter(
+      (file) => file.path.startsWith("src/pages/") && /<form\b/.test(file.text),
+    );
+    expect(forms.map((file) => file.path)).toEqual([
+      "src/pages/feedback.astro",
+    ]);
+    expect(forms[0].text).toMatch(/action=\{feedback\.endpoint\}/);
+    expect(read("src/data/site.ts")).toMatch(
+      /endpoint: "https:\/\/formspree\.io\/f\/[a-z0-9]+"/,
+    );
   });
 
   /* Matched as the host or global a tracker actually appears as, not as a bare
@@ -229,6 +237,7 @@ describe("support messenger", () => {
       "intercom-reporting.com",
       "gstatic.com",
       "googleapis.com",
+      "formspree.io",
     ];
     const hosts = policyHosts(readPolicy());
     expect(hosts.length).toBeGreaterThan(0);
