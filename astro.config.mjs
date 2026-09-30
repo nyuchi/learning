@@ -14,6 +14,9 @@ export default defineConfig({
 
   integrations: [
     sitemap({
+      /* The thank-you page is where the feedback form lands; it is noindex and
+         has nothing to find. */
+      filter: (page) => !page.includes("/feedback/thanks"),
       /* Make the sitemap agree with the pages' own canonical tags.
        *
        * The build emits directory-style output, so this integration listed

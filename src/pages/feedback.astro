@@ -1,0 +1,157 @@
+---
+/**
+ * Feedback.
+ *
+ * A plain HTML form that posts to Formspree, so it works with JavaScript off.
+ * With JavaScript on, the script below sends it instead and moves to the
+ * thank-you page on success — which works on any Formspree plan, where the
+ * no-JavaScript redirect (`_next`) needs a paid one. See `feedback` in
+ * src/data/site.ts.
+ *
+ * Spam: `_gotcha` is Formspree's honeypot — hidden from people, filled in by
+ * bots, and submissions that fill it are dropped. No third-party script.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { feedback, site, toddleExtension } from "../data/site";
+
+const title = "Send feedback — Nyuchi Learning";
+const description =
+  "Tell us what works, what does not, and what the Toddle Enhancement Extension should do next. Every message is read.";
+const thanksUrl = new URL(feedback.thanks, site.url).toString();
+---
+
+<BaseLayout title={title} description={description} canonical="/feedback">
+  <article class="container-prose section">
+    <p class="eyebrow">Feedback</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Help shape what we build next</h1>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The {toddleExtension.name} gets better because teachers tell us what they
+      need. Tell us what works, what does not, or what you wish it did. We read
+      every message.
+    </p>
+
+    <form
+      id="feedback-form"
+      class="mt-10 card p-6 sm:p-8 space-y-6"
+      action={feedback.endpoint}
+      method="POST"
+      accept-charset="UTF-8"
+    >
+      <input type="hidden" name="_subject" value={feedback.subject} />
+      <input type="hidden" name="_next" value={thanksUrl} />
+      <input type="hidden" name="page" value="" data-page />
+
+      <div>
+        <label for="topic" class="block text-body-sm font-medium text-foreground">
+          What is it about?
+        </label>
+        <select id="topic" name="topic" class="input mt-2" required>
+          {feedback.topics.map((topic) => <option value={topic}>{topic}</option>)}
+        </select>
+      </div>
+
+      <div>
+        <label for="message" class="block text-body-sm font-medium text-foreground">
+          Your feedback
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          class="input mt-2 h-auto min-h-48 rounded-2xl py-3 leading-relaxed"
+          required
+          minlength="3"
+          maxlength={feedback.maxLength}
+          aria-describedby="message-hint"
+        ></textarea>
+        <p id="message-hint" class="mt-2 text-body-sm text-muted-foreground">
+          Please leave out student names or anything else about your pupils.
+        </p>
+      </div>
+
+      <div>
+        <label for="email" class="block text-body-sm font-medium text-foreground">
+          Your email <span class="font-normal text-muted-foreground">(optional)</span>
+        </label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          class="input mt-2"
+          autocomplete="email"
+          aria-describedby="email-hint"
+        />
+        <p id="email-hint" class="mt-2 text-body-sm text-muted-foreground">
+          Only if you would like a reply.
+        </p>
+      </div>
+
+      <!-- Honeypot: hidden from people and from assistive technology. -->
+      <div class="hidden" aria-hidden="true">
+        <label for="_gotcha">Leave this empty</label>
+        <input id="_gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off" />
+      </div>
+
+      <p
+        class="hidden text-body-sm text-destructive"
+        role="alert"
+        data-error
+      >
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4">
+        <button type="submit" class="btn-primary" data-submit>Send feedback</button>
+        <p class="text-body-sm text-muted-foreground">
+          Sent through Formspree. See our <a class="link" href="/legal/privacy">privacy policy</a>.
+        </p>
+      </div>
+    </form>
+  </article>
+</BaseLayout>
+
+<script>
+  import { feedback } from "../data/site";
+
+  const form = document.querySelector<HTMLFormElement>("#feedback-form");
+  const error = form?.querySelector<HTMLElement>("[data-error]");
+  const submit = form?.querySelector<HTMLButtonElement>("[data-submit]");
+  const page = form?.querySelector<HTMLInputElement>("[data-page]");
+
+  /* Which page sent them here, if it was one of ours. Never another site's URL. */
+  if (page && document.referrer.startsWith(location.origin)) {
+    page.value = new URL(document.referrer).pathname;
+  }
+
+  const showError = (text: string) => {
+    if (!error) return;
+    error.textContent = text;
+    error.classList.remove("hidden");
+  };
+
+  form?.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    if (!submit || submit.disabled) return;
+    error?.classList.add("hidden");
+    submit.disabled = true;
+    submit.textContent = "Sending…";
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      });
+      if (response.ok) {
+        location.assign(feedback.thanks);
+        return;
+      }
+      const body = await response.json().catch(() => ({}));
+      const detail = Array.isArray(body.errors)
+        ? body.errors.map((e: { message?: string }) => e.message).filter(Boolean).join(" ")
+        : "";
+      showError(detail || "That did not send. Please try again in a moment.");
+    } catch {
+      showError("That did not send — you may be offline. Please try again.");
+    }
+    submit.disabled = false;
+    submit.textContent = "Send feedback";
+  });
+</script>

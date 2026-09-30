@@ -20,6 +20,7 @@ const PAGES = [
   "toddle-enhancement-extension/index.html",
   "legal/privacy/index.html",
   "legal/terms/index.html",
+  "feedback/index.html",
 ];
 
 describe("every page", () => {
@@ -92,6 +93,12 @@ describe("crawlers and assistants", () => {
     }).sort();
 
     expect(inSitemap).toEqual(canonicals);
+  });
+
+  it("keeps the feedback thank-you page out of search", () => {
+    const thanks = built("feedback/thanks/index.html");
+    expect(thanks).toContain('<meta name="robots" content="noindex">');
+    expect(built("sitemap-0.xml")).not.toContain("/feedback/thanks");
   });
 
   it("gives every sitemap entry a lastmod", () => {

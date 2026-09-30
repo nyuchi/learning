@@ -9,7 +9,7 @@
 
 export const legal = {
   /** Last substantive change. Update when a claim below changes, not on typos. */
-  updated: "2026-09-28",
+  updated: "2026-10-01",
   entity: "Nyuchi Africa (Private) Limited",
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
