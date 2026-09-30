@@ -25,6 +25,8 @@ const PAGES = [
   "/toddle-enhancement-extension/",
   "/legal/privacy/",
   "/legal/terms/",
+  "/feedback/",
+  "/feedback/thanks/",
 ];
 const VIEWPORTS = [
   { name: "phone", width: 375, height: 812 },

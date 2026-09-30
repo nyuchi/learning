@@ -1,0 +1,35 @@
+---
+/**
+ * Where the feedback form lands. noindex, and left out of the sitemap in
+ * astro.config.mjs: there is nothing here for a search engine.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { toddleExtension } from "../../data/site";
+
+const title = "Thank you — Nyuchi Learning";
+const description = "Thank you for your feedback on the Toddle Enhancement Extension.";
+---
+
+<BaseLayout title={title} description={description} canonical="/feedback/thanks" noindex>
+  <article class="container-prose section">
+    <p class="eyebrow">Feedback received</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">
+      Thank you for helping build the extension
+    </h1>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Every improvement to the {toddleExtension.name} so far started with a
+      teacher telling us what they needed. Yours is now part of that, and we are
+      grateful you took the time.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We read every message. If you left your email address, we may write back
+      with a question or to let you know when something you asked for ships.
+    </p>
+
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a class="btn-primary" href="/toddle-enhancement-extension">Back to the extension</a>
+      <a class="btn-outline" href="/feedback">Send more feedback</a>
+      <a class="btn-ghost" href="/">Home</a>
+    </div>
+  </article>
+</BaseLayout>
