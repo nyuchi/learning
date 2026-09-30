@@ -91,7 +91,23 @@ const schemaGraph = {
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex" />}
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- The Nyuchi bee, in the variant for the browser's own colour scheme:
+         the tab strip is light or dark independently of this page's toggle. -->
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/brand/favicon-light.png"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="48x48"
+      href="/brand/favicon-dark.png"
+      media="(prefers-color-scheme: dark)"
+    />
+    <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png" />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
