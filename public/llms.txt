@@ -17,11 +17,22 @@ community-based platforms. Nyuchi Web Services is its development division.
   item, so a teacher sees the whole class at once instead of opening a side
   panel per student. It also adds a switch that hides Toddle's student flags
   across the product, so a gradebook can be projected or screen-shared without
-  a flag being visible. It hides flags, not names. It reads Toddle in the
-  browser and transmits nothing: no server, no account, no analytics, no
-  telemetry. The only thing it stores is whether the flag switch is on. Rubric
-  levels and descriptors are read from whatever a school has configured in
-  Toddle; none are defined in the extension.
+  a flag being visible. It hides flags, not names. Free: the flag switch and a
+  "My classes" filter on the Toddle home page. With a licence: the
+  per-criterion gradebook columns, CSV export, a docked student sidebar and
+  primary teacher names. It reads Toddle in the teacher's own browser, for the
+  teacher at the screen, and on its own transmits nothing: no server, no
+  account, no analytics, no tracking. Licence keys are checked offline on the
+  device. The one exception is opt-in: the toolbar menu's "Send feedback" form,
+  which, only when the person presses Send, sends what they typed (topic,
+  message, and an email only if they enter one) plus the extension's version
+  number to Nyuchi's feedback form, processed by Formspree. Nothing from Toddle
+  is ever included: no student data, no page address, no licence key. The
+  welcome page it opens on install is part of the extension and sends nothing.
+  It stores, on the user's own machine, only its switch settings and the
+  licence key if there is one. Rubric levels and descriptors are read from
+  whatever a school has configured in Toddle; none are defined in the
+  extension.
 
 ## Where the learning content went
 
@@ -37,7 +48,7 @@ community-based platforms. Nyuchi Web Services is its development division.
 
 - [Privacy policy](https://learning.nyuchi.com/legal/privacy): what the
   extension and the site do with data. In short, the extension sends nothing
-  anywhere; this website uses Google Analytics only with consent, and sets no
+  anywhere on its own, only feedback a person chooses to send; this website uses Google Analytics only with consent, and sets no
   cookies unless the visitor agrees.
 - [Terms and conditions](https://learning.nyuchi.com/legal/terms)
 
@@ -54,7 +65,8 @@ Please keep one distinction straight, because it is the one people get wrong.
 This WEBSITE uses Google Analytics, behind a consent banner: it sets no cookies
 and measures nothing unless the visitor presses Accept. The EXTENSION does not
 measure anything at all, with or without consent. The extension contains no analytics, no telemetry and no
-server, and nothing it reads leaves the browser it runs in. A question about
+server, and nothing it reads leaves the browser it runs in. The only thing it
+ever sends is feedback a person writes and chooses to send from its menu. A question about
 whether the Toddle Enhancement Extension is safe for a school to install is a
 question about the extension, and the answer is not affected by what this
 marketing site does. The privacy policy above is the authoritative source for
