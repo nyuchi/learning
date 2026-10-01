@@ -27,21 +27,45 @@ const primaryCta = live
   ? { label: "Add to Chrome", href: toddleExtension.webStore! }
   : { label: "Tell me when it is live", href: toddleExtension.enquiry };
 
+/* `free` is the split the extension enforces: the flag switch and My classes
+   for everyone, the rest with a licence. Keep it in step with `pricing` in
+   src/data/legal.ts and the terms. */
 const features = [
   {
     mineral: "cobalt",
+    free: false,
     title: "Standards view",
     body: "Toddle shows a standards-based rubric as one icon per student, and you open a side panel to read each one. This puts one column per standard on the grid, with every student's descriptor visible at once and the full standard text on hover.",
   },
   {
     mineral: "malachite",
+    free: true,
     title: "Hide student flags",
     body: "One switch in the Toddle header hides student flags everywhere: the gradebook, Attendance, the class portfolio, submissions, search results, profile headers. It stays on as you move around, so you arm it before a lesson rather than remembering in the moment.",
   },
   {
     mineral: "gold",
+    free: false,
     title: "CSV export",
     body: "Student × assessment × standard × rating × submission status, in one click. Generated in your browser and saved by your browser — it never passes through a server of ours, because there isn't one.",
+  },
+  {
+    mineral: "tanzanite",
+    free: true,
+    title: "My classes",
+    body: "The Toddle home page's course filter gains a third option beside All courses and My courses: only the classes you actually teach. It is remembered, and a tag by the heading says when it is on.",
+  },
+  {
+    mineral: "terracotta",
+    free: false,
+    title: "The student sidebar",
+    body: "Click a student's name and Toddle's own student card docks to the side until you close it, with their grade, email, contacts and classes — instead of a popover that vanishes when the mouse moves.",
+  },
+  {
+    mineral: "cobalt",
+    free: false,
+    title: "Primary teacher names",
+    body: "The class's primary teacher, as ticked in the class settings, beside every class on the home page and on a student's profile — so you know who to ask without opening the class.",
   },
 ];
 
@@ -53,13 +77,23 @@ const facts = [
   {
     label: "What it reads",
     value:
-      "Gradebook data, through Toddle's own API, reusing the session you are already signed in with. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
+      "What Toddle already shows you — gradebook results, class staff, student details — through Toddle's own API, reusing the session you are already signed in with. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
   },
   { label: "What it writes", value: "Nothing. Every request it makes is a read." },
   {
     label: "What it sends",
     value:
-      "Nothing, anywhere. No server, no analytics, no telemetry, no remote code. The only thing it stores is whether the flag switch is on.",
+      "Nothing, anywhere, on its own. No server, no account, no analytics, no tracking, no remote code. Licence keys are checked offline, on your machine. The welcome page it opens on install is part of the extension and contacts nothing.",
+  },
+  {
+    label: "The one exception",
+    value:
+      "The Send feedback form in the toolbar menu, and only when you press Send. It sends what you typed — a topic, your message, an email only if you enter one — and the extension's version number to our feedback form, processed by Formspree. Nothing from Toddle: no student data, no page address, no licence key.",
+  },
+  {
+    label: "What it stores",
+    value:
+      "On your own machine only: your switch settings (flags shown or hidden, the sidebar, teacher names, My classes) and your licence key, if you have one.",
   },
 ];
 
@@ -84,6 +118,9 @@ const schema = [
       "Expands every Toddle assessment tool into per-criterion columns",
       "Hides student flags across Toddle with one switch",
       "CSV export of results and submission status",
+      "A My classes filter on the Toddle home page",
+      "A docked student sidebar",
+      "Primary teacher names beside each class",
     ],
     privacyPolicy: "https://learning.nyuchi.com/legal/privacy",
   },
@@ -133,6 +170,9 @@ const schema = [
               style={`background-color: var(--color-${feature.mineral});`}
             />
             <h2 class="font-serif text-h4 text-foreground text-balance">{feature.title}</h2>
+            <p class="mt-1 text-caption text-muted-foreground">
+              {feature.free ? "Free" : "With a licence"}
+            </p>
             <p class="mt-3 text-body-sm text-muted-foreground text-pretty flex-1">
               {feature.body}
             </p>
@@ -274,8 +314,9 @@ const schema = [
       </h2>
       <p class="mt-6 text-body text-muted-foreground text-pretty">
         The flag switch protects a student, so it is not behind a price and never will
-        be. The gradebook columns and the CSV export are the time saving, and that is
-        what a licence pays for.
+        be. The My classes filter is free too. The gradebook's per-criterion columns, the
+        CSV export, the student sidebar and primary teacher names are the time saving,
+        and that is what a licence pays for.
       </p>
     </div>
 
