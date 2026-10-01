@@ -1,0 +1,85 @@
+---
+/**
+ * Accessibility statement.
+ *
+ * What is tested, by what, and where we know it falls short. The website's
+ * checks are scripts/qa.mjs (axe-core in a real browser, every page, three
+ * widths, light and dark); the extension's are its end-to-end run, which
+ * drives its own pages by keyboard.
+ */
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { legal, updatedLabel } from "../data/legal";
+import { toddleExtension } from "../data/site";
+
+const title = "Accessibility — Nyuchi Learning";
+const description =
+  "Our accessibility target for learning.nyuchi.com and the Toddle Enhancement Extension's own pages (WCAG 2.2 AA), how it is tested, the known limitations, and how to report a problem.";
+---
+
+<BaseLayout title={title} description={description} canonical="/accessibility">
+  <article class="container-prose section">
+    <p class="eyebrow">Accessibility</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Accessibility statement</h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">Last updated {updatedLabel}.</p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Our target</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We aim to meet the <strong class="text-foreground">Web Content Accessibility
+      Guidelines (WCAG) 2.2 at level AA</strong> on this website and on the
+      {toddleExtension.name}'s own pages: its toolbar menu, its licence page and its
+      welcome page.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">How it is tested</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">This website</strong> is checked in a real browser,
+        on every page, at phone, tablet and desktop widths, in light and dark: an automated
+        accessibility audit (axe-core), and a check that nothing scrolls sideways on a small
+        screen. Links in text are underlined, not told apart by colour alone.
+      </li>
+      <li>
+        <strong class="text-foreground">The extension's own pages</strong> are driven by
+        keyboard in its end-to-end tests: every control must be reached by Tab in reading
+        order, show a visible focus ring and have an accessible name. Their colours are
+        chosen for at least 4.5:1 contrast for text and 3:1 for the edges of controls;
+        switches that need a licence say so in words, not only by looking grey; and motion
+        stops when your system asks for reduced motion.
+      </li>
+    </ul>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Known limitations</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Inside Toddle,</strong> the extension adds to
+        Toddle's own pages, so what it adds depends on Toddle's markup and is only as
+        accessible as the page around it. Toddle draws the gradebook on a canvas; the
+        extension follows Toddle's grid there rather than replacing it.
+      </li>
+      <li>
+        <strong class="text-foreground">Screenshots</strong> on the extension page have
+        text alternatives describing them. Names and personal details in them are covered,
+        so those parts carry no information to read.
+      </li>
+      <li>
+        <strong class="text-foreground">Third-party windows,</strong> such as the support
+        messenger and the checkout, are provided by those services and are outside our
+        control.
+      </li>
+    </ul>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Reporting a problem</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If something here or in the extension is hard to use with your setup, tell us at
+      <a class="link" href={`mailto:${legal.supportEmail}?subject=Accessibility`}
+        >{legal.supportEmail}</a
+      >: what you were trying to do, where, and the browser and any assistive technology
+      you use. We treat accessibility problems as bugs, and will tell you what we can fix
+      and when.
+    </p>
+  </article>
+</BaseLayout>

@@ -15,7 +15,7 @@ import { toddleExtension } from "../../data/site";
 
 const title = "Privacy policy — Nyuchi Learning";
 const description =
-  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere on its own, only feedback you choose to send; the website asks before it measures anything, and lets you take all, some or none of it.";
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: nothing the extension reads leaves your browser — it sends only feedback you choose to send and, while a licence is entered, a daily check for cancelled keys that carries no data; the website asks before it measures anything, and lets you take all, some or none of it.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/privacy">
@@ -31,11 +31,12 @@ const description =
     <div class="mt-10 ubuntu-quote">
       <p class="text-body text-pretty">
         <strong>The short version.</strong> The extension reads Toddle inside your own
-        browser, for you at the screen, and sends it nowhere. There is no server, no account,
-        no analytics and no tracking — buying a licence does not change that, because your
-        key is checked on your own machine. The one thing the extension will ever send is
-        feedback you write in its menu and choose to send, and that never includes anything
-        from Toddle. We do hold your email address if you bought something, the
+        browser, for you at the screen, and sends it nowhere. There is no account, no
+        analytics and no tracking, and your licence key is checked on your own machine. The
+        extension makes only two connections outside Toddle: feedback you write in its menu
+        and choose to send, and, while a licence is entered, a once-a-day download of a
+        signed list of cancelled keys that sends nothing about you. Neither ever includes
+        anything from Toddle. We do hold your email address if you bought something, the
         way any shop does. This website asks before it measures anything and lets you take
         all, some or none of it; the extension measures nothing at all, and never will.
       </p>
@@ -43,8 +44,9 @@ const description =
 
     <h2 class="font-serif text-h3 text-foreground mt-12">Who we are</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      {legal.entity}, trading as Nyuchi Learning, registered in {legal.country}.
-      For anything in this policy, write to
+      {legal.entity}, trading as Nyuchi Learning, registered in {legal.country}; the site
+      and the extension are run by its development division, {legal.operator}, in
+      {legal.city}. For anything in this policy, write to
       <a
         href={`mailto:${legal.privacyEmail}`}
         class="link"
@@ -73,8 +75,9 @@ const description =
       The extension's feedback form
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      This is the one exception to "sends nothing", and it only happens when you make it
-      happen. Since version 0.8.1 the extension's toolbar menu has a
+      This is one of the extension's two connections outside Toddle (the other is the
+      <a class="link" href="#revocation-check">daily check for cancelled keys</a>), and it
+      only happens when you make it happen. Since version 0.8.1 the extension's toolbar menu has a
       <strong class="text-foreground">Send feedback</strong> form.
     </p>
     <ul
@@ -115,13 +118,46 @@ const description =
       </li>
     </ul>
 
+    <h2 id="revocation-check" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      The daily check for cancelled keys
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The extension's second connection outside Toddle, from version 0.8.2.
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">When.</strong> Once a day, and only while a licence
+        key is entered. Without a licence it never happens.
+      </li>
+      <li>
+        <strong class="text-foreground">What is sent.</strong> One plain request to
+        <code class="break-all">https://licences.nyuchi.dev/v1/revocations</code>, from the extension's
+        background worker. It carries no licence key, no identifiers, no cookies and no
+        Toddle data.
+      </li>
+      <li>
+        <strong class="text-foreground">What comes back.</strong> A list, signed by Nyuchi,
+        of the fingerprints (SHA-256 hashes) of cancelled keys. The extension checks its own
+        key against the list on your machine.
+      </li>
+      <li>
+        <strong class="text-foreground">Who sees what.</strong> Cloudflare, which runs the
+        server, sees your IP address, as with any web request. Nyuchi does not log it.
+      </li>
+      <li>
+        <strong class="text-foreground">If it fails.</strong> The extension keeps working.
+      </li>
+    </ul>
+
     <h2 id="security" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
       Security
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       The statements above are enforced in the software and held in place by tests that
-      fail if the extension asks for a new permission, sends anything outside Toddle, or
-      sends a query that is not on its fixed, read-only list. On {security.review.label}
+      fail if the extension asks for a new permission, sends anything anywhere it is not
+      meant to, or sends a query that is not on its fixed, read-only list. On {security.review.label}
       it had an independent adversarial review, and every finding was fixed in version
       {security.version}. The <a class="link" href="/legal/security">Security page</a>
       sets out the security model, how it is tested, what that review found, the limits
@@ -136,13 +172,16 @@ const description =
       controller's behalf. We receive none: the extension reads what your browser has
       already loaded from Toddle, renders it differently on that same screen, and
       transmits none of it. Feedback a teacher chooses to send from the extension's menu
-      carries only what they typed, never anything from Toddle. Your school remains the controller of its data, and Toddle
+      carries only what they typed, never anything from Toddle, and the daily licence check
+      sends nothing at all. Your school remains the controller of its data, and Toddle
       remains its processor, exactly as before the extension was installed.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       If your data protection officer would like that in writing against a specific
       framework, or wants to review the code before approving it, write to us — we would
-      rather answer the question properly than have you take a web page's word for it.
+      rather answer the question properly than have you take a web page's word for it. A
+      <a class="link" href="/legal/data#dpa">data processing agreement</a> is available on
+      request.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">This website</h2>
@@ -197,9 +236,13 @@ const description =
       us rather than on you — it is stored in your own browser, alongside the choice itself.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Every cookie and stored value, with what sets it and how long it lasts, is listed in
+      the <a class="link" href="/legal/cookies">cookie policy</a>.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
       This is written to satisfy the three regimes that actually apply to our readers:
       <strong class="text-foreground">UK and EU GDPR</strong>, Zimbabwe's
-      <strong class="text-foreground">Data Protection Act (Chapter 11:12)</strong>, and
+      <strong class="text-foreground">Cyber and Data Protection Act [Chapter 12:07]</strong>, and
       Singapore's <strong class="text-foreground">PDPA</strong>. They differ in detail and
       agree on the substance, so one approach serves all three: nothing optional before you
       ask for it, each purpose chosen separately, refusal as easy as agreement, withdrawal at
@@ -215,8 +258,9 @@ const description =
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       <strong class="text-foreground"
         >None of that is true of the extension.</strong
-      > It contains no analytics and sends nothing anywhere unless you press Send on its
-      feedback form. This is the website measuring
+      > It contains no analytics, and nothing it reads leaves your browser; its only outside
+      connections are the feedback form, when you press Send, and the daily licence check
+      described above. This is the website measuring
       the website. If the distinction matters to you — and for anyone assessing the
       software for a school, it is the part that matters — the extension section above is
       the one to read.
@@ -257,8 +301,11 @@ const description =
       </li>
       <li>
         <strong class="text-foreground">Your key contains your email.</strong> That is how
-        a key is tied to a person. It is stored in your own browser and checked there —
-        the extension does not send it to us or to anyone else.
+        a key is tied to a person; an organisation key carries the school's email domain
+        instead. The extension compares it with the Toddle account signed in, inside your
+        browser only. The key is stored in your own browser and checked there — the
+        extension does not send it to us or to anyone else, not even in the daily check for
+        cancelled keys.
       </li>
       <li>
         <strong class="text-foreground">We do not market to you off the back of it.</strong>
@@ -279,16 +326,61 @@ const description =
       marketing list off the back of a support question.
     </p>
 
+    <h2 id="controller" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Who is responsible, and on what basis
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      For the personal data Nyuchi holds — licence purchases, feedback, support
+      conversations and this website's analytics — {legal.entity} is the data controller,
+      including for the purposes of {legal.country}'s Cyber and Data Protection Act
+      [Chapter 12:07]. We rely on:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">your consent</strong> for this website's analytics
+        and the support messenger, which you can withdraw at any time;
+      </li>
+      <li>
+        <strong class="text-foreground">the contract with you</strong> to issue, deliver and
+        support a licence you buy, and the law for the records a business must keep;
+      </li>
+      <li>
+        <strong class="text-foreground">your request</strong> when you send feedback or write
+        to us, so that we can read it and reply.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      For student data in Toddle, the school is the controller; the extension's processing
+      happens on the school's own devices and Nyuchi receives none of it. The
+      <a class="link" href="/legal/data">data handling</a> page lists what we hold, the
+      services that process it for us, and how long it is kept, and
+      <a class="link" href="/legal/student-privacy">student privacy</a> covers FERPA, COPPA
+      and data processing agreements.
+    </p>
+
     <h2 class="font-serif text-h3 text-foreground mt-12">Your rights</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Depending on where you live you may have rights to access, correct, export or
-      delete personal data we hold about you. In practice the only personal data we are
-      likely to hold is correspondence you have sent us. Write to
+      You can ask for access to the personal data we hold about you, have it corrected,
+      have it deleted where we are not required to keep it, and object to how we use it.
+      Write to
       <a
         href={`mailto:${legal.privacyEmail}`}
         class="link"
         >{legal.privacyEmail}</a
-      > and we will act on it.
+      > and we will act on it. Wherever you are, we respect the rights your own law gives
+      you, including under the EU and UK GDPR. You can also complain to your data
+      protection authority.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">If something goes wrong</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If a breach affects personal data we hold, we will tell the people and schools
+      affected without undue delay, and within 72 hours where the law requires it. The
+      <a class="link" href="/legal/data#breach">data handling</a> page says what we will tell
+      you. The extension holds no student data, so a breach on our side cannot expose
+      student data from Toddle.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">Changes</h2>
