@@ -10,6 +10,8 @@ community-based platforms. Nyuchi Web Services is its development division.
 ## Products
 
 - [Toddle Enhancement Extension](https://learning.nyuchi.com/toddle-enhancement-extension):
+  Install it from the Chrome Web Store: https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi (extension ID
+  ofliokikjmkkdkinbdnadbjjdmkjdjfi).
   A Chrome extension for the Toddle gradebook (web.toddleapp.com). It expands
   every assessment tool — standards-based rubrics, criterion rubrics,
   score-based rubrics, single-point rubrics, checklists, scores, comments,

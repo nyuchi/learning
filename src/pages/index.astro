@@ -11,10 +11,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
 
-// One switch drives the call to action everywhere: an install link once the
-// store listing is live, an enquiry until then. Never a link that 404s.
+// One switch drives the call to action everywhere: "Add to Chrome" with the
+// store listing set, an enquiry without it. Never a link that 404s.
 const extensionCta = toddleExtension.webStore
-  ? { label: "Install", href: toddleExtension.webStore }
+  ? { label: "Add to Chrome", href: toddleExtension.webStore }
   : { label: "Get in touch", href: toddleExtension.enquiry };
 
 const surfaces = [
