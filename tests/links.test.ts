@@ -79,8 +79,8 @@ describe("the extension page", () => {
      the switch is set; this asserts it points at the real listing and stays
      wired, so the pages never fall back to "not yet" by accident. */
   it("drives its calls to action from the store switch", () => {
-    expect(siteData).toContain(
-      'webStore: "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi"',
+    expect(siteData).toMatch(
+      /webStore:\s*"https:\/\/chromewebstore\.google\.com\/detail\/ofliokikjmkkdkinbdnadbjjdmkjdjfi"/,
     );
     expect(extensionPage).toContain("toddleExtension.webStore");
     expect(extensionPage).toContain("toddleExtension.enquiry");
