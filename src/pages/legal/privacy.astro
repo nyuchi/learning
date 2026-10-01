@@ -9,7 +9,7 @@
  * against. They cannot drift apart without someone editing the shared source.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { extensionDataFacts, legal, updatedLabel } from "../../data/legal";
+import { extensionDataFacts, legal, security, updatedLabel } from "../../data/legal";
 import { CONSENT_CATEGORIES } from "../../data/consent";
 import { toddleExtension } from "../../data/site";
 
@@ -114,6 +114,19 @@ const description =
         <a class="link" href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>.
       </li>
     </ul>
+
+    <h2 id="security" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Security
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The statements above are enforced in the software and held in place by tests that
+      fail if the extension asks for a new permission, sends anything outside Toddle, or
+      sends a query that is not on its fixed, read-only list. On {security.review.label}
+      it had an independent adversarial review, and every finding was fixed in version
+      {security.version}. The <a class="link" href="/legal/security">Security page</a>
+      sets out the security model, how it is tested, what that review found, the limits
+      no extension can remove, and how to report a vulnerability.
+    </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">
       Are you a processor of our students' data?
