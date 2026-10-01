@@ -92,6 +92,10 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
 - [Terms of use and service](https://learning.nyuchi.com/legal/terms): the
   website's terms of use and the extension's terms of service (licences,
   offline keys, refunds, acceptable use, liability, law of Zimbabwe).
+  Refunds: a full refund within 30 days of purchase, for any reason related
+  to the product; ask at support@nyuchi.com or through Buy Me a Coffee. A
+  refunded licence key is cancelled and stops working after the extension's
+  next daily check for cancelled keys.
 - [Data handling](https://learning.nyuchi.com/legal/data): for schools. What
   the extension reads, where it is processed (only in the teacher's browser),
   what it stores (settings and licence key; no student data), what leaves the

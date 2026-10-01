@@ -174,3 +174,13 @@ export const securityMailto = `mailto:${security.report.email}?subject=${encodeU
 /** Toddle is not ours. Said in the footer, the terms and the product page. */
 export const toddleNotice =
   "Toddle is a trademark of its owner. Nyuchi and the Toddle Enhancement Extension are not affiliated with, endorsed by or sponsored by Toddle.";
+
+/**
+ * The refund rule, said once. It appears in the terms, on the extension page,
+ * on the data handling page and in llms.txt.
+ */
+export const refunds = {
+  rule: "A full refund within 30 days of purchase, for any reason related to the product.",
+  how: "Ask by emailing support@nyuchi.com from the address you bought with, or through Buy Me a Coffee.",
+  key: "A refunded licence key is cancelled, and stops working after the extension's next daily check for cancelled keys.",
+} as const;

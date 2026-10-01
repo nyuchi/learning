@@ -7,7 +7,7 @@
  * whether we can withdraw it — is answered plainly rather than buried.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, pricing, toddleNotice, updatedLabel } from "../../data/legal";
+import { legal, pricing, refunds, toddleNotice, updatedLabel } from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Terms of use and service — Nyuchi Learning";
@@ -88,9 +88,14 @@ const description =
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       An organisation licence is issued as keys, one per teacher, to the contact who
-      signed up. If a key does not work and we cannot make it work for you, write to
-      <a href={`mailto:${legal.supportEmail}`} class="link">{legal.supportEmail}</a>
-      within thirty days of buying it and we will refund you.
+      signed up.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Refunds</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground">{refunds.rule}</strong> Ask by emailing{" "}
+      <a href={`mailto:${legal.supportEmail}`} class="link">{legal.supportEmail}</a> from
+      the address you bought with, or through Buy Me a Coffee. {refunds.key}
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">How licence keys work</h2>
