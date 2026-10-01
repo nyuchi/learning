@@ -8,7 +8,7 @@
  *                           and unambiguous; granular per purpose, not bundled;
  *                           refusing as easy as agreeing; withdrawable at any
  *                           time; the controller must be able to demonstrate it
- *   Zimbabwe DPA 11:12      "freely given specific and informed indication";
+ *   Zimbabwe CDPA 12:07     "freely given specific and informed indication";
  *                           withdrawal; the controller must be able to show
  *                           consent was obtained
  *   Singapore PDPA          purposes notified before collection; consent not a

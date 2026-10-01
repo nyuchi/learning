@@ -12,7 +12,7 @@ import { Picture } from "astro:assets";
 import type { ImageOutputFormat } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
-import { pricing } from "../data/legal";
+import { pricing, toddleNotice } from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
 import toolToggleShot from "../assets/screenshots/02-tool-toggle.jpg";
 import myClassesShot from "../assets/screenshots/03-my-classes.jpg";
@@ -157,7 +157,7 @@ const facts = [
   {
     label: "What it reads",
     value:
-      "What Toddle already lets you see — gradebook results, class staff, student details, today's timetable and attendance — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It asks for no student flags. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
+      "What Toddle already lets you see — gradebook results, class staff, student details, today's timetable and attendance — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It fetches a student's flags only when someone chooses to show them. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
   },
   {
     label: "What it writes",
@@ -167,12 +167,12 @@ const facts = [
   {
     label: "What it sends",
     value:
-      "Nothing, anywhere, on its own. No server, no account, no analytics, no tracking, no remote code. Licence keys are checked offline, on your machine. The welcome page it opens on install is part of the extension and contacts nothing.",
+      "Nothing it reads, anywhere. No account, no analytics, no tracking, no remote code. Licence keys are checked on your machine: an individual key carries your email and an organisation key your school's email domain, compared with your Toddle account in the browser only. The welcome page it opens on install is part of the extension and contacts nothing.",
   },
   {
-    label: "The one exception",
+    label: "Its two outside connections",
     value:
-      "The Send feedback form in the toolbar menu, and only when you press Send. It sends what you typed — a topic, your message, an email only if you enter one — and the extension's version number to our feedback form, processed by Formspree. Nothing from Toddle: no student data, no page address, no licence key.",
+      "The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, one request a day to licences.nyuchi.dev for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the extension keeps working.",
   },
   {
     label: "What it stores",
@@ -517,7 +517,8 @@ const schema = [
       Checkout is through Buy Me a Coffee, and your licence key is emailed to you
       automatically, usually within a minute of paying. It is checked on your own machine, so activating it contacts
       nothing and works offline — and one key covers your laptop and your classroom
-      desktop.
+      desktop. While a key is entered, the extension checks once a day for cancelled keys,
+      sending nothing about you.
     </p>
   </section>
 
@@ -582,6 +583,7 @@ const schema = [
           {toddleExtension.supportEmail}
         </a>
       </div>
+      <p class="mt-8 text-caption text-muted-foreground text-pretty">{toddleNotice}</p>
     </div>
   </section>
 </BaseLayout>

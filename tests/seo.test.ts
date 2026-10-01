@@ -21,6 +21,12 @@ const PAGES = [
   "legal/privacy/index.html",
   "legal/terms/index.html",
   "legal/security/index.html",
+  "legal/cookies/index.html",
+  "legal/data/index.html",
+  "legal/student-privacy/index.html",
+  "legal/vulnerability-disclosure/index.html",
+  "legal/notice/index.html",
+  "accessibility/index.html",
   "feedback/index.html",
 ];
 
@@ -124,16 +130,59 @@ describe("the footer is the canonical navigation", () => {
   /* Every page must be reachable from the footer: it is the only navigation
      that appears on every page, so a page missing from it is a page only
      reachable by knowing the URL. */
+  const footer = built("index.html").split("<footer")[1] ?? "";
+
   it("links to every page of the site", () => {
-    const siteData = read("src/data/site.ts");
-    for (const path of [
-      "/toddle-enhancement-extension",
-      "/legal/privacy",
-      "/legal/terms",
-      "/legal/security",
-    ]) {
-      expect(siteData, `footer does not link to ${path}`).toContain(path);
+    for (const page of PAGES) {
+      const path = `/${page.replace(/\/?index\.html$/, "")}`;
+      if (path === "/") continue;
+      expect(footer, `footer does not link to ${path}`).toContain(
+        `href="${path}"`,
+      );
     }
+  });
+
+  it("says Nyuchi is not affiliated with Toddle", () => {
+    expect(footer).toContain(
+      "not affiliated with, endorsed by or sponsored by Toddle",
+    );
+  });
+});
+
+describe("llms.txt", () => {
+  it("lists every legal page", () => {
+    const llms = built("llms.txt");
+    for (const page of PAGES.filter((p) => /^(legal|accessibility)/.test(p))) {
+      const path = page.replace(/\/index\.html$/, "");
+      expect(llms, `llms.txt does not list /${path}`).toContain(
+        `https://learning.nyuchi.com/${path})`,
+      );
+    }
+  });
+});
+
+describe("security.txt", () => {
+  /* RFC 9116: Contact and Expires are required; an expired file is to be
+     treated as stale, so it fails here a month before it lapses. */
+  const text = built(".well-known/security.txt");
+  const field = (name: string) =>
+    new RegExp(`^${name}: (.+)$`, "m").exec(text)?.[1];
+
+  it("is served from /.well-known with the required fields", () => {
+    expect(field("Contact")).toBe("mailto:support@nyuchi.com");
+    expect(field("Preferred-Languages")).toBe("en");
+    expect(field("Canonical")).toBe(
+      "https://learning.nyuchi.com/.well-known/security.txt",
+    );
+    expect(field("Policy")).toBe(
+      "https://learning.nyuchi.com/legal/vulnerability-disclosure",
+    );
+  });
+
+  it("has not expired, and will not for at least a month", () => {
+    const expires = Date.parse(field("Expires") ?? "");
+    expect(Number.isNaN(expires)).toBe(false);
+    expect(expires - Date.now()).toBeGreaterThan(30 * 24 * 60 * 60 * 1000);
   });
 });
 

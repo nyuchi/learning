@@ -1,0 +1,109 @@
+---
+/**
+ * Student privacy — the addendum schools ask for by name.
+ *
+ * States data flows as facts and leaves the legal conclusions to the school's
+ * own adviser. Every flow here is the one described on /legal/data and
+ * enforced by the extension's closed-loop tests.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legal, updatedLabel } from "../../data/legal";
+import { toddleExtension } from "../../data/site";
+
+const title = "Student privacy — Nyuchi Learning";
+const description =
+  "The Toddle Enhancement Extension is used by school staff, not students. Student data it shows is read from Toddle in the teacher's browser and is not collected, stored or transmitted by Nyuchi. FERPA, COPPA and data processing agreements.";
+
+const privacyMail = `mailto:${legal.privacyEmail}`;
+---
+
+<BaseLayout title={title} description={description} canonical="/legal/student-privacy">
+  <article class="container-prose section">
+    <p class="eyebrow">Legal</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Student privacy</h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">
+      Last updated {updatedLabel}. An addendum to the
+      <a class="link" href="/legal/privacy">privacy policy</a> and
+      <a class="link" href="/legal/data">data handling</a>, for the
+      <strong class="text-foreground">{toddleExtension.name}</strong>.
+    </p>
+
+    <div class="mt-10 ubuntu-quote">
+      <p class="text-body text-pretty">
+        <strong>The short version.</strong> Staff use the extension; students do not. What it
+        shows about a student is read from Toddle in the teacher's own browser, for that
+        teacher, and Nyuchi never collects, stores or receives it.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Who uses it</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The extension is for school staff, in Toddle's staff web app. It is not designed for,
+      offered to or used by students, and children do not use it. Licences are sold to
+      teachers and schools.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What happens to student data</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        It is read from Toddle, with the teacher's own session, only for the teacher at the
+        screen and only what their account can already see.
+      </li>
+      <li>It is processed in that teacher's browser, on that device, and nowhere else.</li>
+      <li>
+        It is not stored: answers are held in the page's memory for a few minutes and are gone
+        when the tab closes.
+      </li>
+      <li>
+        It is not transmitted to Nyuchi or to anyone else. The extension's only connections
+        outside Toddle are the opt-in feedback form, which carries only what the teacher
+        types, and, while a licence is entered, a daily check for cancelled keys, which
+        sends no data.
+      </li>
+      <li>Nothing is written back to Toddle.</li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The school stays in control of its students' data through Toddle, exactly as before:
+      who can see what is still decided by the school's Toddle permissions.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">FERPA</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Because no student data is collected, stored or transmitted by Nyuchi, Nyuchi does not
+      receive students' education records from the extension. The records stay in Toddle,
+      viewed by school staff in their own browsers.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">COPPA</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Nyuchi does not collect personal information from children. The extension is not used
+      by children, and the student information it shows to staff is not collected by Nyuchi.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">GDPR, UK GDPR and similar laws</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The school remains the controller of its student data, and Toddle its processor.
+      Nyuchi receives none of that data from the extension. See
+      <a class="link" href="/legal/data">data handling</a> for what Nyuchi does hold, about
+      purchasers and people who send feedback.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Data processing agreements</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Some schools are required to have an agreement in place with every provider of
+      software used with student data, for example under New York Education Law §2-d. A
+      data processing agreement is available on request from
+      <a class="link" href={privacyMail}>{legal.privacyEmail}</a>. Whether your school needs
+      one is for your school and its advisers to decide.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Questions</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Write to <a class="link" href={privacyMail}>{legal.privacyEmail}</a>. The
+      <a class="link" href="/legal/security">security page</a> describes how these
+      guarantees are enforced and tested.
+    </p>
+  </article>
+</BaseLayout>
