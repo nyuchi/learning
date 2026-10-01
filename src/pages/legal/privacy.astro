@@ -9,13 +9,13 @@
  * against. They cannot drift apart without someone editing the shared source.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { extensionDataFacts, legal } from "../../data/legal";
+import { extensionDataFacts, legal, updatedLabel } from "../../data/legal";
 import { CONSENT_CATEGORIES } from "../../data/consent";
 import { toddleExtension } from "../../data/site";
 
 const title = "Privacy policy — Nyuchi Learning";
 const description =
-  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere; the website asks before it measures anything, and lets you take all, some or none of it.";
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: the extension sends nothing anywhere on its own, only feedback you choose to send; the website asks before it measures anything, and lets you take all, some or none of it.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/privacy">
@@ -23,17 +23,19 @@ const description =
     <p class="eyebrow">Legal</p>
     <h1 class="font-serif text-h1 text-foreground text-balance">Privacy policy</h1>
     <p class="mt-4 text-body-sm text-muted-foreground">
-      Last updated {legal.updated}. Applies to
+      Last updated {updatedLabel}. Applies to
       <strong class="text-foreground">learning.nyuchi.com</strong> and to the
       <strong class="text-foreground">{toddleExtension.name}</strong>.
     </p>
 
     <div class="mt-10 ubuntu-quote">
       <p class="text-body text-pretty">
-        <strong>The short version.</strong> The extension reads your Toddle gradebook
-        inside your own browser and sends it nowhere. There is no server, no account and
-        no analytics — buying a licence does not change that, because your key is checked
-        on your own machine. We do hold your email address if you bought something, the
+        <strong>The short version.</strong> The extension reads Toddle inside your own
+        browser, for you at the screen, and sends it nowhere. There is no server, no account,
+        no analytics and no tracking — buying a licence does not change that, because your
+        key is checked on your own machine. The one thing the extension will ever send is
+        feedback you write in its menu and choose to send, and that never includes anything
+        from Toddle. We do hold your email address if you bought something, the
         way any shop does. This website asks before it measures anything and lets you take
         all, some or none of it; the extension measures nothing at all, and never will.
       </p>
@@ -67,6 +69,52 @@ const description =
       }
     </dl>
 
+    <h2 id="extension-feedback" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      The extension's feedback form
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      This is the one exception to "sends nothing", and it only happens when you make it
+      happen. Since version 0.8.1 the extension's toolbar menu has a
+      <strong class="text-foreground">Send feedback</strong> form.
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">When.</strong> Only when you press Send. Opening
+        the form, typing in it or closing it sends nothing, and nothing is ever sent in the
+        background.
+      </li>
+      <li>
+        <strong class="text-foreground">What.</strong> Exactly what you typed — the topic,
+        your message, and your email address only if you enter one — plus the extension's
+        version number, so we know which release you mean.
+      </li>
+      <li>
+        <strong class="text-foreground">What it never includes.</strong> Nothing from
+        Toddle: no student data, no page address, no class or school details, and not your
+        licence key. Please leave student names out of what you type, too.
+      </li>
+      <li>
+        <strong class="text-foreground">Where it goes.</strong> To Nyuchi's feedback form,
+        which is processed by Formspree, a form service acting on our behalf. It is the
+        same service and the same form as this website's
+        <a class="link" href="/feedback">feedback page</a>, and it is handled the same way
+        once it reaches us.
+      </li>
+      <li>
+        <strong class="text-foreground">Why.</strong> To read what you tell us, reply if
+        you asked us to, and decide what to fix or build next. We do not add you to a
+        mailing list or share it.
+      </li>
+      <li>
+        <strong class="text-foreground">How long.</strong> Feedback is kept only as long as
+        we need it to act on it. You can ask for yours to be deleted at any time by writing
+        to
+        <a class="link" href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>.
+      </li>
+    </ul>
+
     <h2 class="font-serif text-h3 text-foreground mt-12">
       Are you a processor of our students' data?
     </h2>
@@ -74,7 +122,8 @@ const description =
       No. A data processor receives personal data and does something with it on the
       controller's behalf. We receive none: the extension reads what your browser has
       already loaded from Toddle, renders it differently on that same screen, and
-      transmits nothing. Your school remains the controller of its data, and Toddle
+      transmits none of it. Feedback a teacher chooses to send from the extension's menu
+      carries only what they typed, never anything from Toddle. Your school remains the controller of its data, and Toddle
       remains its processor, exactly as before the extension was installed.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
@@ -89,14 +138,17 @@ const description =
       to serve it and keeps operational logs, as any host must.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      If you use the <a class="link" href="/feedback">feedback form</a>, what you type —
+      If you use the <a class="link" href="/feedback">feedback form</a> on this website,
+      what you type —
       the topic, your message, your email address if you give one, and the page you came
       from — is sent through Formspree, a form service, and recorded as an issue in
       {legal.shortEntity}'s private GitHub repository for the extension, where only our
       team can see it. We use it to reply to you and to decide what to build; we do not
-      add you to a mailing list or share it. Ask us at
+      add you to a mailing list or share it. Feedback is kept only as long as we need it to
+      act on it; ask us at
       <a class="link" href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a> and
-      we will delete it.
+      we will delete it sooner. Feedback sent from inside the extension goes to the same
+      form — see <a class="link" href="#extension-feedback">the extension's feedback form</a>.
     </p>
     <h2 class="font-serif text-h3 text-foreground mt-12">Your choices, and what they control</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
@@ -150,7 +202,8 @@ const description =
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       <strong class="text-foreground"
         >None of that is true of the extension.</strong
-      > It contains no analytics and sends nothing anywhere. This is the website measuring
+      > It contains no analytics and sends nothing anywhere unless you press Send on its
+      feedback form. This is the website measuring
       the website. If the distinction matters to you — and for anyone assessing the
       software for a school, it is the part that matters — the extension section above is
       the one to read.

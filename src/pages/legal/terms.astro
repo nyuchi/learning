@@ -7,7 +7,7 @@
  * whether we can withdraw it — is answered plainly rather than buried.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, pricing } from "../../data/legal";
+import { legal, pricing, updatedLabel } from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Terms and conditions — Nyuchi Learning";
@@ -22,7 +22,7 @@ const description =
       Terms and conditions
     </h1>
     <p class="mt-4 text-body-sm text-muted-foreground">
-      Last updated {legal.updated}. Between you and {legal.entity}.
+      Last updated {updatedLabel}. Between you and {legal.entity}.
     </p>
 
     <div class="mt-10 ubuntu-quote">
@@ -45,8 +45,9 @@ const description =
     <h2 class="font-serif text-h3 text-foreground mt-12">What it costs</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Hiding student flags is free and is not licensed. It protects a child, so it is not
-      something we will ever put behind a payment. A licence covers the gradebook columns
-      and the CSV export.
+      something we will ever put behind a payment. The My classes filter on the Toddle
+      home page is free too. A licence covers the gradebook's per-criterion columns, the
+      CSV export, the student sidebar and primary teacher names.
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
@@ -94,7 +95,8 @@ const description =
     <h2 class="font-serif text-h3 text-foreground mt-12">Your data stays yours</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       We claim no ownership or licence over anything the extension reads. It transmits
-      nothing to us, so there is nothing for us to claim. The
+      nothing it reads to us, so there is nothing for us to claim. The only thing it can
+      ever send is feedback you write yourself and choose to send from its menu. The
       <a href="/legal/privacy" class="link">privacy policy</a> sets out the detail.
     </p>
 

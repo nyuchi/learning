@@ -23,6 +23,16 @@ export const legal = {
   support: { intercomAppId: "f1vga504" },
 } as const;
 
+/** The date above as people write it: "1 October 2026". */
+export const updatedLabel = new Date(
+  `${legal.updated}T00:00:00Z`,
+).toLocaleDateString("en-GB", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 /**
  * Pricing. In one place because it appears on the product page, in the terms,
  * and in the help centre, and three copies of a price is how one of them ends
@@ -37,9 +47,10 @@ export const pricing = [
     /** Checkout. Buy Me a Coffee for now; the key is issued by email. */
     buy: "https://buymeacoffee.com/bryany/e/581737",
     includes: [
-      "Every assessment tool expanded into columns",
+      "Every assessment tool expanded into per-criterion columns",
       "CSV export",
-      "Hiding student flags",
+      "The student sidebar",
+      "Primary teacher names",
     ],
   },
   {
@@ -70,7 +81,7 @@ export const extensionDataFacts = [
   {
     claim: "It reads; it does not write.",
     detail:
-      "It reads gradebook data through Toddle's own interface, reusing the session you are already signed in with. Write operations are blocked outright rather than merely avoided, so it cannot change your gradebook even by accident.",
+      "It reads what Toddle already shows you — gradebook results, class staff, student details — through Toddle's own interface, reusing the session you are already signed in with. Write operations are blocked outright rather than merely avoided, so it cannot change your gradebook even by accident.",
   },
   {
     claim: "It never sees your password.",
@@ -78,14 +89,24 @@ export const extensionDataFacts = [
       "Authentication stays inside Toddle's own page. The part of the extension that draws the interface cannot read the authentication token, by design.",
   },
   {
-    claim: "Nothing is transmitted to us, or to anyone.",
+    claim: "It sends nothing anywhere on its own.",
     detail:
-      "There is no server, no account, no analytics, no telemetry, no advertising and no remote code. No student data, no teacher data and no school data leaves your browser.",
+      "There is no server, no account, no analytics, no telemetry, no tracking, no advertising and no remote code. No student data, no teacher data and no school data leaves your browser. It reads Toddle for the teacher at the screen, and for no one else.",
   },
   {
-    claim: "The only things stored are a preference and your licence key.",
+    claim: "One exception, and only when you choose it: feedback.",
     detail:
-      "Whether you have turned the flag-hiding switch on, and the licence key if you have bought one. Both are stored in your own browser and neither is sent anywhere.",
+      "The toolbar menu has a Send feedback form. Press Send and it sends what you typed — a topic, your message, and an email address only if you enter one — plus the extension's version number, to our feedback form, processed by Formspree. Nothing from Toddle is ever included: no student data, no page address, no licence key. If you never press Send, nothing is ever sent. The detail is below.",
+  },
+  {
+    claim: "The welcome page sends nothing.",
+    detail:
+      "When you first install it, the extension opens a welcome page. That page is part of the extension itself, not a website, and loading it contacts nothing.",
+  },
+  {
+    claim: "The only things stored are your settings and your licence key.",
+    detail:
+      "Your switch preferences — student flags shown or hidden, the student sidebar, primary teacher names, the My classes filter — and the licence key if you have one. All of it is stored on your own machine, and none of it is sent anywhere.",
   },
   {
     claim: "Your licence is checked on your machine, not by asking us.",
