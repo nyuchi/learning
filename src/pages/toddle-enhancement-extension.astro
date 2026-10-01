@@ -8,9 +8,19 @@
  * switch gets the most room because it is the part people will be asked to
  * justify.
  */
+import { Picture } from "astro:assets";
+import type { ImageOutputFormat } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
 import { pricing } from "../data/legal";
+import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
+import toolToggleShot from "../assets/screenshots/02-tool-toggle.jpg";
+import myClassesShot from "../assets/screenshots/03-my-classes.jpg";
+import sidebarShot from "../assets/screenshots/04-student-sidebar.jpg";
+import flagsShot from "../assets/screenshots/05-flags.jpg";
+import menuShot from "../assets/screenshots/06-menu.jpg";
+import feedbackShot from "../assets/screenshots/07-feedback.jpg";
+import welcomeShot from "../assets/screenshots/08-welcome.jpg";
 
 /* One switch drives every call to action on this page. While there is no store
    listing the page says so and offers to take an enquiry; the moment
@@ -66,6 +76,58 @@ const features = [
     free: false,
     title: "Primary teacher names",
     body: "The class's primary teacher, as ticked in the class settings, beside every class on the home page and on a student's profile — so you know who to ask without opening the class.",
+  },
+];
+
+/* The same screenshots as the Chrome Web Store listing. Each one already
+   carries its headline in the picture, so the caption only names the feature
+   and whether it needs a licence. Student names, IDs and contacts are covered
+   by grey bars in the source images — replace them only with images that are
+   redacted the same way. Astro turns them into AVIF and WebP at build time. */
+const formats: ImageOutputFormat[] = ["avif", "webp"];
+const widths = [640, 960, 1280];
+
+const leadShot = {
+  src: gradebookShot,
+  alt: "The Toddle gradebook with one rubric expanded into a column per criterion, each student's rating visible in its own cell; student names are hidden behind grey bars.",
+  caption: "Standards view · With a licence",
+};
+
+const shots = [
+  {
+    src: toolToggleShot,
+    alt: "One assessment in the Toddle gradebook expanded on its own, its rubric and learning-goal tools opened into a column per standard; student names are hidden behind grey bars.",
+    caption: "Expand one tool at a time · With a licence",
+  },
+  {
+    src: myClassesShot,
+    alt: "The Toddle home page's course filter open, with My classes selected beside All courses and My courses, above the list of classes; teacher names are hidden behind grey bars.",
+    caption: "My classes · Free",
+  },
+  {
+    src: sidebarShot,
+    alt: "A student's details docked in a sidebar beside Toddle: grade, enrolment date and their eleven classes; the name, photo, ID and contacts are hidden behind grey bars.",
+    caption: "The student sidebar · With a licence",
+  },
+  {
+    src: flagsShot,
+    alt: "A student's profile card in Toddle with a Show flags button where the flags would be, so they stay hidden until pressed; personal details are hidden behind grey bars.",
+    caption: "Hide student flags · Free",
+  },
+  {
+    src: menuShot,
+    alt: "The extension's toolbar menu: licence status, a Show student flags switch under Free, Student sidebar and Primary teacher names switches under With a licence, and a Send feedback button.",
+    caption: "The toolbar menu",
+  },
+  {
+    src: feedbackShot,
+    alt: "The Send feedback form in the extension's menu, with a topic, a message box, an optional email field and a note that only what you type and the version number are sent.",
+    caption: "Send feedback",
+  },
+  {
+    src: welcomeShot,
+    alt: "The welcome page the extension opens on install, with switches for showing student flags, the student sidebar and primary teacher names, and the message Saved. Student flags hidden.",
+    caption: "The welcome page, on install",
   },
 ];
 
@@ -158,6 +220,27 @@ const schema = [
     </div>
   </section>
 
+  <!-- The gradebook, first: it is the thing people are buying. -->
+  <div class="container-custom pb-12 md:pb-16">
+    <figure class="max-w-5xl">
+      <div class="card overflow-hidden p-0">
+        <Picture
+          src={leadShot.src}
+          alt={leadShot.alt}
+          formats={formats}
+          widths={widths}
+          sizes="(min-width: 1100px) 1024px, 100vw"
+          loading="eager"
+          fetchpriority="high"
+          class="block w-full h-auto"
+        />
+      </div>
+      <figcaption class="mt-3 text-caption text-muted-foreground">
+        {leadShot.caption}
+      </figcaption>
+    </figure>
+  </div>
+
   <!-- What it does -->
   <section class="container-custom pb-16 md:pb-24">
     <div class="grid gap-6 md:gap-8 md:grid-cols-3">
@@ -177,6 +260,37 @@ const schema = [
               {feature.body}
             </p>
           </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Screenshots -->
+  <section id="screenshots" class="container-custom pb-16 md:pb-24 scroll-mt-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow">In Toddle</p>
+      <h2 class="font-serif text-h2 text-foreground text-balance">What it looks like.</h2>
+    </div>
+    <div class="mt-8 grid gap-6 md:gap-8 sm:grid-cols-2">
+      {
+        shots.map((shot) => (
+          <figure class="min-w-0">
+            <div class="card overflow-hidden p-0">
+              <Picture
+                src={shot.src}
+                alt={shot.alt}
+                formats={formats}
+                widths={widths}
+                sizes="(min-width: 640px) 50vw, 100vw"
+                loading="lazy"
+                decoding="async"
+                class="block w-full h-auto"
+              />
+            </div>
+            <figcaption class="mt-3 text-caption text-muted-foreground">
+              {shot.caption}
+            </figcaption>
+          </figure>
         ))
       }
     </div>
