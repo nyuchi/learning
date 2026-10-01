@@ -1,0 +1,215 @@
+---
+/**
+ * Cookie policy.
+ *
+ * An inventory, not a promise: every cookie and every value this website keeps
+ * in a visitor's browser, taken from the code that sets it (BaseLayout's theme
+ * script, CookieBanner.astro, Analytics.astro, SupportWidget.astro). If one of
+ * those starts storing something new, this page is wrong until it is updated.
+ *
+ * The third-party cookie names and lifetimes are the ones Google and Intercom
+ * document for their own products; they set them, and they can change them.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legal, updatedLabel } from "../../data/legal";
+import { CONSENT_KEY } from "../../data/consent";
+import { analytics, toddleExtension } from "../../data/site";
+
+const title = "Cookie policy — Nyuchi Learning";
+const description =
+  "Every cookie and stored value on learning.nyuchi.com: what sets it, why, how long it lasts and which consent choice switches it on. The Toddle Enhancement Extension sets no cookies.";
+
+const gaSuffix = analytics.measurementId.replace(/^G-/, "");
+const intercom = legal.support.intercomAppId;
+
+const rows = [
+  {
+    name: "theme",
+    kind: "Browser storage, this site",
+    purpose: "Remembers light or dark, once you press the theme button.",
+    category: "Strictly necessary",
+    lasts: "Until you clear it",
+    enabledBy: "Always. Set only when you choose a theme.",
+  },
+  {
+    name: CONSENT_KEY,
+    kind: "Browser storage, this site",
+    purpose:
+      "Records your consent choices, with the date and version, so you are not asked again and so we can show what you chose.",
+    category: "Strictly necessary",
+    lasts: "Until you clear it, or until the choices on offer change",
+    enabledBy: "Always, once you answer the banner.",
+  },
+  {
+    name: "_ga",
+    kind: "Cookie, Google Analytics",
+    purpose: "Tells one visitor's page views apart from another's.",
+    category: "Analytics",
+    lasts: "2 years",
+    enabledBy: "Accept all, or Analytics ticked under Choose.",
+  },
+  {
+    name: `_ga_${gaSuffix}`,
+    kind: "Cookie, Google Analytics",
+    purpose: "Keeps track of the current visit for this site's analytics.",
+    category: "Analytics",
+    lasts: "2 years",
+    enabledBy: "Accept all, or Analytics ticked under Choose.",
+  },
+  {
+    name: `intercom-id-${intercom}`,
+    kind: "Cookie, Intercom",
+    purpose: "Identifies your browser to the support messenger so a conversation continues.",
+    category: "Support messenger",
+    lasts: "9 months",
+    enabledBy:
+      "Only after you press Support, and only with Accept all, Support messenger ticked, or Open chat on the prompt.",
+  },
+  {
+    name: `intercom-session-${intercom}`,
+    kind: "Cookie, Intercom",
+    purpose: "Keeps your messenger session open between pages.",
+    category: "Support messenger",
+    lasts: "1 week",
+    enabledBy: "As above.",
+  },
+  {
+    name: `intercom-device-id-${intercom}`,
+    kind: "Cookie, Intercom",
+    purpose: "Identifies the device for the messenger.",
+    category: "Support messenger",
+    lasts: "9 months",
+    enabledBy: "As above.",
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/legal/cookies">
+  <article class="container-prose section">
+    <p class="eyebrow">Legal</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Cookie policy</h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">
+      Last updated {updatedLabel}. Applies to
+      <strong class="text-foreground">learning.nyuchi.com</strong>. The
+      <strong class="text-foreground">{toddleExtension.name}</strong> sets no cookies;
+      see <a class="link" href="#extension">the extension</a> below.
+    </p>
+
+    <div class="mt-10 ubuntu-quote">
+      <p class="text-body text-pretty">
+        <strong>The short version.</strong> Until you choose, this site keeps two values of
+        its own in your browser and sets no cookies. Analytics cookies are set only if you
+        agree to analytics. The support messenger's cookies are set only if you agree to it
+        and then open it. Refusing is one press, and changing your mind is one press too.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What is stored, and why</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      "Cookies" here includes the browser storage this site uses instead of cookies for
+      its own two values. Lifetimes for Google's and Intercom's cookies are the ones they
+      document for their products; they set them and may change them.
+    </p>
+
+    <div class="mt-6 space-y-4">
+      {
+        rows.map((row) => (
+          <div class="card p-5">
+            <p class="font-mono text-body-sm text-foreground break-all">{row.name}</p>
+            <dl class="mt-3 grid gap-x-6 gap-y-2 text-body-sm sm:grid-cols-[8rem_1fr]">
+              <dt class="text-muted-foreground">What</dt>
+              <dd class="text-foreground/90">{row.kind}</dd>
+              <dt class="text-muted-foreground">Purpose</dt>
+              <dd class="text-foreground/90 text-pretty">{row.purpose}</dd>
+              <dt class="text-muted-foreground">Category</dt>
+              <dd class="text-foreground/90">{row.category}</dd>
+              <dt class="text-muted-foreground">Lasts</dt>
+              <dd class="text-foreground/90">{row.lasts}</dd>
+              <dt class="text-muted-foreground">Switched on by</dt>
+              <dd class="text-foreground/90 text-pretty">{row.enabledBy}</dd>
+            </dl>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Your three choices</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Reject all</strong> (or ignoring the banner): only
+        the two strictly necessary values. No cookies.
+      </li>
+      <li>
+        <strong class="text-foreground">Choose</strong>: tick Analytics, Support messenger,
+        both or neither.
+      </li>
+      <li>
+        <strong class="text-foreground">Accept all</strong>: analytics cookies are set, and
+        the messenger's cookies are set if you open it.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Advertising is never switched on: this site runs none, and the advertising signals
+      in Google's consent settings stay denied whatever you choose.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Changing your mind</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Press <strong class="text-foreground">Cookie choices</strong> at the bottom of any
+      page. It reopens the banner with your current answers, and withdrawing is as easy as
+      agreeing was. You can also clear this site's cookies and storage in your browser's
+      settings, which takes you back to being asked.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Contact with third parties</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Google Analytics.</strong> With analytics refused,
+        Google's tag still loads and sends Google a page-view signal without cookies and
+        without identifying you. That is how Google's consent mechanism works, so "no
+        cookies until you agree" is exactly true; "no contact with Google until you agree"
+        would not be.
+      </li>
+      <li>
+        <strong class="text-foreground">Google Fonts.</strong> Fonts are loaded from
+        Google, so your browser contacts Google and Google sees your IP address. No cookie
+        is set for this.
+      </li>
+      <li>
+        <strong class="text-foreground">Intercom.</strong> Nothing loads until you press
+        Support. Until then the button is just a button.
+      </li>
+      <li>
+        <strong class="text-foreground">The feedback form</strong> sends what you type to
+        Formspree when you press Send. It stores nothing in your browser.
+      </li>
+    </ul>
+
+    <h2 id="extension" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      The extension
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The {toddleExtension.name} sets no cookies and contains no analytics. It keeps your
+      switch settings and your licence key, if you have one, in Chrome's storage for the
+      extension, on your own device. On Toddle's own site it also keeps a few housekeeping
+      values in the browser's storage: a copy of the switches and of which features the
+      licence allows (not the key), whether flags are hidden, the My classes choice, the
+      number of the academic year Toddle is showing, and the style of Toddle's message
+      button. None of it is about a student, and none of it is sent anywhere. The
+      <a class="link" href="/legal/data">data handling</a> and
+      <a class="link" href="/legal/security">security</a> pages have the detail.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Questions</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Write to
+      <a class="link" href={`mailto:${legal.privacyEmail}`}>{legal.privacyEmail}</a>. The
+      <a class="link" href="/legal/privacy">privacy policy</a> covers what happens to the
+      data itself.
+    </p>
+  </article>
+</BaseLayout>

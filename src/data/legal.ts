@@ -8,13 +8,21 @@
  */
 
 export const legal = {
-  /** Last substantive change. Update when a claim below changes, not on typos. */
+  /** Last substantive change, for every legal page. Update when a claim
+      changes, not on typos. */
   updated: "2026-10-01",
   entity: "Nyuchi Africa (Private) Limited",
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
   supportEmail: "support@nyuchi.com",
-  privacyEmail: "support@nyuchi.com",
+  /** Privacy, data-subject and DPA requests. Support and security reports
+      stay on supportEmail. */
+  privacyEmail: "privacy@nyuchi.com",
+  /** Who runs the site and the extension, day to day. */
+  operator: "Nyuchi Web Services",
+  /** As given in the company's published shop policies. */
+  address: "4 Browning Drive, Strathaven, 3 Straven Court, Harare, Zimbabwe",
+  city: "Harare",
   helpCentre: "https://support.nyuchi.com",
   /* The support messenger's workspace id. Public by design — it is in the
      snippet on every site that uses Intercom, and identifies the workspace, not
@@ -92,7 +100,7 @@ export const extensionDataFacts = [
   {
     claim: "Student flags stay hidden until someone chooses to show them.",
     detail:
-      "The extension asks Toddle for no student flags. Where Toddle's own pages show them, they are hidden by default, on a new install and for anyone who never touched the switch; a staff member shows them deliberately, with the switch or with the eye button for one student. The flag switch is free and always will be.",
+      "Flags are hidden by default across Toddle, on a new install and for anyone who never touched the switch; a staff member shows them deliberately, with the switch or with the eye button for one student. The extension's own sidebar fetches a student's flags from Toddle only when someone chooses to show them, and forgets them when the sidebar closes. The flag switch is free and always will be.",
   },
   {
     claim: "It never sees your password.",
@@ -100,12 +108,12 @@ export const extensionDataFacts = [
       "Authentication stays inside Toddle's own page. The part of the extension that draws the interface cannot read the authentication token, by design.",
   },
   {
-    claim: "It sends nothing anywhere on its own.",
+    claim: "Nothing it reads leaves your browser.",
     detail:
-      "There is no server, no account, no analytics, no telemetry, no tracking, no advertising and no remote code. No student data, no teacher data and no school data leaves your browser: what it reads from Toddle goes back to Toddle's own screen and nowhere else. It reads Toddle for the teacher at the screen, and for no one else.",
+      "There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. No student data, no teacher data and no school data leaves your browser: what it reads from Toddle goes back to Toddle's own screen and nowhere else. It reads Toddle for the teacher at the screen, and for no one else. It makes two connections outside Toddle, described next, and neither carries anything from Toddle.",
   },
   {
-    claim: "One exception, and only when you choose it: feedback.",
+    claim: "Outside connection one, only when you choose it: feedback.",
     detail:
       "The toolbar menu has a Send feedback form. Press Send and it sends what you typed — a topic, your message, and an email address only if you enter one — plus the extension's version number, to our feedback form, processed by Formspree. Nothing from Toddle is ever included: no student data, no page address, no licence key. If you never press Send, nothing is ever sent. The detail is below.",
   },
@@ -115,14 +123,20 @@ export const extensionDataFacts = [
       "When you first install it, the extension opens a welcome page. That page is part of the extension itself, not a website, and loading it contacts nothing.",
   },
   {
-    claim: "The only things stored are your settings and your licence key.",
+    claim: "The only things it stores are your settings and your licence key.",
     detail:
       "Your switch preferences — student flags shown or hidden, the student sidebar, primary teacher names, the My classes filter — and the licence key if you have one. All of it is stored on your own machine, and none of it is sent anywhere. No student data is stored on the device at all.",
   },
   {
     claim: "Your licence is checked on your machine, not by asking us.",
     detail:
-      "A licence key is a signed statement that the extension verifies locally. Activating one contacts nothing, which is why it works without a connection — and why buying a licence does not start the extension talking to us.",
+      "A licence key is a signed statement that the extension verifies locally. An individual key carries the buyer's email address, and an organisation key the school's email domain; the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key contacts nothing, which is why it works without a connection.",
+  },
+  {
+    claim:
+      "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
+    detail:
+      "Once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licences.nyuchi.dev/v1/revocations. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, and checks its own key against that list on your machine. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the check fails, the extension keeps working.",
   },
   {
     claim: "Exports are local.",
@@ -156,3 +170,7 @@ export const security = {
 export const securityMailto = `mailto:${security.report.email}?subject=${encodeURIComponent(
   security.report.subject,
 )}`;
+
+/** Toddle is not ours. Said in the footer, the terms and the product page. */
+export const toddleNotice =
+  "Toddle is a trademark of its owner. Nyuchi and the Toddle Enhancement Extension are not affiliated with, endorsed by or sponsored by Toddle.";

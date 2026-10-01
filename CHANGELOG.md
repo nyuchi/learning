@@ -4,14 +4,30 @@
 
 ### Added
 
-- **`/legal/security`** — the Toddle Enhancement Extension's security, for
-  schools and for the privacy, legal and IT reviewers who approve software for
-  them: an at-a-glance summary, the security model, how it is tested, the
-  independent adversarial review of 1 October 2026 and what it fixed, the
-  limit no extension can remove, and the vulnerability policy in full (the
-  extension's repository is private, so it cannot be linked to). Linked from
-  the footer, the privacy policy, the terms, the extension page and
-  `llms.txt`, and in the sitemap.
+- **The legal pages a school's reviewers ask for**, all dated 1 October 2026
+  and drafted from the code:
+  - `/legal/security`: the Toddle Enhancement Extension's security model, how
+    it is tested, the independent adversarial review of 1 October 2026 and
+    every finding it fixed in 0.8.2, the limit no extension can remove, and how
+    to report a vulnerability.
+  - `/legal/vulnerability-disclosure`: scope (site, extension, licence
+    server), how to report, response and fix times, safe harbour, no bounty.
+  - `/.well-known/security.txt` (RFC 9116), pointing at that policy; a test
+    fails a month before it expires.
+  - `/legal/cookies`: every cookie and stored value, what sets it, how long it
+    lasts and which consent choice switches it on.
+  - `/legal/data`: data handling for schools, including what Nyuchi holds,
+    the services that process it, retention, breach notification and a data
+    processing agreement on request.
+  - `/legal/student-privacy`: staff use the extension, not students; FERPA,
+    COPPA and DPAs, stated as data flows.
+  - `/legal/notice`: who operates the site and the extension, and how to reach
+    them.
+  - `/accessibility`: the WCAG 2.2 AA target, how it is tested, known
+    limitations.
+- A **Legal** group in the footer listing every one of them, and a
+  non-affiliation notice for Toddle in the footer, the terms and the extension
+  page.
 
 ### Changed
 
@@ -19,10 +35,17 @@
   student appears in Toddle, the Now card and today's classes and attendance,
   the class view and message buttons into Toddle's own chat, and the
   Attendance dashboard's Students tab. No new screenshots yet.
-- **The privacy policy says what 0.8.2 reads for the sidebar,** when, and that
-  none of it is stored or sent anywhere; that the extension asks Toddle for no
-  student flags; and links the Security page.
-- `SECURITY.md` describes this site as it is, and points to the Security page.
+- **The privacy policy** says what 0.8.2 reads for the sidebar and when; that
+  flags are fetched only when someone shows them; that licences are tied to
+  their owner and checked in the browser; the extension's second outside
+  connection (a data-free daily check for cancelled keys); who the controller
+  is and on what basis, under Zimbabwe's Cyber and Data Protection Act; data
+  subjects' rights; and breach notification. Privacy requests now go to
+  `privacy@nyuchi.com`.
+- **The terms** are now the terms of use and service: using the website, how
+  licence keys work, acceptable use, and the courts of Harare.
+- `SECURITY.md` describes this site as it is, and points to the Security
+  page and the disclosure policy.
 
 ## 3.2.0 — 2026-09-28
 

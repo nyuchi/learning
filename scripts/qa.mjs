@@ -26,6 +26,12 @@ const PAGES = [
   "/legal/privacy/",
   "/legal/terms/",
   "/legal/security/",
+  "/legal/cookies/",
+  "/legal/data/",
+  "/legal/student-privacy/",
+  "/legal/vulnerability-disclosure/",
+  "/legal/notice/",
+  "/accessibility/",
   "/feedback/",
   "/feedback/thanks/",
 ];

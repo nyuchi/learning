@@ -1,28 +1,30 @@
 ---
 /**
- * Terms and conditions.
+ * Terms of use (the website) and of service (the extension and its licences).
  *
  * Written to be read, not to be impressive. Anything a school's procurement
  * will actually ask about — what happens if it breaks, who owns the data,
  * whether we can withdraw it — is answered plainly rather than buried.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, pricing, updatedLabel } from "../../data/legal";
+import { legal, pricing, toddleNotice, updatedLabel } from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
-const title = "Terms and conditions — Nyuchi Learning";
+const title = "Terms of use and service — Nyuchi Learning";
 const description =
-  "The terms for using the Toddle Enhancement Extension and learning.nyuchi.com.";
+  "The terms of use for learning.nyuchi.com and the terms of service for the Toddle Enhancement Extension: what a licence grants, how keys work, refunds, acceptable use, liability and governing law.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/terms">
   <article class="container-prose section">
     <p class="eyebrow">Legal</p>
     <h1 class="font-serif text-h1 text-foreground text-balance">
-      Terms and conditions
+      Terms of use and service
     </h1>
     <p class="mt-4 text-body-sm text-muted-foreground">
-      Last updated {updatedLabel}. Between you and {legal.entity}.
+      Last updated {updatedLabel}. Between you and {legal.entity}, operating as
+      {legal.operator}. The terms of use cover this website; the terms of service cover
+      the {toddleExtension.name} and its licences.
     </p>
 
     <div class="mt-10 ubuntu-quote">
@@ -35,7 +37,19 @@ const description =
       </p>
     </div>
 
-    <h2 class="font-serif text-h3 text-foreground mt-12">What you may do</h2>
+    <h2 class="font-serif text-h3 text-foreground mt-12">Using this website</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      You may read, link to and quote this website freely. Please do not try to break it,
+      overload it, or use it to attack anyone else; security research is welcome under our
+      <a href="/legal/vulnerability-disclosure" class="link">vulnerability disclosure
+      policy</a>. We keep it accurate, but it describes software that changes, so where a
+      decision matters, check with us. Links to other sites are there to help; we are not
+      responsible for what those sites say or do. How the site uses cookies and data is in
+      the <a href="/legal/cookies" class="link">cookie policy</a> and the
+      <a href="/legal/privacy" class="link">privacy policy</a>.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What a licence lets you do</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Install and use the {toddleExtension.name} for teaching and administration at the
       school or organisation the licence covers, on as many machines as that licence
@@ -79,6 +93,20 @@ const description =
       within thirty days of buying it and we will refund you.
     </p>
 
+    <h2 class="font-serif text-h3 text-foreground mt-12">How licence keys work</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A licence key is a signed statement that the extension checks on your own device, so
+      activating it contacts nothing and works offline. An individual key carries the
+      buyer's email address and works for the Toddle account with that address; an
+      organisation key carries the school's email domain and works for Toddle accounts on
+      that domain. The comparison happens in your browser only. While a key is entered, the
+      extension downloads once a day a signed list of cancelled keys, sending nothing about
+      you; a key we have cancelled stops unlocking the licensed features once the extension
+      has seen that list. If the check cannot be made, the extension keeps
+      working. When a key expires the licensed features stop, and the free flag switch and
+      My classes filter carry on working.
+    </p>
+
     <h2 class="font-serif text-h3 text-foreground mt-12">What you may not do</h2>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
@@ -90,13 +118,23 @@ const description =
       </li>
       <li>Share a licence key beyond the organisation it was issued to.</li>
       <li>Remove or obscure the attribution in the interface.</li>
+      <li>
+        Try to get round the licence check, or to make the extension read, send or change
+        data it is built not to.
+      </li>
+      <li>
+        Use it in a way that breaks your school's own policies, or Toddle's terms for your
+        school's account.
+      </li>
     </ul>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">Your data stays yours</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       We claim no ownership or licence over anything the extension reads. It transmits
-      nothing it reads to us, so there is nothing for us to claim. The only thing it can
-      ever send is feedback you write yourself and choose to send from its menu. Its
+      nothing it reads to us, so there is nothing for us to claim. Outside Toddle it makes
+      only two connections: feedback you write yourself and choose to send from its menu,
+      and, while a licence is entered, a daily check for cancelled keys that sends nothing
+      about you. Its
       message buttons only open Toddle's own chat; any message is sent by you, through
       Toddle. The <a href="/legal/privacy" class="link">privacy policy</a> sets out the
       detail, and the <a href="/legal/security" class="link">security page</a> how it is
@@ -119,8 +157,7 @@ const description =
       itself.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      We are not affiliated with, endorsed by, or connected to Toddle. "Toddle" is their
-      name, used here only to say what this software works with.
+      {toddleNotice} "Toddle" is used here only to say what this software works with.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">Liability</h2>
@@ -148,11 +185,23 @@ const description =
 
     <h2 class="font-serif text-h3 text-foreground mt-12">Law</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      These terms are governed by the law of {legal.country}. If your institution needs a
+      These terms are governed by the law of {legal.country}, and the courts of
+      {legal.city} have jurisdiction over any dispute about them. If your institution needs a
       different governing law or its own contract, write to
       <a href={`mailto:${legal.supportEmail}`} class="link">{legal.supportEmail}</a> — that
       is a normal request and we would rather have the conversation than have you sign
       something that does not work for you.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">The other legal pages</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      These terms sit alongside the
+      <a href="/legal/privacy" class="link">privacy policy</a>,
+      <a href="/legal/cookies" class="link">cookie policy</a>,
+      <a href="/legal/data" class="link">data handling</a>,
+      <a href="/legal/student-privacy" class="link">student privacy</a>,
+      <a href="/legal/security" class="link">security</a> and
+      <a href="/legal/notice" class="link">legal notice</a> pages.
     </p>
   </article>
 </BaseLayout>

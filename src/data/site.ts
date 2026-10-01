@@ -31,6 +31,26 @@ export const analytics = {
 
 export type NavLink = { label: string; href: string; external?: boolean };
 
+/**
+ * Every legal page, in the order the footer's Legal group lists them.
+ * tests/seo.test.ts fails if a built page is missing from the footer. Kept
+ * free of function calls so client bundles that import this file can drop it.
+ */
+export const legalPages: NavLink[] = [
+  { label: "Privacy", href: "/legal/privacy" },
+  { label: "Cookies", href: "/legal/cookies" },
+  { label: "Terms of use and service", href: "/legal/terms" },
+  { label: "Data handling", href: "/legal/data" },
+  { label: "Student privacy", href: "/legal/student-privacy" },
+  { label: "Security", href: "/legal/security" },
+  {
+    label: "Vulnerability disclosure",
+    href: "/legal/vulnerability-disclosure",
+  },
+  { label: "Accessibility", href: "/accessibility" },
+  { label: "Legal notice", href: "/legal/notice" },
+];
+
 export const primaryNav: NavLink[] = [
   { label: "Tools", href: "/toddle-enhancement-extension" },
   { label: "Programmes", href: "https://nyuchi.com/learning", external: true },
@@ -72,10 +92,13 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
         label: "Deploy to a school",
         href: "/toddle-enhancement-extension#install",
       },
-      { label: "Security, for schools", href: "/legal/security" },
       { label: "Send feedback", href: "/feedback" },
       { label: "Get in touch", href: "mailto:support@nyuchi.com" },
     ],
+  },
+  {
+    title: "Legal",
+    links: legalPages,
   },
   {
     title: "Company",
@@ -104,13 +127,9 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
 ];
 
 export const legalLinks: NavLink[] = [
-  {
-    label: "Privacy",
-    href: "https://nyuchi.com/legal/privacy",
-    external: true,
-  },
-  { label: "Terms", href: "https://nyuchi.com/legal/terms", external: true },
-  { label: "Security", href: "/legal/security" },
+  { label: "Privacy", href: "/legal/privacy" },
+  { label: "Cookies", href: "/legal/cookies" },
+  { label: "Terms", href: "/legal/terms" },
   { label: "Sitemap", href: "/sitemap-index.xml" },
 ];
 

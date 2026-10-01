@@ -1,0 +1,93 @@
+---
+/**
+ * Legal notice: who runs this site and the extension, and how to reach them.
+ *
+ * Only details that are already published elsewhere by the company appear
+ * here. Anything not yet confirmed (a registration number, for one) is left
+ * off rather than guessed.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legal, security, securityMailto, toddleNotice, updatedLabel } from "../../data/legal";
+import { site, toddleExtension } from "../../data/site";
+
+const title = "Legal notice — Nyuchi Learning";
+const description =
+  "Who operates learning.nyuchi.com and the Toddle Enhancement Extension, where, and how to contact them for support, privacy and security.";
+
+const contacts = [
+  { label: "Support and general enquiries", email: legal.supportEmail, href: `mailto:${legal.supportEmail}` },
+  { label: "Privacy, data requests and DPAs", email: legal.privacyEmail, href: `mailto:${legal.privacyEmail}` },
+  {
+    label: `Security reports (subject "${security.report.subject}")`,
+    email: security.report.email,
+    href: securityMailto,
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/legal/notice">
+  <article class="container-prose section">
+    <p class="eyebrow">Legal</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Legal notice</h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">Last updated {updatedLabel}.</p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Who we are</h2>
+    <dl class="mt-6 card p-6 space-y-4">
+      <div>
+        <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+          Operated by
+        </dt>
+        <dd class="mt-1 text-body text-foreground">
+          {legal.operator}, the development division of {legal.entity}, trading as
+          {site.name}
+        </dd>
+      </div>
+      <div>
+        <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+          Address
+        </dt>
+        <dd class="mt-1 text-body text-foreground">{legal.address}</dd>
+      </div>
+      <div>
+        <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+          Covers
+        </dt>
+        <dd class="mt-1 text-body text-foreground">
+          learning.nyuchi.com and the {toddleExtension.name}
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Contact</h2>
+    <dl class="mt-6 space-y-4">
+      {
+        contacts.map((contact) => (
+          <div>
+            <dt class="text-body-sm text-muted-foreground">{contact.label}</dt>
+            <dd class="mt-1 text-body">
+              <a class="link" href={contact.href}>
+                {contact.email}
+              </a>
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Toddle</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">{toddleNotice}</p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">The rest of the legal pages</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The <a class="link" href="/legal/terms">terms of use and service</a>,
+      <a class="link" href="/legal/privacy">privacy policy</a>,
+      <a class="link" href="/legal/cookies">cookie policy</a>,
+      <a class="link" href="/legal/data">data handling</a>,
+      <a class="link" href="/legal/student-privacy">student privacy</a>,
+      <a class="link" href="/legal/security">security</a>,
+      <a class="link" href="/legal/vulnerability-disclosure">vulnerability disclosure</a>
+      and <a class="link" href="/accessibility">accessibility</a> pages are all on this
+      site.
+    </p>
+  </article>
+</BaseLayout>

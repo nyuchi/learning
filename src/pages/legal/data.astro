@@ -1,0 +1,309 @@
+---
+/**
+ * Data handling, for schools.
+ *
+ * The page a school's data protection lead reads before approving the
+ * extension. Facts only: what flows where, who holds what, and who to ask.
+ * The extension's facts come from src/data/legal.ts (shared with the privacy
+ * policy); the licence facts from the licence server's schema
+ * (nyuchi-licence-server, schema.sql). Nothing here is a legal conclusion.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { legal, updatedLabel } from "../../data/legal";
+import { toddleExtension } from "../../data/site";
+
+const title = "Data handling — Nyuchi Learning";
+const description =
+  "For schools: what the Toddle Enhancement Extension reads, where it is processed, what it stores and what leaves the browser; what Nyuchi holds, who processes it for us, how long it is kept, breach notification and data processing agreements.";
+
+const privacyMail = `mailto:${legal.privacyEmail}`;
+
+const held = [
+  {
+    what: "Licence purchases",
+    where: "Nyuchi's licence server and its database, on Cloudflare",
+    fields:
+      "The email address the key was issued to, and the address that paid if different; the plan; how many were bought; for an organisation licence, the seat count and the buyer's answer to the order question (the school and roughly how many teachers); Buy Me a Coffee's purchase and item references; the key itself; when it was issued, emailed and refunded, its expiry, and its status.",
+  },
+  {
+    what: "The order and payment",
+    where: "Buy Me a Coffee, with cards handled by Stripe",
+    fields:
+      "What Buy Me a Coffee collects at checkout. It passes us the email address, the item bought and the answer to the order question. We never see card details.",
+  },
+  {
+    what: "Licence emails",
+    where: "Sent through Resend",
+    fields: "The recipient's address and the email carrying the key.",
+  },
+  {
+    what: "Feedback",
+    where: "Formspree, then recorded in our private GitHub repository",
+    fields:
+      "What the person typed (topic, message, an email address if they gave one), plus the extension's version number, or the website page they came from.",
+  },
+  {
+    what: "Support",
+    where: "Intercom",
+    fields: "Conversations and emails people send us.",
+  },
+  {
+    what: "Website analytics",
+    where: "Google Analytics, only with the visitor's consent",
+    fields: "Pages viewed, approximate location and device, on this website only.",
+  },
+];
+
+const subprocessors = [
+  {
+    name: "Cloudflare",
+    role: "Runs the licence server, its database, and the daily list of cancelled keys the extension checks.",
+  },
+  { name: "Resend", role: "Sends licence-key emails." },
+  {
+    name: "Buy Me a Coffee",
+    role: "Checkout for licences. Stripe processes cards on its behalf.",
+  },
+  { name: "Formspree", role: "Receives feedback forms from the website and the extension." },
+  { name: "GitHub", role: "Holds feedback as issues in a private repository." },
+  { name: "Intercom", role: "Support messenger and support conversations." },
+  { name: "Google", role: "Website analytics, with consent; website fonts." },
+  { name: "Vercel", role: "Hosts this website." },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/legal/data">
+  <article class="container-prose section">
+    <p class="eyebrow">Legal</p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Data handling</h1>
+    <p class="mt-4 text-body-sm text-muted-foreground">
+      Last updated {updatedLabel}. For schools, and for the people who approve software
+      on their behalf. Covers the <strong class="text-foreground"
+        >{toddleExtension.name}</strong
+      > and the data Nyuchi holds.
+    </p>
+
+    <div class="mt-10 ubuntu-quote">
+      <p class="text-body text-pretty">
+        <strong>The short version.</strong> The extension processes student data only inside
+        the teacher's own browser, reading it from Toddle for the teacher at the screen. It
+        stores none of it and sends none of it to us or anyone else. The personal data
+        Nyuchi does hold is about the people who buy a licence, send feedback or ask for
+        support, never about students.
+      </p>
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What the extension reads, and why</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      It reads from Toddle, using the teacher's own signed-in session, only what it needs
+      to draw the view the teacher has opened, and only what that teacher's Toddle account
+      can already see:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">The gradebook:</strong> assessments, their criteria
+        and scales, and each student's results and submission status, to draw per-criterion
+        columns and the CSV export.
+      </li>
+      <li>
+        <strong class="text-foreground">Classes and staff:</strong> each class's teachers,
+        with display titles and emails, to show primary teachers, My classes and the class
+        view.
+      </li>
+      <li>
+        <strong class="text-foreground">The student sidebar,</strong> when a teacher opens
+        a student: name, photo, year group and age (the date of birth is never shown),
+        email, student ID, enrolment date, contacts with relationship, phone numbers and
+        email, homeroom advisor, the school's Student Group and Room number fields, and
+        today's timetable and attendance marks.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A student's flags are fetched only when a staff member chooses to show them, and are
+      forgotten when the sidebar closes. Every query it can send is on a fixed, read-only
+      list; it never writes to Toddle.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Where it is processed</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      In the browser on the teacher's own device, and nowhere else. Answers from Toddle are
+      held in the page's memory for a few minutes so that one view does not ask twice, then
+      discarded, and are gone when the tab closes.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What it stores</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The teacher's switch settings and licence key, in Chrome's storage for the extension
+      on that device; and a few housekeeping values in Toddle's site storage (a copy of the
+      switches and of which features the licence allows, whether flags are hidden, the My
+      classes choice, the academic year Toddle is showing, and the style of Toddle's
+      message button). <strong class="text-foreground">No student data is stored.</strong>
+      A CSV export is a file the teacher chooses to save, and is then the school's to manage
+      like any other download.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What leaves the browser</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Nothing it reads from Toddle. Its requests go to Toddle, with two outside connections,
+      neither carrying anything from Toddle:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Feedback,</strong> only when the teacher presses Send
+        in the extension's menu: what they typed and the extension's version number, to
+        Formspree.
+      </li>
+      <li>
+        <strong class="text-foreground">A daily check for cancelled keys,</strong> only while
+        a licence is entered: one plain request from the extension's background worker to
+        <code class="break-all">https://licences.nyuchi.dev/v1/revocations</code>, sending no licence key, no
+        identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of
+        the SHA-256 fingerprints of cancelled keys and checks its own key locally. Cloudflare
+        sees the IP address, as with any web request; Nyuchi does not log it. If the check
+        fails, the extension keeps working.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Licence keys are tied to their owner: an individual key carries the buyer's email
+      address and an organisation key the school's email domain. The extension compares that
+      with the Toddle account signed in, inside the browser only, and sends it nowhere.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What Nyuchi holds</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      None of this comes from Toddle, and none of it is about students.
+    </p>
+    <div class="mt-6 space-y-4">
+      {
+        held.map((item) => (
+          <div class="card p-5">
+            <h3 class="font-serif text-h5 text-foreground">{item.what}</h3>
+            <p class="mt-1 text-caption text-muted-foreground">{item.where}</p>
+            <p class="mt-2 text-body-sm text-muted-foreground text-pretty">{item.fields}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Who is responsible for what</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Student data in Toddle.</strong> The school remains
+        its controller and Toddle its processor, exactly as before the extension was
+        installed. The extension's processing happens on the school's own device, for its
+        own staff, and Nyuchi receives none of it, so Nyuchi does not act as a processor of
+        that data.
+      </li>
+      <li>
+        <strong class="text-foreground">Purchase, feedback and support data.</strong>
+        {legal.entity} is the controller of the data listed under What Nyuchi holds.
+      </li>
+    </ul>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Who processes data for us</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      These services handle the data Nyuchi holds, on our behalf. None of them receives
+      student data from the extension.
+    </p>
+    <dl class="mt-6 grid gap-x-6 gap-y-3 sm:grid-cols-[10rem_1fr]">
+      {
+        subprocessors.map((item) => (
+          <>
+            <dt class="text-body-sm font-semibold text-foreground">{item.name}</dt>
+            <dd class="text-body-sm text-muted-foreground text-pretty">{item.role}</dd>
+          </>
+        ))
+      }
+    </dl>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">International transfers</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Nyuchi is in {legal.country}. The services above operate internationally, and most are
+      based in the United States, so the data they handle for us may be processed outside
+      {legal.country} and outside the country of the school. Student data from the extension
+      is not part of this: it does not leave the teacher's browser. If your rules require
+      particular safeguards for these transfers, ask us and we will tell you what applies to
+      each service.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">How long it is kept</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Licence and order records:</strong> for as long as
+        tax and accounting law requires, and no longer for any other purpose.
+      </li>
+      <li>
+        <strong class="text-foreground">Feedback and support conversations:</strong> as long
+        as we need them to act on them, or until you ask us to delete them.
+      </li>
+      <li>
+        <strong class="text-foreground">Website analytics:</strong> under Google Analytics'
+        retention settings for this site.
+      </li>
+      <li>
+        <strong class="text-foreground">Student data:</strong> not held by Nyuchi, so there
+        is nothing to keep.
+      </li>
+    </ul>
+
+    <h2 id="requests" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Access, correction and deletion
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A school, a teacher or anyone else can ask what we hold about them, ask us to correct
+      it, or ask us to delete what we are not legally required to keep. Write to
+      <a class="link" href={privacyMail}>{legal.privacyEmail}</a>. Requests about student
+      data in Toddle belong with the school and with Toddle, because that is where the data
+      is.
+    </p>
+
+    <h2 id="breach" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      If there is a data breach
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      If a breach affects personal data Nyuchi holds, such as purchase or feedback data, we
+      will tell the customers and schools affected without undue delay and, where the law
+      requires it, within 72 hours of becoming aware of it. We will say what happened, what
+      data was involved, what we are doing about it, and who to contact.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Because the extension stores and sends no student data, a breach on our side cannot
+      expose student data from Toddle.
+    </p>
+
+    <h2 id="dpa" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Data processing agreement
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A data processing agreement is available on request from
+      <a class="link" href={privacyMail}>{legal.privacyEmail}</a>. It sets out, in contract
+      form, the data flows on this page: what the extension does and does not process, what
+      Nyuchi holds, the services that process it for us, security, breach notification and
+      deletion.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Related</h2>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <a class="link" href="/legal/student-privacy">Student privacy</a> — FERPA, COPPA and
+        the questions schools ask about children's data.
+      </li>
+      <li>
+        <a class="link" href="/legal/security">Security</a> — how these guarantees are
+        enforced and tested.
+      </li>
+      <li><a class="link" href="/legal/privacy">Privacy policy</a>.</li>
+      <li><a class="link" href="/legal/cookies">Cookie policy</a>.</li>
+    </ul>
+  </article>
+</BaseLayout>
