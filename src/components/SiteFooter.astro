@@ -9,14 +9,15 @@
  */
 import Wordmark from "./Wordmark.astro";
 import { MINERALS, footerColumns, legalLinks, site } from "../data/site";
+import { toddleNotice } from "../data/legal";
 
 const year = new Date().getFullYear();
 ---
 
 <footer class="bg-canvas border-t border-border">
   <div class="container-custom py-12 md:py-20">
-    <div class="grid grid-cols-2 md:grid-cols-12 gap-x-6 gap-y-10 md:gap-8">
-      <div class="col-span-2 md:col-span-4">
+    <div class="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 gap-x-6 gap-y-10 md:gap-8">
+      <div class="col-span-2 md:col-span-5 lg:col-span-2">
         <Wordmark />
         <p class="mt-3 text-body-sm text-muted-foreground max-w-xs text-pretty">
           {site.description}
@@ -37,7 +38,7 @@ const year = new Date().getFullYear();
 
       {
         footerColumns.map((column) => (
-          <div class="md:col-span-2">
+          <div>
             <p class="text-caption font-semibold uppercase tracking-wider text-muted-foreground mb-3">
               {column.title}
             </p>
@@ -105,6 +106,9 @@ const year = new Date().getFullYear();
           </li>
         </ul>
       </div>
+      <p class="mt-4 text-caption text-muted-foreground text-pretty max-w-3xl">
+        {toddleNotice}
+      </p>
     </div>
   </div>
 </footer>

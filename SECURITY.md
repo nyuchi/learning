@@ -3,17 +3,20 @@
 This repository is `learning.nyuchi.com`: a static Astro site, served by
 Vercel, and the home of the Toddle Enhancement Extension.
 
-The extension's own security model, how it is tested, its independent
-adversarial review and its vulnerability policy are published for schools at
-[learning.nyuchi.com/legal/security](https://learning.nyuchi.com/legal/security)
-(`src/pages/legal/security.astro`). The extension's repository is private, so
-that page carries the policy in full; this file covers the website.
+The extension's own security model, how it is tested and its independent
+adversarial review are published for schools at
+[learning.nyuchi.com/legal/security](https://learning.nyuchi.com/legal/security).
+The vulnerability disclosure policy, covering this site, the extension and the
+licence server, is at
+[learning.nyuchi.com/legal/vulnerability-disclosure](https://learning.nyuchi.com/legal/vulnerability-disclosure),
+and `public/.well-known/security.txt` points to it.
 
 ## Reporting a vulnerability
 
 Email <support@nyuchi.com> with the subject **Security**. Include the URL, a
 reproduction, and the impact you observed. Please do not include real student
-data. We acknowledge within 3 working days.
+data. We acknowledge within 3 working days; the disclosure policy above has the
+full commitments and safe harbour.
 
 Do not file public GitHub issues for security reports.
 
@@ -22,7 +25,8 @@ Do not file public GitHub issues for security reports.
 In scope:
 
 - Code in this repository, and the site it builds.
-- The Toddle Enhancement Extension (see the Security page above).
+- The Toddle Enhancement Extension, and the licence server at
+  `licences.nyuchi.dev` (see the disclosure policy above).
 
 Out of scope:
 
