@@ -72,6 +72,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
         label: "Deploy to a school",
         href: "/toddle-enhancement-extension#install",
       },
+      { label: "Security, for schools", href: "/legal/security" },
       { label: "Send feedback", href: "/feedback" },
       { label: "Get in touch", href: "mailto:support@nyuchi.com" },
     ],
@@ -109,6 +110,7 @@ export const legalLinks: NavLink[] = [
     external: true,
   },
   { label: "Terms", href: "https://nyuchi.com/legal/terms", external: true },
+  { label: "Security", href: "/legal/security" },
   { label: "Sitemap", href: "/sitemap-index.xml" },
 ];
 

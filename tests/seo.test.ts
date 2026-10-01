@@ -20,6 +20,7 @@ const PAGES = [
   "toddle-enhancement-extension/index.html",
   "legal/privacy/index.html",
   "legal/terms/index.html",
+  "legal/security/index.html",
   "feedback/index.html",
 ];
 
@@ -129,8 +130,35 @@ describe("the footer is the canonical navigation", () => {
       "/toddle-enhancement-extension",
       "/legal/privacy",
       "/legal/terms",
+      "/legal/security",
     ]) {
       expect(siteData, `footer does not link to ${path}`).toContain(path);
     }
+  });
+});
+
+describe("the security page", () => {
+  /* Privacy and legal reviewers read this page instead of the extension's
+     private repository, so the parts they will look for must be there. */
+  const page = built("legal/security/index.html");
+
+  it("states how to report a vulnerability and when we answer", () => {
+    expect(page).toContain("mailto:support@nyuchi.com?subject=Security");
+    expect(page).toContain("within 3 working days");
+  });
+
+  it("names the review, the release that fixed it, and the residual limit", () => {
+    expect(page).toContain("1 October 2026");
+    expect(page).toContain("0.8.2");
+    expect(page).toContain("Content-Security-Policy");
+  });
+
+  it("is linked from the privacy policy and llms.txt", () => {
+    expect(built("legal/privacy/index.html")).toContain(
+      'href="/legal/security"',
+    );
+    expect(built("llms.txt")).toContain(
+      "https://learning.nyuchi.com/legal/security",
+    );
   });
 });

@@ -1,5 +1,29 @@
 # Changelog
 
+## 3.3.0 — 2026-10-01
+
+### Added
+
+- **`/legal/security`** — the Toddle Enhancement Extension's security, for
+  schools and for the privacy, legal and IT reviewers who approve software for
+  them: an at-a-glance summary, the security model, how it is tested, the
+  independent adversarial review of 1 October 2026 and what it fixed, the
+  limit no extension can remove, and the vulnerability policy in full (the
+  extension's repository is private, so it cannot be linked to). Linked from
+  the footer, the privacy policy, the terms, the extension page and
+  `llms.txt`, and in the sitemap.
+
+### Changed
+
+- **The extension page describes 0.8.2:** the student sidebar anywhere a
+  student appears in Toddle, the Now card and today's classes and attendance,
+  the class view and message buttons into Toddle's own chat, and the
+  Attendance dashboard's Students tab. No new screenshots yet.
+- **The privacy policy says what 0.8.2 reads for the sidebar,** when, and that
+  none of it is stored or sent anywhere; that the extension asks Toddle for no
+  student flags; and links the Security page.
+- `SECURITY.md` describes this site as it is, and points to the Security page.
+
 ## 3.2.0 — 2026-09-28
 
 ### Added

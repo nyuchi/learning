@@ -19,22 +19,37 @@ community-based platforms. Nyuchi Web Services is its development division.
   item, so a teacher sees the whole class at once instead of opening a side
   panel per student. It also adds a switch that hides Toddle's student flags
   across the product, so a gradebook can be projected or screen-shared without
-  a flag being visible. It hides flags, not names. Free: the flag switch and a
-  "My classes" filter on the Toddle home page. With a licence: the
-  per-criterion gradebook columns, CSV export, a docked student sidebar and
-  primary teacher names. It reads Toddle in the teacher's own browser, for the
-  teacher at the screen, and on its own transmits nothing: no server, no
-  account, no analytics, no tracking. Licence keys are checked offline on the
-  device. The one exception is opt-in: the toolbar menu's "Send feedback" form,
-  which, only when the person presses Send, sends what they typed (topic,
-  message, and an email only if they enter one) plus the extension's version
-  number to Nyuchi's feedback form, processed by Formspree. Nothing from Toddle
-  is ever included: no student data, no page address, no licence key. The
-  welcome page it opens on install is part of the extension and sends nothing.
-  It stores, on the user's own machine, only its switch settings and the
-  licence key if there is one. Rubric levels and descriptors are read from
-  whatever a school has configured in Toddle; none are defined in the
-  extension.
+  a flag being visible. Flags are hidden by default; a staff member shows them
+  deliberately, with the switch or an eye button for one student.
+  It hides flags, not names. Free: the flag switch and a "My classes" filter on the
+  Toddle home page. With a licence: the per-criterion gradebook columns, CSV
+  export, primary teacher names, and the student sidebar. The sidebar (version
+  0.8.2) works anywhere a student appears in Toddle (class pages, the
+  Attendance dashboard's Periods, Students and Excusals tabs, name links,
+  gradebook student cells) and shows a photo, grade, age and class of, Student
+  Group, room number, homeroom advisor, contacts with relationship, phone and
+  email, a "Now" card (current attendance code, block, class, room and
+  timetabled teacher), today's daily attendance code, and the student's
+  classes in Today and All tabs. Clicking a class opens a class view with its
+  current block, primary teacher, parent course, room and every teacher with
+  their display title and email. Message buttons open Toddle's own chat; the
+  extension sends no message itself. On the Attendance dashboard's Students
+  tab, each student's year group and current class and teacher appear under
+  their name, and the current block's column is outlined. It reads Toddle in
+  the teacher's own browser, for the teacher at the screen, through an exact
+  allowlist of read-only queries sent only to Toddle, and never writes. On its
+  own it transmits nothing: no server, no account, no analytics, no tracking.
+  Licence keys are checked offline on the device. The one exception is
+  opt-in: the toolbar menu's "Send feedback" form, which, only when the person
+  presses Send, sends what they typed (topic, message, and an email only if
+  they enter one) plus the extension's version number to Nyuchi's feedback
+  form, processed by Formspree. Nothing from Toddle is ever included: no
+  student data, no page address, no licence key. The welcome page it opens on
+  install is part of the extension and sends nothing. It stores, on the
+  user's own machine, only its switch settings and the licence key if there
+  is one; no student data is stored on the device. Rubric levels and
+  descriptors are read from whatever a school has configured in Toddle; none
+  are defined in the extension. Security: https://learning.nyuchi.com/legal/security
 
 ## Where the learning content went
 
@@ -53,6 +68,19 @@ community-based platforms. Nyuchi Web Services is its development division.
   anywhere on its own, only feedback a person chooses to send; this website uses Google Analytics only with consent, and sets no
   cookies unless the visitor agrees.
 - [Terms and conditions](https://learning.nyuchi.com/legal/terms)
+- [Security](https://learning.nyuchi.com/legal/security): the extension's
+  security model (runs only on web.toddleapp.com; permissions are storage and
+  Toddle only; read-only allowlisted queries; sends only to Toddle except the
+  opt-in feedback form; licence keys checked offline; no student data stored),
+  how it is tested (closed-loop tests, adversarial-review regression tests, an
+  end-to-end network recorder that fails on any non-Toddle request, every
+  release gated on them), the independent adversarial review of 1 October 2026
+  (two High, one Medium and several Low findings, all fixed in 0.8.2 with
+  tests), the residual limit (scripts Toddle itself loads share the page and
+  the teacher's access regardless of any extension; Toddle's pages send no
+  Content-Security-Policy), and how to report a vulnerability: email
+  support@nyuchi.com with the subject "Security"; acknowledgement within 3
+  working days.
 
 ## Contact
 

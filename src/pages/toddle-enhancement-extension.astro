@@ -44,20 +44,20 @@ const features = [
   {
     mineral: "cobalt",
     free: false,
-    title: "Standards view",
-    body: "Toddle shows a standards-based rubric as one icon per student, and you open a side panel to read each one. This puts one column per standard on the grid, with every student's descriptor visible at once and the full standard text on hover.",
+    title: "Per-criterion columns",
+    body: "Toddle shows an assessment tool as one icon per student, and you open a side panel to read each one. This puts one column per standard, criterion or checklist item on the grid, with every student's result visible at once and the full wording on hover — one tool at a time, or all of an assessment's tools together.",
   },
   {
     mineral: "malachite",
     free: true,
     title: "Hide student flags",
-    body: "One switch in the Toddle header hides student flags everywhere: the gradebook, Attendance, the class portfolio, submissions, search results, profile headers. It stays on as you move around, so you arm it before a lesson rather than remembering in the moment.",
+    body: "Flags are hidden across Toddle by default: the gradebook, Attendance, the class portfolio, submissions, search results, profile headers and the student sidebar. Showing them is a deliberate choice — the switch in the Toddle header, or an eye button for one student. It stays as you left it, so it is armed before a lesson.",
   },
   {
     mineral: "gold",
     free: false,
     title: "CSV export",
-    body: "Student × assessment × standard × rating × submission status, in one click. Generated in your browser and saved by your browser — it never passes through a server of ours, because there isn't one.",
+    body: "Student × assessment × criterion × result × submission status, in one click. Generated in your browser and saved by your browser — it never passes through a server of ours, because there isn't one.",
   },
   {
     mineral: "tanzanite",
@@ -69,10 +69,28 @@ const features = [
     mineral: "terracotta",
     free: false,
     title: "The student sidebar",
-    body: "Click a student's name and Toddle's own student card docks to the side until you close it, with their grade, email, contacts and classes — instead of a popover that vanishes when the mouse moves.",
+    body: "Click a student anywhere they appear in Toddle — class pages, name links, gradebook student cells, every tab of the Attendance dashboard — and they dock to the side until you close it: one larger photo, grade · age · class of, Student Group, room number, homeroom advisor, and contacts with their relationship, tap-to-call phone and email.",
+  },
+  {
+    mineral: "copper",
+    free: false,
+    title: "Now, and today",
+    body: "Beside the photo, a Now card: the student's attendance code for the block happening now, the block, class, room and timetabled teacher — or their next class, or that they are finished or have no classes. Below, today's daily attendance code, and their classes in two tabs: Today, in time order with each period's attendance code and the current one first, and All.",
+  },
+  {
+    mineral: "sodalite",
+    free: false,
+    title: "The class view, and messages",
+    body: "Click a class for the block it is in now, its primary teacher, parent course and room, and every teacher with their display title and email. Message buttons for staff, the student, the family channel and each family member open Toddle's own chat, under your school's messaging rules.",
   },
   {
     mineral: "cobalt",
+    free: false,
+    title: "The Attendance dashboard",
+    body: "On the Students tab, each name gains the student's grade or year group and where they should be right now — “Now: class · teacher” — and the current block's column is outlined, moving on by itself as the day does.",
+  },
+  {
+    mineral: "gold",
     free: false,
     title: "Primary teacher names",
     body: "The class's primary teacher, as ticked in the class settings, beside every class on the home page and on a student's profile — so you know who to ask without opening the class.",
@@ -90,7 +108,7 @@ const widths = [640, 960, 1280];
 const leadShot = {
   src: gradebookShot,
   alt: "The Toddle gradebook with one rubric expanded into a column per criterion, each student's rating visible in its own cell; student names are hidden behind grey bars.",
-  caption: "Standards view · With a licence",
+  caption: "Per-criterion columns · With a licence",
 };
 
 const shots = [
@@ -139,9 +157,13 @@ const facts = [
   {
     label: "What it reads",
     value:
-      "What Toddle already shows you — gradebook results, class staff, student details — through Toddle's own API, reusing the session you are already signed in with. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
+      "What Toddle already lets you see — gradebook results, class staff, student details, today's timetable and attendance — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It asks for no student flags. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
   },
-  { label: "What it writes", value: "Nothing. Every request it makes is a read." },
+  {
+    label: "What it writes",
+    value:
+      "Nothing. Every request it makes is a read, and writes are blocked outright. Message buttons open Toddle's own chat; the extension sends no message itself.",
+  },
   {
     label: "What it sends",
     value:
@@ -155,7 +177,7 @@ const facts = [
   {
     label: "What it stores",
     value:
-      "On your own machine only: your switch settings (flags shown or hidden, the sidebar, teacher names, My classes) and your licence key, if you have one.",
+      "On your own machine only: your switch settings (flags shown or hidden, the sidebar, teacher names, My classes) and your licence key, if you have one. No student data: what the sidebar reads is held in the page's memory for a few minutes and gone when the tab closes.",
   },
 ];
 
@@ -187,7 +209,9 @@ const schema = [
       "Hides student flags across Toddle with one switch",
       "CSV export of results and submission status",
       "A My classes filter on the Toddle home page",
-      "A docked student sidebar",
+      "A student sidebar anywhere a student appears in Toddle: photo, grade, contacts, where they are now, today's classes and attendance",
+      "A class view with every teacher, and message buttons that open Toddle's own chat",
+      "The Attendance dashboard's Students tab with each student's year group, current class and teacher",
       "Primary teacher names beside each class",
     ],
     privacyPolicy: "https://learning.nyuchi.com/legal/privacy",
@@ -529,6 +553,10 @@ const schema = [
           >{toddleExtension.supportEmail}</a
         >.
       </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/legal/security" class="btn-primary">Read the security page</a>
+        <a href="/legal/privacy" class="btn-outline">Read the privacy policy</a>
+      </div>
     </div>
   </section>
 
