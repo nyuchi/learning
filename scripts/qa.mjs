@@ -25,6 +25,7 @@ const PAGES = [
   "/toddle-enhancement-extension/",
   "/legal/privacy/",
   "/legal/terms/",
+  "/legal/security/",
   "/feedback/",
   "/feedback/thanks/",
 ];
