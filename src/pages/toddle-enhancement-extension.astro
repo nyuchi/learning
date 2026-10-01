@@ -12,7 +12,7 @@ import { Picture } from "astro:assets";
 import type { ImageOutputFormat } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
-import { pricing, toddleNotice } from "../data/legal";
+import { pricing, refunds, toddleNotice } from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
 import toolToggleShot from "../assets/screenshots/02-tool-toggle.jpg";
 import myClassesShot from "../assets/screenshots/03-my-classes.jpg";
@@ -519,6 +519,10 @@ const schema = [
       nothing and works offline — and one key covers your laptop and your classroom
       desktop. While a key is entered, the extension checks once a day for cancelled keys,
       sending nothing about you.
+    </p>
+    <p class="mt-3 text-caption text-muted-foreground max-w-2xl text-pretty">
+      <strong class="text-foreground">Refunds.</strong>{" "}
+      {`${refunds.rule} ${refunds.how} ${refunds.key}`}
     </p>
   </section>
 

@@ -9,7 +9,7 @@
  * (nyuchi-licence-server, schema.sql). Nothing here is a legal conclusion.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, updatedLabel } from "../../data/legal";
+import { legal, refunds, updatedLabel } from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Data handling — Nyuchi Learning";
@@ -238,7 +238,9 @@ const subprocessors = [
     >
       <li>
         <strong class="text-foreground">Licence and order records:</strong> for as long as
-        tax and accounting law requires, and no longer for any other purpose.
+        tax and accounting law requires, and no longer for any other purpose. On a refund
+        ({refunds.rule.replace(/\.$/, "").toLowerCase()}), the record is marked refunded and
+        the key is cancelled.
       </li>
       <li>
         <strong class="text-foreground">Feedback and support conversations:</strong> as long
