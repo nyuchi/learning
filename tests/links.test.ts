@@ -75,11 +75,13 @@ describe("the extension page", () => {
     expect(links, `remove these: ${links.join(", ")}`).toEqual([]);
   });
 
-  /* One switch drives every call to action. While it is null the page offers an
-     enquiry; setting it turns the same page into an install page. This asserts
-     the switch is wired, so the flip is a one-line change and not a hunt. */
+  /* One switch drives every call to action: the store listing. It is live, so
+     the switch is set; this asserts it points at the real listing and stays
+     wired, so the pages never fall back to "not yet" by accident. */
   it("drives its calls to action from the store switch", () => {
-    expect(siteData).toMatch(/webStore:\s*null as string \| null/);
+    expect(siteData).toContain(
+      'webStore: "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi"',
+    );
     expect(extensionPage).toContain("toddleExtension.webStore");
     expect(extensionPage).toContain("toddleExtension.enquiry");
   });

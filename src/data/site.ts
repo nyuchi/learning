@@ -130,16 +130,21 @@ export const MINERALS = [
  * private repo returns 404 to the public, and a dead "Download" is worse than
  * an honest "not yet".
  *
- * `webStore` is the single switch. While it is null the page offers to put
- * people on the list; set it to the listing URL and the same page becomes a
- * download page, with no other edit needed.
+ * `webStore` is the single switch: the Chrome Web Store listing. With it set,
+ * every call to action is "Add to Chrome". (Set it back to null and the pages
+ * fall back to an enquiry, with no other edit.)
  */
 export const toddleExtension = {
   name: "Toddle Enhancement Extension",
   tagline:
     "The Toddle gradebook, with the views it is missing — and a way to project it.",
-  /** Set to the Chrome Web Store listing URL once it is live. */
-  webStore: null as string | null,
+  /** The Chrome Web Store listing (live since version 0.7.1). */
+  webStore:
+    "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as
+      | string
+      | null,
+  /** The store item ID, which a school's IT uses to force-install it. */
+  extensionId: "ofliokikjmkkdkinbdnadbjjdmkjdjfi",
   supportEmail: "support@nyuchi.com",
   /** Mailto used while there is no store listing, and for school enquiries. */
   enquiry: "mailto:support@nyuchi.com?subject=Toddle%20Enhancement%20Extension",
