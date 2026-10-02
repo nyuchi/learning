@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm test)",
+      "Bash(git fetch *)",
+      "Bash(npm run e2e)",
+      "Bash(npm run check)",
+      "Bash(npm run format:check)",
+      "Bash(npx wrangler tail *)",
+      "Bash(gh variable list *)",
+      "Bash(gh run watch *)",
+      "Bash(cargo test *)",
+      "mcp__claude-in-chrome__find",
+      "mcp__claude-in-chrome__tabs_context_mcp",
+      "mcp__claude-in-chrome__get_page_text",
+      "mcp__claude-in-chrome__list_connected_browsers",
+      "mcp__Shopify__graphql_query",
+      "mcp__claude_ai_Shopify__graphql_query",
+      "mcp__Shopify__graphql_schema",
+      "mcp__Shopify__validate_graphql_codeblocks",
+      "mcp__github__pull_request_read",
+      "mcp__claude_ai_Postiz__postsListTool",
+      "mcp__claude_ai_Postiz__integrationList",
+      "mcp__Mzizi__mzizi_get_tokens"
+    ]
+  }
+}
