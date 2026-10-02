@@ -14,13 +14,14 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
 import { pricing, refunds, toddleNotice } from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
-import toolToggleShot from "../assets/screenshots/02-tool-toggle.jpg";
-import myClassesShot from "../assets/screenshots/03-my-classes.jpg";
-import sidebarShot from "../assets/screenshots/04-student-sidebar.jpg";
-import flagsShot from "../assets/screenshots/05-flags.jpg";
-import menuShot from "../assets/screenshots/06-menu.jpg";
-import feedbackShot from "../assets/screenshots/07-feedback.jpg";
-import welcomeShot from "../assets/screenshots/08-welcome.jpg";
+import sidebarShot from "../assets/screenshots/02-student-sidebar.jpg";
+import todayShot from "../assets/screenshots/03-today.jpg";
+import licenceShot from "../assets/screenshots/04-licence.jpg";
+import myClassesShot from "../assets/screenshots/05-my-classes.jpg";
+import flagsShot from "../assets/screenshots/06-flags.jpg";
+import menuShot from "../assets/screenshots/07-menu.jpg";
+import feedbackShot from "../assets/screenshots/08-feedback.jpg";
+import welcomeShot from "../assets/screenshots/09-welcome.jpg";
 
 /* One switch drives every call to action on this page. While there is no store
    listing the page says so and offers to take an enquiry; the moment
@@ -99,33 +100,39 @@ const features = [
 
 /* The same screenshots as the Chrome Web Store listing. Each one already
    carries its headline in the picture, so the caption only names the feature
-   and whether it needs a licence. Student names, IDs and contacts are covered
-   by grey bars in the source images — replace them only with images that are
-   redacted the same way. Astro turns them into AVIF and WebP at build time. */
+   and whether it needs a licence. Every name, email, phone number, ID and
+   photo in them is made-up test data or a grey placeholder, and the school is
+   a demo — replace them only with images made the same way. Astro turns them
+   into AVIF and WebP at build time. */
 const formats: ImageOutputFormat[] = ["avif", "webp"];
 const widths = [640, 960, 1280];
 
 const leadShot = {
   src: gradebookShot,
-  alt: "The Toddle gradebook with one rubric expanded into a column per criterion, each student's rating visible in its own cell; student names are hidden behind grey bars.",
+  alt: "The Toddle gradebook with each assessment's checklist, standards and learning goals expanded into a column per criterion, every student's result in its own cell. Test data.",
   caption: "Per-criterion columns · With a licence",
 };
 
 const shots = [
   {
-    src: toolToggleShot,
-    alt: "One assessment in the Toddle gradebook expanded on its own, its rubric and learning-goal tools opened into a column per standard; student names are hidden behind grey bars.",
-    caption: "Expand one tool at a time · With a licence",
+    src: sidebarShot,
+    alt: "Toddle's Attendance dashboard with the student sidebar open on the right: the student's grade, age and Class of, today's code, a Now card naming the current block, class, room and teachers, and their homeroom advisor. Test data.",
+    caption: "The student sidebar · With a licence",
+  },
+  {
+    src: todayShot,
+    alt: "The student sidebar's Today tab beside the dashboard's period columns: each of the student's lessons today with its block, times, room, teachers and that period's attendance code, the current one first. Test data.",
+    caption: "Now and Today · With a licence",
+  },
+  {
+    src: licenceShot,
+    alt: "The extension's licence page reading Licensed: an organisation licence until 2 October 2027, to be checked against the Toddle account the next time Toddle opens. Test data.",
+    caption: "Your licence, checked on your machine",
   },
   {
     src: myClassesShot,
     alt: "The Toddle home page's course filter open, with My classes selected beside All courses and My courses, above the list of classes; teacher names are hidden behind grey bars.",
     caption: "My classes · Free",
-  },
-  {
-    src: sidebarShot,
-    alt: "A student's details docked in a sidebar beside Toddle: grade, enrolment date and their eleven classes; the name, photo, ID and contacts are hidden behind grey bars.",
-    caption: "The student sidebar · With a licence",
   },
   {
     src: flagsShot,
@@ -134,7 +141,7 @@ const shots = [
   },
   {
     src: menuShot,
-    alt: "The extension's toolbar menu: licence status, a Show student flags switch under Free, Student sidebar and Primary teacher names switches under With a licence, and a Send feedback button.",
+    alt: "The extension's toolbar menu: the organisation licence and version, a Show student flags switch under Free, Student sidebar and Primary teacher names switches under With a licence, and Send feedback and Help.",
     caption: "The toolbar menu",
   },
   {
@@ -144,7 +151,7 @@ const shots = [
   },
   {
     src: welcomeShot,
-    alt: "The welcome page the extension opens on install, with switches for showing student flags, the student sidebar and primary teacher names, and the message Saved. Student flags hidden.",
+    alt: "The welcome page the extension opens on install: what it does on Toddle, what is free and what needs a licence, and a note that it is a closed loop that sends nothing anywhere on its own.",
     caption: "The welcome page, on install",
   },
 ];
