@@ -1,5 +1,17 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- **Vite+ for checks and tests** (tooling only; the built site is unchanged).
+  `vite-plus` 1.0 replaces `vitest` as a dev dependency, and `vite.config.ts`
+  carries the org format settings, type-aware linting and type checking, and
+  the test settings that were in `vitest.config.ts`. Tests import from
+  `vite-plus/test`. The org-required `vite-plus / check` runs the transitional
+  `ci:check` (`astro check` and `vp fmt --check`) until `astro.config.mjs`
+  stops assigning a `Date` to the sitemap's string `lastmod`.
+
 ## 3.3.0 — 2026-10-01
 
 ### Added

@@ -5,7 +5,7 @@
  * copy of the design tokens that then drifted away from nyuchi.com. Both are
  * the kind of regression a reviewer skims past, so they are asserted instead.
  */
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
