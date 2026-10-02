@@ -169,7 +169,7 @@ describe("security.txt", () => {
     new RegExp(`^${name}: (.+)$`, "m").exec(text)?.[1];
 
   it("is served from /.well-known with the required fields", () => {
-    expect(field("Contact")).toBe("mailto:support@nyuchi.com");
+    expect(field("Contact")).toBe("mailto:security@nyuchi.com");
     expect(field("Preferred-Languages")).toBe("en");
     expect(field("Canonical")).toBe(
       "https://learning.nyuchi.com/.well-known/security.txt",
@@ -192,7 +192,7 @@ describe("the security page", () => {
   const page = built("legal/security/index.html");
 
   it("states how to report a vulnerability and when we answer", () => {
-    expect(page).toContain("mailto:support@nyuchi.com?subject=Security");
+    expect(page).toContain("mailto:security@nyuchi.com?subject=Security");
     expect(page).toContain("within 3 working days");
   });
 

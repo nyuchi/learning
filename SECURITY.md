@@ -13,7 +13,7 @@ and `public/.well-known/security.txt` points to it.
 
 ## Reporting a vulnerability
 
-Email <support@nyuchi.com> with the subject **Security**. Include the URL, a
+Email <security@nyuchi.com> with the subject **Security**. Include the URL, a
 reproduction, and the impact you observed. Please do not include real student
 data. We acknowledge within 3 working days; the disclosure policy above has the
 full commitments and safe harbour.
