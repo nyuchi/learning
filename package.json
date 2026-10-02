@@ -11,12 +11,16 @@
     "check": "astro check",
     "format": "prettier --write \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
     "format:check": "prettier --check \"src/**/*.{ts,js,css}\" \"tests/**/*.ts\" \"scripts/**/*.mjs\" \"*.{json,mjs}\"",
-    "test": "npm run build && vitest run && npm run csp",
+    "test": "npm run build && vp test run && npm run csp",
     "csp": "node scripts/check-csp.mjs",
     "csp:fix": "node scripts/check-csp.mjs --fix",
     "qa": "npm run build && node scripts/serve-and-qa.mjs",
     "csp:probe": "npm run build && node scripts/serve-and-qa.mjs probe-intercom-csp.mjs",
-    "consent:probe": "npm run build && node scripts/serve-and-qa.mjs probe-consent.mjs"
+    "consent:probe": "npm run build && node scripts/serve-and-qa.mjs probe-consent.mjs",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "ci:prepare": "astro sync",
+    "ci:check": "astro check && vp fmt --check"
   },
   "dependencies": {
     "@bundu/ui": "^0.1.1",
@@ -36,9 +40,10 @@
     "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
-    "vitest": "~4.1.11"
+    "vite-plus": "^1.0.0"
   },
   "overrides": {
     "path-to-regexp": "^6.3.0"
-  }
+  },
+  "packageManager": "npm@11.12.1"
 }
