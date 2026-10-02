@@ -25,3 +25,8 @@ npm-debug.log*
 *.swo
 *~
 qa-report.json
+
+# Claude Code: share settings.json, keep personal settings and worktrees local
+.claude/settings.local.json
+.claude/worktrees/
+.claude/.cc-writes/
