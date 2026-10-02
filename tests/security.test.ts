@@ -5,7 +5,7 @@
  * start sneaking in, these fail and force a deliberate review rather than a
  * quiet merge.
  */
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { readFileSync, readdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
