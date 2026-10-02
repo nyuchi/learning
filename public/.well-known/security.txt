@@ -1,4 +1,4 @@
-Contact: mailto:support@nyuchi.com
+Contact: mailto:security@nyuchi.com
 Expires: 2027-10-01T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://learning.nyuchi.com/.well-known/security.txt
