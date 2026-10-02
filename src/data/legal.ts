@@ -66,7 +66,7 @@ export const pricing = [
     name: "Organisation",
     price: "US$49.99",
     period: "per year",
-    who: "A school. Keys issued per teacher.",
+    who: "A school. One key for your email domain: anyone signed in to Toddle with an address there is covered.",
     buy: "https://buymeacoffee.com/bryany/e/581738",
     includes: [
       "Everything in Individual, for your whole staff",

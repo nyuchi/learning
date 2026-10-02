@@ -42,7 +42,9 @@ community-based platforms. Nyuchi Web Services is its development division.
   anyone: no account, no analytics, no tracking. Licence keys are checked
   offline on the device; an individual key carries the buyer's email and an
   organisation key the school's email domain, compared with the signed-in
-  Toddle account inside the browser only. Student flags are hidden by default
+  Toddle account inside the browser only. An organisation licence is one key
+  for the school's email domain: anyone signed in to Toddle with an address
+  at that domain is covered. Student flags are hidden by default
   and fetched only when a staff member chooses to show them. It has two
   outside connections, neither carrying Toddle data. (1) Opt-in feedback: the
   toolbar menu's "Send feedback" form, which, only when the person presses
