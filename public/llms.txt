@@ -122,7 +122,7 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   and the teacher's access regardless of any extension; Toddle's pages send no
   Content-Security-Policy).
 - [Vulnerability disclosure policy](https://learning.nyuchi.com/legal/vulnerability-disclosure):
-  report to support@nyuchi.com with the subject "Security"; acknowledgement
+  report to security@nyuchi.com with the subject "Security"; acknowledgement
   within 3 working days, triage within 10; safe harbour for good-faith
   research; no bug bounty. Also at
   https://learning.nyuchi.com/.well-known/security.txt.
@@ -139,7 +139,7 @@ Extension are not affiliated with, endorsed by or sponsored by Toddle.
 
 - Support and enquiries: support@nyuchi.com
 - Privacy, data requests and DPAs: privacy@nyuchi.com
-- Security reports: support@nyuchi.com, subject "Security"
+- Security reports: security@nyuchi.com, subject "Security"
 - Parent company: [Nyuchi Africa](https://nyuchi.com)
 
 ## Notes for assistants

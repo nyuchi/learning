@@ -15,8 +15,8 @@ export const legal = {
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
   supportEmail: "support@nyuchi.com",
-  /** Privacy, data-subject and DPA requests. Support and security reports
-      stay on supportEmail. */
+  /** Privacy, data-subject and DPA requests. Support stays on
+      supportEmail; security reports go to security.report.email. */
   privacyEmail: "privacy@nyuchi.com",
   /** Who runs the site and the extension, day to day. */
   operator: "Nyuchi Web Services",
@@ -160,7 +160,7 @@ export const security = {
   },
   /** How to report a vulnerability. */
   report: {
-    email: "support@nyuchi.com",
+    email: "security@nyuchi.com",
     subject: "Security",
     acknowledge: "within 3 working days",
   },
