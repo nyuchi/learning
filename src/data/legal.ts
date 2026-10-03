@@ -10,7 +10,7 @@
 export const legal = {
   /** Last substantive change, for every legal page. Update when a claim
       changes, not on typos. */
-  updated: "2026-10-01",
+  updated: "2026-10-03",
   entity: "Nyuchi Africa (Private) Limited",
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
@@ -64,7 +64,7 @@ export const pricing = [
   },
   {
     name: "Organisation",
-    price: "US$49.99",
+    price: "US$149",
     period: "per year",
     who: "A school. One key for your email domain: anyone signed in to Toddle with an address there is covered.",
     buy: "https://buymeacoffee.com/bryany/e/581738",
