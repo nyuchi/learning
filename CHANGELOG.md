@@ -4,6 +4,12 @@
 
 ### Changed
 
+- **The audit sets one advisory aside, by ID, until 2026-11-03** (CI only).
+  GHSA-ch52-4w7c-c8xp in `http-cache-semantics` has no patched release, and
+  astro 7.3.5 uses the package only to cache remote images during
+  `astro build`; this site is static, so the path never runs for a visitor.
+  `scripts/audit.mjs` runs the same `npm audit --audit-level=high --omit=dev`
+  and fails on anything else at that level, or once the recheck date passes.
 - **Vite+ for checks and tests** (tooling only; the built site is unchanged).
   `vite-plus` 1.0 replaces `vitest` as a dev dependency, and `vite.config.ts`
   carries the org format settings, type-aware linting and type checking, and
