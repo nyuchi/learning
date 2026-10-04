@@ -9,7 +9,7 @@
 ![Astro](https://img.shields.io/badge/Astro-7-BC52EE?style=flat-square&logo=astro&logoColor=white)
 ![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=flat-square&logo=vercel&logoColor=white)
 
-**Version:** 3.0.0 | **Live:** [learning.nyuchi.com](https://learning.nyuchi.com) | **Default branch:** `master` | **Deploy:** Vercel
+**Version:** 3.0.0 | **Live:** [learning.nyuchi.com](https://learning.nyuchi.com) | **Default branch:** `main` | **Deploy:** Vercel
 
 ---
 
@@ -54,7 +54,7 @@ every Nyuchi surface at once.
 
 ## Hosting
 
-Vercel, from `master`. The site is fully static — every page is known at build
+Vercel, from `main`. The site is fully static — every page is known at build
 time, so nothing renders per request.
 
 Response headers, including the CSP, are declared in `vercel.json`.
