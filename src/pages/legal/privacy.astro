@@ -128,8 +128,9 @@ const description =
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
-        <strong class="text-foreground">When.</strong> Once a day, and only while a licence
-        key is entered. Without a licence it never happens.
+        <strong class="text-foreground">When.</strong> At most once a day, and only while a
+        licence key is entered; a key just entered is checked within 5 minutes. Without a
+        licence it never happens.
       </li>
       <li>
         <strong class="text-foreground">What is sent.</strong> One plain request to
@@ -140,14 +141,15 @@ const description =
       <li>
         <strong class="text-foreground">What comes back.</strong> A list, signed by Nyuchi,
         of the fingerprints (SHA-256 hashes) of cancelled keys. The extension checks its own
-        key against the list on your machine.
+        key against the list on your machine, and keeps only the result.
       </li>
       <li>
         <strong class="text-foreground">Who sees what.</strong> Cloudflare, which runs the
         server, sees your IP address, as with any web request. Nyuchi does not log it.
       </li>
       <li>
-        <strong class="text-foreground">If it fails.</strong> The extension keeps working.
+        <strong class="text-foreground">If it fails.</strong> The last result stands, so a
+        network outage never switches a licence off.
       </li>
     </ul>
 
@@ -157,10 +159,11 @@ const description =
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       The statements above are enforced in the software and held in place by tests that
       fail if the extension asks for a new permission, sends anything anywhere it is not
-      meant to, or sends a query that is not on its fixed, read-only list. On {security.review.label}
-      it had an independent adversarial review, and every finding was fixed in version
-      {security.version}. The <a class="link" href="/legal/security">Security page</a>
-      sets out the security model, how it is tested, what that review found, the limits
+      meant to, or sends a query that is not on its fixed, read-only list. It has had two
+      adversarial reviews. Every finding of the first, on {security.reviews[0].label}, was
+      fixed in version {security.reviews[0].version}; every finding of the second, on {security.reviews[1].label},
+      was fixed in version {security.reviews[1].version} before it is published.
+      The <a class="link" href="/legal/security">Security page</a> sets out the security model, how it is tested, what the reviews found, the limits
       no extension can remove, and how to report a vulnerability.
     </p>
 
@@ -300,12 +303,12 @@ const description =
         details.
       </li>
       <li>
-        <strong class="text-foreground">Your key contains your email.</strong> That is how
-        a key is tied to a person; an organisation key carries the school's email domain
-        instead. The extension compares it with the Toddle account signed in, inside your
-        browser only. The key is stored in your own browser and checked there — the
-        extension does not send it to us or to anyone else, not even in the daily check for
-        cancelled keys.
+        <strong class="text-foreground">Your key contains your email.</strong> A key may also
+        name who it is for: your email address, or for an organisation licence the school's
+        email domain. Where it does, the extension compares that with the Toddle account
+        signed in, inside your browser only. The key is stored in your own browser and
+        checked there — the extension does not send it to us or to anyone else, not even in
+        the daily check for cancelled keys.
       </li>
       <li>
         <strong class="text-foreground">We do not market to you off the back of it.</strong>

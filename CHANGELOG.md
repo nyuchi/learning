@@ -4,6 +4,30 @@
 
 ### Changed
 
+- **The legal pages match the extension's code, for 0.8.2 and 0.8.4**, and
+  are dated 6 October 2026. Checked against the extension's data schema
+  (`docs/toddle-data-fields.md`) and its code:
+  - Student flags: from 0.8.4 they are shown as Toddle shows them, and the
+    free switch hides them everywhere; versions before 0.8.4 hid them by
+    default. Unless flags are hidden, the sidebar asks Toddle for a
+    student's flags each time it opens.
+  - Memory: answers stay in the tab's memory until it is closed or
+    reloaded, reused for at most 5 minutes (2 for a student's day). Not
+    "a few minutes, then discarded".
+  - Storage: every key, named — the last revocation check and the Toddle
+    account's email in the extension's storage, and the four values on
+    Toddle's site (`tee-settings`, `gbx-hide-flags`, `tee-course-view`,
+    `tee-academic-year`). The "style of Toddle's message button" value it
+    once listed does not exist.
+  - Every switch, including gradebook tools and the Attendance dashboard's
+    student details.
+  - Licence keys may, not must, name who they are for.
+  - What each feature reads (gradebook, home page, profile page, Attendance
+    dashboard, sidebar), and the sign-in headers and academic year noted
+    from Toddle's own requests.
+  - Exactly what leaves the device, student photos included.
+  - The Security page covers the adversarial review of 6 October 2026
+    (findings 13 to 16) and what code inside Toddle's page cannot promise.
 - **The audit sets one advisory aside, by ID, until 2026-11-03** (CI only).
   GHSA-ch52-4w7c-c8xp in `http-cache-semantics` has no patched release, and
   astro 7.3.5 uses the package only to cache remote images during
