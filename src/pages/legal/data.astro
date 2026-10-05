@@ -9,7 +9,13 @@
  * (nyuchi-licence-server, schema.sql). Nothing here is a legal conclusion.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, refunds, updatedLabel } from "../../data/legal";
+import {
+  dataProtection,
+  extensionVersions,
+  legal,
+  refunds,
+  updatedLabel,
+} from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Data handling — Nyuchi Learning";
@@ -103,59 +109,130 @@ const subprocessors = [
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
-        <strong class="text-foreground">The gradebook:</strong> assessments, their criteria
-        and scales, and each student's results and submission status, to draw per-criterion
-        columns and the CSV export.
+        <strong class="text-foreground">The gradebook,</strong> when a teacher expands an
+        assessment: its tools as Toddle defines them (rubric criteria, descriptors and
+        levels, grade scales and their colours, checklist items, scores, standards and
+        learning goals), and each student's name, email, student ID, submission status and
+        results, including written responses and comments, to draw per-criterion columns
+        and the CSV export. No descriptor or level is written in the extension.
       </li>
       <li>
-        <strong class="text-foreground">Classes and staff:</strong> each class's teachers,
-        with display titles and emails, to show primary teachers, My classes and the class
-        view.
+        <strong class="text-foreground">The home page:</strong> each class's staff, to show
+        its primary teacher and the My classes filter. On a student's profile page, the
+        teachers of each of the student's classes.
+      </li>
+      <li>
+        <strong class="text-foreground">The Attendance dashboard:</strong> each student's
+        year group and the names of the periods, from Toddle's own request, and the primary
+        teacher of the class each student is in now, for the “Now: class · teacher” line.
       </li>
       <li>
         <strong class="text-foreground">The student sidebar,</strong> when a teacher opens
-        a student: name, photo, year group and age (the date of birth is never shown),
-        email, student ID, enrolment date, contacts with relationship, phone numbers and
-        email, homeroom advisor, the school's Student Group and Room number fields, and
-        today's timetable and attendance marks.
+        a student or a class: name, photo, year group and age (the date of birth is used to
+        work out the age and is never shown), email, student ID, enrolment date, family
+        accounts and contacts with relationship, phone numbers and email, homeroom advisor,
+        the school's additional profile fields (only Student Group and Room number are ever
+        shown), today's timetable and attendance marks, and each class's teachers with
+        their display titles and emails.
+      </li>
+      <li>
+        <strong class="text-foreground">Student flags.</strong> From version {extensionVersions.next},
+        flags are shown as Toddle shows them, and a staff member can hide them everywhere
+        with the free flag switch; versions before {extensionVersions.next} hid them by
+        default. Unless flags are hidden, the sidebar
+        asks Toddle for a student's active flags each time it opens; while they are
+        hidden, only when someone presses its eye button. It keeps them only while that
+        student's sidebar is open.
+      </li>
+      <li>
+        <strong class="text-foreground">From Toddle's own requests:</strong> the sign-in
+        headers, so it can ask Toddle as the teacher, and the academic year Toddle is
+        showing, so the sidebar asks for the right year. The headers stay in the tab's
+        memory, in one script inside Toddle's page, and are never stored. Neither is sent
+        anywhere but Toddle. The extension never asks for the teacher's password.
+      </li>
+      <li>
+        <strong class="text-foreground">The signed-in account's email,</strong> on every
+        Toddle page, to check who a licence is for.
       </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      A student's flags are fetched only when a staff member chooses to show them, and are
-      forgotten when the sidebar closes. Every query it can send is on a fixed, read-only
-      list; it never writes to Toddle.
+      Every query it can send is on a fixed, read-only list; it never writes to Toddle. On
+      the home page and the Attendance dashboard it adds a few fields to Toddle's own
+      request instead of sending a second one, and takes them out again before Toddle's
+      page sees the answer.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">Where it is processed</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       In the browser on the teacher's own device, and nowhere else. Answers from Toddle are
-      held in the page's memory for a few minutes so that one view does not ask twice, then
-      discarded, and are gone when the tab closes.
+      held in the Toddle tab's memory, never written to storage, until the tab is closed or
+      reloaded or the browser quits. A student's or a class's details are reused for at
+      most 5 minutes, and a student's day for at most 2, before Toddle is asked again; a
+      student's flags are never reused.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What it stores</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      The teacher's switch settings and licence key, in Chrome's storage for the extension
-      on that device; and a few housekeeping values in Toddle's site storage (a copy of the
-      switches and of which features the licence allows, whether flags are hidden, the My
-      classes choice, the academic year Toddle is showing, and the style of Toddle's
-      message button). <strong class="text-foreground">No student data is stored.</strong>
-      A CSV export is a file the teacher chooses to save, and is then the school's to manage
-      like any other download.
-    </p>
-
-    <h2 class="font-serif text-h3 text-foreground mt-12">What leaves the browser</h2>
-    <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Nothing it reads from Toddle. Its requests go to Toddle, with two outside connections,
-      neither carrying anything from Toddle:
+      In Chrome's storage for the extension, on that device:
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
+        the teacher's switches: the extension on or off, student flags, the student
+        sidebar, My classes, primary teacher names, gradebook tools, and student details on
+        the Attendance dashboard (versions before {extensionVersions.next} have three:
+        student flags, the student sidebar and primary teacher names);
+      </li>
+      <li>the licence key, if one was entered;</li>
+      <li>
+        the result of the last check for cancelled keys: whether the key is on the list, the
+        list's date and when the check was made, never the list itself;
+      </li>
+      <li>
+        the email address of the Toddle account last seen signed in, with the time, to check
+        who a licence is for. It is read on every Toddle page, with or without a licence
+        key, and is never sent anywhere.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      And four small values in the browser's storage for Toddle's own site: <code>tee-settings</code>,
+      a copy of the switches and of which features the licence allows (no key and no
+      email); <code>gbx-hide-flags</code>, whether flags are hidden; <code>tee-course-view</code>,
+      whether the teacher chose My classes in the home page
+      filter; and <code>tee-academic-year</code>, the number of the academic year Toddle
+      last asked for. <strong class="text-foreground">No student data is stored.</strong>
+      A CSV export is a file the teacher chooses to save, and is then the school's to manage
+      like any other download.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Uninstalling the extension deletes everything in its own storage. The four values on
+      Toddle's site stay until the browser's data for <code>web.toddleapp.com</code> is
+      cleared. Removing a licence key deletes the key; the last check's result and the
+      account email stay until the extension is uninstalled.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">What leaves the browser</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Nothing it reads from Toddle, except back to Toddle. These are the only requests it
+      makes:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Toddle's own interface,</strong> with the teacher's
+        Toddle session: its read-only queries, carrying only ids, one date and fixed values.
+      </li>
+      <li>
+        <strong class="text-foreground">Student photos,</strong> loaded from the address
+        Toddle gives for each one, wherever Toddle serves them, as Toddle's own page does.
+      </li>
+      <li>
         <strong class="text-foreground">Feedback,</strong> only when the teacher presses Send
-        in the extension's menu: what they typed and the extension's version number, to
-        Formspree.
+        in the extension's menu: the topic, the message, an email address only if they typed
+        one, and the extension's version number, to Formspree.
       </li>
       <li>
         <strong class="text-foreground">A daily check for cancelled keys,</strong> only while
@@ -163,14 +240,21 @@ const subprocessors = [
         <code class="break-all">https://licences.nyuchi.dev/v1/revocations</code>, sending no licence key, no
         identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of
         the SHA-256 fingerprints of cancelled keys and checks its own key locally. Cloudflare
-        sees the IP address, as with any web request; Nyuchi does not log it. If the check
-        fails, the extension keeps working.
+        sees the IP address, as with any web request; Nyuchi does not log it. If the list
+        cannot be fetched, the last result stands.
       </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Licence keys are tied to their owner: an individual key carries the buyer's email
-      address and an organisation key the school's email domain. The extension compares that
-      with the Toddle account signed in, inside the browser only, and sends it nowhere.
+      Anything else happens only when the teacher does it: saving a CSV file, opening an
+      email (<code>mailto:</code>) or phone (<code>tel:</code>) link, or sending a message in
+      Toddle's own chat. Like any web request, each request above lets the server that
+      receives it see the device's IP address and browser type.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A licence key carries the buyer's email address, and may also name who it is for:
+      the buyer's email, or for an organisation licence the school's email domain. Where it
+      does, the extension compares that with the Toddle account signed in, inside the
+      browser only, and sends it nowhere.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What Nyuchi holds</h2>
@@ -227,9 +311,11 @@ const subprocessors = [
       Nyuchi is in {legal.country}. The services above operate internationally, and most are
       based in the United States, so the data they handle for us may be processed outside
       {legal.country} and outside the country of the school. Student data from the extension
-      is not part of this: it does not leave the teacher's browser. If your rules require
-      particular safeguards for these transfers, ask us and we will tell you what applies to
-      each service.
+      is not part of this: it does not leave the teacher's browser. {legal.country} does not
+      have an adequacy decision from the EU or the UK, so for data that comes to us from
+      there we rely on the safeguards each service provides for international transfers,
+      such as standard contractual clauses in its data processing terms. Ask us and we will
+      tell you which applies to each service.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">How long it is kept</h2>
@@ -272,8 +358,11 @@ const subprocessors = [
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       If a breach affects personal data Nyuchi holds, such as purchase or feedback data, we
-      will tell the customers and schools affected without undue delay and, where the law
-      requires it, within 72 hours of becoming aware of it. We will say what happened, what
+      will tell {dataProtection.home.authorityShort}, Zimbabwe's data protection authority,
+      within {dataProtection.home.breachHours} hours of finding it, as the
+      {dataProtection.home.law} requires; tell the EU or UK regulator within
+      {dataProtection.gdpr.breachHours} hours where the GDPR requires it; and tell the
+      customers and schools affected without undue delay. We will say what happened, what
       data was involved, what we are doing about it, and who to contact.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">

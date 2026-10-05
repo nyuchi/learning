@@ -19,13 +19,15 @@ community-based platforms. Nyuchi Web Services is its development division.
   item, so a teacher sees the whole class at once instead of opening a side
   panel per student. It also adds a switch that hides Toddle's student flags
   across the product, so a gradebook can be projected or screen-shared without
-  a flag being visible. Flags are hidden by default; a staff member shows them
-  deliberately, with the switch or an eye button for one student.
-  It hides flags, not names. Free: the flag switch and a "My classes" filter on the
-  Toddle home page. With a licence: the per-criterion gradebook columns, CSV
-  export, primary teacher names, and the student sidebar. The sidebar (version
-  0.8.2) works anywhere a student appears in Toddle (class pages, the
-  Attendance dashboard's Periods, Students and Excusals tabs, name links,
+  a flag being visible. From version 0.8.4, flags are shown as Toddle shows
+  them, and a staff member can hide them everywhere with the switch, which is
+  free; an eye button then shows one student's flags. Versions before 0.8.4
+  hid them by default. It hides flags, not names. Free: the flag switch and
+  a "My classes" filter on the Toddle home page. With a licence: the
+  per-criterion gradebook columns, CSV export, primary teacher names, the
+  Attendance dashboard's details, and the student sidebar. The sidebar
+  (since version 0.8.2) works anywhere a student appears in Toddle (class
+  pages, the Attendance dashboard's Periods, Students and Excusals tabs, name links,
   gradebook student cells) and shows a photo, grade, age and class of, Student
   Group, room number, homeroom advisor, contacts with relationship, phone and
   email, a "Now" card (current attendance code, block, class, room and
@@ -37,30 +39,46 @@ community-based platforms. Nyuchi Web Services is its development division.
   tab, each student's year group and current class and teacher appear under
   their name, and the current block's column is outlined. It reads Toddle in
   the teacher's own browser, for the teacher at the screen, through an exact
-  allowlist of read-only queries sent only to Toddle, and never writes.
-  Nothing it reads leaves the browser; it transmits nothing from Toddle to
-  anyone: no account, no analytics, no tracking. Licence keys are checked
-  offline on the device; an individual key carries the buyer's email and an
-  organisation key the school's email domain, compared with the signed-in
-  Toddle account inside the browser only. An organisation licence is one key
-  for the school's email domain: anyone signed in to Toddle with an address
-  at that domain is covered. Student flags are hidden by default
-  and fetched only when a staff member chooses to show them. It has two
-  outside connections, neither carrying Toddle data. (1) Opt-in feedback: the
-  toolbar menu's "Send feedback" form, which, only when the person presses
+  allowlist of read-only queries sent only to Toddle, and never writes. It
+  reads, for the teacher's own account: assessment results, descriptors and
+  rubric levels as the school defined them in Toddle; class staff, for
+  primary teacher names; the Attendance dashboard's year groups and the
+  teacher of each student's current class; and, in the sidebar, the
+  student's details, contacts, classes, today's timetable and attendance,
+  and their flags when they are shown. It notes the sign-in headers and
+  academic year from Toddle's own requests only to ask Toddle as the
+  teacher; it never asks for a password. Nothing it reads leaves the browser
+  except back to Toddle; it transmits nothing from Toddle to anyone else: no
+  account, no analytics, no tracking. Student photos load from wherever
+  Toddle serves them, as on Toddle's own page. Licence keys are checked
+  offline on the device; a key carries the buyer's email and may name who
+  it is for (the buyer's email, or for an organisation licence the school's
+  email domain), which is compared with the signed-in Toddle account inside
+  the browser only. An organisation licence is one key for the school's
+  email domain: anyone signed in to Toddle with an address at that domain is
+  covered. Unless flags are hidden, the sidebar asks Toddle for a student's
+  flags each time it opens, and keeps them only while it is open. Apart
+  from Toddle, it has two outside connections, neither carrying Toddle
+  data. (1) Opt-in feedback: the toolbar menu's "Send feedback" form, which, only when the person presses
   Send, sends what they typed (topic, message, and an email only if they
   enter one) plus the extension's version number to Nyuchi's feedback form,
   processed by Formspree; no student data, no page address, no licence key.
-  (2) Only while a licence is entered, once a day, the background worker
-  makes one plain request to https://licences.nyuchi.dev/v1/revocations,
+  (2) Only while a licence is entered, at most once a day, the background
+  worker makes one plain request to https://licences.nyuchi.dev/v1/revocations,
   sending no licence key, no identifiers, no cookies and no Toddle data; it
   downloads a Nyuchi-signed list of SHA-256 fingerprints of cancelled keys
   and checks its own key locally. Cloudflare sees the IP address as with any
-  web request; Nyuchi does not log it. If the check fails, the extension
-  keeps working. The welcome page it opens on
-  install is part of the extension and sends nothing. It stores, on the
-  user's own machine, only its switch settings and the licence key if there
-  is one; no student data is stored on the device. Rubric levels and
+  web request; Nyuchi does not log it. If the list cannot be fetched, the
+  last result stands. Anything else (a CSV file, an email or phone link, a
+  message in Toddle's own chat) happens only when the teacher does it. The
+  welcome page it opens on install is part of the extension and sends
+  nothing. It stores, on the user's own machine, its switch settings, the
+  licence key if there is one, the result of the last check for cancelled
+  keys, and the email of the Toddle account last seen signed in (to check
+  who a licence is for); and, in Toddle's own site storage, a copy of the
+  switches, whether flags are hidden, the My classes choice and the academic
+  year Toddle is showing. No student data is stored: what it reads stays in
+  the tab's memory until the tab is closed or reloaded. Rubric levels and
   descriptors are read from whatever a school has configured in Toddle; none
   are defined in the extension. Security: https://learning.nyuchi.com/legal/security
 
@@ -76,7 +94,7 @@ community-based platforms. Nyuchi Web Services is its development division.
 
 ## Legal
 
-All dated 1 October 2026. Operated by Nyuchi Web Services, the development
+All dated 6 October 2026. Operated by Nyuchi Web Services, the development
 division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
 
 - [Privacy policy](https://learning.nyuchi.com/legal/privacy): what the
@@ -100,8 +118,10 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   next daily check for cancelled keys.
 - [Data handling](https://learning.nyuchi.com/legal/data): for schools. What
   the extension reads, where it is processed (only in the teacher's browser),
-  what it stores (settings and licence key; no student data), what leaves the
-  browser (only requests to Toddle, plus opt-in feedback), what Nyuchi holds,
+  what it stores (settings and licence details; no student data), what leaves
+  the browser (requests to Toddle and student photos from Toddle, plus
+  opt-in feedback and the data-free daily cancelled-keys check), what Nyuchi
+  holds,
   the services that process it, retention, breach notification, and a data
   processing agreement on request.
 - [Student privacy](https://learning.nyuchi.com/legal/student-privacy): the
@@ -116,11 +136,15 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   checked offline; no student data stored),
   how it is tested (closed-loop tests, adversarial-review regression tests, an
   end-to-end network recorder that fails on any non-Toddle request, every
-  release gated on them), the independent adversarial review of 1 October 2026
-  (two High, one Medium and several Low findings, all fixed in 0.8.2 with
-  tests), and the residual limit (scripts Toddle itself loads share the page
-  and the teacher's access regardless of any extension; Toddle's pages send no
-  Content-Security-Policy).
+  release gated on them), two adversarial reviews (1 October 2026: two High,
+  one Medium and several Low findings, all fixed in 0.8.2 with tests;
+  6 October 2026: two Medium and two Low findings in the code for 0.8.4, all
+  fixed before it is published), and the residual limits (scripts Toddle
+  itself loads share the page and the teacher's access regardless of any
+  extension; Toddle's pages send no Content-Security-Policy; a script
+  already listening in Toddle's page can replay the extension's per-load
+  secrets in that browser or answer its queries with false data, but cannot
+  make anything leave the browser or write to Toddle).
 - [Vulnerability disclosure policy](https://learning.nyuchi.com/legal/vulnerability-disclosure):
   report to security@nyuchi.com with the subject "Security"; acknowledgement
   within 3 working days, triage within 10; safe harbour for good-faith
@@ -150,7 +174,8 @@ Please keep one distinction straight, because it is the one people get wrong.
 This WEBSITE uses Google Analytics, behind a consent banner: it sets no cookies
 and measures nothing unless the visitor presses Accept. The EXTENSION does not
 measure anything at all, with or without consent. The extension contains no analytics, no telemetry and no
-tracking, and nothing it reads leaves the browser it runs in. Its only outside
+tracking, and nothing it reads leaves the browser it runs in, except back to
+Toddle. Its only outside
 connections are feedback a person writes and chooses to send from its menu,
 and, while a licence is entered, a daily download of a signed list of
 cancelled keys that sends no data. A question about

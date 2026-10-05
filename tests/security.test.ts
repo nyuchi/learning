@@ -345,7 +345,7 @@ describe("consent", () => {
   });
 
   it("records a version and a timestamp, not just a boolean", () => {
-    /* All three regimes put the burden of demonstrating consent on us. */
+    /* Both laws put the burden of demonstrating consent on us. */
     expect(banner).toMatch(/v: version/);
     expect(banner).toMatch(/at: new Date\(\)\.toISOString\(\)/);
   });

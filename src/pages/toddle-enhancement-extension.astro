@@ -12,7 +12,7 @@ import { Picture } from "astro:assets";
 import type { ImageOutputFormat } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
-import { pricing, refunds, toddleNotice } from "../data/legal";
+import { extensionVersions, pricing, refunds, toddleNotice } from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
 import sidebarShot from "../assets/screenshots/02-student-sidebar.jpg";
 import todayShot from "../assets/screenshots/03-today.jpg";
@@ -52,7 +52,7 @@ const features = [
     mineral: "malachite",
     free: true,
     title: "Hide student flags",
-    body: "Flags are hidden across Toddle by default: the gradebook, Attendance, the class portfolio, submissions, search results, profile headers and the student sidebar. Showing them is a deliberate choice — the switch in the Toddle header, or an eye button for one student. It stays as you left it, so it is armed before a lesson.",
+    body: `One switch in the Toddle header hides flags across Toddle: the gradebook, Attendance, the class portfolio, submissions, search results, profile headers and the student sidebar. An eye button shows one student's flags when you need them. It stays as you left it, so you can arm it before a lesson. From version ${extensionVersions.next}, flags show as Toddle shows them until you switch them off; earlier versions hid them from the start.`,
   },
   {
     mineral: "gold",
@@ -164,7 +164,7 @@ const facts = [
   {
     label: "What it reads",
     value:
-      "What Toddle already lets you see — gradebook results, class staff, student details, today's timetable and attendance — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It fetches a student's flags only when someone chooses to show them. It never sees a password, and the auth token stays in the page — the extension's own interface code cannot read it.",
+      "What Toddle already lets you see — gradebook results, rubric descriptors and levels as your school set them up, class staff, student details, today's timetable and attendance, and a student's flags when they are shown — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It never asks for your password. Toddle's sign-in headers stay in the tab's memory, in one script in Toddle's page, and go nowhere but Toddle.",
   },
   {
     label: "What it writes",
@@ -174,17 +174,17 @@ const facts = [
   {
     label: "What it sends",
     value:
-      "Nothing it reads, anywhere. No account, no analytics, no tracking, no remote code. Licence keys are checked on your machine: an individual key carries your email and an organisation key your school's email domain, compared with your Toddle account in the browser only. The welcome page it opens on install is part of the extension and contacts nothing.",
+      "Nothing it reads, anywhere but back to Toddle. No account, no analytics, no tracking, no remote code. Student photos load from wherever Toddle serves them, as on Toddle's own page. Licence keys are checked on your machine: a key may name your email or your school's email domain, and where it does, that is compared with your Toddle account in the browser only. The welcome page it opens on install is part of the extension and contacts nothing.",
   },
   {
     label: "Its two outside connections",
     value:
-      "The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, one request a day to licences.nyuchi.dev for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the extension keeps working.",
+      "The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, at most one request a day to licences.nyuchi.dev for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands.",
   },
   {
     label: "What it stores",
     value:
-      "On your own machine only: your switch settings (flags shown or hidden, the sidebar, teacher names, My classes) and your licence key, if you have one. No student data: what the sidebar reads is held in the page's memory for a few minutes and gone when the tab closes.",
+      "On your own machine only: your switch settings, your licence key if you have one, the result of the last check for cancelled keys, and the email of the Toddle account last seen signed in, to check who a licence is for; and, in Toddle's own site storage, a copy of the switches, whether flags are hidden, your My classes choice and the academic year Toddle is showing. No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.",
   },
 ];
 
@@ -470,8 +470,8 @@ const schema = [
       <p class="mt-6 text-body text-muted-foreground text-pretty">
         The flag switch protects a student, so it is not behind a price and never will
         be. The My classes filter is free too. The gradebook's per-criterion columns, the
-        CSV export, the student sidebar and primary teacher names are the time saving,
-        and that is what a licence pays for.
+        CSV export, the student sidebar, primary teacher names and the Attendance
+        dashboard's details are the time saving, and that is what a licence pays for.
       </p>
     </div>
 
