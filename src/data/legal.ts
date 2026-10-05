@@ -31,6 +31,36 @@ export const legal = {
   support: { intercomAppId: "f1vga504" },
 } as const;
 
+/**
+ * The two data protection laws Nyuchi holds itself to, said once. Zimbabwe's
+ * Act because Nyuchi is a Zimbabwean company; the EU and UK GDPR because they
+ * are the most widely used standard, so we apply them to everyone, wherever
+ * they are. Where the two differ, the stricter one wins (the breach deadline:
+ * Zimbabwe's 24 hours to the regulator is shorter than the GDPR's 72).
+ */
+export const dataProtection = {
+  home: {
+    law: "Cyber and Data Protection Act [Chapter 12:07]",
+    authority:
+      "the Postal and Telecommunications Regulatory Authority of Zimbabwe (POTRAZ)",
+    authorityShort: "POTRAZ",
+    authorityUrl: "https://www.potraz.gov.zw",
+    /** Notice to the regulator after a breach is discovered (s. 19). */
+    breachHours: 24,
+  },
+  gdpr: {
+    /** Notice to a supervisory authority, where a breach must be notified. */
+    breachHours: 72,
+    /** Time to answer a request about your data, free of charge. */
+    answerWithin: "one month",
+    ukAuthority: "the Information Commissioner's Office (ICO)",
+    ukAuthorityUrl: "https://ico.org.uk/make-a-complaint/",
+    /** Every EU and EEA supervisory authority, from the EDPB. */
+    euAuthoritiesUrl:
+      "https://www.edpb.europa.eu/about-edpb/about-edpb/members_en",
+  },
+} as const;
+
 /** The date above as people write it: "6 October 2026". */
 export const updatedLabel = new Date(
   `${legal.updated}T00:00:00Z`,

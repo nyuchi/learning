@@ -9,7 +9,13 @@
  * (nyuchi-licence-server, schema.sql). Nothing here is a legal conclusion.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { extensionVersions, legal, refunds, updatedLabel } from "../../data/legal";
+import {
+  dataProtection,
+  extensionVersions,
+  legal,
+  refunds,
+  updatedLabel,
+} from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Data handling — Nyuchi Learning";
@@ -305,9 +311,11 @@ const subprocessors = [
       Nyuchi is in {legal.country}. The services above operate internationally, and most are
       based in the United States, so the data they handle for us may be processed outside
       {legal.country} and outside the country of the school. Student data from the extension
-      is not part of this: it does not leave the teacher's browser. If your rules require
-      particular safeguards for these transfers, ask us and we will tell you what applies to
-      each service.
+      is not part of this: it does not leave the teacher's browser. {legal.country} does not
+      have an adequacy decision from the EU or the UK, so for data that comes to us from
+      there we rely on the safeguards each service provides for international transfers,
+      such as standard contractual clauses in its data processing terms. Ask us and we will
+      tell you which applies to each service.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">How long it is kept</h2>
@@ -350,8 +358,11 @@ const subprocessors = [
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       If a breach affects personal data Nyuchi holds, such as purchase or feedback data, we
-      will tell the customers and schools affected without undue delay and, where the law
-      requires it, within 72 hours of becoming aware of it. We will say what happened, what
+      will tell {dataProtection.home.authorityShort}, Zimbabwe's data protection authority,
+      within {dataProtection.home.breachHours} hours of finding it, as the
+      {dataProtection.home.law} requires; tell the EU or UK regulator within
+      {dataProtection.gdpr.breachHours} hours where the GDPR requires it; and tell the
+      customers and schools affected without undue delay. We will say what happened, what
       data was involved, what we are doing about it, and who to contact.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">

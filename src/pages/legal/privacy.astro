@@ -9,7 +9,13 @@
  * against. They cannot drift apart without someone editing the shared source.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { extensionDataFacts, legal, security, updatedLabel } from "../../data/legal";
+import {
+  dataProtection,
+  extensionDataFacts,
+  legal,
+  security,
+  updatedLabel,
+} from "../../data/legal";
 import { CONSENT_CATEGORIES } from "../../data/consent";
 import { toddleExtension } from "../../data/site";
 
@@ -243,13 +249,13 @@ const description =
       the <a class="link" href="/legal/cookies">cookie policy</a>.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      This is written to satisfy the three regimes that actually apply to our readers:
-      <strong class="text-foreground">UK and EU GDPR</strong>, Zimbabwe's
-      <strong class="text-foreground">Cyber and Data Protection Act [Chapter 12:07]</strong>, and
-      Singapore's <strong class="text-foreground">PDPA</strong>. They differ in detail and
-      agree on the substance, so one approach serves all three: nothing optional before you
-      ask for it, each purpose chosen separately, refusal as easy as agreement, withdrawal at
-      any time, and a record we can produce.
+      This is written to meet the two laws we hold ourselves to (see
+      <a class="link" href="#law">the law we follow</a>): Zimbabwe's
+      <strong class="text-foreground">{dataProtection.home.law}</strong>, and the
+      <strong class="text-foreground">EU and UK GDPR</strong>. They agree on the substance,
+      so one approach serves both: nothing optional before you ask for it, each purpose
+      chosen separately, refusal as easy as agreement, withdrawal at any time, and a record
+      we can produce.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       One detail we would rather state than have you discover. While consent is denied,
@@ -335,23 +341,27 @@ const description =
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       For the personal data Nyuchi holds — licence purchases, feedback, support
       conversations and this website's analytics — {legal.entity} is the data controller,
-      including for the purposes of {legal.country}'s Cyber and Data Protection Act
-      [Chapter 12:07]. We rely on:
+      under {legal.country}'s {dataProtection.home.law} and under the EU and UK GDPR. Our
+      legal basis for each use is:
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
         <strong class="text-foreground">your consent</strong> for this website's analytics
-        and the support messenger, which you can withdraw at any time;
+        and the support messenger, which you can withdraw at any time (GDPR Article
+        6(1)(a));
       </li>
       <li>
         <strong class="text-foreground">the contract with you</strong> to issue, deliver and
-        support a licence you buy, and the law for the records a business must keep;
+        support a licence you buy (Article 6(1)(b)), and
+        <strong class="text-foreground">the law</strong> for the records a business must
+        keep (Article 6(1)(c));
       </li>
       <li>
         <strong class="text-foreground">your request</strong> when you send feedback or write
-        to us, so that we can read it and reply.
+        to us: our legitimate interest in reading and answering what you choose to send
+        (Article 6(1)(f)). You can ask us to delete it at any time.
       </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
@@ -363,24 +373,83 @@ const description =
       and data processing agreements.
     </p>
 
-    <h2 class="font-serif text-h3 text-foreground mt-12">Your rights</h2>
+    <h2 id="law" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      The law we follow
+    </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      You can ask for access to the personal data we hold about you, have it corrected,
-      have it deleted where we are not required to keep it, and object to how we use it.
+      <strong class="text-foreground">Zimbabwe's {dataProtection.home.law}</strong> applies
+      to us because {legal.entity} is a Zimbabwean company. Its data protection authority is
+      <a href={dataProtection.home.authorityUrl} rel="noopener noreferrer" class="link"
+        >{dataProtection.home.authority}</a
+      >.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground">The EU and UK GDPR</strong> are the most widely used
+      standard for personal data, so we apply them to everyone, wherever you live, not only
+      to people in Europe. Where the two laws differ, we follow the stricter one.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground">Where your data goes.</strong> Nyuchi is in
+      {legal.country}, and the services that process data for us (listed on the
+      <a class="link" href="/legal/data">data handling</a> page) are mostly in the United
+      States. So data you send us may be processed outside your country. {legal.country}
+      does not have an adequacy decision from the EU or the UK, so for data that comes to us
+      from there we rely on the safeguards each service provides for international
+      transfers, such as standard contractual clauses in its data processing terms. Ask us
+      and we will tell you which applies to each service. None of this involves student data
+      from the extension, which does not leave the teacher's browser.
+    </p>
+
+    <h2 id="rights" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Your rights
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Whatever country you are in, you can ask us to:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>tell you what personal data we hold about you, and give you a copy;</li>
+      <li>correct it if it is wrong or incomplete;</li>
+      <li>delete it, unless the law requires us to keep it;</li>
+      <li>stop or limit how we use it while a question about it is settled;</li>
+      <li>give it to you, or to someone you choose, in a common machine-readable format;</li>
+      <li>stop using it where we rely on our legitimate interests;</li>
+      <li>
+        withdraw your consent at any time, without affecting what was done before you
+        withdrew it.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      We make no decisions about you by automated means alone, and we do not profile you.
       Write to
       <a
         href={`mailto:${legal.privacyEmail}`}
         class="link"
         >{legal.privacyEmail}</a
-      > and we will act on it. Wherever you are, we respect the rights your own law gives
-      you, including under the EU and UK GDPR. You can also complain to your data
-      protection authority.
+      >. There is no charge, and we answer within {dataProtection.gdpr.answerWithin}.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      <strong class="text-foreground">You can complain to a regulator</strong>, though we
+      would like the chance to put it right first. In Zimbabwe, that is
+      <a href={dataProtection.home.authorityUrl} rel="noopener noreferrer" class="link"
+        >{dataProtection.home.authorityShort}</a
+      >. In the UK, it is
+      <a href={dataProtection.gdpr.ukAuthorityUrl} rel="noopener noreferrer" class="link"
+        >{dataProtection.gdpr.ukAuthority}</a
+      >. In the EU and EEA, it is the
+      <a href={dataProtection.gdpr.euAuthoritiesUrl} rel="noopener noreferrer" class="link"
+        >data protection authority</a
+      > where you live, work, or where you think the problem happened.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">If something goes wrong</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      If a breach affects personal data we hold, we will tell the people and schools
-      affected without undue delay, and within 72 hours where the law requires it. The
+      If a breach affects personal data we hold, we will tell
+      {dataProtection.home.authorityShort} within {dataProtection.home.breachHours} hours of
+      finding it, as Zimbabwe's Act requires; tell the EU or UK regulator within
+      {dataProtection.gdpr.breachHours} hours where the GDPR requires it; and tell the
+      people and schools affected without undue delay. The
       <a class="link" href="/legal/data#breach">data handling</a> page says what we will tell
       you. The extension holds no student data, so a breach on our side cannot expose
       student data from Toddle.

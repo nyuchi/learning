@@ -4,6 +4,16 @@
 
 ### Changed
 
+- **The privacy policy rests on two laws: Zimbabwe's Cyber and Data
+  Protection Act [Chapter 12:07] and the EU and UK GDPR**, applied to everyone.
+  A new "The law we follow" section names POTRAZ as Zimbabwe's regulator, says
+  where data goes and how transfers out of the EU and UK are covered, and the
+  rights section lists each right, the one-month answer and where to complain
+  (POTRAZ, the ICO, or an EU authority). Each legal basis carries its GDPR
+  article. A breach goes to POTRAZ within 24 hours, as Zimbabwe's Act requires,
+  and to an EU or UK regulator within 72 where the GDPR requires it. Singapore's
+  PDPA is no longer named. The facts live once, in `dataProtection`
+  (`src/data/legal.ts`).
 - **The legal pages match the extension's code, for 0.8.2 and 0.8.4**, and
   are dated 6 October 2026. Checked against the extension's data schema
   (`docs/toddle-data-fields.md`) and its code:
