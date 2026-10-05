@@ -3,8 +3,10 @@
 This repository is `learning.nyuchi.com`: a static Astro site, served by
 Vercel, and the home of the Toddle Enhancement Extension.
 
-The extension's own security model, how it is tested and its independent
-adversarial review are published for schools at
+The extension's own security model, how it is tested, and its adversarial
+reviews of 1 October 2026 (0.8.2) and 6 October 2026 (0.8.4, before it is
+published), with their findings and the limits of code that runs in Toddle's
+page, are published for schools at
 [learning.nyuchi.com/legal/security](https://learning.nyuchi.com/legal/security).
 The vulnerability disclosure policy, covering this site, the extension and the
 licence server, is at
