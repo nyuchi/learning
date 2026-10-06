@@ -87,8 +87,8 @@ export const pricing = [
     includes: [
       "Every assessment tool expanded into per-criterion columns",
       "CSV export",
-      "The student sidebar, with where they are now and today's classes",
-      "The class view, and message buttons into Toddle's chat",
+      "The student sidebar, with where they are now and today's timetable",
+      "The class view, a class's teachers to email at once, and message buttons into Toddle's chat",
       "Primary teacher names, and the Attendance dashboard's Now line",
     ],
   },
@@ -107,28 +107,57 @@ export const pricing = [
 ] as const;
 
 /**
- * Which versions of the extension the legal pages describe. `current` is what
- * teachers have from the Chrome Web Store (the v0.8.3 tag carries the same
- * code). `next` is the release under Unreleased in the extension's changelog:
- * reviewed, not yet published. Claims that differ between the two say "from
- * version 0.8.4", so they stay true on both sides of the release. When `next`
- * ships, move it to `current` and drop the "before" wording.
+ * Which versions of the extension the legal pages describe.
+ *
+ * How the extension is released: patches (0.8.3, 0.8.4, …) are GitHub
+ * releases, for testing, and never go to the Chrome Web Store; each minor
+ * (0.9.0, …) is released from the extension's `main` branch and published to
+ * the store. Teachers get minors.
+ *
+ * `current` is what teachers have from the Chrome Web Store (the v0.8.3 tag
+ * carries the same code). `next` is the next minor: everything under
+ * Unreleased in the extension's changelog, reviewed, already in the patch
+ * releases up to `latestPatch`, and not yet on the store. Claims that differ
+ * between the two say "from version 0.9.0" and say what `current` does, so
+ * they stay true on both sides of the release. When `next` ships, move it to
+ * `current` and drop the "before" wording.
  */
 export const extensionVersions = {
   current: "0.8.2",
   sameCodeAs: "0.8.3",
-  next: "0.8.4",
+  next: "0.9.0",
+  /** The newest patch release (GitHub only, for testing). */
+  latestPatch: "0.8.8",
   /** The oldest version security reports are accepted for. */
   supportedFrom: "0.8.2",
 } as const;
 
-const { next } = extensionVersions;
+const { current, next } = extensionVersions;
+
+/**
+ * Student flags, said once. From 0.9.0 the extension never hides Toddle's own
+ * flags: a teacher can conceal them for a shared screen. The wording is
+ * "conceal" and "flag visibility", never "hide", and it promises no more than
+ * the extension does: how a concealed flag looks is still being refined, so
+ * this says only that what a flag says cannot be read from across a room.
+ * Checked against the extension's SECURITY.md and docs/data-schema.md.
+ */
+export const flags = {
+  summary:
+    "The extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room.",
+  reveal:
+    'In the student sidebar, "Show flags" shows one student\'s flags when you need them.',
+  limit:
+    "Concealing is a screen, not a lock. A concealed flag can still show that a student has a flag. Concealing changes only what is drawn on the screen, never Toddle's data, and does not stop anyone at the computer opening a student's flags in Toddle.",
+  before: `In version ${current}, on the Chrome Web Store today, the extension hides flags from the start, and the switch shows or hides them.`,
+} as const;
 
 /**
  * What the extension does with data. Each of these is a claim that can be
- * checked against the source (the extension's docs/toddle-data-fields.md is
- * the full schema, checked against its code), and each maps to an answer on
- * the Chrome Web Store privacy form.
+ * checked against the source (the extension's docs/data-schema.md, formerly
+ * docs/toddle-data-fields.md, is the full schema, checked against its code on
+ * every change), and each maps to an answer on the Chrome Web Store privacy
+ * form.
  */
 export const extensionDataFacts = [
   {
@@ -144,12 +173,12 @@ export const extensionDataFacts = [
   {
     claim: "What it reads, feature by feature.",
     detail:
-      "Toddle answers with what the signed-in teacher's own account may see, and no more. The gradebook tools, when a teacher expands an assessment: its assessment tools as Toddle defines them (rubric criteria, descriptors and levels, grade scales and their colours, checklist items, scores, standards and learning goals), and each assigned student's name, email, student ID, submission status and results, including written responses and comments. No descriptor or level is written in the extension. The home page: each class's staff, to show its primary teacher and the My classes filter. A student's profile page: the teachers of each of the student's classes. The Attendance dashboard: each student's year group and the names of the periods, from Toddle's own request, and the primary teacher of the class each student is in now, for the “Now: class · teacher” line. The student sidebar, when a teacher opens a student or a class: the student's name, photo, year group and age (the date of birth is used to work out the age and is never shown), email, student ID and enrolment date; their family accounts and contacts, with names, relationships, phone numbers and emails; their homeroom advisor; the school's additional profile fields, of which only Student Group and Room number are ever shown; today's timetable and attendance marks; their active flags, when flags are shown; and each class's teachers, with their display titles and emails.",
+      "Toddle answers with what the signed-in teacher's own account may see, and no more. The gradebook tools, when a teacher expands an assessment: its assessment tools as Toddle defines them (rubric criteria, descriptors and levels, grade scales and their colours, checklist items, scores, standards and learning goals), and each assigned student's name, email, student ID, submission status and results, including written responses and comments. No descriptor or level is written in the extension. The home page: each class's staff, to show its primary teacher and the My classes filter. A student's profile page: the teachers of each of the student's classes. The Attendance dashboard: each student's year group and the names of the periods, from Toddle's own request, and the primary teacher of the class each student is in now, for the “Now: class · teacher” line. The student sidebar, when a teacher opens a student or a class: the student's name, photo, year group and age (the date of birth is used to work out the age and is never shown), email, student ID and enrolment date; their family accounts and contacts, with names, relationships, phone numbers and emails; their homeroom advisor; the school's additional profile fields, of which only Student Group and Room number are ever shown; today's timetable and attendance marks; their active flags (see the next point); and each class's teachers, with their display titles and emails.",
   },
   {
     claim:
-      "Student flags: shown as Toddle shows them, hidden with one free switch.",
-    detail: `From version ${next}, flags are shown as Toddle shows them. A staff member can hide them everywhere in Toddle with the switch, in Toddle's top bar or the extension's menu; the eye button then shows one student's flags. Versions before ${next} hid flags by default. Unless flags are hidden, the sidebar asks Toddle for a student's active flags each time it opens; while they are hidden, it asks only when someone presses the eye button. It keeps them only while that student's sidebar is open. Hiding flags changes only what is drawn on the screen, never Toddle's data. The flag switch is free and always will be.`,
+      "Student flags: Toddle's own are never hidden, and a teacher can conceal them for a shared screen.",
+    detail: `From version ${next}, the extension no longer hides Toddle's own student flags: they show as Toddle shows them, including in Toddle's student popover, with their links and documents. A teacher can choose to conceal flags, for a screen a class or a visitor can see, with the free flag switch in Toddle's top bar or the extension's menu. It is off until they switch it on; a teacher who had chosen to hide flags in an earlier version keeps that choice, as concealing. What a concealed flag says cannot be read from across a room, though it can still show that a student has a flag. ${flags.reveal} The sidebar asks Toddle for a student's active flags each time it opens, and keeps them only while that student's sidebar is open. Concealing changes only what is drawn on the screen, never Toddle's data. ${flags.before} In that version, while flags are hidden, the sidebar asks for a student's flags only when someone presses its eye button. The flag switch is free and always will be.`,
   },
   {
     claim: "Your Toddle sign-in stays with Toddle.",
@@ -173,7 +202,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "What it stores: settings and licence details, and no student data.",
-    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); gbx-hide-flags, whether flags are hidden, so they are hidden before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage. Versions before ${next} have three switches: student flags, the student sidebar and primary teacher names.`,
+    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in version ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage. Version ${current} has three switches: student flags, the student sidebar and primary teacher names.`,
   },
   {
     claim: "What it holds in memory, and for how long.",
@@ -227,7 +256,9 @@ export const security = {
     {
       date: "2026-10-06",
       label: "6 October 2026",
-      version: extensionVersions.next,
+      /** The code reviewed: the 0.8.4 patch, the rebuild's first steps. Its
+          fixes are in every later release, and in `next`. */
+      version: "0.8.4",
       findings: "13 to 16",
     },
   ],
