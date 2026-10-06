@@ -56,7 +56,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   primary teacher names; the Attendance dashboard's year groups and the
   teacher of each student's current class; and, in the sidebar, the
   student's details, contacts, classes, today's timetable and attendance,
-  and their flags when they are shown. It notes the sign-in headers and
+  and their active flags, asked for each time the sidebar opens. It notes the sign-in headers and
   academic year from Toddle's own requests only to ask Toddle as the
   teacher; it never asks for a password. Nothing it reads leaves the browser
   except back to Toddle; it transmits nothing from Toddle to anyone else: no
