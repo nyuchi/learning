@@ -28,7 +28,8 @@ In scope:
 
 - Code in this repository, and the site it builds.
 - The Toddle Enhancement Extension, and the licence server at
-  `licences.nyuchi.dev` (see the disclosure policy above).
+  `licenses.nyuchi.com` (and its former address, `licences.nyuchi.dev`,
+  which still answers; see the disclosure policy above).
 
 Out of scope:
 
