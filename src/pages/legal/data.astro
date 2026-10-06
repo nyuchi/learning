@@ -12,6 +12,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   dataProtection,
   extensionVersions,
+  flags,
   legal,
   refunds,
   updatedLabel,
@@ -29,7 +30,7 @@ const held = [
     what: "Licence purchases",
     where: "Nyuchi's licence server and its database, on Cloudflare",
     fields:
-      "The email address the key was issued to, and the address that paid if different; the plan; how many were bought; for an organisation licence, the seat count and the buyer's answer to the order question (the school and roughly how many teachers); Buy Me a Coffee's purchase and item references; the key itself; when it was issued, emailed and refunded, its expiry, and its status.",
+      "The email address the key was issued to, and the address that paid if different; the plan; how many were bought; for an organisation licence, the school's email domains, the seat count and the buyer's answer to the order question (the school and roughly how many teachers); Buy Me a Coffee's purchase and item references; a fingerprint (SHA-256 hash) of the key, never the key itself; when it was issued, emailed and refunded, its expiry, and its status.",
   },
   {
     what: "The order and payment",
@@ -136,13 +137,12 @@ const subprocessors = [
         their display titles and emails.
       </li>
       <li>
-        <strong class="text-foreground">Student flags.</strong> From version {extensionVersions.next},
-        flags are shown as Toddle shows them, and a staff member can hide them everywhere
-        with the free flag switch; versions before {extensionVersions.next} hid them by
-        default. Unless flags are hidden, the sidebar
-        asks Toddle for a student's active flags each time it opens; while they are
-        hidden, only when someone presses its eye button. It keeps them only while that
-        student's sidebar is open.
+        <strong class="text-foreground">Student flags.</strong> From version {extensionVersions.next}, the extension no longer hides Toddle's own flags, and a staff member can choose
+        to conceal them for a shared screen with the free flag switch. The sidebar asks Toddle for a
+        student's active flags (title, description, type and date) each time it opens,
+        and keeps them only while that student's sidebar is open. {flags.before} In that
+        version, while flags are hidden, the sidebar asks for them only when someone
+        presses its eye button.
       </li>
       <li>
         <strong class="text-foreground">From Toddle's own requests:</strong> the sign-in
@@ -182,8 +182,8 @@ const subprocessors = [
       <li>
         the teacher's switches: the extension on or off, student flags, the student
         sidebar, My classes, primary teacher names, gradebook tools, and student details on
-        the Attendance dashboard (versions before {extensionVersions.next} have three:
-        student flags, the student sidebar and primary teacher names);
+        the Attendance dashboard (version {extensionVersions.current} has three: student
+        flags, the student sidebar and primary teacher names);
       </li>
       <li>the licence key, if one was entered;</li>
       <li>
@@ -199,7 +199,7 @@ const subprocessors = [
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       And four small values in the browser's storage for Toddle's own site: <code>tee-settings</code>,
       a copy of the switches and of which features the licence allows (no key and no
-      email); <code>gbx-hide-flags</code>, whether flags are hidden; <code>tee-course-view</code>,
+      email); <code>tee-blur-flags</code> (<code>gbx-hide-flags</code> in version {extensionVersions.current}), whether flags are concealed; <code>tee-course-view</code>,
       whether the teacher chose My classes in the home page
       filter; and <code>tee-academic-year</code>, the number of the academic year Toddle
       last asked for. <strong class="text-foreground">No student data is stored.</strong>
@@ -255,6 +255,20 @@ const subprocessors = [
       the buyer's email, or for an organisation licence the school's email domain. Where it
       does, the extension compares that with the Toddle account signed in, inside the
       browser only, and sends it nowhere.
+    </p>
+
+    <h2 id="schema" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      The full data schema
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      This page is the summary. The extension's data schema is the detail: every query it
+      can send to Toddle, with every field it asks for and what each is used for; every
+      value it stores, with its shape and when it is deleted; and every request that leaves
+      the device. It is written for a school's data protection lead or IT team, and for
+      Toddle. It is checked against the code on every change, so a query the code allows
+      that the schema does not describe fails the build, and where something could not be
+      confirmed from the code it is listed as an open question rather than guessed. Ask
+      <a class="link" href={privacyMail}>{legal.privacyEmail}</a> for a copy.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What Nyuchi holds</h2>
