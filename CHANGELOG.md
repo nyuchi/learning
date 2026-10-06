@@ -18,6 +18,12 @@
 
 ### Changed
 
+- **@bundu/ui 0.5.0** (was 0.1.1): the kit's updated tokens. The page
+  background is a cooler, neutral off-white; layout, type, buttons and the
+  Nyuchi brand colours are unchanged. Every check and test passes as before.
+- **The site's code is proprietary**, all rights reserved, with a LICENSE
+  file saying so (it had none). Not open source.
+
 - **The terms say who owns the extension.** A new "Who owns the extension"
   section: the extension and its code belong to Nyuchi Web Services, part
   of Nyuchi Africa (Private) Limited, all rights reserved, and it is not
