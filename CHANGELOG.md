@@ -2,11 +2,43 @@
 
 ## Unreleased
 
+### Added
+
+- **A Releases page for the extension**, at
+  `/toddle-enhancement-extension/releases`: what changed in each version,
+  in plain words for teachers, newest first. 0.9.0 is "Coming soon to the
+  Chrome Web Store"; 0.8.2, 0.8.1, 0.8.0, 0.7.x and the early builds follow,
+  condensed. Versions 0.8.3 to 0.8.13, test builds for schools piloting the
+  extension, are said in one line: their changes arrive together in 0.9.0.
+  Each version has the anchor `#v<version>`, which the extension's menu will
+  link to. No downloads and no GitHub links: the extension's repository is
+  private, and teachers install from the Chrome Web Store. The notes live in
+  `src/data/releases.ts`, so adding a release is one edit. Linked from the
+  extension page, the footer and llms.txt, and in the sitemap.
+
 ### Changed
 
+- **@bundu/ui 0.5.0** (was 0.1.1): the kit's updated tokens. The page
+  background is a cooler, neutral off-white; layout, type, buttons and the
+  Nyuchi brand colours are unchanged. Every check and test passes as before.
+- **The site's code is proprietary**, all rights reserved, with a LICENSE
+  file saying so (it had none). Not open source.
+
+- **The terms say who owns the extension.** A new "Who owns the extension"
+  section: the extension and its code belong to Nyuchi Web Services, part
+  of Nyuchi Africa (Private) Limited, all rights reserved, and it is not
+  open source. A licence grants use, not ownership. Its code may not be
+  copied, modified, reused or redistributed, in whole or in part, in another
+  product or service without written permission. Reading the code to check
+  what it does stays welcome, and building a competing product stays
+  forbidden. Said once, in `ownership` (`src/data/legal.ts`), and repeated on
+  the extension page and in llms.txt.
+- **Student flags, as 0.9.0 ships them:** a concealed flag is a grey smudge
+  with no colour, nothing on the page brings it back, and a teacher updating
+  from 0.8.2 has flags concealed.
 - **The extension page and legal pages describe 0.9.0, the next Chrome Web
   Store release**, and say where 0.8.2, on the store today, differs. Patches
-  (0.8.3 to 0.8.9) are test releases that do not go to the store, so
+  (0.8.3 to 0.8.13) are test releases that do not go to the store, so
   `extensionVersions.next` is now 0.9.0, not 0.8.4.
   - Student flags: the extension no longer hides Toddle's own flags. A
     teacher can conceal them for a shared screen with the free switch, and
