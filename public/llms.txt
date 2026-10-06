@@ -98,8 +98,18 @@ community-based platforms. Nyuchi Web Services is its development division.
   a Google Admin console force-install (or Group Policy, Intune or a macOS
   profile); an organisation key is pasted in once by each teacher, since it
   cannot be pushed by policy. Teachers get each minor release (0.9.0 next)
-  from the Chrome Web Store; patch releases between them are for testing
-  and do not go to the store. Help:
+  from the Chrome Web Store; versions 0.8.3 to 0.8.13 were test builds for
+  schools piloting it, and their changes arrive together in 0.9.0. Release
+  notes for every version, in plain words:
+  https://learning.nyuchi.com/toddle-enhancement-extension/releases
+  (each version at #v<version>, e.g. #v0.9.0). There are no public
+  downloads; install from the Chrome Web Store. The extension is proprietary
+  and not open source: it and its code belong to Nyuchi Web Services, part
+  of Nyuchi Africa (Private) Limited, all rights reserved. A licence grants
+  use, not ownership; its code may not be copied, modified, reused or
+  redistributed, in whole or in part, in another product or service without
+  written permission. Reading the code to check what it does is welcome.
+  Terms: https://learning.nyuchi.com/legal/terms#ownership Help:
   https://support.nyuchi.com/en/collections/19764027-how-to-use-the-toddle-enhancement-extension
   Security: https://learning.nyuchi.com/legal/security
 
@@ -131,8 +141,12 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   stored value on the website, what sets it, how long it lasts and which
   consent choice enables it. The extension sets no cookies.
 - [Terms of use and service](https://learning.nyuchi.com/legal/terms): the
-  website's terms of use and the extension's terms of service (licences,
-  offline keys, refunds, acceptable use, liability, law of Zimbabwe).
+  website's terms of use and the extension's terms of service (who owns the
+  extension and its code, licences, offline keys, refunds, acceptable use,
+  liability, law of Zimbabwe). The extension and its code belong to Nyuchi
+  Web Services, all rights reserved; a licence grants use, not ownership,
+  and its code may not be reused in another product or service without
+  written permission.
   Refunds: a full refund within 30 days of purchase, for any reason related
   to the product; ask at support@nyuchi.com or through Buy Me a Coffee. A
   refunded licence key is cancelled and stops working after the extension's

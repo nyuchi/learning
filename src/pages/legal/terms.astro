@@ -7,7 +7,14 @@
  * whether we can withdraw it — is answered plainly rather than buried.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, pricing, refunds, toddleNotice, updatedLabel } from "../../data/legal";
+import {
+  legal,
+  ownership,
+  pricing,
+  refunds,
+  toddleNotice,
+  updatedLabel,
+} from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Terms of use and service — Nyuchi Learning";
@@ -29,8 +36,10 @@ const description =
 
     <div class="mt-10 ubuntu-quote">
       <p class="text-body text-pretty">
-        <strong>The short version.</strong> Use it in your school. Do not resell it or
-        take it apart to make a competing product. It reads Toddle and changes nothing, but
+        <strong>The short version.</strong> Use it in your school. The extension and its
+        code are ours, and a licence lets you use them, not own them. Do not resell it,
+        copy its code into anything else, or take it apart to make a competing product.
+        Reading the code to check what it does is welcome. It reads Toddle and changes nothing, but
         it is software that rides on someone else's app, so it can break — check anything
         that matters before you act on it. We are not liable for what you do with what it
         shows you.
@@ -49,11 +58,21 @@ const description =
       <a href="/legal/privacy" class="link">privacy policy</a>.
     </p>
 
+    <h2 id="ownership" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Who owns the extension
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      {ownership.statement} That covers its code, its design and its documentation, in
+      every version, including the free features. {ownership.licence}
+      {ownership.noReuse} {ownership.reading}
+    </p>
+
     <h2 class="font-serif text-h3 text-foreground mt-12">What a licence lets you do</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Install and use the {toddleExtension.name} for teaching and administration at the
       school or organisation the licence covers, on as many machines as that licence
-      allows, for as long as it is current.
+      allows, for as long as it is current. The free features may be used by anyone, on
+      the same terms. Using it gives you no other rights in it.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What it costs</h2>
@@ -121,6 +140,11 @@ const description =
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>Resell it, sublicense it, or charge anyone else for access to it.</li>
+      <li>
+        Copy, modify, reuse or redistribute its code, in whole or in part, in another
+        product or service, without our written permission. That includes publishing it,
+        or a changed copy of it, anywhere else.
+      </li>
       <li>
         Take it apart in order to build a competing product. Reading the code to satisfy
         yourself about what it does is fine — we encourage it.

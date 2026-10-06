@@ -17,7 +17,14 @@ import { Picture } from "astro:assets";
 import type { ImageOutputFormat } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
-import { extensionVersions, flags, pricing, refunds, toddleNotice } from "../data/legal";
+import {
+  extensionVersions,
+  flags,
+  ownership,
+  pricing,
+  refunds,
+  toddleNotice,
+} from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
 import sidebarShot from "../assets/screenshots/02-student-sidebar.jpg";
 import todayShot from "../assets/screenshots/03-today.jpg";
@@ -621,7 +628,10 @@ const schema = [
       <p class="mt-4 text-body-sm text-muted-foreground max-w-2xl text-pretty">
         If your IT team would rather verify this than take our word for it, a
         Chrome extension is a folder of readable JavaScript — they can unpack
-        the installed package and read every line of it. We will also answer
+        the installed package and read every line of it. Reading it to check what it
+        does is welcome; the code is ours, and is not licensed for reuse elsewhere (see
+        <a href="/legal/terms#ownership" class="link">who owns the extension</a>). We will
+        also answer
         specific questions at
         <a
           href={`mailto:${toddleExtension.supportEmail}`}
@@ -654,20 +664,27 @@ const schema = [
       </p>
       <p class="mt-4 text-body text-muted-foreground text-pretty">
         <strong class="text-foreground">How updates reach you.</strong> Fixes are made and
-        tested as small patch releases, which do not go to the Chrome Web Store. When a
-        batch of them is ready, it is published to the store as the next version ({extensionVersions.next} is
-        next), and Chrome installs it on its own.
+        tested as small test builds with schools piloting the extension, which do not go to
+        the Chrome Web Store. When a batch of them is ready, it is published to the store as
+        the next version ({extensionVersions.next} is next), and Chrome installs it on its
+        own. <a href="/toddle-enhancement-extension/releases" class="link"
+          >What changed in each version</a
+        >.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
         <a href={toddleExtension.help} rel="noopener noreferrer" class="btn-primary"
           >How to use it</a
         >
+        <a href="/toddle-enhancement-extension/releases" class="btn-outline">Releases</a>
         <a href={toddleExtension.enquiry} class="btn-outline">Report a problem</a>
         <a href={`mailto:${toddleExtension.supportEmail}`} class="btn-ghost">
           {toddleExtension.supportEmail}
         </a>
       </div>
-      <p class="mt-8 text-caption text-muted-foreground text-pretty">{toddleNotice}</p>
+      <p class="mt-8 text-caption text-muted-foreground text-pretty">
+        {ownership.statement}
+        {toddleNotice}
+      </p>
     </div>
   </section>
 </BaseLayout>
