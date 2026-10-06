@@ -17,25 +17,36 @@ community-based platforms. Nyuchi Web Services is its development division.
   score-based rubrics, single-point rubrics, checklists, scores, comments,
   grade scales, learning goals — into one column per standard, criterion or
   item, so a teacher sees the whole class at once instead of opening a side
-  panel per student. It also adds a switch that hides Toddle's student flags
-  across the product, so a gradebook can be projected or screen-shared without
-  a flag being visible. From version 0.8.4, flags are shown as Toddle shows
-  them, and a staff member can hide them everywhere with the switch, which is
-  free; an eye button then shows one student's flags. Versions before 0.8.4
-  hid them by default. It hides flags, not names. Free: the flag switch and
-  a "My classes" filter on the Toddle home page. With a licence: the
-  per-criterion gradebook columns, CSV export, primary teacher names, the
-  Attendance dashboard's details, and the student sidebar. The sidebar
-  (since version 0.8.2) works anywhere a student appears in Toddle (class
-  pages, the Attendance dashboard's Periods, Students and Excusals tabs, name links,
-  gradebook student cells) and shows a photo, grade, age and class of, Student
-  Group, room number, homeroom advisor, contacts with relationship, phone and
-  email, a "Now" card (current attendance code, block, class, room and
-  timetabled teacher), today's daily attendance code, and the student's
-  classes in Today and All tabs. Clicking a class opens a class view with its
-  current block, primary teacher, parent course, room and every teacher with
-  their display title and email. Message buttons open Toddle's own chat; the
-  extension sends no message itself. On the Attendance dashboard's Students
+  panel per student. It also gives teachers control of flag visibility on a
+  shared screen. From version 0.9.0 (the next Chrome Web Store release),
+  the extension no longer hides Toddle's own student flags; a teacher can
+  conceal them with one free switch, in Toddle's header or the extension's
+  menu, so a gradebook can be projected or screen-shared without what a flag
+  says being readable from across the room. In the student sidebar, "Show flags" shows
+  one student's flags. Concealing is a screen, not a lock: a concealed flag
+  can still show that a student has a flag. In version 0.8.2, on the store
+  today, flags are hidden from the start and the switch shows or hides them.
+  It conceals flags, not names. Free: the flag switch and a "My classes"
+  filter on the Toddle home page. With a licence (US$5 a year for one
+  teacher, US$149.99 a year for a school's email domain): the per-criterion
+  gradebook columns, CSV export, primary teacher names, the Attendance
+  dashboard's details, and the student sidebar. The sidebar works anywhere a
+  student appears in Toddle (class pages, the Attendance dashboard's Periods,
+  Students and Excusals tabs, name links, gradebook student cells), except
+  in School setup, Toddle's admin portal, where it steps aside. It shows a
+  photo, grade, age and class of, the student's email (click to copy),
+  Student Group, room number, homeroom advisor, contacts with relationship,
+  phone and email, a "Now" card (current attendance code, block, class, room
+  and timetabled teacher), and today's timetable as its own part, which
+  shows today's periods, "No classes today", or "Couldn't load timetable"
+  with a Retry button, without holding up the rest of the panel. Clicking a
+  class opens a class view with its current block, primary teacher, parent
+  course, room and every teacher with their display title and email; the
+  teachers can be emailed together. Message buttons open Toddle's own chat;
+  the extension sends no message itself. From version 0.9.0 the flag switch,
+  the student sidebar and the home page's additions run in the extension's
+  own isolated world, drawn in closed shadow roots that no script on
+  Toddle's page can read or click into. On the Attendance dashboard's Students
   tab, each student's year group and current class and teacher appear under
   their name, and the current block's column is outlined. It reads Toddle in
   the teacher's own browser, for the teacher at the screen, through an exact
@@ -56,8 +67,8 @@ community-based platforms. Nyuchi Web Services is its development division.
   email domain), which is compared with the signed-in Toddle account inside
   the browser only. An organisation licence is one key for the school's
   email domain: anyone signed in to Toddle with an address at that domain is
-  covered. Unless flags are hidden, the sidebar asks Toddle for a student's
-  flags each time it opens, and keeps them only while it is open. Apart
+  covered. The sidebar asks Toddle for a student's flags each time it opens,
+  and keeps them only while it is open. Apart
   from Toddle, it has two outside connections, neither carrying Toddle
   data. (1) Opt-in feedback: the toolbar menu's "Send feedback" form, which, only when the person presses
   Send, sends what they typed (topic, message, and an email only if they
@@ -76,11 +87,21 @@ community-based platforms. Nyuchi Web Services is its development division.
   licence key if there is one, the result of the last check for cancelled
   keys, and the email of the Toddle account last seen signed in (to check
   who a licence is for); and, in Toddle's own site storage, a copy of the
-  switches, whether flags are hidden, the My classes choice and the academic
-  year Toddle is showing. No student data is stored: what it reads stays in
+  switches, whether flags are concealed, the My classes choice and the
+  academic year Toddle is showing. No student data is stored: what it reads stays in
   the tab's memory until the tab is closed or reloaded. Rubric levels and
   descriptors are read from whatever a school has configured in Toddle; none
-  are defined in the extension. Security: https://learning.nyuchi.com/legal/security
+  are defined in the extension. Every query, stored value and request is
+  listed field by field in the extension's data schema, which is checked
+  against its code on every change; schools can ask privacy@nyuchi.com for
+  a copy. Schools deploy it from the Chrome Web Store by extension ID, with
+  a Google Admin console force-install (or Group Policy, Intune or a macOS
+  profile); an organisation key is pasted in once by each teacher, since it
+  cannot be pushed by policy. Teachers get each minor release (0.9.0 next)
+  from the Chrome Web Store; patch releases between them are for testing
+  and do not go to the store. Help:
+  https://support.nyuchi.com/en/collections/19764027-how-to-use-the-toddle-enhancement-extension
+  Security: https://learning.nyuchi.com/legal/security
 
 ## Where the learning content went
 
@@ -138,8 +159,8 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   end-to-end network recorder that fails on any non-Toddle request, every
   release gated on them), two adversarial reviews (1 October 2026: two High,
   one Medium and several Low findings, all fixed in 0.8.2 with tests;
-  6 October 2026: two Medium and two Low findings in the code for 0.8.4, all
-  fixed before it is published), and the residual limits (scripts Toddle
+  6 October 2026: two Medium and two Low findings in the code for 0.8.4, a
+  test release, all fixed there and in 0.9.0), and the residual limits (scripts Toddle
   itself loads share the page and the teacher's access regardless of any
   extension; Toddle's pages send no Content-Security-Policy; a script
   already listening in Toddle's page can replay the extension's per-load

@@ -121,7 +121,8 @@ describe("crawlers and assistants", () => {
     const llms = built("llms.txt");
     expect(llms.startsWith("# Nyuchi Learning")).toBe(true);
     // The two claims most likely to be repeated back by an assistant.
-    expect(llms).toContain("It hides flags, not names");
+    expect(llms).toContain("It conceals flags, not names");
+    expect(llms).not.toMatch(/\bhid(e|ing) (student |toddle's )?flags/i);
     expect(llms).toContain("transmits nothing");
   });
 });
