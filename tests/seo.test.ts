@@ -18,6 +18,7 @@ const built = (relative: string) => read(join("dist", relative));
 const PAGES = [
   "index.html",
   "toddle-enhancement-extension/index.html",
+  "toddle-enhancement-extension/releases/index.html",
   "legal/privacy/index.html",
   "legal/terms/index.html",
   "legal/security/index.html",
@@ -210,5 +211,58 @@ describe("the security page", () => {
     expect(built("llms.txt")).toContain(
       "https://learning.nyuchi.com/legal/security",
     );
+  });
+});
+
+describe("the releases page", () => {
+  /* The extension's menu links to #v<its version>, and its repository is
+     private: the page must keep every anchor and offer nothing to download. */
+  const page = built("toddle-enhancement-extension/releases/index.html");
+
+  it("gives each version, and each test build, its own anchor", () => {
+    for (const version of [
+      "0.9.0",
+      "0.8.2",
+      "0.8.1",
+      "0.8.0",
+      "0.8.3",
+      "0.8.13",
+    ]) {
+      expect(page).toContain(`id="v${version}"`);
+    }
+  });
+
+  it("says 0.9.0 is coming to the Chrome Web Store", () => {
+    expect(page).toContain("Coming soon to the Chrome Web Store");
+  });
+
+  it("links to no GitHub release and offers no download", () => {
+    expect(page).not.toMatch(/github\.com/i);
+    expect(page).not.toMatch(/\.zip\b|\.crx\b/i);
+  });
+
+  it("is linked from the extension page and llms.txt", () => {
+    expect(built("toddle-enhancement-extension/index.html")).toContain(
+      'href="/toddle-enhancement-extension/releases"',
+    );
+    expect(built("llms.txt")).toContain(
+      "https://learning.nyuchi.com/toddle-enhancement-extension/releases",
+    );
+  });
+});
+
+describe("prices", () => {
+  /* The organisation licence is US$149.99 a year, confirmed by the founder.
+     Any other figure for it anywhere on the site is a mistake. */
+  it("states the organisation price as US$149.99 everywhere", () => {
+    for (const file of [
+      "toddle-enhancement-extension/index.html",
+      "legal/terms/index.html",
+      "llms.txt",
+    ]) {
+      const text = built(file);
+      expect(text, file).toContain("US$149.99");
+      expect(text, file).not.toMatch(/US\$\s?(?!149\.99\b|5\b)\d/);
+    }
   });
 });
