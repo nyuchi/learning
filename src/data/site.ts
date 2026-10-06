@@ -177,7 +177,7 @@ export const toddleExtension = {
       outside the Google Admin console. */
   storeUpdateUrl: "https://clients2.google.com/service/update2/crx",
   /** The licence server's host, which a school's network should allow. */
-  licenceHost: "licences.nyuchi.dev",
+  licenceHost: "licenses.nyuchi.com",
 } as const;
 
 /**

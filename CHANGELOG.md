@@ -18,6 +18,12 @@
 
 ### Changed
 
+- **The licence server's address is `licenses.nyuchi.com`.** The privacy
+  policy, the data and security pages, the vulnerability disclosure scope,
+  the extension page's allowlist note, llms.txt and SECURITY.md name the new
+  host for the daily check for cancelled keys, and say that earlier versions
+  of the extension ask `licences.nyuchi.dev`, the same server, which still
+  answers. The legal pages' date moves to 7 October 2026.
 - **@bundu/ui 0.5.0** (was 0.1.1): the kit's updated tokens. The page
   background is a cooler, neutral off-white; layout, type, buttons and the
   Nyuchi brand colours are unchanged. Every check and test passes as before.
