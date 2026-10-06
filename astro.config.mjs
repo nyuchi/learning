@@ -35,7 +35,8 @@ export default defineConfig({
        */
       serialize(item) {
         item.url = item.url.replace(/(.+)\/$/, "$1");
-        item.lastmod = new Date();
+        // The sitemap item takes an ISO 8601 string, not a Date.
+        item.lastmod = new Date().toISOString();
         return item;
       },
     }),
