@@ -127,7 +127,7 @@ export const extensionVersions = {
   sameCodeAs: "0.8.3",
   next: "0.9.0",
   /** The newest patch release (GitHub only, for testing). */
-  latestPatch: "0.8.9",
+  latestPatch: "0.8.13",
   /** The oldest version security reports are accepted for. */
   supportedFrom: "0.8.2",
 } as const;
@@ -178,7 +178,7 @@ export const extensionDataFacts = [
   {
     claim:
       "Student flags: Toddle's own are never hidden, and a teacher can conceal them for a shared screen.",
-    detail: `From version ${next}, the extension no longer hides Toddle's own student flags: they show as Toddle shows them, including in Toddle's student popover, with their links and documents. A teacher can choose to conceal flags, for a screen a class or a visitor can see, with the free flag switch in Toddle's top bar or the extension's menu. It is off until they switch it on; a teacher who had chosen to hide flags in an earlier version keeps that choice, as concealing. What a concealed flag says cannot be read from across a room, though it can still show that a student has a flag. ${flags.reveal} The sidebar asks Toddle for a student's active flags each time it opens, and keeps them only while that student's sidebar is open. Concealing changes only what is drawn on the screen, never Toddle's data. ${flags.before} In that version, while flags are hidden, the sidebar asks for a student's flags only when someone presses its eye button. The flag switch is free and always will be.`,
+    detail: `From version ${next}, the extension no longer hides Toddle's own student flags: they show as Toddle shows them, including in Toddle's student popover, with their links and documents. A teacher can choose to conceal flags, for a screen a class or a visitor can see, with the free flag switch in Toddle's top bar or the extension's menu. A new install starts with flags shown. A teacher updating from version ${current}, where flags were hidden by default, or who had hidden them, has them concealed after the update. A concealed flag is a faint grey smudge with no colour, and its words cannot be read from across a room, though it can still show that a student has a flag. Nothing on the page brings a concealed flag back. ${flags.reveal} The sidebar asks Toddle for a student's active flags each time it opens, and keeps them only while that student's sidebar is open. Concealing changes only what is drawn on the screen, never Toddle's data. ${flags.before} In that version, while flags are hidden, the sidebar asks for a student's flags only when someone presses its eye button. The flag switch is free and always will be.`,
   },
   {
     claim: "Your Toddle sign-in stays with Toddle.",
@@ -274,6 +274,23 @@ export const security = {
 export const securityMailto = `mailto:${security.report.email}?subject=${encodeURIComponent(
   security.report.subject,
 )}`;
+
+/**
+ * Who owns the extension, said once: the terms, the product page and
+ * llms.txt. The extension is proprietary. Schools may read its code to check
+ * what it does (their privacy reviews depend on it), but a licence grants
+ * use, not ownership, and the code may not be reused elsewhere.
+ */
+export const ownership = {
+  owner: `${legal.operator}, part of ${legal.entity}`,
+  statement: `The Toddle Enhancement Extension and its code belong to ${legal.operator}, part of ${legal.entity}. All rights reserved. It is not open source.`,
+  licence:
+    "A licence lets you use the extension. It does not give you ownership of it, or of any part of its code.",
+  noReuse:
+    "You may not copy, modify, reuse or redistribute its code, in whole or in part, in another product or service, without our written permission.",
+  reading:
+    "Reading the code to check what it does is fine, and we encourage it: a school should be able to see for itself what software does with its data.",
+} as const;
 
 /** Toddle is not ours. Said in the footer, the terms and the product page. */
 export const toddleNotice =
