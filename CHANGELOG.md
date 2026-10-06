@@ -6,7 +6,7 @@
 
 - **The extension page and legal pages describe 0.9.0, the next Chrome Web
   Store release**, and say where 0.8.2, on the store today, differs. Patches
-  (0.8.3 to 0.8.8) are test releases that do not go to the store, so
+  (0.8.3 to 0.8.9) are test releases that do not go to the store, so
   `extensionVersions.next` is now 0.9.0, not 0.8.4.
   - Student flags: the extension no longer hides Toddle's own flags. A
     teacher can conceal them for a shared screen with the free switch, and

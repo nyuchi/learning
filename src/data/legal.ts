@@ -127,7 +127,7 @@ export const extensionVersions = {
   sameCodeAs: "0.8.3",
   next: "0.9.0",
   /** The newest patch release (GitHub only, for testing). */
-  latestPatch: "0.8.8",
+  latestPatch: "0.8.9",
   /** The oldest version security reports are accepted for. */
   supportedFrom: "0.8.2",
 } as const;
