@@ -313,7 +313,8 @@ const severityClass: Record<string, string> = {
       <li>
         <strong class="text-foreground">A daily check for cancelled keys.</strong> At most
         once a day, only while a licence is entered, the background worker makes one plain request
-        to <code class="break-all">https://licences.nyuchi.dev/v1/revocations</code>. It
+        to <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (earlier versions ask
+        <code>licences.nyuchi.dev</code>, the same server). It
         sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a
         list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, and
         checks its own key against it locally. Cloudflare sees the IP address, as with any

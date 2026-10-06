@@ -237,7 +237,8 @@ const subprocessors = [
       <li>
         <strong class="text-foreground">A daily check for cancelled keys,</strong> only while
         a licence is entered: one plain request from the extension's background worker to
-        <code class="break-all">https://licences.nyuchi.dev/v1/revocations</code>, sending no licence key, no
+        <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (earlier versions ask
+        <code>licences.nyuchi.dev</code>, the same server), sending no licence key, no
         identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of
         the SHA-256 fingerprints of cancelled keys and checks its own key locally. Cloudflare
         sees the IP address, as with any web request; Nyuchi does not log it. If the list
