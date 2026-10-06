@@ -16,6 +16,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   extensionVersions,
+  flags,
   legal,
   security,
   securityMailto,
@@ -190,8 +191,10 @@ const severityClass: Record<string, string> = {
       Last updated {updatedLabel}. Describes the
       <strong class="text-foreground">{toddleExtension.name}</strong>: version {security.version},
       the one on the Chrome Web Store ({extensionVersions.sameCodeAs} carries the same code),
-      and version {security.next}, reviewed and not yet published.
-      Where the two differ, this page says so. For schools, and for the privacy, legal and
+      and version {security.next}, the next release on the store, reviewed and not yet
+      published. Between store releases, fixes are tested as patch releases (the newest is
+      {extensionVersions.latestPatch}), which do not go to the store. Where {security.version}
+      and {security.next} differ, this page says so. For schools, and for the privacy, legal and
       IT colleagues who review software on their behalf.
     </p>
 
@@ -341,26 +344,42 @@ const severityClass: Record<string, string> = {
       entered, the result of the last check for cancelled keys, and the email of the
       Toddle account last seen signed in, to check who a licence is for. In Toddle's own
       site storage, four housekeeping values: a copy of the switches and of which features
-      the licence allows, whether flags are hidden, the My classes choice, and the academic
-      year Toddle is showing. No student data is stored anywhere. What it reads about
+      the licence allows, whether flags are concealed, the My classes choice, and the
+      academic year Toddle is showing. No student data is stored anywhere. What it reads about
       students, classes and timetables is held in the Toddle tab's memory until the tab is
       closed or reloaded; a student's or a class's details are reused for at most 5
       minutes, and a student's day for at most 2, before Toddle is asked again.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      From version {security.next}, student flags are shown as Toddle shows them, and a
-      staff member can hide them everywhere with the free flag switch; versions
-      before {security.next} hid them by default. Unless flags are hidden, the sidebar asks Toddle
-      for a student's flags each time it opens, and keeps them only while it is open. The
-      CSV export is made in the browser and saved where the teacher's downloads go, by the
-      teacher's choice.
+      From version {security.next}, the extension no longer hides Toddle's own student flags; a
+      staff member can choose to conceal them for a shared screen with the free flag
+      switch. The sidebar asks Toddle for a student's flags each time it opens, and keeps
+      them only while it is open. {flags.before} The CSV export is made in the browser and
+      saved where the teacher's downloads go, by the teacher's choice.
+    </p>
+
+    <h3 class="font-serif text-h5 text-foreground mt-8">
+      Out of Toddle's page, into closed shadow roots
+    </h3>
+    <p class="mt-2 text-body text-muted-foreground text-pretty">
+      The extension is being rebuilt so that as little of it as possible runs where
+      Toddle's own scripts run. From version {security.next}, the flag switch, the student
+      sidebar with a class's teachers, and the home page's My classes option and teacher
+      names run in the extension's own isolated part of the browser. What they draw on
+      Toddle's pages sits inside closed shadow roots, which no script on Toddle's page can
+      read or click into, and whether each one runs is decided by the extension's own
+      switches and licence, never by Toddle's page. What only Toddle's page holds (who was
+      clicked, the course list as it loads, Toddle's chat and icons) is read by small parts
+      with no interface of their own, which talk to the extension on private channels set
+      up before Toddle's own scripts run. The gradebook and the Attendance dashboard are
+      moving the same way.
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">Protections inside the page</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
-      Part of the extension has to run inside Toddle's page to read the gradebook, which
-      means it shares that page with Toddle's own scripts. It is protected as far as a page
-      allows:
+      Part of the extension still has to run inside Toddle's page, to read the gradebook and
+      what Toddle draws, which means it shares that page with Toddle's own scripts. It is
+      protected as far as a page allows:
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
@@ -483,14 +502,16 @@ const severityClass: Record<string, string> = {
 
     <h3 class="font-serif text-h4 text-foreground mt-10">{secondReview.label}</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
-      The second review covered everything new in version {secondReview.version}: the
-      extension's own pages, rebuilt; the first rebuilt part that runs on Toddle's pages
-      (the flags switch, in a closed shadow root that no script on the page can reach); the
-      build that makes them; and the new switches. It also re-read the code that runs in
-      Toddle's page against the claims made about it. It found two medium-severity issues
-      and two low (findings {secondReview.findings}). All were fixed in
-      version {secondReview.version} before it is published, and none was in
-      version {security.version}.
+      The second review covered everything new in version {secondReview.version}, a test
+      release: the extension's own pages, rebuilt; the first rebuilt part that runs on
+      Toddle's pages (the flags switch, in a closed shadow root that no script on the page
+      can reach); the build that makes them; and the new switches. It also re-read the code
+      that runs in Toddle's page against the claims made about it. It found two
+      medium-severity issues and two low (findings {secondReview.findings}). All were fixed
+      in version {secondReview.version}, and the fixes are in every release after it,
+      including {security.next}. None was in version {security.version}. Each later
+      step of the rebuild (the student sidebar, the home page) was reviewed the same way as
+      it was made, and what those reviews found about the page's limits is set out below.
     </p>
     <div class="mt-6 space-y-4">
       {
@@ -540,9 +561,9 @@ const severityClass: Record<string, string> = {
       that wants that risk reduced further should raise it with Toddle.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      The flag switch is a privacy aid, not a security control. It hides flags from the
+      The flag switch is a privacy aid, not a security control. It conceals flags on the
       screen; it does not hide names, and does not stop anyone deliberately opening a
-      student's profile.
+      student's flags or profile. {flags.limit}
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">
@@ -560,9 +581,9 @@ const severityClass: Record<string, string> = {
       <li>
         can read the per-load secrets, which stop only scripts that are not listening, and
         replay them in that browser: switch a licensed feature on, give the licence check
-        another account's email, or show flags that were hidden. It gains no student data by
-        it, because it already runs with the teacher's session and could read Toddle
-        directly;
+        another account's email, or clear flags that were concealed. It gains no student
+        data by it, because it already runs with the teacher's session and could read
+        Toddle directly;
       </li>
       <li>
         cannot overhear the answers to the extension's queries, but can answer first with
@@ -571,7 +592,13 @@ const severityClass: Record<string, string> = {
       </li>
       <li>
         is stopped from pressing the extension's message buttons, but can tell Toddle's own
-        app to open a chat in any case.
+        app to open a chat in any case;
+      </li>
+      <li>
+        if it was in the page before Toddle's own scripts (a page that opened Toddle in a
+        new window can be), can take the private channel the home page's part uses, and so
+        show a wrong teacher's name, as text, or offer My classes where it should not.
+        Whether a feature runs is still never decided from the page.
       </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">

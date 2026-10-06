@@ -7,12 +7,17 @@
  * know what it can see before putting it on a hundred machines. The flag
  * switch gets the most room because it is the part people will be asked to
  * justify.
+ *
+ * It describes version 0.9.0 (`extensionVersions.next`), the next release on
+ * the Chrome Web Store, and says where 0.8.2, on the store today, differs.
+ * Flags are "concealed", never "hidden": the extension no longer hides
+ * Toddle's own flags (see `flags` in src/data/legal.ts).
  */
 import { Picture } from "astro:assets";
 import type { ImageOutputFormat } from "astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { toddleExtension } from "../data/site";
-import { extensionVersions, pricing, refunds, toddleNotice } from "../data/legal";
+import { extensionVersions, flags, pricing, refunds, toddleNotice } from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
 import sidebarShot from "../assets/screenshots/02-student-sidebar.jpg";
 import todayShot from "../assets/screenshots/03-today.jpg";
@@ -38,9 +43,10 @@ const primaryCta = live
   ? { label: "Add to Chrome", href: toddleExtension.webStore! }
   : { label: "Tell me when it is live", href: toddleExtension.enquiry };
 
-/* `free` is the split the extension enforces: the flag switch and My classes
-   for everyone, the rest with a licence. Keep it in step with `pricing` in
-   src/data/legal.ts and the terms. */
+/* `free` is the split the extension enforces (its docs/licensing.md and
+   app/features/registry.ts): the flag switch and My classes for everyone, the
+   rest with a licence. Keep it in step with `pricing` in src/data/legal.ts,
+   the terms, and the licence email (nyuchi-licence-server, src/email.js). */
 const features = [
   {
     mineral: "cobalt",
@@ -51,8 +57,8 @@ const features = [
   {
     mineral: "malachite",
     free: true,
-    title: "Hide student flags",
-    body: `One switch in the Toddle header hides flags across Toddle: the gradebook, Attendance, the class portfolio, submissions, search results, profile headers and the student sidebar. An eye button shows one student's flags when you need them. It stays as you left it, so you can arm it before a lesson. From version ${extensionVersions.next}, flags show as Toddle shows them until you switch them off; earlier versions hid them from the start.`,
+    title: "Conceal student flags",
+    body: `${flags.summary} The switch sits in Toddle's header and the extension's menu, and stays as you left it, so you can set it before a lesson.`,
   },
   {
     mineral: "gold",
@@ -64,25 +70,25 @@ const features = [
     mineral: "tanzanite",
     free: true,
     title: "My classes",
-    body: "The Toddle home page's course filter gains a third option beside All courses and My courses: only the classes you actually teach. It is remembered, and a tag by the heading says when it is on.",
+    body: "The Toddle home page's course filter gains a third option beside All courses and My courses: only the classes you actually teach. It switches on and off at once, it is remembered, and a tag by the heading says when it is on. It only appears where you are on a class.",
   },
   {
     mineral: "terracotta",
     free: false,
     title: "The student sidebar",
-    body: "Click a student anywhere they appear in Toddle — class pages, name links, gradebook student cells, every tab of the Attendance dashboard — and they dock to the side until you close it: one larger photo, grade · age · class of, Student Group, room number, homeroom advisor, and contacts with their relationship, tap-to-call phone and email.",
+    body: "Click a student anywhere they appear in Toddle — class pages, name links, gradebook student cells, every tab of the Attendance dashboard — and they dock to the side until you close it: one larger photo, grade · age · class of, their email (click to copy it, or the envelope to write), Student Group, room number, homeroom advisor, and contacts with their relationship, tap-to-call phone and email. In School setup, Toddle's admin portal, it steps aside, so a click there does what Toddle does.",
   },
   {
     mineral: "copper",
     free: false,
-    title: "Now, and today",
-    body: "Beside the photo, a Now card: the student's attendance code for the block happening now, the block, class, room and timetabled teacher — or their next class, or that they are finished or have no classes. Below, today's daily attendance code, and their classes in two tabs: Today, in time order with each period's attendance code and the current one first, and All.",
+    title: "Now, and today's timetable",
+    body: "Beside the photo, a Now card: the student's attendance code for the block happening now, the block, class, room and timetabled teacher. Today's timetable is its own part: today's periods in time order with each one's attendance code, “No classes today”, or “Couldn't load timetable” with a Retry button. The rest of the panel never waits for it.",
   },
   {
     mineral: "sodalite",
     free: false,
     title: "The class view, and messages",
-    body: "Click a class for the block it is in now, its primary teacher, parent course and room, and every teacher with their display title and email. Message buttons for staff, the student, the family channel and each family member open Toddle's own chat, under your school's messaging rules.",
+    body: "Click a class for the block it is in now, its primary teacher, parent course and room, and every teacher with their display title and email. Tick the teachers you want and email them all at once, or copy their addresses. Message buttons for staff, the student, the family and each family member open Toddle's own chat, under your school's messaging rules.",
   },
   {
     mineral: "cobalt",
@@ -135,13 +141,17 @@ const shots = [
     caption: "My classes · Free",
   },
   {
+    /* Taken in version 0.8.2, which hid flags; retake it on 0.9.0. The alt
+       text describes the picture as it is. */
     src: flagsShot,
-    alt: "A student's profile card in Toddle with a Show flags button where the flags would be, so they stay hidden until pressed; personal details are hidden behind grey bars.",
-    caption: "Hide student flags · Free",
+    alt: "A student's profile card in Toddle with a Show flags button where the flags would be, as in version 0.8.2; personal details are covered by grey bars.",
+    caption: "The flag switch · Free",
   },
   {
+    /* Taken in version 0.8.2; 0.9.0 has a switch for every feature, grouped
+       by where it works. Retake it on 0.9.0. */
     src: menuShot,
-    alt: "The extension's toolbar menu: the organisation licence and version, a Show student flags switch under Free, Student sidebar and Primary teacher names switches under With a licence, and Send feedback and Help.",
+    alt: "The extension's toolbar menu in version 0.8.2: the organisation licence and version, a Show student flags switch under Free, Student sidebar and Primary teacher names switches under With a licence, and Send feedback and Help.",
     caption: "The toolbar menu",
   },
   {
@@ -159,12 +169,13 @@ const shots = [
 const facts = [
   {
     label: "Where it runs",
-    value: "Only on web.toddleapp.com. It has no access to any other site.",
+    value:
+      "Only on web.toddleapp.com. It has no access to any other site. From version 0.9.0 the flag switch, the student sidebar and the home page's additions run in the extension's own isolated part of the browser, drawn inside closed shadow roots that no script on Toddle's page can read or click into; the gradebook and the Attendance dashboard are moving the same way.",
   },
   {
     label: "What it reads",
     value:
-      "What Toddle already lets you see — gradebook results, rubric descriptors and levels as your school set them up, class staff, student details, today's timetable and attendance, and a student's flags when they are shown — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It never asks for your password. Toddle's sign-in headers stay in the tab's memory, in one script in Toddle's page, and go nowhere but Toddle.",
+      "What Toddle already lets you see — gradebook results, rubric descriptors and levels as your school set them up, class staff, student details, today's timetable and attendance, and a student's flags each time the sidebar opens — through an exact list of read-only queries to Toddle's own API, for you at the screen, reusing the session you are already signed in with. It never asks for your password. Toddle's sign-in headers stay in the tab's memory, in one script in Toddle's page, and go nowhere but Toddle.",
   },
   {
     label: "What it writes",
@@ -184,13 +195,13 @@ const facts = [
   {
     label: "What it stores",
     value:
-      "On your own machine only: your switch settings, your licence key if you have one, the result of the last check for cancelled keys, and the email of the Toddle account last seen signed in, to check who a licence is for; and, in Toddle's own site storage, a copy of the switches, whether flags are hidden, your My classes choice and the academic year Toddle is showing. No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.",
+      "On your own machine only: your switch settings, your licence key if you have one, the result of the last check for cancelled keys, and the email of the Toddle account last seen signed in, to check who a licence is for; and, in Toddle's own site storage, a copy of the switches, whether flags are concealed, your My classes choice and the academic year Toddle is showing. No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.",
   },
 ];
 
 const title = "Toddle Enhancement Extension — Nyuchi Learning";
 const description =
-  "A Chrome extension for the Toddle gradebook: every rubric expanded into per-criterion columns, CSV export, and a switch that hides student flags so you can share your screen without compromising privacy.";
+  "A Chrome extension for the Toddle gradebook: every rubric expanded into per-criterion columns, CSV export, a student sidebar, and a free switch that conceals student flags when your screen is shared.";
 
 /* The claims here are the ones a search result or an assistant will repeat, so
    they mirror the privacy policy rather than the marketing copy. */
@@ -213,10 +224,10 @@ const schema = [
     publisher: { "@id": "https://learning.nyuchi.com/#organization" },
     featureList: [
       "Expands every Toddle assessment tool into per-criterion columns",
-      "Hides student flags across Toddle with one switch",
+      "Conceals student flags across Toddle with one free switch, for a shared screen; never hides Toddle's own flags",
       "CSV export of results and submission status",
       "A My classes filter on the Toddle home page",
-      "A student sidebar anywhere a student appears in Toddle: photo, grade, contacts, where they are now, today's classes and attendance",
+      "A student sidebar anywhere a student appears in Toddle: photo, grade, email, contacts, where they are now, today's timetable and attendance",
       "A class view with every teacher, and message buttons that open Toddle's own chat",
       "The Attendance dashboard's Students tab with each student's year group, current class and teacher",
       "Primary teacher names beside each class",
@@ -345,26 +356,26 @@ const schema = [
         </h2>
         <p class="mt-6 text-body-lg text-muted-foreground text-pretty">
           Toddle marks students with flags. They are useful — that is the point of
-          them — and they are exactly what you do not want on a projector, in a
+          them — and what they say is exactly what you do not want on a projector, in a
           screen share with a parent, in a lesson observation, or in a screenshot
-          pasted into a planning document. One switch takes them off the screen.
+          pasted into a planning document. One switch conceals them while your screen
+          is shared.
         </p>
       </div>
 
       <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-2 max-w-4xl">
         <div class="card p-6 md:p-8">
-          <h3 class="font-serif text-h5 text-foreground">It hides flags, not names</h3>
+          <h3 class="font-serif text-h5 text-foreground">It conceals flags, not names</h3>
           <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
             Students stay identifiable to you — you are still teaching, and a
-            gradebook of anonymous rows is no use to anyone. It is the flag that
-            comes off the screen, because that is the piece of information the
+            gradebook of anonymous rows is no use to anyone. It is what a flag says
+            that comes off the screen, because that is the piece of information the
             room should not be reading over your shoulder.
           </p>
           <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
-            Toddle draws the gradebook on an HTML canvas, so a flag there cannot
-            be hidden with styling. The extension empties the flag out of the
-            cell <em>before</em> the browser paints it, and hides the ones Toddle
-            renders as ordinary page elements everywhere else.
+            The extension no longer hides Toddle's own flags: they stay where Toddle puts
+            them, with their links and documents in Toddle's student popover. Concealing
+            them is your choice, off until you switch it on. {flags.reveal}
           </p>
         </div>
 
@@ -373,14 +384,14 @@ const schema = [
           <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
             <strong class="text-foreground">It stays on.</strong> The setting
             persists as you move around Toddle and across browser sessions, so it
-            is something you arm before a lesson rather than something you have
+            is something you set before a lesson rather than something you have
             to remember at the worst possible moment.
           </p>
           <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
             <strong class="text-foreground">The switch shows its state.</strong>
-            It sits in the Toddle header and reads as on or off at a glance —
-            check it before you share, the same way you check the right window is
-            selected.
+            It sits in the Toddle header, the same size as Toddle's own buttons, and
+            reads as on or off at a glance — check it before you share, the same way
+            you check the right window is selected.
           </p>
         </div>
       </div>
@@ -389,12 +400,15 @@ const schema = [
       <div class="mt-8 max-w-4xl ubuntu-quote">
         <h3 class="font-serif text-h5">What it does not do</h3>
         <p class="mt-2 text-body-sm text-pretty">
-          It hides flags. It does not hide names, and it does not stop anyone
-          opening a student's profile deliberately. It works by changing what
-          Toddle draws, which means it depends on Toddle's own markup and a
-          Toddle release could change that. Arm it before you share, check the
-          switch is on, and treat it as a good lid — not as a compliance control
-          and not as a substitute for your school's safeguarding practice.
+          It conceals flags. It does not hide names. {flags.limit} It works by
+          changing what Toddle draws, which means it depends on Toddle's own markup,
+          and a Toddle release could change that. Switch it on before you share, check
+          it is on, and treat it as a good screen — not as a compliance control and not
+          as a substitute for your school's safeguarding practice.
+        </p>
+        <p class="mt-3 text-body-sm text-pretty">
+          This describes version {extensionVersions.next}, the next release on the
+          Chrome Web Store. {flags.before}
         </p>
       </div>
     </div>
@@ -425,15 +439,23 @@ const schema = [
             Press <strong class="text-foreground">Add to Chrome</strong>. Chrome asks you to
             confirm, and that is the install.
           </li>
-          <li>Open any Toddle gradebook: <em>Gradebook → Assessments</em>.</li>
           <li>
-            The new columns appear, and the flag switch is in the Toddle header, ready
-            before your next lesson.
+            A welcome page opens once: what it does, a switch for every feature, and a box
+            for a licence key if you have one.
+          </li>
+          <li>
+            Open Toddle. The flag switch is in Toddle's header, and My classes is in the
+            home page's course filter. With a licence, the per-criterion columns are in any
+            gradebook (<em>Gradebook → Assessments</em>) and a click on a student opens the
+            sidebar.
           </li>
         </ol>
         <p class="mt-4 text-caption text-muted-foreground">
           No files to download, no Developer mode, nothing to unzip. Updates arrive on
-          their own, the way every other Chrome extension does.
+          their own, the way every other Chrome extension does. Stuck?
+          <a href={toddleExtension.help} rel="noopener noreferrer" class="link"
+            >How to use the extension</a
+          >, in our help centre.
         </p>
         <a href={primaryCta.href} class="btn-primary mt-6">{primaryCta.label}</a>
       </article>
@@ -442,16 +464,50 @@ const schema = [
         <p class="badge badge-success mb-4">For a school</p>
         <h3 class="font-serif text-h4 text-foreground">Push it from the Admin console</h3>
         <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
-          Because it is on the Chrome Web Store, IT can force-install it to a teaching
-          organisational unit by its extension ID — the standard route, with no
-          self-hosted package to maintain and no Developer mode on anyone's machine.
-          Nothing for staff to click, and updates arrive on their own.
+          Because it is on the Chrome Web Store, IT can install it for every teacher by its
+          extension ID, with no self-hosted package to maintain and no Developer mode on
+          anyone's machine. Chrome keeps it up to date from the store.
+        </p>
+        <ol
+          class="mt-4 space-y-2 text-body-sm text-muted-foreground list-decimal list-outside pl-5 marker:text-foreground/40"
+        >
+          <li>
+            In the Google Admin console, go to <em
+              >Devices → Chrome → Apps &amp; extensions → Users &amp; browsers</em
+            >, and pick the organisational unit your teachers are in. Students have no use
+            for it.
+          </li>
+          <li>
+            Add it by ID: <code class="text-foreground break-all"
+              >{toddleExtension.extensionId}</code
+            >, from the Chrome Web Store.
+          </li>
+          <li>
+            Choose <strong class="text-foreground">Force install</strong> for a rollout IT
+            owns, or <strong class="text-foreground">Allow install</strong> to leave it to
+            each teacher. Pinning it to the toolbar puts its menu one click away.
+          </li>
+        </ol>
+        <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
+          Without the Admin console, the same force-install policy works through Group
+          Policy or Intune on Windows and a configuration profile on macOS, with the ID and
+          the store's update URL,
+          <code class="text-foreground break-all"
+            >{toddleExtension.extensionId};{toddleExtension.storeUpdateUrl}</code
+          >.
+        </p>
+        <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
+          <strong class="text-foreground">The licence.</strong> An organisation licence is
+          one key for your school's email domain. A key cannot be pushed by policy, so send
+          it to staff; each teacher pastes it in once, from the welcome page or the
+          toolbar menu's <em>Enter a licence key</em>. If your network filters outbound
+          traffic, allow <code class="text-foreground">{toddleExtension.licenceHost}</code>
+          so the daily check for cancelled keys can run. If it is blocked, licences keep
+          working on the last result.
         </p>
         <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
-          The extension ID is
-          <code class="text-foreground">{toddleExtension.extensionId}</code>. We will send
-          you the console steps and the full answer to "what can this thing see?" — which
-          somebody will ask, and should.
+          We will send you the full deployment guide, and the full answer to "what can this
+          thing see?" — which somebody will ask, and should.
         </p>
         <a href={toddleExtension.enquiry} class="btn-outline mt-6">
           Talk to us about a rollout
@@ -465,7 +521,7 @@ const schema = [
     <div class="max-w-2xl">
       <p class="eyebrow">Pricing</p>
       <h2 class="font-serif text-h1 text-foreground text-balance">
-        Hiding flags is free. Always.
+        Concealing flags is free. Always.
       </h2>
       <p class="mt-6 text-body text-muted-foreground text-pretty">
         The flag switch protects a student, so it is not behind a price and never will
@@ -555,6 +611,14 @@ const schema = [
         }
       </dl>
       <p class="mt-8 text-body-sm text-muted-foreground max-w-2xl text-pretty">
+        <strong class="text-foreground">The data schema.</strong> Every piece of Toddle
+        data the extension reads, every value it stores and every request it makes is
+        listed, field by field, in its data schema, written for a school's data
+        protection lead or IT team. It is checked against the code on every change: a
+        query the code allows that the schema does not describe fails the build. Ask us
+        for a copy.
+      </p>
+      <p class="mt-4 text-body-sm text-muted-foreground max-w-2xl text-pretty">
         If your IT team would rather verify this than take our word for it, a
         Chrome extension is a folder of readable JavaScript — they can unpack
         the installed package and read every line of it. We will also answer
@@ -588,7 +652,16 @@ const schema = [
         gradebook, and tells you when something could not be expanded rather than
         quietly showing you less. Report a break and we will chase the rename.
       </p>
+      <p class="mt-4 text-body text-muted-foreground text-pretty">
+        <strong class="text-foreground">How updates reach you.</strong> Fixes are made and
+        tested as small patch releases, which do not go to the Chrome Web Store. When a
+        batch of them is ready, it is published to the store as the next version ({extensionVersions.next} is
+        next), and Chrome installs it on its own.
+      </p>
       <div class="mt-8 flex flex-wrap gap-3">
+        <a href={toddleExtension.help} rel="noopener noreferrer" class="btn-primary"
+          >How to use it</a
+        >
         <a href={toddleExtension.enquiry} class="btn-outline">Report a problem</a>
         <a href={`mailto:${toddleExtension.supportEmail}`} class="btn-ghost">
           {toddleExtension.supportEmail}

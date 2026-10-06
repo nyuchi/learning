@@ -4,6 +4,35 @@
 
 ### Changed
 
+- **The extension page and legal pages describe 0.9.0, the next Chrome Web
+  Store release**, and say where 0.8.2, on the store today, differs. Patches
+  (0.8.3 to 0.8.9) are test releases that do not go to the store, so
+  `extensionVersions.next` is now 0.9.0, not 0.8.4.
+  - Student flags: the extension no longer hides Toddle's own flags. A
+    teacher can conceal them for a shared screen with the free switch, and
+    "Show flags" in the sidebar shows one student's. The wording is
+    "conceal" and "flag visibility", said once in `flags`
+    (`src/data/legal.ts`); a test fails on "hide flags" on the extension
+    page, the home page and in llms.txt. The sidebar asks Toddle for a
+    student's flags each time it opens. The value on Toddle's site is
+    `tee-blur-flags` (`gbx-hide-flags` in 0.8.2).
+  - The rebuild: the flag switch, the student sidebar and the home page's
+    additions run in the extension's isolated world, in closed shadow roots
+    (product page, Security page, llms.txt). The Security page adds the home
+    page channel's limit.
+  - The student sidebar: today's timetable as its own part, the student's
+    email, a class's teachers to email at once, and stepping aside in
+    Toddle's admin portal. My classes switches on and off at once.
+  - For schools: the Admin console, Group Policy, Intune and macOS steps,
+    the organisation key pasted in once by each teacher, and allowing
+    `licences.nyuchi.dev`, summarised on the extension page; the full guide
+    on request. A link to the help centre's "How to use" collection.
+  - The data schema (the extension's `docs/data-schema.md`) is described on
+    the data handling page and the extension page, available on request.
+  - Data handling: the licence server keeps a SHA-256 of each key, never
+    the key itself, and the school's email domains for an organisation key.
+  - The second security review was of 0.8.4, a test release; its fixes are
+    in 0.9.0.
 - **The privacy policy rests on two laws: Zimbabwe's Cyber and Data
   Protection Act [Chapter 12:07] and the EU and UK GDPR**, applied to everyone.
   A new "The law we follow" section names POTRAZ as Zimbabwe's regulator, says
