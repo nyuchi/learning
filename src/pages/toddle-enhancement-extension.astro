@@ -22,6 +22,8 @@ import {
   flags,
   ownership,
   pricing,
+  licenceSync,
+  upgrade,
   refunds,
   toddleNotice,
 } from "../data/legal";
@@ -202,7 +204,7 @@ const facts = [
   {
     label: "What it stores",
     value:
-      "On your own machine only: your switch settings, your licence key if you have one, the result of the last check for cancelled keys, and the email of the Toddle account last seen signed in, to check who a licence is for; and, in Toddle's own site storage, a copy of the switches, whether flags are concealed, your My classes choice and the academic year Toddle is showing. No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.",
+      `On your own machine: your switch settings, your licence key if you have one, the result of the last check for cancelled keys, and the email of the Toddle account last seen signed in, to check who a licence is for; and, in Toddle's own site storage, a copy of the switches, whether flags are concealed, your My classes choice and the academic year Toddle is showing. ${licenceSync.short} No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.`,
   },
 ];
 
@@ -590,8 +592,13 @@ const schema = [
       Checkout is through Buy Me a Coffee, and your licence key is emailed to you
       automatically, usually within a minute of paying. It is checked on your own machine, so activating it contacts
       nothing and works offline — and one key covers your laptop and your classroom
-      desktop. While a key is entered, the extension checks once a day for cancelled keys,
+      desktop. From version {extensionVersions.next} it follows your Chrome account, so you
+      enter it once; Chrome's sync carries it, and it is never sent to us. While a key is entered, the extension checks once a day for cancelled keys,
       sending nothing about you.
+    </p>
+    <p class="mt-3 text-caption text-muted-foreground max-w-2xl text-pretty">
+      <strong class="text-foreground">Upgrading.</strong>{" "}
+      {upgrade.text}
     </p>
     <p class="mt-3 text-caption text-muted-foreground max-w-2xl text-pretty">
       <strong class="text-foreground">Refunds.</strong>{" "}

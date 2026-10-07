@@ -9,6 +9,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   legal,
+  licenceSync,
   ownership,
   pricing,
   refunds,
@@ -127,7 +128,7 @@ const description =
       address, and may also name who it is for: the buyer's email, for the Toddle account
       with that address, or for an organisation licence the school's email domain, for
       Toddle accounts on that domain. Where it does, the comparison happens in your browser
-      only. While a key is entered, the extension downloads once a day a signed list of
+      only. {licenceSync.short} While a key is entered, the extension downloads once a day a signed list of
       cancelled keys, sending nothing about you; a key we have cancelled stops unlocking the
       licensed features once the extension has seen that list. If the check cannot be made,
       the last result stands, so a network outage never switches a licence off. When a key
