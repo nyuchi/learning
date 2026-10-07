@@ -113,7 +113,7 @@ export const releases: Release[] = [
           "Your licence follows your Chrome account. Enter a key once and Chrome's own sync carries it to every computer signed in to the same Chrome account. The newest key wins, and removing it on one computer removes it on all of them. The key is never sent to Nyuchi.",
           "Both plans are in the extension: the welcome page and the licence page show Individual and Organisation, each with its own checkout, and your key arrives by email. “See plans” in the toolbar menu opens them.",
           "If you have an individual licence, the extension offers the upgrade to your school's licence instead, with a code that takes money off the organisation licence. Your school's key then replaces yours on every computer.",
-          "For IT teams who load the extension unpacked: each release's unpacked copy now carries the Chrome Web Store's extension ID, so a synced licence reaches it too.",
+          "For IT teams who load the extension unpacked: each release's unpacked copy now carries the Chrome Web Store's extension ID, so a synced licence reaches it too. The first time you load it, it replaces an older unpacked copy's ID, so a licence entered there needs entering once more.",
         ],
       },
       {
