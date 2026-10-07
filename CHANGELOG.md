@@ -1,8 +1,8 @@
 # Changelog
 
 From this release the site's versions are its git tags, under the org's
-versioning policy: each merge into `staging` is a patch tag (v0.0.4 to
-v0.0.9 so far), each release to `main` the next minor. The 3.x and 2.x
+versioning policy: each merge into `staging` is a patch tag (from
+v0.0.1, 2026-10-04), each release to `main` the next minor. The 3.x and 2.x
 numbers below were the site's earlier, hand-kept numbering and are retired; the
 `version` in package.json is not the release version.
 
