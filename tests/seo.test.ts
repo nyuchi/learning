@@ -232,8 +232,10 @@ describe("the releases page", () => {
     }
   });
 
-  it("says 0.9.0 is coming to the Chrome Web Store", () => {
-    expect(page).toContain("Coming soon to the Chrome Web Store");
+  it("says 0.9.0 is on the Chrome Web Store, from 7 October 2026", () => {
+    expect(page).not.toContain("Coming soon to the Chrome Web Store");
+    expect(page).toContain("On the Chrome Web Store");
+    expect(page).toContain('datetime="2026-10-07"');
   });
 
   it("links to no GitHub release and offers no download", () => {
