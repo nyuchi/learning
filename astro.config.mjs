@@ -6,6 +6,10 @@ import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({
   site: "https://learning.nyuchi.com",
+  /* Astro's HTML compression drops the space where a line break sits between
+     text and an inline tag ("Applies to<strong>…"), across the legal pages.
+     The pages are small; correct words matter more than a few bytes. */
+  compressHTML: false,
   adapter: vercel(),
 
   // Fully static: every page is known at build time, so there is nothing to
@@ -31,7 +35,8 @@ export default defineConfig({
        */
       serialize(item) {
         item.url = item.url.replace(/(.+)\/$/, "$1");
-        item.lastmod = new Date();
+        // The sitemap item takes an ISO 8601 string, not a Date.
+        item.lastmod = new Date().toISOString();
         return item;
       },
     }),

@@ -10,7 +10,7 @@
 export const legal = {
   /** Last substantive change, for every legal page. Update when a claim
       changes, not on typos. */
-  updated: "2026-10-03",
+  updated: "2026-10-07",
   entity: "Nyuchi Africa (Private) Limited",
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
@@ -31,7 +31,37 @@ export const legal = {
   support: { intercomAppId: "f1vga504" },
 } as const;
 
-/** The date above as people write it: "1 October 2026". */
+/**
+ * The two data protection laws Nyuchi holds itself to, said once. Zimbabwe's
+ * Act because Nyuchi is a Zimbabwean company; the EU and UK GDPR because they
+ * are the most widely used standard, so we apply them to everyone, wherever
+ * they are. Where the two differ, the stricter one wins (the breach deadline:
+ * Zimbabwe's 24 hours to the regulator is shorter than the GDPR's 72).
+ */
+export const dataProtection = {
+  home: {
+    law: "Cyber and Data Protection Act [Chapter 12:07]",
+    authority:
+      "the Postal and Telecommunications Regulatory Authority of Zimbabwe (POTRAZ)",
+    authorityShort: "POTRAZ",
+    authorityUrl: "https://www.potraz.gov.zw",
+    /** Notice to the regulator after a breach is discovered (s. 19). */
+    breachHours: 24,
+  },
+  gdpr: {
+    /** Notice to a supervisory authority, where a breach must be notified. */
+    breachHours: 72,
+    /** Time to answer a request about your data, free of charge. */
+    answerWithin: "one month",
+    ukAuthority: "the Information Commissioner's Office (ICO)",
+    ukAuthorityUrl: "https://ico.org.uk/make-a-complaint/",
+    /** Every EU and EEA supervisory authority, from the EDPB. */
+    euAuthoritiesUrl:
+      "https://www.edpb.europa.eu/about-edpb/about-edpb/members_en",
+  },
+} as const;
+
+/** The date above as people write it: "6 October 2026". */
 export const updatedLabel = new Date(
   `${legal.updated}T00:00:00Z`,
 ).toLocaleDateString("en-GB", {
@@ -57,8 +87,8 @@ export const pricing = [
     includes: [
       "Every assessment tool expanded into per-criterion columns",
       "CSV export",
-      "The student sidebar, with where they are now and today's classes",
-      "The class view, and message buttons into Toddle's chat",
+      "The student sidebar, with where they are now and today's timetable",
+      "The class view, a class's teachers to email at once, and message buttons into Toddle's chat",
       "Primary teacher names, and the Attendance dashboard's Now line",
     ],
   },
@@ -77,9 +107,87 @@ export const pricing = [
 ] as const;
 
 /**
+ * Which versions of the extension the legal pages describe.
+ *
+ * How the extension is released: patches (0.8.3, 0.8.4, …) are GitHub
+ * releases, for testing, and never go to the Chrome Web Store; each minor
+ * (0.9.0, …) is released from the extension's `main` branch and published to
+ * the store. Teachers get minors.
+ *
+ * `current` is what teachers have from the Chrome Web Store (the v0.8.3 tag
+ * carries the same code). `next` is the next minor: everything under
+ * Unreleased in the extension's changelog, reviewed, already in the patch
+ * releases up to `latestPatch`, and not yet on the store. Claims that differ
+ * between the two say "from version 0.9.0" and say what `current` does, so
+ * they stay true on both sides of the release. When `next` ships, move it to
+ * `current` and drop the "before" wording.
+ */
+export const extensionVersions = {
+  current: "0.8.2",
+  sameCodeAs: "0.8.3",
+  next: "0.9.0",
+  /** The newest patch release (GitHub only, for testing). */
+  latestPatch: "0.8.13",
+  /** The oldest version security reports are accepted for. */
+  supportedFrom: "0.8.2",
+} as const;
+
+const { current, next } = extensionVersions;
+
+/**
+ * The licence key and Chrome sync, said once. From 0.9.0 the key alone is
+ * also kept in chrome.storage.sync, so it follows the teacher's own Chrome
+ * account. That is Chrome's sync, not Nyuchi's: the extension never sends the
+ * key to Nyuchi. Checked against the extension's SECURITY.md and
+ * docs/data-schema.md (the `licence` key).
+ */
+export const licenceSync = {
+  /** One sentence, for summaries. */
+  short: `From version ${next}, your licence key also follows your own Chrome account to your other computers, through Chrome's sync; it is never sent to Nyuchi.`,
+  /** The full account, for the data pages. */
+  detail: `From version ${next}, the licence key, and nothing else, is also kept in Chrome's synced storage for the extension, so Chrome carries it to the other computers signed in to the same Chrome account, unless sync, or a school's Chrome policy, turns that off. That is Chrome's own sync, through your Google account; the extension never sends the key to Nyuchi. A key carries the buyer's email address, so that travels with it. The newest key wins on every computer, and removing it on one removes it on all of them. Who a key is for, and the result of the check for cancelled keys, stay on each computer.`,
+  /** For "what leaves the device". */
+  leaves: `One thing more leaves your device from version ${next}, and not to us: with Chrome sync on, Chrome carries your licence key to your other computers through your own Chrome account. The extension itself never sends the key anywhere, Nyuchi included.`,
+} as const;
+
+/**
+ * The upgrade from an individual licence to the school's, said once: the
+ * product page and llms.txt. The code is shown in the shipped extension
+ * (0.9.0) to individual licence holders, and works on the organisation
+ * licence only.
+ */
+const upgradeCode = "BXXF20VA";
+const upgradeOff = "US$7";
+export const upgrade = {
+  code: upgradeCode,
+  off: upgradeOff,
+  text: `Already have an individual licence? Bring your whole school in. From version ${next} the extension's licence page shows individual licence holders the upgrade, with the code ${upgradeCode}, which takes ${upgradeOff} off the organisation licence (it works on that licence only). Your school's key then replaces yours on every computer.`,
+} as const;
+
+/**
+ * Student flags, said once. From 0.9.0 the extension never hides Toddle's own
+ * flags: a teacher can conceal them for a shared screen. The wording is
+ * "conceal" and "flag visibility", never "hide", and it promises no more than
+ * the extension does: how a concealed flag looks is still being refined, so
+ * this says only that what a flag says cannot be read from across a room.
+ * Checked against the extension's SECURITY.md and docs/data-schema.md.
+ */
+export const flags = {
+  summary:
+    "The extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room.",
+  reveal:
+    'In the student sidebar, "Show flags" shows one student\'s flags when you need them.',
+  limit:
+    "Concealing is a screen, not a lock. A concealed flag can still show that a student has a flag. Concealing changes only what is drawn on the screen, never Toddle's data, and does not stop anyone at the computer opening a student's flags in Toddle.",
+  before: `In version ${current}, on the Chrome Web Store today, the extension hides flags from the start, and the switch shows or hides them.`,
+} as const;
+
+/**
  * What the extension does with data. Each of these is a claim that can be
- * checked against the source, and each maps to an answer on the Chrome Web
- * Store privacy form.
+ * checked against the source (the extension's docs/data-schema.md, formerly
+ * docs/toddle-data-fields.md, is the full schema, checked against its code on
+ * every change), and each maps to an answer on the Chrome Web Store privacy
+ * form.
  */
 export const extensionDataFacts = [
   {
@@ -90,27 +198,26 @@ export const extensionDataFacts = [
   {
     claim: "It reads; it does not write.",
     detail:
-      "It reads what Toddle already lets you see — gradebook results, class staff, student details — through Toddle's own interface, reusing the session you are already signed in with. Every request it may send is listed word for word in the extension, and anything else is refused; write operations are blocked outright rather than merely avoided, so it cannot change your gradebook even by accident. Its message buttons open Toddle's own chat window and send nothing themselves: a message is sent, if at all, by you, through Toddle, under your school's messaging rules.",
+      "It reads what Toddle already lets you see, through Toddle's own interface, reusing the session you are already signed in with. Every request it may send is listed word for word in the extension, and anything else is refused. Write operations are blocked outright rather than merely avoided, so it cannot change your gradebook even by accident. On the home page and the Attendance dashboard it adds a few fields to Toddle's own request instead of sending a second one, and takes them out again before Toddle's page sees the answer. Its message buttons open Toddle's own chat window and send nothing themselves: a message is sent, if at all, by you, through Toddle, under your school's messaging rules.",
   },
   {
-    claim: "What it reads for the student sidebar, and when.",
+    claim: "What it reads, feature by feature.",
     detail:
-      "Only when a teacher opens a student or a class, and only for the teacher at the screen: the student's name, photo, year group and age (the date of birth itself is never shown), email, student ID and enrolment date; their contacts' names, relationships, phone numbers and emails; their homeroom advisor; the school's Student Group and Room number fields (other additional fields are never shown); today's timetable and attendance marks; and each class's teachers with their display titles and emails. Toddle answers with what that teacher's own account is allowed to see. Nothing is written to disk: answers are held in the page's memory for a few minutes, then discarded, and are gone when the tab closes.",
+      "Toddle answers with what the signed-in teacher's own account may see, and no more. The gradebook tools, when a teacher expands an assessment: its assessment tools as Toddle defines them (rubric criteria, descriptors and levels, grade scales and their colours, checklist items, scores, standards and learning goals), and each assigned student's name, email, student ID, submission status and results, including written responses and comments. No descriptor or level is written in the extension. The home page: each class's staff, to show its primary teacher and the My classes filter. A student's profile page: the teachers of each of the student's classes. The Attendance dashboard: each student's year group and the names of the periods, from Toddle's own request, and the primary teacher of the class each student is in now, for the “Now: class · teacher” line. The student sidebar, when a teacher opens a student or a class: the student's name, photo, year group and age (the date of birth is used to work out the age and is never shown), email, student ID and enrolment date; their family accounts and contacts, with names, relationships, phone numbers and emails; their homeroom advisor; the school's additional profile fields, of which only Student Group and Room number are ever shown; today's timetable and attendance marks; their active flags (see the next point); and each class's teachers, with their display titles and emails.",
   },
   {
-    claim: "Student flags stay hidden until someone chooses to show them.",
-    detail:
-      "Flags are hidden by default across Toddle, on a new install and for anyone who never touched the switch; a staff member shows them deliberately, with the switch or with the eye button for one student. The extension's own sidebar fetches a student's flags from Toddle only when someone chooses to show them, and forgets them when the sidebar closes. The flag switch is free and always will be.",
+    claim:
+      "Student flags: Toddle's own are never hidden, and a teacher can conceal them for a shared screen.",
+    detail: `From version ${next}, the extension no longer hides Toddle's own student flags: they show as Toddle shows them, including in Toddle's student popover, with their links and documents. A teacher can choose to conceal flags, for a screen a class or a visitor can see, with the free flag switch in Toddle's top bar or the extension's menu. A new install starts with flags shown. A teacher updating from version ${current}, where flags were hidden by default, or who had hidden them, has them concealed after the update. A concealed flag is a faint grey smudge with no colour, and its words cannot be read from across a room, though it can still show that a student has a flag. Nothing on the page brings a concealed flag back. ${flags.reveal} The sidebar asks Toddle for a student's active flags each time it opens, and keeps them only while that student's sidebar is open. Concealing changes only what is drawn on the screen, never Toddle's data. ${flags.before} In that version, while flags are hidden, the sidebar asks for a student's flags only when someone presses its eye button. The flag switch is free and always will be.`,
   },
   {
-    claim: "It never sees your password.",
+    claim: "Your Toddle sign-in stays with Toddle.",
     detail:
-      "Authentication stays inside Toddle's own page. The part of the extension that draws the interface cannot read the authentication token, by design.",
+      "The extension never asks for your password and never stores it. To ask Toddle as you, it notes the sign-in headers from Toddle's own requests, and the academic year Toddle is showing. The headers are held in the tab's memory, in one script inside Toddle's page: the extension's other parts never see them, they are never stored, and they are sent nowhere but Toddle's own interface. The academic year number is kept in Toddle's site storage (see below) so the sidebar asks for the right year, and is sent nowhere but Toddle.",
   },
   {
-    claim: "Nothing it reads leaves your browser.",
-    detail:
-      "There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. No student data, no teacher data and no school data leaves your browser: what it reads from Toddle goes back to Toddle's own screen and nowhere else. It reads Toddle for the teacher at the screen, and for no one else. It makes two connections outside Toddle, described next, and neither carries anything from Toddle.",
+    claim: "Exactly what leaves your device.",
+    detail: `Nothing it reads from Toddle goes anywhere but back to Toddle. There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. The extension makes these requests and no others: read-only requests to Toddle's own interface, with your Toddle session; student photos, loaded from the address Toddle gives for each one, wherever Toddle serves them, as Toddle's own page does; the feedback form, only when you press Send; and, only while a licence key is entered, the daily check for cancelled keys, which carries nothing. The last two are described next. Anything else happens only when you do it: saving a CSV file, opening an email or phone link, or sending a message in Toddle's own chat. Like any web request, each one lets the server that receives it see your IP address and browser type. ${licenceSync.leaves}`,
   },
   {
     claim: "Outside connection one, only when you choose it: feedback.",
@@ -123,41 +230,66 @@ export const extensionDataFacts = [
       "When you first install it, the extension opens a welcome page. That page is part of the extension itself, not a website, and loading it contacts nothing.",
   },
   {
-    claim: "The only things it stores are your settings and your licence key.",
+    claim: "What it stores: settings and licence details, and no student data.",
+    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in version ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage. Version ${current} has three switches: student flags, the student sidebar and primary teacher names.`,
+  },
+  {
+    claim: "What it holds in memory, and for how long.",
     detail:
-      "Your switch preferences — student flags shown or hidden, the student sidebar, primary teacher names, the My classes filter — and the licence key if you have one. All of it is stored on your own machine, and none of it is sent anywhere. No student data is stored on the device at all.",
+      "Answers from Toddle are held in the Toddle tab's memory, never written to storage, until the tab is closed or reloaded or the browser quits. Moving between Toddle pages without a reload does not clear them. A student's or a class's details are reused for at most 5 minutes, and a student's day for at most 2, before Toddle is asked again. A student's flags are never reused, and are kept only while that student's sidebar is open.",
   },
   {
     claim: "Your licence is checked on your machine, not by asking us.",
     detail:
-      "A licence key is a signed statement that the extension verifies locally. An individual key carries the buyer's email address, and an organisation key the school's email domain; the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key contacts nothing, which is why it works without a connection.",
+      "A licence key is a signed statement that the extension verifies locally. It carries the buyer's email address. A key may also name who it is for: the buyer's email, or for an organisation licence the school's email domain. Where it does, the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key contacts nothing, which is why it works without a connection, and the extension never sends the key to Nyuchi.",
   },
   {
     claim:
       "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
     detail:
-      "Once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licences.nyuchi.dev/v1/revocations. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, and checks its own key against that list on your machine. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the check fails, the extension keeps working.",
+      "At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (earlier versions ask licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.",
   },
   {
     claim: "Exports are local.",
     detail:
-      "The CSV export is generated in your browser and saved by your browser, to wherever your downloads go. It does not pass through any service of ours.",
+      "The CSV export is generated in your browser and saved by your browser, to wherever your downloads go. It does not pass through any service of ours. Once saved, the file is yours, under your school's own rules for files.",
+  },
+  {
+    claim: "Removing it removes what it stored.",
+    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (from version ${next}, on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
   },
 ] as const;
 
 /**
  * The extension's security posture, for the Security page. Each line is a
- * claim about the 0.8.2 build that can be checked against its source and
- * tests; when the extension changes, this changes with it.
+ * claim about the published build (`current`) or the reviewed next one
+ * (`next`) that can be checked against the extension's source, tests,
+ * SECURITY.md and docs/security-review.md; when the extension changes, this
+ * changes with it.
  */
 export const security = {
-  /** The extension version these statements describe. */
-  version: "0.8.2",
-  /** The independent adversarial review. */
-  review: {
-    date: "2026-10-01",
-    label: "1 October 2026",
-  },
+  /** The published version these statements describe. */
+  version: extensionVersions.current,
+  /** The reviewed version not yet published, which they also describe. */
+  next: extensionVersions.next,
+  supportedFrom: extensionVersions.supportedFrom,
+  /** The adversarial reviews, oldest first. */
+  reviews: [
+    {
+      date: "2026-10-01",
+      label: "1 October 2026",
+      version: extensionVersions.current,
+      findings: "1 to 12",
+    },
+    {
+      date: "2026-10-06",
+      label: "6 October 2026",
+      /** The code reviewed: the 0.8.4 patch, the rebuild's first steps. Its
+          fixes are in every later release, and in `next`. */
+      version: "0.8.4",
+      findings: "13 to 16",
+    },
+  ],
   /** How to report a vulnerability. */
   report: {
     email: "security@nyuchi.com",
@@ -170,6 +302,23 @@ export const security = {
 export const securityMailto = `mailto:${security.report.email}?subject=${encodeURIComponent(
   security.report.subject,
 )}`;
+
+/**
+ * Who owns the extension, said once: the terms, the product page and
+ * llms.txt. The extension is proprietary. Schools may read its code to check
+ * what it does (their privacy reviews depend on it), but a licence grants
+ * use, not ownership, and the code may not be reused elsewhere.
+ */
+export const ownership = {
+  owner: `${legal.operator}, part of ${legal.entity}`,
+  statement: `The Toddle Enhancement Extension and its code belong to ${legal.operator}, part of ${legal.entity}. All rights reserved. It is not open source.`,
+  licence:
+    "A licence lets you use the extension. It does not give you ownership of it, or of any part of its code.",
+  noReuse:
+    "You may not copy, modify, reuse or redistribute its code, in whole or in part, in another product or service, without our written permission.",
+  reading:
+    "Reading the code to check what it does is fine, and we encourage it: a school should be able to see for itself what software does with its data.",
+} as const;
 
 /** Toddle is not ours. Said in the footer, the terms and the product page. */
 export const toddleNotice =

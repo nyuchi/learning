@@ -92,6 +92,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
         label: "Deploy to a school",
         href: "/toddle-enhancement-extension#install",
       },
+      { label: "Releases", href: "/toddle-enhancement-extension/releases" },
       { label: "Send feedback", href: "/feedback" },
       { label: "Get in touch", href: "mailto:support@nyuchi.com" },
     ],
@@ -169,6 +170,14 @@ export const toddleExtension = {
   supportEmail: "support@nyuchi.com",
   /** Mailto used while there is no store listing, and for school enquiries. */
   enquiry: "mailto:support@nyuchi.com?subject=Toddle%20Enhancement%20Extension",
+  /** "How to use the Toddle Enhancement Extension" in Nyuchi's help centre:
+      the page the extension's own Help button opens. */
+  help: "https://support.nyuchi.com/en/collections/19764027-how-to-use-the-toddle-enhancement-extension",
+  /** The Chrome Web Store's update URL, for force-install policies set
+      outside the Google Admin console. */
+  storeUpdateUrl: "https://clients2.google.com/service/update2/crx",
+  /** The licence server's host, which a school's network should allow. */
+  licenceHost: "licenses.nyuchi.com",
 } as const;
 
 /**
