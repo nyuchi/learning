@@ -57,7 +57,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   primary teacher names; the Attendance dashboard's year groups and the
   teacher of each student's current class; and, in the sidebar, the
   student's details, contacts, classes, today's timetable and attendance,
-  and their active flags. It notes the sign-in headers and
+  and their flags. It notes the sign-in headers and
   academic year from Toddle's own requests only to ask Toddle as the
   teacher; it never asks for a password. Nothing it reads leaves the browser
   except back to Toddle; it transmits nothing from Toddle to anyone else: no
@@ -68,9 +68,10 @@ community-based platforms. Nyuchi Web Services is its development division.
   email domain), which is compared with the signed-in Toddle account inside
   the browser only. An organisation licence is one key for the school's
   email domain: anyone signed in to Toddle with an address at that domain is
-  covered. From version 0.9.0 the sidebar asks Toddle for a student's flags
-  each time it opens,
-  and keeps them only while it is open. Apart
+  covered. From version 0.9.0 the sidebar asks Toddle for a student's
+  active flags each time it opens, and keeps them only while it is open; in
+  version 0.8.2, while flags are hidden, it asks only when someone presses
+  its eye button. Apart
   from Toddle, it has two outside connections, neither carrying Toddle
   data. (1) Opt-in feedback: the toolbar menu's "Send feedback" form, which, only when the person presses
   Send, sends what they typed (topic, message, and an email only if they
