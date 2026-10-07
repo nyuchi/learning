@@ -135,6 +135,36 @@ export const extensionVersions = {
 const { current, next } = extensionVersions;
 
 /**
+ * The licence key and Chrome sync, said once. From 0.9.0 the key alone is
+ * also kept in chrome.storage.sync, so it follows the teacher's own Chrome
+ * account. That is Chrome's sync, not Nyuchi's: the extension never sends the
+ * key to Nyuchi. Checked against the extension's SECURITY.md and
+ * docs/data-schema.md (the `licence` key).
+ */
+export const licenceSync = {
+  /** One sentence, for summaries. */
+  short: `From version ${next}, your licence key also follows your own Chrome account to your other computers, through Chrome's sync; it is never sent to Nyuchi.`,
+  /** The full account, for the data pages. */
+  detail: `From version ${next}, the licence key, and nothing else, is also kept in Chrome's synced storage for the extension, so Chrome carries it to the other computers signed in to the same Chrome account, unless sync, or a school's Chrome policy, turns that off. That is Chrome's own sync, through your Google account; the extension never sends the key to Nyuchi. A key carries the buyer's email address, so that travels with it. The newest key wins on every computer, and removing it on one removes it on all of them. Who a key is for, and the result of the check for cancelled keys, stay on each computer.`,
+  /** For "what leaves the device". */
+  leaves: `One thing more leaves your device from version ${next}, and not to us: with Chrome sync on, Chrome carries your licence key to your other computers through your own Chrome account. The extension itself never sends the key anywhere, Nyuchi included.`,
+} as const;
+
+/**
+ * The upgrade from an individual licence to the school's, said once: the
+ * product page and llms.txt. The code is shown in the shipped extension
+ * (0.9.0) to individual licence holders, and works on the organisation
+ * licence only.
+ */
+const upgradeCode = "BXXF20VA";
+const upgradeOff = "US$7";
+export const upgrade = {
+  code: upgradeCode,
+  off: upgradeOff,
+  text: `Already have an individual licence? Bring your whole school in. From version ${next} the extension's licence page shows individual licence holders the upgrade, with the code ${upgradeCode}, which takes ${upgradeOff} off the organisation licence (it works on that licence only). Your school's key then replaces yours on every computer.`,
+} as const;
+
+/**
  * Student flags, said once. From 0.9.0 the extension never hides Toddle's own
  * flags: a teacher can conceal them for a shared screen. The wording is
  * "conceal" and "flag visibility", never "hide", and it promises no more than
@@ -187,8 +217,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "Exactly what leaves your device.",
-    detail:
-      "Nothing it reads from Toddle goes anywhere but back to Toddle. There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. The extension makes these requests and no others: read-only requests to Toddle's own interface, with your Toddle session; student photos, loaded from the address Toddle gives for each one, wherever Toddle serves them, as Toddle's own page does; the feedback form, only when you press Send; and, only while a licence key is entered, the daily check for cancelled keys, which carries nothing. The last two are described next. Anything else happens only when you do it: saving a CSV file, opening an email or phone link, or sending a message in Toddle's own chat. Like any web request, each one lets the server that receives it see your IP address and browser type.",
+    detail: `Nothing it reads from Toddle goes anywhere but back to Toddle. There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. The extension makes these requests and no others: read-only requests to Toddle's own interface, with your Toddle session; student photos, loaded from the address Toddle gives for each one, wherever Toddle serves them, as Toddle's own page does; the feedback form, only when you press Send; and, only while a licence key is entered, the daily check for cancelled keys, which carries nothing. The last two are described next. Anything else happens only when you do it: saving a CSV file, opening an email or phone link, or sending a message in Toddle's own chat. Like any web request, each one lets the server that receives it see your IP address and browser type. ${licenceSync.leaves}`,
   },
   {
     claim: "Outside connection one, only when you choose it: feedback.",
@@ -202,7 +231,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "What it stores: settings and licence details, and no student data.",
-    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in version ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage. Version ${current} has three switches: student flags, the student sidebar and primary teacher names.`,
+    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in version ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage. Version ${current} has three switches: student flags, the student sidebar and primary teacher names.`,
   },
   {
     claim: "What it holds in memory, and for how long.",
@@ -212,7 +241,7 @@ export const extensionDataFacts = [
   {
     claim: "Your licence is checked on your machine, not by asking us.",
     detail:
-      "A licence key is a signed statement that the extension verifies locally. It carries the buyer's email address. A key may also name who it is for: the buyer's email, or for an organisation licence the school's email domain. Where it does, the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key contacts nothing, which is why it works without a connection.",
+      "A licence key is a signed statement that the extension verifies locally. It carries the buyer's email address. A key may also name who it is for: the buyer's email, or for an organisation licence the school's email domain. Where it does, the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key contacts nothing, which is why it works without a connection, and the extension never sends the key to Nyuchi.",
   },
   {
     claim:
@@ -227,8 +256,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "Removing it removes what it stored.",
-    detail:
-      "Uninstalling the extension deletes everything in its own storage. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key; the last check's result and the Toddle account's email stay until the extension is uninstalled.",
+    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (from version ${next}, on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
   },
 ] as const;
 

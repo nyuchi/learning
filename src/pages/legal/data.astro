@@ -14,6 +14,7 @@ import {
   extensionVersions,
   flags,
   legal,
+  licenceSync,
   refunds,
   updatedLabel,
 } from "../../data/legal";
@@ -185,7 +186,10 @@ const subprocessors = [
         the Attendance dashboard (version {extensionVersions.current} has three: student
         flags, the student sidebar and primary teacher names);
       </li>
-      <li>the licence key, if one was entered;</li>
+      <li>
+        the licence key, if one was entered (from version {extensionVersions.next} also kept
+        in Chrome's synced storage; see below);
+      </li>
       <li>
         the result of the last check for cancelled keys: whether the key is on the list, the
         list's date and when the check was made, never the list itself;
@@ -207,10 +211,16 @@ const subprocessors = [
       like any other download.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Uninstalling the extension deletes everything in its own storage. The four values on
-      Toddle's site stay until the browser's data for <code>web.toddleapp.com</code> is
-      cleared. Removing a licence key deletes the key; the last check's result and the
-      account email stay until the extension is uninstalled.
+      {licenceSync.detail}
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Uninstalling the extension deletes everything in its own storage on that computer.
+      The four values on Toddle's site stay until the browser's data for
+      <code>web.toddleapp.com</code> is cleared. Removing a licence key deletes the key (from
+      version {extensionVersions.next}, on every computer signed in to the same Chrome
+      account, so remove it before uninstalling if you want it gone from your Chrome account
+      too); the last check's result and the account email stay until the extension is
+      uninstalled.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What leaves the browser</h2>
@@ -250,6 +260,9 @@ const subprocessors = [
       email (<code>mailto:</code>) or phone (<code>tel:</code>) link, or sending a message in
       Toddle's own chat. Like any web request, each request above lets the server that
       receives it see the device's IP address and browser type.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      {licenceSync.leaves}
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       A licence key carries the buyer's email address, and may also name who it is for:
