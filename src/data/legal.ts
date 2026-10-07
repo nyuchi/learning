@@ -114,28 +114,28 @@ export const pricing = [
  * (0.9.0, …) is released from the extension's `main` branch and published to
  * the store. Teachers get minors.
  *
- * `current` is what teachers have from the Chrome Web Store (the v0.8.3 tag
- * carries the same code). `next` is the next minor: everything under
- * Unreleased in the extension's changelog, reviewed, already in the patch
- * releases up to `latestPatch`, and not yet on the store. Claims that differ
- * between the two say "from version 0.9.0" and say what `current` does, so
- * they stay true on both sides of the release. When `next` ships, move it to
- * `current` and drop the "before" wording.
+ * `current` is what teachers have from the Chrome Web Store: 0.9.0, published
+ * on 7 October 2026. `previous` is the store release before it, named only
+ * where something it did still matters to a teacher updating from it (flags
+ * it hid stay concealed), said as history. What changed in the test builds
+ * between the two (0.8.3 carried 0.8.2's code) is said as "versions before
+ * `current`": the old licence host and the old flags storage key. There is no `next` while no minor is reviewed and waiting for the
+ * store. When one is, add `next` here, say "from version <next>" and what
+ * `current` does wherever the two differ, so each claim stays true on both
+ * sides of the release; when it ships, move it to `current` and drop that
+ * wording again.
  */
 export const extensionVersions = {
-  current: "0.8.2",
-  sameCodeAs: "0.8.3",
-  next: "0.9.0",
-  /** The newest patch release (GitHub only, for testing). */
-  latestPatch: "0.8.13",
+  current: "0.9.0",
+  previous: "0.8.2",
   /** The oldest version security reports are accepted for. */
   supportedFrom: "0.8.2",
 } as const;
 
-const { current, next } = extensionVersions;
+const { current, previous } = extensionVersions;
 
 /**
- * The licence key and Chrome sync, said once. From 0.9.0 the key alone is
+ * The licence key and Chrome sync, said once. Since 0.9.0 the key alone is
  * also kept in chrome.storage.sync, so it follows the teacher's own Chrome
  * account. That is Chrome's sync, not Nyuchi's: the extension never sends the
  * key to Nyuchi. Checked against the extension's SECURITY.md and
@@ -143,11 +143,11 @@ const { current, next } = extensionVersions;
  */
 export const licenceSync = {
   /** One sentence, for summaries. */
-  short: `From version ${next}, your licence key also follows your own Chrome account to your other computers, through Chrome's sync; it is never sent to Nyuchi.`,
+  short: `Your licence key also follows your own Chrome account to your other computers, through Chrome's sync; it is never sent to Nyuchi.`,
   /** The full account, for the data pages. */
-  detail: `From version ${next}, the licence key, and nothing else, is also kept in Chrome's synced storage for the extension, so Chrome carries it to the other computers signed in to the same Chrome account, unless sync, or a school's Chrome policy, turns that off. That is Chrome's own sync, through your Google account; the extension never sends the key to Nyuchi. A key carries the buyer's email address, so that travels with it. The newest key wins on every computer, and removing it on one removes it on all of them. Who a key is for, and the result of the check for cancelled keys, stay on each computer.`,
+  detail: `The licence key, and nothing else, is also kept in Chrome's synced storage for the extension, so Chrome carries it to the other computers signed in to the same Chrome account, unless sync, or a school's Chrome policy, turns that off. That is Chrome's own sync, through your Google account; the extension never sends the key to Nyuchi. A key carries the buyer's email address, so that travels with it. The newest key wins on every computer, and removing it on one removes it on all of them. Who a key is for, and the result of the check for cancelled keys, stay on each computer.`,
   /** For "what leaves the device". */
-  leaves: `One thing more leaves your device from version ${next}, and not to us: with Chrome sync on, Chrome carries your licence key to your other computers through your own Chrome account. The extension itself never sends the key anywhere, Nyuchi included.`,
+  leaves: `One thing more leaves your device, and not to us: with Chrome sync on, Chrome carries your licence key to your other computers through your own Chrome account. The extension itself never sends the key anywhere, Nyuchi included.`,
 } as const;
 
 /**
@@ -161,11 +161,11 @@ const upgradeOff = "US$7";
 export const upgrade = {
   code: upgradeCode,
   off: upgradeOff,
-  text: `Already have an individual licence? Bring your whole school in. From version ${next} the extension's licence page shows individual licence holders the upgrade, with the code ${upgradeCode}, which takes ${upgradeOff} off the organisation licence (it works on that licence only). Your school's key then replaces yours on every computer.`,
+  text: `Already have an individual licence? Bring your whole school in. The extension's licence page shows individual licence holders the upgrade, with the code ${upgradeCode}, which takes ${upgradeOff} off the organisation licence (it works on that licence only). Your school's key then replaces yours on every computer.`,
 } as const;
 
 /**
- * Student flags, said once. From 0.9.0 the extension never hides Toddle's own
+ * Student flags, said once. Since 0.9.0 the extension never hides Toddle's own
  * flags: a teacher can conceal them for a shared screen. The wording is
  * "conceal" and "flag visibility", never "hide", and it promises no more than
  * the extension does: how a concealed flag looks is still being refined, so
@@ -173,12 +173,11 @@ export const upgrade = {
  * Checked against the extension's SECURITY.md and docs/data-schema.md.
  */
 export const flags = {
-  summary: `From version ${next}, the extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room.`,
+  summary: `The extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room.`,
   reveal:
     'In the student sidebar, "Show flags" shows one student\'s flags when you need them.',
   limit:
     "Concealing is a screen, not a lock. A concealed flag can still show that a student has a flag. Concealing changes only what is drawn on the screen, never Toddle's data, and does not stop anyone at the computer opening a student's flags in Toddle.",
-  before: `In version ${current}, on the Chrome Web Store today, the extension hides flags from the start, and the switch shows or hides them.`,
 } as const;
 
 /**
@@ -207,7 +206,7 @@ export const extensionDataFacts = [
   {
     claim:
       "Student flags: Toddle's own are never hidden, and a teacher can conceal them for a shared screen.",
-    detail: `From version ${next}, the extension no longer hides Toddle's own student flags: they show as Toddle shows them, including in Toddle's student popover, with their links and documents. A teacher can choose to conceal flags, for a screen a class or a visitor can see, with the free flag switch in Toddle's top bar or the extension's menu. A new install starts with flags shown. A teacher updating from version ${current}, where flags were hidden by default, or who had hidden them, has them concealed after the update. A concealed flag is a faint grey smudge with no colour, and its words cannot be read from across a room, though it can still show that a student has a flag. Nothing on the page brings a concealed flag back. ${flags.reveal} The sidebar asks Toddle for a student's active flags each time it opens, and keeps them only while that student's sidebar is open. Concealing changes only what is drawn on the screen, never Toddle's data. ${flags.before} In that version, while flags are hidden, the sidebar asks for a student's flags only when someone presses its eye button. The flag switch is free and always will be.`,
+    detail: `The extension does not hide Toddle's own student flags: they show as Toddle shows them, including in Toddle's student popover, with their links and documents. A teacher can choose to conceal flags, for a screen a class or a visitor can see, with the free flag switch in Toddle's top bar or the extension's menu. A new install starts with flags shown. A teacher who updated from version ${previous}, where flags were hidden by default, or who had hidden them, has them concealed after the update until they choose to show them. A concealed flag is a faint grey smudge with no colour, and its words cannot be read from across a room, though it can still show that a student has a flag. Nothing on the page brings a concealed flag back. ${flags.reveal} The sidebar asks Toddle for a student's active flags each time it opens, and keeps them only while that student's sidebar is open. Concealing changes only what is drawn on the screen, never Toddle's data. The flag switch is free and always will be.`,
   },
   {
     claim: "Your Toddle sign-in stays with Toddle.",
@@ -230,7 +229,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "What it stores: settings and licence details, and no student data.",
-    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in version ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage. Version ${current} has three switches: student flags, the student sidebar and primary teacher names.`,
+    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in versions before ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage.`,
   },
   {
     claim: "What it holds in memory, and for how long.",
@@ -245,7 +244,7 @@ export const extensionDataFacts = [
   {
     claim:
       "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
-    detail: `At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (from version ${next}; version ${current}, on the Chrome Web Store today, asks licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
+    detail: `At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (versions before ${current} asked licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
   },
   {
     claim: "Exports are local.",
@@ -254,22 +253,19 @@ export const extensionDataFacts = [
   },
   {
     claim: "Removing it removes what it stored.",
-    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (from version ${next}, on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
+    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
   },
 ] as const;
 
 /**
  * The extension's security posture, for the Security page. Each line is a
- * claim about the published build (`current`) or the reviewed next one
- * (`next`) that can be checked against the extension's source, tests,
+ * claim about the published build (`current`) that can be checked against the extension's source, tests,
  * SECURITY.md and docs/security-review.md; when the extension changes, this
  * changes with it.
  */
 export const security = {
   /** The published version these statements describe. */
   version: extensionVersions.current,
-  /** The reviewed version not yet published, which they also describe. */
-  next: extensionVersions.next,
   supportedFrom: extensionVersions.supportedFrom,
   /** The adversarial reviews, oldest first. */
   reviews: [
@@ -284,7 +280,7 @@ export const security = {
       date: "2026-10-06",
       label: "6 October 2026",
       /** The code reviewed: the 0.8.4 patch, the rebuild's first steps. Its
-          fixes are in every later release, and in `next`. */
+          fixes are in every later release, and in 0.9.0. */
       version: "0.8.4",
       findings: "13 to 16",
     },

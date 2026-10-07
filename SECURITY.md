@@ -5,7 +5,8 @@ Vercel, and the home of the Toddle Enhancement Extension.
 
 The extension's own security model, how it is tested, and its adversarial
 reviews of 1 October 2026 (0.8.2) and 6 October 2026 (0.8.4, a test build;
-its fixes reach schools in 0.9.0), with their findings and the limits of code that runs in Toddle's
+its fixes reached schools in 0.9.0, on the Chrome Web Store from 7 October
+2026), with their findings and the limits of code that runs in Toddle's
 page, are published for schools at
 [learning.nyuchi.com/legal/security](https://learning.nyuchi.com/legal/security).
 The vulnerability disclosure policy, covering this site, the extension and the
