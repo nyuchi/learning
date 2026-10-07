@@ -104,10 +104,9 @@ describe("the extension page", () => {
     expect(extensionPage).not.toMatch(/Present mode/);
   });
 
-  /* From 0.9.0 the extension never hides Toddle's own flags: a teacher
+  /* Since 0.9.0 the extension never hides Toddle's own flags: a teacher
      conceals them for a shared screen. "Hide flags" would promise the old
-     behaviour. Only the line about 0.8.2 (`flags.before` in legal.ts) may
-     say what that version did. */
+     behaviour. */
   it("says flags are concealed, not hidden", () => {
     for (const source of [extensionPage, home]) {
       expect(source).not.toMatch(/\bhid(e|es|ing) (student |toddle's )?flags/i);

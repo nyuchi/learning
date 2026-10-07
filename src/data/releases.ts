@@ -66,7 +66,8 @@ export const testBuilds = {
 export const releases: Release[] = [
   {
     version: "0.9.0",
-    status: "coming",
+    status: "store",
+    date: "2026-10-07",
     summary:
       "Everything since 0.8.2, in one release: student flags you control with one switch, a sidebar that tells you more about the people around a student, a licence that follows your Chrome account, and the extension rebuilt so that Toddle's own page can't reach into it.",
     sections: [
