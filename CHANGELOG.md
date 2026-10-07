@@ -2,8 +2,8 @@
 
 From this release the site's versions are its git tags, under the org's
 versioning policy: each merge into `staging` is a patch tag (v0.0.4 to
-v0.0.9 so far), each release to `main` the next minor. The 3.x numbers
-below were the site's earlier, hand-kept numbering and are retired; the
+v0.0.9 so far), each release to `main` the next minor. The 3.x and 2.x
+numbers below were the site's earlier, hand-kept numbering and are retired; the
 `version` in package.json is not the release version.
 
 ## 0.1.0 — 2026-10-07
@@ -44,9 +44,9 @@ Store review; the site describes it as the next version until it is live.
 - **The licence server's address is `licenses.nyuchi.com`.** The privacy
   policy, the data and security pages, the vulnerability disclosure scope,
   the extension page's allowlist note, llms.txt and SECURITY.md name the new
-  host for the daily check for cancelled keys, and say that earlier versions
-  of the extension ask `licences.nyuchi.dev`, the same server, which still
-  answers. The legal pages' date moves to 7 October 2026.
+  host for the daily check for cancelled keys from version 0.9.0, and say
+  that 0.8.2, on the store today, asks `licences.nyuchi.dev`, the same
+  server, which still answers. The legal pages' date moves to 7 October 2026.
 - **@bundu/ui 0.5.0** (was 0.1.1): the kit's updated tokens. The page
   background is a cooler, neutral off-white; layout, type, buttons and the
   Nyuchi brand colours are unchanged. Every check and test passes as before.
