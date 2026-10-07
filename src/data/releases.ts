@@ -68,7 +68,7 @@ export const releases: Release[] = [
     version: "0.9.0",
     status: "coming",
     summary:
-      "Everything since 0.8.2, in one release: student flags you control with one switch, a sidebar that tells you more about the people around a student, and the extension rebuilt so that Toddle's own page can't reach into it.",
+      "Everything since 0.8.2, in one release: student flags you control with one switch, a sidebar that tells you more about the people around a student, a licence that follows your Chrome account, and the extension rebuilt so that Toddle's own page can't reach into it.",
     sections: [
       {
         heading: "Student flags: shown, or concealed",
@@ -96,8 +96,24 @@ export const releases: Release[] = [
         items: [
           "My classes switches on and off at once, and stays right at schools with long course lists.",
           "The gradebook tools and the Attendance dashboard's details are rebuilt, and look and work as before. Grade scale colours from your school's Toddle now show in the expanded columns.",
-          "The Attendance dashboard's Excusals tab gets the same details as the Students tab: each student's year group and, today, the class they are in right now with its primary teacher.",
+          "The Attendance dashboard's Excusals tab gets the same details as the Students tab: each student's year group and, today, the class they are in right now with its primary teacher. A new “Time out” column, its header lined up over its values, says how long each excusal keeps a student out: “1 day”, the school days, or the real times from the day's timetable.",
           "A switch for every feature in the toolbar menu, grouped by where it works, with a master switch that turns everything off.",
+        ],
+      },
+      {
+        heading: "Easier to read",
+        items: [
+          "Text and icons are the right size again. Toddle sets its page's base font size to 10px, which shrank everything the extension drew on Toddle to 62.5% of its size: 7.5px text and 10px icons. They now match Toddle's own text.",
+          "A flag's text keeps the shape it was written in: paragraphs, line breaks, headings, lists, bold, italic, code and links (https only), instead of running together as one long paragraph. It is built as page elements, never inserted as HTML.",
+        ],
+      },
+      {
+        heading: "Your licence, and buying one",
+        items: [
+          "Your licence follows your Chrome account. Enter a key once and Chrome's own sync carries it to every computer signed in to the same Chrome account. The newest key wins, and removing it on one computer removes it on all of them. The key is never sent to Nyuchi.",
+          "Both plans are in the extension: the welcome page and the licence page show Individual and Organisation, each with its own checkout, and your key arrives by email. “See plans” in the toolbar menu opens them.",
+          "If you have an individual licence, the extension offers the upgrade to your school's licence instead, with a code that takes money off the organisation licence. Your school's key then replaces yours on every computer.",
+          "For IT teams who load the extension unpacked: each release's unpacked copy now carries the Chrome Web Store's extension ID, so a synced licence reaches it too.",
         ],
       },
       {
@@ -105,7 +121,7 @@ export const releases: Release[] = [
         items: [
           "The flags switch, the student sidebar, My classes and teacher names, the gradebook's toolbar and controls, and the Attendance dashboard's details now run in the extension's own part of the browser, inside closed shadow roots that no script on Toddle's page can read or click into. Whether each one runs is decided by your switches and licence, never by Toddle's page.",
           "Each rebuilt part was given its own security review on 6 October 2026, as were flag visibility and the sidebar's new staff and class views. Everything they found is fixed, each with a test. The Security page has the details.",
-          "Nothing new is read from Toddle and nothing new is sent anywhere.",
+          "Nothing new is read from Toddle, and the extension sends nothing new anywhere. The one change is Chrome's: it now syncs your licence key through your own Chrome account, never to Nyuchi.",
         ],
       },
     ],
