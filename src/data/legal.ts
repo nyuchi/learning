@@ -61,7 +61,7 @@ export const dataProtection = {
   },
 } as const;
 
-/** The date above as people write it: "6 October 2026". */
+/** The date above as people write it: "7 October 2026". */
 export const updatedLabel = new Date(
   `${legal.updated}T00:00:00Z`,
 ).toLocaleDateString("en-GB", {
@@ -246,8 +246,7 @@ export const extensionDataFacts = [
   {
     claim:
       "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
-    detail:
-      "At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (earlier versions ask licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.",
+    detail: `At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (from version ${next}; version ${current}, on the Chrome Web Store today, asks licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
   },
   {
     claim: "Exports are local.",
