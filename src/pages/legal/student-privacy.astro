@@ -7,7 +7,13 @@
  * enforced by the extension's closed-loop tests.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, updatedLabel } from "../../data/legal";
+import {
+  dataProtection,
+  extensionVersions,
+  flags,
+  legal,
+  updatedLabel,
+} from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Student privacy — Nyuchi Learning";
@@ -53,12 +59,13 @@ const privacyMail = `mailto:${legal.privacyEmail}`;
       </li>
       <li>It is processed in that teacher's browser, on that device, and nowhere else.</li>
       <li>
-        It is not stored: answers are held in the page's memory for a few minutes and are gone
-        when the tab closes.
+        It is not stored: answers are held in the Toddle tab's memory until the tab is closed
+        or reloaded, and never written to storage.
       </li>
       <li>
-        It is not transmitted to Nyuchi or to anyone else. The extension's only connections
-        outside Toddle are the opt-in feedback form, which carries only what the teacher
+        It is not transmitted to Nyuchi or to anyone else. Apart from Toddle itself (its own
+        interface, and student photos from wherever Toddle serves them), the extension's
+        only connections are the opt-in feedback form, which carries only what the teacher
         types, and, while a licence is entered, a daily check for cancelled keys, which
         sends no data.
       </li>
@@ -67,6 +74,23 @@ const privacyMail = `mailto:${legal.privacyEmail}`;
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       The school stays in control of its students' data through Toddle, exactly as before:
       who can see what is still decided by the school's Toddle permissions.
+    </p>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Student flags</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Toddle lets a school mark students with flags, and those flags are the most sensitive
+      thing a teacher's screen can show. From version {extensionVersions.next}, the
+      extension no longer hides Toddle's own flags, so staff see what the school has recorded.
+      What it adds is flag visibility for a shared screen: a teacher can conceal flags
+      with one free switch before the screen is shown to a class, a parent or a visitor,
+      so what a flag says cannot be read from across the room. {flags.reveal}
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      From version {extensionVersions.next}, the sidebar reads a student's active flags from
+      Toddle each time it opens. {flags.before} In that version, while flags are hidden, it
+      asks only when someone presses its eye button. The sidebar shows them
+      in that teacher's browser only, and forgets them when it closes. They are never
+      stored and never sent anywhere. {flags.limit}
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">FERPA</h2>
@@ -82,9 +106,13 @@ const privacyMail = `mailto:${legal.privacyEmail}`;
       by children, and the student information it shows to staff is not collected by Nyuchi.
     </p>
 
-    <h2 class="font-serif text-h3 text-foreground mt-12">GDPR, UK GDPR and similar laws</h2>
+    <h2 class="font-serif text-h3 text-foreground mt-12">
+      GDPR, UK GDPR, Zimbabwe's Act and similar laws
+    </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      The school remains the controller of its student data, and Toddle its processor.
+      Nyuchi follows Zimbabwe's {dataProtection.home.law} and the EU and UK GDPR (see
+      <a class="link" href="/legal/privacy#law">the law we follow</a>). Under all of them,
+      the school remains the controller of its student data, and Toddle its processor.
       Nyuchi receives none of that data from the extension. See
       <a class="link" href="/legal/data">data handling</a> for what Nyuchi does hold, about
       purchasers and people who send feedback.

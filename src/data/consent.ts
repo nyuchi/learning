@@ -1,8 +1,9 @@
 /**
  * What this site asks consent for, declared once.
  *
- * Three regimes apply to the people who read this site — staff at
- * international schools — and they agree on more than they differ:
+ * Two laws set the standard (legal.ts, dataProtection): Zimbabwe's Act,
+ * because Nyuchi is Zimbabwean, and the EU and UK GDPR, the most widely used,
+ * applied to everyone. They agree on more than they differ:
  *
  *   UK/EU GDPR              consent must be freely given, specific, informed
  *                           and unambiguous; granular per purpose, not bundled;
@@ -11,12 +12,8 @@
  *   Zimbabwe CDPA 12:07     "freely given specific and informed indication";
  *                           withdrawal; the controller must be able to show
  *                           consent was obtained
- *   Singapore PDPA          purposes notified before collection; consent not a
- *                           condition of service beyond what is reasonable;
- *                           withdrawal honoured
  *
- * The shared requirements drive the design, so one implementation serves all
- * three: nothing optional is on until it is chosen, each purpose is chosen
+ * The shared requirements drive the design, so one implementation serves both: nothing optional is on until it is chosen, each purpose is chosen
  * separately, refusing everything is one press, and the record carries a
  * timestamp and a version so it can be produced later.
  *
@@ -27,9 +24,9 @@
  * two third parties.
  *
  * This is the engineering, not legal advice. Someone qualified should read the
- * privacy policy before it is relied on, and the PDPA separately expects a named
- * data protection officer whose business contact details are published — that is
- * a person to appoint, not a thing to code.
+ * privacy policy before it is relied on. Zimbabwe's licensing regulations for
+ * data controllers also expect a data protection officer to be appointed — a
+ * person to appoint, not a thing to code.
  */
 
 export type ConsentCategory = {

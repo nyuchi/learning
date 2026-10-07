@@ -11,7 +11,7 @@
  * document for their own products; they set them, and they can change them.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, updatedLabel } from "../../data/legal";
+import { extensionVersions, legal, licenceSync, updatedLabel } from "../../data/legal";
 import { CONSENT_KEY } from "../../data/consent";
 import { analytics, toddleExtension } from "../../data/site";
 
@@ -193,13 +193,21 @@ const rows = [
       The extension
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      The {toddleExtension.name} sets no cookies and contains no analytics. It keeps your
-      switch settings and your licence key, if you have one, in Chrome's storage for the
-      extension, on your own device. On Toddle's own site it also keeps a few housekeeping
-      values in the browser's storage: a copy of the switches and of which features the
-      licence allows (not the key), whether flags are hidden, the My classes choice, the
-      number of the academic year Toddle is showing, and the style of Toddle's message
-      button. None of it is about a student, and none of it is sent anywhere. The
+      The {toddleExtension.name} sets no cookies and contains no analytics. In Chrome's
+      storage for the extension, on your own device, it keeps your switch settings, your
+      licence key if you have one, the result of its last check for cancelled keys, and the
+      email address of the Toddle account last seen signed in, so it can check who a
+      licence is for. On Toddle's own site it keeps four small values in the browser's
+      storage: <code>tee-settings</code>, a copy of the switches and of which features the
+      licence allows (not the key, and no email); <code>tee-blur-flags</code> (<code
+        >gbx-hide-flags</code
+      > in version {extensionVersions.current}), whether flags are concealed;
+      <code>tee-course-view</code>, whether you chose My classes in the
+      home page filter; and <code>tee-academic-year</code>, the number of the academic year
+      Toddle is showing. None of it is about a student, and the extension sends none of it
+      anywhere. {licenceSync.short}
+      Uninstalling the extension deletes its own storage on that computer; the four values on Toddle's site
+      stay until you clear the browser's data for Toddle's site. The
       <a class="link" href="/legal/data">data handling</a> and
       <a class="link" href="/legal/security">security</a> pages have the detail.
     </p>

@@ -8,17 +8,28 @@
  * be linked to; what they say is set out here instead, and the full reporting
  * policy is at /legal/vulnerability-disclosure.
  *
- * Every statement is about the build named in `security.version`
- * (src/data/legal.ts). When the extension's security model changes, this page
- * changes with it, and the date at the top moves.
+ * Every statement is about the published build named in `security.version`
+ * and the reviewed next one in `security.next` (src/data/legal.ts); where they
+ * differ, the page says which. When the extension's security model changes,
+ * this page changes with it, and the date at the top moves.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, security, securityMailto, updatedLabel } from "../../data/legal";
+import {
+  extensionVersions,
+  flags,
+  legal,
+  licenceSync,
+  security,
+  securityMailto,
+  updatedLabel,
+} from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Security — Nyuchi Learning";
 const description =
-  "How the Toddle Enhancement Extension is built and tested to keep student data inside Toddle: its permissions, its closed loop, the independent adversarial review of 1 October 2026 and what it fixed, its honest limits, and how to report a vulnerability.";
+  "How the Toddle Enhancement Extension is built and tested to keep student data inside Toddle: its permissions, its closed loop, the adversarial reviews of 1 and 6 October 2026 and what they fixed, its honest limits, and how to report a vulnerability.";
+
+const [firstReview, secondReview] = security.reviews;
 
 /* The summary box. A busy IT lead should be able to stop reading after this. */
 const glance = [
@@ -36,11 +47,12 @@ const glance = [
   {
     label: "Sends",
     value:
-      "Nothing it reads, to anyone but Toddle. Two outside connections, neither carrying Toddle data: feedback, when a person presses Send; and, while a licence is entered, a daily download of a signed list of cancelled keys.",
+      "Nothing it reads, to anyone but Toddle. Besides Toddle itself (its own interface, and student photos from wherever Toddle serves them), two outside connections, neither carrying Toddle data: feedback, when a person presses Send; and, while a licence is entered, a daily download of a signed list of cancelled keys.",
   },
   {
     label: "Stores",
-    value: "Settings and a licence key, on the device. No student data.",
+    value:
+      `Settings, a licence key, the last licence check's result and the email of the Toddle account last seen, on the device; from ${security.next}, the licence key also in Chrome's sync, never sent to Nyuchi. No student data.`,
   },
   {
     label: "Tested",
@@ -49,19 +61,21 @@ const glance = [
   },
   {
     label: "Reviewed",
-    value: `Independent adversarial review, ${security.review.label}. Every finding fixed in ${security.version}.`,
+    value: `Two adversarial reviews: ${firstReview.label}, every finding fixed in ${firstReview.version}; and ${secondReview.label}, every finding fixed in ${secondReview.version}, a test build, whose fixes reach schools in 0.9.0.`,
   },
 ];
 
 const sections = [
   { id: "model", label: "The security model" },
   { id: "testing", label: "How it is tested" },
-  { id: "review", label: "Independent review" },
+  { id: "review", label: "Adversarial reviews" },
   { id: "limits", label: "What no extension can promise" },
   { id: "report", label: "Reporting a vulnerability" },
 ];
 
-/* From the extension's docs/security-review.md, in plain words. */
+/* From the extension's docs/security-review.md, in plain words. The review of
+   1 October 2026, findings 1 to 12 (12 is a verification note, not a
+   vulnerability, and is left out here). */
 const findings = [
   {
     severity: "High",
@@ -127,6 +141,40 @@ const findings = [
   },
 ];
 
+/* The review of 6 October 2026, findings 13 to 16, on the code for 0.8.4. */
+const laterFindings = [
+  {
+    severity: "Medium",
+    finding:
+      "The rebuilt flags code handed over its secret on request. A script in the page could ask it for its state, and the per-load secret came back with the answer.",
+    fix: "It no longer answers requests. The page half always starts first and is told of every change.",
+  },
+  {
+    severity: "Medium",
+    finding:
+      "The key that signs releases could reach third-party build tools. The tools that build the extension's own pages ran with the release job's settings, the signing key among them.",
+    fix: "The page build gets only a short list of ordinary settings. No secret is among them, and one added later would not reach it either.",
+  },
+  {
+    severity: "Low",
+    finding:
+      "An element on Toddle's page could stop the rebuilt features from starting, by taking a name the extension uses to make sure it starts only once.",
+    fix: "Each of those checks now looks for exactly the value the extension sets, which an element on the page cannot be.",
+  },
+  {
+    severity: "Low",
+    finding:
+      "What ships was not scanned. The tests read the source code, but not the built files that ship, with React and the other packages in them.",
+    fix: "A test now reads the built files: no eval, no cookie or other side channel, one network call in all of it (the feedback form, never on Toddle's pages), only known addresses, closed shadow roots and no inline script.",
+  },
+  {
+    severity: "Info",
+    finding:
+      "An unused package, a wrong comment in the test runner, and wording in the extension's own documents that claimed more than the code inside Toddle's page can hold.",
+    fix: "Removed and corrected. The limits are set out below.",
+  },
+];
+
 const severityClass: Record<string, string> = {
   High: "badge badge-warning",
   Medium: "badge badge-accent",
@@ -142,9 +190,13 @@ const severityClass: Record<string, string> = {
     <h1 class="font-serif text-h1 text-foreground text-balance">Security</h1>
     <p class="mt-4 text-body-sm text-muted-foreground">
       Last updated {updatedLabel}. Describes the
-      <strong class="text-foreground">{toddleExtension.name}</strong>, version
-      {security.version}. For schools, and for the privacy, legal and IT colleagues who
-      review software on their behalf.
+      <strong class="text-foreground">{toddleExtension.name}</strong>: version {security.version},
+      the one on the Chrome Web Store ({extensionVersions.sameCodeAs} carries the same code),
+      and version {security.next}, the next release on the store, reviewed and not yet
+      published. Between store releases, fixes are tested as patch releases (the newest is
+      {extensionVersions.latestPatch}), which do not go to the store. Where {security.version}
+      and {security.next} differ, this page says so. For schools, and for the privacy, legal and
+      IT colleagues who review software on their behalf.
     </p>
 
     <!-- The summary, for the reader with five minutes. -->
@@ -224,12 +276,16 @@ const severityClass: Record<string, string> = {
       exactly, with variables of the expected shape, and sends only to Toddle's own API,
       checked again immediately before each request. None of the queries writes, and any
       write is refused, so the extension cannot change a gradebook, a record or a setting
-      even by accident.
+      even by accident. On the home page and the Attendance dashboard it adds a few fields
+      to Toddle's own request instead of sending a second one, and takes them out again
+      before Toddle's page sees the answer.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       It reuses the session the teacher is already signed in with, so Toddle answers
-      with what that teacher's account may already see, and no more. It never sees a
-      password. Its message buttons open Toddle's own chat window, on real clicks only;
+      with what that teacher's account may already see, and no more. It never asks for a
+      password. It notes the sign-in headers from Toddle's own requests, in the tab's
+      memory, in one script inside Toddle's page, and sends them nowhere but Toddle; they
+      are never stored. Its message buttons open Toddle's own chat window, on real clicks only;
       the extension sends no message itself, and Toddle's chat applies the school's
       messaging rules.
     </p>
@@ -240,8 +296,9 @@ const severityClass: Record<string, string> = {
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       There is no account, no analytics, no telemetry, no tracking, no advertising and no
       remote code. What the extension reads from Toddle goes back to Toddle's own screen
-      and nowhere else. It makes two connections outside Toddle, and neither carries
-      anything from Toddle:
+      and nowhere else. Besides Toddle itself (its own interface, with the teacher's
+      session, and student photos from the address Toddle gives for each one), it makes
+      two connections, and neither carries anything from Toddle:
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
@@ -255,56 +312,90 @@ const severityClass: Record<string, string> = {
         <a class="link" href="/legal/privacy#extension-feedback">privacy policy</a>.
       </li>
       <li>
-        <strong class="text-foreground">A daily check for cancelled keys.</strong> Once a
-        day, only while a licence is entered, the background worker makes one plain request
-        to <code class="break-all">https://licences.nyuchi.dev/v1/revocations</code>. It
+        <strong class="text-foreground">A daily check for cancelled keys.</strong> At most
+        once a day, only while a licence is entered, the background worker makes one plain request
+        to <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (from version
+        {extensionVersions.next}; version {extensionVersions.current}, on the store today, asks
+        <code>licences.nyuchi.dev</code>, the same server). It
         sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a
         list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, and
         checks its own key against it locally. Cloudflare sees the IP address, as with any
-        web request; Nyuchi does not log it. If the check fails, the extension keeps
-        working.
+        web request; Nyuchi does not log it. If the list cannot be fetched, the last result
+        stands, so a network outage never switches a licence off.
       </li>
     </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Anything else happens only when the teacher does it: saving a CSV file, opening an
+      email or phone link, or sending a message in Toddle's own chat.
+    </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">Licence keys are checked on the device</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       A licence key is a signed statement that the extension verifies on the device,
-      against a public key it carries. Licences are tied to their owner: an individual key
-      carries the buyer's email address, and an organisation key the school's email domain.
-      The extension compares that with the Toddle account signed in, inside the browser
-      only. Activating a key contacts nothing, and the key is never sent anywhere. It is
-      kept in the extension's own storage, which Toddle's page cannot reach.
+      against a public key it carries. A key carries the buyer's email address, and may
+      also name who it is for: the buyer's email, or for an organisation licence the
+      school's email domain. Where it does, the extension compares that with the Toddle
+      account signed in, inside the browser only, and sends it nowhere. A key that names no one
+      works for any account until it expires. Activating a key contacts nothing, and the
+      extension never sends the key to Nyuchi or anywhere else. It is kept in the
+      extension's own storage, which Toddle's page cannot reach. {licenceSync.detail}
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">No student data on the device</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
-      The extension stores the teacher's switch settings and licence key, plus a few
-      housekeeping values in Toddle's own site storage (a copy of the switches, the
-      academic year Toddle is showing, and a style name). No student data is stored
-      anywhere. What it reads about students, classes and timetables is held in memory for
-      at most a few minutes and is gone when the tab closes. Student flags are hidden by
-      default; the sidebar fetches a student's flags only when someone chooses to show
-      them, and forgets them when it closes. The CSV export is made in the browser and saved
-      where the teacher's downloads go, by the teacher's choice.
+      In the extension's own storage: the teacher's switches, the licence key if one was
+      entered (from {security.next}, also in Chrome's sync), the result of the last check for cancelled keys, and the email of the
+      Toddle account last seen signed in, to check who a licence is for. In Toddle's own
+      site storage, four housekeeping values: a copy of the switches and of which features
+      the licence allows, whether flags are concealed, the My classes choice, and the
+      academic year Toddle is showing. No student data is stored anywhere. What it reads about
+      students, classes and timetables is held in the Toddle tab's memory until the tab is
+      closed or reloaded; a student's or a class's details are reused for at most 5
+      minutes, and a student's day for at most 2, before Toddle is asked again.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      From version {security.next}, the extension no longer hides Toddle's own student flags; a
+      staff member can choose to conceal them for a shared screen with the free flag
+      switch. The sidebar asks Toddle for a student's flags each time it opens, and keeps
+      them only while it is open. {flags.before} The CSV export is made in the browser and
+      saved where the teacher's downloads go, by the teacher's choice.
+    </p>
+
+    <h3 class="font-serif text-h5 text-foreground mt-8">
+      Out of Toddle's page, into closed shadow roots
+    </h3>
+    <p class="mt-2 text-body text-muted-foreground text-pretty">
+      The extension is being rebuilt so that as little of it as possible runs where
+      Toddle's own scripts run. From version {security.next}, the flag switch, the student
+      sidebar with a class's teachers, the home page's My classes option and teacher
+      names, the gradebook's toolbar and controls, and the Attendance dashboard's details
+      run in the extension's own isolated part of the browser. What they draw on
+      Toddle's pages sits inside closed shadow roots, which no script on Toddle's page can
+      read or click into, and whether each one runs is decided by the extension's own
+      switches and licence, never by Toddle's page. What only Toddle's page holds (who was
+      clicked, the course list as it loads, Toddle's chat and icons) is read by small parts
+      with no interface of their own, which talk to the extension on private channels set
+      up before Toddle's own scripts run.
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">Protections inside the page</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
-      Part of the extension has to run inside Toddle's page to read the gradebook, which
-      means it shares that page with Toddle's own scripts. It is protected as far as a page
-      allows:
+      Part of the extension still has to run inside Toddle's page, to read the gradebook and
+      what Toddle draws, which means it shares that page with Toddle's own scripts. It is
+      protected as far as a page allows:
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
-        The sign-in token stays in Toddle's page. The part of the extension that draws its
-        interface cannot read it.
+        Toddle's sign-in headers stay in one script in Toddle's page. The extension's other
+        parts never see them.
       </li>
       <li>Its public objects are frozen, so a page script cannot rewrite them.</li>
       <li>
         Answers to its queries travel on a private channel, never broadcast, so no other
-        script can read them or answer in their place.
+        script can read them. A script already listening in the page could still answer in
+        their place (see <a class="link" href="#limits">the limits</a>).
       </li>
       <li>
         The query gate uses JavaScript built-ins captured before any page script runs, so a
@@ -313,7 +404,8 @@ const severityClass: Record<string, string> = {
       <li>
         Messages that change what is shown, such as licensed features or student flags,
         carry a secret shared only between the extension's own parts, new on every page
-        load.
+        load. It stops scripts that are not listening for it; a script already listening
+        can read it (see <a class="link" href="#limits">the limits</a>).
       </li>
       <li>
         Text read from Toddle is shown as text and never interpreted as markup, and values
@@ -369,24 +461,28 @@ const severityClass: Record<string, string> = {
 
     <!-- Review -->
     <h2 id="review" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
-      Independent review, {security.review.label}
+      Adversarial reviews
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      On {security.review.label} the extension had an independent adversarial review, with
-      proofs of concept run against the real extension. It considered a malicious script
-      in Toddle's page, a malicious website in another tab, another extension, and crafted
-      responses from Toddle. It found two high-severity issues, one medium and several low.
-      All of them were fixed in version {security.version}, and each fix carries a
-      regression test.
+      The extension has had two adversarial reviews, with proofs of concept run against
+      the real extension. They considered a malicious script in Toddle's page, a malicious
+      website in another tab, another extension, and crafted responses from Toddle. Every
+      finding was fixed, and each fix carries a regression test.
     </p>
 
+    <h3 class="font-serif text-h4 text-foreground mt-8">{firstReview.label}</h3>
+    <p class="mt-2 text-body text-muted-foreground text-pretty">
+      The first review, of the code that became version {firstReview.version} (findings {firstReview.findings}),
+      found two high-severity issues, one medium and several low.
+      All of them were fixed in version {firstReview.version}.
+    </p>
     <div class="mt-6 space-y-4">
       {
         findings.map((item) => (
           <div class="card p-6">
             <p>
               <span class={severityClass[item.severity]}>{item.severity}</span>
-              <span class="ml-2 badge badge-success">Fixed in {security.version}</span>
+              <span class="ml-2 badge badge-success">Fixed in {firstReview.version}</span>
             </p>
             <p class="mt-3 text-body-sm text-foreground/90 text-pretty">{item.finding}</p>
             <p class="mt-2 text-body-sm text-muted-foreground text-pretty">
@@ -399,12 +495,49 @@ const severityClass: Record<string, string> = {
     <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
       The issues were present in released versions from 0.5.0 to 0.8.1, depending on the
       finding. <strong class="text-foreground"
-        >Only {security.version} and later are supported</strong
+        >Only {security.supportedFrom} and later are supported</strong
       >; Chrome updates installed copies from the Chrome Web Store on its own, and a school
       that pins a version should move to the current one. The review also attempted, and
       found held: running a query outside the list, or a write; making the extension send
       to any host but Toddle's; reading the licence key from the page; reaching the feedback
       form from Toddle's page; and opening an extension page from a website.
+    </p>
+
+    <h3 class="font-serif text-h4 text-foreground mt-10">{secondReview.label}</h3>
+    <p class="mt-2 text-body text-muted-foreground text-pretty">
+      The second review covered everything new in version {secondReview.version}, a test
+      release: the extension's own pages, rebuilt; the first rebuilt part that runs on
+      Toddle's pages (the flags switch, in a closed shadow root that no script on the page
+      can reach); the build that makes them; and the new switches. It also re-read the code
+      that runs in Toddle's page against the claims made about it. It found two
+      medium-severity issues and two low (findings {secondReview.findings}). All were fixed
+      in version {secondReview.version}, and the fixes are in every release after it,
+      including {security.next}. None was in version 0.8.2. Each later
+      step of the rebuild (the student sidebar, the home page, the gradebook's toolbar and
+      the Attendance dashboard's details) was reviewed the same way as
+      it was made, and what those reviews found about the page's limits is set out below.
+    </p>
+    <div class="mt-6 space-y-4">
+      {
+        laterFindings.map((item) => (
+          <div class="card p-6">
+            <p>
+              <span class={severityClass[item.severity]}>{item.severity}</span>
+              <span class="ml-2 badge badge-success">Fixed in {secondReview.version}</span>
+            </p>
+            <p class="mt-3 text-body-sm text-foreground/90 text-pretty">{item.finding}</p>
+            <p class="mt-2 text-body-sm text-muted-foreground text-pretty">
+              <strong class="text-foreground">Fix.</strong> {item.fix}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+    <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
+      It also checked, and found sound: the package that ships, the permissions it asks for
+      (storage and Toddle only, nothing reachable from websites), the built pages, the
+      network (the same two outside requests as before), and the list of packages the build
+      uses.
     </p>
     <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
       We publish what was found, not only that it was fixed, because a school deciding
@@ -432,9 +565,51 @@ const severityClass: Record<string, string> = {
       that wants that risk reduced further should raise it with Toddle.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      The flag switch is a privacy aid, not a security control. It hides flags from the
+      The flag switch is a privacy aid, not a security control. It conceals flags on the
       screen; it does not hide names, and does not stop anyone deliberately opening a
-      student's profile.
+      student's flags or profile. {flags.limit}
+    </p>
+
+    <h3 class="font-serif text-h5 text-foreground mt-8">
+      What the code inside Toddle's page cannot promise
+    </h3>
+    <p class="mt-2 text-body text-muted-foreground text-pretty">
+      Some of the extension has to run in Toddle's own page, because that is the only place
+      Toddle's data can be read, and any script on the page shares that space.
+      The review of {secondReview.label} set out, plainly, what that means. A script that is already
+      listening in Toddle's page when the extension starts:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        can read the per-load secrets, which stop only scripts that are not listening, and
+        replay them in that browser: switch a licensed feature on, give the licence check
+        another account's email, or clear flags that were concealed. It gains no student
+        data by it, because it already runs with the teacher's session and could read
+        Toddle directly;
+      </li>
+      <li>
+        cannot overhear the answers to the extension's queries, but can answer first with
+        false ones, so the gradebook could show wrong figures. Values in the CSV export
+        still cannot start a spreadsheet formula;
+      </li>
+      <li>
+        is stopped from pressing the extension's message buttons, but can tell Toddle's own
+        app to open a chat in any case;
+      </li>
+      <li>
+        if it was in the page before Toddle's own scripts (a page that opened Toddle in a
+        new window can be), can take the private channel the home page's part uses, and so
+        show a wrong teacher's name, as text, or offer My classes where it should not.
+        Whether a feature runs is still never decided from the page.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      None of this lets anything leave the browser, write to Toddle, or reach the
+      extension's own pages, licence key or storage. The fix is the rebuild under way, which is
+      moving every decision and every piece of the interface out of Toddle's page into the
+      extension's own, leaving there only what has to read the page.
     </p>
 
     <!-- Reporting -->

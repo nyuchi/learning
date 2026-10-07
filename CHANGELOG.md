@@ -1,9 +1,143 @@
 # Changelog
 
-## Unreleased
+From this release the site's versions are its git tags, under the org's
+versioning policy: each merge into `staging` is a patch tag (from
+v0.0.1, 2026-10-04), each release to `main` the next minor. The 3.x and 2.x
+numbers below were the site's earlier, hand-kept numbering and are retired; the
+`version` in package.json is not the release version.
+
+## 0.1.0 — 2026-10-07
+
+Released with the Toddle Enhancement Extension 0.9.0, which is in Chrome Web
+Store review; the site describes it as the next version until it is live.
+
+### Added
+
+- **A Releases page for the extension**, at
+  `/toddle-enhancement-extension/releases`: what changed in each version,
+  in plain words for teachers, newest first. 0.9.0 is "Coming soon to the
+  Chrome Web Store"; 0.8.2, 0.8.1, 0.8.0, 0.7.x and the early builds follow,
+  condensed. Versions 0.8.3 to 0.8.13, test builds for schools piloting the
+  extension, are said in one line: their changes arrive together in 0.9.0.
+  Each version has the anchor `#v<version>`, which the extension's menu will
+  link to. No downloads and no GitHub links: the extension's repository is
+  private, and teachers install from the Chrome Web Store. The notes live in
+  `src/data/releases.ts`, so adding a release is one edit. Linked from the
+  extension page, the footer and llms.txt, and in the sitemap.
 
 ### Changed
 
+- **0.9.0's last changes, on the Releases page and the legal pages.** Text
+  and icons at the right size on Toddle, a flag's text drawn from its
+  Markdown, the Excusals tab's Time out column, and a licence key that
+  follows the teacher's own Chrome account (also kept in Chrome's synced
+  storage, never sent to Nyuchi). Every page that said the key stays on the
+  device says so; the wording lives once, in `licenceSync`
+  (`src/data/legal.ts`). The pricing section shows individual licence holders
+  the upgrade: code BXXF20VA, US$7 off the organisation licence only.
+- **One account of 0.9.0 across the site.** The gradebook's toolbar and the
+  Attendance dashboard's details run in closed shadow roots in 0.9.0 on every
+  page; the 6 October review's fixes reach schools in 0.9.0; each version
+  difference says from which version.
+- **Second release review.** The 0.9.0 notes no longer say nothing new is
+  read (the data handling page lists each read, now including the teachers'
+  roles and photos the staff view shows); the flags summary, the search data
+  and the student privacy page say from which version flags are never hidden
+  and asked for each time; the first review's version is fixed at 0.8.2; the
+  terms and the product page say the cancelled-keys check is at most once a
+  day; the staging version workflow runs only on `staging`.
+- **A release to `main` is tagged as the next minor** (`main-version.yml`,
+  the org's reusable auto-tag, with a GitHub release).
+- **The licence server's address is `licenses.nyuchi.com`.** The privacy
+  policy, the data and security pages, the vulnerability disclosure scope,
+  the extension page's allowlist note, llms.txt and SECURITY.md name the new
+  host for the daily check for cancelled keys from version 0.9.0, and say
+  that 0.8.2, on the store today, asks `licences.nyuchi.dev`, the same
+  server, which still answers. The legal pages' date moves to 7 October 2026.
+- **@bundu/ui 0.5.0** (was 0.1.1): the kit's updated tokens. The page
+  background is a cooler, neutral off-white; layout, type, buttons and the
+  Nyuchi brand colours are unchanged. Every check and test passes as before.
+- **The site's code is proprietary**, all rights reserved, with a LICENSE
+  file saying so (it had none). Not open source.
+
+- **The terms say who owns the extension.** A new "Who owns the extension"
+  section: the extension and its code belong to Nyuchi Web Services, part
+  of Nyuchi Africa (Private) Limited, all rights reserved, and it is not
+  open source. A licence grants use, not ownership. Its code may not be
+  copied, modified, reused or redistributed, in whole or in part, in another
+  product or service without written permission. Reading the code to check
+  what it does stays welcome, and building a competing product stays
+  forbidden. Said once, in `ownership` (`src/data/legal.ts`), and repeated on
+  the extension page and in llms.txt.
+- **Student flags, as 0.9.0 ships them:** a concealed flag is a grey smudge
+  with no colour, nothing on the page brings it back, and a teacher updating
+  from 0.8.2 has flags concealed.
+- **The extension page and legal pages describe 0.9.0, the next Chrome Web
+  Store release**, and say where 0.8.2, on the store today, differs. Patches
+  (0.8.3 to 0.8.13) are test releases that do not go to the store, so
+  `extensionVersions.next` is now 0.9.0, not 0.8.4.
+  - Student flags: the extension no longer hides Toddle's own flags. A
+    teacher can conceal them for a shared screen with the free switch, and
+    "Show flags" in the sidebar shows one student's. The wording is
+    "conceal" and "flag visibility", said once in `flags`
+    (`src/data/legal.ts`); a test fails on "hide flags" on the extension
+    page, the home page and in llms.txt. The sidebar asks Toddle for a
+    student's flags each time it opens. The value on Toddle's site is
+    `tee-blur-flags` (`gbx-hide-flags` in 0.8.2).
+  - The rebuild: the flag switch, the student sidebar and the home page's
+    additions run in the extension's isolated world, in closed shadow roots
+    (product page, Security page, llms.txt). The Security page adds the home
+    page channel's limit.
+  - The student sidebar: today's timetable as its own part, the student's
+    email, a class's teachers to email at once, and stepping aside in
+    Toddle's admin portal. My classes switches on and off at once.
+  - For schools: the Admin console, Group Policy, Intune and macOS steps,
+    the organisation key pasted in once by each teacher, and allowing
+    the licence server (now `licenses.nyuchi.com`, and `licences.nyuchi.dev`
+    for 0.8.2), summarised on the extension page; the full guide
+    on request. A link to the help centre's "How to use" collection.
+  - The data schema (the extension's `docs/data-schema.md`) is described on
+    the data handling page and the extension page, available on request.
+  - Data handling: the licence server keeps a SHA-256 of each key, never
+    the key itself, and the school's email domains for an organisation key.
+  - The second security review was of 0.8.4, a test release; its fixes are
+    in 0.9.0.
+- **The privacy policy rests on two laws: Zimbabwe's Cyber and Data
+  Protection Act [Chapter 12:07] and the EU and UK GDPR**, applied to everyone.
+  A new "The law we follow" section names POTRAZ as Zimbabwe's regulator, says
+  where data goes and how transfers out of the EU and UK are covered, and the
+  rights section lists each right, the one-month answer and where to complain
+  (POTRAZ, the ICO, or an EU authority). Each legal basis carries its GDPR
+  article. A breach goes to POTRAZ within 24 hours, as Zimbabwe's Act requires,
+  and to an EU or UK regulator within 72 where the GDPR requires it. Singapore's
+  PDPA is no longer named. The facts live once, in `dataProtection`
+  (`src/data/legal.ts`).
+- **The legal pages match the extension's code, for 0.8.2 and 0.8.4**, and
+  were dated 6 October 2026. (Superseded within this release: the pages now
+  describe 0.9.0, say flags are concealed rather than hidden, and are dated
+  7 October 2026; see the entries above.) Checked against the extension's data schema
+  (`docs/toddle-data-fields.md`) and its code:
+  - Student flags: from 0.8.4 they are shown as Toddle shows them, and the
+    free switch hides them everywhere; versions before 0.8.4 hid them by
+    default. Unless flags are hidden, the sidebar asks Toddle for a
+    student's flags each time it opens.
+  - Memory: answers stay in the tab's memory until it is closed or
+    reloaded, reused for at most 5 minutes (2 for a student's day). Not
+    "a few minutes, then discarded".
+  - Storage: every key, named — the last revocation check and the Toddle
+    account's email in the extension's storage, and the four values on
+    Toddle's site (`tee-settings`, `gbx-hide-flags`, `tee-course-view`,
+    `tee-academic-year`). The "style of Toddle's message button" value it
+    once listed does not exist.
+  - Every switch, including gradebook tools and the Attendance dashboard's
+    student details.
+  - Licence keys may, not must, name who they are for.
+  - What each feature reads (gradebook, home page, profile page, Attendance
+    dashboard, sidebar), and the sign-in headers and academic year noted
+    from Toddle's own requests.
+  - Exactly what leaves the device, student photos included.
+  - The Security page covers the adversarial review of 6 October 2026
+    (findings 13 to 16) and what code inside Toddle's page cannot promise.
 - **The audit sets one advisory aside, by ID, until 2026-11-03** (CI only).
   GHSA-ch52-4w7c-c8xp in `http-cache-semantics` has no patched release, and
   astro 7.3.5 uses the package only to cache remote images during
