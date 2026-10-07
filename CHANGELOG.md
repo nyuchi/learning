@@ -1,6 +1,15 @@
 # Changelog
 
-## Unreleased
+From this release the site's versions are its git tags, under the org's
+versioning policy: each merge into `staging` is a patch tag (from
+v0.0.1, 2026-10-04), each release to `main` the next minor. The 3.x and 2.x
+numbers below were the site's earlier, hand-kept numbering and are retired; the
+`version` in package.json is not the release version.
+
+## 0.1.0 — 2026-10-07
+
+Released with the Toddle Enhancement Extension 0.9.0, which is in Chrome Web
+Store review; the site describes it as the next version until it is live.
 
 ### Added
 
@@ -18,12 +27,26 @@
 
 ### Changed
 
+- **0.9.0's last changes, on the Releases page and the legal pages.** Text
+  and icons at the right size on Toddle, a flag's text drawn from its
+  Markdown, the Excusals tab's Time out column, and a licence key that
+  follows the teacher's own Chrome account (also kept in Chrome's synced
+  storage, never sent to Nyuchi). Every page that said the key stays on the
+  device says so; the wording lives once, in `licenceSync`
+  (`src/data/legal.ts`). The pricing section shows individual licence holders
+  the upgrade: code BXXF20VA, US$7 off the organisation licence only.
+- **One account of 0.9.0 across the site.** The gradebook's toolbar and the
+  Attendance dashboard's details run in closed shadow roots in 0.9.0 on every
+  page; the 6 October review's fixes reach schools in 0.9.0; each version
+  difference says from which version.
+- **A release to `main` is tagged as the next minor** (`main-version.yml`,
+  the org's reusable auto-tag, with a GitHub release).
 - **The licence server's address is `licenses.nyuchi.com`.** The privacy
   policy, the data and security pages, the vulnerability disclosure scope,
   the extension page's allowlist note, llms.txt and SECURITY.md name the new
-  host for the daily check for cancelled keys, and say that earlier versions
-  of the extension ask `licences.nyuchi.dev`, the same server, which still
-  answers. The legal pages' date moves to 7 October 2026.
+  host for the daily check for cancelled keys from version 0.9.0, and say
+  that 0.8.2, on the store today, asks `licences.nyuchi.dev`, the same
+  server, which still answers. The legal pages' date moves to 7 October 2026.
 - **@bundu/ui 0.5.0** (was 0.1.1): the kit's updated tokens. The page
   background is a cooler, neutral off-white; layout, type, buttons and the
   Nyuchi brand colours are unchanged. Every check and test passes as before.
@@ -63,7 +86,8 @@
     Toddle's admin portal. My classes switches on and off at once.
   - For schools: the Admin console, Group Policy, Intune and macOS steps,
     the organisation key pasted in once by each teacher, and allowing
-    `licences.nyuchi.dev`, summarised on the extension page; the full guide
+    the licence server (now `licenses.nyuchi.com`, and `licences.nyuchi.dev`
+    for 0.8.2), summarised on the extension page; the full guide
     on request. A link to the help centre's "How to use" collection.
   - The data schema (the extension's `docs/data-schema.md`) is described on
     the data handling page and the extension page, available on request.
@@ -82,7 +106,9 @@
   PDPA is no longer named. The facts live once, in `dataProtection`
   (`src/data/legal.ts`).
 - **The legal pages match the extension's code, for 0.8.2 and 0.8.4**, and
-  are dated 6 October 2026. Checked against the extension's data schema
+  were dated 6 October 2026. (Superseded within this release: the pages now
+  describe 0.9.0, say flags are concealed rather than hidden, and are dated
+  7 October 2026; see the entries above.) Checked against the extension's data schema
   (`docs/toddle-data-fields.md`) and its code:
   - Student flags: from 0.8.4 they are shown as Toddle shows them, and the
     free switch hides them everywhere; versions before 0.8.4 hid them by
