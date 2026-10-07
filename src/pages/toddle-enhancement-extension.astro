@@ -199,7 +199,7 @@ const facts = [
   {
     label: "Its two outside connections",
     value:
-      "The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, at most one request a day to licenses.nyuchi.com for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands.",
+      `The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, at most one request a day to licenses.nyuchi.com (licences.nyuchi.dev, the same server, in version ${extensionVersions.current}, on the store today) for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands.`,
   },
   {
     label: "What it stores",
@@ -513,8 +513,8 @@ const schema = [
           it to staff; each teacher pastes it in once, from the welcome page or the
           toolbar menu's <em>Enter a licence key</em>. If your network filters outbound
           traffic, allow <code class="text-foreground">{toddleExtension.licenceHost}</code>
-          (and <code class="text-foreground">licences.nyuchi.dev</code>, which earlier versions
-          ask) so the daily check for cancelled keys can run. If it is blocked, licences keep
+          (and <code class="text-foreground">licences.nyuchi.dev</code>, which version
+          {extensionVersions.current}, on the store today, asks) so the daily check for cancelled keys can run. If it is blocked, licences keep
           working on the last result.
         </p>
         <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
