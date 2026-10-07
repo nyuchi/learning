@@ -9,7 +9,6 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   dataProtection,
-  extensionVersions,
   flags,
   legal,
   updatedLabel,
@@ -79,16 +78,14 @@ const privacyMail = `mailto:${legal.privacyEmail}`;
     <h2 class="font-serif text-h3 text-foreground mt-12">Student flags</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Toddle lets a school mark students with flags, and those flags are the most sensitive
-      thing a teacher's screen can show. From version {extensionVersions.next}, the
-      extension no longer hides Toddle's own flags, so staff see what the school has recorded.
+      thing a teacher's screen can show. The extension does not hide Toddle's own
+      flags, so staff see what the school has recorded.
       What it adds is flag visibility for a shared screen: a teacher can conceal flags
       with one free switch before the screen is shown to a class, a parent or a visitor,
       so what a flag says cannot be read from across the room. {flags.reveal}
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      From version {extensionVersions.next}, the sidebar reads a student's active flags from
-      Toddle each time it opens. {flags.before} In that version, while flags are hidden, it
-      asks only when someone presses its eye button. The sidebar shows them
+      The sidebar reads a student's active flags from Toddle each time it opens, and shows them
       in that teacher's browser only, and forgets them when it closes. They are never
       stored and never sent anywhere. {flags.limit}
     </p>
