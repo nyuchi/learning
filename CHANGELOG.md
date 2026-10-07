@@ -19,8 +19,9 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   the "0.8.2, on the store today" wording is gone from the product page, the
   legal pages, llms.txt and SECURITY.md (`flags.before`, the three switches
   of 0.8.2, the sidebar's eye button). What still helps a teacher updating
-  from 0.8.2 stays, as history: flags it hid stay concealed, the old storage
-  key `gbx-hide-flags`, and the old licence host `licences.nyuchi.dev`.
+  from 0.8.2 stays, as history: flags it hid stay concealed, and versions
+  before 0.9.0 used the storage key `gbx-hide-flags` and asked the licence
+  host `licences.nyuchi.dev`.
 
 ## 0.1.0 — 2026-10-07
 

@@ -117,8 +117,9 @@ export const pricing = [
  * `current` is what teachers have from the Chrome Web Store: 0.9.0, published
  * on 7 October 2026. `previous` is the store release before it, named only
  * where something it did still matters to a teacher updating from it (flags
- * it hid stay concealed; the old licence host and storage key), and said as
- * history. There is no `next` while no minor is reviewed and waiting for the
+ * it hid stay concealed), said as history. What changed in the test builds
+ * between the two (0.8.3 carried 0.8.2's code) is said as "versions before
+ * `current`": the old licence host and the old flags storage key. There is no `next` while no minor is reviewed and waiting for the
  * store. When one is, add `next` here, say "from version <next>" and what
  * `current` does wherever the two differ, so each claim stays true on both
  * sides of the release; when it ships, move it to `current` and drop that
@@ -131,7 +132,7 @@ export const extensionVersions = {
   supportedFrom: "0.8.2",
 } as const;
 
-const { previous } = extensionVersions;
+const { current, previous } = extensionVersions;
 
 /**
  * The licence key and Chrome sync, said once. Since 0.9.0 the key alone is
@@ -228,7 +229,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "What it stores: settings and licence details, and no student data.",
-    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags up to version ${previous}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage.`,
+    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in versions before ${current}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage.`,
   },
   {
     claim: "What it holds in memory, and for how long.",
@@ -243,7 +244,7 @@ export const extensionDataFacts = [
   {
     claim:
       "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
-    detail: `At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (version ${previous} and earlier asked licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
+    detail: `At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (versions before ${current} asked licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
   },
   {
     claim: "Exports are local.",

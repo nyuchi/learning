@@ -80,7 +80,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   processed by Formspree; no student data, no page address, no licence key.
   (2) Only while a licence is entered, at most once a day, the background
   worker makes one plain request to https://licenses.nyuchi.com/v1/revocations
-  (version 0.8.2 and earlier asked licences.nyuchi.dev, the same server),
+  (versions before 0.9.0 asked licences.nyuchi.dev, the same server),
   sending no licence key, no identifiers, no cookies and no Toddle data; it
   downloads a Nyuchi-signed list of SHA-256 fingerprints of cancelled keys
   and checks its own key locally. Cloudflare sees the IP address as with any
