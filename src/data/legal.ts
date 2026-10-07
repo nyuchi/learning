@@ -174,7 +174,6 @@ export const upgrade = {
  */
 export const flags = {
   summary: `From version ${next}, the extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room.`,
-
   reveal:
     'In the student sidebar, "Show flags" shows one student\'s flags when you need them.',
   limit:
