@@ -10,7 +10,7 @@
 export const legal = {
   /** Last substantive change, for every legal page. Update when a claim
       changes, not on typos. */
-  updated: "2026-10-06",
+  updated: "2026-10-07",
   entity: "Nyuchi Africa (Private) Limited",
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
@@ -218,7 +218,7 @@ export const extensionDataFacts = [
     claim:
       "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
     detail:
-      "At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licences.nyuchi.dev/v1/revocations; a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.",
+      "At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (earlier versions ask licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.",
   },
   {
     claim: "Exports are local.",
