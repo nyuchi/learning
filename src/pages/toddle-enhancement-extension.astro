@@ -8,8 +8,9 @@
  * switch gets the most room because it is the part people will be asked to
  * justify.
  *
- * It describes version 0.9.0 (`extensionVersions.next`), the next release on
- * the Chrome Web Store, and says where 0.8.2, on the store today, differs.
+ * It describes version 0.9.0 (`extensionVersions.current`), on the Chrome Web
+ * Store since 7 October 2026, and names 0.8.2 only where updating from it
+ * matters.
  * Flags are "concealed", never "hidden": the extension no longer hides
  * Toddle's own flags (see `flags` in src/data/legal.ts).
  */
@@ -179,7 +180,7 @@ const facts = [
   {
     label: "Where it runs",
     value:
-      "Only on web.toddleapp.com. It has no access to any other site. From version 0.9.0 the flag switch, the student sidebar, the home page's additions, the gradebook's toolbar and controls, and the Attendance dashboard's details run in the extension's own isolated part of the browser, drawn inside closed shadow roots that no script on Toddle's page can read or click into.",
+      "Only on web.toddleapp.com. It has no access to any other site. The flag switch, the student sidebar, the home page's additions, the gradebook's toolbar and controls, and the Attendance dashboard's details run in the extension's own isolated part of the browser, drawn inside closed shadow roots that no script on Toddle's page can read or click into.",
   },
   {
     label: "What it reads",
@@ -199,7 +200,7 @@ const facts = [
   {
     label: "Its two outside connections",
     value:
-      `The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, at most one request a day to licenses.nyuchi.com (licences.nyuchi.dev, the same server, in version ${extensionVersions.current}, on the store today) for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands.`,
+      `The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, at most one request a day to licenses.nyuchi.com (versions before ${extensionVersions.current} asked licences.nyuchi.dev, the same server) for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands.`,
   },
   {
     label: "What it stores",
@@ -233,7 +234,7 @@ const schema = [
     publisher: { "@id": "https://learning.nyuchi.com/#organization" },
     featureList: [
       "Expands every Toddle assessment tool into per-criterion columns",
-      "Conceals student flags across Toddle with one free switch, for a shared screen; from version 0.9.0 never hides Toddle's own flags",
+      "Conceals student flags across Toddle with one free switch, for a shared screen; never hides Toddle's own flags",
       "CSV export of results and submission status",
       "A My classes filter on the Toddle home page",
       "A student sidebar anywhere a student appears in Toddle: photo, grade, email, contacts, where they are now, today's timetable and attendance",
@@ -382,10 +383,10 @@ const schema = [
             room should not be reading over your shoulder.
           </p>
           <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
-            From version {extensionVersions.next}, the extension no longer hides Toddle's own
+            The extension doesn't hide Toddle's own
             flags: they stay where Toddle puts them, with their links and documents in Toddle's student popover. Concealing
-            them is your choice: a new install starts with flags shown, and if you are
-            updating from 0.8.2, where flags were hidden by default, or you had hidden them
+            them is your choice: a new install starts with flags shown, and if you
+            updated from {extensionVersions.previous}, where flags were hidden by default, or you had hidden them
             yourself, they stay concealed until you show them. {flags.reveal}
           </p>
         </div>
@@ -418,8 +419,7 @@ const schema = [
           as a substitute for your school's safeguarding practice.
         </p>
         <p class="mt-3 text-body-sm text-pretty">
-          This describes version {extensionVersions.next}, the next release on the
-          Chrome Web Store. {flags.before}
+          This describes version {extensionVersions.current}, on the Chrome Web Store.
         </p>
       </div>
     </div>
@@ -513,8 +513,8 @@ const schema = [
           it to staff; each teacher pastes it in once, from the welcome page or the
           toolbar menu's <em>Enter a licence key</em>. If your network filters outbound
           traffic, allow <code class="text-foreground">{toddleExtension.licenceHost}</code>
-          (and <code class="text-foreground">licences.nyuchi.dev</code>, which version
-          {extensionVersions.current}, on the store today, asks) so the daily check for cancelled keys can run. If it is blocked, licences keep
+          (and <code class="text-foreground">licences.nyuchi.dev</code>, which versions
+          before {extensionVersions.current} asked, for any computer Chrome has not yet updated) so the daily check for cancelled keys can run. If it is blocked, licences keep
           working on the last result.
         </p>
         <p class="mt-3 text-body-sm text-muted-foreground text-pretty">
@@ -592,7 +592,7 @@ const schema = [
       Checkout is through Buy Me a Coffee, and your licence key is emailed to you
       automatically, usually within a minute of paying. It is checked on your own machine, so activating it contacts
       nothing and works offline — and one key covers your laptop and your classroom
-      desktop. From version {extensionVersions.next} it follows your Chrome account, so you
+      desktop. It follows your Chrome account, so you
       enter it once; Chrome's sync carries it, and it is never sent to us. While a key is entered, the extension checks at most once a day for cancelled keys,
       sending nothing about you.
     </p>
@@ -676,7 +676,7 @@ const schema = [
         <strong class="text-foreground">How updates reach you.</strong> Fixes are made and
         tested as small test builds with schools piloting the extension, which do not go to
         the Chrome Web Store. When a batch of them is ready, it is published to the store as
-        the next version ({extensionVersions.next} is next), and Chrome installs it on its
+        the next version, and Chrome installs it on its
         own. <a href="/toddle-enhancement-extension/releases" class="link"
           >What changed in each version</a
         >.
