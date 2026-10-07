@@ -1,0 +1,33 @@
+# Versioning policy (nyuchi/.github#80): every release to `main` is the next
+# MINOR, tagged on the merged commit, with a GitHub release. Staging merges are
+# patches (staging-version.yml); a major is only ever by hand.
+name: Main version
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: Override the bump (major is only ever manual).
+        type: choice
+        options: [minor, major]
+        default: minor
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    uses: nyuchi/.github/.github/workflows/reusable-auto-tag.yml@924e5b4d0983d31379aedbec02b990793f29c792 # main, 2026-10-04
+    with:
+      # Empty: the version is computed from the tags (package.json's version
+      # is not the release version).
+      version-command: ""
+      channel: main
+      bump: ${{ inputs.bump || '' }}
+      create-release: true
+    secrets:
+      token: ${{ secrets.RELEASE_BUMP_TOKEN }}
+    permissions:
+      contents: write
