@@ -121,7 +121,7 @@ export const releases: Release[] = [
         items: [
           "The flags switch, the student sidebar, My classes and teacher names, the gradebook's toolbar and controls, and the Attendance dashboard's details now run in the extension's own part of the browser, inside closed shadow roots that no script on Toddle's page can read or click into. Whether each one runs is decided by your switches and licence, never by Toddle's page.",
           "Each rebuilt part was given its own security review on 6 October 2026, as were flag visibility and the sidebar's new staff and class views. Everything they found is fixed, each with a test. The Security page has the details.",
-          "Nothing new is read from Toddle, and the extension sends nothing new anywhere. The one change is Chrome's: it now syncs your licence key through your own Chrome account, never to Nyuchi.",
+          "Everything it reads, including what is new in this release, comes from Toddle, as you, and stays in your browser; the data handling page lists each read. The extension sends nothing new anywhere. The one change is Chrome's: it now syncs your licence key through your own Chrome account, never to Nyuchi.",
         ],
       },
     ],

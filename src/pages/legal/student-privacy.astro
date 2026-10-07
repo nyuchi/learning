@@ -86,7 +86,9 @@ const privacyMail = `mailto:${legal.privacyEmail}`;
       so what a flag says cannot be read from across the room. {flags.reveal}
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      The sidebar reads a student's active flags from Toddle each time it opens, shows them
+      From version {extensionVersions.next}, the sidebar reads a student's active flags from
+      Toddle each time it opens. {flags.before} In that version, while flags are hidden, it
+      asks only when someone presses its eye button. The sidebar shows them
       in that teacher's browser only, and forgets them when it closes. They are never
       stored and never sent anywhere. {flags.limit}
     </p>
