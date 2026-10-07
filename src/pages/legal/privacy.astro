@@ -12,6 +12,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   dataProtection,
   extensionDataFacts,
+  extensionVersions,
   legal,
   licenceSync,
   security,
@@ -142,8 +143,8 @@ const description =
       <li>
         <strong class="text-foreground">What is sent.</strong> One plain request to
         <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code>, from the extension's
-        background worker (from version {security.next}; version {security.version}, on the
-        store today, asks <code>licences.nyuchi.dev</code>, the same server). It carries no licence key, no identifiers, no cookies and no
+        background worker (versions before {extensionVersions.current} asked
+        <code>licences.nyuchi.dev</code>, the same server). It carries no licence key, no identifiers, no cookies and no
         Toddle data.
       </li>
       <li>
@@ -171,8 +172,8 @@ const description =
       adversarial reviews. Every finding of the first, on {security.reviews[0].label}, was
       fixed in version {security.reviews[0].version}; every finding of the second, on {security.reviews[1].label},
       of the code for version {security.reviews[1].version}, a test release, was fixed in
-      that release, and the fixes are in version {security.next}, the next on the Chrome
-      Web Store.
+      that release, and the fixes are in version {security.version}, on the Chrome Web
+      Store.
       The <a class="link" href="/legal/security">Security page</a> sets out the security model, how it is tested, what the reviews found, the limits
       no extension can remove, and how to report a vulnerability.
     </p>
