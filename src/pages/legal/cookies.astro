@@ -11,7 +11,7 @@
  * document for their own products; they set them, and they can change them.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { extensionVersions, legal, updatedLabel } from "../../data/legal";
+import { extensionVersions, legal, licenceSync, updatedLabel } from "../../data/legal";
 import { CONSENT_KEY } from "../../data/consent";
 import { analytics, toddleExtension } from "../../data/site";
 
@@ -205,8 +205,8 @@ const rows = [
       <code>tee-course-view</code>, whether you chose My classes in the
       home page filter; and <code>tee-academic-year</code>, the number of the academic year
       Toddle is showing. None of it is about a student, and the extension sends none of it
-      anywhere.
-      Uninstalling the extension deletes its own storage; the four values on Toddle's site
+      anywhere. {licenceSync.short}
+      Uninstalling the extension deletes its own storage on that computer; the four values on Toddle's site
       stay until you clear the browser's data for Toddle's site. The
       <a class="link" href="/legal/data">data handling</a> and
       <a class="link" href="/legal/security">security</a> pages have the detail.

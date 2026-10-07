@@ -253,7 +253,9 @@ describe("the releases page", () => {
 
 describe("prices", () => {
   /* The organisation licence is US$149.99 a year, confirmed by the founder.
-     Any other figure for it anywhere on the site is a mistake. */
+     Any other figure for it anywhere on the site is a mistake. The one other
+     figure allowed is the upgrade code's discount, "US$7 off" (`upgrade` in
+     src/data/legal.ts). */
   it("states the organisation price as US$149.99 everywhere", () => {
     for (const file of [
       "toddle-enhancement-extension/index.html",
@@ -262,7 +264,13 @@ describe("prices", () => {
     ]) {
       const text = built(file);
       expect(text, file).toContain("US$149.99");
-      expect(text, file).not.toMatch(/US\$\s?(?!149\.99\b|5\b)\d/);
+      expect(text, file).not.toMatch(/US\$\s?(?!149\.99\b|5\b|7 off\b)\d/);
     }
+  });
+
+  it("shows individual licence holders the upgrade to the school's licence", () => {
+    const page = built("toddle-enhancement-extension/index.html");
+    expect(page).toContain("BXXF20VA");
+    expect(page).toContain("US$7 off the organisation licence");
   });
 });

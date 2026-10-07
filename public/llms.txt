@@ -30,7 +30,9 @@ community-based platforms. Nyuchi Web Services is its development division.
   filter on the Toddle home page. With a licence (US$5 a year for one
   teacher, US$149.99 a year for a school's email domain): the per-criterion
   gradebook columns, CSV export, primary teacher names, the Attendance
-  dashboard's details, and the student sidebar. The sidebar works anywhere a
+  dashboard's details, and the student sidebar. From 0.9.0 an individual
+  licence holder is offered the upgrade to their school's licence, with the
+  code BXXF20VA, which takes US$7 off the organisation licence only. The sidebar works anywhere a
   student appears in Toddle (class pages, the Attendance dashboard's Periods,
   Students and Excusals tabs, name links, gradebook student cells), except
   in School setup, Toddle's admin portal, where it steps aside. It shows a
@@ -90,7 +92,11 @@ community-based platforms. Nyuchi Web Services is its development division.
   nothing. It stores, on the user's own machine, its switch settings, the
   licence key if there is one, the result of the last check for cancelled
   keys, and the email of the Toddle account last seen signed in (to check
-  who a licence is for); and, in Toddle's own site storage, a copy of the
+  who a licence is for). From version 0.9.0 the licence key alone is also
+  kept in Chrome's synced storage, so it follows the user's own Chrome
+  account to their other computers (Chrome's sync, not Nyuchi's; the newest
+  key wins, and removing it on one computer removes it on all); the
+  extension never sends the key to Nyuchi. And, in Toddle's own site storage, a copy of the
   switches, whether flags are concealed, the My classes choice and the
   academic year Toddle is showing. No student data is stored: what it reads stays in
   the tab's memory until the tab is closed or reloaded. Rubric levels and
@@ -172,7 +178,8 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   security model (runs only on web.toddleapp.com; permissions are storage and
   Toddle only; read-only allowlisted queries; sends only to Toddle except the
   opt-in feedback form and the daily cancelled-keys check; licence keys
-  checked offline; no student data stored),
+  checked offline, never sent to Nyuchi, and from 0.9.0 synced only through
+  the user's own Chrome account; no student data stored),
   how it is tested (closed-loop tests, adversarial-review regression tests, an
   end-to-end network recorder that fails on any non-Toddle request, every
   release gated on them), two adversarial reviews (1 October 2026: two High,
