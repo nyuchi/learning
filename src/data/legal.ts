@@ -256,8 +256,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "Removing it removes what it stored.",
-    detail:
-      `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (from version ${next}, on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
+    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (from version ${next}, on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
   },
 ] as const;
 
