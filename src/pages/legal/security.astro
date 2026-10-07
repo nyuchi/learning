@@ -18,6 +18,7 @@ import {
   extensionVersions,
   flags,
   legal,
+  licenceSync,
   security,
   securityMailto,
   updatedLabel,
@@ -51,7 +52,7 @@ const glance = [
   {
     label: "Stores",
     value:
-      "Settings, a licence key, the last licence check's result and the email of the Toddle account last seen, on the device. No student data.",
+      `Settings, a licence key, the last licence check's result and the email of the Toddle account last seen, on the device; from ${security.next}, the licence key also in Chrome's sync, never sent to Nyuchi. No student data.`,
   },
   {
     label: "Tested",
@@ -335,14 +336,14 @@ const severityClass: Record<string, string> = {
       school's email domain. Where it does, the extension compares that with the Toddle
       account signed in, inside the browser only, and sends it nowhere. A key that names no one
       works for any account until it expires. Activating a key contacts nothing, and the
-      key is never sent anywhere. It is kept in the extension's own storage, which Toddle's
-      page cannot reach.
+      extension never sends the key to Nyuchi or anywhere else. It is kept in the
+      extension's own storage, which Toddle's page cannot reach. {licenceSync.detail}
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">No student data on the device</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       In the extension's own storage: the teacher's switches, the licence key if one was
-      entered, the result of the last check for cancelled keys, and the email of the
+      entered (from {security.next}, also in Chrome's sync), the result of the last check for cancelled keys, and the email of the
       Toddle account last seen signed in, to check who a licence is for. In Toddle's own
       site storage, four housekeeping values: a copy of the switches and of which features
       the licence allows, whether flags are concealed, the My classes choice, and the
