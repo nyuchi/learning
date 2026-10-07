@@ -12,7 +12,6 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import {
   dataProtection,
   extensionVersions,
-  flags,
   legal,
   licenceSync,
   refunds,
@@ -140,12 +139,10 @@ const subprocessors = [
         teacher's name is clicked (it asks Toddle for nothing more).
       </li>
       <li>
-        <strong class="text-foreground">Student flags.</strong> From version {extensionVersions.next}, the extension no longer hides Toddle's own flags, and a staff member can choose
+        <strong class="text-foreground">Student flags.</strong> The extension does not hide Toddle's own flags, and a staff member can choose
         to conceal them for a shared screen with the free flag switch. The sidebar asks Toddle for a
         student's active flags (title, description, type and date) each time it opens,
-        and keeps them only while that student's sidebar is open. {flags.before} In that
-        version, while flags are hidden, the sidebar asks for them only when someone
-        presses its eye button.
+        and keeps them only while that student's sidebar is open.
       </li>
       <li>
         <strong class="text-foreground">From Toddle's own requests:</strong> the sign-in
@@ -185,12 +182,11 @@ const subprocessors = [
       <li>
         the teacher's switches: the extension on or off, student flags, the student
         sidebar, My classes, primary teacher names, gradebook tools, and student details on
-        the Attendance dashboard (version {extensionVersions.current} has three: student
-        flags, the student sidebar and primary teacher names);
+        the Attendance dashboard;
       </li>
       <li>
-        the licence key, if one was entered (from version {extensionVersions.next} also kept
-        in Chrome's synced storage; see below);
+        the licence key, if one was entered (also kept in Chrome's synced storage; see
+        below);
       </li>
       <li>
         the result of the last check for cancelled keys: whether the key is on the list, the
@@ -205,7 +201,7 @@ const subprocessors = [
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       And four small values in the browser's storage for Toddle's own site: <code>tee-settings</code>,
       a copy of the switches and of which features the licence allows (no key and no
-      email); <code>tee-blur-flags</code> (<code>gbx-hide-flags</code> in version {extensionVersions.current}), whether flags are concealed; <code>tee-course-view</code>,
+      email); <code>tee-blur-flags</code> (<code>gbx-hide-flags</code> up to version {extensionVersions.previous}), whether flags are concealed; <code>tee-course-view</code>,
       whether the teacher chose My classes in the home page
       filter; and <code>tee-academic-year</code>, the number of the academic year Toddle
       last asked for. <strong class="text-foreground">No student data is stored.</strong>
@@ -218,8 +214,8 @@ const subprocessors = [
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Uninstalling the extension deletes everything in its own storage on that computer.
       The four values on Toddle's site stay until the browser's data for
-      <code>web.toddleapp.com</code> is cleared. Removing a licence key deletes the key (from
-      version {extensionVersions.next}, on every computer signed in to the same Chrome
+      <code>web.toddleapp.com</code> is cleared. Removing a licence key deletes the key (on
+      every computer signed in to the same Chrome
       account, so remove it before uninstalling if you want it gone from your Chrome account
       too); the last check's result and the account email stay until the extension is
       uninstalled.
@@ -249,9 +245,9 @@ const subprocessors = [
       <li>
         <strong class="text-foreground">A daily check for cancelled keys,</strong> only while
         a licence is entered: one plain request from the extension's background worker to
-        <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (from version
-        {extensionVersions.next}; version {extensionVersions.current}, on the store today, asks
-        <code>licences.nyuchi.dev</code>, the same server), sending no licence key, no
+        <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (version
+        {extensionVersions.previous} and earlier asked <code>licences.nyuchi.dev</code>, the
+        same server), sending no licence key, no
         identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of
         the SHA-256 fingerprints of cancelled keys and checks its own key locally. Cloudflare
         sees the IP address, as with any web request; Nyuchi does not log it. If the list

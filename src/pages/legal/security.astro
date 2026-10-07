@@ -9,8 +9,8 @@
  * policy is at /legal/vulnerability-disclosure.
  *
  * Every statement is about the published build named in `security.version`
- * and the reviewed next one in `security.next` (src/data/legal.ts); where they
- * differ, the page says which. When the extension's security model changes,
+ * (src/data/legal.ts). When a reviewed minor is waiting for the store, the
+ * page says where it differs. When the extension's security model changes,
  * this page changes with it, and the date at the top moves.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -52,7 +52,7 @@ const glance = [
   {
     label: "Stores",
     value:
-      `Settings, a licence key, the last licence check's result and the email of the Toddle account last seen, on the device; from ${security.next}, the licence key also in Chrome's sync, never sent to Nyuchi. No student data.`,
+      `Settings, a licence key, the last licence check's result and the email of the Toddle account last seen, on the device; the licence key also in Chrome's sync, never sent to Nyuchi. No student data.`,
   },
   {
     label: "Tested",
@@ -191,11 +191,8 @@ const severityClass: Record<string, string> = {
     <p class="mt-4 text-body-sm text-muted-foreground">
       Last updated {updatedLabel}. Describes the
       <strong class="text-foreground">{toddleExtension.name}</strong>: version {security.version},
-      the one on the Chrome Web Store ({extensionVersions.sameCodeAs} carries the same code),
-      and version {security.next}, the next release on the store, reviewed and not yet
-      published. Between store releases, fixes are tested as patch releases (the newest is
-      {extensionVersions.latestPatch}), which do not go to the store. Where {security.version}
-      and {security.next} differ, this page says so. For schools, and for the privacy, legal and
+      the one on the Chrome Web Store. Between store releases, fixes are tested as patch
+      releases, which do not go to the store. For schools, and for the privacy, legal and
       IT colleagues who review software on their behalf.
     </p>
 
@@ -314,9 +311,9 @@ const severityClass: Record<string, string> = {
       <li>
         <strong class="text-foreground">A daily check for cancelled keys.</strong> At most
         once a day, only while a licence is entered, the background worker makes one plain request
-        to <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (from version
-        {extensionVersions.next}; version {extensionVersions.current}, on the store today, asks
-        <code>licences.nyuchi.dev</code>, the same server). It
+        to <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (version
+        {extensionVersions.previous} and earlier asked <code>licences.nyuchi.dev</code>, the
+        same server). It
         sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a
         list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, and
         checks its own key against it locally. Cloudflare sees the IP address, as with any
@@ -344,7 +341,7 @@ const severityClass: Record<string, string> = {
     <h3 class="font-serif text-h5 text-foreground mt-8">No student data on the device</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       In the extension's own storage: the teacher's switches, the licence key if one was
-      entered (from {security.next}, also in Chrome's sync), the result of the last check for cancelled keys, and the email of the
+      entered (also in Chrome's sync), the result of the last check for cancelled keys, and the email of the
       Toddle account last seen signed in, to check who a licence is for. In Toddle's own
       site storage, four housekeeping values: a copy of the switches and of which features
       the licence allows, whether flags are concealed, the My classes choice, and the
@@ -354,10 +351,10 @@ const severityClass: Record<string, string> = {
       minutes, and a student's day for at most 2, before Toddle is asked again.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      From version {security.next}, the extension no longer hides Toddle's own student flags; a
+      The extension does not hide Toddle's own student flags; a
       staff member can choose to conceal them for a shared screen with the free flag
       switch. The sidebar asks Toddle for a student's flags each time it opens, and keeps
-      them only while it is open. {flags.before} The CSV export is made in the browser and
+      them only while it is open. The CSV export is made in the browser and
       saved where the teacher's downloads go, by the teacher's choice.
     </p>
 
@@ -366,7 +363,7 @@ const severityClass: Record<string, string> = {
     </h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       The extension is being rebuilt so that as little of it as possible runs where
-      Toddle's own scripts run. From version {security.next}, the flag switch, the student
+      Toddle's own scripts run. In version {security.version}, the flag switch, the student
       sidebar with a class's teachers, the home page's My classes option and teacher
       names, the gradebook's toolbar and controls, and the Attendance dashboard's details
       run in the extension's own isolated part of the browser. What they draw on
@@ -512,7 +509,7 @@ const severityClass: Record<string, string> = {
       that runs in Toddle's page against the claims made about it. It found two
       medium-severity issues and two low (findings {secondReview.findings}). All were fixed
       in version {secondReview.version}, and the fixes are in every release after it,
-      including {security.next}. None was in version 0.8.2. Each later
+      including {security.version}. None was in version 0.8.2. Each later
       step of the rebuild (the student sidebar, the home page, the gradebook's toolbar and
       the Attendance dashboard's details) was reviewed the same way as
       it was made, and what those reviews found about the page's limits is set out below.

@@ -18,19 +18,20 @@ community-based platforms. Nyuchi Web Services is its development division.
   grade scales, learning goals — into one column per standard, criterion or
   item, so a teacher sees the whole class at once instead of opening a side
   panel per student. It also gives teachers control of flag visibility on a
-  shared screen. From version 0.9.0 (the next Chrome Web Store release),
-  the extension no longer hides Toddle's own student flags; a teacher can
+  shared screen. Since version 0.9.0, on the Chrome Web Store from
+  7 October 2026, the extension never hides Toddle's own student flags; a teacher can
   conceal them with one free switch, in Toddle's header or the extension's
   menu, so a gradebook can be projected or screen-shared without what a flag
   says being readable from across the room. In the student sidebar, "Show flags" shows
   one student's flags. Concealing is a screen, not a lock: a concealed flag
-  can still show that a student has a flag. In version 0.8.2, on the store
-  today, flags are hidden from the start and the switch shows or hides them.
+  can still show that a student has a flag. A teacher who updated from
+  0.8.2, where flags were hidden by default, or who had hidden them, has
+  them concealed until they choose to show them.
   It conceals flags, not names. Free: the flag switch and a "My classes"
   filter on the Toddle home page. With a licence (US$5 a year for one
   teacher, US$149.99 a year for a school's email domain): the per-criterion
   gradebook columns, CSV export, primary teacher names, the Attendance
-  dashboard's details, and the student sidebar. From 0.9.0 an individual
+  dashboard's details, and the student sidebar. An individual
   licence holder is offered the upgrade to their school's licence, with the
   code BXXF20VA, which takes US$7 off the organisation licence only. The sidebar works anywhere a
   student appears in Toddle (class pages, the Attendance dashboard's Periods,
@@ -45,7 +46,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   class opens a class view with its current block, primary teacher, parent
   course, room and every teacher with their display title and email; the
   teachers can be emailed together. Message buttons open Toddle's own chat;
-  the extension sends no message itself. From version 0.9.0 the flag switch,
+  the extension sends no message itself. The flag switch,
   the student sidebar, the home page's additions, the gradebook's toolbar
   and controls, and the Attendance dashboard's details run in the
   extension's own isolated world, drawn in closed shadow roots that no script on
@@ -70,10 +71,8 @@ community-based platforms. Nyuchi Web Services is its development division.
   email domain), which is compared with the signed-in Toddle account inside
   the browser only. An organisation licence is one key for the school's
   email domain: anyone signed in to Toddle with an address at that domain is
-  covered. From version 0.9.0 the sidebar asks Toddle for a student's
-  active flags each time it opens, and keeps them only while it is open; in
-  version 0.8.2, while flags are hidden, it asks only when someone presses
-  its eye button. Apart
+  covered. The sidebar asks Toddle for a student's
+  active flags each time it opens, and keeps them only while it is open. Apart
   from Toddle, it has two outside connections, neither carrying Toddle
   data. (1) Opt-in feedback: the toolbar menu's "Send feedback" form, which, only when the person presses
   Send, sends what they typed (topic, message, and an email only if they
@@ -81,8 +80,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   processed by Formspree; no student data, no page address, no licence key.
   (2) Only while a licence is entered, at most once a day, the background
   worker makes one plain request to https://licenses.nyuchi.com/v1/revocations
-  (from version 0.9.0; version 0.8.2, on the store today, asks
-  licences.nyuchi.dev, the same server),
+  (version 0.8.2 and earlier asked licences.nyuchi.dev, the same server),
   sending no licence key, no identifiers, no cookies and no Toddle data; it
   downloads a Nyuchi-signed list of SHA-256 fingerprints of cancelled keys
   and checks its own key locally. Cloudflare sees the IP address as with any
@@ -93,7 +91,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   nothing. It stores, on the user's own machine, its switch settings, the
   licence key if there is one, the result of the last check for cancelled
   keys, and the email of the Toddle account last seen signed in (to check
-  who a licence is for). From version 0.9.0 the licence key alone is also
+  who a licence is for). The licence key alone is also
   kept in Chrome's synced storage, so it follows the user's own Chrome
   account to their other computers (Chrome's sync, not Nyuchi's; the newest
   key wins, and removing it on one computer removes it on all); the
@@ -108,9 +106,10 @@ community-based platforms. Nyuchi Web Services is its development division.
   a copy. Schools deploy it from the Chrome Web Store by extension ID, with
   a Google Admin console force-install (or Group Policy, Intune or a macOS
   profile); an organisation key is pasted in once by each teacher, since it
-  cannot be pushed by policy. Teachers get each minor release (0.9.0 next)
-  from the Chrome Web Store; versions 0.8.3 to 0.8.13 were test builds for
-  schools piloting it, and their changes arrive together in 0.9.0. Release
+  cannot be pushed by policy. Teachers get each minor release (0.9.0 is
+  the current one) from the Chrome Web Store; versions 0.8.3 to 0.8.13 were
+  test builds for schools piloting it, and their changes arrived together in
+  0.9.0. Release
   notes for every version, in plain words:
   https://learning.nyuchi.com/toddle-enhancement-extension/releases
   (each version at #v<version>, e.g. #v0.9.0). There are no public
@@ -179,7 +178,7 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   security model (runs only on web.toddleapp.com; permissions are storage and
   Toddle only; read-only allowlisted queries; sends only to Toddle except the
   opt-in feedback form and the daily cancelled-keys check; licence keys
-  checked offline, never sent to Nyuchi, and from 0.9.0 synced only through
+  checked offline, never sent to Nyuchi, and synced only through
   the user's own Chrome account; no student data stored),
   how it is tested (closed-loop tests, adversarial-review regression tests, an
   end-to-end network recorder that fails on any non-Toddle request, every

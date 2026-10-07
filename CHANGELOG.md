@@ -6,6 +6,22 @@ v0.0.1, 2026-10-04), each release to `main` the next minor. The 3.x and 2.x
 numbers below were the site's earlier, hand-kept numbering and are retired; the
 `version` in package.json is not the release version.
 
+## Unreleased
+
+### Changed
+
+- **The Toddle Enhancement Extension 0.9.0 is on the Chrome Web Store**,
+  published on 7 October 2026. The Releases page marks it "On the Chrome Web
+  Store", dated 7 October 2026. `extensionVersions.current` is 0.9.0 and
+  there is no `next` until another minor is waiting for the store;
+  `previous` (0.8.2) names the store release before it where updating from
+  it still matters. Every "from version 0.9.0" is plain present tense, and
+  the "0.8.2, on the store today" wording is gone from the product page, the
+  legal pages, llms.txt and SECURITY.md (`flags.before`, the three switches
+  of 0.8.2, the sidebar's eye button). What still helps a teacher updating
+  from 0.8.2 stays, as history: flags it hid stay concealed, the old storage
+  key `gbx-hide-flags`, and the old licence host `licences.nyuchi.dev`.
+
 ## 0.1.0 — 2026-10-07
 
 Released with the Toddle Enhancement Extension 0.9.0, which is in Chrome Web
