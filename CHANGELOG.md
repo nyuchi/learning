@@ -39,6 +39,13 @@ Store review; the site describes it as the next version until it is live.
   Attendance dashboard's details run in closed shadow roots in 0.9.0 on every
   page; the 6 October review's fixes reach schools in 0.9.0; each version
   difference says from which version.
+- **Second release review.** The 0.9.0 notes no longer say nothing new is
+  read (the data handling page lists each read, now including the teachers'
+  roles and photos the staff view shows); the flags summary, the search data
+  and the student privacy page say from which version flags are never hidden
+  and asked for each time; the first review's version is fixed at 0.8.2; the
+  terms and the product page say the cancelled-keys check is at most once a
+  day; the staging version workflow runs only on `staging`.
 - **A release to `main` is tagged as the next minor** (`main-version.yml`,
   the org's reusable auto-tag, with a GitHub release).
 - **The licence server's address is `licenses.nyuchi.com`.** The privacy

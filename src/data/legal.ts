@@ -173,8 +173,8 @@ export const upgrade = {
  * Checked against the extension's SECURITY.md and docs/data-schema.md.
  */
 export const flags = {
-  summary:
-    "The extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room.",
+  summary: `From version ${next}, the extension never hides Toddle's own student flags: they show as Toddle shows them. When your screen is shown to a class, a parent or a visitor, one free switch conceals them across Toddle, so what a flag says cannot be read from across the room`,
+
   reveal:
     'In the student sidebar, "Show flags" shows one student\'s flags when you need them.',
   limit:
@@ -203,7 +203,7 @@ export const extensionDataFacts = [
   {
     claim: "What it reads, feature by feature.",
     detail:
-      "Toddle answers with what the signed-in teacher's own account may see, and no more. The gradebook tools, when a teacher expands an assessment: its assessment tools as Toddle defines them (rubric criteria, descriptors and levels, grade scales and their colours, checklist items, scores, standards and learning goals), and each assigned student's name, email, student ID, submission status and results, including written responses and comments. No descriptor or level is written in the extension. The home page: each class's staff, to show its primary teacher and the My classes filter. A student's profile page: the teachers of each of the student's classes. The Attendance dashboard: each student's year group and the names of the periods, from Toddle's own request, and the primary teacher of the class each student is in now, for the “Now: class · teacher” line. The student sidebar, when a teacher opens a student or a class: the student's name, photo, year group and age (the date of birth is used to work out the age and is never shown), email, student ID and enrolment date; their family accounts and contacts, with names, relationships, phone numbers and emails; their homeroom advisor; the school's additional profile fields, of which only Student Group and Room number are ever shown; today's timetable and attendance marks; their active flags (see the next point); and each class's teachers, with their display titles and emails.",
+      "Toddle answers with what the signed-in teacher's own account may see, and no more. The gradebook tools, when a teacher expands an assessment: its assessment tools as Toddle defines them (rubric criteria, descriptors and levels, grade scales and their colours, checklist items, scores, standards and learning goals), and each assigned student's name, email, student ID, submission status and results, including written responses and comments. No descriptor or level is written in the extension. The home page: each class's staff, to show its primary teacher and the My classes filter. A student's profile page: the teachers of each of the student's classes. The Attendance dashboard: each student's year group and the names of the periods, from Toddle's own request, and the primary teacher of the class each student is in now, for the “Now: class · teacher” line. The student sidebar, when a teacher opens a student or a class: the student's name, photo, year group and age (the date of birth is used to work out the age and is never shown), email, student ID and enrolment date; their family accounts and contacts, with names, relationships, phone numbers and emails; their homeroom advisor; the school's additional profile fields, of which only Student Group and Room number are ever shown; today's timetable and attendance marks; their active flags (see the next point); and the teachers of each class, of today's blocks and of the homeroom, with their display titles, roles and emails, and their photos where Toddle gives them, which the sidebar's staff view shows when a teacher's name is clicked (it asks Toddle for nothing more).",
   },
   {
     claim:
@@ -277,7 +277,8 @@ export const security = {
     {
       date: "2026-10-01",
       label: "1 October 2026",
-      version: extensionVersions.current,
+      /** Fixed: review history does not move when `current` does. */
+      version: "0.8.2",
       findings: "1 to 12",
     },
     {
