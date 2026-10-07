@@ -1,0 +1,124 @@
+---
+/**
+ * Releases — what changed in each version of the Toddle Enhancement Extension.
+ *
+ * The public home of the extension's release notes. The extension's source
+ * repository is private and its GitHub releases are internal test builds, so
+ * this page has no downloads and no GitHub links: teachers install and update
+ * from the Chrome Web Store. The extension's toolbar menu links here, to
+ * `#v<its version>`, so every version keeps an element with that id.
+ *
+ * The notes live in src/data/releases.ts; adding a release is one edit there.
+ */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { releaseDate, releases, testBuilds } from "../../data/releases";
+import { toddleExtension } from "../../data/site";
+
+const title = "Releases — Toddle Enhancement Extension — Nyuchi Learning";
+const description =
+  "What changed in each version of the Toddle Enhancement Extension, in plain words for teachers: version 0.9.0, coming soon to the Chrome Web Store, and every version before it.";
+
+const storeCta = toddleExtension.webStore
+  ? { label: "Add to Chrome", href: toddleExtension.webStore }
+  : { label: "Tell me when it is live", href: toddleExtension.enquiry };
+
+const statusLabel = {
+  coming: "Coming soon to the Chrome Web Store",
+  store: "On the Chrome Web Store",
+  early: "Before the Chrome Web Store",
+} as const;
+
+const statusClass = {
+  coming: "badge badge-accent",
+  store: "badge badge-success",
+  early: "badge badge-info",
+} as const;
+
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/toddle-enhancement-extension/releases"
+>
+  <article class="container-prose section">
+    <p class="eyebrow">
+      <a href="/toddle-enhancement-extension" class="link">{toddleExtension.name}</a>
+    </p>
+    <h1 class="font-serif text-h1 text-foreground text-balance">Releases</h1>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      What changed in each version, newest first. You install and update the extension
+      from the Chrome Web Store, and Chrome keeps it up to date on its own: there is
+      nothing to download here. To see which version you have, open the extension's menu
+      from Chrome's toolbar.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href={storeCta.href} rel="noopener noreferrer" class="btn-primary"
+        >{storeCta.label}</a
+      >
+      <a href={toddleExtension.help} rel="noopener noreferrer" class="btn-outline"
+        >How to use it</a
+      >
+    </div>
+
+    <ol class="mt-12 space-y-10">
+      {
+        releases.map((release) => (
+          <li id={`v${release.version}`} class="scroll-mt-24">
+            <section class="card p-6 md:p-8" aria-labelledby={`h-v${release.version}`}>
+              {release.alsoIds?.map((id) => (
+                <span id={`v${id}`} class="block scroll-mt-24" aria-hidden="true" />
+              ))}
+              <p class="flex flex-wrap items-center gap-2">
+                <span class={statusClass[release.status]}>{statusLabel[release.status]}</span>
+                {release.date && (
+                  <span class="text-caption text-muted-foreground">
+                    <time datetime={release.date}>{releaseDate(release.date)}</time>
+                  </span>
+                )}
+              </p>
+              <h2
+                id={`h-v${release.version}`}
+                class="mt-3 font-serif text-h3 text-foreground text-balance"
+              >
+                Version {release.label ?? release.version}
+              </h2>
+              <p class="mt-3 text-body text-muted-foreground text-pretty">{release.summary}</p>
+              {release.sections.map((section) => (
+                <>
+                  <h3 class="mt-6 font-serif text-h5 text-foreground">{section.heading}</h3>
+                  <ul class="mt-3 space-y-2 text-body-sm text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40">
+                    {section.items.map((item) => (
+                      <li class="text-pretty">{item}</li>
+                    ))}
+                  </ul>
+                </>
+              ))}
+            </section>
+            {release.version === testBuilds.arriveIn && (
+              <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
+                {testBuilds.versions.map((id) => (
+                  <span id={`v${id}`} class="scroll-mt-24" aria-hidden="true" />
+                ))}
+                Versions {testBuilds.from} to {testBuilds.to} were test builds for schools
+                piloting the extension. Their changes arrive together in{" "}
+                {testBuilds.arriveIn}.
+              </p>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+
+    <h2 class="font-serif text-h3 text-foreground mt-12">Questions about a release</h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Write to
+      <a class="link" href={`mailto:${toddleExtension.supportEmail}`}
+        >{toddleExtension.supportEmail}</a
+      >, or tell us through the <a class="link" href="/feedback">feedback form</a>. What the
+      extension reads, stores and sends is on the
+      <a class="link" href="/legal/data">data handling</a> and
+      <a class="link" href="/legal/security">security</a> pages.
+    </p>
+  </article>
+</BaseLayout>

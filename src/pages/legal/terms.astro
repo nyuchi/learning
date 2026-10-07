@@ -7,7 +7,15 @@
  * whether we can withdraw it — is answered plainly rather than buried.
  */
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { legal, pricing, refunds, toddleNotice, updatedLabel } from "../../data/legal";
+import {
+  legal,
+  licenceSync,
+  ownership,
+  pricing,
+  refunds,
+  toddleNotice,
+  updatedLabel,
+} from "../../data/legal";
 import { toddleExtension } from "../../data/site";
 
 const title = "Terms of use and service — Nyuchi Learning";
@@ -29,8 +37,10 @@ const description =
 
     <div class="mt-10 ubuntu-quote">
       <p class="text-body text-pretty">
-        <strong>The short version.</strong> Use it in your school. Do not resell it or
-        take it apart to make a competing product. It reads Toddle and changes nothing, but
+        <strong>The short version.</strong> Use it in your school. The extension and its
+        code are ours, and a licence lets you use them, not own them. Do not resell it,
+        copy its code into anything else, or take it apart to make a competing product.
+        Reading the code to check what it does is welcome. It reads Toddle and changes nothing, but
         it is software that rides on someone else's app, so it can break — check anything
         that matters before you act on it. We are not liable for what you do with what it
         shows you.
@@ -49,19 +59,30 @@ const description =
       <a href="/legal/privacy" class="link">privacy policy</a>.
     </p>
 
+    <h2 id="ownership" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Who owns the extension
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      {ownership.statement} That covers its code, its design and its documentation, in
+      every version, including the free features. {ownership.licence}
+      {ownership.noReuse} {ownership.reading}
+    </p>
+
     <h2 class="font-serif text-h3 text-foreground mt-12">What a licence lets you do</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Install and use the {toddleExtension.name} for teaching and administration at the
       school or organisation the licence covers, on as many machines as that licence
-      allows, for as long as it is current.
+      allows, for as long as it is current. The free features may be used by anyone, on
+      the same terms. Using it gives you no other rights in it.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What it costs</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Hiding student flags is free and is not licensed. It protects a child, so it is not
-      something we will ever put behind a payment. The My classes filter on the Toddle
+      Concealing student flags for a shared screen is free and is not licensed. It
+      protects a child, so it is not something we will ever put behind a payment. The My classes filter on the Toddle
       home page is free too. A licence covers the gradebook's per-criterion columns, the
-      CSV export, the student sidebar and primary teacher names.
+      CSV export, the student sidebar, primary teacher names and the Attendance
+      dashboard's student details.
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
@@ -103,15 +124,16 @@ const description =
     <h2 class="font-serif text-h3 text-foreground mt-12">How licence keys work</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       A licence key is a signed statement that the extension checks on your own device, so
-      activating it contacts nothing and works offline. An individual key carries the
-      buyer's email address and works for the Toddle account with that address; an
-      organisation key carries the school's email domain and works for Toddle accounts on
-      that domain. The comparison happens in your browser only. While a key is entered, the
-      extension downloads once a day a signed list of cancelled keys, sending nothing about
-      you; a key we have cancelled stops unlocking the licensed features once the extension
-      has seen that list. If the check cannot be made, the extension keeps
-      working. When a key expires the licensed features stop, and the free flag switch and
-      My classes filter carry on working.
+      activating it contacts nothing and works offline. A key carries the buyer's email
+      address, and may also name who it is for: the buyer's email, for the Toddle account
+      with that address, or for an organisation licence the school's email domain, for
+      Toddle accounts on that domain. Where it does, the comparison happens in your browser
+      only. {licenceSync.short} While a key is entered, the extension downloads at most once a day a signed list of
+      cancelled keys, sending nothing about you; a key we have cancelled stops unlocking the
+      licensed features once the extension has seen that list. If the check cannot be made,
+      the last result stands, so a network outage never switches a licence off. When a key
+      expires the licensed features stop, and the free flag switch and My classes filter
+      carry on working.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What you may not do</h2>
@@ -119,6 +141,11 @@ const description =
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>Resell it, sublicense it, or charge anyone else for access to it.</li>
+      <li>
+        Copy, modify, reuse or redistribute its code, in whole or in part, in another
+        product or service, without our written permission. That includes publishing it,
+        or a changed copy of it, anywhere else.
+      </li>
       <li>
         Take it apart in order to build a competing product. Reading the code to satisfy
         yourself about what it does is fine — we encourage it.
@@ -154,7 +181,7 @@ const description =
       works by reading the interface Toddle's own web app uses. Toddle does not publish
       that interface and is under no obligation to keep it stable. A Toddle release can
       change it, and when that happens a column may stop appearing or a flag may stop being
-      hidden.
+      concealed.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       We will fix breakages as quickly as we can, and the extension is built to fail

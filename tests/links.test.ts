@@ -96,11 +96,21 @@ describe("the extension page", () => {
     expect(extensionPage).toContain("What it does not do");
   });
 
-  /* The shipping feature hides flags and deliberately never hides names.
+  /* The feature conceals flags and deliberately never hides names.
      Describing it as anonymising the class would be a false claim on a page a
      school reads before trusting it. */
   it("does not claim to hide student names", () => {
-    expect(extensionPage).toContain("It hides flags, not names");
+    expect(extensionPage).toContain("It conceals flags, not names");
     expect(extensionPage).not.toMatch(/Present mode/);
+  });
+
+  /* From 0.9.0 the extension never hides Toddle's own flags: a teacher
+     conceals them for a shared screen. "Hide flags" would promise the old
+     behaviour. Only the line about 0.8.2 (`flags.before` in legal.ts) may
+     say what that version did. */
+  it("says flags are concealed, not hidden", () => {
+    for (const source of [extensionPage, home]) {
+      expect(source).not.toMatch(/\bhid(e|es|ing) (student |toddle's )?flags/i);
+    }
   });
 });
