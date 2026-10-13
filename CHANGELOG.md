@@ -48,6 +48,15 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   and `npm run consent:probe` now fails on any Google Analytics request
   before consent.
 
+### Fixed
+
+- **Anchors for the extension's test builds 0.9.6, 0.9.7 and 0.9.8 (#85)**
+  on the Releases page, under 0.10.0 beside 0.9.1 to 0.9.5, so the links from
+  those builds' menus land on the release they lead to. 0.10.0 is still
+  "Coming soon to the Chrome Web Store". `taggedTestBuilds` in
+  `src/data/releases.ts` lists every tagged test build, and a test fails the
+  build if one has no anchor, or more than one.
+
 ## 0.1.0 — 2026-10-07
 
 Released with the Toddle Enhancement Extension 0.9.0, which is in Chrome Web
