@@ -65,6 +65,35 @@ export const testBuilds = {
 /** Newest first. */
 export const releases: Release[] = [
   {
+    version: "0.10.0",
+    status: "coming",
+    summary:
+      "Student flags in the sidebar keep more of their formatting, a licence for a school whose web address uses letters outside English is recognised, and a fix that keeps one unusual flag from freezing Toddle.",
+    sections: [
+      {
+        heading: "Student flags in the sidebar",
+        items: [
+          "More of a flag's formatting comes through: headings now read as headings, and quotes, code, tables and dividing lines are drawn as they were written, alongside the lists, bold and links the sidebar already showed.",
+          "Links in a flag still open only if they are ordinary secure web addresses; any other link keeps its words but can't be followed.",
+        ],
+      },
+      {
+        heading: "Fixed",
+        items: [
+          "A flag holding one very long heading line could leave the Toddle tab frozen for many seconds when its student's sidebar opened. It now opens at once.",
+          "A licence for a school whose web address uses letters outside English, such as schüle.de, matches the teacher's Toddle account.",
+        ],
+      },
+      {
+        heading: "Behind the scenes",
+        items: [
+          "Every change to the extension is now checked for known weaknesses in the code it uses, and scanned for security problems, before it can be released.",
+        ],
+      },
+    ],
+    alsoIds: ["0.9.1", "0.9.2", "0.9.3", "0.9.4", "0.9.5"],
+  },
+  {
     version: "0.9.0",
     status: "store",
     date: "2026-10-07",
