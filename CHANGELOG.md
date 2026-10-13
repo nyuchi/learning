@@ -8,6 +8,16 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ## Unreleased
 
+### Added
+
+- **`npm run clean`, and after every merge.** `scripts/clean.mjs` removes
+  the build output (`dist/`, `.astro/`, `.vercel/output/`), the QA report,
+  the tools' caches, finished Claude Code worktrees and local branches
+  already in `main` or `staging`, touching only what Git ignores. It runs
+  after a `git pull` that merges (`.githooks/post-merge`, turned on by
+  `npm ci` through the new `prepare` script) and after Claude Code merges a
+  pull request (`.claude/settings.json`). See CONTRIBUTING.md.
+
 ### Changed
 
 - **The Toddle Enhancement Extension 0.9.0 is on the Chrome Web Store**,

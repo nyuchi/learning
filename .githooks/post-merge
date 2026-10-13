@@ -1,0 +1,5 @@
+#!/bin/sh
+# After a `git pull` that merges: keep the clone light (scripts/clean.mjs).
+# Turned on by `npm ci` (scripts/install-hooks.mjs). It never fails a pull.
+command -v node >/dev/null 2>&1 || exit 0
+node scripts/clean.mjs --quiet || true
