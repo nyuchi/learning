@@ -6,6 +6,8 @@
   "type": "module",
   "description": "learning.nyuchi.com — the Nyuchi Learning surface and the home of the Toddle Enhancement Extension.",
   "scripts": {
+    "clean": "node scripts/clean.mjs",
+    "prepare": "node scripts/install-hooks.mjs",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",

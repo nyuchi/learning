@@ -43,6 +43,25 @@ npm run format       # prettier --write
 npm run format:check # the org lint gate runs this
 ```
 
+## Keeping the clone light
+
+`npm run clean` (`scripts/clean.mjs`) removes what the build and the tools
+generate (`dist/`, `.astro/`, `.vercel/output/`, `qa-report.json`, the tools' caches), Claude Code worktrees with nothing uncommitted, and local
+branches that are done: everything on them is already in `origin/main` or
+`origin/staging` (a squash merge included), or their remote branch was
+deleted after the pull request merged while they held nothing unpushed. It
+touches only what Git ignores, never `main`, `staging`, the branch checked
+out or one in a worktree, and names anything it leaves. `--dry-run` lists,
+`--deep` also removes `node_modules` and npm's cache, `--no-fetch` works
+offline.
+
+It runs on its own after a `git pull` that merges (`.githooks/post-merge`,
+turned on by `npm ci`), and after Claude Code merges a pull request
+(`.claude/settings.json`, a `PostToolUse` hook) in whichever of the three
+clones (`toddle-enhancement-extension`, `learning`, `nyuchi-licence-server`)
+the pull request belongs to. The same script is in all three; only its list
+of generated paths differs.
+
 ## If you touch the theme bootstrap
 
 The one inline script in `BaseLayout.astro` is allowed by a hash in the
