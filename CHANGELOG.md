@@ -47,6 +47,15 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   runs the built script against current, old, legacy and malformed records,
   and `npm run consent:probe` now fails on any Google Analytics request
   before consent.
+- **CI asks for less (#84).** Every workflow grants nothing at the top level;
+  each job asks for its own permissions (`contents: read` for the build and
+  audit jobs, `contents: write` only for the two tagging jobs). The build
+  workflow's checkouts set `persist-credentials: false`, since nothing there
+  pushes. `actions/checkout` and `actions/setup-node` are pinned to full
+  commit SHAs (v4.4.0 each), with the version in a comment, and the new
+  `.github/dependabot.yml` keeps those pins current, a week after each
+  release (`cooldown`). The reusable workflows
+  from `nyuchi/.github` were already pinned to a commit.
 
 ### Fixed
 

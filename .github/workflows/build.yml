@@ -5,8 +5,9 @@ on:
   push:
     branches: [main, staging]
 
-permissions:
-  contents: read
+# Nothing at the workflow level: each job asks for what it uses, and no job
+# here pushes, tags or comments, so each reads the repository and no more.
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -15,11 +16,17 @@ concurrency:
 jobs:
   check:
     name: astro check + tests + build
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # Nothing here pushes, so the token is not left in .git/config for
+          # every later step (and every npm install script) to read.
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
           cache: "npm"
@@ -39,11 +46,17 @@ jobs:
 
   audit:
     name: npm audit
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # Nothing here pushes, so the token is not left in .git/config for
+          # every later step (and every npm install script) to read.
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
           cache: "npm"

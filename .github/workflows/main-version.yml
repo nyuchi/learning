@@ -14,8 +14,9 @@ on:
         options: [minor, major]
         default: minor
 
-permissions:
-  contents: read
+# Nothing at the workflow level: the one job below asks for the write access
+# that tagging needs, and only it.
+permissions: {}
 
 jobs:
   version:
