@@ -80,13 +80,16 @@ export const taggedTestBuilds: readonly string[] = [
   "0.9.6",
   "0.9.7",
   "0.9.8",
+  "0.9.9",
+  "0.9.10",
 ];
 
 /** Newest first. */
 export const releases: Release[] = [
   {
     version: "0.10.0",
-    status: "coming",
+    status: "store",
+    date: "2026-10-13",
     summary:
       "Student flags in the sidebar keep more of their formatting, a licence for a school whose web address uses letters outside English is recognised, and a fix that keeps one unusual flag from freezing Toddle.",
     sections: [
@@ -120,6 +123,8 @@ export const releases: Release[] = [
       "0.9.6",
       "0.9.7",
       "0.9.8",
+      "0.9.9",
+      "0.9.10",
     ],
   },
   {

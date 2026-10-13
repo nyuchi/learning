@@ -20,6 +20,7 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **0.10.0 is on the Chrome Web Store.** The Releases page shows it as on the store since 13 October 2026, and the test builds 0.9.9 and 0.9.10 open its notes.
 - **The Toddle Enhancement Extension 0.9.0 is on the Chrome Web Store**,
   published on 7 October 2026. The Releases page marks it "On the Chrome Web
   Store", dated 7 October 2026. `extensionVersions.current` is 0.9.0 and

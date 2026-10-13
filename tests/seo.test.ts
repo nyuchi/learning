@@ -261,9 +261,11 @@ describe("the releases page", () => {
     }
   });
 
-  it("says 0.10.0 is coming, and gives the 0.9.x test builds its anchor", () => {
-    expect(release("0.10.0")).toContain("Coming soon to the Chrome Web Store");
+  it("says 0.10.0 is on the store, and gives the 0.9.x test builds its anchor", () => {
+    expect(release("0.10.0")).toContain("On the Chrome Web Store");
+    expect(release("0.10.0")).toContain('datetime="2026-10-13"');
     expect(page).toContain('id="v0.9.4"');
+    expect(page).toContain('id="v0.9.10"');
   });
 
   it("links to no GitHub release and offers no download", () => {
