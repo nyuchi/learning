@@ -32,6 +32,21 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   from 0.8.2 stays, as history: flags it hid stay concealed, and versions
   before 0.9.0 used the storage key `gbx-hide-flags` and asked the licence
   host `licences.nyuchi.dev`.
+- **Google Analytics loads only after consent (#83).** Google's tag is no
+  longer on the page behind Consent Mode set to denied, which still sent
+  Google a cookieless ping; it is not requested at all until the visitor
+  agrees. `Analytics.astro` queues the denied defaults and holds the only
+  loader, which runs on a stored yes from the current banner version or when
+  `CookieBanner.astro` records one. A record from an older version, the first
+  banner's `analytics-consent` key, or anything malformed counts as no answer,
+  and the banner asks again; `SupportWidget.astro` applies the same check
+  through `parseConsent` in `src/data/consent.ts`. The privacy and cookie
+  policies now say that Google Analytics contacts Google only after you agree
+  (Google Fonts is still named separately), dated 13 October 2026, as is
+  llms.txt. The CSP has one inline-script hash fewer. `tests/consent.test.ts`
+  runs the built script against current, old, legacy and malformed records,
+  and `npm run consent:probe` now fails on any Google Analytics request
+  before consent.
 
 ## 0.1.0 — 2026-10-07
 

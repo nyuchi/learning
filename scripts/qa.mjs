@@ -67,8 +67,10 @@ for (const scheme of ["light", "dark"]) {
        * and Google Analytics are there because a commit put them there; anything
        * else arriving is the regression this exists to catch.
        *
-       * Analytics loading eagerly is not a licence for the messenger to, which
-       * is why these are two assertions rather than one "no third parties". */
+       * Google Analytics loads only after consent, which this run never gives;
+       * scripts/probe-consent.mjs is what asserts that. Either way, analytics
+       * is not a licence for the messenger to load, which is why these are two
+       * assertions rather than one "no third parties". */
       const APPROVED =
         /(^|\.)(googleapis|gstatic|googletagmanager|google-analytics)\.com$|(^|\.)analytics\.google\.com$/;
       const unapproved = [];

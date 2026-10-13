@@ -250,15 +250,16 @@ describe("support messenger", () => {
   });
 });
 
-/* Consent. The privacy policy promises no analytics cookie until the visitor
-   presses Accept, and that promise rests entirely on the ORDER of three inline
-   scripts: deny, then load Google's tag, then configure. Reorder the head for an
-   unrelated reason and the cookie starts appearing with nothing visibly broken
-   and the policy quietly false.
+/* Consent. The privacy policy promises that Google Analytics is not loaded at
+   all until the visitor agrees — no request to Google, not just no cookie. That
+   promise rests on one thing: the only path to Google's tag is a loader that
+   consent calls. Put a <script src> for it back in the head for an unrelated
+   reason and nothing visibly breaks; the policy just quietly becomes false.
 
    scripts/probe-consent.mjs proves the behaviour in a browser. This is the
-   cheap CI-safe half: the defaults exist, they are all denied, and they come
-   first. */
+   cheap CI-safe half: the built pages carry no loader, the inline script that
+   holds it loads nothing without a current yes, and the banner calls it only
+   on one. */
 describe("consent", () => {
   const analytics = read("src/components/Analytics.astro");
   const banner = read("src/components/CookieBanner.astro");
@@ -276,17 +277,33 @@ describe("consent", () => {
     }
   });
 
-  it("sets the defaults before Google's tag is loaded", () => {
+  it("queues the defaults before anything can load Google's tag", () => {
     const deny = analytics.indexOf("'consent', 'default'");
-    const load = analytics.indexOf("googletagmanager.com/gtag/js");
-    const config = analytics.indexOf("'config'");
+    const loader = analytics.indexOf("googletagmanager.com/gtag/js");
+    const firstLoad = analytics.indexOf("nyuchiAnalytics.load()");
     expect(deny).toBeGreaterThan(-1);
-    expect(load).toBeGreaterThan(-1);
+    expect(loader).toBeGreaterThan(-1);
+    expect(firstLoad).toBeGreaterThan(-1);
     expect(
       deny,
-      "consent defaults are declared after the tag loads — GA could store before the visitor chooses",
-    ).toBeLessThan(load);
-    expect(load).toBeLessThan(config);
+      "consent defaults are declared after the loader — GA could store before the visitor chooses",
+    ).toBeLessThan(loader);
+    expect(deny).toBeLessThan(firstLoad);
+  });
+
+  it("calls the loader from the banner only when analytics is granted", () => {
+    const calls = [...banner.matchAll(/nyuchiAnalytics\?\.load\(\)/g)];
+    expect(calls).toHaveLength(1);
+    expect(banner).toMatch(
+      /if \(granted\("analytics"\)\) window\.nyuchiAnalytics\?\.load\(\);/,
+    );
+  });
+
+  it("does not read the first banner's key as an answer", () => {
+    /* The legacy key answered a banner that loaded Google either way. It is
+       removed on save; it must never be read as consent. */
+    expect(banner).not.toMatch(/getItem\(legacyKey\)/);
+    expect(analytics).not.toMatch(/import[^;]*LEGACY_CONSENT_KEY/);
   });
 
   it("grants analytics_storage only, never the advertising signals", () => {
