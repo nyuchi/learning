@@ -25,5 +25,19 @@
       "mcp__claude_ai_Postiz__integrationList",
       "mcp__Mzizi__mzizi_get_tokens"
     ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "mcp__github__merge_pull_request",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$CLAUDE_PROJECT_DIR/scripts/clean.mjs\" --hook",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
   }
 }
