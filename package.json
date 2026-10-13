@@ -39,8 +39,6 @@
     "axe-core": "^4.12.1",
     "playwright": "^1.63.0",
     "prettier": "3.3.3",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.9.3",
     "vite-plus": "^1.0.0"

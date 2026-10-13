@@ -56,6 +56,15 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   `.github/dependabot.yml` keeps those pins current, a week after each
   release (`cooldown`). The reusable workflows
   from `nyuchi/.github` were already pinned to a commit.
+- **Docs match the site as it is (#86).** README, CONTRIBUTING and
+  `docs/toolchain.md` describe the Astro site's pages, the staging → main
+  release flow, Vite+ as adopted (no longer "cannot be adopted"), the inline
+  scripts the CSP hashes, and the current audit; the dead Lint badge, the
+  vitest pin, `master` and "two pages" are gone. `react` and `react-dom` are
+  no longer dev dependencies: nothing imports them, and `@bundu/ui` declares
+  no peer dependencies. Prettier and `vp fmt` both stay, because each is run
+  by a required org gate; `tests/toolchain.test.ts` fails if their settings
+  differ.
 
 ### Fixed
 

@@ -37,10 +37,10 @@ jobs:
       - name: Type-check
         run: npm run check
 
-      # `npm test` runs vitest, builds the site, and then verifies that every
-      # inline script in the build is covered by the CSP hash allowlist in
-      # vercel.json — so an edit to the theme bootstrap cannot ship a page the
-      # browser will refuse to run.
+      # `npm test` builds the site, runs the tests (vp test), and then verifies
+      # that every inline script in the build is covered by the CSP hash
+      # allowlist in vercel.json — so an edit to an inline script cannot ship
+      # a page the browser will refuse to run.
       - name: Tests, build, and CSP check
         run: npm test
 
@@ -75,16 +75,11 @@ jobs:
       - name: Audit what ships
         run: node scripts/audit.mjs
 
-      # Build and test tooling, reported but not blocking.
-      #
-      # vitest currently carries an advisory with no installable fix: every
-      # published version up to 4.1.10 is affected, and 4.1.11 — the fix —
-      # cannot be installed, because it trips a resolver bug in npm 10.9
-      # ("Cannot read properties of null (reading 'edgesOut')") that aborts
-      # `npm install` outright. Blocking on it would pin this job red until
-      # npm ships a fix, which trains everyone to ignore it. So it is surfaced
-      # in the log instead, and this step goes back to blocking the moment
-      # vitest 4.1.11 installs cleanly.
+      # Build and test tooling, reported but not blocking. None of it ships:
+      # the site is static HTML. Blocking on an advisory in a build tool with
+      # no non-breaking fix would pin this job red and train everyone to
+      # ignore it, so it is surfaced in the log instead. Today that is
+      # postcss-selector-parser, through @tailwindcss/typography.
       - name: Report advisories in build and test tooling
         continue-on-error: true
         run: npm audit --audit-level=moderate
