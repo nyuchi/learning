@@ -18,21 +18,7 @@ const LEVEL = "high";
 
 /* Every entry: the advisory, why it is safe here, when it was set aside and
    when it must be looked at again. Remove an entry as soon as a fix installs. */
-const IGNORED = [
-  {
-    id: "GHSA-ch52-4w7c-c8xp",
-    package: "http-cache-semantics",
-    added: "2026-10-03",
-    recheck: "2026-11-03",
-    why:
-      "http-cache-semantics <=4.2.0 (no patched release) can serve another " +
-      "user's cached response through max-stale handling. astro 7.3.5 uses " +
-      "it only in assets/build/remote.js, which caches remote images during " +
-      "`astro build` (core/build/static-build -> generate). This site is " +
-      'output: "static": no server code ships, no shared cache answers ' +
-      "users, so the vulnerable path never runs outside our own build.",
-  },
-];
+const IGNORED = [];
 
 let raw;
 try {

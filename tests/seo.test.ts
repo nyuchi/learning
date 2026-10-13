@@ -10,6 +10,7 @@ import { describe, expect, it } from "vite-plus/test";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { taggedTestBuilds } from "../src/data/releases";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative: string) => readFileSync(join(root, relative), "utf8");
@@ -247,6 +248,17 @@ describe("the releases page", () => {
     expect(v090).not.toContain("Coming soon to the Chrome Web Store");
     expect(v090).toContain("On the Chrome Web Store");
     expect(v090).toContain('datetime="2026-10-07"');
+  });
+
+  it("gives every tagged test build an anchor, once", () => {
+    /* The extension's menu links each test build to #v<version>. The list is
+       kept in src/data/releases.ts, not fetched: the repository is private,
+       and a test that calls GitHub is one that fails for the wrong reason. */
+    expect(taggedTestBuilds.length).toBeGreaterThan(0);
+    for (const version of taggedTestBuilds) {
+      const anchors = page.split(`id="v${version}"`).length - 1;
+      expect(anchors, `#v${version} on the releases page`).toBe(1);
+    }
   });
 
   it("says 0.10.0 is coming, and gives the 0.9.x test builds its anchor", () => {

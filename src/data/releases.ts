@@ -62,6 +62,26 @@ export const testBuilds = {
   arriveIn: "0.9.0",
 } as const;
 
+/**
+ * Every test build the extension's repository has tagged since 0.8.2, as
+ * `v<version>`. Its toolbar menu links each one to `#v<version>` here, so each
+ * must have an anchor on the page: through `testBuilds` or a release's
+ * `alsoIds`. tests/seo.test.ts fails the build for any version in this list
+ * without one, so when the extension tags a new test build, add it here and
+ * to the release it leads to.
+ */
+export const taggedTestBuilds: readonly string[] = [
+  ...testBuilds.versions,
+  "0.9.1",
+  "0.9.2",
+  "0.9.3",
+  "0.9.4",
+  "0.9.5",
+  "0.9.6",
+  "0.9.7",
+  "0.9.8",
+];
+
 /** Newest first. */
 export const releases: Release[] = [
   {
@@ -91,7 +111,16 @@ export const releases: Release[] = [
         ],
       },
     ],
-    alsoIds: ["0.9.1", "0.9.2", "0.9.3", "0.9.4", "0.9.5"],
+    alsoIds: [
+      "0.9.1",
+      "0.9.2",
+      "0.9.3",
+      "0.9.4",
+      "0.9.5",
+      "0.9.6",
+      "0.9.7",
+      "0.9.8",
+    ],
   },
   {
     version: "0.9.0",

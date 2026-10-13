@@ -121,7 +121,7 @@ import { legal } from "../data/legal";
 </style>
 
 <script>
-  import { CONSENT_KEY } from "../data/consent";
+  import { CONSENT_KEY, parseConsent } from "../data/consent";
 
   declare global {
     interface Window {
@@ -144,12 +144,12 @@ import { legal } from "../data/legal";
   /* Read the consent record from storage rather than from the banner's global.
      Both are deferred modules with no guaranteed order, and reading a global
      another module sets is a race this file has already lost once. Storage is
-     there either way. */
+     there either way. A record from an older banner version, or one that does
+     not parse, is no answer at all: ask, rather than act on it. */
   function supportConsent(): "granted" | "denied" | "unset" {
     try {
-      const raw = localStorage.getItem(CONSENT_KEY);
-      if (!raw) return "unset";
-      const record = JSON.parse(raw) as { support?: boolean };
+      const record = parseConsent(localStorage.getItem(CONSENT_KEY));
+      if (!record) return "unset";
       return record.support === true ? "granted" : "denied";
     } catch {
       return "unset";
