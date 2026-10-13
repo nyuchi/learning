@@ -232,10 +232,26 @@ describe("the releases page", () => {
     }
   });
 
+  /** One release's part of the page, from its anchor to the next release's. */
+  const release = (version: string) => {
+    const from = page.search(
+      new RegExp(`<li id="v${version.replaceAll(".", "\\.")}"`),
+    );
+    expect(from).toBeGreaterThan(-1);
+    const next = page.slice(from + 1).search(/<li id="v\d/);
+    return next === -1 ? page.slice(from) : page.slice(from, from + 1 + next);
+  };
+
   it("says 0.9.0 is on the Chrome Web Store, from 7 October 2026", () => {
-    expect(page).not.toContain("Coming soon to the Chrome Web Store");
-    expect(page).toContain("On the Chrome Web Store");
-    expect(page).toContain('datetime="2026-10-07"');
+    const v090 = release("0.9.0");
+    expect(v090).not.toContain("Coming soon to the Chrome Web Store");
+    expect(v090).toContain("On the Chrome Web Store");
+    expect(v090).toContain('datetime="2026-10-07"');
+  });
+
+  it("says 0.10.0 is coming, and gives the 0.9.x test builds its anchor", () => {
+    expect(release("0.10.0")).toContain("Coming soon to the Chrome Web Store");
+    expect(page).toContain('id="v0.9.4"');
   });
 
   it("links to no GitHub release and offers no download", () => {
