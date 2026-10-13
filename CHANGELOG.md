@@ -68,6 +68,12 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Fixed
 
+- **Dependency advisories.** `http-cache-semantics` takes its patched
+  release (GHSA-ch52-4w7c-c8xp), so its dated exception in
+  `scripts/audit.mjs` is gone. `postcss-selector-parser` is held at 7.1.6 or
+  later through an npm `overrides` entry (GHSA-rj75-hqrm-r3gf): the
+  typography plugin pins 6.0.10, and the built CSS is byte-for-byte the same
+  with the newer version.
 - **Anchors for the extension's test builds 0.9.6, 0.9.7 and 0.9.8 (#85)**
   on the Releases page, under 0.10.0 beside 0.9.1 to 0.9.5, so the links from
   those builds' menus land on the release they lead to. 0.10.0 is still
