@@ -135,15 +135,15 @@ community-based platforms. Nyuchi Web Services is its development division.
 
 ## Legal
 
-All dated 7 October 2026. Operated by Nyuchi Web Services, the development
+All dated 13 October 2026. Operated by Nyuchi Web Services, the development
 division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
 
 - [Privacy policy](https://learning.nyuchi.com/legal/privacy): what the
   extension and the site do with data. In short, nothing the extension reads
   leaves the browser; it sends only feedback a person chooses to send and,
   while a licence is entered, a data-free daily check for cancelled keys; this website
-  uses Google Analytics only with consent, and sets no cookies unless the
-  visitor agrees. Nyuchi Africa (Private) Limited is the controller for the
+  loads Google Analytics only after the visitor agrees to it, and sets no
+  cookies unless the visitor agrees. Nyuchi Africa (Private) Limited is the controller for the
   data it holds (purchases, feedback, support, site analytics), under
   Zimbabwe's Cyber and Data Protection Act [Chapter 12:07]; requests to
   privacy@nyuchi.com.

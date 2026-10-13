@@ -32,6 +32,54 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   from 0.8.2 stays, as history: flags it hid stay concealed, and versions
   before 0.9.0 used the storage key `gbx-hide-flags` and asked the licence
   host `licences.nyuchi.dev`.
+- **Google Analytics loads only after consent (#83).** Google's tag is no
+  longer on the page behind Consent Mode set to denied, which still sent
+  Google a cookieless ping; it is not requested at all until the visitor
+  agrees. `Analytics.astro` queues the denied defaults and holds the only
+  loader, which runs on a stored yes from the current banner version or when
+  `CookieBanner.astro` records one. A record from an older version, the first
+  banner's `analytics-consent` key, or anything malformed counts as no answer,
+  and the banner asks again; `SupportWidget.astro` applies the same check
+  through `parseConsent` in `src/data/consent.ts`. The privacy and cookie
+  policies now say that Google Analytics contacts Google only after you agree
+  (Google Fonts is still named separately), dated 13 October 2026, as is
+  llms.txt. The CSP has one inline-script hash fewer. `tests/consent.test.ts`
+  runs the built script against current, old, legacy and malformed records,
+  and `npm run consent:probe` now fails on any Google Analytics request
+  before consent.
+- **CI asks for less (#84).** Every workflow grants nothing at the top level;
+  each job asks for its own permissions (`contents: read` for the build and
+  audit jobs, `contents: write` only for the two tagging jobs). The build
+  workflow's checkouts set `persist-credentials: false`, since nothing there
+  pushes. `actions/checkout` and `actions/setup-node` are pinned to full
+  commit SHAs (v4.4.0 each), with the version in a comment, and the new
+  `.github/dependabot.yml` keeps those pins current, a week after each
+  release (`cooldown`). The reusable workflows
+  from `nyuchi/.github` were already pinned to a commit.
+- **Docs match the site as it is (#86).** README, CONTRIBUTING and
+  `docs/toolchain.md` describe the Astro site's pages, the staging → main
+  release flow, Vite+ as adopted (no longer "cannot be adopted"), the inline
+  scripts the CSP hashes, and the current audit; the dead Lint badge, the
+  vitest pin, `master` and "two pages" are gone. `react` and `react-dom` are
+  no longer dev dependencies: nothing imports them, and `@bundu/ui` declares
+  no peer dependencies. Prettier and `vp fmt` both stay, because each is run
+  by a required org gate; `tests/toolchain.test.ts` fails if their settings
+  differ.
+
+### Fixed
+
+- **Dependency advisories.** `http-cache-semantics` takes its patched
+  release (GHSA-ch52-4w7c-c8xp), so its dated exception in
+  `scripts/audit.mjs` is gone. `postcss-selector-parser` is held at 7.1.6 or
+  later through an npm `overrides` entry (GHSA-rj75-hqrm-r3gf): the
+  typography plugin pins 6.0.10, and the built CSS is byte-for-byte the same
+  with the newer version.
+- **Anchors for the extension's test builds 0.9.6, 0.9.7 and 0.9.8 (#85)**
+  on the Releases page, under 0.10.0 beside 0.9.1 to 0.9.5, so the links from
+  those builds' menus land on the release they lead to. 0.10.0 is still
+  "Coming soon to the Chrome Web Store". `taggedTestBuilds` in
+  `src/data/releases.ts` lists every tagged test build, and a test fails the
+  build if one has no anchor, or more than one.
 
 ## 0.1.0 — 2026-10-07
 
