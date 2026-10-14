@@ -20,6 +20,13 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **After paying: a claim link, not a key.** The extension page's checkout
+  note now says the licence email carries a one-time link (never the key),
+  that it works once for 72 hours and a new one can be asked for, that
+  **Add it to Chrome** adds the licence with no key to copy, and that a
+  school licence's buyer sets it up through the Nyuchi console and Chrome
+  policy. Merge with the licence server's claim links
+  (nyuchi-licence-server, `claude/licence-onboarding`).
 - **0.10.0 is on the Chrome Web Store.** The Releases page shows it as on the store since 13 October 2026, and the test builds 0.9.9 and 0.9.10 open its notes.
 - **The Toddle Enhancement Extension 0.9.0 is on the Chrome Web Store**,
   published on 7 October 2026. The Releases page marks it "On the Chrome Web
