@@ -247,19 +247,21 @@ import { legal } from "../data/legal";
 </style>
 
 <script>
-  import { CONSENT_CATEGORIES, OPTIONAL_CATEGORIES } from "../data/consent";
+  import {
+    CONSENT_CATEGORIES,
+    OPTIONAL_CATEGORIES,
+    parseConsent,
+    type ConsentRecord,
+  } from "../data/consent";
 
   type CategoryId = "necessary" | "analytics" | "support";
-
-  /** What gets stored. The timestamp and version are the demonstrable part. */
-  type ConsentRecord = { v: number; at: string } & Partial<
-    Record<CategoryId, boolean>
-  >;
 
   declare global {
     interface Window {
       dataLayer?: unknown[];
       gtag?: (...args: unknown[]) => void;
+      /** Defined by Analytics.astro: fetches Google's tag, once. */
+      nyuchiAnalytics?: { load: () => void };
       /** Read by SupportWidget.astro, which must not load Intercom unasked. */
       nyuchiConsent?: {
         granted: (id: CategoryId) => boolean;
@@ -280,30 +282,16 @@ import { legal } from "../data/legal";
   let record: ConsentRecord | null = null;
 
   function load(): ConsentRecord | null {
+    /* A record written against different categories is not an answer to the
+       question now being asked, so ask again rather than assume. The first
+       banner's key (legacyKey) is not read either: it answered a banner that
+       loaded Google's tag regardless, which is not the question asked now. */
     try {
-      const raw = key ? localStorage.getItem(key) : null;
-      if (raw) {
-        const parsed = JSON.parse(raw) as ConsentRecord;
-        /* A record written against different categories is not an answer to the
-           question now being asked, so ask again rather than assume. */
-        return parsed.v === version ? parsed : null;
-      }
-      /* Migrate the first version, which stored analytics alone. Someone who
-         already decided should not be asked twice. */
-      const legacy = legacyKey ? localStorage.getItem(legacyKey) : null;
-      if (legacy === "granted" || legacy === "denied") {
-        return {
-          v: version,
-          at: new Date().toISOString(),
-          necessary: true,
-          analytics: legacy === "granted",
-          support: false,
-        };
-      }
+      return parseConsent(key ? localStorage.getItem(key) : null);
     } catch {
       /* Storage blocked. Treated as "no answer yet", which denies everything. */
+      return null;
     }
-    return null;
   }
 
   function granted(id: CategoryId): boolean {
@@ -328,6 +316,11 @@ import { legal } from "../data/legal";
     gtag("consent", "update", {
       analytics_storage: granted("analytics") ? "granted" : "denied",
     });
+    /* Google's tag is fetched here, after the update above is queued, and only
+       on a yes. Withdrawing later cannot unload a tag already running, so the
+       denied update covers the rest of that page view; the next page loads
+       nothing. */
+    if (granted("analytics")) window.nyuchiAnalytics?.load();
   }
 
   function save(choices: Partial<Record<CategoryId, boolean>>) {

@@ -8,8 +8,66 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ## Unreleased
 
+### Added
+
+- **Mukoko Lingo has its own page, `/mukoko-lingo`.** Mukoko Lingo is a
+  partner app developed by Nyuchi Learning, part of Mukoko, Africa's super
+  app. The page says what it does today, who it is for, what schools get
+  and how to start, in the extension page's style, with the app's own icon.
+  Every claim is from Lingo's public repository (mukoko-dev/mukoko-lingo:
+  README.md, app.json, BRANDING.md and the app's own copy). It sits beside
+  the Toddle Enhancement Extension wherever the extension appears: a second
+  product card on the home page, "Mukoko Lingo" in the header (where
+  "Tools" is now "Toddle extension"), and the footer's "Tools" column, now
+  "Products". It has a SoftwareApplication node in its JSON-LD, Open Graph
+  tags, a sitemap entry and an entry under Products in llms.txt.
+  `mukokoLingo` in `src/data/site.ts` holds its links.
+  `tests/seo.test.ts` checks all of that.
+- **`npm run clean`, and after every merge.** `scripts/clean.mjs` removes
+  the build output (`dist/`, `.astro/`, `.vercel/output/`), the QA report,
+  the tools' caches, finished Claude Code worktrees and local branches
+  already in `main` or `staging`, touching only what Git ignores. It runs
+  after a `git pull` that merges (`.githooks/post-merge`, turned on by
+  `npm ci` through the new `prepare` script) and after Claude Code merges a
+  pull request (`.claude/settings.json`). See CONTRIBUTING.md.
+
 ### Changed
 
+- **Mukoko Lingo is written for organisations first.** The page, the
+  homepage card and `llms.txt` now lead with schools, businesses and
+  government, then single learners. The "For schools" section is "For
+  schools, businesses and government" (anchor `#organisations`), and the
+  enquiry button reads "Talk to us about your organisation". Lingo is
+  described as "Part of Mukoko by Nyuchi", and Swahili is shown as beta
+  (owner decisions, 2026-10-15).
+
+- **Mukoko Lingo, described as it is.** The home page card and llms.txt
+  said Lingo was "free for personal use", "Shona and Ndebele primary" and
+  taught French and Portuguese. Its repository says it teaches Shona,
+  Ndebele, English and Chinese, and that starting is free; the copy now
+  says that, and links to the live app at lingo.mukoko.com rather than
+  mukoko.com/lingo. The home page's "three surfaces" are now the two
+  products and two destinations.
+- **0.11.0 is on the Chrome Web Store, and is the current version (#85).**
+  It is 0.10.0 with a security fix to how licence keys are checked. The
+  Releases page lists it first, marked on the store, from the extension's
+  CHANGELOG; the test builds tagged since 0.10.0 (0.10.1 to 0.10.5, 0.11.1
+  and 0.11.2) open its notes, and 0.12.0, not released, is not listed.
+  `extensionVersions.current` is 0.11.0; the new `changedIn` (0.9.0) keeps
+  "versions before 0.9.0" true where the old licence host and flags key are
+  named. The product page, the Security page (which now describes the
+  0.11.0 fix), the Releases description and llms.txt name 0.11.0. The
+  anchors for 0.9.6 and 0.9.7 the issue asked for were already there; the
+  test that every tagged test build has one now covers the 0.10.x and
+  0.11.x builds too.
+- **`webStore`'s type is a named `Url`**, so Prettier 3.3 and 3.9 format
+  `src/data/site.ts` the same way; the org lint gate (3.9.4) had flagged it.
+- **After paying: the checkout note describes today's email, a licence
+  key.** The claim-link wording (#89) is held back until the licence server
+  sends claim links, which ships with extension 0.12.0. Until then buyers
+  still receive the key by email, so the note says that. Restore #89 when
+  0.12.0 and the server's claim links go live.
+- **0.10.0 is on the Chrome Web Store.** The Releases page shows it as on the store since 13 October 2026, and the test builds 0.9.9 and 0.9.10 open its notes.
 - **The Toddle Enhancement Extension 0.9.0 is on the Chrome Web Store**,
   published on 7 October 2026. The Releases page marks it "On the Chrome Web
   Store", dated 7 October 2026. `extensionVersions.current` is 0.9.0 and
@@ -22,6 +80,54 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   from 0.8.2 stays, as history: flags it hid stay concealed, and versions
   before 0.9.0 used the storage key `gbx-hide-flags` and asked the licence
   host `licences.nyuchi.dev`.
+- **Google Analytics loads only after consent (#83).** Google's tag is no
+  longer on the page behind Consent Mode set to denied, which still sent
+  Google a cookieless ping; it is not requested at all until the visitor
+  agrees. `Analytics.astro` queues the denied defaults and holds the only
+  loader, which runs on a stored yes from the current banner version or when
+  `CookieBanner.astro` records one. A record from an older version, the first
+  banner's `analytics-consent` key, or anything malformed counts as no answer,
+  and the banner asks again; `SupportWidget.astro` applies the same check
+  through `parseConsent` in `src/data/consent.ts`. The privacy and cookie
+  policies now say that Google Analytics contacts Google only after you agree
+  (Google Fonts is still named separately), dated 13 October 2026, as is
+  llms.txt. The CSP has one inline-script hash fewer. `tests/consent.test.ts`
+  runs the built script against current, old, legacy and malformed records,
+  and `npm run consent:probe` now fails on any Google Analytics request
+  before consent.
+- **CI asks for less (#84).** Every workflow grants nothing at the top level;
+  each job asks for its own permissions (`contents: read` for the build and
+  audit jobs, `contents: write` only for the two tagging jobs). The build
+  workflow's checkouts set `persist-credentials: false`, since nothing there
+  pushes. `actions/checkout` and `actions/setup-node` are pinned to full
+  commit SHAs (v4.4.0 each), with the version in a comment, and the new
+  `.github/dependabot.yml` keeps those pins current, a week after each
+  release (`cooldown`). The reusable workflows
+  from `nyuchi/.github` were already pinned to a commit.
+- **Docs match the site as it is (#86).** README, CONTRIBUTING and
+  `docs/toolchain.md` describe the Astro site's pages, the staging → main
+  release flow, Vite+ as adopted (no longer "cannot be adopted"), the inline
+  scripts the CSP hashes, and the current audit; the dead Lint badge, the
+  vitest pin, `master` and "two pages" are gone. `react` and `react-dom` are
+  no longer dev dependencies: nothing imports them, and `@bundu/ui` declares
+  no peer dependencies. Prettier and `vp fmt` both stay, because each is run
+  by a required org gate; `tests/toolchain.test.ts` fails if their settings
+  differ.
+
+### Fixed
+
+- **Dependency advisories.** `http-cache-semantics` takes its patched
+  release (GHSA-ch52-4w7c-c8xp), so its dated exception in
+  `scripts/audit.mjs` is gone. `postcss-selector-parser` is held at 7.1.6 or
+  later through an npm `overrides` entry (GHSA-rj75-hqrm-r3gf): the
+  typography plugin pins 6.0.10, and the built CSS is byte-for-byte the same
+  with the newer version.
+- **Anchors for the extension's test builds 0.9.6, 0.9.7 and 0.9.8 (#85)**
+  on the Releases page, under 0.10.0 beside 0.9.1 to 0.9.5, so the links from
+  those builds' menus land on the release they lead to. 0.10.0 is still
+  "Coming soon to the Chrome Web Store". `taggedTestBuilds` in
+  `src/data/releases.ts` lists every tagged test build, and a test fails the
+  build if one has no anchor, or more than one.
 
 ## 0.1.0 — 2026-10-07
 

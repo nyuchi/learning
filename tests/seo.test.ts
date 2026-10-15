@@ -10,6 +10,7 @@ import { describe, expect, it } from "vite-plus/test";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { taggedTestBuilds } from "../src/data/releases";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative: string) => readFileSync(join(root, relative), "utf8");
@@ -19,6 +20,7 @@ const PAGES = [
   "index.html",
   "toddle-enhancement-extension/index.html",
   "toddle-enhancement-extension/releases/index.html",
+  "mukoko-lingo/index.html",
   "legal/privacy/index.html",
   "legal/terms/index.html",
   "legal/security/index.html",
@@ -249,9 +251,36 @@ describe("the releases page", () => {
     expect(v090).toContain('datetime="2026-10-07"');
   });
 
-  it("says 0.10.0 is coming, and gives the 0.9.x test builds its anchor", () => {
-    expect(release("0.10.0")).toContain("Coming soon to the Chrome Web Store");
+  it("gives every tagged test build an anchor, once", () => {
+    /* The extension's menu links each test build to #v<version>. The list is
+       kept in src/data/releases.ts, not fetched: the repository is private,
+       and a test that calls GitHub is one that fails for the wrong reason. */
+    expect(taggedTestBuilds.length).toBeGreaterThan(0);
+    for (const version of taggedTestBuilds) {
+      const anchors = page.split(`id="v${version}"`).length - 1;
+      expect(anchors, `#v${version} on the releases page`).toBe(1);
+    }
+  });
+
+  it("says 0.10.0 is on the store, and gives the 0.9.x test builds its anchor", () => {
+    expect(release("0.10.0")).toContain("On the Chrome Web Store");
+    expect(release("0.10.0")).toContain('datetime="2026-10-13"');
     expect(page).toContain('id="v0.9.4"');
+    expect(page).toContain('id="v0.9.10"');
+  });
+
+  it("says 0.11.0 is on the store, and gives the later test builds its anchor", () => {
+    const v0110 = release("0.11.0");
+    expect(v0110).toContain("On the Chrome Web Store");
+    expect(v0110).not.toContain("Coming soon to the Chrome Web Store");
+    expect(page).toContain('id="v0.10.1"');
+    expect(page).toContain('id="v0.11.2"');
+  });
+
+  it("lists 0.11.0 first, and does not list 0.12.0, which is not released", () => {
+    expect(page.search(/<li id="v\d/)).toBe(page.search(/<li id="v0\.11\.0"/));
+    expect(page).not.toContain("0.12.0");
+    expect(page).not.toContain("Coming soon to the Chrome Web Store");
   });
 
   it("links to no GitHub release and offers no download", () => {
@@ -290,5 +319,75 @@ describe("prices", () => {
     const page = built("toddle-enhancement-extension/index.html");
     expect(page).toContain("BXXF20VA");
     expect(page).toContain("US$7 off the organisation licence");
+  });
+});
+
+describe("Mukoko Lingo", () => {
+  /* A partner app developed by Nyuchi Learning, part of Mukoko. It sits
+     beside the extension wherever the extension appears, so the two read as
+     Nyuchi Learning's products. */
+  const page = built("mukoko-lingo/index.html");
+
+  it("is in the header, the footer and on the home page", () => {
+    const home = built("index.html");
+    const header = home.split("<header")[1]?.split("</header>")[0] ?? "";
+    const footer = home.split("<footer")[1] ?? "";
+    for (const [where, html] of [
+      ["header", header],
+      ["footer", footer],
+      ["home page", home.split("<main")[1]?.split("</main>")[0] ?? ""],
+    ]) {
+      expect(html, where).toContain('href="/mukoko-lingo"');
+      expect(html, where).toContain('href="/toddle-enhancement-extension"');
+    }
+  });
+
+  it("says who developed it", () => {
+    expect(page).toContain("developed by Nyuchi Learning. Part of");
+    expect(page).toContain("Mukoko</a> by");
+    expect(page).toContain("Part of Mukoko by Nyuchi");
+    expect(page).not.toContain("super app");
+  });
+
+  it("is written for organisations and shows Swahili as beta", () => {
+    expect(page).toContain('id="organisations"');
+    expect(page).toContain("For schools, businesses and government");
+    expect(page).toContain("Swahili is in beta");
+  });
+
+  it("describes it as a SoftwareApplication, as the extension is", () => {
+    const match =
+      /<script type="application\/ld\+json">([\s\S]*?)<\/script>/.exec(page);
+    const graph = JSON.parse(match![1]);
+    const app = graph["@graph"].find(
+      (node: { "@type": string }) => node["@type"] === "SoftwareApplication",
+    );
+    expect(app.name).toBe("Mukoko Lingo");
+    expect(app.url).toBe("https://learning.nyuchi.com/mukoko-lingo");
+    expect(app.sameAs).toContain("https://lingo.mukoko.com");
+  });
+
+  it("has Open Graph tags", () => {
+    expect(page).toContain(
+      '<meta property="og:url" content="https://learning.nyuchi.com/mukoko-lingo"',
+    );
+    expect(page).toMatch(/<meta property="og:title" content="Mukoko Lingo/);
+  });
+
+  it("claims only the four languages its repository supports", () => {
+    for (const language of ["Shona", "Ndebele", "English", "Chinese"]) {
+      expect(page).toContain(language);
+    }
+    for (const unsupported of ["French", "Portuguese"]) {
+      expect(page).not.toContain(unsupported);
+      expect(built("index.html")).not.toContain(unsupported);
+    }
+  });
+
+  it("is in llms.txt, linking to its page and the live app", () => {
+    const llms = built("llms.txt");
+    expect(llms).toContain("https://learning.nyuchi.com/mukoko-lingo");
+    expect(llms).toContain("https://lingo.mukoko.com");
+    expect(llms).toContain("developed by Nyuchi Learning");
   });
 });

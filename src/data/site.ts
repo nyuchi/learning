@@ -12,7 +12,7 @@ export const site = {
   url: "https://learning.nyuchi.com",
   parent: { name: "Nyuchi Africa", url: "https://nyuchi.com" },
   description:
-    "The Nyuchi Learning surface: training programmes, the open Bundu Education frameworks, and the classroom tools Nyuchi Web Services builds for schools.",
+    "The Nyuchi Learning surface: training programmes, the open Bundu Education frameworks, Mukoko Lingo for languages, and the classroom tools Nyuchi Web Services builds for schools.",
 } as const;
 
 /**
@@ -51,11 +51,13 @@ export const legalPages: NavLink[] = [
   { label: "Legal notice", href: "/legal/notice" },
 ];
 
+/* The two products come first, side by side, so they read as Nyuchi
+   Learning's own; the ecosystem destinations follow. */
 export const primaryNav: NavLink[] = [
-  { label: "Tools", href: "/toddle-enhancement-extension" },
+  { label: "Toddle extension", href: "/toddle-enhancement-extension" },
+  { label: "Mukoko Lingo", href: "/mukoko-lingo" },
   { label: "Programmes", href: "https://nyuchi.com/learning", external: true },
   { label: "Frameworks", href: "https://bundu.org/education", external: true },
-  { label: "Languages", href: "https://mukoko.com/lingo", external: true },
 ];
 
 export const headerCta: NavLink = {
@@ -78,21 +80,24 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
         href: "https://bundu.org/education",
         external: true,
       },
-      { label: "Languages", href: "https://mukoko.com/lingo", external: true },
     ],
   },
   {
-    title: "Tools",
+    title: "Products",
     links: [
       {
         label: "Toddle Enhancement Extension",
         href: "/toddle-enhancement-extension",
       },
       {
-        label: "Deploy to a school",
+        label: "Deploy the extension",
         href: "/toddle-enhancement-extension#install",
       },
-      { label: "Releases", href: "/toddle-enhancement-extension/releases" },
+      {
+        label: "Extension releases",
+        href: "/toddle-enhancement-extension/releases",
+      },
+      { label: "Mukoko Lingo", href: "/mukoko-lingo" },
       { label: "Send feedback", href: "/feedback" },
       { label: "Get in touch", href: "mailto:support@nyuchi.com" },
     ],
@@ -156,15 +161,17 @@ export const MINERALS = [
  * every call to action is "Add to Chrome". (Set it back to null and the pages
  * fall back to an enquiry, with no other edit.)
  */
+/** A link that may not exist yet. Named so that every Prettier version
+    formats the cast below the same way. */
+type Url = string | null;
+
 export const toddleExtension = {
   name: "Toddle Enhancement Extension",
   tagline:
     "The Toddle gradebook, with the views it is missing — and a way to project it.",
   /** The Chrome Web Store listing (live since version 0.7.1). */
   webStore:
-    "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as
-      | string
-      | null,
+    "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as Url,
   /** The store item ID, which a school's IT uses to force-install it. */
   extensionId: "ofliokikjmkkdkinbdnadbjjdmkjdjfi",
   supportEmail: "support@nyuchi.com",
@@ -178,6 +185,41 @@ export const toddleExtension = {
   storeUpdateUrl: "https://clients2.google.com/service/update2/crx",
   /** The licence server's host, which a school's network should allow. */
   licenceHost: "licenses.nyuchi.com",
+} as const;
+
+/**
+ * Mukoko Lingo, described once: a partner app developed by Nyuchi Learning.
+ * Part of Mukoko by Nyuchi.
+ *
+ * Every fact here comes from Lingo's own public repository
+ * (mukoko-dev/mukoko-lingo on GitHub: README.md, app.json, BRANDING.md and
+ * the app's own copy in lib/data/translations.ts). Nothing is added that the
+ * repository does not say. In particular there is no app store link and no
+ * school price here, because the repository has neither; add them when they
+ * exist. The source link lives on the page itself (src/pages/mukoko-lingo.astro):
+ * tests/links.test.ts keeps GitHub links out of this file, because the
+ * extension's repository is private.
+ *
+ * Positioning (owner, 2026-10-15): Nyuchi Learning leads with organisations,
+ * business (B2B) and government (B2G) as well as schools, so the page and
+ * the enquiry are written for them first.
+ */
+export const mukokoLingo = {
+  name: "Mukoko Lingo",
+  tagline:
+    "AI-assisted, skills-based language learning for individuals, schools, businesses and government across Africa.",
+  /** The live app, as the repository's README names it. */
+  url: "https://lingo.mukoko.com",
+  /** The console for organisations: schools, businesses, government and admins. */
+  console: "https://lingo.nyuchi.com/console",
+  /** The four languages the repository calls canonical. */
+  languages: ["Shona", "Ndebele", "English", "Chinese"],
+  /** Languages in beta (owner, 2026-10-15): in the app, shown as beta. */
+  betaLanguages: ["Swahili"],
+  /** BCP 47 codes for the four supported languages, for structured data. */
+  languageCodes: ["sn", "nd", "en", "zh"],
+  /** Enquiries from schools, businesses and government. */
+  enquiry: "mailto:support@nyuchi.com?subject=Mukoko%20Lingo",
 } as const;
 
 /**

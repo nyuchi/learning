@@ -18,7 +18,8 @@ describe("ecosystem destinations", () => {
   for (const url of [
     "https://bundu.org/education",
     "https://nyuchi.com/learning",
-    "https://mukoko.com/lingo",
+    // Mukoko Lingo's live app, as its own repository's README names it.
+    "https://lingo.mukoko.com",
   ]) {
     it(`links to ${url}`, () => {
       expect(`${home}${siteData}`).toContain(url);
