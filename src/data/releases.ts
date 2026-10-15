@@ -82,10 +82,50 @@ export const taggedTestBuilds: readonly string[] = [
   "0.9.8",
   "0.9.9",
   "0.9.10",
+  "0.10.1",
+  "0.10.2",
+  "0.10.3",
+  "0.10.4",
+  "0.10.5",
+  "0.11.1",
+  "0.11.2",
 ];
 
 /** Newest first. */
 export const releases: Release[] = [
+  {
+    /* No date: the CHANGELOG does not give the day 0.11.0 reached the store.
+       Add it when it is confirmed. The test builds after 0.10.0 open these
+       notes; their own changes are in neither 0.10.0 nor 0.11.0. */
+    version: "0.11.0",
+    status: "store",
+    summary:
+      "A security fix: a licence key that was cancelled or refunded can no longer be made to work again by editing it. Nothing else changes for teachers, and every key that works today keeps working.",
+    sections: [
+      {
+        heading: "Fixed",
+        items: [
+          "A cancelled licence key could be made to work again by typing it slightly differently. A key must now be in exactly the form it was issued in; spaces before or after it are still ignored. A key stored in any other form stops working the next time Toddle loads.",
+          "Only a licence is accepted as a licence. The signed list of cancelled keys can no longer pass for a key. Keys issued so far keep working.",
+        ],
+      },
+      {
+        heading: "Test builds",
+        items: [
+          "Versions 0.10.1 to 0.10.5, 0.11.1 and 0.11.2 are test builds for schools piloting the extension. Their changes are not in this release; they will reach the Chrome Web Store in a later one.",
+        ],
+      },
+    ],
+    alsoIds: [
+      "0.10.1",
+      "0.10.2",
+      "0.10.3",
+      "0.10.4",
+      "0.10.5",
+      "0.11.1",
+      "0.11.2",
+    ],
+  },
   {
     version: "0.10.0",
     status: "store",
