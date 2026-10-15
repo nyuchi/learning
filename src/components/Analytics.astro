@@ -1,30 +1,28 @@
 ---
 /**
- * Google Analytics 4, behind Google Consent Mode v2.
+ * Google Analytics 4 — not loaded at all until the visitor agrees to it.
  *
- * The order of the three scripts below is the whole design, and it is fragile in
- * one direction only: the consent defaults must be set BEFORE gtag/js loads. Set
- * them after and there is a window in which GA has already written a cookie, the
- * banner is still asking, and the privacy policy is wrong. That is why this is
- * one `is:inline` block emitted ahead of the loader rather than something tidier,
- * and why tests/security.test.ts asserts the ordering.
+ * What a visitor gets before they choose is nothing from Google Analytics: no
+ * request to Google, no cookie, no tag. This page defines a local `gtag()` queue
+ * and a loader function; the loader is what fetches Google's tag, and it runs
+ * only when analytics consent exists. Two things call it:
  *
- * What a visitor gets before they choose:
+ *   - this script, on page load, when a stored consent record says yes AND was
+ *     written against the current banner (CONSENT_VERSION). A record from an
+ *     older banner, the first banner's LEGACY_CONSENT_KEY, or anything that
+ *     does not parse counts as no answer — which means no Google;
+ *   - CookieBanner.astro, the moment someone agrees.
  *
- *   analytics_storage: denied   → no GA cookie, nothing kept on the device
- *   ad_storage, ad_user_data, ad_personalization: denied
+ * This used to load the tag on every page behind Consent Mode v2 set to denied.
+ * That kept the "no cookies until you agree" promise but not the stronger one: a
+ * denied tag still sends Google a cookieless ping. The privacy policy now makes
+ * the stronger promise, and tests/security.test.ts and scripts/probe-consent.mjs
+ * hold it to it.
  *
- * Consent Mode v2 requires the three ad_* signals to be declared even though
- * this site runs no advertising, so they are declared and denied permanently —
- * the banner never grants them, because there is nothing here to grant them for.
- * Only `analytics_storage` is ever flipped, by CookieBanner.astro.
- *
- * An honest caveat, because a data protection lead will find it: with consent
- * denied, GA still loads and still sends Google a cookieless ping. That is how
- * Consent Mode is designed to work, and it means "no cookies until you agree" is
- * exactly true while "no contact with Google until you agree" is not. If you need
- * the stronger claim, do not render this component until consent exists; you lose
- * Consent Mode's modelling and gain a cleaner sentence.
+ * Consent Mode is still declared, and still before the loader can run: the
+ * defaults deny everything, and only `analytics_storage` is ever granted. The
+ * three ad_* signals are declared because Consent Mode v2 requires them and are
+ * denied permanently — this site runs no advertising.
  *
  * Nothing here is in the extension, which sends nothing it reads anywhere
  * (its only outside connections are feedback a teacher chooses to send and a
@@ -32,57 +30,59 @@
  * the marketing site measuring the marketing site.
  */
 import { analytics } from "../data/site";
-import { CONSENT_KEY, LEGACY_CONSENT_KEY } from "../data/consent";
+import { CONSENT_KEY, CONSENT_VERSION } from "../data/consent";
 ---
 
 {
   analytics.measurementId && (
-    <>
-      <script
-        is:inline
-        set:html={`
+    <script
+      is:inline
+      set:html={`
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 
-/* Deny everything up front. This runs before the loader below, so there is no
-   moment in which GA stores anything the visitor has not agreed to. */
+/* Deny everything up front. Queued before the loader can be called, so Google's
+   tag reads these first whenever it does arrive. */
 gtag('consent', 'default', {
   ad_storage: 'denied',
   ad_user_data: 'denied',
   ad_personalization: 'denied',
-  analytics_storage: 'denied',
-  wait_for_update: 500
+  analytics_storage: 'denied'
 });
+gtag('js', new Date());
+gtag('config', ${JSON.stringify(analytics.measurementId)});
 
-/* Someone who already agreed should not spend a page view denied while we get
-   round to reading their answer. Read it here, before the tag loads, rather
-   than leaving it to the banner's deferred module. */
-try {
-  var stored = localStorage.getItem(${JSON.stringify(CONSENT_KEY)});
-  var ok = false;
-  if (stored) {
-    ok = JSON.parse(stored).analytics === true;
-  } else {
-    ok = localStorage.getItem(${JSON.stringify(LEGACY_CONSENT_KEY)}) === 'granted';
+/* The only way Google's tag reaches this page. Called by consent and nothing
+   else; a second call is a no-op. */
+window.nyuchiAnalytics = {
+  load: function () {
+    if (document.querySelector('script[data-analytics-loader]')) return;
+    var tag = document.createElement('script');
+    tag.async = true;
+    tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + ${JSON.stringify(analytics.measurementId)};
+    tag.setAttribute('data-analytics-loader', '');
+    document.head.appendChild(tag);
   }
-  if (ok) gtag('consent', 'update', { analytics_storage: 'granted' });
+};
+
+/* Someone who already agreed should not spend a page view unmeasured while the
+   banner's deferred module gets round to reading their answer. Only a record
+   from the current banner counts: an older one was an answer to a different
+   question, and the legacy key is not read at all. */
+try {
+  var record = JSON.parse(localStorage.getItem(${JSON.stringify(CONSENT_KEY)}) || 'null');
+  if (
+    record && typeof record === 'object' &&
+    record.v === ${JSON.stringify(CONSENT_VERSION)} &&
+    record.analytics === true
+  ) {
+    gtag('consent', 'update', { analytics_storage: 'granted' });
+    window.nyuchiAnalytics.load();
+  }
 } catch (e) {
-  /* Storage blocked, or a malformed record — stay denied, the safe direction. */
+  /* Storage blocked, or a malformed record — load nothing, the safe direction. */
 }
 `}
-      />
-      <script
-        is:inline
-        async
-        src={`https://www.googletagmanager.com/gtag/js?id=${analytics.measurementId}`}
-      />
-      <script
-        is:inline
-        set:html={`
-gtag('js', new Date());
-gtag('config', '${analytics.measurementId}');
-`}
-      />
-    </>
+    />
   )
 }

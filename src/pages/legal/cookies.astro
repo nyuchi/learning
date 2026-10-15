@@ -168,11 +168,11 @@ const rows = [
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
-        <strong class="text-foreground">Google Analytics.</strong> With analytics refused,
-        Google's tag still loads and sends Google a page-view signal without cookies and
-        without identifying you. That is how Google's consent mechanism works, so "no
-        cookies until you agree" is exactly true; "no contact with Google until you agree"
-        would not be.
+        <strong class="text-foreground">Google Analytics.</strong> Nothing loads until you
+        agree to analytics: until then your browser does not fetch Google's analytics tag
+        and sends Google Analytics nothing. If you withdraw later, the page you are on
+        keeps the tag it already loaded, with its cookies switched off; no page after it
+        loads the tag.
       </li>
       <li>
         <strong class="text-foreground">Google Fonts.</strong> Fonts are loaded from
@@ -201,7 +201,7 @@ const rows = [
       storage: <code>tee-settings</code>, a copy of the switches and of which features the
       licence allows (not the key, and no email); <code>tee-blur-flags</code> (<code
         >gbx-hide-flags</code
-      > in versions before {extensionVersions.current}), whether flags are concealed;
+      > in versions before {extensionVersions.changedIn}), whether flags are concealed;
       <code>tee-course-view</code>, whether you chose My classes in the
       home page filter; and <code>tee-academic-year</code>, the number of the academic year
       Toddle is showing. None of it is about a student, and the extension sends none of it

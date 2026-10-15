@@ -143,7 +143,7 @@ const description =
       <li>
         <strong class="text-foreground">What is sent.</strong> One plain request to
         <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code>, from the extension's
-        background worker (versions before {extensionVersions.current} asked
+        background worker (versions before {extensionVersions.changedIn} asked
         <code>licences.nyuchi.dev</code>, the same server). It carries no licence key, no identifiers, no cookies and no
         Toddle data.
       </li>
@@ -263,11 +263,13 @@ const description =
       we can produce.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      One detail we would rather state than have you discover. While consent is denied,
-      Google's tag is still on the page and still contacts Google, without cookies and
-      without identifying you — that is how Google's consent mechanism is built. So "no
-      cookies until you agree" is exactly true; "no contact with Google until you agree"
-      would not be, and we are not going to claim it.
+      <strong class="text-foreground">Google Analytics is not loaded until you agree.</strong>
+      Until you choose Analytics, your browser does not fetch Google's analytics tag and
+      sends Google Analytics nothing, and no analytics cookie is set. If you reject it,
+      that stays true on every page. Once you agree, the tag loads, sets its cookies and
+      records the pages you view. If you withdraw later, the page you are on keeps the tag
+      it already loaded, with its cookies switched off, until you leave that page; no page
+      after it loads the tag. Google Fonts is separate, and described below.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       <strong class="text-foreground"
@@ -286,8 +288,8 @@ const description =
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       <strong class="text-foreground">The support messenger is opt-in.</strong> There is a
       Support button in the corner of every page. Until you press it Intercom loads nothing
-      and sets no cookie of its own — the analytics above is separate, and arrives without
-      being asked. Press it and the messenger loads from
+      and sets no cookie of its own — the analytics above is separate, and has its own
+      choice. Press it and the messenger loads from
       <a href={legal.helpCentre} rel="noopener noreferrer" class="link">Intercom</a>, which
       at that point sets its own cookies, can see which pages you have open while you use
       it, and holds the conversation on our behalf so we can answer you. We chose to load it
