@@ -4,12 +4,12 @@
  *
  * The standalone learning site that used to live here was split into three
  * surfaces in the marketing monorepo, so the destination cards remain the
- * front door. What is new is that this domain is also where the classroom
- * tools Nyuchi Web Services builds for schools now live — starting with the
- * Toddle Enhancement Extension.
+ * front door. What is new is that this domain is also where Nyuchi Learning's
+ * products live: the Toddle Enhancement Extension, and Mukoko Lingo, the
+ * partner app developed by Nyuchi Learning as part of Mukoko.
  */
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { toddleExtension } from "../data/site";
+import { mukokoLingo, toddleExtension } from "../data/site";
 
 // One switch drives the call to action everywhere: "Add to Chrome" with the
 // store listing set, an enquiry without it. Never a link that 404s.
@@ -36,20 +36,11 @@ const surfaces = [
     href: "https://nyuchi.com/learning",
     mineral: "gold",
   },
-  {
-    name: "Mukoko Lingo",
-    eyebrow: "Consumer surface",
-    description:
-      "African language learning, free for personal use. Shona and Ndebele primary, plus English, French, Portuguese, and travel phrase courses. The same content library Bundu Education and Nyuchi Learning draw from.",
-    cta: "Start learning",
-    href: "https://mukoko.com/lingo",
-    mineral: "tanzanite",
-  },
 ];
 
 const title = "Nyuchi Learning — programmes, frameworks, and classroom tools";
 const description =
-  "Nyuchi Learning: commercial training at nyuchi.com/learning, the open Bundu Education frameworks, Mukoko Lingo for languages, and the classroom tools Nyuchi Web Services builds for schools.";
+  "Nyuchi Learning: the Toddle Enhancement Extension and Mukoko Lingo, commercial training at nyuchi.com/learning, and the open Bundu Education frameworks.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/">
@@ -60,15 +51,19 @@ const description =
         Learning, and the tools that carry it.
       </h1>
       <p class="mt-6 text-body-lg text-muted-foreground text-pretty max-w-2xl">
-        The learning content that used to live here is now spread across three surfaces of
-        the Bundu Family ecosystem. This domain is also where the classroom software we
-        build for schools lives.
+        Two products live here: a Chrome extension that makes the Toddle gradebook easier
+        to read, and Mukoko Lingo, language training for schools, businesses and
+        government. The learning
+        content that used to live here has moved to the Bundu Family ecosystem.
       </p>
     </div>
   </section>
 
-  <!-- The tool comes first: it is the thing a visitor can actually use today. -->
+  <!-- The products come first: they are what a visitor can actually use today.
+       Two cards in the same treatment, so they read as one family. -->
   <section class="container-custom pb-14 md:pb-20">
+    <h2 class="sr-only">Our products</h2>
+    <div class="grid gap-6 md:gap-8">
     <article class="card p-6 md:p-10 relative overflow-hidden">
       <div class="absolute inset-x-0 top-0 h-[3px] bg-primary" aria-hidden="true"></div>
       <div class="md:flex md:items-start md:justify-between md:gap-10">
@@ -93,25 +88,49 @@ const description =
         </div>
       </div>
     </article>
+
+    <article class="card p-6 md:p-10 relative overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-[3px] bg-primary" aria-hidden="true"></div>
+      <div class="md:flex md:items-start md:justify-between md:gap-10">
+        <div class="max-w-2xl">
+          <p class="eyebrow mb-3">Language learning · Part of Mukoko by Nyuchi</p>
+          <h2 class="font-serif text-h2 text-foreground text-balance">
+            {mukokoLingo.name}
+          </h2>
+          <p class="mt-4 text-body text-muted-foreground text-pretty">
+            Language training for schools, businesses and government. Shona, Ndebele,
+            English and Chinese (Swahili in beta), five phrases a day, with Shamwari, an AI
+            tutor that adapts to each learner. Set the work and see each learner's progress.
+          </p>
+        </div>
+        <div class="mt-6 md:mt-10 flex flex-col sm:flex-row md:flex-col gap-3 md:shrink-0">
+          <a href="/mukoko-lingo" class="btn-primary whitespace-nowrap">
+            What it does
+          </a>
+          <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-outline whitespace-nowrap">
+            Start learning
+          </a>
+        </div>
+      </div>
+    </article>
+    </div>
   </section>
 
   <section class="container-custom pb-4">
     <div class="max-w-2xl">
       <p class="eyebrow">Where the learning went</p>
       <h2 class="font-serif text-h2 text-foreground text-balance">
-        One library, three surfaces.
+        Frameworks and programmes.
       </h2>
       <p class="mt-4 text-body text-muted-foreground text-pretty">
         The Foundation publishes the open frameworks at Bundu Education. Nyuchi Learning is
         the commercial vehicle organisations use when they want help implementing them.
-        Mukoko Lingo is the consumer app for individuals who want to learn a language. Same
-        content library underneath; different surfaces for different audiences.
       </p>
     </div>
   </section>
 
   <section class="container-custom py-10 md:py-14">
-    <div class="grid gap-6 md:gap-8 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid gap-6 md:gap-8 md:grid-cols-2">
       {
         surfaces.map((surface) => (
           <article class="card-hover p-6 md:p-8 flex flex-col h-full">

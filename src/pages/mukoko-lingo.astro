@@ -1,0 +1,373 @@
+---
+/**
+ * The product page for Mukoko Lingo: a partner app developed by Nyuchi
+ * Learning. Part of Mukoko by Nyuchi.
+ *
+ * Written for organisations first (owner, 2026-10-15): schools, businesses
+ * (B2B) and government (B2G), as well as single learners.
+ *
+ * Built the way the Toddle Enhancement Extension's page is built: a hero with
+ * one call to action, a grid of what it does, a section for organisations, and
+ * the plain facts an IT lead will ask for.
+ *
+ * Every claim is taken from Lingo's own public repository
+ * (mukoko-dev/mukoko-lingo: README.md, app.json, BRANDING.md, and the app's
+ * own copy in lib/data/translations.ts and app/welcome). Nothing is promised
+ * that the repository does not say: no app store link and no organisation
+ * price. Swahili is listed as beta, by the owner's decision. Add the rest
+ * when they exist.
+ *
+ * The icon is the app's own (assets/images/icon.png in that repository, MIT
+ * licensed). Its PNG wordmarks still read "Nyuchi Lingo", the old name, so
+ * they are not used.
+ */
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { mukokoLingo } from "../data/site";
+import lingoIcon from "../assets/lingo/icon.png";
+
+/* The repository is public, so linking to it is safe (unlike the extension's,
+   which is private and must never be linked). */
+const source = "https://github.com/mukoko-dev/mukoko-lingo";
+const licence = `${source}/blob/main/LICENSE`;
+
+const languageList = "Shona, Ndebele, English and Chinese";
+const betaList = mukokoLingo.betaLanguages.join(", ");
+
+/* What it does today, from the README's "What it is" and the app's own
+   feature list on its welcome page. */
+const features = [
+  {
+    mineral: "cobalt",
+    title: "Five phrases a day",
+    body: "Each day's lesson is five phrases. You practise them with flash cards, then a short quiz.",
+  },
+  {
+    mineral: "tanzanite",
+    title: "Review at the right time",
+    body: "Spaced repetition decides which phrases come back, and when, so earlier phrases keep returning for practice.",
+  },
+  {
+    mineral: "gold",
+    title: "Shamwari, the AI tutor",
+    body: "Ask Shamwari (“friend” in Shona) a question in chat. It adapts to the level the app has measured, not to a level you picked for yourself.",
+  },
+  {
+    mineral: "malachite",
+    title: "Four languages, and Swahili in beta",
+    body: `${languageList}, with phrases compared across them and pronunciation guides for all four. ${betaList} is in beta.`,
+  },
+  {
+    mineral: "terracotta",
+    title: "Cultural context",
+    body: "Usage examples, and when a phrase is the right thing to say. Phrases for real situations: greetings, getting around, shopping, emergencies and work.",
+  },
+  {
+    mineral: "sodalite",
+    title: "Progress you can see",
+    body: "Streaks, XP, bookmarks, and how strong you are in each skill, on one dashboard.",
+  },
+];
+
+/* Who it is for: organisations first (business, government, schools),
+   then the app's own "Perfect for" list of single learners. */
+const audiences = [
+  {
+    badge: "badge badge-accent",
+    label: "For business and government",
+    title: "Train the people who serve the public",
+    body: "Staff who deal with customers and citizens learn the languages those people speak. Set the work, measure it with assessments, and run it for the whole organisation from one console.",
+  },
+  {
+    badge: "badge badge-success",
+    label: "For schools",
+    title: "Set the work, see the progress",
+    body: "Create a class, set assignments against specific phrases and skills, sync rosters from your school's system, and watch each student's progress.",
+  },
+  {
+    badge: "badge badge-info",
+    label: "For a learner",
+    title: "Learn the language around you",
+    body: "Travellers, people living and working somewhere new, and locals building on a language they already have. Starting is free.",
+  },
+];
+
+const facts = [
+  {
+    label: "Languages",
+    value: `${languageList}. ${betaList} is in beta. The app's screens are available in the four supported languages.`,
+  },
+  {
+    label: "Where it runs",
+    value: `In a web browser, at ${mukokoLingo.url.replace("https://", "")}. Organisations and their admins use the console at ${mukokoLingo.console.replace("https://", "")}.`,
+  },
+  {
+    label: "Assessments",
+    value: "Diagnostic, formative and summative. They are graded on the server, not on the learner's device, so a score cannot be edited before it is recorded.",
+  },
+  {
+    label: "Class rosters",
+    value: "Rosters sync in over OneRoster from Clever, ClassLink and PowerSchool.",
+  },
+  {
+    label: "Moderation",
+    value: "Three layers on what learners type to the tutor: rule-based guardrails, an AI check, and detection of attempts to manipulate the tutor (prompt injection). Shamwari never claims to be human.",
+  },
+  {
+    label: "Sign-in and AI",
+    value: "Sign-in is through WorkOS AuthKit. The tutor runs on Cloudflare Workers AI, called from Lingo's own servers; the AI credentials never reach a learner's device.",
+  },
+  {
+    label: "Admin controls",
+    value: "Organisation admins manage users, content, moderation, guardrails, analytics and API keys.",
+  },
+  {
+    label: "Source code",
+    value: "Open source, under the MIT licence. Anyone can read how it works.",
+  },
+];
+
+const title = "Mukoko Lingo — language learning — Nyuchi Learning";
+const description =
+  "Mukoko Lingo teaches Shona, Ndebele, English and Chinese: five phrases a day, spaced repetition, and Shamwari, an AI tutor. Classes, assignments and assessments for schools, businesses and government. Developed by Nyuchi Learning. Part of Mukoko by Nyuchi.";
+
+/* The claims here are the ones a search result or an assistant will repeat,
+   so they are the repository's, word for word where possible. No `offers`:
+   the app says "Start for free", but there is no published price for organisations,
+   and a price of 0 would claim more than that. */
+const schema = [
+  {
+    "@type": "SoftwareApplication",
+    "@id": "https://learning.nyuchi.com/mukoko-lingo#software",
+    name: mukokoLingo.name,
+    applicationCategory: "EducationalApplication",
+    operatingSystem: "Web browser",
+    description,
+    url: "https://learning.nyuchi.com/mukoko-lingo",
+    sameAs: [mukokoLingo.url],
+    inLanguage: [...mukokoLingo.languageCodes],
+    author: {
+      "@type": "Organization",
+      name: "Nyuchi Learning",
+      parentOrganization: { "@id": "https://learning.nyuchi.com/#organization" },
+    },
+    publisher: { "@id": "https://learning.nyuchi.com/#organization" },
+    brand: { "@type": "Brand", name: "Mukoko" },
+    license: "https://opensource.org/licenses/MIT",
+    featureList: [
+      "Teaches Shona, Ndebele, English and Chinese, with Swahili in beta",
+      "For schools, businesses and government, as well as single learners",
+      "Five phrases a day, with flash cards and a short quiz",
+      "Spaced repetition schedules what comes back and when",
+      "Shamwari, an AI tutor that adapts to the learner's measured proficiency",
+      "Pronunciation guides and cultural context",
+      "Classes, assignments and per-student progress for teachers",
+      "Diagnostic, formative and summative assessments, graded on the server",
+      "Roster sync over OneRoster from Clever, ClassLink and PowerSchool",
+      "Three layers of content moderation on what learners type to the tutor",
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} canonical="/mukoko-lingo" schema={schema}>
+  <!-- Hero -->
+  <section class="container-custom pt-12 md:pt-20 pb-10 md:pb-16">
+    <div class="max-w-3xl">
+      <p class="eyebrow">Language learning · Nyuchi Learning</p>
+      <div class="flex items-center gap-4">
+        <Image
+          src={lingoIcon}
+          alt=""
+          width={64}
+          height={64}
+          densities={[1, 2]}
+          loading="eager"
+          class="w-12 h-12 md:w-16 md:h-16 rounded-xl shrink-0"
+        />
+        <h1 class="font-serif text-display-sm text-foreground text-balance">
+          {mukokoLingo.name}
+        </h1>
+      </div>
+      <p class="mt-6 text-body-lg text-muted-foreground text-pretty max-w-2xl">
+        Language training for schools, businesses and government. Learn Shona, Ndebele,
+        English or Chinese, five phrases a day, with an AI tutor that meets each learner at
+        their level, while you set the work and see who is keeping up.
+      </p>
+      <p class="mt-4 text-body text-muted-foreground text-pretty max-w-2xl">
+        A partner app developed by Nyuchi Learning. Part of
+        <a href="https://mukoko.com" rel="noopener noreferrer" class="link">Mukoko</a> by
+        Nyuchi.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-primary"
+          >Start learning</a
+        >
+        <a href="#organisations" class="btn-outline">For organisations</a>
+      </div>
+      <p class="mt-4 text-caption text-muted-foreground">
+        In your browser at lingo.mukoko.com · starting is free
+      </p>
+    </div>
+  </section>
+
+  <!-- What it does -->
+  <section class="container-custom pb-16 md:pb-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow">What it does today</p>
+      <h2 class="font-serif text-h2 text-foreground text-balance">
+        Five phrases a day, and a tutor to ask.
+      </h2>
+    </div>
+    <div class="mt-8 grid gap-6 md:gap-8 md:grid-cols-3">
+      {
+        features.map((feature) => (
+          <article class="card-hover p-6 md:p-8 flex flex-col h-full">
+            <span
+              aria-hidden="true"
+              class="inline-block w-2 h-2 rounded-full mb-4"
+              style={`background-color: var(--color-${feature.mineral});`}
+            />
+            <h3 class="font-serif text-h4 text-foreground text-balance">{feature.title}</h3>
+            <p class="mt-3 text-body-sm text-muted-foreground text-pretty flex-1">
+              {feature.body}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Who it is for -->
+  <section class="bg-secondary border-y border-border">
+    <div class="container-custom section">
+      <div class="max-w-2xl">
+        <p class="eyebrow">Who it is for</p>
+        <h2 class="font-serif text-h1 text-foreground text-balance">
+          One app, from a single learner to a whole organisation.
+        </h2>
+      </div>
+      <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-3">
+        {
+          audiences.map((audience) => (
+            <article class="card p-6 md:p-8">
+              <p class:list={[audience.badge, "mb-4"]}>{audience.label}</p>
+              <h3 class="font-serif text-h4 text-foreground text-balance">{audience.title}</h3>
+              <p class="mt-3 text-body-sm text-muted-foreground text-pretty">{audience.body}</p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- For organisations: schools, businesses and government -->
+  <section id="organisations" class="container-custom section scroll-mt-24">
+    <div class="max-w-2xl">
+      <p class="eyebrow">For schools, businesses and government</p>
+      <h2 class="font-serif text-h1 text-foreground text-balance">
+        Language training you can assign and measure.
+      </h2>
+      <p class="mt-6 text-body text-muted-foreground text-pretty">
+        For a school teaching a language, a business training the staff who serve its
+        customers, or a government department whose people serve the public in their own
+        languages. Lingo has two halves: learners use the app, and the people running the
+        programme use the console, where the work is set and measured.
+      </p>
+    </div>
+
+    <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-2">
+      <article class="card p-6 md:p-8">
+        <h3 class="font-serif text-h4 text-foreground">For teachers and trainers</h3>
+        <ul
+          class="mt-4 space-y-3 text-body-sm text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+        >
+          <li>Create classes and learner groups.</li>
+          <li>Set assignments against specific phrases and skills.</li>
+          <li>See each learner's progress, skill by skill.</li>
+          <li>
+            Use diagnostic, formative and summative assessments. They are graded on the
+            server, so the score you see is the score the learner earned.
+          </li>
+        </ul>
+      </article>
+
+      <article class="card p-6 md:p-8">
+        <h3 class="font-serif text-h4 text-foreground">For leaders and IT</h3>
+        <ul
+          class="mt-4 space-y-3 text-body-sm text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+        >
+          <li>Schools: sync class rosters over OneRoster from Clever, ClassLink or PowerSchool.</li>
+          <li>Manage users, content, moderation, guardrails, analytics and API keys.</li>
+          <li>
+            Three layers of moderation check what learners type to the AI tutor.
+          </li>
+          <li>Open source code your IT team can read.</li>
+        </ul>
+      </article>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href={mukokoLingo.enquiry} class="btn-primary">Talk to us about your organisation</a>
+      <a href={mukokoLingo.console} rel="noopener noreferrer" class="btn-outline"
+        >Open the console</a
+      >
+    </div>
+  </section>
+
+  <!-- The facts -->
+  <section class="bg-secondary border-y border-border">
+    <div class="container-custom section-tight">
+      <div class="max-w-2xl">
+        <p class="eyebrow">For whoever has to sign this off</p>
+        <h2 class="font-serif text-h2 text-foreground text-balance">The facts, plainly.</h2>
+      </div>
+      <dl class="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-2 max-w-4xl">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+                {fact.label}
+              </dt>
+              <dd class="mt-2 text-body-sm text-foreground/90 text-pretty">{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={source} rel="noopener noreferrer" class="btn-outline">Read the code</a>
+        <a href={licence} rel="noopener noreferrer" class="btn-ghost">MIT licence</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who makes it, and how to get it -->
+  <section class="container-custom section">
+    <div class="max-w-2xl">
+      <p class="eyebrow">Get it</p>
+      <h2 class="font-serif text-h2 text-foreground text-balance">
+        Open it in your browser and start.
+      </h2>
+      <p class="mt-6 text-body text-muted-foreground text-pretty">
+        Go to
+        <a href={mukokoLingo.url} rel="noopener noreferrer" class="link">lingo.mukoko.com</a>,
+        choose a language and take today's five phrases. Starting is free. For a school, a
+        team or a government department, write to us.
+      </p>
+      <p class="mt-4 text-body text-muted-foreground text-pretty">
+        <strong class="text-foreground">Who makes it.</strong> Mukoko Lingo is a partner app
+        developed by Nyuchi Learning. It is part of Mukoko by Nyuchi. Nyuchi Learning is
+        part of <a href="https://nyuchi.com" rel="noopener noreferrer" class="link"
+          >Nyuchi Africa</a
+        >, which also makes the
+        <a href="/toddle-enhancement-extension" class="link">Toddle Enhancement Extension</a>.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-primary"
+          >Start learning</a
+        >
+        <a href={mukokoLingo.enquiry} class="btn-outline">Talk to us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

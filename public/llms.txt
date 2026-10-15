@@ -1,8 +1,9 @@
 # Nyuchi Learning
 
-> learning.nyuchi.com — the Nyuchi Learning surface of Nyuchi Africa. Two
-> things live here: signposts to where the learning content moved, and the
-> classroom software Nyuchi Web Services builds for schools.
+> learning.nyuchi.com — the Nyuchi Learning surface of Nyuchi Africa. It is
+> the home of Nyuchi Learning's two products, the Toddle Enhancement
+> Extension and Mukoko Lingo, and of signposts to where the learning content
+> moved.
 
 Nyuchi Africa is a technology company in Zimbabwe building open-source and
 community-based platforms. Nyuchi Web Services is its development division.
@@ -106,8 +107,10 @@ community-based platforms. Nyuchi Web Services is its development division.
   a copy. Schools deploy it from the Chrome Web Store by extension ID, with
   a Google Admin console force-install (or Group Policy, Intune or a macOS
   profile); an organisation key is pasted in once by each teacher, since it
-  cannot be pushed by policy. Teachers get each minor release (0.9.0 is
-  the current one) from the Chrome Web Store; versions 0.8.3 to 0.8.13 were
+  cannot be pushed by policy. Teachers get each minor release (0.11.0 is
+  the current one: 0.10.0 with a security fix to how licence keys are
+  checked, so that a cancelled key cannot be made to work again by
+  writing it differently) from the Chrome Web Store; versions 0.8.3 to 0.8.13 were
   test builds for schools piloting it, and their changes arrived together in
   0.9.0. Release
   notes for every version, in plain words:
@@ -123,6 +126,31 @@ community-based platforms. Nyuchi Web Services is its development division.
   https://support.nyuchi.com/en/collections/19764027-how-to-use-the-toddle-enhancement-extension
   Security: https://learning.nyuchi.com/legal/security
 
+- [Mukoko Lingo](https://learning.nyuchi.com/mukoko-lingo): a partner app
+  developed by Nyuchi Learning. Part of Mukoko by Nyuchi. Language
+  training for schools, businesses and government, and for individual
+  learners: AI-assisted, skills-based language learning across Africa. Use it in a web browser at
+  https://lingo.mukoko.com; organisations and their admins use the console
+  at https://lingo.nyuchi.com/console. It teaches Shona, Ndebele, Chinese
+  and English, with Swahili in beta. A learner gets five phrases a day, drilled with
+  flash cards and a short quiz, with spaced repetition scheduling what comes
+  back and when. Shamwari ("friend" in Shona), the AI tutor, answers
+  questions in chat and adapts to the learner's measured proficiency rather
+  than a level they picked; Shamwari never claims to be human. Pronunciation
+  guides, cultural context, and progress tracking (streaks, XP, bookmarks,
+  skill proficiency). For schools, businesses and government: teachers and trainers create classes, set assignments
+  against specific phrases and skills, and see progress per student;
+  assessments are diagnostic, formative and summative, graded on the server;
+  rosters sync over OneRoster from Clever, ClassLink and PowerSchool;
+  organisation admins manage users, content, moderation, guardrails,
+  analytics and API keys. Moderation runs in three layers: rule-based
+  guardrails, an AI-based check, and prompt-injection detection on anything
+  a learner types to the tutor. Sign-in is WorkOS AuthKit; the tutor runs on
+  Cloudflare Workers AI, called from Lingo's servers. Starting is free.
+  Open source under the MIT licence, (c) Nyuchi Learning:
+  https://github.com/mukoko-dev/mukoko-lingo. Enquiries:
+  support@nyuchi.com.
+
 ## Where the learning content went
 
 - [Bundu Education](https://bundu.org/education): open, evidence-based K-12
@@ -130,20 +158,18 @@ community-based platforms. Nyuchi Web Services is its development division.
 - [Nyuchi Learning programmes](https://nyuchi.com/learning): commercial
   cohort-based and self-paced training in software, AI and digital skills,
   localised for Africa with offline study packs.
-- [Mukoko Lingo](https://mukoko.com/lingo): African language learning, free for
-  personal use. Shona and Ndebele primary.
 
 ## Legal
 
-All dated 7 October 2026. Operated by Nyuchi Web Services, the development
+All dated 13 October 2026. Operated by Nyuchi Web Services, the development
 division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
 
 - [Privacy policy](https://learning.nyuchi.com/legal/privacy): what the
   extension and the site do with data. In short, nothing the extension reads
   leaves the browser; it sends only feedback a person chooses to send and,
   while a licence is entered, a data-free daily check for cancelled keys; this website
-  uses Google Analytics only with consent, and sets no cookies unless the
-  visitor agrees. Nyuchi Africa (Private) Limited is the controller for the
+  loads Google Analytics only after the visitor agrees to it, and sets no
+  cookies unless the visitor agrees. Nyuchi Africa (Private) Limited is the controller for the
   data it holds (purchases, feedback, support, site analytics), under
   Zimbabwe's Cyber and Data Protection Act [Chapter 12:07]; requests to
   privacy@nyuchi.com.

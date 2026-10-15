@@ -5,15 +5,19 @@ three predictable places.
 
 ## What gets changed where
 
-| Change                                                    | File                                                  |
-| --------------------------------------------------------- | ----------------------------------------------------- |
-| Nav links, footer columns, legal links, the wordmark      | `src/data/site.ts`                                    |
-| Links to the extension (repo, releases, deployment guide) | `src/data/site.ts` (`toddleExtension`)                |
-| The three destination cards                               | the `surfaces` array in `src/pages/index.astro`       |
-| Home page copy                                            | `src/pages/index.astro`                               |
-| Extension page copy                                       | `src/pages/toddle-enhancement-extension.astro`        |
-| Header / footer structure                                 | `src/components/SiteHeader.astro`, `SiteFooter.astro` |
-| `<head>`, metadata, theme bootstrap                       | `src/layouts/BaseLayout.astro`                        |
+| Change                                                  | File                                                                |
+| ------------------------------------------------------- | ------------------------------------------------------------------- |
+| Nav links, footer columns, legal links, the wordmark    | `src/data/site.ts`                                                  |
+| Links to the extension (store listing, releases, guide) | `src/data/site.ts` (`toddleExtension`)                              |
+| The extension's release notes                           | `src/data/releases.ts`                                              |
+| Facts on the legal pages (versions, prices, contacts)   | `src/data/legal.ts`                                                 |
+| Consent categories and the banner's version             | `src/data/consent.ts`                                               |
+| The destination cards                                   | the `surfaces` array in `src/pages/index.astro`                     |
+| Home page copy                                          | `src/pages/index.astro`                                             |
+| Extension page copy                                     | `src/pages/toddle-enhancement-extension.astro`                      |
+| Mukoko Lingo's links / page copy                        | `src/data/site.ts` (`mukokoLingo`) / `src/pages/mukoko-lingo.astro` |
+| Header / footer structure                               | `src/components/SiteHeader.astro`, `SiteFooter.astro`               |
+| `<head>`, metadata, theme bootstrap                     | `src/layouts/BaseLayout.astro`                                      |
 
 ## What must not be changed here
 
@@ -38,16 +42,38 @@ lowercase spelling anywhere in `src/` fails that test too.
 npm install
 npm run dev          # http://localhost:4321 — hot reload
 npm run check        # astro check
-npm test             # vitest, then build, then the CSP hash check
+npm test             # build, then the tests (vp test), then the CSP hash check
+npm run lint         # vp lint
 npm run format       # prettier --write
 npm run format:check # the org lint gate runs this
+npm run fmt          # vp fmt; the org vite-plus gate runs `vp fmt --check`
 ```
 
-## If you touch the theme bootstrap
+## Keeping the clone light
 
-The one inline script in `BaseLayout.astro` is allowed by a hash in the
-Content-Security-Policy in `vercel.json`. Change the script and the hash no
-longer matches, so:
+`npm run clean` (`scripts/clean.mjs`) removes what the build and the tools
+generate (`dist/`, `.astro/`, `.vercel/output/`, `qa-report.json`, the tools' caches), Claude Code worktrees with nothing uncommitted, and local
+branches that are done: everything on them is already in `origin/main` or
+`origin/staging` (a squash merge included), or their remote branch was
+deleted after the pull request merged while they held nothing unpushed. It
+touches only what Git ignores, never `main`, `staging`, the branch checked
+out or one in a worktree, and names anything it leaves. `--dry-run` lists,
+`--deep` also removes `node_modules` and npm's cache, `--no-fetch` works
+offline.
+
+It runs on its own after a `git pull` that merges (`.githooks/post-merge`,
+turned on by `npm ci`), and after Claude Code merges a pull request
+(`.claude/settings.json`, a `PostToolUse` hook) in whichever of the three
+clones (`toddle-enhancement-extension`, `learning`, `nyuchi-licence-server`)
+the pull request belongs to. The same script is in all three; only its list
+of generated paths differs.
+
+## If you touch an inline script
+
+The inline scripts (the theme bootstrap in `BaseLayout.astro`, the consent
+check in `Analytics.astro`, and the small modules Astro inlines) are allowed by
+hashes in the Content-Security-Policy in `vercel.json`. Change one and its hash
+no longer matches, so:
 
 ```sh
 npm run build
@@ -56,8 +82,12 @@ npm run csp:fix      # rewrite vercel.json with the new hashes
 
 Then review the diff — a changed hash should correspond to a change you meant
 to make. `npm test` fails if you skip this, which is the point: a stale hash
-would mean the browser refuses to run the script and the theme silently breaks
-in production.
+would mean the browser refuses to run the script and it silently breaks in
+production.
+
+If you touch the consent banner or analytics, run `npm run consent:probe` too:
+Google's tag must not be requested before the visitor agrees, and the privacy
+policy says so.
 
 ## Adding a page
 
@@ -68,9 +98,14 @@ in production.
 
 ## Pull requests
 
-CI runs `astro check`, the tests, the build and the CSP check, plus the org
-lint gate (actionlint, JSON validity, Prettier, markdownlint, yamllint). All of
-it has to be green. Merging to `master` deploys to Vercel.
+Branch from `staging` and open the pull request against `staging`. CI runs
+`astro check`, the build, the tests and the CSP check, plus the org gates: the
+lint gate (actionlint, JSON validity, Prettier, markdownlint, yamllint) and
+`vite-plus / check` (`astro check`, `vp fmt --check`). All of it has to be
+green. Each merge into `staging` is tagged as the next patch. A release is a
+pull request from `staging` to `main`: production deploys from `main`, which
+is tagged as the next minor. Add a line under "Unreleased" in CHANGELOG.md
+for anything a reader of the site, or of this repo, would notice.
 
 Do not add a link to the extension's source repository — it is private, and a
 test fails the build on any `github.com` link for that reason.

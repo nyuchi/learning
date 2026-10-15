@@ -72,14 +72,43 @@ export const CONSENT_KEY = "nyuchi-consent";
 
 /**
  * The key the first version of this banner used, holding "granted" | "denied"
- * for analytics alone. Read once and migrated, so that someone who already
- * answered is not asked a second time — being re-prompted after you have
- * decided is its own kind of dark pattern.
+ * for analytics alone. It is no longer read as an answer: it was given to a
+ * banner that told visitors Google's tag loaded either way, and the banner now
+ * asks a different question. The banner deletes it when a fresh answer is
+ * saved.
  */
 export const LEGACY_CONSENT_KEY = "analytics-consent";
 
 /** Bump when the categories change meaning, which re-asks everyone. */
 export const CONSENT_VERSION = 1;
+
+/** What gets stored. The timestamp and version are the demonstrable part. */
+export type ConsentRecord = { v: number; at: string } & Partial<
+  Record<ConsentCategory["id"], boolean>
+>;
+
+/**
+ * Read a stored record, or null when there is no answer to the question being
+ * asked now. Older versions, anything that is not a record, and text that does
+ * not parse all count as no answer — the direction that loads nothing.
+ *
+ * CookieBanner.astro and SupportWidget.astro both read consent through this.
+ * Analytics.astro carries the same check inline, because it runs before any
+ * module can; tests/security.test.ts runs that copy against the same cases.
+ */
+export function parseConsent(raw: string | null): ConsentRecord | null {
+  if (!raw) return null;
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) {
+      return null;
+    }
+    const record = parsed as ConsentRecord;
+    return record.v === CONSENT_VERSION ? record : null;
+  } catch {
+    return null;
+  }
+}
 
 export const OPTIONAL_CATEGORIES = CONSENT_CATEGORIES.filter(
   (category) => !category.required,

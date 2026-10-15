@@ -9,9 +9,11 @@
  * reason. Nothing about the page would look broken; the cookie would simply
  * start appearing, and the policy would quietly become false.
  *
- * So this drives it: load the page, assert no analytics cookie; decline, assert
- * still none and the banner is gone; reload, assert it stays gone and still no
- * cookie; then accept in a fresh context and assert the cookie appears.
+ * So this drives it: load the page, assert no analytics cookie and no request to
+ * Google Analytics at all; decline, assert still neither and the banner is gone;
+ * reload, assert it stays gone and still nothing; then accept in a fresh context
+ * and assert Google's tag is requested and the cookie appears. A record from an
+ * older banner version is planted too, and must load nothing.
  *
  *   npm run consent:probe
  */
@@ -33,6 +35,21 @@ const browser = await chromium.launch({ executablePath: findChromium() });
 const failures = [];
 const notes = [];
 
+/* Google Analytics' own hosts. Google Fonts is a different host and is not
+   covered by the analytics choice, so it is not counted here. */
+const ANALYTICS_HOST =
+  /(^|\.)(googletagmanager|google-analytics)\.com$|(^|\.)analytics\.google\.com$/;
+
+/** Every request this page makes to Google Analytics, recorded as it happens. */
+function watchAnalytics(page) {
+  const seen = [];
+  page.on("request", (request) => {
+    const host = new URL(request.url()).host;
+    if (ANALYTICS_HOST.test(host)) seen.push(request.url());
+  });
+  return seen;
+}
+
 async function analyticsCookies(context) {
   return (await context.cookies())
     .map((cookie) => cookie.name)
@@ -51,10 +68,16 @@ function check(label, condition, detail = "") {
 {
   const context = await browser.newContext();
   const page = await context.newPage();
+  const requests = watchAnalytics(page);
   await page.goto(PAGE, { waitUntil: "networkidle" });
 
   const banner = page.locator(".consent");
   check("banner is shown on a first visit", await banner.isVisible());
+  check(
+    "no request to Google Analytics before a choice",
+    requests.length === 0,
+    requests.join(", "),
+  );
 
   /* Equal prominence is a requirement, not a preference: a reject button that is
      smaller or quieter than accept is the pattern regulators have been fining.
@@ -138,6 +161,11 @@ function check(label, condition, detail = "") {
     cookies.length === 0,
     cookies.join(", "),
   );
+  check(
+    "no request to Google Analytics after rejecting, across a reload",
+    requests.length === 0,
+    requests.join(", "),
+  );
 
   /* Withdrawal must be as easy as giving it. */
   const reopen = page.locator("#cookie-choices");
@@ -190,11 +218,38 @@ function check(label, condition, detail = "") {
   await context.close();
 }
 
+/* --- a yes given to an older banner version --- */
+{
+  const context = await browser.newContext();
+  await context.addInitScript(() => {
+    localStorage.setItem(
+      "nyuchi-consent",
+      JSON.stringify({ v: 0, at: "2026-01-01T00:00:00.000Z", analytics: true }),
+    );
+    localStorage.setItem("analytics-consent", "granted");
+  });
+  const page = await context.newPage();
+  const requests = watchAnalytics(page);
+  await page.goto(PAGE, { waitUntil: "networkidle" });
+  await page.waitForTimeout(1000);
+  check(
+    "an older version's yes, or the first banner's key, loads nothing",
+    requests.length === 0,
+    requests.join(", "),
+  );
+  check(
+    "and the banner asks again",
+    await page.locator(".consent").isVisible(),
+  );
+  await context.close();
+}
+
 /* --- accepting, in a clean profile --- */
 let acceptPath = "verified";
 {
   const context = await browser.newContext();
   const page = await context.newPage();
+  const requests = watchAnalytics(page);
   await page.goto(PAGE, { waitUntil: "networkidle" });
 
   await page.locator('[data-consent-action="accept"]').click();
@@ -210,6 +265,14 @@ let acceptPath = "verified";
     () => typeof window.google_tag_manager !== "undefined",
   );
   const cookies = await analyticsCookies(context);
+
+  /* The request is made whether or not this browser can complete it, so this
+     holds even where the bundle itself cannot arrive. */
+  check(
+    "accepting requests Google's tag",
+    requests.some((url) => url.includes("googletagmanager.com/gtag/js")),
+    requests.join(", ") || "no request",
+  );
 
   if (cookies.length > 0) {
     notes.push("ok    accepting does set the analytics cookie");
@@ -251,8 +314,9 @@ if (acceptPath === "unverifiable") {
       "measurement. Google's tag never loaded in this browser",
       "(ERR_CERT_AUTHORITY_INVALID — this sandbox does not trust the local TLS",
       "proxy, and it fails Google Fonts the same way), so there was no GA to set",
-      "a cookie either way. The promise the privacy policy makes — no cookie",
-      "before consent — is proven above and does not depend on it.",
+      "a cookie either way. The promise the privacy policy makes — no request",
+      "to Google Analytics and no cookie before consent — is proven above and",
+      "does not depend on it.",
       "",
       "Re-run against the deployed site to close that gap:",
       "  QA_BASE_URL=https://learning.nyuchi.com node scripts/probe-consent.mjs",

@@ -5,8 +5,9 @@ on:
   push:
     branches: [main, staging]
 
-permissions:
-  contents: read
+# Nothing at the workflow level: each job asks for what it uses, and no job
+# here pushes, tags or comments, so each reads the repository and no more.
+permissions: {}
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -15,11 +16,17 @@ concurrency:
 jobs:
   check:
     name: astro check + tests + build
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # Nothing here pushes, so the token is not left in .git/config for
+          # every later step (and every npm install script) to read.
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
           cache: "npm"
@@ -30,20 +37,26 @@ jobs:
       - name: Type-check
         run: npm run check
 
-      # `npm test` runs vitest, builds the site, and then verifies that every
-      # inline script in the build is covered by the CSP hash allowlist in
-      # vercel.json — so an edit to the theme bootstrap cannot ship a page the
-      # browser will refuse to run.
+      # `npm test` builds the site, runs the tests (vp test), and then verifies
+      # that every inline script in the build is covered by the CSP hash
+      # allowlist in vercel.json — so an edit to an inline script cannot ship
+      # a page the browser will refuse to run.
       - name: Tests, build, and CSP check
         run: npm test
 
   audit:
     name: npm audit
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          # Nothing here pushes, so the token is not left in .git/config for
+          # every later step (and every npm install script) to read.
+          persist-credentials: false
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
         with:
           node-version: "22"
           cache: "npm"
@@ -62,16 +75,11 @@ jobs:
       - name: Audit what ships
         run: node scripts/audit.mjs
 
-      # Build and test tooling, reported but not blocking.
-      #
-      # vitest currently carries an advisory with no installable fix: every
-      # published version up to 4.1.10 is affected, and 4.1.11 — the fix —
-      # cannot be installed, because it trips a resolver bug in npm 10.9
-      # ("Cannot read properties of null (reading 'edgesOut')") that aborts
-      # `npm install` outright. Blocking on it would pin this job red until
-      # npm ships a fix, which trains everyone to ignore it. So it is surfaced
-      # in the log instead, and this step goes back to blocking the moment
-      # vitest 4.1.11 installs cleanly.
+      # Build and test tooling, reported but not blocking. None of it ships:
+      # the site is static HTML. Blocking on an advisory in a build tool with
+      # no non-breaking fix would pin this job red and train everyone to
+      # ignore it, so it is surfaced in the log instead. Today that is
+      # postcss-selector-parser, through @tailwindcss/typography.
       - name: Report advisories in build and test tooling
         continue-on-error: true
         run: npm audit --audit-level=moderate
