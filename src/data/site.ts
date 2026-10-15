@@ -188,8 +188,8 @@ export const toddleExtension = {
 } as const;
 
 /**
- * Mukoko Lingo, described once: a partner app developed by Nyuchi Learning,
- * part of Mukoko, Africa's super app.
+ * Mukoko Lingo, described once: a partner app developed by Nyuchi Learning.
+ * Part of Mukoko by Nyuchi.
  *
  * Every fact here comes from Lingo's own public repository
  * (mukoko-dev/mukoko-lingo on GitHub: README.md, app.json, BRANDING.md and
@@ -199,21 +199,26 @@ export const toddleExtension = {
  * exist. The source link lives on the page itself (src/pages/mukoko-lingo.astro):
  * tests/links.test.ts keeps GitHub links out of this file, because the
  * extension's repository is private.
+ *
+ * Positioning (owner, 2026-10-15): Nyuchi Learning leads with organisations,
+ * business (B2B) and government (B2G) as well as schools, so the page and
+ * the enquiry are written for them first.
  */
 export const mukokoLingo = {
   name: "Mukoko Lingo",
   tagline:
-    "AI-assisted, skills-based language learning for individuals, schools and businesses across Africa.",
+    "AI-assisted, skills-based language learning for individuals, schools, businesses and government across Africa.",
   /** The live app, as the repository's README names it. */
   url: "https://lingo.mukoko.com",
-  /** The console for schools, businesses and admins. */
+  /** The console for organisations: schools, businesses, government and admins. */
   console: "https://lingo.nyuchi.com/console",
-  /** The four languages the repository calls canonical. Swahili is in the
-      app's picker but the README calls it unfinished, so it is not listed. */
+  /** The four languages the repository calls canonical. */
   languages: ["Shona", "Ndebele", "English", "Chinese"],
-  /** BCP 47 codes for the same four, for structured data. */
+  /** Languages in beta (owner, 2026-10-15): in the app, shown as beta. */
+  betaLanguages: ["Swahili"],
+  /** BCP 47 codes for the four supported languages, for structured data. */
   languageCodes: ["sn", "nd", "en", "zh"],
-  /** School and business enquiries. */
+  /** Enquiries from schools, businesses and government. */
   enquiry: "mailto:support@nyuchi.com?subject=Mukoko%20Lingo",
 } as const;
 
