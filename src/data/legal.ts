@@ -82,7 +82,7 @@ export const pricing = [
     price: "US$5",
     period: "per year",
     who: "One teacher.",
-    /** Checkout. Buy Me a Coffee for now; the licence arrives as a one-time claim link by email, never the key. */
+    /** Checkout. Buy Me a Coffee for now; the key is issued by email. */
     buy: "https://buymeacoffee.com/bryany/e/581737",
     includes: [
       "Every assessment tool expanded into per-criterion columns",
