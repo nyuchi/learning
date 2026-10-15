@@ -33,6 +33,14 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Mukoko Lingo is written for organisations first.** The page, the
+  homepage card and `llms.txt` now lead with schools, businesses and
+  government, then single learners. The "For schools" section is "For
+  schools, businesses and government" (anchor `#organisations`), and the
+  enquiry button reads "Talk to us about your organisation". Lingo is
+  described as "Part of Mukoko by Nyuchi", and Swahili is shown as beta
+  (owner decisions, 2026-10-15).
+
 - **Mukoko Lingo, described as it is.** The home page card and llms.txt
   said Lingo was "free for personal use", "Shona and Ndebele primary" and
   taught French and Portuguese. Its repository says it teaches Shona,
