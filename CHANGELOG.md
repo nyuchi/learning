@@ -10,6 +10,19 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Added
 
+- **Mukoko Lingo has its own page, `/mukoko-lingo`.** Mukoko Lingo is a
+  partner app developed by Nyuchi Learning, part of Mukoko, Africa's super
+  app. The page says what it does today, who it is for, what schools get
+  and how to start, in the extension page's style, with the app's own icon.
+  Every claim is from Lingo's public repository (mukoko-dev/mukoko-lingo:
+  README.md, app.json, BRANDING.md and the app's own copy). It sits beside
+  the Toddle Enhancement Extension wherever the extension appears: a second
+  product card on the home page, "Mukoko Lingo" in the header (where
+  "Tools" is now "Toddle extension"), and the footer's "Tools" column, now
+  "Products". It has a SoftwareApplication node in its JSON-LD, Open Graph
+  tags, a sitemap entry and an entry under Products in llms.txt.
+  `mukokoLingo` in `src/data/site.ts` holds its links.
+  `tests/seo.test.ts` checks all of that.
 - **`npm run clean`, and after every merge.** `scripts/clean.mjs` removes
   the build output (`dist/`, `.astro/`, `.vercel/output/`), the QA report,
   the tools' caches, finished Claude Code worktrees and local branches
@@ -20,6 +33,27 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Mukoko Lingo, described as it is.** The home page card and llms.txt
+  said Lingo was "free for personal use", "Shona and Ndebele primary" and
+  taught French and Portuguese. Its repository says it teaches Shona,
+  Ndebele, English and Chinese, and that starting is free; the copy now
+  says that, and links to the live app at lingo.mukoko.com rather than
+  mukoko.com/lingo. The home page's "three surfaces" are now the two
+  products and two destinations.
+- **0.11.0 is on the Chrome Web Store, and is the current version (#85).**
+  It is 0.10.0 with a security fix to how licence keys are checked. The
+  Releases page lists it first, marked on the store, from the extension's
+  CHANGELOG; the test builds tagged since 0.10.0 (0.10.1 to 0.10.5, 0.11.1
+  and 0.11.2) open its notes, and 0.12.0, not released, is not listed.
+  `extensionVersions.current` is 0.11.0; the new `changedIn` (0.9.0) keeps
+  "versions before 0.9.0" true where the old licence host and flags key are
+  named. The product page, the Security page (which now describes the
+  0.11.0 fix), the Releases description and llms.txt name 0.11.0. The
+  anchors for 0.9.6 and 0.9.7 the issue asked for were already there; the
+  test that every tagged test build has one now covers the 0.10.x and
+  0.11.x builds too.
+- **`webStore`'s type is a named `Url`**, so Prettier 3.3 and 3.9 format
+  `src/data/site.ts` the same way; the org lint gate (3.9.4) had flagged it.
 - **After paying: a claim link, not a key.** The extension page's checkout
   note now says the licence email carries a one-time link (never the key),
   that it works once for 72 hours and a new one can be asked for, that
