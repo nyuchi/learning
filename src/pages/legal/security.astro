@@ -61,7 +61,7 @@ const glance = [
   },
   {
     label: "Reviewed",
-    value: `Two adversarial reviews: ${firstReview.label}, every finding fixed in ${firstReview.version}; and ${secondReview.label}, every finding fixed in ${secondReview.version}, a test build, whose fixes reached schools in ${security.version}.`,
+    value: `Two adversarial reviews: ${firstReview.label}, every finding fixed in ${firstReview.version}; and ${secondReview.label}, every finding fixed in ${secondReview.version}, a test build, whose fixes reached schools in ${extensionVersions.changedIn}. Version ${security.version} fixed two weaknesses in how licence keys were checked, set out under the second review.`,
   },
 ];
 
@@ -312,7 +312,7 @@ const severityClass: Record<string, string> = {
         <strong class="text-foreground">A daily check for cancelled keys.</strong> At most
         once a day, only while a licence is entered, the background worker makes one plain request
         to <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (versions
-        before {extensionVersions.current} asked <code>licences.nyuchi.dev</code>, the
+        before {extensionVersions.changedIn} asked <code>licences.nyuchi.dev</code>, the
         same server). It
         sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a
         list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, and
@@ -535,6 +535,17 @@ const severityClass: Record<string, string> = {
       (storage and Toddle only, nothing reachable from websites), the built pages, the
       network (the same two outside requests as before), and the list of packages the build
       uses.
+    </p>
+    <p id="licence-key-fix" class="mt-4 text-body-sm text-muted-foreground text-pretty scroll-mt-24">
+      <strong class="text-foreground">Version {security.version}: licence keys.</strong>
+      Two weaknesses in how the extension checked licence keys were fixed in
+      {security.version}. A cancelled or refunded key could be made to work again by
+      writing it in a different but equivalent form, which the check for cancelled keys
+      did not recognise; a key is now accepted only in exactly the form it was issued in.
+      And because the same signature covers keys and the list of cancelled keys, the
+      extension now accepts only a licence as a licence. Both concerned whether a licence
+      is valid; neither touched what the extension reads from Toddle. Every key, as it was
+      issued, keeps working.
     </p>
     <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
       We publish what was found, not only that it was fixed, because a school deciding
