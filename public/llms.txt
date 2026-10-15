@@ -127,19 +127,18 @@ community-based platforms. Nyuchi Web Services is its development division.
   Security: https://learning.nyuchi.com/legal/security
 
 - [Mukoko Lingo](https://learning.nyuchi.com/mukoko-lingo): a partner app
-  developed by Nyuchi Learning, part of Mukoko, Africa's super app.
-  AI-assisted, skills-based language learning for individuals, schools and
-  businesses across Africa. Use it in a web browser at
-  https://lingo.mukoko.com; schools, businesses and admins use the console
+  developed by Nyuchi Learning. Part of Mukoko by Nyuchi. Language
+  training for schools, businesses and government, and for individual
+  learners: AI-assisted, skills-based language learning across Africa. Use it in a web browser at
+  https://lingo.mukoko.com; organisations and their admins use the console
   at https://lingo.nyuchi.com/console. It teaches Shona, Ndebele, Chinese
-  and English (Swahili is in the language picker but unfinished, and is not
-  a supported language). A learner gets five phrases a day, drilled with
+  and English, with Swahili in beta. A learner gets five phrases a day, drilled with
   flash cards and a short quiz, with spaced repetition scheduling what comes
   back and when. Shamwari ("friend" in Shona), the AI tutor, answers
   questions in chat and adapts to the learner's measured proficiency rather
   than a level they picked; Shamwari never claims to be human. Pronunciation
   guides, cultural context, and progress tracking (streaks, XP, bookmarks,
-  skill proficiency). For schools: teachers create classes, set assignments
+  skill proficiency). For schools, businesses and government: teachers and trainers create classes, set assignments
   against specific phrases and skills, and see progress per student;
   assessments are diagnostic, formative and summative, graded on the server;
   rosters sync over OneRoster from Clever, ClassLink and PowerSchool;

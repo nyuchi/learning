@@ -343,8 +343,16 @@ describe("Mukoko Lingo", () => {
   });
 
   it("says who developed it", () => {
-    expect(page).toContain("developed by Nyuchi Learning, part of");
-    expect(page).toContain("Mukoko</a>,");
+    expect(page).toContain("developed by Nyuchi Learning. Part of");
+    expect(page).toContain("Mukoko</a> by");
+    expect(page).toContain("Part of Mukoko by Nyuchi");
+    expect(page).not.toContain("super app");
+  });
+
+  it("is written for organisations and shows Swahili as beta", () => {
+    expect(page).toContain('id="organisations"');
+    expect(page).toContain("For schools, businesses and government");
+    expect(page).toContain("Swahili is in beta");
   });
 
   it("describes it as a SoftwareApplication, as the extension is", () => {
