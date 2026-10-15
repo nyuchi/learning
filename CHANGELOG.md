@@ -62,13 +62,11 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
   0.11.x builds too.
 - **`webStore`'s type is a named `Url`**, so Prettier 3.3 and 3.9 format
   `src/data/site.ts` the same way; the org lint gate (3.9.4) had flagged it.
-- **After paying: a claim link, not a key.** The extension page's checkout
-  note now says the licence email carries a one-time link (never the key),
-  that it works once for 72 hours and a new one can be asked for, that
-  **Add it to Chrome** adds the licence with no key to copy, and that a
-  school licence's buyer sets it up through the Nyuchi console and Chrome
-  policy. Merge with the licence server's claim links
-  (nyuchi-licence-server, `claude/licence-onboarding`).
+- **After paying: the checkout note describes today's email, a licence
+  key.** The claim-link wording (#89) is held back until the licence server
+  sends claim links, which ships with extension 0.12.0. Until then buyers
+  still receive the key by email, so the note says that. Restore #89 when
+  0.12.0 and the server's claim links go live.
 - **0.10.0 is on the Chrome Web Store.** The Releases page shows it as on the store since 13 October 2026, and the test builds 0.9.9 and 0.9.10 open its notes.
 - **The Toddle Enhancement Extension 0.9.0 is on the Chrome Web Store**,
   published on 7 October 2026. The Releases page marks it "On the Chrome Web
