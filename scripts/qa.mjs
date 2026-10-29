@@ -8,8 +8,7 @@
  */
 import { chromium } from "playwright";
 import { findChromium } from "./lib/browser.mjs";
-import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync, writeFileSync } from "node:fs";
 import { createRequire } from "node:module";
 
 /** Where the built site is being served. `npm run qa` starts one for you. */
