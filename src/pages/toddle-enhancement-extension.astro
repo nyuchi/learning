@@ -8,9 +8,10 @@
  * switch gets the most room because it is the part people will be asked to
  * justify.
  *
- * It describes version 0.11.0 (`extensionVersions.current`), on the Chrome
- * Web Store: 0.10.0 with a security fix to how licence keys are checked. It
- * names 0.8.2 only where updating from it matters, and 0.9.0
+ * It describes version 0.12.0 (`extensionVersions.current`), on the Chrome
+ * Web Store: the Excel export, claim links instead of keys in licence emails,
+ * a school's licence set through Chrome policy, and the Toddle compatibility
+ * check. It names 0.8.2 only where updating from it matters, and 0.9.0
  * (`extensionVersions.changedIn`) only for the old licence host.
  * Flags are "concealed", never "hidden": the extension no longer hides
  * Toddle's own flags (see `flags` in src/data/legal.ts).
@@ -82,8 +83,8 @@ const features = [
   {
     mineral: "gold",
     free: false,
-    title: "CSV export",
-    body: "Student × assessment × criterion × result × submission status, in one click. Generated in your browser and saved by your browser — it never passes through a server of ours, because there isn't one.",
+    title: "Excel or CSV export",
+    body: "The table you are looking at, as an Excel workbook: a row per student, a column per criterion, in the same colours, with the headings frozen, a filter on every column and every comment in full. A second sheet lists every result on its own row, and the same list is one click away as a CSV. Generated in your browser and saved by your browser — it never passes through a server of ours, because there isn't one.",
   },
   {
     mineral: "tanzanite",
@@ -120,6 +121,12 @@ const features = [
     free: false,
     title: "Primary teacher names",
     body: "The class's primary teacher, as ticked in the class settings, beside every class on the home page and on a student's profile — so you know who to ask without opening the class.",
+  },
+  {
+    mineral: "sodalite",
+    free: true,
+    title: "It tells you when Toddle changes",
+    body: "Toddle changes its pages without notice. Each feature checks, in your own Toddle tab, that it still finds what it needs, and the licence page shows each one as working, working with something changed, or paused because Toddle changed — paused cleanly, never half-drawn. Send us a report in one click, or switch on sending them automatically (it is off unless you do). A report says what changed in Toddle's page, masked, and carries no student data.",
   },
 ];
 
@@ -207,20 +214,20 @@ const facts = [
       "Nothing it reads, anywhere but back to Toddle. No account, no analytics, no tracking, no remote code. Student photos load from wherever Toddle serves them, as on Toddle's own page. Licence keys are checked on your machine: a key may name your email or your school's email domain, and where it does, that is compared with your Toddle account in the browser only. The welcome page it opens on install is part of the extension and contacts nothing.",
   },
   {
-    label: "Its two outside connections",
+    label: "Its three outside connections",
     value:
-      `The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree. And, only while a licence is entered, at most one request a day to licenses.nyuchi.com (versions before ${extensionVersions.changedIn} asked licences.nyuchi.dev, the same server) for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands.`,
+      `The Send feedback form, only when you press Send: what you typed and the version number, to our feedback form, processed by Formspree; a Toddle compatibility report goes the same way, masked and with no student data, only when you press Send report or have switched on sending them automatically. Only while there is a licence, at most one request a day to licenses.nyuchi.com (versions before ${extensionVersions.changedIn} asked licences.nyuchi.dev, the same server) for a signed list of cancelled keys' fingerprints, which sends no key, no identifiers and no Toddle data; if it fails, the last result stands. And only when you use the one-time link from your licence email, one request to licenses.nyuchi.com carrying the link's code and nothing else, which returns your key once.`,
   },
   {
     label: "What it stores",
     value:
-      `On your own machine: your switch settings, your licence key if you have one, the result of the last check for cancelled keys, and the email of the Toddle account last seen signed in, to check who a licence is for; and, in Toddle's own site storage, a copy of the switches, whether flags are concealed, your My classes choice and the academic year Toddle is showing. ${licenceSync.short} No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.`,
+      `On your own machine: your switch settings, your licence key if you have one (a school's is read from its Chrome policy instead), the result of the last check for cancelled keys, the email of the Toddle account last seen signed in, to check who a licence is for, and the masked Toddle compatibility record; and, in Toddle's own site storage, whether flags are concealed, your My classes choice and the academic year Toddle is showing. ${licenceSync.short} No student data: what it reads is held in the tab's memory until the tab is closed or reloaded, and never written to storage.`,
   },
 ];
 
 const title = "Toddle Enhancement Extension — Nyuchi Learning";
 const description =
-  "A Chrome extension for the Toddle gradebook: every rubric expanded into per-criterion columns, CSV export, a student sidebar, and a free switch that conceals student flags when your screen is shared.";
+  "A Chrome extension for the Toddle gradebook: every rubric expanded into per-criterion columns, Excel or CSV export, a student sidebar, and a free switch that conceals student flags when your screen is shared.";
 
 /* The claims here are the ones a search result or an assistant will repeat, so
    they mirror the privacy policy rather than the marketing copy. */
@@ -244,12 +251,13 @@ const schema = [
     featureList: [
       "Expands every Toddle assessment tool into per-criterion columns",
       "Conceals student flags across Toddle with one free switch, for a shared screen; never hides Toddle's own flags",
-      "CSV export of results and submission status",
+      "Excel or CSV export of results and submission status",
       "A My classes filter on the Toddle home page",
       "A student sidebar anywhere a student appears in Toddle: photo, grade, email, contacts, where they are now, today's timetable and attendance",
       "A class view with every teacher, and message buttons that open Toddle's own chat",
       "The Attendance dashboard's Students tab with each student's year group, current class and teacher",
       "Primary teacher names beside each class",
+      "A Toddle compatibility check that says when a change to Toddle affects a feature, and pauses that feature cleanly",
     ],
     privacyPolicy: "https://learning.nyuchi.com/legal/privacy",
   },
@@ -285,7 +293,7 @@ const paidFeatures = features.filter((feature) => !feature.free);
 const faq = [
   {
     q: "What happens when Toddle changes?",
-    a: `<p>Toddle does not publish an API for this, so the extension reads the same internal interface the Toddle web app uses, reverse-engineered from the app's own requests. That works well and costs one request per assessment rather than one per student, but it also means a Toddle release can break it, usually by renaming something.</p><p>When that happens the extension falls back to its own table rather than breaking the gradebook, and tells you when something could not be expanded rather than quietly showing you less. Report a break and we will chase the rename.</p>`,
+    a: `<p>Toddle does not publish an API for this, so the extension reads the same internal interface the Toddle web app uses, reverse-engineered from the app's own requests. That works well and costs one request per assessment rather than one per student, but it also means a Toddle release can break it, usually by renaming something.</p><p>Each feature checks, in your own Toddle tab, that it still finds what it needs. When Toddle has changed something, the licence page's Toddle compatibility card says which feature is affected, and that feature pauses cleanly rather than breaking your gradebook. Send us the report from that card, in one click, and we will chase the change; it says what changed in Toddle's page, masked, and carries no student data.</p>`,
   },
   {
     q: "How do updates reach us?",
@@ -293,7 +301,7 @@ const faq = [
   },
   {
     q: "Does activating a licence send anything to you?",
-    a: `<p>No. A key is checked on your own machine, so activating it contacts nothing and works offline, and one key covers your laptop and your classroom desktop. ${licenceSync.short} While a key is entered, the extension checks at most once a day for cancelled keys, sending nothing about you.</p>`,
+    a: `<p>Only the code in your licence email's one-time link, once, to get your key. A key is then checked on your own machine, so it works offline, and one key covers your laptop and your classroom desktop; a key you paste contacts nothing at all. ${licenceSync.short} While there is a licence, the extension checks at most once a day for cancelled keys, sending nothing about you.</p>`,
   },
   {
     q: "Can our IT team read the code?",
@@ -419,7 +427,7 @@ const faq = [
     <SectionHeader
       eyebrow="What it does"
       title="Everything it adds to Toddle."
-      description="Two features are free for everyone. The rest are what a licence pays for."
+      description="Two features are free for everyone, and so is the check that tells you when Toddle changes. The rest are what a licence pays for."
     />
     {
       [
@@ -569,8 +577,8 @@ const faq = [
             confirm, and that is the install.
           </li>
           <li>
-            A welcome page opens once: what it does, a switch for every feature, and a box
-            for a licence key if you have one.
+            A welcome page opens once: what it does, a switch for every feature, and a place
+            for your licence if you have one.
           </li>
           <li>
             Open Toddle. The flag switch is in Toddle's header, and My classes is in the
@@ -627,12 +635,17 @@ const faq = [
         </p>
         <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
           <strong class="text-foreground">The licence.</strong> An organisation licence is
-          one key for your school's email domain. A key cannot be pushed by policy, so send
-          it to staff; each teacher pastes it in once, from the welcome page or the
-          toolbar menu's <em>Enter a licence key</em>. If your network filters outbound
+          one key for your school's email domain, and IT sets it through Chrome policy for
+          the extension: in the Admin console's <em>Policy for extensions</em>, as
+          <code class="text-foreground break-all">{`{ "licenceKey": { "Value": "TEE1…" } }`}</code>,
+          or in the Windows registry or a macOS profile. Every teacher on a managed browser
+          is then licensed without seeing or pasting the key, and the extension says
+          <em>Provided by your school</em>. The key cannot be typed into the extension, so
+          if your teachers pasted it into an earlier version, set the policy, or the
+          licensed features stop when they update. If your network filters outbound
           traffic, allow <code class="text-foreground">{toddleExtension.licenceHost}</code>
           (and <code class="text-foreground">licences.nyuchi.dev</code>, which versions
-          before {extensionVersions.changedIn} asked, for any computer Chrome has not yet updated) so the daily check for cancelled keys can run. If it is blocked, licences keep
+          before {extensionVersions.changedIn} asked, for any computer Chrome has not yet updated) so the daily check for cancelled keys can run and a teacher's claim link can be redeemed. If it is blocked, licences already added keep
           working on the last result.
         </p>
         <p class="mt-3 flex-1 text-body-sm text-muted-foreground text-pretty">
@@ -652,7 +665,7 @@ const faq = [
       eyebrow="Pricing"
       title="Concealing flags is free. Always."
       size="h1"
-      description="The flag switch protects a student, so it is not behind a price and never will be. The My classes filter is free too. The gradebook's per-criterion columns, the CSV export, the student sidebar, primary teacher names and the Attendance dashboard's details are the time saving, and that is what a licence pays for."
+      description="The flag switch protects a student, so it is not behind a price and never will be. The My classes filter is free too. The gradebook's per-criterion columns, the Excel and CSV exports, the student sidebar, primary teacher names and the Attendance dashboard's details are the time saving, and that is what a licence pays for."
     />
     <div class="mt-10">
       <ExtensionPricing />
@@ -660,12 +673,17 @@ const faq = [
 
     <div class="mx-auto mt-10 grid max-w-5xl gap-6 md:grid-cols-3">
       <p class="text-caption text-muted-foreground text-pretty">
-        <strong class="text-foreground">Your key.</strong> It is checked on your own
-        machine, so activating it contacts nothing and works offline — and one key covers
-        your laptop and your classroom desktop. It follows your Chrome account, so you
-        enter it once; Chrome's sync carries it, and it is never sent to us. While a key
-        is entered, the extension checks at most once a day for cancelled keys, sending
-        nothing about you.
+        <strong class="text-foreground">After paying.</strong> Usually within a minute, you
+        get an email with a one-time link to your licence, never the key itself. Open it in
+        Chrome, click <em>Add it to Chrome</em>, and the extension adds your licence: there
+        is no key to copy. The link works once, for 72 hours; if it runs out, open it anyway
+        and ask for a new one, which goes to the same address. A school licence's link goes
+        to whoever bought it, who sets it up for every teacher through the Nyuchi console
+        and Chrome policy. Once added, your licence is checked on your own machine, so it
+        works offline, and it follows your Chrome account to your laptop and your classroom
+        desktop; Chrome's sync carries it, and it is never sent to us. While a licence is in
+        use, the extension checks at most once a day for cancelled keys, sending nothing
+        about you.
       </p>
       <p class="text-caption text-muted-foreground text-pretty">
         <strong class="text-foreground">Upgrading.</strong>{" "}

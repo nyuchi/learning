@@ -23,7 +23,7 @@ import { toddleExtension } from "../../data/site";
 
 const title = "Privacy policy — Nyuchi Learning";
 const description =
-  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: nothing the extension reads leaves your browser — it sends only feedback you choose to send and, while a licence is entered, a daily check for cancelled keys that carries no data; the website asks before it measures anything, and lets you take all, some or none of it.";
+  "What the Toddle Enhancement Extension and learning.nyuchi.com do with data. In short: nothing the extension reads leaves your browser — it sends only feedback (and Toddle compatibility reports) you choose to send, a daily check for cancelled keys that carries no data while there is a licence, and a licence email's one-time link when you use it; the website asks before it measures anything, and lets you take all, some or none of it.";
 ---
 
 <BaseLayout title={title} description={description} canonical="/legal/privacy">
@@ -41,10 +41,13 @@ const description =
         <strong>The short version.</strong> The extension reads Toddle inside your own
         browser, for you at the screen, and sends it nowhere. There is no account, no
         analytics and no tracking, and your licence key is checked on your own machine. The
-        extension makes only two connections outside Toddle: feedback you write in its menu
-        and choose to send, and, while a licence is entered, a once-a-day download of a
-        signed list of cancelled keys that sends nothing about you. Neither ever includes
-        anything from Toddle. {licenceSync.short} We do hold your email address if you bought something, the
+        extension makes only three connections outside Toddle: feedback you write in its menu
+        and choose to send (and Toddle compatibility reports, which go the same way, only
+        when you send them or switch that on); while there is a licence, a once-a-day
+        download of a signed list of cancelled keys that sends nothing about you; and, when
+        you use the one-time link from your licence email, one request that exchanges it for
+        your key. None of them ever includes student data or anything else the extension
+        reads from Toddle. {licenceSync.short} We do hold your email address if you bought something, the
         way any shop does. This website asks before it measures anything and lets you take
         all, some or none of it; the extension measures nothing at all, and never will.
       </p>
@@ -83,8 +86,9 @@ const description =
       The extension's feedback form
     </h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      This is one of the extension's two connections outside Toddle (the other is the
-      <a class="link" href="#revocation-check">daily check for cancelled keys</a>), and it
+      This is one of the extension's three connections outside Toddle (the others are the
+      <a class="link" href="#revocation-check">daily check for cancelled keys</a> and
+      <a class="link" href="#claim-link">adding your licence from a claim link</a>), and it
       only happens when you make it happen. Since version 0.8.1 the extension's toolbar menu has a
       <strong class="text-foreground">Send feedback</strong> form.
     </p>
@@ -126,6 +130,48 @@ const description =
       </li>
     </ul>
 
+    <h3 id="compatibility-reports" class="font-serif text-h4 text-foreground mt-8 scroll-mt-24">
+      Toddle compatibility reports
+    </h3>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      Since version 0.12.0 the extension checks, in your own Toddle tab as you use it, that
+      each feature still finds what it relies on in Toddle's page, and the licence page's
+      <strong class="text-foreground">Toddle compatibility</strong> card shows the result.
+      A report of what changed goes to us through the same feedback form, and only this
+      way:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">When.</strong> Only when you press
+        <strong class="text-foreground">Send report</strong> on the licence page, or, if you
+        switch on <strong class="text-foreground">Automatically send compatibility
+        reports</strong> (off unless you switch it on), by itself when something changes, at
+        most once an hour. It is never sent from a Toddle page or by the background worker.
+        <strong class="text-foreground">Copy report</strong> only puts it on your clipboard.
+      </li>
+      <li>
+        <strong class="text-foreground">What.</strong> What changed in the structure of
+        Toddle's page, masked: a key's format such as
+        <code class="break-all">&lt;digits&gt;__evaluationStatus__&lt;digits&gt;_RUBRIC</code>,
+        field names and counts, the page's address as a pattern with every id masked, each
+        feature's status, the extension's version, Chrome's major version and the time to the
+        minute.
+      </li>
+      <li>
+        <strong class="text-foreground">What it never includes.</strong> Student data: no
+        names, emails, marks, comments, ids or free text. No account, no school, no licence,
+        and no email address.
+      </li>
+      <li>
+        <strong class="text-foreground">Where it goes, and why.</strong> To the same
+        feedback form, processed by Formspree, so we can see what Toddle changed and fix the
+        feature it affects. Nothing probes Toddle from our servers: every check is made in
+        your own session.
+      </li>
+    </ul>
+
     <h2 id="revocation-check" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
       The daily check for cancelled keys
     </h2>
@@ -136,9 +182,9 @@ const description =
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
     >
       <li>
-        <strong class="text-foreground">When.</strong> At most once a day, and only while a
-        licence key is entered; a key just entered is checked within 5 minutes. Without a
-        licence it never happens.
+        <strong class="text-foreground">When.</strong> At most once a day, and only while
+        there is a licence key: one you entered, or your school's, set through Chrome policy.
+        A key just entered is checked within 5 minutes. Without a licence it never happens.
       </li>
       <li>
         <strong class="text-foreground">What is sent.</strong> One plain request to
@@ -161,6 +207,55 @@ const description =
         network outage never switches a licence off.
       </li>
     </ul>
+
+    <h2 id="claim-link" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      Adding your licence from a claim link
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The extension's third connection outside Toddle, from version 0.12.0. Your licence
+      email carries a one-time link, never the key.
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">When.</strong> Only when you open that link in
+        Chrome and click <strong class="text-foreground">Add it to Chrome</strong> on our
+        licence claim page, or paste the link into the extension's licence page.
+      </li>
+      <li>
+        <strong class="text-foreground">Who can hand it over.</strong> Only that page,
+        <code class="break-all">https://licenses.nyuchi.com/claim</code>. It is the one page
+        the extension lets message it, and no other website or extension can. The extension
+        checks where the message came from and that the link's code has exactly the right
+        shape, and all it does with it is open its own licence page.
+      </li>
+      <li>
+        <strong class="text-foreground">What is sent.</strong> The licence page sends the
+        link's code, and nothing else (no email, no cookies, no other key, no Toddle data), in
+        one request to
+        <code class="break-all">https://licenses.nyuchi.com/v1/claims/redeem</code>.
+      </li>
+      <li>
+        <strong class="text-foreground">What comes back.</strong> Your licence key, once. It
+        is checked and stored on your machine exactly as a typed key is, and then follows your
+        Chrome account like one.
+      </li>
+      <li>
+        <strong class="text-foreground">How long the link works.</strong> Once, for 72
+        hours. Our licence server keeps only a fingerprint (hash) of the link's code. Keys
+        from earlier emails can still be pasted.
+      </li>
+      <li>
+        <strong class="text-foreground">Who sees what.</strong> Cloudflare, which runs the
+        server, sees your IP address, as with any web request.
+      </li>
+    </ul>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A school's organisation licence does not come this way. Its IT sets it as Chrome
+      policy for the extension, the extension reads it from that policy, and a teacher never
+      sees or pastes it; an organisation key typed into the extension is refused.
+    </p>
 
     <h2 id="security" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
       Security
@@ -186,8 +281,10 @@ const description =
       controller's behalf. We receive none: the extension reads what your browser has
       already loaded from Toddle, renders it differently on that same screen, and
       transmits none of it. Feedback a teacher chooses to send from the extension's menu
-      carries only what they typed, never anything from Toddle, and the daily licence check
-      sends nothing at all. Your school remains the controller of its data, and Toddle
+      carries only what they typed, never anything from Toddle; a Toddle compatibility
+      report carries only the masked structure of Toddle's page, never student data; the
+      daily licence check sends nothing at all; and redeeming a claim link sends only the
+      link's code. Your school remains the controller of its data, and Toddle
       remains its processor, exactly as before the extension was installed.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
@@ -275,8 +372,9 @@ const description =
       <strong class="text-foreground"
         >None of that is true of the extension.</strong
       > It contains no analytics, and nothing it reads leaves your browser; its only outside
-      connections are the feedback form, when you press Send, and the daily licence check
-      described above. This is the website measuring
+      connections are the feedback form, when you press Send (and compatibility reports, the
+      same way), the daily licence check, and redeeming a claim link, all described
+      above. This is the website measuring
       the website. If the distinction matters to you — and for anyone assessing the
       software for a school, it is the part that matters — the extension section above is
       the one to read.
@@ -307,21 +405,21 @@ const description =
     >
       <li>
         <strong class="text-foreground">We hold your email address and your order.</strong>
-        We need them to issue your key, to let you renew, and to give you an invoice.
+        We need them to issue your licence, to let you renew, and to give you an invoice.
       </li>
       <li>
         <strong class="text-foreground">Your payment goes to Buy Me a Coffee, not to us.</strong>
         It processes the order, with Stripe handling the card, and passes us your email
-        address and what you bought so we can issue your key. We never see your card
+        address and what you bought so we can issue your licence. We never see your card
         details.
       </li>
       <li>
         <strong class="text-foreground">Your key contains your email.</strong> A key may also
         name who it is for: your email address, or for an organisation licence the school's
         email domain. Where it does, the extension compares that with the Toddle account
-        signed in, inside your browser only. The key is stored in your own browser and
-        checked there — the extension does not send it to us or to anyone else, not even in
-        the daily check for cancelled keys.
+        signed in, inside your browser only. The key is stored in your own browser (or, for
+        a school, read from its Chrome policy) and checked there — the extension does not
+        send it to us or to anyone else, not even in the daily check for cancelled keys.
       </li>
       <li>
         <strong class="text-foreground">We do not market to you off the back of it.</strong>
