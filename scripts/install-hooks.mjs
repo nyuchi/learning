@@ -15,8 +15,9 @@
  * repository (a packed copy, or no git at all) it does nothing, and it
  * never fails an install.
  *
- * The one hook, .githooks/post-merge, runs scripts/clean.mjs after a
- * `git pull` that merges.
+ * The hooks: .githooks/pre-commit runs scripts/pre-commit.mjs (the
+ * formatters, the lint and Semgrep, before a change enters Git), and
+ * .githooks/post-merge runs scripts/clean.mjs after a `git pull` that merges.
  */
 import { execFileSync } from "node:child_process";
 import { existsSync, readdirSync, realpathSync } from "node:fs";
