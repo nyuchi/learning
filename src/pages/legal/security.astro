@@ -47,12 +47,12 @@ const glance = [
   {
     label: "Sends",
     value:
-      "Nothing it reads, to anyone but Toddle. Besides Toddle itself (its own interface, and student photos from wherever Toddle serves them), two outside connections, neither carrying Toddle data: feedback, when a person presses Send; and, while a licence is entered, a daily download of a signed list of cancelled keys.",
+      "Nothing it reads, to anyone but Toddle. Besides Toddle itself (its own interface, and student photos from wherever Toddle serves them), three outside connections, none carrying Toddle data: feedback, when a person presses Send (Toddle compatibility reports, masked and with no student data, go the same way, only when sent or switched on); while there is a licence, a daily download of a signed list of cancelled keys; and, when a claim link from a licence email is used, one request carrying only the link's code, which returns the key.",
   },
   {
     label: "Stores",
     value:
-      `Settings, a licence key, the last licence check's result and the email of the Toddle account last seen, on the device; the licence key also in Chrome's sync, never sent to Nyuchi. No student data.`,
+      `Settings, a licence key, the last licence check's result, the email of the Toddle account last seen and a masked Toddle compatibility record, on the device; the licence key also in Chrome's sync, never sent to Nyuchi. A school's key, set through Chrome policy, is read from the policy and not copied. No student data.`,
   },
   {
     label: "Tested",
@@ -61,7 +61,7 @@ const glance = [
   },
   {
     label: "Reviewed",
-    value: `Two adversarial reviews: ${firstReview.label}, every finding fixed in ${firstReview.version}; and ${secondReview.label}, every finding fixed in ${secondReview.version}, a test build, whose fixes reached schools in ${extensionVersions.changedIn}. Version ${security.version} fixed two weaknesses in how licence keys were checked, set out under the second review.`,
+    value: `Two adversarial reviews: ${firstReview.label}, every finding fixed in ${firstReview.version}; and ${secondReview.label}, every finding fixed in ${secondReview.version}, a test build, whose fixes reached schools in ${extensionVersions.changedIn}. Version 0.11.0 fixed two weaknesses in how licence keys were checked, set out under the second review. What ${security.version} added (a school's licence by Chrome policy, and the Toddle compatibility checks and reports) was reviewed against the same threat model.`,
   },
 ];
 
@@ -256,14 +256,32 @@ const severityClass: Record<string, string> = {
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       It asks Chrome for <code>storage</code>, to keep its settings, and for Toddle's own
       site. Nothing more: no access to tabs, history, downloads or other sites, no pages
-      that websites can reach or frame, no connection from outside websites, and no
-      loosening of Chrome's own content security policy for extensions.
+      that websites can reach or frame, and no loosening of Chrome's own content security
+      policy for extensions. One outside page may send it a message, and no extension can:
+      Nyuchi's licence claim page,
+      <code class="break-all">https://licenses.nyuchi.com/claim</code>, named alone in the
+      manifest's <code>externally_connectable</code> (from version 0.12.0), which can hand
+      over the one-time token from a licence email's link and nothing else. No web page can
+      read anything from the extension through it.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Its background worker opens the welcome page once, on install; opens the licence
-      page when the extension's own toolbar asks, accepting that request only from the
-      extension itself; and, while a licence is entered, makes the daily check for
+      Its background worker opens the welcome page on install, and again when a licence is
+      activated; opens the licence page when the extension's own toolbar asks, accepting
+      that request only from the extension itself; when the claim page hands it a token,
+      checked by the sender's origin and path and the token's exact shape, opens the
+      extension's own licence page with it and answers only that it got it, fetching
+      nothing itself; and, while there is a licence key, makes the daily check for
       cancelled keys described below.
+    </p>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      A school's licence can be set by its IT as Chrome policy for the extension. The
+      extension only reads that policy, which nothing on Toddle's page and nothing a
+      teacher does can set or change; a key from it goes through the same checks as a typed
+      one and is never written to the extension's storage or Chrome's sync, and the
+      extension's pages never show it. An organisation key is accepted only from policy.
+      Anyone who can open <code>chrome://policy</code> on a managed device can read it there,
+      which is accepted because an organisation key works only for accounts at the school's
+      own domains.
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">Read-only, by an exact list</h3>
@@ -288,14 +306,14 @@ const severityClass: Record<string, string> = {
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">
-      Nothing it reads leaves, and two outside connections
+      Nothing it reads leaves, and three outside connections
     </h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       There is no account, no analytics, no telemetry, no tracking, no advertising and no
       remote code. What the extension reads from Toddle goes back to Toddle's own screen
       and nowhere else. Besides Toddle itself (its own interface, with the teacher's
       session, and student photos from the address Toddle gives for each one), it makes
-      two connections, and neither carries anything from Toddle:
+      three connections, and none carries anything it reads from Toddle:
     </p>
     <ul
       class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
@@ -306,11 +324,18 @@ const severityClass: Record<string, string> = {
         topic, a message, an email address if they give one) and the extension's version
         number, to Nyuchi's feedback form, processed by Formspree. Nothing that runs inside
         a Toddle page refers to it. See the
-        <a class="link" href="/legal/privacy#extension-feedback">privacy policy</a>.
+        <a class="link" href="/legal/privacy#extension-feedback">privacy policy</a>. A
+        Toddle compatibility report goes through the same form, from the licence page or the
+        menu only, when the teacher presses Send report or has switched on sending them
+        automatically (off unless they do; then at most once an hour, when something
+        changes). It holds only the masked shape of Toddle's page structure, made by one
+        function that masks digits, ids, emails and any word outside a fixed structural
+        vocabulary, and tested with names, emails, marks and comments: no student data. It
+        added no permission, host or address.
       </li>
       <li>
         <strong class="text-foreground">A daily check for cancelled keys.</strong> At most
-        once a day, only while a licence is entered, the background worker makes one plain request
+        once a day, only while there is a licence key (one entered, or the school's, set through Chrome policy), the background worker makes one plain request
         to <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (versions
         before {extensionVersions.changedIn} asked <code>licences.nyuchi.dev</code>, the
         same server). It
@@ -320,10 +345,20 @@ const severityClass: Record<string, string> = {
         web request; Nyuchi does not log it. If the list cannot be fetched, the last result
         stands, so a network outage never switches a licence off.
       </li>
+      <li>
+        <strong class="text-foreground">Redeeming a claim link</strong> (from version
+        0.12.0). Only when a teacher opens the one-time link from their licence email and
+        clicks Add it to Chrome, or pastes the link into the licence page, the licence page
+        sends the link's token, and nothing else, in one request to
+        <code class="break-all">https://licenses.nyuchi.com/v1/claims/redeem</code>, with no
+        cookies and no referrer, and activates the key that comes back exactly as a typed
+        one. The link works once, for 72 hours; the server keeps only its hash. See the
+        <a class="link" href="/legal/privacy#claim-link">privacy policy</a>.
+      </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Anything else happens only when the teacher does it: saving a CSV file, opening an
-      email or phone link, or sending a message in Toddle's own chat.
+      Anything else happens only when the teacher does it: saving an Excel or CSV file,
+      opening an email or phone link, or sending a message in Toddle's own chat.
     </p>
 
     <h3 class="font-serif text-h5 text-foreground mt-8">Licence keys are checked on the device</h3>
@@ -333,7 +368,8 @@ const severityClass: Record<string, string> = {
       also name who it is for: the buyer's email, or for an organisation licence the
       school's email domain. Where it does, the extension compares that with the Toddle
       account signed in, inside the browser only, and sends it nowhere. A key that names no one
-      works for any account until it expires. Activating a key contacts nothing, and the
+      works for any account until it expires. Activating a pasted key contacts nothing; a
+      key from a claim link is fetched once, as above, and then checked the same way. The
       extension never sends the key to Nyuchi or anywhere else. It is kept in the
       extension's own storage, which Toddle's page cannot reach. {licenceSync.detail}
     </p>
@@ -341,11 +377,11 @@ const severityClass: Record<string, string> = {
     <h3 class="font-serif text-h5 text-foreground mt-8">No student data on the device</h3>
     <p class="mt-2 text-body text-muted-foreground text-pretty">
       In the extension's own storage: the teacher's switches, the licence key if one was
-      entered (also in Chrome's sync), the result of the last check for cancelled keys, and the email of the
-      Toddle account last seen signed in, to check who a licence is for. In Toddle's own
-      site storage, four housekeeping values: a copy of the switches and of which features
-      the licence allows, whether flags are concealed, the My classes choice, and the
-      academic year Toddle is showing. No student data is stored anywhere. What it reads about
+      entered (also in Chrome's sync), the result of the last check for cancelled keys, the email of the
+      Toddle account last seen signed in, to check who a licence is for, and the Toddle
+      compatibility record, masked, with the teacher's choice about sending reports. In
+      Toddle's own site storage, three housekeeping values: whether flags are concealed,
+      the My classes choice, and the academic year Toddle is showing. No student data is stored anywhere. What it reads about
       students, classes and timetables is held in the Toddle tab's memory until the tab is
       closed or reloaded; a student's or a class's details are reused for at most 5
       minutes, and a student's day for at most 2, before Toddle is asked again.
@@ -354,7 +390,7 @@ const severityClass: Record<string, string> = {
       The extension does not hide Toddle's own student flags; a
       staff member can choose to conceal them for a shared screen with the free flag
       switch. The sidebar asks Toddle for a student's flags each time it opens, and keeps
-      them only while it is open. The CSV export is made in the browser and
+      them only while it is open. The Excel and CSV exports are made in the browser and
       saved where the teacher's downloads go, by the teacher's choice.
     </p>
 
@@ -370,7 +406,7 @@ const severityClass: Record<string, string> = {
       Toddle's pages sits inside closed shadow roots, which no script on Toddle's page can
       read or click into, and whether each one runs is decided by the extension's own
       switches and licence, never by Toddle's page. What only Toddle's page holds (who was
-      clicked, the course list as it loads, Toddle's chat and icons) is read by small parts
+      clicked, the course list as it loads, Toddle's chat) is read by small parts
       with no interface of their own, which talk to the extension on private channels set
       up before Toddle's own scripts run.
     </p>
@@ -405,8 +441,9 @@ const severityClass: Record<string, string> = {
         can read it (see <a class="link" href="#limits">the limits</a>).
       </li>
       <li>
-        Text read from Toddle is shown as text and never interpreted as markup, and values
-        in the CSV export cannot start a spreadsheet formula.
+        Text read from Toddle is shown as text and never interpreted as markup. Values in
+        the CSV export cannot start a spreadsheet formula, and the Excel export holds no
+        formula at all: every text is written as text.
       </li>
     </ul>
 
@@ -537,9 +574,9 @@ const severityClass: Record<string, string> = {
       uses.
     </p>
     <p id="licence-key-fix" class="mt-4 text-body-sm text-muted-foreground text-pretty scroll-mt-24">
-      <strong class="text-foreground">Version {security.version}: licence keys.</strong>
+      <strong class="text-foreground">Version 0.11.0: licence keys.</strong>
       Two weaknesses in how the extension checked licence keys were fixed in
-      {security.version}. A cancelled or refunded key could be made to work again by
+      0.11.0, and the fixes are in {security.version}. A cancelled or refunded key could be made to work again by
       writing it in a different but equivalent form, which the check for cancelled keys
       did not recognise; a key is now accepted only in exactly the form it was issued in.
       And because the same signature covers keys and the list of cancelled keys, the
@@ -600,7 +637,7 @@ const severityClass: Record<string, string> = {
       <li>
         cannot overhear the answers to the extension's queries, but can answer first with
         false ones, so the gradebook could show wrong figures. Values in the CSV export
-        still cannot start a spreadsheet formula;
+        still cannot start a spreadsheet formula, and the Excel export still holds none;
       </li>
       <li>
         is stopped from pressing the extension's message buttons, but can tell Toddle's own

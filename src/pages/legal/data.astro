@@ -41,13 +41,14 @@ const held = [
   {
     what: "Licence emails",
     where: "Sent through Resend",
-    fields: "The recipient's address and the email carrying the key.",
+    fields:
+      "The recipient's address and the email, which carries a one-time link to the licence, never the key itself.",
   },
   {
     what: "Feedback",
     where: "Formspree, then recorded in our private GitHub repository",
     fields:
-      "What the person typed (topic, message, an email address if they gave one), plus the extension's version number, or the website page they came from.",
+      "What the person typed (topic, message, an email address if they gave one), plus the extension's version number, or the website page they came from. A Toddle compatibility report from the extension: the masked structure of Toddle's page, never student data.",
   },
   {
     what: "Support",
@@ -66,12 +67,15 @@ const subprocessors = [
     name: "Cloudflare",
     role: "Runs the licence server, its database, and the daily list of cancelled keys the extension checks.",
   },
-  { name: "Resend", role: "Sends licence-key emails." },
+  { name: "Resend", role: "Sends licence emails." },
   {
     name: "Buy Me a Coffee",
     role: "Checkout for licences. Stripe processes cards on its behalf.",
   },
-  { name: "Formspree", role: "Receives feedback forms from the website and the extension." },
+  {
+    name: "Formspree",
+    role: "Receives feedback forms from the website and the extension, and the extension's Toddle compatibility reports.",
+  },
   { name: "GitHub", role: "Holds feedback as issues in a private repository." },
   { name: "Intercom", role: "Support messenger and support conversations." },
   { name: "Google", role: "Website analytics, with consent; website fonts." },
@@ -115,7 +119,7 @@ const subprocessors = [
         levels, grade scales and their colours, checklist items, scores, standards and
         learning goals), and each student's name, email, student ID, submission status and
         results, including written responses and comments, to draw per-criterion columns
-        and the CSV export. No descriptor or level is written in the extension.
+        and the Excel and CSV exports. No descriptor or level is written in the extension.
       </li>
       <li>
         <strong class="text-foreground">The home page:</strong> each class's staff, to show
@@ -155,6 +159,12 @@ const subprocessors = [
         <strong class="text-foreground">The signed-in account's email,</strong> on every
         Toddle page, to check who a licence is for.
       </li>
+      <li>
+        <strong class="text-foreground">The structure of Toddle's page,</strong> as each
+        feature relies on it, to check that Toddle has not changed what the feature needs.
+        Only its shape is kept (a key's format, field names, counts), masked so that no name,
+        email, mark, comment, id or free text survives.
+      </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Every query it can send is on a fixed, read-only list; it never writes to Toddle. On
@@ -185,40 +195,50 @@ const subprocessors = [
         the Attendance dashboard;
       </li>
       <li>
-        the licence key, if one was entered (also kept in Chrome's synced storage; see
-        below);
+        the licence key, if one was entered or added from a claim link (also kept in
+        Chrome's synced storage; see below). A school's licence set through Chrome policy is
+        read from the policy and not stored here;
       </li>
       <li>
-        the result of the last check for cancelled keys: whether the key is on the list, the
-        list's date and when the check was made, never the list itself;
+        the result of the last check for cancelled keys: whether the key in use is on the
+        list, the list's date, when the check was made and the fingerprint of the key it is
+        about, never the list itself;
       </li>
       <li>
         the email address of the Toddle account last seen signed in, with the time, to check
         who a licence is for. It is read on every Toddle page, with or without a licence
-        key, and is never sent anywhere.
+        key, and is never sent anywhere;
+      </li>
+      <li>
+        the Toddle compatibility record: for each thing a feature relies on in Toddle's
+        page, whether it was last found, missing or changed, when, the page's address as a
+        pattern with ids masked, and its masked shape; the teacher's choice whether to send
+        compatibility reports automatically (off unless they switch it on); and which report
+        was sent last, and when. No student data.
       </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      And four small values in the browser's storage for Toddle's own site: <code>tee-settings</code>,
-      a copy of the switches and of which features the licence allows (no key and no
-      email); <code>tee-blur-flags</code> (<code>gbx-hide-flags</code> in versions before {extensionVersions.changedIn}), whether flags are concealed; <code>tee-course-view</code>,
+      And three small values in the browser's storage for Toddle's own site:
+      <code>tee-blur-flags</code> (<code>gbx-hide-flags</code> in versions before {extensionVersions.changedIn}), whether flags are concealed; <code>tee-course-view</code>,
       whether the teacher chose My classes in the home page
       filter; and <code>tee-academic-year</code>, the number of the academic year Toddle
-      last asked for. <strong class="text-foreground">No student data is stored.</strong>
-      A CSV export is a file the teacher chooses to save, and is then the school's to manage
-      like any other download.
+      last asked for. An older copy of the switches there, <code>tee-settings</code>, is
+      cleared. <strong class="text-foreground">No student data is stored.</strong>
+      An Excel or CSV export is a file the teacher chooses to save, and is then the school's
+      to manage like any other download.
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       {licenceSync.detail}
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       Uninstalling the extension deletes everything in its own storage on that computer.
-      The four values on Toddle's site stay until the browser's data for
+      The three values on Toddle's site stay until the browser's data for
       <code>web.toddleapp.com</code> is cleared. Removing a licence key deletes the key (on
       every computer signed in to the same Chrome
       account, so remove it before uninstalling if you want it gone from your Chrome account
       too); the last check's result and the account email stay until the extension is
-      uninstalled.
+      uninstalled. A school's licence set through Chrome policy is not offered for removal
+      in the extension; it is the school's IT that sets the policy.
     </p>
 
     <h2 class="font-serif text-h3 text-foreground mt-12">What leaves the browser</h2>
@@ -243,8 +263,18 @@ const subprocessors = [
         one, and the extension's version number, to Formspree.
       </li>
       <li>
+        <strong class="text-foreground">A Toddle compatibility report,</strong> through the
+        same feedback form, only when the teacher presses Send report on the licence page or
+        has switched on sending them automatically (off unless they do; then at most once an
+        hour, when something changes): what changed in the structure of Toddle's page,
+        masked, with the extension's version, Chrome's major version and the time. No student
+        data (no names, emails, marks, comments, ids or free text), no account, school,
+        licence or email address. Never sent from a Toddle page or by the background worker.
+      </li>
+      <li>
         <strong class="text-foreground">A daily check for cancelled keys,</strong> only while
-        a licence is entered: one plain request from the extension's background worker to
+        there is a licence key (one entered, or the school's, set through Chrome policy): one
+        plain request from the extension's background worker to
         <code class="break-all">https://licenses.nyuchi.com/v1/revocations</code> (versions
         before {extensionVersions.changedIn} asked <code>licences.nyuchi.dev</code>, the
         same server), sending no licence key, no
@@ -253,9 +283,21 @@ const subprocessors = [
         sees the IP address, as with any web request; Nyuchi does not log it. If the list
         cannot be fetched, the last result stands.
       </li>
+      <li>
+        <strong class="text-foreground">Redeeming a claim link,</strong> only when a teacher
+        opens the one-time link from their licence email and clicks Add it to Chrome on
+        Nyuchi's licence claim page (<code class="break-all">https://licenses.nyuchi.com/claim</code>,
+        the one page that can hand the link to the extension), or pastes the link into the
+        licence page: one request from the licence page to
+        <code class="break-all">https://licenses.nyuchi.com/v1/claims/redeem</code>, carrying
+        the link's code and nothing else (no email, no cookies, no other key, no Toddle data).
+        It returns the licence key once, which is then checked and stored on the device as a
+        typed key is. The link works once, for 72 hours; the licence server keeps only a
+        fingerprint (hash) of its code.
+      </li>
     </ul>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
-      Anything else happens only when the teacher does it: saving a CSV file, opening an
+      Anything else happens only when the teacher does it: saving an Excel or CSV file, opening an
       email (<code>mailto:</code>) or phone (<code>tel:</code>) link, or sending a message in
       Toddle's own chat. Like any web request, each request above lets the server that
       receives it see the device's IP address and browser type.
@@ -267,7 +309,9 @@ const subprocessors = [
       A licence key carries the buyer's email address, and may also name who it is for:
       the buyer's email, or for an organisation licence the school's email domain. Where it
       does, the extension compares that with the Toddle account signed in, inside the
-      browser only, and sends it nowhere.
+      browser only, and sends it nowhere. An organisation licence is set by the school's IT
+      as Chrome policy for the extension, so teachers never see or paste the key; typed into
+      the extension, an organisation key is refused and not stored.
     </p>
 
     <h2 id="schema" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">

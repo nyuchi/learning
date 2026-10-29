@@ -9,9 +9,10 @@
  * precisely" facts on the product page, the privacy policy and
  * `extensionDataFacts` in src/data/legal.ts), for the version on the Chrome
  * Web Store (`extensionVersions.current`). If what the extension sends
- * changes, change it there first and then here. The claim-link redemption the
- * store listing describes ships in 0.12.0; add it as a third crossing when
- * that version is `current`.
+ * changes, change it there first and then here. Since 0.12.0 there are three
+ * crossings to Nyuchi as well as Toddle: the licence server (the daily check
+ * and, when a claim link is used, its redemption) and the feedback form
+ * (feedback, and Toddle compatibility reports).
  *
  * It is HTML, not a picture: the text is the text alternative, it reflows to
  * a vertical flow at phone width, and it takes its colours from @bundu/ui
@@ -47,7 +48,7 @@ const steps: { icon: IconName; label: string; title: string; body: string }[] = 
     icon: "grid",
     label: "3",
     title: "On your screen",
-    body: "Per-criterion columns, the student sidebar, and a CSV your browser saves. Student data is held in the tab's memory and never written to storage.",
+    body: "Per-criterion columns, the student sidebar, and an Excel or CSV file your browser saves. Student data is held in the tab's memory and never written to storage.",
   },
 ];
 
@@ -65,10 +66,16 @@ const crossings: { icon: IconName; tag: string; title: string; body: string }[] 
     body: "At most once a day, a request for a signed list of cancelled keys. It sends no key, no identifiers and no Toddle data. If it fails, your licence keeps working.",
   },
   {
+    icon: "mail",
+    tag: "Only when you use your licence link",
+    title: "Adding your licence",
+    body: "Once, the code from the one-time link in your licence email, and nothing else, to our licence server, which sends back your key. It is then checked on your machine like any key.",
+  },
+  {
     icon: "message",
     tag: "Only when you press Send",
     title: "The feedback form",
-    body: "What you typed and the version number, to our feedback form, processed by Formspree. Nothing from Toddle is included.",
+    body: "What you typed and the version number, to our feedback form, processed by Formspree. Nothing from Toddle is included. A Toddle compatibility report goes the same way, only when you send it or switch that on: what changed in Toddle's page, masked, with no student data.",
   },
 ];
 ---
@@ -123,7 +130,7 @@ const crossings: { icon: IconName; tag: string; title: string; body: string }[] 
     <p class="text-center text-caption font-semibold uppercase tracking-wider text-muted-foreground">
       What crosses that line, and nothing else
     </p>
-    <ul class="mt-5 grid gap-4 md:grid-cols-3 md:gap-6">
+    <ul class="mt-5 grid gap-4 md:grid-cols-2 lg:grid-cols-4 md:gap-6">
       {
         crossings.map((crossing) => (
           <li class="min-w-0 rounded-lg border border-border bg-card p-5">

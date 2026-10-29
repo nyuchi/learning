@@ -269,17 +269,22 @@ describe("the releases page", () => {
     expect(page).toContain('id="v0.9.10"');
   });
 
-  it("says 0.11.0 is on the store, and gives the later test builds its anchor", () => {
+  it("says 0.11.0 is on the store", () => {
     const v0110 = release("0.11.0");
     expect(v0110).toContain("On the Chrome Web Store");
     expect(v0110).not.toContain("Coming soon to the Chrome Web Store");
-    expect(page).toContain('id="v0.10.1"');
-    expect(page).toContain('id="v0.11.2"');
   });
 
-  it("lists 0.11.0 first, and does not list 0.12.0, which is not released", () => {
-    expect(page.search(/<li id="v\d/)).toBe(page.search(/<li id="v0\.11\.0"/));
-    expect(page).not.toContain("0.12.0");
+  it("says 0.12.0 is on the store from 29 October 2026, and gives the test builds since 0.10.0 its anchor", () => {
+    const v0120 = release("0.12.0");
+    expect(v0120).toContain("On the Chrome Web Store");
+    expect(v0120).toContain('datetime="2026-10-29"');
+    for (const id of ["v0.10.1", "v0.11.2", "v0.11.6"])
+      expect(v0120).toContain(`id="${id}"`);
+  });
+
+  it("lists 0.12.0 first, and nothing as coming", () => {
+    expect(page.search(/<li id="v\d/)).toBe(page.search(/<li id="v0\.12\.0"/));
     expect(page).not.toContain("Coming soon to the Chrome Web Store");
   });
 
