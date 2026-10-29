@@ -19,7 +19,9 @@ npm-debug.log*
 
 # OS / IDE
 .DS_Store
-.vscode/
+.vscode/*
+# ...except the recommended extensions (the editor layer, #77)
+!.vscode/extensions.json
 .idea/
 *.swp
 *.swo

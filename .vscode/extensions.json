@@ -1,0 +1,20 @@
+{
+  // The editor layer of shift-left security (#77): problems flagged as the
+  // code is written. docs/toolchain.md says what each is for.
+  "recommendations": [
+    // Astro: types and diagnostics in .astro files, as `npm run check` runs
+    "astro-build.astro-vscode",
+    // Vite+'s linter and formatter (Oxlint and Oxfmt), as `npm run lint`
+    // and `vp fmt` run them
+    "oxc.oxc-vscode",
+    // Prettier, which the org lint gate runs on Markdown and JSON
+    "esbenp.prettier-vscode",
+    // Semgrep, the same scan the pre-commit hook runs when it is installed
+    "semgrep.semgrep",
+    // SonarQube for IDE (was SonarLint)
+    "sonarsource.sonarlint-vscode",
+    // .editorconfig and .markdownlint.jsonc
+    "editorconfig.editorconfig",
+    "davidanson.vscode-markdownlint"
+  ]
+}
