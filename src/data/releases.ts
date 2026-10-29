@@ -89,10 +89,85 @@ export const taggedTestBuilds: readonly string[] = [
   "0.10.5",
   "0.11.1",
   "0.11.2",
+  "0.11.3",
+  "0.11.4",
+  "0.11.5",
+  "0.11.6",
 ];
 
 /** Newest first. */
 export const releases: Release[] = [
+  {
+    /* The owner confirmed it was published on the Chrome Web Store on
+       29 October 2026. The test builds after 0.10.0 open these notes: their
+       changes reached the store here. */
+    version: "0.12.0",
+    status: "store",
+    date: "2026-10-29",
+    summary:
+      "The gradebook exports to Excel, licence emails carry a link instead of a key, a school's licence is set for every teacher by its IT, and the extension tells you when a change to Toddle affects one of its features. If your school's teachers pasted the school's key, IT needs to set it up the new way, or the licensed features stop with this update.",
+    sections: [
+      {
+        heading: "Export to Excel",
+        items: [
+          "The gradebook's export now saves an Excel workbook, gradebook-expanded.xlsx, that opens looking like the table on screen: a row per student, a column per criterion, each cell in its submission-status or grade-scale colour, the headings frozen with the students' names, and a filter on every column.",
+          "Comments are written in full, wrapped, with the row tall enough to read them, where the table on screen cuts them short. A second sheet, Details, lists every result on its own row, for filtering or a pivot table.",
+          "Export Excel is the main button; CSV beside it still saves the same gradebook-expanded.csv as before. Both need a licence, as the CSV did, and both are made in your browser. Nothing from Toddle can run as a formula in either.",
+        ],
+      },
+      {
+        heading: "Your licence, with nothing to copy",
+        items: [
+          "Licence emails now carry a link instead of a key. Open it in Chrome, click Add it to Chrome, and the extension is licensed. Chrome's sync takes it to your other computers.",
+          "Opened the link somewhere else? Paste it into the new Add your licence card on the licence page. The link works once, for 72 hours.",
+          "Keys from earlier emails can still be pasted, and individual keys work as before.",
+        ],
+      },
+      {
+        heading: "A school's licence, set by IT",
+        items: [
+          "Your school's IT can now set the school's licence for every teacher through Chrome policy (in Google Admin, or by Windows or macOS policy). Teachers on a managed browser are licensed without seeing or pasting the key, and the licence page says Provided by your school.",
+          "A school licence key can no longer be typed or pasted in, and one pasted in an earlier version is removed. If your school's teachers pasted the key, IT needs to set the policy, or the licensed features stop on this update.",
+        ],
+      },
+      {
+        heading: "When Toddle changes",
+        items: [
+          "Toddle changes its pages without notice. Each feature now checks, in your own Toddle tab as you use it, that it still finds what it needs, and the licence page's Toddle compatibility card shows each one as working, working with something changed, or paused because Toddle changed. The toolbar menu shows the same in one line.",
+          "A feature that Toddle's change breaks pauses cleanly instead of showing anything half-drawn.",
+          "Copy report or Send report shares what changed in Toddle's page, masked, with no student data: no names, emails, marks, comments or ids. It goes through the same feedback form as Send feedback, only when you press Send report, or by itself if you switch on Automatically send compatibility reports, which is off unless you do.",
+        ],
+      },
+      {
+        heading: "Also changed",
+        items: [
+          "The extension's look and icons are now its own, so a Toddle redesign no longer changes them, and nothing looks different today.",
+          "The student sidebar is a little wider, so a student's day, class and room fit with less wrapping.",
+          "The gradebook's expand arrows cope with more of the ways Toddle labels its columns, and pause, saying so, when they cannot find them.",
+          "Security findings from code scanning are fixed, and the 0.11.0 security fix is included.",
+        ],
+      },
+      {
+        heading: "Test builds",
+        items: [
+          "Versions 0.10.1 to 0.10.5 and 0.11.1 to 0.11.6 were test builds for schools piloting the extension. Their changes reach the Chrome Web Store in this release.",
+        ],
+      },
+    ],
+    alsoIds: [
+      "0.10.1",
+      "0.10.2",
+      "0.10.3",
+      "0.10.4",
+      "0.10.5",
+      "0.11.1",
+      "0.11.2",
+      "0.11.3",
+      "0.11.4",
+      "0.11.5",
+      "0.11.6",
+    ],
+  },
   {
     /* No date: the CHANGELOG does not give the day 0.11.0 reached the store.
        Add it when it is confirmed. The test builds after 0.10.0 open these
@@ -112,18 +187,9 @@ export const releases: Release[] = [
       {
         heading: "Test builds",
         items: [
-          "Versions 0.10.1 to 0.10.5, 0.11.1 and 0.11.2 are test builds for schools piloting the extension. Their changes are not in this release; they will reach the Chrome Web Store in a later one.",
+          "Versions 0.10.1 to 0.10.5 and 0.11.1 to 0.11.6 were test builds for schools piloting the extension. Their changes are not in this release; they reached the Chrome Web Store in 0.12.0.",
         ],
       },
-    ],
-    alsoIds: [
-      "0.10.1",
-      "0.10.2",
-      "0.10.3",
-      "0.10.4",
-      "0.10.5",
-      "0.11.1",
-      "0.11.2",
     ],
   },
   {
