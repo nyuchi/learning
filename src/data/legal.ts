@@ -114,10 +114,12 @@ export const pricing = [
  * (0.9.0, …) is released from the extension's `main` branch and published to
  * the store. Teachers get minors.
  *
- * `current` is what teachers have from the Chrome Web Store: 0.12.0
- * (published 29 October 2026), which added the Excel export, claim links
- * instead of keys in licence emails, a school's licence set through Chrome
- * policy, and the Toddle compatibility check. 0.11.0 before it was a
+ * `current` is what teachers have from the Chrome Web Store: 0.13.0
+ * (published 29 October 2026), which made licence claim links work again
+ * and changed nothing else. 0.12.0 before it (also 29 October 2026) added
+ * the Excel export, claim links instead of keys in licence emails, a
+ * school's licence set through Chrome policy, and the Toddle compatibility
+ * check. 0.11.0 before that was a
  * security fix on top of 0.10.0 (13 October 2026). `previous` is
  * the store release named only where something it did still matters to a
  * teacher updating from it (flags 0.8.2 hid stay concealed), said as history.
@@ -131,7 +133,7 @@ export const pricing = [
  * wording again.
  */
 export const extensionVersions = {
-  current: "0.12.0",
+  current: "0.13.0",
   previous: "0.8.2",
   /** The release that moved the licence host and renamed the flags key. */
   changedIn: "0.9.0",
