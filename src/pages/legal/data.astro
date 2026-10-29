@@ -45,6 +45,12 @@ const held = [
       "The recipient's address and the email, which carries a one-time link to the licence, never the key itself.",
   },
   {
+    what: "Licence claim links",
+    where: "Nyuchi's licence server and its database, on Cloudflare",
+    fields:
+      "For each one-time link: a fingerprint (SHA-256 hash) of the link, never the link itself; the licence it belongs to and a fingerprint of the key it gives; what the server needs to issue that key again; the address it was emailed to; when it was made, when it expires, and when and how it was used (from the extension, the claim page or the Nyuchi console, and for the console the signed-in address that claimed it); and whether a newer link replaced it.",
+  },
+  {
     what: "Feedback",
     where: "Formspree, then recorded in our private GitHub repository",
     fields:
