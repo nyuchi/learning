@@ -65,8 +65,11 @@ const privacyMail = `mailto:${legal.privacyEmail}`;
         It is not transmitted to Nyuchi or to anyone else. Apart from Toddle itself (its own
         interface, and student photos from wherever Toddle serves them), the extension's
         only connections are the opt-in feedback form, which carries only what the teacher
-        types, and, while a licence is entered, a daily check for cancelled keys, which
-        sends no data.
+        types (and Toddle compatibility reports, sent the same way only when the teacher
+        sends them or switches that on, which carry the masked structure of Toddle's page and
+        no student data); while there is a licence, a daily check for cancelled keys, which
+        sends no data; and, when a teacher uses the one-time link from a licence email, one
+        request carrying only the link's code, which returns the licence key.
       </li>
       <li>Nothing is written back to Toddle.</li>
     </ul>

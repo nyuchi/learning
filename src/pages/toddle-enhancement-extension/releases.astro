@@ -13,10 +13,10 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { releaseDate, releases, testBuilds } from "../../data/releases";
 import { toddleExtension } from "../../data/site";
+import { extensionVersions } from "../../data/legal";
 
 const title = "Releases — Toddle Enhancement Extension — Nyuchi Learning";
-const description =
-  "What changed in each version of the Toddle Enhancement Extension, in plain words for teachers: version 0.11.0, the current version on the Chrome Web Store, and every version before it.";
+const description = `What changed in each version of the Toddle Enhancement Extension, in plain words for teachers: version ${extensionVersions.current}, the current version on the Chrome Web Store, and every version before it.`;
 
 const storeCta = toddleExtension.webStore
   ? { label: "Add to Chrome", href: toddleExtension.webStore }

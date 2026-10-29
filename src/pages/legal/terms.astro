@@ -81,7 +81,7 @@ const description =
       Concealing student flags for a shared screen is free and is not licensed. It
       protects a child, so it is not something we will ever put behind a payment. The My classes filter on the Toddle
       home page is free too. A licence covers the gradebook's per-criterion columns, the
-      CSV export, the student sidebar, primary teacher names and the Attendance
+      Excel and CSV exports, the student sidebar, primary teacher names and the Attendance
       dashboard's student details.
     </p>
     <ul
@@ -109,7 +109,9 @@ const description =
     </p>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       An organisation licence is one key for the school's email domain, sent to the contact
-      who signed up. Anyone signed in to Toddle with an address at that domain is covered.
+      who signed up as a one-time link, never the key itself. The school's IT sets it for
+      every teacher as Chrome policy for the extension; it cannot be typed into the
+      extension. Anyone signed in to Toddle with an address at that domain is covered.
       The number of teachers you give when you buy helps us plan support; it does not
       limit who the key works for.
     </p>
@@ -123,12 +125,15 @@ const description =
 
     <h2 class="font-serif text-h3 text-foreground mt-12">How licence keys work</h2>
     <p class="mt-4 text-body text-muted-foreground text-pretty">
+      An individual licence's email carries a one-time link, not the key: open it in Chrome, click
+      <em>Add it to Chrome</em>, and the extension fetches the key once from our licence
+      server, in exchange for the link's code alone. The link works once, for 72 hours.
       A licence key is a signed statement that the extension checks on your own device, so
-      activating it contacts nothing and works offline. A key carries the buyer's email
+      checking it contacts nothing and works offline. A key carries the buyer's email
       address, and may also name who it is for: the buyer's email, for the Toddle account
       with that address, or for an organisation licence the school's email domain, for
       Toddle accounts on that domain. Where it does, the comparison happens in your browser
-      only. {licenceSync.short} While a key is entered, the extension downloads at most once a day a signed list of
+      only. {licenceSync.short} While there is a licence key, the extension downloads at most once a day a signed list of
       cancelled keys, sending nothing about you; a key we have cancelled stops unlocking the
       licensed features once the extension has seen that list. If the check cannot be made,
       the last result stands, so a network outage never switches a licence off. When a key
@@ -166,9 +171,12 @@ const description =
     <p class="mt-4 text-body text-muted-foreground text-pretty">
       We claim no ownership or licence over anything the extension reads. It transmits
       nothing it reads to us, so there is nothing for us to claim. Outside Toddle it makes
-      only two connections: feedback you write yourself and choose to send from its menu,
-      and, while a licence is entered, a daily check for cancelled keys that sends nothing
-      about you. Its
+      only three connections: feedback you write yourself and choose to send from its menu
+      (and Toddle compatibility reports, which carry the masked structure of Toddle's page
+      and no student data, sent the same way only when you send them or switch that on);
+      while there is a licence, a daily check for cancelled keys that sends nothing about
+      you; and, when you use the one-time link from your licence email, one request that
+      exchanges the link's code for your key. Its
       message buttons only open Toddle's own chat; any message is sent by you, through
       Toddle. The <a href="/legal/privacy" class="link">privacy policy</a> sets out the
       detail, and the <a href="/legal/security" class="link">security page</a> how it is

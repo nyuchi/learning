@@ -68,6 +68,60 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **The data page lists licence claim links under What Nyuchi holds.** The
+  licence server keeps a record for each one-time claim link: a hash of the
+  link, never the link itself, the licence it belongs to, the address it was
+  emailed to, and when and how it was used. The page now says so, from the
+  licence server's `claim_tokens` table.
+
+- **0.12.0 is on the Chrome Web Store, and is the current version.** The
+  owner confirmed it was published on 29 October 2026.
+  `extensionVersions.current` is 0.12.0, and the legal pages' date moves to
+  29 October 2026, because what they say the extension does changed with
+  it, checked against the extension's CHANGELOG, store listing, README,
+  SECURITY.md, security review and data schema:
+  - **Three outside connections, not two.** The privacy policy, data
+    handling, security, terms, student privacy and cookie pages, the
+    product page, the home page, `DataFlow.astro` and llms.txt now name the
+    third: redeeming a licence email's one-time claim link, one POST of the
+    link's token alone to `licenses.nyuchi.com/v1/claims/redeem`, valid
+    once for 72 hours, with the claim page the one page named in the
+    manifest's `externally_connectable` (the security page no longer says
+    no website can connect to the extension). The privacy policy has a
+    section for it (`#claim-link`).
+  - **Toddle compatibility reports.** The check, what a report holds
+    (masked page structure, no student data) and that it goes through the
+    existing feedback form only on Send report or when the teacher has
+    switched on automatic sending (off by default), on the legal pages
+    (`#compatibility-reports` in the privacy policy), and as a feature on
+    the product and home pages.
+  - **Excel or CSV.** The export is an Excel workbook or a CSV file wherever
+    it is described, the meta descriptions included; the security page says
+    the Excel export holds no formula.
+  - **A school's licence is set by IT through Chrome policy**, and an
+    organisation key can no longer be typed in: the extension page's
+    deployment card, the terms, the legal pages, the upgrade text, the home
+    page FAQ and llms.txt (which said a key cannot be pushed by policy).
+  - **What it stores**: the compatibility record and the automatic-report
+    choice, the fingerprint of the key a revocation result is about, a
+    school's key read from policy and never copied, and three values in
+    Toddle's site storage, not four (`tee-settings` is cleared, as it has
+    been since before 0.11.0).
+  - The security page's licence-key fix is named as 0.11.0's, not the
+    current version's, and the parts that read only Toddle's page no
+    longer include Toddle's icons.
+- **Releases: 0.12.0 first, on the store from 29 October 2026**, with notes
+  from its CHANGELOG in plain words. The test builds since 0.10.0 (0.10.1
+  to 0.10.5, 0.11.1 to 0.11.6) now open 0.12.0's notes, where their changes
+  reached the store; 0.11.3 to 0.11.6 are added to `taggedTestBuilds`.
+- **After paying: a claim link, not a key (restores #89).** #94 held the
+  claim-link wording back until 0.12.0; it is out and the licence server
+  sends claim links, so the extension page's "After paying" note and the
+  pricing cards' checkout line say the email carries a one-time link,
+  never the key, that it works once for 72 hours and a new one can be asked
+  for, and that a school licence's buyer sets it up through the Nyuchi
+  console and Chrome policy. `tests/purchase.test.ts` holds both to it.
+
 - **Dependencies and CI actions up to date.** `vite-plus` 1.4.0 (from
   1.0.0; supersedes #101), Vite 8.3.5 (supersedes #98), `@astrojs/vercel`
   11.0.17, and `actions/checkout` v7.0.1 and `actions/setup-node` v7.1.0,
