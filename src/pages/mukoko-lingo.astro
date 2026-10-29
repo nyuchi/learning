@@ -22,7 +22,15 @@
  * they are not used.
  */
 import { Image } from "astro:assets";
+import Hero from "@bundu/ui/Hero.astro";
+import Section from "@bundu/ui/Section.astro";
+import SectionHeader from "@bundu/ui/SectionHeader.astro";
+import Icon from "@bundu/ui/Icon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import FactStrip from "../components/FactStrip.astro";
+import LingoFlow from "../components/LingoFlow.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
 import { mukokoLingo } from "../data/site";
 import lingoIcon from "../assets/lingo/icon.png";
 
@@ -168,13 +176,50 @@ const schema = [
     ],
   },
 ];
+
+const faq = [
+  {
+    q: "Is it free?",
+    a: `<p>Starting is free: open <a href="${mukokoLingo.url}" rel="noopener noreferrer" class="link">lingo.mukoko.com</a> and take today's five phrases. For a school, a team or a government department, <a href="${mukokoLingo.enquiry}" class="link">write to us</a> about running it for your organisation.</p>`,
+  },
+  {
+    q: "Which languages can we learn?",
+    a: `<p>${languageList}, with pronunciation guides for all four and phrases compared across them. ${betaList} is in beta.</p>`,
+  },
+  {
+    q: "Can we bring our class rosters?",
+    a: `<p>Yes. Rosters sync in over OneRoster from Clever, ClassLink and PowerSchool.</p>`,
+  },
+  {
+    q: "How is what learners type to the tutor kept safe?",
+    a: `<p>Three layers of moderation: rule-based guardrails, an AI check, and detection of attempts to manipulate the tutor. Shamwari never claims to be human, and the AI credentials never reach a learner's device.</p>`,
+  },
+  {
+    q: "Can our IT team see how it works?",
+    a: `<p>Yes. Mukoko Lingo is open source, under the MIT licence: <a href="${source}" rel="noopener noreferrer" class="link">read the code</a>.</p>`,
+  },
+];
 ---
 
-<BaseLayout title={title} description={description} canonical="/mukoko-lingo" schema={schema}>
-  <!-- Hero -->
-  <section class="container-custom pt-12 md:pt-20 pb-10 md:pb-16">
-    <div class="max-w-3xl">
-      <p class="eyebrow">Language learning · Nyuchi Learning</p>
+<BaseLayout
+  title={title}
+  description={description}
+  canonical="/mukoko-lingo"
+  schema={schema}
+  action={{ label: "Start learning", short: "Start", href: mukokoLingo.url, external: true }}
+>
+  <Hero
+    layout="split"
+    variant="showcase"
+    badge="Live in your browser · starting is free"
+    subtitle="Language learning · Nyuchi Learning"
+    title={mukokoLingo.name}
+    description="Language training for schools, businesses and government. Learn Shona, Ndebele, English or Chinese, five phrases a day, with an AI tutor that meets each learner at their level, while you set the work and see who is keeping up."
+    primaryCTA={{ text: "Start learning", href: mukokoLingo.url, external: true }}
+    secondaryCTA={{ text: "For organisations", href: "#organisations" }}
+    mediaLabel="Mukoko Lingo at a glance"
+  >
+    <div slot="media" class="card p-6 md:p-8">
       <div class="flex items-center gap-4">
         <Image
           src={lingoIcon}
@@ -183,126 +228,169 @@ const schema = [
           height={64}
           densities={[1, 2]}
           loading="eager"
-          class="w-12 h-12 md:w-16 md:h-16 rounded-xl shrink-0"
+          class="h-14 w-14 shrink-0 rounded-xl md:h-16 md:w-16"
         />
-        <h1 class="font-serif text-display-sm text-foreground text-balance">
-          {mukokoLingo.name}
-        </h1>
+        <div class="min-w-0">
+          <p class="font-serif text-h4 text-foreground">{mukokoLingo.name}</p>
+          <a href={mukokoLingo.url} rel="noopener noreferrer" class="text-body-sm text-muted-foreground underline-offset-4 hover:underline">
+            {mukokoLingo.url.replace("https://", "")}
+          </a>
+        </div>
+        <span class="badge-success ml-auto shrink-0">Live</span>
       </div>
-      <p class="mt-6 text-body-lg text-muted-foreground text-pretty max-w-2xl">
-        Language training for schools, businesses and government. Learn Shona, Ndebele,
-        English or Chinese, five phrases a day, with an AI tutor that meets each learner at
-        their level, while you set the work and see who is keeping up.
-      </p>
-      <p class="mt-4 text-body text-muted-foreground text-pretty max-w-2xl">
+
+      <p class="eyebrow mt-6">Languages</p>
+      <ul class="flex flex-wrap gap-2">
+        {
+          mukokoLingo.languages.map((language) => (
+            <li class="badge border border-border bg-card text-foreground">{language}</li>
+          ))
+        }
+        {
+          mukokoLingo.betaLanguages.map((language) => (
+            <li class="badge-info">{language} · beta</li>
+          ))
+        }
+      </ul>
+
+      <ul class="mt-6 divide-y divide-border border-t border-border">
+        <li class="flex items-center gap-3 py-3 text-body-sm text-foreground">
+          <Icon name="book" class="h-4 w-4 shrink-0 text-muted-foreground" />
+          Five phrases a day, with spaced repetition
+        </li>
+        <li class="flex items-center gap-3 py-3 text-body-sm text-foreground">
+          <Icon name="message" class="h-4 w-4 shrink-0 text-muted-foreground" />
+          Shamwari, the AI tutor
+        </li>
+        <li class="flex items-center gap-3 py-3 text-body-sm text-foreground">
+          <Icon name="chart" class="h-4 w-4 shrink-0 text-muted-foreground" />
+          Classes, assignments and assessments for organisations
+        </li>
+      </ul>
+
+      <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
         A partner app developed by Nyuchi Learning. Part of
         <a href="https://mukoko.com" rel="noopener noreferrer" class="link">Mukoko</a> by
         Nyuchi.
       </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-primary"
-          >Start learning</a
-        >
-        <a href="#organisations" class="btn-outline">For organisations</a>
-      </div>
-      <p class="mt-4 text-caption text-muted-foreground">
-        In your browser at lingo.mukoko.com · starting is free
-      </p>
+      <!-- TODO(owner): a real screenshot of the app (lesson and console), made
+           with test data the way the extension's are, would be the strongest
+           visual here. None is in the repo yet. -->
     </div>
-  </section>
+  </Hero>
+
+  <FactStrip
+    label="Mukoko Lingo, in short"
+    facts={[
+      `${languageList}`,
+      `${betaList} in beta`,
+      "Assessments graded on the server",
+      "Open source, MIT licence",
+    ]}
+  />
+
+  <!-- How it works: two lanes, learner and organisation. -->
+  <Section bg="secondary" id="how-it-works" class="scroll-mt-24">
+    <SectionHeader
+      eyebrow="How it works"
+      title="Learners practise. You set the work and see it land."
+      description="Lingo has two halves: learners use the app, and the people running the programme use the console, where the work is set and measured."
+    />
+    <div class="mt-10">
+      <LingoFlow />
+    </div>
+  </Section>
 
   <!-- What it does -->
-  <section class="container-custom pb-16 md:pb-24">
-    <div class="max-w-2xl">
-      <p class="eyebrow">What it does today</p>
-      <h2 class="font-serif text-h2 text-foreground text-balance">
-        Five phrases a day, and a tutor to ask.
-      </h2>
-    </div>
-    <div class="mt-8 grid gap-6 md:gap-8 md:grid-cols-3">
+  <Section>
+    <SectionHeader
+      eyebrow="What it does today"
+      title="Five phrases a day, and a tutor to ask."
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-6 lg:gap-8">
       {
         features.map((feature) => (
-          <article class="card-hover p-6 md:p-8 flex flex-col h-full">
+          <article class="card flex h-full flex-col p-6 md:p-7">
             <span
               aria-hidden="true"
-              class="inline-block w-2 h-2 rounded-full mb-4"
+              class="mb-4 inline-block h-2 w-2 rounded-full"
               style={`background-color: var(--color-${feature.mineral});`}
             />
             <h3 class="font-serif text-h4 text-foreground text-balance">{feature.title}</h3>
-            <p class="mt-3 text-body-sm text-muted-foreground text-pretty flex-1">
+            <p class="mt-3 flex-1 text-body-sm text-muted-foreground text-pretty">
               {feature.body}
             </p>
           </article>
         ))
       }
     </div>
-  </section>
+  </Section>
 
   <!-- Who it is for -->
-  <section class="bg-secondary border-y border-border">
-    <div class="container-custom section">
-      <div class="max-w-2xl">
-        <p class="eyebrow">Who it is for</p>
-        <h2 class="font-serif text-h1 text-foreground text-balance">
-          One app, from a single learner to a whole organisation.
-        </h2>
-      </div>
-      <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-3">
-        {
-          audiences.map((audience) => (
-            <article class="card p-6 md:p-8">
-              <p class:list={[audience.badge, "mb-4"]}>{audience.label}</p>
-              <h3 class="font-serif text-h4 text-foreground text-balance">{audience.title}</h3>
-              <p class="mt-3 text-body-sm text-muted-foreground text-pretty">{audience.body}</p>
-            </article>
-          ))
-        }
-      </div>
+  <Section bg="secondary" class="border-y border-border">
+    <SectionHeader
+      eyebrow="Who it is for"
+      title="One app, from a single learner to a whole organisation."
+      size="h1"
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-3 md:gap-6 lg:gap-8">
+      {
+        audiences.map((audience) => (
+          <article class="card p-6 md:p-8">
+            <p class:list={[audience.badge, "mb-4"]}>{audience.label}</p>
+            <h3 class="font-serif text-h4 text-foreground text-balance">{audience.title}</h3>
+            <p class="mt-3 text-body-sm text-muted-foreground text-pretty">{audience.body}</p>
+          </article>
+        ))
+      }
     </div>
-  </section>
+  </Section>
 
   <!-- For organisations: schools, businesses and government -->
-  <section id="organisations" class="container-custom section scroll-mt-24">
-    <div class="max-w-2xl">
-      <p class="eyebrow">For schools, businesses and government</p>
-      <h2 class="font-serif text-h1 text-foreground text-balance">
-        Language training you can assign and measure.
-      </h2>
-      <p class="mt-6 text-body text-muted-foreground text-pretty">
-        For a school teaching a language, a business training the staff who serve its
-        customers, or a government department whose people serve the public in their own
-        languages. Lingo has two halves: learners use the app, and the people running the
-        programme use the console, where the work is set and measured.
-      </p>
-    </div>
+  <Section id="organisations" class="scroll-mt-24">
+    <SectionHeader
+      eyebrow="For schools, businesses and government"
+      title="Language training you can assign and measure."
+      size="h1"
+      description="For a school teaching a language, a business training the staff who serve its customers, or a government department whose people serve the public in their own languages."
+    />
 
-    <div class="mt-10 grid gap-6 md:gap-8 md:grid-cols-2">
+    <div class="mt-10 grid gap-6 md:grid-cols-2 md:gap-8">
       <article class="card p-6 md:p-8">
         <h3 class="font-serif text-h4 text-foreground">For teachers and trainers</h3>
-        <ul
-          class="mt-4 space-y-3 text-body-sm text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
-        >
-          <li>Create classes and learner groups.</li>
-          <li>Set assignments against specific phrases and skills.</li>
-          <li>See each learner's progress, skill by skill.</li>
-          <li>
-            Use diagnostic, formative and summative assessments. They are graded on the
-            server, so the score you see is the score the learner earned.
-          </li>
+        <ul class="mt-4 space-y-3">
+          {
+            [
+              "Create classes and learner groups.",
+              "Set assignments against specific phrases and skills.",
+              "See each learner's progress, skill by skill.",
+              "Use diagnostic, formative and summative assessments. They are graded on the server, so the score you see is the score the learner earned.",
+            ].map((item) => (
+              <li class="flex gap-2.5 text-body-sm text-muted-foreground">
+                <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-malachite" />
+                <span class="text-pretty">{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </article>
 
       <article class="card p-6 md:p-8">
         <h3 class="font-serif text-h4 text-foreground">For leaders and IT</h3>
-        <ul
-          class="mt-4 space-y-3 text-body-sm text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
-        >
-          <li>Schools: sync class rosters over OneRoster from Clever, ClassLink or PowerSchool.</li>
-          <li>Manage users, content, moderation, guardrails, analytics and API keys.</li>
-          <li>
-            Three layers of moderation check what learners type to the AI tutor.
-          </li>
-          <li>Open source code your IT team can read.</li>
+        <ul class="mt-4 space-y-3">
+          {
+            [
+              "Schools: sync class rosters over OneRoster from Clever, ClassLink or PowerSchool.",
+              "Manage users, content, moderation, guardrails, analytics and API keys.",
+              "Three layers of moderation check what learners type to the AI tutor.",
+              "Open source code your IT team can read.",
+            ].map((item) => (
+              <li class="flex gap-2.5 text-body-sm text-muted-foreground">
+                <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-malachite" />
+                <span class="text-pretty">{item}</span>
+              </li>
+            ))
+          }
         </ul>
       </article>
     </div>
@@ -313,61 +401,52 @@ const schema = [
         >Open the console</a
       >
     </div>
-  </section>
+    <!-- TODO(owner): an organisation price, or "from" price, would help a
+         buyer here. The repository has none, so none is shown. -->
+  </Section>
 
   <!-- The facts -->
-  <section class="bg-secondary border-y border-border">
-    <div class="container-custom section-tight">
-      <div class="max-w-2xl">
-        <p class="eyebrow">For whoever has to sign this off</p>
-        <h2 class="font-serif text-h2 text-foreground text-balance">The facts, plainly.</h2>
-      </div>
-      <dl class="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-2 max-w-4xl">
-        {
-          facts.map((fact) => (
-            <div>
-              <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
-                {fact.label}
-              </dt>
-              <dd class="mt-2 text-body-sm text-foreground/90 text-pretty">{fact.value}</dd>
-            </div>
-          ))
-        }
-      </dl>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={source} rel="noopener noreferrer" class="btn-outline">Read the code</a>
-        <a href={licence} rel="noopener noreferrer" class="btn-ghost">MIT licence</a>
-      </div>
+  <Section bg="secondary" class="border-y border-border">
+    <SectionHeader eyebrow="For whoever has to sign this off" title="The facts, plainly." />
+    <dl class="mt-8 grid gap-x-8 gap-y-6 md:grid-cols-2 lg:grid-cols-4">
+      {
+        facts.map((fact) => (
+          <div>
+            <dt class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+              {fact.label}
+            </dt>
+            <dd class="mt-2 text-body-sm text-foreground/90 text-pretty">{fact.value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href={source} rel="noopener noreferrer" class="btn-outline">Read the code</a>
+      <a href={licence} rel="noopener noreferrer" class="btn-ghost">MIT licence</a>
     </div>
-  </section>
+  </Section>
 
-  <!-- Who makes it, and how to get it -->
-  <section class="container-custom section">
-    <div class="max-w-2xl">
-      <p class="eyebrow">Get it</p>
-      <h2 class="font-serif text-h2 text-foreground text-balance">
-        Open it in your browser and start.
-      </h2>
-      <p class="mt-6 text-body text-muted-foreground text-pretty">
-        Go to
-        <a href={mukokoLingo.url} rel="noopener noreferrer" class="link">lingo.mukoko.com</a>,
-        choose a language and take today's five phrases. Starting is free. For a school, a
-        team or a government department, write to us.
-      </p>
-      <p class="mt-4 text-body text-muted-foreground text-pretty">
-        <strong class="text-foreground">Who makes it.</strong> Mukoko Lingo is a partner app
-        developed by Nyuchi Learning. It is part of Mukoko by Nyuchi. Nyuchi Learning is
-        part of <a href="https://nyuchi.com" rel="noopener noreferrer" class="link"
-          >Nyuchi Africa</a
-        >, which also makes the
-        <a href="/toddle-enhancement-extension" class="link">Toddle Enhancement Extension</a>.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-primary"
-          >Start learning</a
-        >
-        <a href={mukokoLingo.enquiry} class="btn-outline">Talk to us</a>
-      </div>
+  <Section>
+    <SectionHeader eyebrow="Questions" title="Frequently asked." align="center" />
+    <div class="mt-10">
+      <Faq items={faq} />
     </div>
-  </section>
+  </Section>
+
+  <CtaBand
+    eyebrow="Get it"
+    title="Open it in your browser and start."
+    description="Choose a language and take today's five phrases. Starting is free. For a school, a team or a government department, write to us."
+    primary={{ text: "Start learning", href: mukokoLingo.url, external: true }}
+    secondary={{ text: "Talk to us", href: mukokoLingo.enquiry }}
+  >
+    <p class="mx-auto mt-10 max-w-2xl text-center text-body-sm text-muted-foreground text-pretty">
+      <strong class="text-foreground">Who makes it.</strong> Mukoko Lingo is a partner app
+      developed by Nyuchi Learning. It is part of Mukoko by Nyuchi. Nyuchi Learning is
+      part of <a href="https://nyuchi.com" rel="noopener noreferrer" class="link"
+        >Nyuchi Africa</a
+      >, which also makes the
+      <a href="/toddle-enhancement-extension" class="link">Toddle Enhancement Extension</a>.
+    </p>
+  </CtaBand>
 </BaseLayout>
