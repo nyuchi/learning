@@ -8,14 +8,29 @@
  * products live: the Toddle Enhancement Extension, and Mukoko Lingo, the
  * partner app developed by Nyuchi Learning as part of Mukoko.
  */
+import { Picture } from "astro:assets";
+import Hero from "@bundu/ui/Hero.astro";
+import Section from "@bundu/ui/Section.astro";
+import SectionHeader from "@bundu/ui/SectionHeader.astro";
+import Icon from "@bundu/ui/Icon.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
+import DataFlow from "../components/DataFlow.astro";
+import FactStrip from "../components/FactStrip.astro";
+import TrustPoints from "../components/TrustPoints.astro";
+import ExtensionPricing from "../components/ExtensionPricing.astro";
+import Faq from "../components/Faq.astro";
+import CtaBand from "../components/CtaBand.astro";
 import { mukokoLingo, toddleExtension } from "../data/site";
+import { extensionVersions, pricing, refunds } from "../data/legal";
+import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
+import lingoIcon from "../assets/lingo/icon.png";
 
 // One switch drives the call to action everywhere: "Add to Chrome" with the
 // store listing set, an enquiry without it. Never a link that 404s.
-const extensionCta = toddleExtension.webStore
-  ? { label: "Add to Chrome", href: toddleExtension.webStore }
-  : { label: "Get in touch", href: toddleExtension.enquiry };
+const live = Boolean(toddleExtension.webStore);
+const extensionCta = live
+  ? { label: "Add to Chrome", href: toddleExtension.webStore!, external: true }
+  : { label: "Get in touch", href: toddleExtension.enquiry, external: false };
 
 const surfaces = [
   {
@@ -41,137 +56,376 @@ const surfaces = [
 const title = "Nyuchi Learning — programmes, frameworks, and classroom tools";
 const description =
   "Nyuchi Learning: the Toddle Enhancement Extension and Mukoko Lingo, commercial training at nyuchi.com/learning, and the open Bundu Education frameworks.";
+
+/* What Nyuchi Learning makes, as nyuchi.com's hero lists what Nyuchi runs:
+   each with its real status. Both products are live today; programmes are
+   by enquiry, at nyuchi.com/learning. */
+const offerings = [
+  {
+    name: toddleExtension.name,
+    href: "/toddle-enhancement-extension",
+    where: live ? "Chrome Web Store" : "Coming to the Chrome Web Store",
+    status: live ? "Live" : "Soon",
+    mineral: "gold",
+  },
+  {
+    name: mukokoLingo.name,
+    href: "/mukoko-lingo",
+    where: mukokoLingo.url.replace("https://", ""),
+    status: "Live",
+    mineral: "malachite",
+  },
+  {
+    name: "Training programmes",
+    href: "https://nyuchi.com/learning",
+    where: "nyuchi.com/learning",
+    status: "Enquire",
+    mineral: "cobalt",
+  },
+];
+
+/* The before and after of the gradebook, in the product page's own words. */
+const before = [
+  "An assessment tool is one icon per student; you open a side panel to read each result.",
+  "Student flags are on screen when the gradebook goes on a projector or into a screen share.",
+  "To see who a class's primary teacher is, you open the class.",
+];
+const after = [
+  "One column per standard, criterion or checklist item, every student's result visible at once, and the lot in one CSV.",
+  "One free switch conceals what flags say, across Toddle, and stays as you left it.",
+  "The primary teacher beside every class, so you know who to ask.",
+];
+
+const faq = [
+  {
+    q: "Does it send student data anywhere?",
+    a: `<p>No. It reads what Toddle already lets you see, with the session you are signed in with, and sends nothing it reads anywhere but back to Toddle. There is no account, no analytics and no tracking. The only outside connections are a daily check for cancelled licence keys, which carries no key and no data, and the feedback form when you press Send. <a class="link" href="/toddle-enhancement-extension#how-it-works">How it works</a>.</p>`,
+  },
+  {
+    q: "What is free, and what does a licence add?",
+    a: `<p>Concealing student flags and the My classes filter are free, and always will be. A licence adds the per-criterion columns, CSV export, the student sidebar, the class view, primary teacher names and the Attendance dashboard's details. <a class="link" href="#pricing">See the prices</a>.</p>`,
+  },
+  {
+    q: "Can our IT team install it for every teacher?",
+    a: `<p>Yes. It is on the Chrome Web Store, so IT can force-install it from the Google Admin console by its ID, or through Group Policy, Intune or a macOS profile. An organisation licence is one key for your school's email domain. <a class="link" href="/toddle-enhancement-extension#install">Deploying it</a>.</p>`,
+  },
+  {
+    q: "What if Toddle changes?",
+    a: `<p>Toddle does not publish an API for this, so a Toddle release can break a feature, usually by renaming something. When that happens the extension falls back rather than breaking the gradebook, and tells you what it could not expand. Report a break and we will chase it.</p>`,
+  },
+  {
+    q: "Can we get a refund?",
+    a: `<p>${refunds.rule} ${refunds.how}</p>`,
+  },
+  {
+    q: "Do you run training, or help with the Bundu Education frameworks?",
+    a: `<p>Yes. Cohort-based and self-paced training in software, AI and digital skills, and implementation help for organisations adopting the frameworks, is at <a class="link" href="https://nyuchi.com/learning" rel="noopener noreferrer">nyuchi.com/learning</a>.</p>`,
+  },
+];
 ---
 
 <BaseLayout title={title} description={description} canonical="/">
-  <section class="container-custom pt-12 md:pt-20 pb-10 md:pb-14">
-    <div class="max-w-3xl">
-      <p class="eyebrow">Nyuchi Learning</p>
-      <h1 class="font-serif text-display-sm text-foreground text-balance">
-        Learning, and the tools that carry it.
-      </h1>
-      <p class="mt-6 text-body-lg text-muted-foreground text-pretty max-w-2xl">
-        Two products live here: a Chrome extension that makes the Toddle gradebook easier
-        to read, and Mukoko Lingo, language training for schools, businesses and
-        government. The learning
-        content that used to live here has moved to the Bundu Family ecosystem.
-      </p>
-    </div>
-  </section>
-
-  <!-- The products come first: they are what a visitor can actually use today.
-       Two cards in the same treatment, so they read as one family. -->
-  <section class="container-custom pb-14 md:pb-20">
-    <h2 class="sr-only">Our products</h2>
-    <div class="grid gap-6 md:gap-8">
-    <article class="card p-6 md:p-10 relative overflow-hidden">
-      <div class="absolute inset-x-0 top-0 h-[3px] bg-primary" aria-hidden="true"></div>
-      <div class="md:flex md:items-start md:justify-between md:gap-10">
-        <div class="max-w-2xl">
-          <p class="eyebrow mb-3">Classroom tools · Nyuchi Web Services</p>
-          <h2 class="font-serif text-h2 text-foreground text-balance">
-            {toddleExtension.name}
-          </h2>
-          <p class="mt-4 text-body text-muted-foreground text-pretty">
-            A Chrome extension for the Toddle gradebook. It expands every rubric
-            into per-criterion columns, exports the lot to CSV, and conceals student
-            flags with one free switch when you share your screen.
-          </p>
-        </div>
-        <div class="mt-6 md:mt-10 flex flex-col sm:flex-row md:flex-col gap-3 md:shrink-0">
-          <a href="/toddle-enhancement-extension" class="btn-primary whitespace-nowrap">
-            What it does
-          </a>
-          <a href={extensionCta.href} class="btn-outline whitespace-nowrap">
-            {extensionCta.label}
-          </a>
-        </div>
-      </div>
-    </article>
-
-    <article class="card p-6 md:p-10 relative overflow-hidden">
-      <div class="absolute inset-x-0 top-0 h-[3px] bg-primary" aria-hidden="true"></div>
-      <div class="md:flex md:items-start md:justify-between md:gap-10">
-        <div class="max-w-2xl">
-          <p class="eyebrow mb-3">Language learning · Part of Mukoko by Nyuchi</p>
-          <h2 class="font-serif text-h2 text-foreground text-balance">
-            {mukokoLingo.name}
-          </h2>
-          <p class="mt-4 text-body text-muted-foreground text-pretty">
-            Language training for schools, businesses and government. Shona, Ndebele,
-            English and Chinese (Swahili in beta), five phrases a day, with Shamwari, an AI
-            tutor that adapts to each learner. Set the work and see each learner's progress.
-          </p>
-        </div>
-        <div class="mt-6 md:mt-10 flex flex-col sm:flex-row md:flex-col gap-3 md:shrink-0">
-          <a href="/mukoko-lingo" class="btn-primary whitespace-nowrap">
-            What it does
-          </a>
-          <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-outline whitespace-nowrap">
-            Start learning
-          </a>
-        </div>
-      </div>
-    </article>
-    </div>
-  </section>
-
-  <section class="container-custom pb-4">
-    <div class="max-w-2xl">
-      <p class="eyebrow">Where the learning went</p>
-      <h2 class="font-serif text-h2 text-foreground text-balance">
-        Frameworks and programmes.
-      </h2>
-      <p class="mt-4 text-body text-muted-foreground text-pretty">
-        The Foundation publishes the open frameworks at Bundu Education. Nyuchi Learning is
-        the commercial vehicle organisations use when they want help implementing them.
-      </p>
-    </div>
-  </section>
-
-  <section class="container-custom py-10 md:py-14">
-    <div class="grid gap-6 md:gap-8 md:grid-cols-2">
-      {
-        surfaces.map((surface) => (
-          <article class="card-hover p-6 md:p-8 flex flex-col h-full">
-            <div class="flex items-center gap-2 mb-4">
+  <Hero
+    layout="split"
+    variant="showcase"
+    badge={live ? `Live on the Chrome Web Store · version ${extensionVersions.current}` : undefined}
+    subtitle="Nyuchi Learning"
+    title="See your whole class at once."
+    description="The Toddle Enhancement Extension puts every rubric criterion in its own column, exports results to CSV, and conceals student flags with one free switch on a shared screen. Nothing from Toddle leaves your browser."
+    primaryCTA={{ text: live ? "Add to Chrome — it's free" : extensionCta.label, href: extensionCta.href, external: extensionCta.external }}
+    secondaryCTA={{ text: "See pricing", href: "#pricing" }}
+    mediaLabel="What Nyuchi Learning makes"
+  >
+    <div slot="media" class="card p-6 md:p-8">
+      <p class="eyebrow">What Nyuchi Learning makes</p>
+      <ul class="divide-y divide-border">
+        {
+          offerings.map((item) => (
+            <li class="flex items-center gap-3 py-3.5">
               <span
                 aria-hidden="true"
-                class="inline-block w-2 h-2 rounded-full"
+                class="inline-block h-2.5 w-2.5 shrink-0 rounded-full"
+                style={`background-color: var(--color-${item.mineral});`}
+              />
+              <span class="min-w-0">
+                <a
+                  href={item.href}
+                  {...(item.href.startsWith("http") ? { rel: "noopener noreferrer" } : {})}
+                  class="block font-serif text-h5 text-foreground hover:underline underline-offset-4"
+                >
+                  {item.name}
+                </a>
+                <span class="block truncate text-body-sm text-muted-foreground">{item.where}</span>
+              </span>
+              <span
+                class:list={[
+                  "badge ml-auto shrink-0",
+                  item.status === "Live"
+                    ? "bg-malachite-container text-malachite-on-container"
+                    : "bg-muted text-muted-foreground",
+                ]}
+              >
+                {item.status}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="mt-4 text-body-sm text-muted-foreground text-pretty">
+        The open Bundu Education frameworks they build on are free to use, at
+        <a href="https://bundu.org/education" rel="noopener noreferrer" class="link">bundu.org/education</a>.
+      </p>
+    </div>
+  </Hero>
+
+  <FactStrip
+    label="The same promise in every install"
+    facts={[
+      "Runs only on Toddle",
+      "Nothing from Toddle leaves your browser",
+      "No account, no analytics, no tracking",
+      "Flag concealing free, always",
+    ]}
+  />
+
+  <!-- How it works: the data-flow diagram, a first-class part of the page,
+       because it is the question a school asks first. -->
+  <Section bg="secondary" id="how-it-works" class="scroll-mt-24">
+    <SectionHeader
+      eyebrow="How it works"
+      title="Nothing from Toddle leaves your browser."
+      description="The extension reads what Toddle already shows you and redraws it on your screen. Here is everything it touches, and the only two things that ever go anywhere else."
+    />
+    <div class="mt-10 md:mt-14">
+      <DataFlow />
+    </div>
+  </Section>
+
+  <!-- The outcome: the gradebook, before and after. -->
+  <Section>
+    <SectionHeader
+      eyebrow="Toddle Enhancement Extension"
+      title="The whole gradebook, at a glance."
+      description="The gradebook Toddle gives you, with the views it is missing, and a way to project it."
+    />
+    <div class="mt-10 grid items-start gap-8 lg:grid-cols-12 lg:gap-12">
+      <figure class="lg:col-span-7">
+        <div class="card overflow-hidden p-0">
+          <Picture
+            src={gradebookShot}
+            alt="The Toddle gradebook with each assessment's checklist, standards and learning goals expanded into a column per criterion, every student's result in its own cell. Test data."
+            formats={["avif", "webp"]}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 1024px) 720px, 100vw"
+            loading="lazy"
+            decoding="async"
+            class="block h-auto w-full"
+          />
+        </div>
+        <figcaption class="mt-3 text-caption text-muted-foreground">
+          Per-criterion columns, with a licence. Test data; names covered.
+        </figcaption>
+      </figure>
+
+      <div class="grid gap-6 sm:grid-cols-2 lg:col-span-5 lg:grid-cols-1">
+        <div class="card p-6">
+          <p class="badge bg-muted text-muted-foreground">In Toddle today</p>
+          <ul class="mt-4 space-y-3">
+            {
+              before.map((item) => (
+                <li class="flex gap-2.5 text-body-sm text-muted-foreground">
+                  <Icon name="minus" class="mt-0.5 h-4 w-4 shrink-0" />
+                  <span class="text-pretty">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="card p-6 ring-2 ring-primary">
+          <p class="badge-success">With the extension</p>
+          <ul class="mt-4 space-y-3">
+            {
+              after.map((item) => (
+                <li class="flex gap-2.5 text-body-sm text-foreground">
+                  <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-malachite" />
+                  <span class="text-pretty">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-wrap gap-3">
+      <a
+        href={extensionCta.href}
+        {...(extensionCta.external ? { rel: "noopener noreferrer" } : {})}
+        class="btn-primary">{extensionCta.label}</a
+      >
+      <a href="/toddle-enhancement-extension" class="btn-ghost">
+        Everything it does <Icon name="arrow-right" class="h-4 w-4" />
+      </a>
+    </div>
+  </Section>
+
+  <!-- The two products, and where the rest of the learning lives: nyuchi.com's
+       product cards, with status badges and a "Learn more" link. -->
+  <Section bg="secondary" class="border-y border-border">
+    <SectionHeader
+      eyebrow="Built by Nyuchi Learning"
+      title="Two products, ready to use today."
+      description="Both live on this site. The training and the open frameworks they grew from live with the rest of the Nyuchi and Bundu family."
+    />
+    <div class="mt-10 grid gap-6 md:grid-cols-2 md:gap-8">
+      <article class="card relative flex flex-col overflow-hidden p-6 md:p-8">
+        <div class="absolute inset-x-0 top-0 h-[3px] bg-gold" aria-hidden="true"></div>
+        <div class="flex items-start justify-between gap-4">
+          <p class="eyebrow mb-0">Classroom tools · Nyuchi Web Services</p>
+          <span class="badge-success shrink-0">{live ? "Live" : "Soon"}</span>
+        </div>
+        <h3 class="mt-3 font-serif text-h3 text-foreground text-balance">{toddleExtension.name}</h3>
+        <p class="mt-3 flex-1 text-body text-muted-foreground text-pretty">
+          A Chrome extension for the Toddle gradebook. It expands every rubric into
+          per-criterion columns, exports the lot to CSV, and conceals student flags with
+          one free switch when you share your screen.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a href={extensionCta.href} {...(extensionCta.external ? { rel: "noopener noreferrer" } : {})} class="btn-primary">
+            {extensionCta.label}
+          </a>
+          <a href="/toddle-enhancement-extension" class="btn-ghost">
+            Learn more <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+      </article>
+
+      <article class="card relative flex flex-col overflow-hidden p-6 md:p-8">
+        <div class="absolute inset-x-0 top-0 h-[3px] bg-malachite" aria-hidden="true"></div>
+        <div class="flex items-start justify-between gap-4">
+          <p class="eyebrow mb-0">Language learning · Part of Mukoko by Nyuchi</p>
+          <span class="badge-success shrink-0">Live</span>
+        </div>
+        <div class="mt-3 flex items-center gap-3">
+          <Picture
+            src={lingoIcon}
+            alt=""
+            formats={["avif", "webp"]}
+            widths={[40, 80]}
+            sizes="40px"
+            loading="lazy"
+            class="h-10 w-10 shrink-0 rounded-lg"
+          />
+          <h3 class="font-serif text-h3 text-foreground text-balance">{mukokoLingo.name}</h3>
+        </div>
+        <p class="mt-3 flex-1 text-body text-muted-foreground text-pretty">
+          Language training for schools, businesses and government. Shona, Ndebele,
+          English and Chinese (Swahili in beta), five phrases a day, with Shamwari, an AI
+          tutor that adapts to each learner. Set the work and see each learner's progress.
+        </p>
+        <div class="mt-6 flex flex-wrap items-center gap-3">
+          <a href={mukokoLingo.url} rel="noopener noreferrer" class="btn-primary">Start learning</a>
+          <a href="/mukoko-lingo" class="btn-ghost">
+            Learn more <Icon name="arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+      </article>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:mt-8 md:grid-cols-2 md:gap-8">
+      {
+        surfaces.map((surface) => (
+          <article class="card-hover flex h-full flex-col p-6 md:p-8">
+            <div class="mb-3 flex items-center gap-2">
+              <span
+                aria-hidden="true"
+                class="inline-block h-2 w-2 rounded-full"
                 style={`background-color: var(--color-${surface.mineral});`}
               />
               <p class="text-caption font-semibold uppercase tracking-wider text-muted-foreground">
                 {surface.eyebrow}
               </p>
             </div>
-            <h3 class="font-serif text-h3 text-foreground text-balance">{surface.name}</h3>
-            <p class="mt-4 text-body text-muted-foreground text-pretty flex-1">
+            <h3 class="font-serif text-h4 text-foreground text-balance">{surface.name}</h3>
+            <p class="mt-3 flex-1 text-body-sm text-muted-foreground text-pretty">
               {surface.description}
             </p>
             <a
               href={surface.href}
               rel="noopener noreferrer"
-              class="mt-6 inline-flex items-center gap-1.5 text-body-sm font-medium text-foreground hover:opacity-80 transition-opacity self-start"
+              class="mt-5 inline-flex items-center gap-1.5 self-start text-body-sm font-medium text-foreground transition-opacity hover:opacity-80"
             >
               {surface.cta}
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1.75"
-                  d="M17 8l4 4m0 0l-4 4m4-4H3"
-                />
-              </svg>
+              <Icon name="arrow-right" class="h-4 w-4" />
             </a>
           </article>
         ))
       }
     </div>
-  </section>
+  </Section>
+
+  <!-- Pricing: the extension's three ways in. -->
+  <Section id="pricing" class="scroll-mt-24">
+    <SectionHeader
+      eyebrow="Pricing"
+      title="Free to start. One price for a whole school."
+      description="Concealing student flags is free, always: it protects a student. A licence pays for the time saving."
+    />
+    <div class="mt-10">
+      <ExtensionPricing />
+    </div>
+    <p class="mt-4 text-center text-body-sm">
+      <a href="/toddle-enhancement-extension#pricing" class="link">Upgrades, refunds and the small print</a>
+    </p>
+  </Section>
+
+  <!-- Proof. Only what is true today; see the TODO in TrustPoints.astro for
+       what the owner can add (quotes, ratings, numbers) when they exist. -->
+  <Section bg="secondary" class="border-y border-border">
+    <div class="grid gap-10 lg:grid-cols-12 lg:gap-12">
+      <div class="lg:col-span-4">
+        <SectionHeader
+          eyebrow="For whoever has to sign this off"
+          title="Built to be checked, not taken on trust."
+          description="Every claim here is in the privacy policy and the security page, and the extension's own data schema lists every field it reads."
+        />
+        <div class="mt-6 flex flex-wrap gap-3">
+          <a href="/legal/security" class="btn-outline">Security page</a>
+          <a href="/legal/privacy" class="btn-ghost">Privacy policy</a>
+        </div>
+      </div>
+      <div class="lg:col-span-8 lg:pt-10">
+        <TrustPoints />
+        <p class="mt-8 text-body-sm text-muted-foreground">
+          On the
+          <a href={toddleExtension.webStore} class="link" target="_blank" rel="noopener noreferrer"
+            >Chrome Web Store</a
+          >: rated {toddleExtension.storeStats.rating} out of 5
+          ({toddleExtension.storeStats.ratings}
+          {toddleExtension.storeStats.ratings === 1 ? "rating" : "ratings"}), with
+          {toddleExtension.storeStats.users} users, as of {toddleExtension.storeStats.asOf}.
+        </p>
+        <!-- TODO(owner): a real quote from a teacher or IT lead goes here,
+             with their name, role and school, and their permission. -->
+      </div>
+    </div>
+  </Section>
+
+  <Section>
+    <SectionHeader
+      eyebrow="Questions"
+      title="Frequently asked."
+      description="Short answers to what schools ask us most."
+      align="center"
+    />
+    <div class="mt-10">
+      <Faq items={faq} />
+    </div>
+  </Section>
+
+  <CtaBand
+    title="Try it on your next gradebook."
+    description={`Install it free in one click. When you want the columns and the export, a licence is ${pricing[0].price} ${pricing[0].period} for a teacher, or one key for your whole school.`}
+    primary={{ text: extensionCta.label, href: extensionCta.href, external: extensionCta.external }}
+    secondary={{ text: "Talk to us about a school", href: toddleExtension.enquiry }}
+  />
 </BaseLayout>
