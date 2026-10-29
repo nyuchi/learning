@@ -1,0 +1,84 @@
+---
+/**
+ * The extension's three ways in, side by side: free, a teacher's licence and
+ * a school's. Prices and inclusions come from `pricing` in src/data/legal.ts
+ * and nowhere else (tests/seo.test.ts checks the organisation price); the
+ * free column is the split the extension enforces (the flag switch and My
+ * classes for everyone).
+ */
+import Icon from "@bundu/ui/Icon.astro";
+import { pricing, refunds } from "../data/legal";
+import { toddleExtension } from "../data/site";
+
+const install = toddleExtension.webStore ?? toddleExtension.enquiry;
+
+const plans = [
+  {
+    name: "Free",
+    price: "US$0",
+    period: "",
+    who: "Any teacher, for as long as they like.",
+    includes: [
+      "Conceal student flags across Toddle with one switch",
+      "My classes on the Toddle home page",
+    ],
+    cta: toddleExtension.webStore ? "Add to Chrome" : "Talk to us",
+    href: install,
+    external: Boolean(toddleExtension.webStore),
+    featured: false,
+  },
+  ...pricing.map((plan, index) => ({
+    name: plan.name,
+    price: plan.price,
+    period: plan.period,
+    who: plan.who,
+    includes: [...plan.includes],
+    cta: `Buy — ${plan.price} ${plan.period}`,
+    href: plan.buy,
+    external: true,
+    featured: index === pricing.length - 1,
+  })),
+];
+---
+
+<div class="grid gap-6 md:grid-cols-3 md:gap-6 lg:gap-8">
+  {
+    plans.map((plan) => (
+      <article
+        class:list={[
+          "card relative flex flex-col overflow-hidden p-6 md:p-7 lg:p-8",
+          plan.featured && "ring-2 ring-primary",
+        ]}
+      >
+        {plan.featured && (
+          <p class="badge-warning absolute right-5 top-5">For a school</p>
+        )}
+        <h3 class="font-serif text-h4 text-foreground">{plan.name}</h3>
+        <p class="mt-3">
+          <span class="font-serif text-h2 text-foreground">{plan.price === "US$0" ? "Free" : plan.price}</span>
+          {plan.period && <span class="text-body-sm text-muted-foreground"> {plan.period}</span>}
+        </p>
+        <p class="mt-2 text-body-sm text-muted-foreground text-pretty">{plan.who}</p>
+        <ul class="mt-5 flex-1 space-y-2.5">
+          {plan.includes.map((item) => (
+            <li class="flex gap-2.5 text-body-sm text-muted-foreground">
+              <Icon name="check" class="mt-0.5 h-4 w-4 shrink-0 text-malachite" />
+              <span class="text-pretty">{item}</span>
+            </li>
+          ))}
+        </ul>
+        <a
+          href={plan.href}
+          {...(plan.external ? { rel: "noopener noreferrer" } : {})}
+          class:list={[plan.featured ? "btn-primary" : "btn-outline", "mt-6 w-full"]}
+        >
+          {plan.cta}
+        </a>
+      </article>
+    ))
+  }
+</div>
+<p class="mx-auto mt-6 max-w-2xl text-center text-caption text-muted-foreground text-pretty">
+  Checkout is through Buy Me a Coffee, and your key arrives by email, usually within a
+  minute. {refunds.rule}
+</p>
