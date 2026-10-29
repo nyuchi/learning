@@ -10,7 +10,7 @@
 export const legal = {
   /** Last substantive change, for every legal page. Update when a claim
       changes, not on typos. */
-  updated: "2026-10-13",
+  updated: "2026-10-29",
   entity: "Nyuchi Africa (Private) Limited",
   shortEntity: "Nyuchi",
   country: "Zimbabwe",
@@ -82,11 +82,11 @@ export const pricing = [
     price: "US$5",
     period: "per year",
     who: "One teacher.",
-    /** Checkout. Buy Me a Coffee for now; the key is issued by email. */
+    /** Checkout. Buy Me a Coffee for now; the licence arrives as a one-time claim link by email, never the key. */
     buy: "https://buymeacoffee.com/bryany/e/581737",
     includes: [
       "Every assessment tool expanded into per-criterion columns",
-      "CSV export",
+      "Excel or CSV export",
       "The student sidebar, with where they are now and today's timetable",
       "The class view, a class's teachers to email at once, and message buttons into Toddle's chat",
       "Primary teacher names, and the Attendance dashboard's Now line",
@@ -100,7 +100,7 @@ export const pricing = [
     buy: "https://buymeacoffee.com/bryany/e/581738",
     includes: [
       "Everything in Individual, for your whole staff",
-      "Managed rollout through the Google Admin console",
+      "Managed rollout through the Google Admin console, with the licence set by IT through Chrome policy",
       "Invoice, and a named contact for support",
     ],
   },
@@ -114,8 +114,11 @@ export const pricing = [
  * (0.9.0, …) is released from the extension's `main` branch and published to
  * the store. Teachers get minors.
  *
- * `current` is what teachers have from the Chrome Web Store: 0.11.0, a
- * security fix on top of 0.10.0 (published 13 October 2026). `previous` is
+ * `current` is what teachers have from the Chrome Web Store: 0.12.0
+ * (published 29 October 2026), which added the Excel export, claim links
+ * instead of keys in licence emails, a school's licence set through Chrome
+ * policy, and the Toddle compatibility check. 0.11.0 before it was a
+ * security fix on top of 0.10.0 (13 October 2026). `previous` is
  * the store release named only where something it did still matters to a
  * teacher updating from it (flags 0.8.2 hid stay concealed), said as history.
  * `changedIn` is the release that moved the licence host to licenses.nyuchi.com
@@ -128,7 +131,7 @@ export const pricing = [
  * wording again.
  */
 export const extensionVersions = {
-  current: "0.11.0",
+  current: "0.12.0",
   previous: "0.8.2",
   /** The release that moved the licence host and renamed the flags key. */
   changedIn: "0.9.0",
@@ -142,14 +145,16 @@ const { changedIn, previous } = extensionVersions;
  * The licence key and Chrome sync, said once. Since 0.9.0 the key alone is
  * also kept in chrome.storage.sync, so it follows the teacher's own Chrome
  * account. That is Chrome's sync, not Nyuchi's: the extension never sends the
- * key to Nyuchi. Checked against the extension's SECURITY.md and
- * docs/data-schema.md (the `licence` key).
+ * key to Nyuchi. A school's key set through Chrome policy (0.12.0) is read
+ * from managed storage and never copied into local or synced storage.
+ * Checked against the extension's SECURITY.md and docs/data-schema.md (the
+ * `licence` key, and managed storage).
  */
 export const licenceSync = {
   /** One sentence, for summaries. */
   short: `Your licence key also follows your own Chrome account to your other computers, through Chrome's sync; it is never sent to Nyuchi.`,
   /** The full account, for the data pages. */
-  detail: `The licence key, and nothing else, is also kept in Chrome's synced storage for the extension, so Chrome carries it to the other computers signed in to the same Chrome account, unless sync, or a school's Chrome policy, turns that off. That is Chrome's own sync, through your Google account; the extension never sends the key to Nyuchi. A key carries the buyer's email address, so that travels with it. The newest key wins on every computer, and removing it on one removes it on all of them. Who a key is for, and the result of the check for cancelled keys, stay on each computer.`,
+  detail: `The licence key, and nothing else, is also kept in Chrome's synced storage for the extension, so Chrome carries it to the other computers signed in to the same Chrome account, unless sync, or a school's Chrome policy, turns that off. That is Chrome's own sync, through your Google account; the extension never sends the key to Nyuchi. A key carries the buyer's email address, so that travels with it. The newest key wins on every computer, and removing it on one removes it on all of them. Who a key is for, and the result of the check for cancelled keys, stay on each computer. A school's licence set by its IT through Chrome policy is different: the extension reads it from the policy on each managed browser, and never copies it into its own storage or into Chrome's sync.`,
   /** For "what leaves the device". */
   leaves: `One thing more leaves your device, and not to us: with Chrome sync on, Chrome carries your licence key to your other computers through your own Chrome account. The extension itself never sends the key anywhere, Nyuchi included.`,
 } as const;
@@ -165,7 +170,7 @@ const upgradeOff = "US$7";
 export const upgrade = {
   code: upgradeCode,
   off: upgradeOff,
-  text: `Already have an individual licence? Bring your whole school in. The extension's licence page shows individual licence holders the upgrade, with the code ${upgradeCode}, which takes ${upgradeOff} off the organisation licence (it works on that licence only). Your school's key then replaces yours on every computer.`,
+  text: `Already have an individual licence? Bring your whole school in. The extension's licence page shows individual licence holders the upgrade, with the code ${upgradeCode}, which takes ${upgradeOff} off the organisation licence (it works on that licence only). Your school's IT then sets the school's licence through Chrome policy, and on a managed browser it is used in place of yours.`,
 } as const;
 
 /**
@@ -219,12 +224,18 @@ export const extensionDataFacts = [
   },
   {
     claim: "Exactly what leaves your device.",
-    detail: `Nothing it reads from Toddle goes anywhere but back to Toddle. There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. The extension makes these requests and no others: read-only requests to Toddle's own interface, with your Toddle session; student photos, loaded from the address Toddle gives for each one, wherever Toddle serves them, as Toddle's own page does; the feedback form, only when you press Send; and, only while a licence key is entered, the daily check for cancelled keys, which carries nothing. The last two are described next. Anything else happens only when you do it: saving a CSV file, opening an email or phone link, or sending a message in Toddle's own chat. Like any web request, each one lets the server that receives it see your IP address and browser type. ${licenceSync.leaves}`,
+    detail: `Nothing it reads from Toddle goes anywhere but back to Toddle. There is no account, no analytics, no telemetry, no tracking, no advertising and no remote code. The extension makes these requests and no others: read-only requests to Toddle's own interface, with your Toddle session; student photos, loaded from the address Toddle gives for each one, wherever Toddle serves them, as Toddle's own page does; the feedback form, only when you press Send (and a Toddle compatibility report, the same way, only when you press Send report or have switched on sending them automatically); only while there is a licence key, the daily check for cancelled keys, which carries nothing; and, only when you open the one-time link from your licence email (or paste it into the licence page), one request that exchanges it for your key. The last three are described below. Anything else happens only when you do it: saving an Excel or CSV file, opening an email or phone link, or sending a message in Toddle's own chat. Like any web request, each one lets the server that receives it see your IP address and browser type. ${licenceSync.leaves}`,
   },
   {
     claim: "Outside connection one, only when you choose it: feedback.",
     detail:
       "The toolbar menu has a Send feedback form. Press Send and it sends what you typed — a topic, your message, and an email address only if you enter one — plus the extension's version number, to our feedback form, processed by Formspree. Nothing from Toddle is ever included: no student data, no page address, no licence key. If you never press Send, nothing is ever sent. The detail is below.",
+  },
+  {
+    claim:
+      "Toddle compatibility reports go the same way, only when you send them or switch that on.",
+    detail:
+      "Toddle changes its pages without notice, so the extension checks, in your own Toddle tab as you use it, that each feature still finds what it relies on in Toddle's page, and the licence page shows the result: each feature working, working with Toddle changed, or paused because Toddle changed. Nothing probes Toddle from our servers. A compatibility report says only what changed in the structure of Toddle's page, masked: a key's format such as <digits>__evaluationStatus__<digits>_RUBRIC, field names and counts, with the page's address as a pattern with every id masked, the extension's version, Chrome's major version and the time to the minute. It never holds student data: no names, emails, marks, comments, ids or free text, and no account, school or licence. Copy report puts it on your clipboard. It is sent through the same feedback form, with no email address, only when you press Send report on the licence page, or, if you switch on Automatically send compatibility reports (off unless you switch it on), by itself when something changes, at most once an hour. It is never sent from a Toddle page or by the background worker.",
   },
   {
     claim: "The welcome page sends nothing.",
@@ -233,7 +244,7 @@ export const extensionDataFacts = [
   },
   {
     claim: "What it stores: settings and licence details, and no student data.",
-    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one; the result of the last check for cancelled keys (whether your key is on the list, the list's date and when the check was made, never the list itself); and the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-settings, a copy of your switches and of which features the licence allows (no key and no email); tee-blur-flags (gbx-hide-flags in versions before ${changedIn}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. Nothing it reads about students, classes, results or attendance is ever written to storage.`,
+    detail: `In Chrome's storage for the extension, on your device: your switches (the extension on or off, student flags, the student sidebar, My classes, primary teacher names, gradebook tools, and student details on the Attendance dashboard); your licence key, if you entered one or added it from a claim link; the result of the last check for cancelled keys (whether the key in use is on the list, the list's date, when the check was made, and the fingerprint of the key it is about, never the list itself); the email address of the Toddle account last seen signed in, with the time, so the extension can check who a licence is for; and the Toddle compatibility record (for each thing a feature relies on in Toddle's page, whether it was last found, missing or changed, when, and its masked shape: no student data), with your choice whether to send compatibility reports automatically (off unless you switch it on) and which report was sent last, and when. That email is read on every Toddle page, with or without a licence key, and stays on the device. ${licenceSync.detail} In the browser's storage for Toddle's own site: tee-blur-flags (gbx-hide-flags in versions before ${changedIn}), whether flags are concealed, so they are concealed before the page is drawn; tee-course-view, whether you chose My classes in the home page filter; and tee-academic-year, the number of the academic year Toddle last asked for. An older copy of the switches there, tee-settings, is cleared. Nothing it reads about students, classes, results or attendance is ever written to storage.`,
   },
   {
     claim: "What it holds in memory, and for how long.",
@@ -243,21 +254,27 @@ export const extensionDataFacts = [
   {
     claim: "Your licence is checked on your machine, not by asking us.",
     detail:
-      "A licence key is a signed statement that the extension verifies locally. It carries the buyer's email address. A key may also name who it is for: the buyer's email, or for an organisation licence the school's email domain. Where it does, the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key contacts nothing, which is why it works without a connection, and the extension never sends the key to Nyuchi.",
+      "A licence key is a signed statement that the extension verifies locally. It carries the buyer's email address. A key may also name who it is for: the buyer's email, or for an organisation licence the school's email domain. Where it does, the extension compares that with the Toddle account signed in, inside the browser only, and sends it nowhere. Activating a key you paste contacts nothing, which is why it works without a connection; a key added from a claim link is fetched once (outside connection three, below) and then checked in exactly the same way. The extension never sends the key to Nyuchi. A school's organisation licence is set by its IT as Chrome policy for the extension, and is checked the same way (signature, expiry, the Toddle account's domain, the list of cancelled keys); the licence and welcome pages say it is provided by your school and never show it. An organisation key cannot be typed or pasted in: it is refused and not stored, and one stored by an earlier version is removed, from that browser and from the Chrome account's synced copy.",
   },
   {
     claim:
-      "Outside connection two, only while a licence is entered: a daily check for cancelled keys.",
-    detail: `At most once a day, and only while a licence key is entered, the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (versions before ${changedIn} asked licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
+      "Outside connection two, only while there is a licence: a daily check for cancelled keys.",
+    detail: `At most once a day, and only while there is a licence key (one you entered, or your school's, set through Chrome policy), the extension's background worker makes one plain request to https://licenses.nyuchi.com/v1/revocations (versions before ${changedIn} asked licences.nyuchi.dev, the same server); a key just entered is checked within 5 minutes. It sends no licence key, no identifiers, no cookies and no Toddle data. It downloads a list, signed by Nyuchi, of the fingerprints (SHA-256 hashes) of cancelled keys, checks its own key against that list on your machine, and keeps only the result. Cloudflare, which runs the server, sees your IP address as with any web request; Nyuchi does not log it. If the list cannot be fetched, the last result stands, so a network outage never switches a licence off.`,
+  },
+  {
+    claim:
+      "Outside connection three, only when you use a claim link: your licence, fetched once.",
+    detail:
+      "A licence email carries a one-time link, not the key. Open it in Chrome and click Add it to Chrome on our licence claim page (https://licenses.nyuchi.com/claim). That page, and no other website or extension, can hand the link to the extension: the manifest names it alone, and the extension checks where the message came from and that the link's code has exactly the right shape, and does nothing with it but open its own licence page. The licence page then sends the link's code, and nothing else (no email, no cookies, no other key, no Toddle data), in one request to https://licenses.nyuchi.com/v1/claims/redeem, which returns your licence key once; the key is checked and stored on your machine exactly as a typed key is. The link works once, for 72 hours, and our licence server keeps only a fingerprint (hash) of its code. If you opened the link somewhere else, you can paste it into the licence page instead. Cloudflare, which runs the server, sees your IP address as with any web request. Keys from earlier emails can still be pasted.",
   },
   {
     claim: "Exports are local.",
     detail:
-      "The CSV export is generated in your browser and saved by your browser, to wherever your downloads go. It does not pass through any service of ours. Once saved, the file is yours, under your school's own rules for files.",
+      "The gradebook exports, an Excel workbook (gradebook-expanded.xlsx) or a CSV file (gradebook-expanded.csv), are generated in your browser and saved by your browser, to wherever your downloads go. They do not pass through any service of ours. Every text is written as text, so nothing from Toddle can run as a formula. Once saved, a file is yours, under your school's own rules for files.",
   },
   {
     claim: "Removing it removes what it stored.",
-    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The four small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled.`,
+    detail: `Uninstalling the extension deletes everything in its own storage on that computer. The three small values on Toddle's site stay until the browser's data for web.toddleapp.com is cleared; none of them is about a student. Removing a licence key deletes the key (on every computer signed in to the same Chrome account, so remove the licence before uninstalling if you want it gone from your Chrome account too); the last check's result and the Toddle account's email stay until the extension is uninstalled. A school's licence set through Chrome policy is not offered for removal in the extension; it is the school's IT that sets the policy.`,
   },
 ] as const;
 

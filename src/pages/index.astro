@@ -89,29 +89,31 @@ const before = [
   "An assessment tool is one icon per student; you open a side panel to read each result.",
   "Student flags are on screen when the gradebook goes on a projector or into a screen share.",
   "To see who a class's primary teacher is, you open the class.",
+  "When Toddle changes its page, a feature that relies on it can stop working without a word.",
 ];
 const after = [
-  "One column per standard, criterion or checklist item, every student's result visible at once, and the lot in one CSV.",
+  "One column per standard, criterion or checklist item, every student's result visible at once, and the lot in one Excel or CSV file.",
   "One free switch conceals what flags say, across Toddle, and stays as you left it.",
   "The primary teacher beside every class, so you know who to ask.",
+  "A compatibility check on the licence page says which feature a Toddle change affects, and pauses it cleanly.",
 ];
 
 const faq = [
   {
     q: "Does it send student data anywhere?",
-    a: `<p>No. It reads what Toddle already lets you see, with the session you are signed in with, and sends nothing it reads anywhere but back to Toddle. There is no account, no analytics and no tracking. The only outside connections are a daily check for cancelled licence keys, which carries no key and no data, and the feedback form when you press Send. <a class="link" href="/toddle-enhancement-extension#how-it-works">How it works</a>.</p>`,
+    a: `<p>No. It reads what Toddle already lets you see, with the session you are signed in with, and sends nothing it reads anywhere but back to Toddle. There is no account, no analytics and no tracking. The only outside connections are a daily check for cancelled licence keys, which carries no key and no data; the feedback form when you press Send, which also carries a Toddle compatibility report (masked, with no student data) when you send one or switch that on; and, when you use the one-time link from your licence email, one request that exchanges it for your key. <a class="link" href="/toddle-enhancement-extension#how-it-works">How it works</a>.</p>`,
   },
   {
     q: "What is free, and what does a licence add?",
-    a: `<p>Concealing student flags and the My classes filter are free, and always will be. A licence adds the per-criterion columns, CSV export, the student sidebar, the class view, primary teacher names and the Attendance dashboard's details. <a class="link" href="#pricing">See the prices</a>.</p>`,
+    a: `<p>Concealing student flags and the My classes filter are free, and always will be. A licence adds the per-criterion columns, Excel or CSV export, the student sidebar, the class view, primary teacher names and the Attendance dashboard's details. <a class="link" href="#pricing">See the prices</a>.</p>`,
   },
   {
     q: "Can our IT team install it for every teacher?",
-    a: `<p>Yes. It is on the Chrome Web Store, so IT can force-install it from the Google Admin console by its ID, or through Group Policy, Intune or a macOS profile. An organisation licence is one key for your school's email domain. <a class="link" href="/toddle-enhancement-extension#install">Deploying it</a>.</p>`,
+    a: `<p>Yes. It is on the Chrome Web Store, so IT can force-install it from the Google Admin console by its ID, or through Group Policy, Intune or a macOS profile. An organisation licence is one key for your school's email domain, and IT sets it for every teacher through Chrome policy, so nobody pastes a key. <a class="link" href="/toddle-enhancement-extension#install">Deploying it</a>.</p>`,
   },
   {
     q: "What if Toddle changes?",
-    a: `<p>Toddle does not publish an API for this, so a Toddle release can break a feature, usually by renaming something. When that happens the extension falls back rather than breaking the gradebook, and tells you what it could not expand. Report a break and we will chase it.</p>`,
+    a: `<p>Toddle does not publish an API for this, so a Toddle release can break a feature, usually by renaming something. The extension checks for that in your own Toddle tab: when Toddle has changed something, the licence page says which feature is affected, and that feature pauses cleanly rather than breaking the gradebook. Send us the report in one click (it carries no student data) and we will chase it.</p>`,
   },
   {
     q: "Can we get a refund?",
@@ -131,7 +133,7 @@ const faq = [
     badge={live ? `Live on the Chrome Web Store · version ${extensionVersions.current}` : undefined}
     subtitle="Nyuchi Learning"
     title="See your whole class at once."
-    description="The Toddle Enhancement Extension puts every rubric criterion in its own column, exports results to CSV, and conceals student flags with one free switch on a shared screen. Nothing from Toddle leaves your browser."
+    description="The Toddle Enhancement Extension puts every rubric criterion in its own column, exports results to Excel or CSV, and conceals student flags with one free switch on a shared screen. Nothing from Toddle leaves your browser."
     primaryCTA={{ text: live ? "Add to Chrome — it's free" : extensionCta.label, href: extensionCta.href, external: extensionCta.external }}
     secondaryCTA={{ text: "See pricing", href: "#pricing" }}
     mediaLabel="What Nyuchi Learning makes"
@@ -194,7 +196,7 @@ const faq = [
     <SectionHeader
       eyebrow="How it works"
       title="Nothing from Toddle leaves your browser."
-      description="The extension reads what Toddle already shows you and redraws it on your screen. Here is everything it touches, and the only two things that ever go anywhere else."
+      description="The extension reads what Toddle already shows you and redraws it on your screen. Here is everything it touches, and the only three things that ever go anywhere else."
     />
     <div class="mt-10 md:mt-14">
       <DataFlow />
@@ -286,7 +288,7 @@ const faq = [
         <h3 class="mt-3 font-serif text-h3 text-foreground text-balance">{toddleExtension.name}</h3>
         <p class="mt-3 flex-1 text-body text-muted-foreground text-pretty">
           A Chrome extension for the Toddle gradebook. It expands every rubric into
-          per-criterion columns, exports the lot to CSV, and conceals student flags with
+          per-criterion columns, exports the lot to Excel or CSV, and conceals student flags with
           one free switch when you share your screen.
         </p>
         <div class="mt-6 flex flex-wrap items-center gap-3">
