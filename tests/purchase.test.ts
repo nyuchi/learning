@@ -15,18 +15,25 @@ const read = (path: string) => readFileSync(join(root, path), "utf8");
 const page = read("src/pages/toddle-enhancement-extension.astro");
 const pricing = read("src/components/ExtensionPricing.astro");
 
+/** `html` with every tag left out: everything from a "<" to the next ">". */
+const textOf = (html: string) => {
+  let text = "";
+  let inTag = false;
+  for (const ch of html) {
+    if (ch === "<") inTag = true;
+    else if (ch === ">") inTag = false;
+    else if (!inTag) text += ch;
+  }
+  return text;
+};
+
 /** The text from `start` to the end of its paragraph, as one line. */
 const paragraph = (source: string, start: string) => {
   const at = source.indexOf(start);
   expect(at, start).toBeGreaterThan(-1);
-  return (
-    source
-      .slice(at, source.indexOf("</p>", at))
-      .replace(/<[^>]+>/g, "")
-      // Drop any "<" a nested or broken tag left behind, so no tag can
-      // survive the strip (CodeQL js/incomplete-multi-character-sanitization).
-      .replace(/</g, "")
-      .replace(/\s+/g, " ")
+  return textOf(source.slice(at, source.indexOf("</p>", at))).replace(
+    /\s+/g,
+    " ",
   );
 };
 const afterPaying = paragraph(page, "After paying.");
