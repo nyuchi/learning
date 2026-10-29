@@ -68,6 +68,12 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **The data page lists licence claim links under What Nyuchi holds.** The
+  licence server keeps a record for each one-time claim link: a hash of the
+  link, never the link itself, the licence it belongs to, the address it was
+  emailed to, and when and how it was used. The page now says so, from the
+  licence server's `claim_tokens` table.
+
 - **0.12.0 is on the Chrome Web Store, and is the current version.** The
   owner confirmed it was published on 29 October 2026.
   `extensionVersions.current` is 0.12.0, and the legal pages' date moves to
