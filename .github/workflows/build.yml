@@ -20,13 +20,13 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # Nothing here pushes, so the token is not left in .git/config for
           # every later step (and every npm install script) to read.
           persist-credentials: false
 
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: "22"
           cache: "npm"
@@ -50,13 +50,13 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # Nothing here pushes, so the token is not left in .git/config for
           # every later step (and every npm install script) to read.
           persist-credentials: false
 
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: "22"
           cache: "npm"
@@ -70,16 +70,16 @@ jobs:
       # scripts/audit.mjs is `npm audit --audit-level=high --omit=dev` with a
       # dated list of advisories set aside by ID (npm audit cannot ignore one).
       # Each entry says why it is safe and when to recheck; past that date the
-      # step fails again. Today: GHSA-ch52-4w7c-c8xp (http-cache-semantics, no
-      # patched release; astro uses it only at build time), recheck 2026-11-03.
+      # step fails again. Today the list is empty: GHSA-ch52-4w7c-c8xp
+      # (http-cache-semantics) was fixed upstream and its entry removed.
       - name: Audit what ships
         run: node scripts/audit.mjs
 
       # Build and test tooling, reported but not blocking. None of it ships:
       # the site is static HTML. Blocking on an advisory in a build tool with
       # no non-breaking fix would pin this job red and train everyone to
-      # ignore it, so it is surfaced in the log instead. Today that is
-      # postcss-selector-parser, through @tailwindcss/typography.
+      # ignore it, so it is surfaced in the log instead. Today it reports
+      # nothing.
       - name: Report advisories in build and test tooling
         continue-on-error: true
         run: npm audit --audit-level=moderate
