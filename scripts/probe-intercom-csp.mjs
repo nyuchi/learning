@@ -152,7 +152,8 @@ if (blocked.size === 0 && refused.length === 0) {
   );
 } else {
   console.log("\nBLOCKED — add these to the policy in vercel.json:");
-  for (const entry of [...blocked].sort()) console.log(`  ${entry}`);
+  for (const entry of [...blocked].sort((a, b) => a.localeCompare(b)))
+    console.log(`  ${entry}`);
   for (const entry of refused) console.log(`  ${entry}`);
 }
 

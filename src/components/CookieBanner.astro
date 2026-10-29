@@ -433,7 +433,7 @@ import { legal } from "../data/legal";
        says what opening it loads is an unambiguous affirmative act, and it gets
        recorded like any other answer rather than treated as a special case. */
     grant(id: CategoryId) {
-      save({ ...(record ?? {}), [id]: true });
+      save({ ...record, [id]: true });
     },
     onChange(listener: () => void) {
       listeners.push(listener);
