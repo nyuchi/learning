@@ -98,6 +98,24 @@ export const taggedTestBuilds: readonly string[] = [
 /** Newest first. */
 export const releases: Release[] = [
   {
+    /* Published on the Chrome Web Store on 29 October 2026: approved that
+       morning and published by the owner, confirmed by the store's update
+       service serving 0.13.0. */
+    version: "0.13.0",
+    status: "store",
+    date: "2026-10-29",
+    summary:
+      "Licence claim links work. In 0.12.0, opening the link from a licence email and clicking Add it to Chrome could say the licence server could not be reached, and the licence was not added. Nothing else changes, and a licence already added keeps working.",
+    sections: [
+      {
+        heading: "Fixed",
+        items: [
+          "Opening a licence link from your email and clicking Add it to Chrome now adds the licence. If a link did not work for you in 0.12.0 and it was sent less than 72 hours ago, open it again; otherwise ask us for a new one.",
+        ],
+      },
+    ],
+  },
+  {
     /* The owner confirmed it was published on the Chrome Web Store on
        29 October 2026. The test builds after 0.10.0 open these notes: their
        changes reached the store here. */
