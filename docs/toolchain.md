@@ -71,9 +71,13 @@ EditorConfig and markdownlint. SonarQube for IDE runs without a
 
 - **Dependency audit:** the `audit` job in `build.yml` (README, "Dependency
   audit").
-- **Dependency review:** on every pull request, the org's
-  `reusable-dependency-review.yml` fails a change that adds or updates a
-  dependency with a known high or critical advisory.
+- **Dependency review:** on every pull request,
+  `actions/dependency-review-action` fails a change that adds or updates a
+  dependency with a known high or critical advisory. It is the step the org's
+  `reusable-dependency-review.yml` runs, called directly because that
+  workflow cannot set an advisory aside, and GitHub's dependency graph reads
+  Vite+'s aliased core (`vite` → `@voidzero-dev/vite-plus-core`) as Vite 1.4.0.
+  `build.yml` lists the four advisories set aside for that, and why.
 - **CodeQL:** GitHub's default setup (repository settings) scans the
   JavaScript and TypeScript and the workflows. Default setup and a CodeQL
   workflow are alternatives, so there is no workflow here.

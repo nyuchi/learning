@@ -13,8 +13,9 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 - **Shift-left security checks (#77).** A pre-commit hook
   (`.githooks/pre-commit`, turned on by `npm ci`) runs both formatters as the
   org gates do, `vp lint --deny-warnings`, and Semgrep on the staged files
-  when it is installed. Pull requests get the org's dependency review, which
-  fails on a new high or critical advisory. `.vscode/extensions.json`
+  when it is installed. Pull requests get dependency review, which fails on a
+  new high or critical advisory (the org's step, called directly so the four
+  advisories GitHub misreads for Vite+'s aliased core can be set aside). `.vscode/extensions.json`
   recommends Astro, Oxc, Prettier, Semgrep, SonarQube for IDE, EditorConfig
   and markdownlint. See `docs/toolchain.md`.
 - **Mukoko Lingo has its own page, `/mukoko-lingo`.** Mukoko Lingo is a

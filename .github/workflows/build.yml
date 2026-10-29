@@ -84,15 +84,40 @@ jobs:
         continue-on-error: true
         run: npm audit --audit-level=moderate
 
+
   # A pull request that adds or changes a dependency with a known high or
   # critical vulnerability fails (runtime and development dependencies
-  # both), through the organisation's reusable workflow, pinned as the other
-  # nyuchi/.github workflows are (#77; as in toddle-enhancement-extension).
+  # both) (#77). This is the step nyuchi/.github's
+  # reusable-dependency-review.yml runs, at the same pins, called directly
+  # for one reason: that workflow has no way to set an advisory aside, and
+  # GitHub's dependency graph misreads one package here. Vite+ installs its
+  # own core under the alias `vite` (node_modules/vite-plus/node_modules/vite
+  # is npm:@voidzero-dev/vite-plus-core), so the graph reports "vite@1.4.0"
+  # and matches it against advisories for Vite 1.x and 2.x and for Vite
+  # 8.3.0-8.3.2. None applies: the package is vite-plus-core 1.4.0, and
+  # `npm audit`, which reads the real name, reports nothing for it. The four
+  # IDs below are those; the real Vite (8.3.5 today) is still checked by
+  # `npm audit` in the audit job. Go back to the reusable workflow once it
+  # takes `allow-ghsas`, or once the graph resolves npm aliases.
   dependency-review:
     if: github.event_name == 'pull_request'
+    name: dependency review
     permissions:
       contents: read
       pull-requests: write
-    uses: nyuchi/.github/.github/workflows/reusable-dependency-review.yml@c2be05a22aeb6a98a80a9301f6b3e33bb88b20b0  # v0.2.0
-    with:
-      fail-on-severity: high
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: on-failure
+          fail-on-scopes: runtime, development
+          allow-ghsas: >-
+            GHSA-mv48-hcvh-8jj8,
+            GHSA-353f-5xf4-qw67,
+            GHSA-587h-7wmj-h5pm,
+            GHSA-c27g-q93r-2cwf
