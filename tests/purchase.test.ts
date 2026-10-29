@@ -19,10 +19,15 @@ const pricing = read("src/components/ExtensionPricing.astro");
 const paragraph = (source: string, start: string) => {
   const at = source.indexOf(start);
   expect(at, start).toBeGreaterThan(-1);
-  return source
-    .slice(at, source.indexOf("</p>", at))
-    .replace(/<[^>]+>/g, "")
-    .replace(/\s+/g, " ");
+  return (
+    source
+      .slice(at, source.indexOf("</p>", at))
+      .replace(/<[^>]+>/g, "")
+      // Drop any "<" a nested or broken tag left behind, so no tag can
+      // survive the strip (CodeQL js/incomplete-multi-character-sanitization).
+      .replace(/</g, "")
+      .replace(/\s+/g, " ")
+  );
 };
 const afterPaying = paragraph(page, "After paying.");
 const checkout = paragraph(pricing, "Checkout is through Buy Me a Coffee.");
