@@ -1,0 +1,58 @@
+---
+/**
+ * Four facts a school asks before it trusts the extension, in one row: the
+ * proof that exists today. Each is said, at length, in the product page's
+ * "What it can see, precisely" and in the privacy policy; keep them in step.
+ *
+ * TODO(owner): real proof would sit beside these: a quote from a teacher or
+ * an IT lead (with their permission and their school's), the Chrome Web
+ * Store rating once there are enough reviews, or a count of schools on an
+ * organisation licence. None is shown until it is real.
+ */
+import Icon from "@bundu/ui/Icon.astro";
+import type { IconName } from "@bundu/ui/Icon.astro";
+
+interface Props {
+  class?: string;
+}
+const { class: className } = Astro.props;
+
+const points: { icon: IconName; title: string; body: string }[] = [
+  {
+    icon: "globe",
+    title: "Runs only on Toddle",
+    body: "It has no access to any other website.",
+  },
+  {
+    icon: "shield-check",
+    title: "Reads, never writes",
+    body: "Every request is a read. Writes are blocked outright.",
+  },
+  {
+    icon: "activity",
+    title: "No tracking",
+    body: "No account, no analytics and no remote code.",
+  },
+  {
+    icon: "key",
+    title: "Licence checked locally",
+    body: "Activating a key contacts nothing and works offline.",
+  },
+];
+---
+
+<ul class:list={["grid gap-x-6 gap-y-6 sm:grid-cols-2 lg:grid-cols-4", className]}>
+  {
+    points.map((point) => (
+      <li class="flex min-w-0 gap-3">
+        <span class="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-malachite-container text-malachite-on-container">
+          <Icon name={point.icon} class="h-4 w-4" />
+        </span>
+        <div class="min-w-0">
+          <p class="text-body-sm font-semibold text-foreground">{point.title}</p>
+          <p class="mt-0.5 text-body-sm text-muted-foreground text-pretty">{point.body}</p>
+        </div>
+      </li>
+    ))
+  }
+</ul>

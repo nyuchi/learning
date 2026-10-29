@@ -60,11 +60,17 @@ export const primaryNav: NavLink[] = [
   { label: "Frameworks", href: "https://bundu.org/education", external: true },
 ];
 
+/** The header's quieter link, beside the page's primary call to action. */
 export const headerCta: NavLink = {
   label: "Talk to us",
   href: "https://nyuchi.com/contact",
   external: true,
 };
+
+/** A page's one primary call to action, shown in the header. `short` is the
+    label at phone width, where the full one would push the wordmark onto two
+    lines. */
+export type HeaderAction = NavLink & { short?: string };
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
   {

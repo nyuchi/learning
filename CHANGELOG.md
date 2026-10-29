@@ -10,6 +10,29 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Added
 
+- **The site is redesigned as a funnel, on @bundu/ui's own components.**
+  The home page, the extension page and the Mukoko Lingo page now open with
+  the kit's split `Hero` (the product screenshot, or a card of what Nyuchi
+  Learning makes with each one's real status), a strip of short, documented
+  facts, and sections built from `Section` and `SectionHeader` in
+  nyuchi.com's rhythm: alternating surfaces, headers that sit over
+  full-width grids rather than in a narrow column against the left edge of
+  a wide screen. The home page runs hero → how it works → the gradebook
+  before and after → the two products → pricing (free, individual,
+  organisation) → proof → FAQ → a closing call to action; the product pages
+  run problem → outcome → how it works → pricing → FAQ → call to action,
+  keeping every claim they made before. New: a data-flow diagram
+  (`DataFlow.astro`) of what the extension touches inside the browser and
+  the only things that cross that line, a two-lane "how it works" for
+  Mukoko Lingo (`LingoFlow.astro`), and a `<details>` FAQ that needs no
+  JavaScript. The header carries the page's primary call to action ("Add to
+  Chrome", or "Start learning" on the Lingo page), with "Talk to us" beside
+  it on wide screens, and no longer wraps at phone width. The releases page
+  has a version index: a sticky sidebar from `lg`, a row of chips on a
+  phone. The cookie banner is a single compact bar on wide screens and a
+  short sheet on a phone, so it no longer covers a page's headline and first
+  call to action; what it asks, and what happens before an answer, are
+  unchanged.
 - **Shift-left security checks (#77).** A pre-commit hook
   (`.githooks/pre-commit`, turned on by `npm ci`) runs both formatters as the
   org gates do, `vp lint --deny-warnings`, and Semgrep on the staged files

@@ -19,7 +19,7 @@ const { href = "/", class: className = "" } = Astro.props;
 
 <a
   href={href}
-  class={`inline-flex items-center gap-2.5 font-serif text-h5 font-bold text-foreground ${className}`}
+  class={`inline-flex items-center gap-2.5 whitespace-nowrap font-serif text-h5 font-bold text-foreground ${className}`}
   aria-label={`${site.wordmark} — home`}
 >
   <span class="mark" aria-hidden="true">
