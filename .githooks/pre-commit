@@ -1,0 +1,10 @@
+#!/bin/sh
+# The fast local copy of CI's lint and static security tests:
+# scripts/pre-commit.mjs. Turned on by `npm ci` (scripts/install-hooks.mjs).
+if ! command -v node >/dev/null 2>&1; then
+  # A Git client started without the shell's PATH (a GUI app, say) may not
+  # find Node: say so and let the commit through; CI runs the same checks.
+  echo "pre-commit: node is not on this PATH, so the checks were skipped (CI runs them)" >&2
+  exit 0
+fi
+exec node scripts/pre-commit.mjs

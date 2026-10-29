@@ -49,6 +49,13 @@ npm run format:check # the org lint gate runs this
 npm run fmt          # vp fmt; the org vite-plus gate runs `vp fmt --check`
 ```
 
+## Before a commit
+
+`npm ci` turns on `.githooks/pre-commit`, which checks both formatters and the
+lint, and runs Semgrep on the staged files if you have it installed. It takes a
+few seconds. `docs/toolchain.md` says what it runs; your editor can show the
+same problems as you type with the extensions in `.vscode/extensions.json`.
+
 ## Keeping the clone light
 
 `npm run clean` (`scripts/clean.mjs`) removes what the build and the tools

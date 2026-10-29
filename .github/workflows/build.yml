@@ -5,8 +5,8 @@ on:
   push:
     branches: [main, staging]
 
-# Nothing at the workflow level: each job asks for what it uses, and no job
-# here pushes, tags or comments, so each reads the repository and no more.
+# Nothing at the workflow level: each job asks for what it uses. No job here
+# pushes or tags; only dependency review may comment, on the pull request.
 permissions: {}
 
 concurrency:
@@ -20,13 +20,13 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # Nothing here pushes, so the token is not left in .git/config for
           # every later step (and every npm install script) to read.
           persist-credentials: false
 
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: "22"
           cache: "npm"
@@ -50,13 +50,13 @@ jobs:
       contents: read
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           # Nothing here pushes, so the token is not left in .git/config for
           # every later step (and every npm install script) to read.
           persist-credentials: false
 
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: "22"
           cache: "npm"
@@ -70,16 +70,54 @@ jobs:
       # scripts/audit.mjs is `npm audit --audit-level=high --omit=dev` with a
       # dated list of advisories set aside by ID (npm audit cannot ignore one).
       # Each entry says why it is safe and when to recheck; past that date the
-      # step fails again. Today: GHSA-ch52-4w7c-c8xp (http-cache-semantics, no
-      # patched release; astro uses it only at build time), recheck 2026-11-03.
+      # step fails again. Today the list is empty: GHSA-ch52-4w7c-c8xp
+      # (http-cache-semantics) was fixed upstream and its entry removed.
       - name: Audit what ships
         run: node scripts/audit.mjs
 
       # Build and test tooling, reported but not blocking. None of it ships:
       # the site is static HTML. Blocking on an advisory in a build tool with
       # no non-breaking fix would pin this job red and train everyone to
-      # ignore it, so it is surfaced in the log instead. Today that is
-      # postcss-selector-parser, through @tailwindcss/typography.
+      # ignore it, so it is surfaced in the log instead. Today it reports
+      # nothing.
       - name: Report advisories in build and test tooling
         continue-on-error: true
         run: npm audit --audit-level=moderate
+
+
+  # A pull request that adds or changes a dependency with a known high or
+  # critical vulnerability fails (runtime and development dependencies
+  # both) (#77). This is the step nyuchi/.github's
+  # reusable-dependency-review.yml runs, at the same pins, called directly
+  # for one reason: that workflow has no way to set an advisory aside, and
+  # GitHub's dependency graph misreads one package here. Vite+ installs its
+  # own core under the alias `vite` (node_modules/vite-plus/node_modules/vite
+  # is npm:@voidzero-dev/vite-plus-core), so the graph reports "vite@1.4.0"
+  # and matches it against advisories for Vite 1.x and 2.x and for Vite
+  # 8.3.0-8.3.2. None applies: the package is vite-plus-core 1.4.0, and
+  # `npm audit`, which reads the real name, reports nothing for it. The four
+  # IDs below are those; the real Vite (8.3.5 today) is still checked by
+  # `npm audit` in the audit job. Go back to the reusable workflow once it
+  # takes `allow-ghsas`, or once the graph resolves npm aliases.
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    name: dependency review
+    permissions:
+      contents: read
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - uses: actions/dependency-review-action@a1d282b36b6f3519aa1f3fc636f609c47dddb294 # v5.0.0
+        with:
+          fail-on-severity: high
+          comment-summary-in-pr: on-failure
+          fail-on-scopes: runtime, development
+          allow-ghsas: >-
+            GHSA-mv48-hcvh-8jj8,
+            GHSA-353f-5xf4-qw67,
+            GHSA-587h-7wmj-h5pm,
+            GHSA-c27g-q93r-2cwf
