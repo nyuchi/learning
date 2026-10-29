@@ -1,0 +1,153 @@
+---
+/**
+ * How the Toddle Enhancement Extension handles data, drawn as a flow:
+ * Toddle in your tab → the extension, on your machine → what you see, all
+ * inside a dashed "your browser" boundary, and below it the only things that
+ * cross that line.
+ *
+ * Every sentence is one the site already makes (the "What it can see,
+ * precisely" facts on the product page, the privacy policy and
+ * `extensionDataFacts` in src/data/legal.ts), for the version on the Chrome
+ * Web Store (`extensionVersions.current`). If what the extension sends
+ * changes, change it there first and then here. The claim-link redemption the
+ * store listing describes ships in 0.12.0; add it as a third crossing when
+ * that version is `current`.
+ *
+ * It is HTML, not a picture: the text is the text alternative, it reflows to
+ * a vertical flow at phone width, and it takes its colours from @bundu/ui
+ * tokens, so it works in both themes. Composed from the kit's Card and Icon.
+ * Neither @bundu/ui nor Mzizi has a diagram component; this is a candidate to
+ * upstream as a generic "flow" (steps + boundary + crossings).
+ */
+import Card from "@bundu/ui/Card.astro";
+import Icon from "@bundu/ui/Icon.astro";
+import type { IconName } from "@bundu/ui/Icon.astro";
+import { extensionVersions } from "../data/legal";
+
+interface Props {
+  /** Prefix for the ids inside, if the diagram appears twice on a page. */
+  id?: string;
+}
+const { id = "data-flow" } = Astro.props;
+
+const steps: { icon: IconName; label: string; title: string; body: string }[] = [
+  {
+    icon: "globe",
+    label: "1",
+    title: "Toddle, in your tab",
+    body: "You sign in to Toddle as usual. The extension runs on web.toddleapp.com and nowhere else.",
+  },
+  {
+    icon: "layers",
+    label: "2",
+    title: "The extension, on your machine",
+    body: "It reads what Toddle already lets you see, through read-only queries and the session you are signed in with. It never asks for your password, and writes are blocked outright.",
+  },
+  {
+    icon: "grid",
+    label: "3",
+    title: "On your screen",
+    body: "Per-criterion columns, the student sidebar, and a CSV your browser saves. Student data is held in the tab's memory and never written to storage.",
+  },
+];
+
+const crossings: { icon: IconName; tag: string; title: string; body: string }[] = [
+  {
+    icon: "server",
+    tag: "Back to Toddle",
+    title: "Toddle's own servers",
+    body: "The queries go to Toddle with your own sign-in, as Toddle's page does. What comes back goes nowhere else.",
+  },
+  {
+    icon: "key",
+    tag: "Only with a licence",
+    title: "Our licence server",
+    body: "At most once a day, a request for a signed list of cancelled keys. It sends no key, no identifiers and no Toddle data. If it fails, your licence keeps working.",
+  },
+  {
+    icon: "message",
+    tag: "Only when you press Send",
+    title: "The feedback form",
+    body: "What you typed and the version number, to our feedback form, processed by Formspree. Nothing from Toddle is included.",
+  },
+];
+---
+
+<figure class="mx-auto max-w-6xl" aria-labelledby={`${id}-caption`}>
+  <div
+    class="relative rounded-2xl border-2 border-dashed border-border bg-background/60 px-4 pb-5 pt-9 sm:px-6 md:px-8 md:pb-8 md:pt-10"
+  >
+    <p
+      class="absolute -top-3.5 left-4 inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1 text-caption font-semibold text-foreground sm:left-6 md:left-8"
+    >
+      <Icon name="shield-check" class="h-3.5 w-3.5 text-malachite" />
+      Inside your browser
+    </p>
+
+    <ol class="grid gap-10 md:grid-cols-3 md:gap-12">
+      {
+        steps.map((step, index) => (
+          <li class="relative min-w-0">
+            <Card
+              class:list={[
+                "h-full gap-3 px-5 md:px-6",
+                index === 1 && "ring-2 ring-primary",
+              ]}
+            >
+              <div class="flex items-center gap-3">
+                <span class="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted text-foreground">
+                  <Icon name={step.icon} class="h-[18px] w-[18px]" />
+                </span>
+                <p class="font-serif text-h5 text-foreground text-balance">
+                  <span class="sr-only">Step {step.label}: </span>
+                  {step.title}
+                </p>
+              </div>
+              <p class="text-body-sm text-muted-foreground text-pretty">{step.body}</p>
+            </Card>
+            {index < steps.length - 1 && (
+              <span
+                aria-hidden="true"
+                class="absolute left-1/2 -bottom-8 flex h-6 w-6 -translate-x-1/2 rotate-90 items-center justify-center text-muted-foreground md:left-auto md:top-1/2 md:-right-9 md:bottom-auto md:translate-x-0 md:-translate-y-1/2 md:rotate-0"
+              >
+                <Icon name="arrow-right" class="h-5 w-5" />
+              </span>
+            )}
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+
+  <div class="mt-8 md:mt-10">
+    <p class="text-center text-caption font-semibold uppercase tracking-wider text-muted-foreground">
+      What crosses that line, and nothing else
+    </p>
+    <ul class="mt-5 grid gap-4 md:grid-cols-3 md:gap-6">
+      {
+        crossings.map((crossing) => (
+          <li class="min-w-0 rounded-lg border border-border bg-card p-5">
+            <div class="flex items-center gap-2.5">
+              <Icon name={crossing.icon} class="h-4 w-4 shrink-0 text-muted-foreground" />
+              <p class="text-body-sm font-semibold text-foreground">{crossing.title}</p>
+            </div>
+            <p class="mt-1 text-caption text-muted-foreground">{crossing.tag}</p>
+            <p class="mt-3 text-body-sm text-muted-foreground text-pretty">{crossing.body}</p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <figcaption
+    id={`${id}-caption`}
+    class="mx-auto mt-8 flex max-w-2xl items-start justify-center gap-2.5 text-center text-body-sm text-foreground text-pretty"
+  >
+    <Icon name="shield-check" class="mt-0.5 h-4 w-4 shrink-0 text-malachite" />
+    <span>
+      No account, no analytics, no tracking and no remote code. Nothing it reads from
+      Toddle is sent anywhere but back to Toddle. Version {extensionVersions.current},
+      as on the Chrome Web Store.
+    </span>
+  </figcaption>
+</figure>

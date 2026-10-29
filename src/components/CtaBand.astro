@@ -1,0 +1,45 @@
+---
+/**
+ * The closing call to action every product page ends on: one heading, one
+ * line, at most two pills (the same rule as the hero). Composed from the
+ * kit's Section and SectionHeader, with its .btn-* pills (the kit's
+ * CtaButton, which Hero uses, is not exported from @bundu/ui 0.5 or 0.7).
+ */
+import Section from "@bundu/ui/Section.astro";
+import SectionHeader from "@bundu/ui/SectionHeader.astro";
+
+interface Action {
+  text: string;
+  href: string;
+  external?: boolean;
+}
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  primary: Action;
+  secondary?: Action;
+}
+const { eyebrow, title, description, primary, secondary } = Astro.props;
+---
+
+<Section bg="secondary" class="border-t border-border">
+  <SectionHeader eyebrow={eyebrow} title={title} description={description} align="center" size="h1" />
+  <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+    <a href={primary.href} {...(primary.external ? { rel: "noopener noreferrer" } : {})} class="btn-primary">
+      {primary.text}
+    </a>
+    {
+      secondary && (
+        <a
+          href={secondary.href}
+          {...(secondary.external ? { rel: "noopener noreferrer" } : {})}
+          class="btn-outline"
+        >
+          {secondary.text}
+        </a>
+      )
+    }
+  </div>
+  <slot />
+</Section>
