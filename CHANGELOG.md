@@ -10,6 +10,10 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Added
 
+- **The Chrome Web Store numbers on the home page.** The proof section
+  says what the store listing shows, dated: rated 5.0 out of 5 (1 rating),
+  27 users, as of 29 October 2026, from `toddleExtension.storeStats` in
+  `src/data/site.ts`.
 - **The site is redesigned as a funnel, on @bundu/ui's own components.**
   The home page, the extension page and the Mukoko Lingo page now open with
   the kit's split `Hero` (the product screenshot, or a card of what Nyuchi

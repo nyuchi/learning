@@ -178,6 +178,14 @@ export const toddleExtension = {
   /** The Chrome Web Store listing (live since version 0.7.1). */
   webStore:
     "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as Url,
+  /** What the Chrome Web Store listing showed, read by the owner on the
+      date given. Update all three together; never round up. */
+  storeStats: {
+    rating: "5.0",
+    ratings: 1,
+    users: 27,
+    asOf: "29 October 2026",
+  },
   /** The store item ID, which a school's IT uses to force-install it. */
   extensionId: "ofliokikjmkkdkinbdnadbjjdmkjdjfi",
   supportEmail: "support@nyuchi.com",

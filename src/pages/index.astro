@@ -395,6 +395,15 @@ const faq = [
       </div>
       <div class="lg:col-span-8 lg:pt-10">
         <TrustPoints />
+        <p class="mt-8 text-body-sm text-muted-foreground">
+          On the
+          <a href={toddleExtension.webStore} class="link" target="_blank" rel="noopener noreferrer"
+            >Chrome Web Store</a
+          >: rated {toddleExtension.storeStats.rating} out of 5
+          ({toddleExtension.storeStats.ratings}
+          {toddleExtension.storeStats.ratings === 1 ? "rating" : "ratings"}), with
+          {toddleExtension.storeStats.users} users, as of {toddleExtension.storeStats.asOf}.
+        </p>
         <!-- TODO(owner): a real quote from a teacher or IT lead goes here,
              with their name, role and school, and their permission. -->
       </div>
