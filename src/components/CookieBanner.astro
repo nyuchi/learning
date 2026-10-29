@@ -38,16 +38,15 @@ import { legal } from "../data/legal";
   hidden
 >
   <div class="consent-inner card">
-    <div>
-      <h2 id="consent-heading" class="font-serif text-h4 text-foreground">
+    <div class="consent-copy">
+      <h2 id="consent-heading" class="consent-heading font-serif text-foreground">
         Your choice, before we measure anything
       </h2>
-      <p class="mt-2 text-body-sm text-muted-foreground text-pretty">
-        Nothing optional is switched on. Choose all of it, some of it, or none —
-        the site works the same either way. You can change this at any time from
-        <strong class="text-foreground">Cookie choices</strong> at the bottom of any
-        page, and the <a href="/legal/cookies" class="link">cookie policy</a> lists
-        each one.
+      <p class="mt-1 text-body-sm text-muted-foreground text-pretty">
+        Nothing optional is on until you choose, and the site works the same either way.
+        Change it any time from <strong class="text-foreground">Cookie choices</strong> at
+        the foot of any page; the <a href="/legal/cookies" class="link">cookie policy</a>
+        lists each one.
       </p>
     </div>
 
@@ -125,22 +124,33 @@ import { legal } from "../data/legal";
     pointer-events: none;
   }
 
+  /* Compact on purpose: on a phone it is a short sheet with the three
+     choices on one row, and from 48rem up a single bar with the words on the
+     left and the choices on the right, so it never sits over a page's
+     headline and first call to action. Nothing about what it asks changed. */
   .consent-inner {
     pointer-events: auto;
     width: 100%;
-    max-width: 46rem;
+    max-width: 72rem;
     max-height: min(80vh, 40rem);
     overflow-y: auto;
-    padding: 1.15rem 1.35rem 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    padding: 0.9rem 1rem 1rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.75rem 1.5rem;
+    align-items: center;
+    box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--color-foreground) 25%, transparent);
+  }
+
+  .consent-heading {
+    font-size: 1rem;
+    line-height: 1.35;
+    font-weight: 600;
   }
 
   .consent-actions {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
+    gap: 0.5rem;
   }
 
   /* Reject and Accept must be indistinguishable in prominence. Sizing them
@@ -148,10 +158,26 @@ import { legal } from "../data/legal";
      when someone edits this later. */
   .consent-btn {
     height: 2.5rem !important;
-    padding-inline: 1.15rem !important;
+    padding-inline: 0.75rem !important;
     font-size: 0.875rem;
-    flex: 1 1 auto;
-    min-width: 8rem;
+    flex: 1 1 0;
+    min-width: 0;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 48rem) {
+    .consent-inner {
+      grid-template-columns: minmax(0, 1fr) auto;
+      padding: 1rem 1.25rem;
+    }
+    .consent-panel {
+      grid-column: 1 / -1;
+    }
+    .consent-btn {
+      flex: 0 0 auto;
+      min-width: 8rem;
+      padding-inline: 1.15rem !important;
+    }
   }
 
   .consent-panel {
@@ -235,13 +261,30 @@ import { legal } from "../data/legal";
     gap: 0.75rem 1rem;
   }
 
-  @media (max-width: 30rem) {
-    /* Clear of the Support button, which owns the bottom-right corner. */
+  /* Clear of the Support button, which owns the bottom-right corner: beside
+     it from 30rem up, above it on a phone. */
+  @media (min-width: 30.0625rem) {
     .consent {
-      padding-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+      padding-right: 9rem;
     }
-    .consent-btn {
-      flex: 1 1 100%;
+  }
+
+  @media (max-width: 30rem) {
+    .consent {
+      padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+    }
+    /* On a phone the heading is read, not shown: the sentence under it says
+       the same, and every line saved is a line of the page left uncovered. */
+    .consent-heading {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+    .consent-copy p {
+      margin-top: 0;
     }
   }
 </style>

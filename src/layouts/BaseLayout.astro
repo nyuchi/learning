@@ -13,7 +13,7 @@ import SupportWidget from "../components/SupportWidget.astro";
 import Analytics from "../components/Analytics.astro";
 import CookieBanner from "../components/CookieBanner.astro";
 import SiteHeader from "../components/SiteHeader.astro";
-import { site } from "../data/site";
+import { site, type HeaderAction } from "../data/site";
 
 interface Props {
   title: string;
@@ -25,6 +25,8 @@ interface Props {
   schema?: Record<string, unknown>[];
   /** Keep the page out of search results, e.g. a thank-you page. */
   noindex?: boolean;
+  /** The header's primary call to action. Defaults to installing the extension. */
+  action?: HeaderAction;
 }
 
 const {
@@ -34,6 +36,7 @@ const {
   ogType = "website",
   schema = [],
   noindex = false,
+  action,
 } = Astro.props;
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, site.url).toString();
 
@@ -169,7 +172,7 @@ const schemaGraph = {
          than reimplemented, so it stays identical across every surface. -->
     <MineralStrip />
 
-    <SiteHeader />
+    <SiteHeader action={action} />
     <main id="main" class="flex-1">
       <slot />
     </main>
