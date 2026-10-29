@@ -31,7 +31,7 @@ community-based platforms. Nyuchi Web Services is its development division.
   It conceals flags, not names. Free: the flag switch and a "My classes"
   filter on the Toddle home page. With a licence (US$5 a year for one
   teacher, US$149.99 a year for a school's email domain): the per-criterion
-  gradebook columns, CSV export, primary teacher names, the Attendance
+  gradebook columns, Excel or CSV export, primary teacher names, the Attendance
   dashboard's details, and the student sidebar. An individual
   licence holder is offered the upgrade to their school's licence, with the
   code BXXF20VA, which takes US$7 off the organisation licence only. The sidebar works anywhere a
@@ -72,33 +72,52 @@ community-based platforms. Nyuchi Web Services is its development division.
   email domain), which is compared with the signed-in Toddle account inside
   the browser only. An organisation licence is one key for the school's
   email domain: anyone signed in to Toddle with an address at that domain is
-  covered. The sidebar asks Toddle for a student's
+  covered. Since 0.12.0 the school's IT sets it for every teacher as Chrome
+  policy for the extension (Google Admin's Policy for extensions, the
+  Windows registry or a macOS profile); an organisation key cannot be typed
+  or pasted into the extension, and one pasted into an earlier version is
+  removed. Each feature checks, in the teacher's own Toddle tab, that it
+  still finds what it relies on in Toddle's page; the licence page's Toddle
+  compatibility card says which feature a Toddle change affects, and that
+  feature pauses cleanly. The sidebar asks Toddle for a student's
   active flags each time it opens, and keeps them only while it is open. Apart
-  from Toddle, it has two outside connections, neither carrying Toddle
+  from Toddle, it has three outside connections, none carrying Toddle
   data. (1) Opt-in feedback: the toolbar menu's "Send feedback" form, which, only when the person presses
   Send, sends what they typed (topic, message, and an email only if they
   enter one) plus the extension's version number to Nyuchi's feedback form,
   processed by Formspree; no student data, no page address, no licence key.
-  (2) Only while a licence is entered, at most once a day, the background
+  A Toddle compatibility report (what changed in the structure of Toddle's
+  page, masked: no names, emails, marks, comments, ids or free text) goes
+  through the same form, only when the teacher presses Send report or has
+  switched on sending them automatically (off by default).
+  (2) Only while there is a licence key, at most once a day, the background
   worker makes one plain request to https://licenses.nyuchi.com/v1/revocations
   (versions before 0.9.0 asked licences.nyuchi.dev, the same server),
   sending no licence key, no identifiers, no cookies and no Toddle data; it
   downloads a Nyuchi-signed list of SHA-256 fingerprints of cancelled keys
   and checks its own key locally. Cloudflare sees the IP address as with any
   web request; Nyuchi does not log it. If the list cannot be fetched, the
-  last result stands. Anything else (a CSV file, an email or phone link, a
+  last result stands. (3) Licence emails carry a one-time link, never the
+  key (valid once, for 72 hours): only when the teacher opens it and clicks
+  "Add it to Chrome" on https://licenses.nyuchi.com/claim (the one page that
+  may message the extension), or pastes it into the licence page, the
+  licence page sends the link's token and nothing else in one POST to
+  https://licenses.nyuchi.com/v1/claims/redeem, and activates the key that
+  comes back as a typed key is activated. Anything else (an Excel or CSV
+  file, an email or phone link, a
   message in Toddle's own chat) happens only when the teacher does it. The
   welcome page it opens on install is part of the extension and sends
   nothing. It stores, on the user's own machine, its switch settings, the
-  licence key if there is one, the result of the last check for cancelled
-  keys, and the email of the Toddle account last seen signed in (to check
-  who a licence is for). The licence key alone is also
+  licence key if there is one (a school's, set by Chrome policy, is read
+  from the policy and not copied), the result of the last check for
+  cancelled keys, the email of the Toddle account last seen signed in (to
+  check who a licence is for), and the masked Toddle compatibility record. The licence key alone is also
   kept in Chrome's synced storage, so it follows the user's own Chrome
   account to their other computers (Chrome's sync, not Nyuchi's; the newest
   key wins, and removing it on one computer removes it on all); the
-  extension never sends the key to Nyuchi. And, in Toddle's own site storage, a copy of the
-  switches, whether flags are concealed, the My classes choice and the
-  academic year Toddle is showing. No student data is stored: what it reads stays in
+  extension never sends the key to Nyuchi. And, in Toddle's own site storage,
+  whether flags are concealed, the My classes choice and the academic year
+  Toddle is showing. No student data is stored: what it reads stays in
   the tab's memory until the tab is closed or reloaded. Rubric levels and
   descriptors are read from whatever a school has configured in Toddle; none
   are defined in the extension. Every query, stored value and request is
@@ -106,11 +125,11 @@ community-based platforms. Nyuchi Web Services is its development division.
   against its code on every change; schools can ask privacy@nyuchi.com for
   a copy. Schools deploy it from the Chrome Web Store by extension ID, with
   a Google Admin console force-install (or Group Policy, Intune or a macOS
-  profile); an organisation key is pasted in once by each teacher, since it
-  cannot be pushed by policy. Teachers get each minor release (0.11.0 is
-  the current one: 0.10.0 with a security fix to how licence keys are
-  checked, so that a cancelled key cannot be made to work again by
-  writing it differently) from the Chrome Web Store; versions 0.8.3 to 0.8.13 were
+  profile), and set the organisation licence through Chrome policy.
+  Teachers get each minor release (0.12.0 is the current one, on the Chrome
+  Web Store since 29 October 2026: an Excel export beside CSV, claim links
+  instead of keys in licence emails, a school's licence by Chrome policy,
+  and the Toddle compatibility check) from the Chrome Web Store; versions 0.8.3 to 0.8.13 were
   test builds for schools piloting it, and their changes arrived together in
   0.9.0. Release
   notes for every version, in plain words:
@@ -161,13 +180,15 @@ community-based platforms. Nyuchi Web Services is its development division.
 
 ## Legal
 
-All dated 13 October 2026. Operated by Nyuchi Web Services, the development
+All dated 29 October 2026. Operated by Nyuchi Web Services, the development
 division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
 
 - [Privacy policy](https://learning.nyuchi.com/legal/privacy): what the
   extension and the site do with data. In short, nothing the extension reads
-  leaves the browser; it sends only feedback a person chooses to send and,
-  while a licence is entered, a data-free daily check for cancelled keys; this website
+  leaves the browser; it sends only feedback (and Toddle compatibility
+  reports) a person chooses to send, a data-free daily check for cancelled
+  keys while there is a licence, and a licence email's one-time link when
+  it is used; this website
   loads Google Analytics only after the visitor agrees to it, and sets no
   cookies unless the visitor agrees. Nyuchi Africa (Private) Limited is the controller for the
   data it holds (purchases, feedback, support, site analytics), under
@@ -191,7 +212,8 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
   the extension reads, where it is processed (only in the teacher's browser),
   what it stores (settings and licence details; no student data), what leaves
   the browser (requests to Toddle and student photos from Toddle, plus
-  opt-in feedback and the data-free daily cancelled-keys check), what Nyuchi
+  opt-in feedback and compatibility reports, the data-free daily
+  cancelled-keys check, and redeeming a claim link), what Nyuchi
   holds,
   the services that process it, retention, breach notification, and a data
   processing agreement on request.
@@ -203,7 +225,8 @@ division of Nyuchi Africa (Private) Limited, Harare, Zimbabwe.
 - [Security](https://learning.nyuchi.com/legal/security): the extension's
   security model (runs only on web.toddleapp.com; permissions are storage and
   Toddle only; read-only allowlisted queries; sends only to Toddle except the
-  opt-in feedback form and the daily cancelled-keys check; licence keys
+  opt-in feedback form, the daily cancelled-keys check and claim-link
+  redemption; only Nyuchi's licence claim page may message it; licence keys
   checked offline, never sent to Nyuchi, and synced only through
   the user's own Chrome account; no student data stored),
   how it is tested (closed-loop tests, adversarial-review regression tests, an
@@ -248,9 +271,13 @@ and measures nothing unless the visitor presses Accept. The EXTENSION does not
 measure anything at all, with or without consent. The extension contains no analytics, no telemetry and no
 tracking, and nothing it reads leaves the browser it runs in, except back to
 Toddle. Its only outside
-connections are feedback a person writes and chooses to send from its menu,
-and, while a licence is entered, a daily download of a signed list of
-cancelled keys that sends no data. A question about
+connections are feedback a person writes and chooses to send from its menu
+(and Toddle compatibility reports, masked and with no student data, sent
+the same way only when a person sends them or switches that on); while
+there is a licence, a daily download of a signed list of cancelled keys
+that sends no data; and, when a person uses the one-time link from a
+licence email, one request carrying only that link's token, which returns
+their key. A question about
 whether the Toddle Enhancement Extension is safe for a school to install is a
 question about the extension, and the answer is not affected by what this
 marketing site does. The privacy policy above is the authoritative source for
