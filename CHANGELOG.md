@@ -10,6 +10,13 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Added
 
+- **Shift-left security checks (#77).** A pre-commit hook
+  (`.githooks/pre-commit`, turned on by `npm ci`) runs both formatters as the
+  org gates do, `vp lint --deny-warnings`, and Semgrep on the staged files
+  when it is installed. Pull requests get the org's dependency review, which
+  fails on a new high or critical advisory. `.vscode/extensions.json`
+  recommends Astro, Oxc, Prettier, Semgrep, SonarQube for IDE, EditorConfig
+  and markdownlint. See `docs/toolchain.md`.
 - **Mukoko Lingo has its own page, `/mukoko-lingo`.** Mukoko Lingo is a
   partner app developed by Nyuchi Learning, part of Mukoko, Africa's super
   app. The page says what it does today, who it is for, what schools get
@@ -33,6 +40,13 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Dependencies and CI actions up to date.** `vite-plus` 1.4.0 (from
+  1.0.0; supersedes #101), Vite 8.3.5 (supersedes #98), `@astrojs/vercel`
+  11.0.17, and `actions/checkout` v7.0.1 and `actions/setup-node` v7.1.0,
+  pinned by SHA (supersedes #96). `npm audit` reports nothing: the Vite,
+  undici and fast-uri advisories take their patched releases, and `zod` is
+  held at 4.6.6 or later through `overrides` (GHSA-mrhx-c7xc-m3w5), since
+  `@vercel/cli-config` pins 4.1.11. The audit's exception list stays empty.
 - **Mukoko Lingo is written for organisations first.** The page, the
   homepage card and `llms.txt` now lead with schools, businesses and
   government, then single learners. The "For schools" section is "For

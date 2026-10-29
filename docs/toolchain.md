@@ -20,7 +20,7 @@ that this repo does not control.
 
 ## Vite+
 
-`vite-plus` 1.0 is a dev dependency and npm installs it; CI and Vercel both
+`vite-plus` 1.4 is a dev dependency and npm installs it; CI and Vercel both
 install with `npm ci`. It replaced `vitest` (tests import from
 `vite-plus/test`), and `vite.config.ts` carries the test settings, type-aware
 linting and the org's format settings. Astro does not read `vite.config.ts`;
@@ -50,3 +50,30 @@ remove that formatter's config and the test with it.
 `*.astro` stays in `.prettierignore`: the org lint gate runs Prettier without
 `prettier-plugin-astro`, so it cannot parse those files. `npm run check`
 type-checks them.
+
+## Before a commit, and in the editor
+
+`.githooks/pre-commit` (turned on by `npm ci`, through `prepare`) runs
+`scripts/pre-commit.mjs`: both formatters as the org gates run them, when a
+file they format is staged; `vp lint --deny-warnings` when a script is staged;
+and Semgrep (`p/default`) on the staged files when `semgrep` is installed,
+failing only on findings on lines the commit changes. Without Semgrep, or
+offline, the hook says so and carries on. It is the same hook as
+`toddle-enhancement-extension`'s, with that repo's security tests swapped for
+the formatters. `git commit --no-verify` skips it; CI runs everything again.
+
+`.vscode/extensions.json` recommends the editor's half of the same checks:
+Astro, Oxc (Vite+'s lint and format), Prettier, Semgrep, SonarQube for IDE,
+EditorConfig and markdownlint. SonarQube for IDE runs without a
+`sonar-project.properties`, which is only needed for connected mode.
+
+## Security checks in CI
+
+- **Dependency audit:** the `audit` job in `build.yml` (README, "Dependency
+  audit").
+- **Dependency review:** on every pull request, the org's
+  `reusable-dependency-review.yml` fails a change that adds or updates a
+  dependency with a known high or critical advisory.
+- **CodeQL:** GitHub's default setup (repository settings) scans the
+  JavaScript and TypeScript and the workflows. Default setup and a CodeQL
+  workflow are alternatives, so there is no workflow here.

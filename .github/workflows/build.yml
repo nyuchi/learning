@@ -5,8 +5,8 @@ on:
   push:
     branches: [main, staging]
 
-# Nothing at the workflow level: each job asks for what it uses, and no job
-# here pushes, tags or comments, so each reads the repository and no more.
+# Nothing at the workflow level: each job asks for what it uses. No job here
+# pushes or tags; only dependency review may comment, on the pull request.
 permissions: {}
 
 concurrency:
@@ -83,3 +83,16 @@ jobs:
       - name: Report advisories in build and test tooling
         continue-on-error: true
         run: npm audit --audit-level=moderate
+
+  # A pull request that adds or changes a dependency with a known high or
+  # critical vulnerability fails (runtime and development dependencies
+  # both), through the organisation's reusable workflow, pinned as the other
+  # nyuchi/.github workflows are (#77; as in toddle-enhancement-extension).
+  dependency-review:
+    if: github.event_name == 'pull_request'
+    permissions:
+      contents: read
+      pull-requests: write
+    uses: nyuchi/.github/.github/workflows/reusable-dependency-review.yml@c2be05a22aeb6a98a80a9301f6b3e33bb88b20b0  # v0.2.0
+    with:
+      fail-on-severity: high
