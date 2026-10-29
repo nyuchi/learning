@@ -60,11 +60,17 @@ export const primaryNav: NavLink[] = [
   { label: "Frameworks", href: "https://bundu.org/education", external: true },
 ];
 
+/** The header's quieter link, beside the page's primary call to action. */
 export const headerCta: NavLink = {
   label: "Talk to us",
   href: "https://nyuchi.com/contact",
   external: true,
 };
+
+/** A page's one primary call to action, shown in the header. `short` is the
+    label at phone width, where the full one would push the wordmark onto two
+    lines. */
+export type HeaderAction = NavLink & { short?: string };
 
 export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
@@ -172,6 +178,14 @@ export const toddleExtension = {
   /** The Chrome Web Store listing (live since version 0.7.1). */
   webStore:
     "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as Url,
+  /** What the Chrome Web Store listing showed, read by the owner on the
+      date given. Update all three together; never round up. */
+  storeStats: {
+    rating: "5.0",
+    ratings: 1,
+    users: 27,
+    asOf: "29 October 2026",
+  },
   /** The store item ID, which a school's IT uses to force-install it. */
   extensionId: "ofliokikjmkkdkinbdnadbjjdmkjdjfi",
   supportEmail: "support@nyuchi.com",

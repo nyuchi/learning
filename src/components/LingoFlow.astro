@@ -1,0 +1,93 @@
+---
+/**
+ * How Mukoko Lingo works, in two lanes: what a learner does, and what an
+ * organisation running a programme does. Every step is a claim the Mukoko
+ * Lingo page already makes from Lingo's own repository (see the comment at
+ * the top of src/pages/mukoko-lingo.astro); nothing here is new.
+ *
+ * HTML, not a picture, from @bundu/ui tokens and the kit's Icon, so it reads
+ * in both themes and reflows to a vertical list at phone width. Like
+ * DataFlow.astro, a candidate to upstream as a generic step-flow component.
+ */
+import Icon from "@bundu/ui/Icon.astro";
+import type { IconName } from "@bundu/ui/Icon.astro";
+
+type Step = { icon: IconName; title: string; body: string };
+
+const lanes: { label: string; badge: string; steps: Step[] }[] = [
+  {
+    label: "For a learner",
+    badge: "badge-info",
+    steps: [
+      {
+        icon: "globe",
+        title: "Open it and choose a language",
+        body: "In your browser at lingo.mukoko.com. Starting is free.",
+      },
+      {
+        icon: "book",
+        title: "Five phrases a day",
+        body: "Flash cards, then a short quiz. Spaced repetition brings earlier phrases back.",
+      },
+      {
+        icon: "message",
+        title: "Ask Shamwari",
+        body: "The AI tutor adapts to the level the app has measured.",
+      },
+    ],
+  },
+  {
+    label: "For an organisation",
+    badge: "badge-accent",
+    steps: [
+      {
+        icon: "users",
+        title: "Set up classes and groups",
+        body: "In the console. Schools can sync rosters over OneRoster.",
+      },
+      {
+        icon: "clipboard",
+        title: "Set the work",
+        body: "Assignments against specific phrases and skills.",
+      },
+      {
+        icon: "chart",
+        title: "Measure it",
+        body: "Assessments graded on the server, and each learner's progress, skill by skill.",
+      },
+    ],
+  },
+];
+---
+
+<div class="grid gap-8 lg:grid-cols-2 lg:gap-10">
+  {
+    lanes.map((lane) => (
+      <div class="card p-5 md:p-7">
+        <p class:list={["badge", lane.badge]}>{lane.label}</p>
+        <ol class="mt-5 space-y-0">
+          {lane.steps.map((step, index) => (
+            <li class="relative flex gap-4 pb-6 last:pb-0">
+              {index < lane.steps.length - 1 && (
+                <span
+                  aria-hidden="true"
+                  class="absolute left-[1.125rem] top-10 bottom-1 w-px bg-border"
+                />
+              )}
+              <span class="relative inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-muted text-foreground">
+                <Icon name={step.icon} class="h-[18px] w-[18px]" />
+              </span>
+              <div class="min-w-0 pt-1">
+                <p class="font-serif text-h5 text-foreground text-balance">
+                  <span class="sr-only">Step {index + 1}: </span>
+                  {step.title}
+                </p>
+                <p class="mt-1 text-body-sm text-muted-foreground text-pretty">{step.body}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </div>
+    ))
+  }
+</div>

@@ -2,9 +2,22 @@
 /**
  * Sticky header, matching nyuchi.com's shell: translucent canvas over a blur,
  * a single hairline border, and a 64/80px row.
+ *
+ * The right-hand side carries the page's one primary call to action (by
+ * default, installing the extension: it is the product most visitors can act
+ * on today), with "Talk to us" beside it as the quieter link from `xl` up.
  */
 import Wordmark from "./Wordmark.astro";
-import { headerCta, primaryNav } from "../data/site";
+import { headerCta, primaryNav, toddleExtension, type HeaderAction } from "../data/site";
+
+interface Props {
+  action?: HeaderAction;
+}
+
+const defaultAction: HeaderAction = toddleExtension.webStore
+  ? { label: "Add to Chrome", short: "Install", href: toddleExtension.webStore, external: true }
+  : { label: "Talk to us", href: toddleExtension.enquiry };
+const { action = defaultAction } = Astro.props;
 
 const { pathname } = Astro.url;
 const isCurrent = (href: string) =>
@@ -14,10 +27,10 @@ const isCurrent = (href: string) =>
 <header class="sticky top-0 z-40">
   <div class="bg-canvas/80 backdrop-blur-md border-b border-border">
     <div class="container-custom">
-      <div class="flex items-center justify-between h-16 lg:h-20 gap-6">
+      <div class="flex items-center justify-between h-16 lg:h-20 gap-3 sm:gap-6">
         <Wordmark />
 
-        <nav class="hidden md:flex items-center gap-1" aria-label="Primary">
+        <nav class="hidden lg:flex items-center gap-1" aria-label="Primary">
           {
             primaryNav.map((link) => (
               <a
@@ -37,7 +50,7 @@ const isCurrent = (href: string) =>
           }
         </nav>
 
-        <div class="flex items-center gap-2">
+        <div class="flex shrink-0 items-center gap-1 sm:gap-2">
           <button
             type="button"
             id="theme-toggle"
@@ -71,8 +84,32 @@ const isCurrent = (href: string) =>
             </svg>
           </button>
 
-          <a href={headerCta.href} rel="noopener noreferrer" class="btn-primary !h-10 !px-5 text-body-sm">
-            {headerCta.label}
+          {
+            action.href !== headerCta.href && (
+              <a
+                href={headerCta.href}
+                rel="noopener noreferrer"
+                class="btn-ghost hidden xl:inline-flex whitespace-nowrap text-body-sm"
+              >
+                {headerCta.label}
+              </a>
+            )
+          }
+          <a
+            href={action.href}
+            {...(action.external ? { rel: "noopener noreferrer" } : {})}
+            class="btn-primary !h-9 sm:!h-10 !px-4 sm:!px-5 whitespace-nowrap text-body-sm"
+          >
+            {
+              action.short ? (
+                <>
+                  <span class="sm:hidden">{action.short}</span>
+                  <span class="hidden sm:inline">{action.label}</span>
+                </>
+              ) : (
+                action.label
+              )
+            }
           </a>
         </div>
       </div>
@@ -80,7 +117,7 @@ const isCurrent = (href: string) =>
 
     <!-- Small screens: the same links, scrolled rather than folded into a menu.
          A disclosure would need JS to be accessible; four links do not. -->
-    <div class="md:hidden border-t border-border">
+    <div class="lg:hidden border-t border-border">
       <nav class="container-custom flex gap-1 overflow-x-auto py-2" aria-label="Primary">
         {
           primaryNav.map((link) => (
