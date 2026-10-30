@@ -22,7 +22,7 @@ jobs:
   version:
     # Only main: a manual run started from another branch tags nothing.
     if: github.ref == 'refs/heads/main'
-    uses: nyuchi/.github/.github/workflows/reusable-auto-tag.yml@0cce12d59c9fbd88025e5e410550fe2fcc68968f  # v0.3.0
+    uses: nyuchi/.github/.github/workflows/reusable-auto-tag.yml@8822d18b4f26fbfa6cfc1313138a0287269195b7  # v0.6.0
     with:
       # Empty: the version is computed from the tags (package.json's version
       # is not the release version).
