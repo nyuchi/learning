@@ -68,6 +68,10 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Extension 0.14.0 on the releases page.** The gradebook's expand
+  buttons are back (Toddle changed its header); 0.14.0 is listed first, on
+  the store from 30 October 2026, the 0.13.1 to 0.13.5 test builds land on
+  it, and the legal pages' `current` version is 0.14.0.
 - **Extension 0.13.0 is on the release notes and the legal pages.** It
   reached the Chrome Web Store on 29 October 2026 and makes licence claim
   links work again. `extensionVersions.current` is now 0.13.0; 0.13.0 adds
