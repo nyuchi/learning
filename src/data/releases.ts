@@ -98,6 +98,26 @@ export const taggedTestBuilds: readonly string[] = [
 /** Newest first. */
 export const releases: Release[] = [
   {
+    /* Approved by the Chrome Web Store on 30 October 2026 and published by
+       the owner. The test builds after 0.13.0 open these notes: their
+       changes reached the store here. */
+    version: "0.14.0",
+    status: "store",
+    date: "2026-10-30",
+    summary:
+      "The gradebook's expand buttons are back. Toddle changed how it builds the gradebook's column headers, and the buttons that open a single standard or a single assessment had gone. Nothing else changes for you.",
+    sections: [
+      {
+        heading: "Fixed",
+        items: [
+          "The › button beside a tool (a rubric, a checklist, learning goals or standards) opens just that tool's columns, and the » button on an assessment opens all of its tools, as before.",
+          "After Expand all, the column labels sit over the right columns again: the header widens with the columns below it.",
+        ],
+      },
+    ],
+    alsoIds: ["0.13.1", "0.13.2", "0.13.3", "0.13.4", "0.13.5"],
+  },
+  {
     /* Published on the Chrome Web Store on 29 October 2026: approved that
        morning and published by the owner, confirmed by the store's update
        service serving 0.13.0. */
