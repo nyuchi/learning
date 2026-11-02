@@ -297,8 +297,16 @@ describe("the releases page", () => {
       expect(v0140).toContain(`id="${id}"`);
   });
 
-  it("lists 0.14.0 first, and nothing as coming", () => {
-    expect(page.search(/<li id="v\d/)).toBe(page.search(/<li id="v0\.14\.0"/));
+  it("says 0.15.0 is on the store from 2 November 2026, and the 0.14.x test builds land on it", () => {
+    const v0150 = release("0.15.0");
+    expect(v0150).toContain("On the Chrome Web Store");
+    expect(v0150).toContain('datetime="2026-11-02"');
+    for (const id of ["v0.14.1", "v0.14.2"])
+      expect(v0150).toContain(`id="${id}"`);
+  });
+
+  it("lists 0.15.0 first, and nothing as coming", () => {
+    expect(page.search(/<li id="v\d/)).toBe(page.search(/<li id="v0\.15\.0"/));
     expect(page).not.toContain("Coming soon to the Chrome Web Store");
   });
 
