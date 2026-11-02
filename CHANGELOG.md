@@ -68,6 +68,11 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Extension 0.15.0 on the releases page.** Expanded gradebook columns
+  line up with their labels again and compatibility reports are easier to
+  read; 0.15.0 is listed first, on the store from 2 November 2026, the
+  0.14.1 and 0.14.2 test builds land on it, and the legal pages' `current`
+  version is 0.15.0.
 - **Extension 0.14.0 on the releases page.** The gradebook's expand
   buttons are back (Toddle changed its header); 0.14.0 is listed first, on
   the store from 30 October 2026, the 0.13.1 to 0.13.5 test builds land on
