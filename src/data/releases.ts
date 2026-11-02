@@ -98,6 +98,32 @@ export const taggedTestBuilds: readonly string[] = [
 /** Newest first. */
 export const releases: Release[] = [
   {
+    /* Approved by the Chrome Web Store on 2 November 2026 and published by
+       the owner. The test builds after 0.14.0 open these notes: their
+       changes reached the store here. */
+    version: "0.15.0",
+    status: "store",
+    date: "2026-11-02",
+    summary:
+      "Expanded gradebook columns line up with their labels again, and compatibility reports are easier to read. Nothing else changes for you.",
+    sections: [
+      {
+        heading: "Fixed",
+        items: [
+          "After you expand a tool or an assessment, each label in the header sits over its own column, and the lines between columns are back. Before, the labels sat a little narrower than the columns below them and drifted further off the further right you went.",
+          "Collapsing leaves Toddle's header exactly as it was.",
+        ],
+      },
+      {
+        heading: "Changed",
+        items: [
+          "A compatibility report you send now starts with one plain sentence saying what works and what Toddle changed, and it reaches us reliably. It still carries nothing about you or your students.",
+        ],
+      },
+    ],
+    alsoIds: ["0.14.1", "0.14.2"],
+  },
+  {
     /* Approved by the Chrome Web Store on 30 October 2026 and published by
        the owner. The test builds after 0.13.0 open these notes: their
        changes reached the store here. */
