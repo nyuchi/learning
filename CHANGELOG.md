@@ -68,6 +68,13 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Firefox is coming, and the pages say so.** The extension now builds for
+  Firefox; until its addons.mozilla.org listing is live
+  (`toddleExtension.firefoxStore` in `src/data/site.ts`, null for now) the
+  extension page and the home page say Chrome and Chromium browsers, with
+  Firefox coming soon, and offer no Firefox install. Set the listing and
+  they say Chrome and Firefox and offer "Add to Firefox", with no other
+  edit (tested in `tests/seo.test.ts`).
 - **Extension 0.16.0 on the releases page, with a Security section.**
   Every feature a module a teacher or a school can switch on or off;
   0.16.0 is listed first, on the store from 3 November 2026, the 0.15.1 to
