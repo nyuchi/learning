@@ -68,6 +68,12 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **Extension 0.16.0 on the releases page, with a Security section.**
+  Every feature a module a teacher or a school can switch on or off;
+  0.16.0 is listed first, on the store from 3 November 2026, the 0.15.1 to
+  0.15.7 test builds land on it, its notes carry a Security section (every
+  release's will, from now on), and the legal pages' `current` version is
+  0.16.0.
 - **Extension 0.15.0 on the releases page.** Expanded gradebook columns
   line up with their labels again and compatibility reports are easier to
   read; 0.15.0 is listed first, on the store from 2 November 2026, the
