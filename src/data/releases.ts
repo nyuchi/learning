@@ -99,6 +99,50 @@ export const taggedTestBuilds: readonly string[] = [
 export const releases: Release[] = [
   {
     /* Approved by the Chrome Web Store on 2 November 2026 and published by
+       the owner on 3 November. The test builds after 0.15.0 open these
+       notes: their changes reached the store here. From this release every
+       entry has a Security section (the owner, 2 November 2026). */
+    version: "0.16.0",
+    status: "store",
+    date: "2026-11-03",
+    summary:
+      "Every main feature is now a module you can switch on or off, each with its own settings, and a school can choose modules for all its teachers. Expanded gradebook columns line up all the way to the right.",
+    sections: [
+      {
+        heading: "Added",
+        items: [
+          "Each feature has its own card in the toolbar menu: Flag visibility, the student sidebar, My classes, teacher names, the gradebook tools and the Attendance dashboard details. A module's settings sit inside its card: Show student flags, the gradebook's Export, and the Attendance dashboard's Students and Excusals tabs. Switch a module off and its settings go with it; your choices are kept for when you switch it back on. Everything starts switched on.",
+          "Flag visibility can be left to Toddle. Switch the Flag visibility module off and the extension leaves student flags entirely to Toddle.",
+          "Schools can choose modules for every teacher. A school's IT can switch any module on or off for all its teachers, in the same Chrome policy as the school's licence. Those modules show locked in the menu, \"Set by your school\"; the rest stay your own choice.",
+        ],
+      },
+      {
+        heading: "Fixed",
+        items: [
+          "Expanded gradebook columns line up with their labels all the way to the right, on the widest gradebooks too.",
+        ],
+      },
+      {
+        heading: "Security",
+        items: [
+          "Reviewed before release; nothing found. Every change in 0.16.0 had a security review before it shipped. It found no way for Toddle's page, another website or another extension to change your switches, unlock a licensed feature, or reach student data.",
+          "What a school's policy can and cannot do. It is read only from Chrome's managed policy, which only your school's IT can set. It can switch modules on or off; it cannot unlock anything that needs a licence, and it cannot switch the extension itself off for you.",
+          "Nothing new leaves your browser. No new permissions, no new websites, no new network requests. The extension still reads Toddle only in your own browser and sends nothing about you or your students anywhere.",
+        ],
+      },
+    ],
+    alsoIds: [
+      "0.15.1",
+      "0.15.2",
+      "0.15.3",
+      "0.15.4",
+      "0.15.5",
+      "0.15.6",
+      "0.15.7",
+    ],
+  },
+  {
+    /* Approved by the Chrome Web Store on 2 November 2026 and published by
        the owner. The test builds after 0.14.0 open these notes: their
        changes reached the store here. */
     version: "0.15.0",

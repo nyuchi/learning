@@ -114,9 +114,10 @@ export const pricing = [
  * (0.9.0, …) is released from the extension's `main` branch and published to
  * the store. Teachers get minors.
  *
- * `current` is what teachers have from the Chrome Web Store: 0.15.0
- * (published 2 November 2026), which lines expanded gradebook columns up
- * with their labels and makes compatibility reports easier to read. 0.14.0
+ * `current` is what teachers have from the Chrome Web Store: 0.16.0
+ * (published 3 November 2026), which makes every feature a module a
+ * teacher or a school can switch on or off. 0.15.0 before it (2 November
+ * 2026) lined expanded gradebook columns up with their labels. 0.14.0
  * before it (30 October 2026) brought back the gradebook's expand
  * buttons after Toddle changed its header. 0.13.0
  * before it (29 October 2026) made licence claim links work again. 0.12.0
@@ -137,7 +138,7 @@ export const pricing = [
  * wording again.
  */
 export const extensionVersions = {
-  current: "0.15.0",
+  current: "0.16.0",
   previous: "0.8.2",
   /** The release that moved the licence host and renamed the flags key. */
   changedIn: "0.9.0",
