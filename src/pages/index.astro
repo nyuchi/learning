@@ -20,7 +20,7 @@ import TrustPoints from "../components/TrustPoints.astro";
 import ExtensionPricing from "../components/ExtensionPricing.astro";
 import Faq from "../components/Faq.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { mukokoLingo, toddleExtension } from "../data/site";
+import { browsersLine, mukokoLingo, toddleExtension } from "../data/site";
 import { extensionVersions, pricing, refunds } from "../data/legal";
 import gradebookShot from "../assets/screenshots/01-gradebook.jpg";
 import lingoIcon from "../assets/lingo/icon.png";
@@ -287,7 +287,7 @@ const faq = [
         </div>
         <h3 class="mt-3 font-serif text-h3 text-foreground text-balance">{toddleExtension.name}</h3>
         <p class="mt-3 flex-1 text-body text-muted-foreground text-pretty">
-          A Chrome extension for the Toddle gradebook. It expands every rubric into
+          A browser extension for the Toddle gradebook ({browsersLine}). It expands every rubric into
           per-criterion columns, exports the lot to Excel or CSV, and conceals student flags with
           one free switch when you share your screen.
         </p>

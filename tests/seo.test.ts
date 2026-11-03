@@ -11,6 +11,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { releases, taggedTestBuilds } from "../src/data/releases";
+import { toddleExtension } from "../src/data/site";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative: string) => readFileSync(join(root, relative), "utf8");
@@ -442,5 +443,19 @@ describe("Mukoko Lingo", () => {
     expect(llms).toContain("https://learning.nyuchi.com/mukoko-lingo");
     expect(llms).toContain("https://lingo.mukoko.com");
     expect(llms).toContain("developed by Nyuchi Learning");
+  });
+});
+
+describe("which browsers the pages say", () => {
+  it("says Firefox is coming, and offers no Firefox install, until the listing is set", () => {
+    const page = built("toddle-enhancement-extension/index.html");
+    if (toddleExtension.firefoxStore) {
+      expect(page).toContain("Add to Firefox");
+      expect(page).toContain(toddleExtension.firefoxStore);
+    } else {
+      expect(page).toContain("Firefox is coming soon");
+      expect(page).not.toContain("Add to Firefox");
+      expect(page).not.toMatch(/addons\.mozilla\.org/);
+    }
   });
 });
