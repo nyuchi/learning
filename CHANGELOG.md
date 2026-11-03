@@ -68,6 +68,11 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **@bundu/ui 0.9.0** (was 0.5.0), for the latest Nyuchi branding and
+  styling. `globals.css` now brings in Bundu's density rules, which the
+  site already imports. Nothing the site uses was removed. The one new
+  dependency is `uqr`, the QR-code library behind Bundu's new
+  address cards.
 - **Firefox is coming, and the pages say so.** The extension now builds for
   Firefox; until its addons.mozilla.org listing is live
   (`toddleExtension.firefoxStore` in `src/data/site.ts`, null for now) the
