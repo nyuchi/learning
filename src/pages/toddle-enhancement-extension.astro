@@ -28,7 +28,7 @@ import TrustPoints from "../components/TrustPoints.astro";
 import ExtensionPricing from "../components/ExtensionPricing.astro";
 import Faq from "../components/Faq.astro";
 import CtaBand from "../components/CtaBand.astro";
-import { toddleExtension } from "../data/site";
+import { browsersLine, toddleExtension } from "../data/site";
 import {
   extensionVersions,
   flags,
@@ -237,7 +237,9 @@ const schema = [
     "@id": "https://learning.nyuchi.com/toddle-enhancement-extension#software",
     name: toddleExtension.name,
     applicationCategory: "BrowserApplication",
-    operatingSystem: "Chrome, Chromium-based browsers",
+    operatingSystem: toddleExtension.firefoxStore
+      ? "Chrome, Chromium-based browsers, Firefox"
+      : "Chrome, Chromium-based browsers",
     description,
     url: "https://learning.nyuchi.com/toddle-enhancement-extension",
     ...(live
@@ -309,7 +311,9 @@ const faq = [
   },
   {
     q: "Which browsers does it work in?",
-    a: `<p>Chrome and Chromium browsers, installed from the Chrome Web Store. There is no download, no .zip and no Developer mode.</p>`,
+    a: toddleExtension.firefoxStore
+      ? `<p>Chrome and Chromium browsers, from the Chrome Web Store, and Firefox, from Firefox Add-ons. There is no download, no .zip and no Developer mode.</p>`
+      : `<p>Chrome and Chromium browsers, installed from the Chrome Web Store. Firefox is coming soon, from Firefox Add-ons. There is no download, no .zip and no Developer mode.</p>`,
   },
   {
     q: "How do refunds work?",
@@ -334,7 +338,9 @@ const faq = [
     title={toddleExtension.name}
     description={`${toddleExtension.tagline} Built for schools, and it sends your students' data precisely nowhere.`}
     primaryCTA={{ text: primaryCta.label, href: primaryCta.href, external: live }}
-    secondaryCTA={{ text: live ? "See pricing" : "How to install", href: live ? "#pricing" : "#install" }}
+    secondaryCTA={toddleExtension.firefoxStore
+      ? { text: "Add to Firefox", href: toddleExtension.firefoxStore, external: true }
+      : { text: live ? "See pricing" : "How to install", href: live ? "#pricing" : "#install" }}
     mediaLabel="The extension in the Toddle gradebook"
   >
     <figure slot="media">
@@ -354,7 +360,7 @@ const faq = [
         {leadShot.caption} ·
         {
           live
-            ? "Chrome and Chromium browsers · one click from the Chrome Web Store"
+            ? `${browsersLine} · one click from the store`
             : "Chrome and Chromium browsers · going on the Chrome Web Store shortly"
         }
       </figcaption>
