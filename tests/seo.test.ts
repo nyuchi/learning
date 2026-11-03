@@ -10,7 +10,7 @@ import { describe, expect, it } from "vite-plus/test";
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
-import { taggedTestBuilds } from "../src/data/releases";
+import { releases, taggedTestBuilds } from "../src/data/releases";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (relative: string) => readFileSync(join(root, relative), "utf8");
@@ -312,6 +312,23 @@ describe("the releases page", () => {
     expect(v0160).toContain("Security");
     for (const id of ["v0.15.1", "v0.15.7"])
       expect(v0160).toContain(`id="${id}"`);
+  });
+
+  it("every store release from 0.16.0 on has a Security section", () => {
+    /* the owner, 2 November 2026: every release says what its security
+       review found and what changed for the safety of teachers' and
+       students' data */
+    const newer = (v: string) => {
+      const [a, b] = v.split(".").map(Number);
+      return a! > 0 || b! >= 16;
+    };
+    for (const r of releases.filter(
+      (r) => r.status === "store" && newer(r.version),
+    ))
+      expect(
+        r.sections.some((s) => s.heading === "Security" && s.items.length > 0),
+        `${r.version} has a Security section`,
+      ).toBe(true);
   });
 
   it("lists 0.16.0 first, and nothing as coming", () => {
