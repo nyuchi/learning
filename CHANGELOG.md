@@ -8,6 +8,14 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ## Unreleased
 
+### Changed
+
+- **@bundu/ui 0.9.0** (was 0.5.0), for the latest Nyuchi branding and
+  styling. `globals.css` now brings in Bundu's density rules, which the
+  site already imports. Nothing the site uses was removed. The one new
+  dependency is `uqr`, the QR-code library behind Bundu's new
+  address cards.
+
 ### Added
 
 - **The Chrome Web Store numbers on the home page.** The proof section
