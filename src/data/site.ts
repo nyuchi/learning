@@ -166,6 +166,12 @@ export const MINERALS = [
  * `webStore` is the single switch: the Chrome Web Store listing. With it set,
  * every call to action is "Add to Chrome". (Set it back to null and the pages
  * fall back to an enquiry, with no other edit.)
+ *
+ * `firefoxStore` is Firefox's: the addons.mozilla.org listing. The extension
+ * builds for Firefox from 0.17.0 (the extension's docs/firefox.md); until the
+ * listing is live it stays null and the pages say Firefox is coming. Set it
+ * and every page says Chrome and Firefox, and offers "Add to Firefox" beside
+ * "Add to Chrome", with no other edit.
  */
 /** A link that may not exist yet. Named so that every Prettier version
     formats the cast below the same way. */
@@ -178,6 +184,8 @@ export const toddleExtension = {
   /** The Chrome Web Store listing (live since version 0.7.1). */
   webStore:
     "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as Url,
+  /** The addons.mozilla.org listing: null until it is live. */
+  firefoxStore: null as Url,
   /** What the Chrome Web Store listing showed, read by the owner on the
       date given. Update all three together; never round up. */
   storeStats: {
@@ -200,6 +208,11 @@ export const toddleExtension = {
   /** The licence server's host, which a school's network should allow. */
   licenceHost: "licenses.nyuchi.com",
 } as const;
+
+/** The browsers it runs in, in words, for every page that says so. */
+export const browsersLine = toddleExtension.firefoxStore
+  ? "Chrome, Chromium browsers and Firefox"
+  : "Chrome and Chromium browsers, with Firefox coming soon";
 
 /**
  * Mukoko Lingo, described once: a partner app developed by Nyuchi Learning.
