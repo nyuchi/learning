@@ -26,7 +26,7 @@
     "ci:check": "astro check && vp fmt --check"
   },
   "dependencies": {
-    "@bundu/ui": "^0.5.0",
+    "@bundu/ui": "^0.9.0",
     "astro": "^7.3.5"
   },
   "devDependencies": {
