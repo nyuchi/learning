@@ -257,6 +257,45 @@ const description =
       sees or pastes it; an organisation key typed into the extension is refused.
     </p>
 
+    <h2 id="firefox" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
+      In Firefox
+    </h2>
+    <p class="mt-4 text-body text-muted-foreground text-pretty">
+      The extension is also on
+      <a href={toddleExtension.firefoxStore} class="link" rel="noopener" target="_blank"
+        >Firefox Add-ons</a
+      >. It is the same extension, built from the same code, and everything on this page
+      applies to it in the same way, with these differences:
+    </p>
+    <ul
+      class="mt-4 space-y-2 text-body text-muted-foreground list-disc list-outside pl-5 marker:text-foreground/40"
+    >
+      <li>
+        <strong class="text-foreground">Claim links.</strong> The licence claim page cannot
+        hand a link to the extension in Firefox, so you paste the link from your licence
+        email into the extension's licence page. The request it makes is the same one,
+        carrying the link's code and nothing else.
+      </li>
+      <li>
+        <strong class="text-foreground">Storage and sync.</strong> Where this page says
+        Chrome's storage, in Firefox it is Firefox's storage for the extension. If you use
+        Firefox Sync, Firefox may carry your licence key to your other computers through
+        your own Firefox account; the extension never sends it anywhere.
+      </li>
+      <li>
+        <strong class="text-foreground">Schools.</strong> A school's IT sets the licence and
+        the modules for every teacher through Firefox enterprise policy
+        (<code>policies.json</code>) instead of Chrome policy. The extension reads it on the
+        computer, and nothing about it is sent anywhere.
+      </li>
+      <li>
+        <strong class="text-foreground">What Mozilla is told.</strong> The listing declares
+        that the extension collects nothing by itself, and that feedback and Toddle
+        compatibility reports, which you choose to send, contain technical information and
+        never student data.
+      </li>
+    </ul>
+
     <h2 id="security" class="font-serif text-h3 text-foreground mt-12 scroll-mt-24">
       Security
     </h2>
