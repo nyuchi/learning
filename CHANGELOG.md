@@ -10,6 +10,7 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Added
 
+- **Firefox.** The extension is on Firefox Add-ons (version 0.16.3). Every page now says it runs in Chrome, Chromium browsers and Firefox, the extension page offers "Add to Firefox" beside "Add to Chrome", and the privacy policy has an "In Firefox" section (claim links are pasted; Firefox's storage and Sync; school policy through policies.json; what the listing declares to Mozilla). The terms and the vulnerability disclosure scope cover Firefox too.
 - **The Chrome Web Store numbers on the home page.** The proof section
   says what the store listing shows, dated: rated 5.0 out of 5 (1 rating),
   27 users, as of 29 October 2026, from `toddleExtension.storeStats` in
@@ -68,6 +69,11 @@ numbers below were the site's earlier, hand-kept numbering and are retired; the
 
 ### Changed
 
+- **@bundu/ui 0.9.0** (was 0.5.0), for the latest Nyuchi branding and
+  styling. `globals.css` now brings in Bundu's density rules, which the
+  site already imports. Nothing the site uses was removed. The one new
+  dependency is `uqr`, the QR-code library behind Bundu's new
+  address cards.
 - **Firefox is coming, and the pages say so.** The extension now builds for
   Firefox; until its addons.mozilla.org listing is live
   (`toddleExtension.firefoxStore` in `src/data/site.ts`, null for now) the
