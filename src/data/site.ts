@@ -168,10 +168,9 @@ export const MINERALS = [
  * fall back to an enquiry, with no other edit.)
  *
  * `firefoxStore` is Firefox's: the addons.mozilla.org listing. The extension
- * builds for Firefox from 0.17.0 (the extension's docs/firefox.md); until the
- * listing is live it stays null and the pages say Firefox is coming. Set it
- * and every page says Chrome and Firefox, and offers "Add to Firefox" beside
- * "Add to Chrome", with no other edit.
+ * builds for Firefox (the extension's docs/firefox.md), listed since 0.16.3.
+ * Set, every page says Chrome and Firefox and offers "Add to Firefox" beside
+ * "Add to Chrome"; null, and the pages say Firefox is coming.
  */
 /** A link that may not exist yet. Named so that every Prettier version
     formats the cast below the same way. */
@@ -184,8 +183,9 @@ export const toddleExtension = {
   /** The Chrome Web Store listing (live since version 0.7.1). */
   webStore:
     "https://chromewebstore.google.com/detail/ofliokikjmkkdkinbdnadbjjdmkjdjfi" as Url,
-  /** The addons.mozilla.org listing: null until it is live. */
-  firefoxStore: null as Url,
+  /** The addons.mozilla.org listing (live since version 0.16.3). */
+  firefoxStore:
+    "https://addons.mozilla.org/firefox/addon/toddle-enhancement-extension/" as Url,
   /** What the Chrome Web Store listing showed, read by the owner on the
       date given. Update all three together; never round up. */
   storeStats: {
