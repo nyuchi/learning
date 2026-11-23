@@ -3,7 +3,7 @@ name: build
 on:
   pull_request:
   push:
-    branches: [main, staging]
+    branches: [main]
 
 # Nothing at the workflow level: each job asks for what it uses. No job here
 # pushes or tags; only dependency review may comment, on the pull request.
